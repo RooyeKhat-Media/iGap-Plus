@@ -2,14 +2,11 @@
  * @flow
  */
 
-import type {Action} from '../actions/types';
+import { combineReducers } from 'redux';
+import { intlReducer } from 'react-intl-redux';
 
-type State = {
-  [key: string] : any
-};
-
-const rootReducer = function(state:State, action:Action):State {
-  return state;
-};
+const rootReducer = combineReducers({
+  intl: intlReducer,
+});
 
 export default rootReducer;
