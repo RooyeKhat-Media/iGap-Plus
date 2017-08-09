@@ -7,6 +7,7 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"babel-plugin-transform-remove-console": "^6.8.4",
 		"intl": "^1.2.5",
 		"intl-locales-supported": "^1.0.0",
 		"react": "16.0.0-alpha.12",

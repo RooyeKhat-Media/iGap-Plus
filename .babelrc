@@ -12,6 +12,11 @@
           }
         ]
       ]
+    },
+    "production": {
+      "plugins": [
+        "transform-remove-console"
+      ]
     }
   }
 }
