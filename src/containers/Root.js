@@ -3,13 +3,13 @@
  */
 
 import React, {Component} from 'react';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 import {Provider} from 'react-redux';
-import { IntlProvider } from 'react-intl-redux';
+import {IntlProvider} from 'react-intl-redux';
 import store from '../configureStore';
 import App from './App';
 
-import { addLocaleData } from 'react-intl';
+import {addLocaleData} from 'react-intl';
 
 /**
  * Start Intl Polyfill
@@ -27,7 +27,7 @@ if (global.Intl) {
     // `Intl` exists, but it doesn't have the data we need, so load the
     // polyfill and replace the constructors with need with the polyfill's.
     const IntlPolyfill = require('intl');
-    global.Intl.NumberFormat   = IntlPolyfill.NumberFormat;
+    global.Intl.NumberFormat = IntlPolyfill.NumberFormat;
     global.Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
     requireLocalesPolyfill = true;
   }
@@ -47,6 +47,7 @@ if (requireLocalesPolyfill) {
  */
 
 import fa from 'react-intl/locale-data/fa';
+
 addLocaleData([...fa]);
 
 export default class Root extends Component {
@@ -54,7 +55,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <IntlProvider textComponent={Text}>
-          <App />
+          <App/>
         </IntlProvider>
       </Provider>
     );
