@@ -2,6 +2,8 @@
  * @flow
  */
 
+export const DATABASE_SCHEMA_VERSION = 1;
+
 export const WEBSOCKET_ENDPOINT = 'wss://secure.igap.net/test/';
 export const WEBSOCKET_RECONNECT_INTERVAL_SEC = 1;
 

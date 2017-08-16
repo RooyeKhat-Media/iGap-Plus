@@ -11,10 +11,15 @@ import {BackHandler} from 'react-native';
 
 import AppNavigator from '../navigators/AppNavigator';
 import Api from '../modules/Api';
+import {migrate} from '../modules/Migration';
 
 class App extends Component {
   componentDidMount() {
-    Api.instance;
+    migrate().catch(function() {
+      console.log('Migration failed');
+    }).then(function() {
+      Api.instance;
+    });
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
 
