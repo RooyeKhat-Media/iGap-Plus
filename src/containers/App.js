@@ -3,12 +3,10 @@
  */
 
 import React, {Component} from 'react';
-import {
-  Platform,
-  Text,
-  View,
-} from 'react-native';
 import Api from '../modules/Api';
+import Intro from './Intro';
+import {ThemeProvider} from 'react-native-material-ui';
+import defaultTheme from '../theme/default';
 
 class App extends Component {
   componentDidMount() {
@@ -17,11 +15,9 @@ class App extends Component {
 
   render() {
     return (
-      <View>
-        <Text>
-          iGap+ {Platform.OS} Client
-        </Text>
-      </View>
+      <ThemeProvider uiTheme={defaultTheme}>
+        <Intro/>
+      </ThemeProvider>
     );
   }
 }
