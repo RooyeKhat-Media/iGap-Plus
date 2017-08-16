@@ -45,14 +45,14 @@ class Intro extends React.Component {
         <View style={styles.layout}>
           <View style={[styles.swiperWrap]}>
             <Swiper loop={false}
-              index={currentPage}
-              width={boxWidth}
-              height={boxHeight}
-              showsButtons={false}
-              onMomentumScrollEnd={this._handleWhenScrollEnd}
-              dotStyle={styles.dotStyle}
-              paginationStyle={styles.paginationStyle}
-              activeDotStyle={styles.activeDotStyle}>
+                    index={currentPage}
+                    width={boxWidth}
+                    height={boxHeight}
+                    showsButtons={false}
+                    onMomentumScrollEnd={this._handleWhenScrollEnd}
+                    dotStyle={styles.dotStyle}
+                    paginationStyle={styles.paginationStyle}
+                    activeDotStyle={styles.activeDotStyle}>
 
               {pages.map(({ImageSvg, title, subtitle}, idx) => (
                 <View key={idx} style={styles.slide}>
@@ -72,7 +72,7 @@ class Intro extends React.Component {
           </View>
           <View style={styles.btnWrap}>
             <Button style={styles.btn} upperCase={false} primary raised accent={false} onPress={onBtnClick}
-              text={btnTitle}/>
+                    text={btnTitle}/>
           </View>
         </View>
       </View>
@@ -91,9 +91,7 @@ Intro.propTypes = {
     title: PropTypes.element.isRequired,
     subtitle: PropTypes.element.isRequired,
   })).isRequired,
-};
-
-Intro.propTypes = {
   intl: intlShape.isRequired,
 };
+
 export default injectIntl(responsive(Intro));

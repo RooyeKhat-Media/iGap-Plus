@@ -7,6 +7,7 @@ import Logo from '../assets/images/intro/logo';
 import Security from '../assets/images/intro/security';
 import Transfer from '../assets/images/intro/transfer';
 import {FormattedMessage} from 'react-intl';
+import {goRegister} from '../navigators/AppNavigator';
 
 const pages = [
   {
@@ -47,9 +48,12 @@ const pages = [
 ];
 
 class Intro extends Component {
+  static navigationOptions = {
+    header: null,
+  };
 
   _onClick = () => {
-    console.log('OnClicked');
+    goRegister();
   };
 
   render() {

@@ -13,6 +13,7 @@
 		"intl": "^1.2.5",
 		"intl-locales-supported": "^1.0.0",
 		"node-forge": "^0.7.1",
+		"prop-types": "^15.5.10",
 		"react": "16.0.0-alpha.12",
 		"react-intl": "^2.3.0",
 		"react-intl-redux": "^0.6.0",
@@ -22,6 +23,7 @@
 		"react-native-swiper": "^1.5.10",
 		"react-native-vector-icons": "^4.3.0",
 		"react-native-windows": "0.47.0-rc.5",
+		"react-navigation": "^1.0.0-beta.11",
 		"react-redux": "^5.0.5",
 		"redux": "^3.7.2",
 		"redux-thunk": "^2.2.0"
