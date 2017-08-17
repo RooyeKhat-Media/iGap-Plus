@@ -7,6 +7,7 @@ import {intlShape, injectIntl} from 'react-intl';
 import {responsive, MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.styles';
 import * as _ from 'lodash';
+import i18n from '../../i18n';
 
 class Intro extends React.Component {
   constructor() {
@@ -37,8 +38,8 @@ class Intro extends React.Component {
     boxHeight -= 70;
 
     const btnTitle = currentPage < pages.length - 1 ?
-      intl.formatMessage({id: 'Intro.btnSkip', defaultMessage: 'Skip'}) :
-      intl.formatMessage({id: 'Intro.btnStart', defaultMessage: 'Start'});
+      intl.formatMessage(i18n.introBtnSkip) :
+      intl.formatMessage(i18n.introBtnStart);
 
     return (
       <View style={styles.wrapper}>
