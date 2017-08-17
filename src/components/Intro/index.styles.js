@@ -1,11 +1,18 @@
 import * as _ from 'lodash';
 import Device from '../../modules/Responsive/Device';
 
+import {
+  NORMAL_WIDTH, NORMAL_HEIGHT, MIN_WIDTH_NORMAL_WIDTH, ORIENTATION_LANDSCAPE,
+  ORIENTATION_PORTRAIT, MIN_WIDTH_NORMAL_HEIGHT, MIN_HEIGHT_NORMAL_HEIGHT,
+  MIN_HEIGHT_NORMAL_WIDTH,
+} from '../../constants/screenBreakPoints';
+
 const id = _.uniqueId();
 const {width, height} = Device.dimensions.window;
 const min = _.min([width, height]);
 const max = _.max([width, height]);
-const svgSize = _.min([_.min([min, 360]) - 120, _.min([max, 640]) - 330]);
+const svgSize = _.min([_.min([min, NORMAL_WIDTH]) - 120,
+  _.min([max, NORMAL_HEIGHT]) - 330]);
 export default [
   id,
   [
@@ -91,11 +98,11 @@ export default [
       },
     },
     {
-      query: {minWidth: 361, orientation: 'portrait'},
+      query: {...MIN_WIDTH_NORMAL_WIDTH, ...ORIENTATION_PORTRAIT},
       style: {
         layout: {
           flex: 0,
-          width: 360,
+          width: NORMAL_WIDTH,
         },
         wrapper: {
           justifyContent: 'center',
@@ -104,11 +111,11 @@ export default [
       },
     },
     {
-      query: {minWidth: 641, orientation: 'landscape'},
+      query: {...MIN_WIDTH_NORMAL_HEIGHT, ...ORIENTATION_LANDSCAPE},
       style: {
         layout: {
           flex: 0,
-          width: 640,
+          width: NORMAL_HEIGHT,
         },
         wrapper: {
           justifyContent: 'center',
@@ -117,11 +124,11 @@ export default [
       },
     },
     {
-      query: {minHeight: 361, orientation: 'landscape'},
+      query: {...MIN_HEIGHT_NORMAL_WIDTH, ...ORIENTATION_LANDSCAPE},
       style: {
         layout: {
           flex: 0,
-          height: 360,
+          height: NORMAL_WIDTH,
         },
         wrapper: {
           justifyContent: 'center',
@@ -130,11 +137,11 @@ export default [
       },
     },
     {
-      query: {minHeight: 641, orientation: 'portrait'},
+      query: {...MIN_HEIGHT_NORMAL_HEIGHT, ...ORIENTATION_PORTRAIT},
       style: {
         layout: {
           flex: 0,
-          height: 640,
+          height: NORMAL_HEIGHT,
         },
         wrapper: {
           justifyContent: 'center',
@@ -143,7 +150,7 @@ export default [
       },
     },
     {
-      query: {orientation: 'portrait'},
+      query: ORIENTATION_PORTRAIT,
       style: {
         slide: {
           flexDirection: 'column',
@@ -152,7 +159,7 @@ export default [
       },
     },
     {
-      query: {orientation: 'landscape'},
+      query: ORIENTATION_LANDSCAPE,
       style: {
         slide: {
           flexDirection: 'row',

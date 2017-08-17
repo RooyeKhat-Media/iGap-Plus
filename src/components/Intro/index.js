@@ -8,6 +8,7 @@ import {responsive, MemoizeResponsiveStyleSheet} from '../../modules/Responsive'
 import styleSheet from './index.styles';
 import * as _ from 'lodash';
 import i18n from '../../i18n';
+import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../constants/screenBreakPoints';
 
 class Intro extends React.Component {
   constructor() {
@@ -29,11 +30,11 @@ class Intro extends React.Component {
     let boxWidth, boxHeight;
     const {width, height} = this.props.window;
     if (width > height) {
-      boxWidth = _.min([width, 640]);
-      boxHeight = _.min([height, 360]);
+      boxWidth = _.min([width, NORMAL_HEIGHT]);
+      boxHeight = _.min([height, NORMAL_WIDTH]);
     } else {
-      boxWidth = _.min([width, 360]);
-      boxHeight = _.min([height, 640]);
+      boxWidth = _.min([width, NORMAL_WIDTH]);
+      boxHeight = _.min([height, NORMAL_HEIGHT]);
     }
     boxHeight -= 70;
 
@@ -46,14 +47,14 @@ class Intro extends React.Component {
         <View style={styles.layout}>
           <View style={[styles.swiperWrap]}>
             <Swiper loop={false}
-                    index={currentPage}
-                    width={boxWidth}
-                    height={boxHeight}
-                    showsButtons={false}
-                    onMomentumScrollEnd={this._handleWhenScrollEnd}
-                    dotStyle={styles.dotStyle}
-                    paginationStyle={styles.paginationStyle}
-                    activeDotStyle={styles.activeDotStyle}>
+              index={currentPage}
+              width={boxWidth}
+              height={boxHeight}
+              showsButtons={false}
+              onMomentumScrollEnd={this._handleWhenScrollEnd}
+              dotStyle={styles.dotStyle}
+              paginationStyle={styles.paginationStyle}
+              activeDotStyle={styles.activeDotStyle}>
 
               {pages.map(({ImageSvg, title, subtitle}, idx) => (
                 <View key={idx} style={styles.slide}>
@@ -73,7 +74,7 @@ class Intro extends React.Component {
           </View>
           <View style={styles.btnWrap}>
             <Button style={styles.btn} upperCase={false} primary raised accent={false} onPress={onBtnClick}
-                    text={btnTitle}/>
+              text={btnTitle}/>
           </View>
         </View>
       </View>
