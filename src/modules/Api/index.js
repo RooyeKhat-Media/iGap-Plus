@@ -7,6 +7,7 @@
 import {API_CONCURRENCY} from '../../constants/configs';
 import getPriority from '../../constants/methods/priority';
 import getDurability from '../../constants/methods/durable';
+import isInsecure from '../../constants/methods/insecure';
 import RequestWrapper from './RequestWrapper';
 import Client from '../Api/Client';
 import FastPriorityQueue from 'fastpriorityqueue';
@@ -87,7 +88,7 @@ export default class Api {
       const wrapper = new RequestWrapper(
         resolve,
         reject,
-        Api.instance.__done.bind(this),
+        Api.instance.__done.bind(Api.instance),
         actionId,
         proto,
         priority,
@@ -103,7 +104,11 @@ export default class Api {
   }
 
   __schedule(wrapper) {
-    if (Client.instance.isOnline) {
+    if (
+      Client.instance.isSecure
+      ||
+      (Client.instance.isOnline && !isInsecure(wrapper.actionId))
+    ) {
       if (running.size < API_CONCURRENCY) {
         this._run(wrapper);
       } else {
@@ -111,6 +116,11 @@ export default class Api {
       }
     } else if (wrapper.durable) {
       pending.add(wrapper);
+    } else {
+      const errorResponse = new ErrorResponse();
+      errorResponse.setMajorCode(ERROR_TIMEOUT);
+      errorResponse.setMinorCode(3);
+      wrapper.reject(new ServerError(errorResponse));
     }
   }
 
@@ -146,7 +156,7 @@ export default class Api {
 
   __pollPending() {
     let pendingPoll = false;
-    while (Client.instance.isOnline && running.size < API_CONCURRENCY && !pending.isEmpty()) {
+    while (Client.instance.isSecure && running.size < API_CONCURRENCY && !pending.isEmpty()) {
       pendingPoll = true;
       this._run(pending.poll());
     }

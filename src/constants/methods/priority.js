@@ -194,7 +194,7 @@ const priorityTable = {
 
 export default function(actionId) {
   let priority = priorityTable[actionId] || 50;
-  if (!Client.instance.isOnline) {
+  if (!Client.instance.isSecure) {
     priority = Math.floor(priority * 0.6);
   }
   return priority;

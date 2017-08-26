@@ -53,6 +53,10 @@ export default class Client {
     return (this._socket && this._socket.readyState === WebSocket.OPEN);
   }
 
+  get isSecure() {
+    return (this.isOnline && this._secure);
+  }
+
   set keepAlive(value) {
     this._keepAlive = value;
   }
@@ -86,6 +90,10 @@ export default class Client {
   }
 
   _connect() {
+    if (!this._keepAlive) {
+      return;
+    }
+
     this.secure = false;
     store.dispatch(clientStatusChanged(CLIENT_STATUS.CONNECTING));
 
@@ -147,7 +155,12 @@ export default class Client {
 
       let promise = new Promise((resolve, reject) => {
         if (responseActionId === 0) {
-          reject(new ServerError(responseProto));
+          const reason = new ServerError(responseProto);
+          try {
+            reject(reason);
+          } finally {
+            wrapper.reject(reason);
+          }
         } else {
           resolve(responseProto);
         }
@@ -158,6 +171,8 @@ export default class Client {
         case HANDLER_PRECEDENCE.BEFORE:
           promise.then(responseProto => {
             this._runHandler(responseActionId, responseProto, wrapper);
+          }).catch(() => {
+            // TODO [Amerehie] - 7/24/2017 12:20 PM - Log me
           }).then(() => {
             wrapper.resolve(responseProto);
           });
@@ -178,14 +193,7 @@ export default class Client {
           promise.then(() => {
             wrapper.reject(new ClientError('Unexpected HANDLER_PRECEDENCE'));
           });
-
       }
-
-      promise.catch(reason => {
-        // TODO [Amerehie] - 7/24/2017 12:20 PM - Error handler
-        console.error(reason);
-      });
-
 
     } else {
       console.warn('Unsupported method ' + responseActionId);
@@ -213,7 +221,7 @@ export default class Client {
       }
       let pack = this._pack(wrapper.actionId, wrapper.request);
       if (this._secure) {
-        pack = this._encrypt(pack);
+        pack = this._encrypt(pack.buffer);
       }
 
       this._socket.send(pack);// TODO [Amerehie] - 7/24/2017 4:27 PM - check time takes
