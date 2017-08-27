@@ -107,7 +107,7 @@ export default class Api {
     if (
       Client.instance.isSecure
       ||
-      (Client.instance.isOnline && !isInsecure(wrapper.actionId))
+      (Client.instance.isOnline && isInsecure(wrapper.actionId))
     ) {
       if (running.size < API_CONCURRENCY) {
         this._run(wrapper);
