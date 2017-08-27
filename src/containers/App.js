@@ -6,19 +6,26 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
-import {BackHandler} from 'react-native';
+import {BackHandler, View} from 'react-native';
 
-
+import {ActivityIndicator} from '../components/BaseUI';
 import AppNavigator from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {ready: false};
+  }
+
   componentDidMount() {
     migrate().catch(function() {
       console.log('Migration failed');
-    }).then(function() {
+    }).then( () => {
       Api.instance;
+      this.setState({ready: true});
     });
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
@@ -38,6 +45,14 @@ class App extends Component {
   };
 
   render() {
+    if (!this.state.ready) {
+      return (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size="large"/>
+        </View>
+      );
+    }
+
     const {dispatch, nav} = this.props;
     return (
       <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
