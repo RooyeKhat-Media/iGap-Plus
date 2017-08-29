@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
 import {BackHandler, View} from 'react-native';
 
-import {ActivityIndicator} from '../components/BaseUI';
+import {ActivityIndicator, AppModal} from '../components/BaseUI';
 import AppNavigator from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
@@ -23,7 +23,7 @@ class App extends Component {
   componentDidMount() {
     migrate().catch(function() {
       console.log('Migration failed');
-    }).then( () => {
+    }).then(() => {
       Api.instance;
       this.setState({ready: true});
     });
@@ -55,7 +55,12 @@ class App extends Component {
 
     const {dispatch, nav} = this.props;
     return (
-      <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, zIndex: 2}}>
+          <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
+        </View>
+        <AppModal/>
+      </View>
     );
   }
 }
