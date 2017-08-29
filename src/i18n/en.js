@@ -1,4 +1,7 @@
+import country from '../constants/country/en';
+
 export default {
+  ...country,
   introLogoTitle: {
     id: 'Intro.logoTitle',
     defaultMessage: 'iGap Messenger',
@@ -68,6 +71,98 @@ export default {
     id: 'Intro.btnStart',
     defaultMessage: 'Start',
     description: 'Intro Page',
+  },
+
+  registerToolbarTitle: {
+    id: 'UserRegister.toolbarTitle',
+    defaultMessage: 'UserRegister',
+    description: 'UserRegister Page',
+  },
+  registerCountryPlaceHolder: {
+    id: 'UserRegister.countryPlaceHolder',
+    defaultMessage: 'Select Your Country ...',
+    description: 'UserRegister Page',
+  },
+  registerPhoneNumberTitle: {
+    id: 'UserRegister.phoneNumberTitle',
+    defaultMessage: 'Phone Number',
+    description: 'UserRegister Page',
+  },
+  registerPhoneNumberPlaceHolder: {
+    id: 'UserRegister.phoneNumberPlaceHolder',
+    defaultMessage: 'Enter Your Phone Number',
+    description: 'UserRegister Page',
+  },
+  registerPhoneNumberHelp: {
+    id: 'UserRegister.phoneNumberHelp',
+    defaultMessage: 'Ex: (+98)9123456789',
+    description: 'UserRegister Page',
+  },
+  registerInfoTitle: {
+    id: 'UserRegister.infoTitle',
+    defaultMessage: 'Hello world',
+    description: 'UserRegister Page',
+  },
+  registerInfoContent: {
+    id: 'UserRegister.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'UserRegister Page',
+  },
+  errorRequired: {
+    id: 'Error.required',
+    defaultMessage: 'The {field} field is required',
+    description: 'error',
+  },
+  errorTypeNumber: {
+    id: 'Error.typeNumber',
+    defaultMessage: 'The {field} type is Number',
+    description: 'error',
+  },
+  errorNumberSmallMin: {
+    id: 'Error.numberSmallMin',
+    defaultMessage: 'The {field} is too small, at least {min} char',
+    description: 'error',
+  },
+  errorNumberBigMax: {
+    id: 'Error.numberBigMax',
+    defaultMessage: 'The {field} is too Big, max {max} char.',
+    description: 'error',
+  },
+  errorTypeString: {
+    id: 'Error.typeString',
+    defaultMessage: 'The {field} type is string',
+    description: 'error',
+  },
+  errorStringLengthMin: {
+    id: 'Error.stringLengthMin',
+    defaultMessage: 'The {field} is too small, at least {min} char.',
+    description: 'error',
+  },
+  errorStringLengthMax: {
+    id: 'Error.stringLengthMax',
+    defaultMessage: 'The {field} is too Big, max {max} char.',
+    description: 'error',
+  },
+  errorRegexInvalid: {
+    id: 'Error.regexInvalid',
+    defaultMessage: 'The {field} Invalid.',
+    description: 'error',
+  },
+
+  verifyToolbarTitle: {
+    id: 'UserVerify.toolbarTitle',
+    defaultMessage: 'User Verify',
+    description: 'UserVerify Page',
+  },
+  verifyInfoTitle: {
+    id: 'UserRegister.infoTitle',
+    defaultMessage: 'Hello world',
+    description: 'UserRegister Page',
+  },
+  verifyInfoContent: {
+    id: 'UserRegister.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'UserRegister Page',
   },
 
   spinnerDefaultTitle: {
