@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.FileUpload.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.FileUpload} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.FileUpload.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -141,6 +144,7 @@ proto.proto.FileUpload.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.FileUpload} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.FileUpload.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -318,6 +322,7 @@ proto.proto.FileUploadResponse.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.FileUploadResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.FileUploadResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -403,6 +408,7 @@ proto.proto.FileUploadResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.FileUploadResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.FileUploadResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.ChannelUpdateDraft.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelUpdateDraft} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelUpdateDraft.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -138,6 +141,7 @@ proto.proto.ChannelUpdateDraft.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelUpdateDraft} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelUpdateDraft.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -285,6 +289,7 @@ proto.proto.ChannelUpdateDraftResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelUpdateDraftResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelUpdateDraftResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -366,6 +371,7 @@ proto.proto.ChannelUpdateDraftResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelUpdateDraftResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelUpdateDraftResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

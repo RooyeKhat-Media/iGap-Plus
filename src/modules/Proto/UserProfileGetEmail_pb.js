@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserProfileGetEmail.prototype.toObject = function(opt_includeInstanc
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserProfileGetEmail} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetEmail.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -126,6 +129,7 @@ proto.proto.UserProfileGetEmail.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserProfileGetEmail} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetEmail.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -213,6 +217,7 @@ proto.proto.UserProfileGetEmailResponse.prototype.toObject = function(opt_includ
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserProfileGetEmailResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetEmailResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -288,6 +293,7 @@ proto.proto.UserProfileGetEmailResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserProfileGetEmailResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetEmailResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

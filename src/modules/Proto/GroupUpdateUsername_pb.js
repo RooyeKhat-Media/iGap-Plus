@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.GroupUpdateUsername.prototype.toObject = function(opt_includeInstanc
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupUpdateUsername} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupUpdateUsername.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -136,6 +139,7 @@ proto.proto.GroupUpdateUsername.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupUpdateUsername} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupUpdateUsername.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -267,6 +271,7 @@ proto.proto.GroupUpdateUsernameResponse.prototype.toObject = function(opt_includ
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupUpdateUsernameResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupUpdateUsernameResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -347,6 +352,7 @@ proto.proto.GroupUpdateUsernameResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupUpdateUsernameResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupUpdateUsernameResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

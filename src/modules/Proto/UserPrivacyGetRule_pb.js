@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.UserPrivacyGetRule.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserPrivacyGetRule} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserPrivacyGetRule.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -132,6 +135,7 @@ proto.proto.UserPrivacyGetRule.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserPrivacyGetRule} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserPrivacyGetRule.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -241,6 +245,7 @@ proto.proto.UserPrivacyGetRuleResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserPrivacyGetRuleResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserPrivacyGetRuleResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -316,6 +321,7 @@ proto.proto.UserPrivacyGetRuleResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserPrivacyGetRuleResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserPrivacyGetRuleResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

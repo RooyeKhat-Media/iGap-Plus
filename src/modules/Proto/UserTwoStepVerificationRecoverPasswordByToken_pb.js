@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationRecoverPasswordByToken.prototype.toObject = f
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationRecoverPasswordByToken} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRecoverPasswordByToken.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -131,6 +134,7 @@ proto.proto.UserTwoStepVerificationRecoverPasswordByToken.prototype.serializeBin
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationRecoverPasswordByToken} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRecoverPasswordByToken.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -240,6 +244,7 @@ proto.proto.UserTwoStepVerificationRecoverPasswordByTokenResponse.prototype.toOb
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationRecoverPasswordByTokenResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRecoverPasswordByTokenResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -315,6 +320,7 @@ proto.proto.UserTwoStepVerificationRecoverPasswordByTokenResponse.prototype.seri
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationRecoverPasswordByTokenResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRecoverPasswordByTokenResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

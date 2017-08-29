@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -54,6 +56,7 @@ proto.proto.PushUserInfoExpiredResponse.prototype.toObject = function(opt_includ
  *     http://goto/soy-param-migration
  * @param {!proto.proto.PushUserInfoExpiredResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.PushUserInfoExpiredResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -129,6 +132,7 @@ proto.proto.PushUserInfoExpiredResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.PushUserInfoExpiredResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.PushUserInfoExpiredResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

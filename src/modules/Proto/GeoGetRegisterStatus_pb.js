@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.GeoGetRegisterStatus.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GeoGetRegisterStatus} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetRegisterStatus.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -126,6 +129,7 @@ proto.proto.GeoGetRegisterStatus.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GeoGetRegisterStatus} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetRegisterStatus.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -213,6 +217,7 @@ proto.proto.GeoGetRegisterStatusResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GeoGetRegisterStatusResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetRegisterStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -288,6 +293,7 @@ proto.proto.GeoGetRegisterStatusResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GeoGetRegisterStatusResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetRegisterStatusResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

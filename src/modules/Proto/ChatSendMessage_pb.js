@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.ChatSendMessage.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChatSendMessage} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChatSendMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -170,6 +173,7 @@ proto.proto.ChatSendMessage.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChatSendMessage} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChatSendMessage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -481,6 +485,7 @@ proto.proto.ChatSendMessageResponse.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChatSendMessageResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChatSendMessageResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -562,6 +567,7 @@ proto.proto.ChatSendMessageResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChatSendMessageResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChatSendMessageResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

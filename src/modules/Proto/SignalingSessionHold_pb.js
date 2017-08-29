@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.SignalingSessionHold.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingSessionHold} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingSessionHold.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -131,6 +134,7 @@ proto.proto.SignalingSessionHold.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingSessionHold} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingSessionHold.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -242,6 +246,7 @@ proto.proto.SignalingSessionHoldResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingSessionHoldResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingSessionHoldResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -317,6 +322,7 @@ proto.proto.SignalingSessionHoldResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingSessionHoldResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingSessionHoldResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

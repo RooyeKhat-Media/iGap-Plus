@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -66,6 +68,7 @@ proto.proto.ClientCondition.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientCondition} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCondition.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -143,6 +146,7 @@ proto.proto.ClientCondition.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientCondition} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCondition.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -215,6 +219,7 @@ proto.proto.ClientCondition.Room.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientCondition.Room} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCondition.Room.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -222,15 +227,15 @@ proto.proto.ClientCondition.Room.toObject = function(includeInstance, msg) {
     messageVersion: jspb.Message.getFieldWithDefault(msg, 3, 0),
     statusVersion: jspb.Message.getFieldWithDefault(msg, 4, 0),
     deleteVersion: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    offlineDeletedList: jspb.Message.getField(msg, 6),
+    offlineDeletedList: jspb.Message.getRepeatedField(msg, 6),
     offlineEditedList: jspb.Message.toObjectList(msg.getOfflineEditedList(),
     proto.proto.ClientCondition.Room.OfflineEdited.toObject, includeInstance),
-    offlineSeenList: jspb.Message.getField(msg, 8),
+    offlineSeenList: jspb.Message.getRepeatedField(msg, 8),
     clearId: jspb.Message.getFieldWithDefault(msg, 9, 0),
     cacheStartId: jspb.Message.getFieldWithDefault(msg, 10, 0),
     cacheEndId: jspb.Message.getFieldWithDefault(msg, 11, 0),
     offlineMute: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    offlineListenedList: jspb.Message.getField(msg, 13)
+    offlineListenedList: jspb.Message.getRepeatedField(msg, 13)
   };
 
   if (includeInstance) {
@@ -341,6 +346,7 @@ proto.proto.ClientCondition.Room.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientCondition.Room} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCondition.Room.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -484,6 +490,7 @@ proto.proto.ClientCondition.Room.OfflineEdited.prototype.toObject = function(opt
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientCondition.Room.OfflineEdited} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCondition.Room.OfflineEdited.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -558,6 +565,7 @@ proto.proto.ClientCondition.Room.OfflineEdited.prototype.serializeBinary = funct
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientCondition.Room.OfflineEdited} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCondition.Room.OfflineEdited.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -670,12 +678,10 @@ proto.proto.ClientCondition.Room.prototype.setDeleteVersion = function(value) {
 
 /**
  * repeated uint64 offline_deleted = 6;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<number>}
  */
 proto.proto.ClientCondition.Room.prototype.getOfflineDeletedList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getField(this, 6));
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
@@ -701,8 +707,6 @@ proto.proto.ClientCondition.Room.prototype.clearOfflineDeletedList = function() 
 
 /**
  * repeated OfflineEdited offline_edited = 7;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.ClientCondition.Room.OfflineEdited>}
  */
 proto.proto.ClientCondition.Room.prototype.getOfflineEditedList = function() {
@@ -734,12 +738,10 @@ proto.proto.ClientCondition.Room.prototype.clearOfflineEditedList = function() {
 
 /**
  * repeated uint64 offline_seen = 8;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<number>}
  */
 proto.proto.ClientCondition.Room.prototype.getOfflineSeenList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getField(this, 8));
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
@@ -825,12 +827,10 @@ proto.proto.ClientCondition.Room.prototype.setOfflineMute = function(value) {
 
 /**
  * repeated uint64 offline_listened = 13;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<number>}
  */
 proto.proto.ClientCondition.Room.prototype.getOfflineListenedList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getField(this, 13));
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 13));
 };
 
 
@@ -886,8 +886,6 @@ proto.proto.ClientCondition.prototype.hasRequest = function() {
 
 /**
  * repeated Room rooms = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.ClientCondition.Room>}
  */
 proto.proto.ClientCondition.prototype.getRoomsList = function() {
@@ -960,6 +958,7 @@ proto.proto.ClientConditionResponse.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientConditionResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientConditionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -1030,6 +1029,7 @@ proto.proto.ClientConditionResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientConditionResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientConditionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

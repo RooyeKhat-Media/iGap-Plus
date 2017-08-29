@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserGetDeleteToken.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserGetDeleteToken} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserGetDeleteToken.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -126,6 +129,7 @@ proto.proto.UserGetDeleteToken.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserGetDeleteToken} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserGetDeleteToken.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -220,12 +224,13 @@ proto.proto.UserGetDeleteTokenResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserGetDeleteTokenResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserGetDeleteTokenResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     response: (f = msg.getResponse()) && Response_pb.Response.toObject(includeInstance, f),
     resendDelay: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    smsNumberList: jspb.Message.getField(msg, 3),
+    smsNumberList: jspb.Message.getRepeatedField(msg, 3),
     tokenRegex: jspb.Message.getFieldWithDefault(msg, 4, ""),
     tokenLength: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
@@ -310,6 +315,7 @@ proto.proto.UserGetDeleteTokenResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserGetDeleteTokenResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserGetDeleteTokenResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -399,12 +405,10 @@ proto.proto.UserGetDeleteTokenResponse.prototype.setResendDelay = function(value
 
 /**
  * repeated uint64 sms_number = 3;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<number>}
  */
 proto.proto.UserGetDeleteTokenResponse.prototype.getSmsNumberList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getField(this, 3));
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 

@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.GroupGetDraft.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupGetDraft} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetDraft.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -132,6 +135,7 @@ proto.proto.GroupGetDraft.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupGetDraft} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetDraft.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -241,6 +245,7 @@ proto.proto.GroupGetDraftResponse.prototype.toObject = function(opt_includeInsta
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupGetDraftResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetDraftResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -317,6 +322,7 @@ proto.proto.GroupGetDraftResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupGetDraftResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetDraftResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

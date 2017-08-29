@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.ClientCountRoomHistory.prototype.toObject = function(opt_includeInst
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientCountRoomHistory} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCountRoomHistory.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -131,6 +134,7 @@ proto.proto.ClientCountRoomHistory.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientCountRoomHistory} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCountRoomHistory.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -240,6 +244,7 @@ proto.proto.ClientCountRoomHistoryResponse.prototype.toObject = function(opt_inc
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientCountRoomHistoryResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCountRoomHistoryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -350,6 +355,7 @@ proto.proto.ClientCountRoomHistoryResponse.prototype.serializeBinary = function(
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientCountRoomHistoryResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientCountRoomHistoryResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

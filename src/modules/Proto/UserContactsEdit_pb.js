@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserContactsEdit.prototype.toObject = function(opt_includeInstance) 
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserContactsEdit} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsEdit.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -141,6 +144,7 @@ proto.proto.UserContactsEdit.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserContactsEdit} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsEdit.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -294,6 +298,7 @@ proto.proto.UserContactsEditResponse.prototype.toObject = function(opt_includeIn
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserContactsEditResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsEditResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -384,6 +389,7 @@ proto.proto.UserContactsEditResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserContactsEditResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsEditResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

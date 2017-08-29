@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationRequestRecoveryToken.prototype.toObject = fun
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationRequestRecoveryToken} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRequestRecoveryToken.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -126,6 +129,7 @@ proto.proto.UserTwoStepVerificationRequestRecoveryToken.prototype.serializeBinar
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationRequestRecoveryToken} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRequestRecoveryToken.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -213,6 +217,7 @@ proto.proto.UserTwoStepVerificationRequestRecoveryTokenResponse.prototype.toObje
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationRequestRecoveryTokenResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRequestRecoveryTokenResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -288,6 +293,7 @@ proto.proto.UserTwoStepVerificationRequestRecoveryTokenResponse.prototype.serial
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationRequestRecoveryTokenResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationRequestRecoveryTokenResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

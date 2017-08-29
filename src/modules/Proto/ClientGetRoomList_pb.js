@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.ClientGetRoomList.prototype.toObject = function(opt_includeInstance)
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientGetRoomList} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientGetRoomList.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -133,6 +136,7 @@ proto.proto.ClientGetRoomList.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientGetRoomList} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientGetRoomList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -265,6 +269,7 @@ proto.proto.ClientGetRoomListResponse.prototype.toObject = function(opt_includeI
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientGetRoomListResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientGetRoomListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -342,6 +347,7 @@ proto.proto.ClientGetRoomListResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientGetRoomListResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientGetRoomListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -396,8 +402,6 @@ proto.proto.ClientGetRoomListResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Room rooms = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.Room>}
  */
 proto.proto.ClientGetRoomListResponse.prototype.getRoomsList = function() {

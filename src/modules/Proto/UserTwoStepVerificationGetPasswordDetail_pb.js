@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationGetPasswordDetail.prototype.toObject = functi
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationGetPasswordDetail} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationGetPasswordDetail.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -126,6 +129,7 @@ proto.proto.UserTwoStepVerificationGetPasswordDetail.prototype.serializeBinary =
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationGetPasswordDetail} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationGetPasswordDetail.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -213,6 +217,7 @@ proto.proto.UserTwoStepVerificationGetPasswordDetailResponse.prototype.toObject 
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationGetPasswordDetailResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationGetPasswordDetailResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -308,6 +313,7 @@ proto.proto.UserTwoStepVerificationGetPasswordDetailResponse.prototype.serialize
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationGetPasswordDetailResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationGetPasswordDetailResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

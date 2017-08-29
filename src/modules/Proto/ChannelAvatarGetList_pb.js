@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.ChannelAvatarGetList.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelAvatarGetList} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelAvatarGetList.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -132,6 +135,7 @@ proto.proto.ChannelAvatarGetList.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelAvatarGetList} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelAvatarGetList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -248,6 +252,7 @@ proto.proto.ChannelAvatarGetListResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelAvatarGetListResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelAvatarGetListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -325,6 +330,7 @@ proto.proto.ChannelAvatarGetListResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelAvatarGetListResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelAvatarGetListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -379,8 +385,6 @@ proto.proto.ChannelAvatarGetListResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Avatar avatar = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.Avatar>}
  */
 proto.proto.ChannelAvatarGetListResponse.prototype.getAvatarList = function() {

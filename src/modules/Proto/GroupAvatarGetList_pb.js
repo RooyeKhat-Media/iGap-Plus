@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.GroupAvatarGetList.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupAvatarGetList} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAvatarGetList.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -132,6 +135,7 @@ proto.proto.GroupAvatarGetList.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupAvatarGetList} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAvatarGetList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -248,6 +252,7 @@ proto.proto.GroupAvatarGetListResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupAvatarGetListResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAvatarGetListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -325,6 +330,7 @@ proto.proto.GroupAvatarGetListResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupAvatarGetListResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAvatarGetListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -379,8 +385,6 @@ proto.proto.GroupAvatarGetListResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Avatar avatar = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.Avatar>}
  */
 proto.proto.GroupAvatarGetListResponse.prototype.getAvatarList = function() {

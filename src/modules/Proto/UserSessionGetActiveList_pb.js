@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -58,6 +60,7 @@ proto.proto.UserSessionGetActiveList.prototype.toObject = function(opt_includeIn
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserSessionGetActiveList} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserSessionGetActiveList.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -128,6 +131,7 @@ proto.proto.UserSessionGetActiveList.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserSessionGetActiveList} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserSessionGetActiveList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -222,6 +226,7 @@ proto.proto.UserSessionGetActiveListResponse.prototype.toObject = function(opt_i
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserSessionGetActiveListResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserSessionGetActiveListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -299,6 +304,7 @@ proto.proto.UserSessionGetActiveListResponse.prototype.serializeBinary = functio
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserSessionGetActiveListResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserSessionGetActiveListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -364,6 +370,7 @@ proto.proto.UserSessionGetActiveListResponse.Session.prototype.toObject = functi
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserSessionGetActiveListResponse.Session} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserSessionGetActiveListResponse.Session.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -503,6 +510,7 @@ proto.proto.UserSessionGetActiveListResponse.Session.prototype.serializeBinary =
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserSessionGetActiveListResponse.Session} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserSessionGetActiveListResponse.Session.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -873,8 +881,6 @@ proto.proto.UserSessionGetActiveListResponse.prototype.hasResponse = function() 
 
 /**
  * repeated Session session = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.UserSessionGetActiveListResponse.Session>}
  */
 proto.proto.UserSessionGetActiveListResponse.prototype.getSessionList = function() {

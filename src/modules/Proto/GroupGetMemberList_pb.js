@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -59,6 +61,7 @@ proto.proto.GroupGetMemberList.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupGetMemberList} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetMemberList.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -145,6 +148,7 @@ proto.proto.GroupGetMemberList.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupGetMemberList} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetMemberList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -331,6 +335,7 @@ proto.proto.GroupGetMemberListResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupGetMemberListResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetMemberListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -408,6 +413,7 @@ proto.proto.GroupGetMemberListResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupGetMemberListResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetMemberListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -473,6 +479,7 @@ proto.proto.GroupGetMemberListResponse.Member.prototype.toObject = function(opt_
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupGetMemberListResponse.Member} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetMemberListResponse.Member.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -547,6 +554,7 @@ proto.proto.GroupGetMemberListResponse.Member.prototype.serializeBinary = functi
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupGetMemberListResponse.Member} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupGetMemberListResponse.Member.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -629,8 +637,6 @@ proto.proto.GroupGetMemberListResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Member member = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.GroupGetMemberListResponse.Member>}
  */
 proto.proto.GroupGetMemberListResponse.prototype.getMemberList = function() {

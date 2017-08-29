@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -64,12 +66,13 @@ proto.proto.ChannelGetMessagesStats.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelGetMessagesStats} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMessagesStats.toObject = function(includeInstance, msg) {
   var f, obj = {
     request: (f = msg.getRequest()) && Request_pb.Request.toObject(includeInstance, f),
     roomId: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    messageIdList: jspb.Message.getField(msg, 3)
+    messageIdList: jspb.Message.getRepeatedField(msg, 3)
   };
 
   if (includeInstance) {
@@ -144,6 +147,7 @@ proto.proto.ChannelGetMessagesStats.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelGetMessagesStats} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMessagesStats.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -219,12 +223,10 @@ proto.proto.ChannelGetMessagesStats.prototype.setRoomId = function(value) {
 
 /**
  * repeated uint64 message_id = 3;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<number>}
  */
 proto.proto.ChannelGetMessagesStats.prototype.getMessageIdList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getField(this, 3));
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
@@ -298,6 +300,7 @@ proto.proto.ChannelGetMessagesStatsResponse.prototype.toObject = function(opt_in
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelGetMessagesStatsResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMessagesStatsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -375,6 +378,7 @@ proto.proto.ChannelGetMessagesStatsResponse.prototype.serializeBinary = function
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelGetMessagesStatsResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMessagesStatsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -440,6 +444,7 @@ proto.proto.ChannelGetMessagesStatsResponse.Stats.prototype.toObject = function(
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelGetMessagesStatsResponse.Stats} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMessagesStatsResponse.Stats.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -524,6 +529,7 @@ proto.proto.ChannelGetMessagesStatsResponse.Stats.prototype.serializeBinary = fu
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelGetMessagesStatsResponse.Stats} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMessagesStatsResponse.Stats.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -650,8 +656,6 @@ proto.proto.ChannelGetMessagesStatsResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Stats stats = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.ChannelGetMessagesStatsResponse.Stats>}
  */
 proto.proto.ChannelGetMessagesStatsResponse.prototype.getStatsList = function() {

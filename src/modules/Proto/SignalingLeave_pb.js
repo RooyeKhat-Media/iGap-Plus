@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.SignalingLeave.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingLeave} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingLeave.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -127,6 +130,7 @@ proto.proto.SignalingLeave.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingLeave} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingLeave.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -214,6 +218,7 @@ proto.proto.SignalingLeaveResponse.prototype.toObject = function(opt_includeInst
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingLeaveResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingLeaveResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -289,6 +294,7 @@ proto.proto.SignalingLeaveResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingLeaveResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingLeaveResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

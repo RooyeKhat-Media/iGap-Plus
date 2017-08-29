@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.QrCodeNewDevice.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.QrCodeNewDevice} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.QrCodeNewDevice.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -167,6 +170,7 @@ proto.proto.QrCodeNewDevice.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.QrCodeNewDevice} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.QrCodeNewDevice.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -430,6 +434,7 @@ proto.proto.QrCodeNewDeviceResponse.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.QrCodeNewDeviceResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.QrCodeNewDeviceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -510,6 +515,7 @@ proto.proto.QrCodeNewDeviceResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.QrCodeNewDeviceResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.QrCodeNewDeviceResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationVerifyRecoveryEmail.prototype.toObject = func
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationVerifyRecoveryEmail} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationVerifyRecoveryEmail.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -131,6 +134,7 @@ proto.proto.UserTwoStepVerificationVerifyRecoveryEmail.prototype.serializeBinary
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationVerifyRecoveryEmail} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationVerifyRecoveryEmail.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -240,6 +244,7 @@ proto.proto.UserTwoStepVerificationVerifyRecoveryEmailResponse.prototype.toObjec
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationVerifyRecoveryEmailResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationVerifyRecoveryEmailResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -310,6 +315,7 @@ proto.proto.UserTwoStepVerificationVerifyRecoveryEmailResponse.prototype.seriali
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationVerifyRecoveryEmailResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationVerifyRecoveryEmailResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

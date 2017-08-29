@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserProfileSetSelfRemove.prototype.toObject = function(opt_includeIn
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserProfileSetSelfRemove} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileSetSelfRemove.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -131,6 +134,7 @@ proto.proto.UserProfileSetSelfRemove.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserProfileSetSelfRemove} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileSetSelfRemove.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -240,6 +244,7 @@ proto.proto.UserProfileSetSelfRemoveResponse.prototype.toObject = function(opt_i
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserProfileSetSelfRemoveResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileSetSelfRemoveResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -315,6 +320,7 @@ proto.proto.UserProfileSetSelfRemoveResponse.prototype.serializeBinary = functio
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserProfileSetSelfRemoveResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileSetSelfRemoveResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

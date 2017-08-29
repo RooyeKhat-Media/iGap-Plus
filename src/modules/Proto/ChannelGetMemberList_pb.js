@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -59,6 +61,7 @@ proto.proto.ChannelGetMemberList.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelGetMemberList} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMemberList.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -145,6 +148,7 @@ proto.proto.ChannelGetMemberList.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelGetMemberList} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMemberList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -331,6 +335,7 @@ proto.proto.ChannelGetMemberListResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelGetMemberListResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMemberListResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -408,6 +413,7 @@ proto.proto.ChannelGetMemberListResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelGetMemberListResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMemberListResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -473,6 +479,7 @@ proto.proto.ChannelGetMemberListResponse.Member.prototype.toObject = function(op
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelGetMemberListResponse.Member} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMemberListResponse.Member.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -547,6 +554,7 @@ proto.proto.ChannelGetMemberListResponse.Member.prototype.serializeBinary = func
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelGetMemberListResponse.Member} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelGetMemberListResponse.Member.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -629,8 +637,6 @@ proto.proto.ChannelGetMemberListResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Member member = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.ChannelGetMemberListResponse.Member>}
  */
 proto.proto.ChannelGetMemberListResponse.prototype.getMemberList = function() {

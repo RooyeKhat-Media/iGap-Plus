@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.UserProfileGetGender.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserProfileGetGender} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetGender.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -127,6 +130,7 @@ proto.proto.UserProfileGetGender.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserProfileGetGender} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetGender.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -214,6 +218,7 @@ proto.proto.UserProfileGetGenderResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserProfileGetGenderResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetGenderResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -289,6 +294,7 @@ proto.proto.UserProfileGetGenderResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserProfileGetGenderResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserProfileGetGenderResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

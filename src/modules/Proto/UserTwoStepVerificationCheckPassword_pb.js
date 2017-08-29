@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationCheckPassword.prototype.toObject = function(o
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationCheckPassword} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationCheckPassword.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -131,6 +134,7 @@ proto.proto.UserTwoStepVerificationCheckPassword.prototype.serializeBinary = fun
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationCheckPassword} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationCheckPassword.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -240,6 +244,7 @@ proto.proto.UserTwoStepVerificationCheckPasswordResponse.prototype.toObject = fu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationCheckPasswordResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationCheckPasswordResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -310,6 +315,7 @@ proto.proto.UserTwoStepVerificationCheckPasswordResponse.prototype.serializeBina
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationCheckPasswordResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationCheckPasswordResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

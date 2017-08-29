@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationChangeRecoveryQuestion.prototype.toObject = f
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationChangeRecoveryQuestion} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeRecoveryQuestion.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -151,6 +154,7 @@ proto.proto.UserTwoStepVerificationChangeRecoveryQuestion.prototype.serializeBin
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationChangeRecoveryQuestion} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeRecoveryQuestion.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -348,6 +352,7 @@ proto.proto.UserTwoStepVerificationChangeRecoveryQuestionResponse.prototype.toOb
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationChangeRecoveryQuestionResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeRecoveryQuestionResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -418,6 +423,7 @@ proto.proto.UserTwoStepVerificationChangeRecoveryQuestionResponse.prototype.seri
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationChangeRecoveryQuestionResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeRecoveryQuestionResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

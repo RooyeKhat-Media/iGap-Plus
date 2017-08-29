@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -58,6 +60,7 @@ proto.proto.GroupAddMember.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupAddMember} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAddMember.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -139,6 +142,7 @@ proto.proto.GroupAddMember.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupAddMember} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAddMember.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -211,6 +215,7 @@ proto.proto.GroupAddMember.Member.prototype.toObject = function(opt_includeInsta
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupAddMember.Member} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAddMember.Member.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -285,6 +290,7 @@ proto.proto.GroupAddMember.Member.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupAddMember.Member} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAddMember.Member.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -453,6 +459,7 @@ proto.proto.GroupAddMemberResponse.prototype.toObject = function(opt_includeInst
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupAddMemberResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAddMemberResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -538,6 +545,7 @@ proto.proto.GroupAddMemberResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupAddMemberResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupAddMemberResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -65,6 +67,7 @@ proto.proto.UserContactsImport.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserContactsImport} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImport.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -147,6 +150,7 @@ proto.proto.UserContactsImport.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserContactsImport} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImport.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -219,6 +223,7 @@ proto.proto.UserContactsImport.Contact.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserContactsImport.Contact} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImport.Contact.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -303,6 +308,7 @@ proto.proto.UserContactsImport.Contact.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserContactsImport.Contact} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImport.Contact.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -429,8 +435,6 @@ proto.proto.UserContactsImport.prototype.hasRequest = function() {
 
 /**
  * repeated Contact contacts = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.UserContactsImport.Contact>}
  */
 proto.proto.UserContactsImport.prototype.getContactsList = function() {
@@ -527,6 +531,7 @@ proto.proto.UserContactsImportResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserContactsImportResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImportResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -604,6 +609,7 @@ proto.proto.UserContactsImportResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserContactsImportResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImportResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -669,6 +675,7 @@ proto.proto.UserContactsImportResponse.Contact.prototype.toObject = function(opt
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserContactsImportResponse.Contact} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImportResponse.Contact.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -743,6 +750,7 @@ proto.proto.UserContactsImportResponse.Contact.prototype.serializeBinary = funct
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserContactsImportResponse.Contact} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserContactsImportResponse.Contact.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -825,8 +833,6 @@ proto.proto.UserContactsImportResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Contact registered_contacts = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.UserContactsImportResponse.Contact>}
  */
 proto.proto.UserContactsImportResponse.prototype.getRegisteredContactsList = function() {

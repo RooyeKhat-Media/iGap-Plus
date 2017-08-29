@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -96,6 +98,7 @@ proto.proto.RoomMessageLocation.prototype.toObject = function(opt_includeInstanc
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessageLocation} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageLocation.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -170,6 +173,7 @@ proto.proto.RoomMessageLocation.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessageLocation} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageLocation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -263,6 +267,7 @@ proto.proto.RoomMessageLog.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessageLog} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageLog.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -343,6 +348,7 @@ proto.proto.RoomMessageLog.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessageLog} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageLog.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -442,6 +448,7 @@ proto.proto.RoomMessageLog.TargetUser.prototype.toObject = function(opt_includeI
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessageLog.TargetUser} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageLog.TargetUser.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -511,6 +518,7 @@ proto.proto.RoomMessageLog.TargetUser.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessageLog.TargetUser} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageLog.TargetUser.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -649,14 +657,15 @@ proto.proto.RoomMessageContact.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessageContact} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageContact.toObject = function(includeInstance, msg) {
   var f, obj = {
     firstName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     lastName: jspb.Message.getFieldWithDefault(msg, 2, ""),
     nickname: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    phoneList: jspb.Message.getField(msg, 4),
-    emailList: jspb.Message.getField(msg, 5)
+    phoneList: jspb.Message.getRepeatedField(msg, 4),
+    emailList: jspb.Message.getRepeatedField(msg, 5)
   };
 
   if (includeInstance) {
@@ -738,6 +747,7 @@ proto.proto.RoomMessageContact.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessageContact} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageContact.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -826,12 +836,10 @@ proto.proto.RoomMessageContact.prototype.setNickname = function(value) {
 
 /**
  * repeated string phone = 4;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<string>}
  */
 proto.proto.RoomMessageContact.prototype.getPhoneList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getField(this, 4));
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
@@ -857,12 +865,10 @@ proto.proto.RoomMessageContact.prototype.clearPhoneList = function() {
 
 /**
  * repeated string email = 5;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<string>}
  */
 proto.proto.RoomMessageContact.prototype.getEmailList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getField(this, 5));
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 5));
 };
 
 
@@ -929,6 +935,7 @@ proto.proto.RoomMessageForwardFrom.prototype.toObject = function(opt_includeInst
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessageForwardFrom} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageForwardFrom.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -1003,6 +1010,7 @@ proto.proto.RoomMessageForwardFrom.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessageForwardFrom} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessageForwardFrom.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -1096,6 +1104,7 @@ proto.proto.RegisteredUser.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RegisteredUser} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RegisteredUser.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -1236,6 +1245,7 @@ proto.proto.RegisteredUser.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RegisteredUser} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RegisteredUser.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -1649,6 +1659,7 @@ proto.proto.Avatar.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.Avatar} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Avatar.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -1724,6 +1735,7 @@ proto.proto.Avatar.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.Avatar} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Avatar.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -1833,6 +1845,7 @@ proto.proto.RoomMessage.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessage} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -2005,6 +2018,7 @@ proto.proto.RoomMessage.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessage} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -2210,6 +2224,7 @@ proto.proto.RoomMessage.Author.prototype.toObject = function(opt_includeInstance
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessage.Author} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.Author.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -2291,6 +2306,7 @@ proto.proto.RoomMessage.Author.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessage.Author} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.Author.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -2363,6 +2379,7 @@ proto.proto.RoomMessage.Author.User.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessage.Author.User} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.Author.User.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -2437,6 +2454,7 @@ proto.proto.RoomMessage.Author.User.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessage.Author.User} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.Author.User.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -2530,6 +2548,7 @@ proto.proto.RoomMessage.Author.Room.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessage.Author.Room} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.Author.Room.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -2599,6 +2618,7 @@ proto.proto.RoomMessage.Author.Room.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessage.Author.Room} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.Author.Room.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -2745,6 +2765,7 @@ proto.proto.RoomMessage.ChannelExtra.prototype.toObject = function(opt_includeIn
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomMessage.ChannelExtra} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.ChannelExtra.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -2829,6 +2850,7 @@ proto.proto.RoomMessage.ChannelExtra.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomMessage.ChannelExtra} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomMessage.ChannelExtra.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -3390,6 +3412,7 @@ proto.proto.RoomDraft.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.RoomDraft} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomDraft.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -3464,6 +3487,7 @@ proto.proto.RoomDraft.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.RoomDraft} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.RoomDraft.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -3557,6 +3581,7 @@ proto.proto.Room.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.Room} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Room.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -3697,6 +3722,7 @@ proto.proto.Room.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.Room} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Room.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -4163,6 +4189,7 @@ proto.proto.ChatRoom.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChatRoom} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChatRoom.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -4233,6 +4260,7 @@ proto.proto.ChatRoom.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChatRoom} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChatRoom.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -4320,6 +4348,7 @@ proto.proto.GroupRoom.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupRoom} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupRoom.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -4442,6 +4471,7 @@ proto.proto.GroupRoom.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupRoom} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupRoom.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -4589,6 +4619,7 @@ proto.proto.GroupRoom.PrivateExtra.prototype.toObject = function(opt_includeInst
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupRoom.PrivateExtra} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupRoom.PrivateExtra.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -4663,6 +4694,7 @@ proto.proto.GroupRoom.PrivateExtra.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupRoom.PrivateExtra} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupRoom.PrivateExtra.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -4756,6 +4788,7 @@ proto.proto.GroupRoom.PublicExtra.prototype.toObject = function(opt_includeInsta
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GroupRoom.PublicExtra} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupRoom.PublicExtra.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -4825,6 +4858,7 @@ proto.proto.GroupRoom.PublicExtra.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GroupRoom.PublicExtra} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GroupRoom.PublicExtra.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -5106,6 +5140,7 @@ proto.proto.ChannelRoom.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelRoom} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelRoom.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -5228,6 +5263,7 @@ proto.proto.ChannelRoom.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelRoom} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelRoom.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -5375,6 +5411,7 @@ proto.proto.ChannelRoom.PrivateExtra.prototype.toObject = function(opt_includeIn
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelRoom.PrivateExtra} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelRoom.PrivateExtra.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -5449,6 +5486,7 @@ proto.proto.ChannelRoom.PrivateExtra.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelRoom.PrivateExtra} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelRoom.PrivateExtra.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -5542,6 +5580,7 @@ proto.proto.ChannelRoom.PublicExtra.prototype.toObject = function(opt_includeIns
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ChannelRoom.PublicExtra} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelRoom.PublicExtra.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -5611,6 +5650,7 @@ proto.proto.ChannelRoom.PublicExtra.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ChannelRoom.PublicExtra} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ChannelRoom.PublicExtra.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -5894,6 +5934,7 @@ proto.proto.Thumbnail.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.Thumbnail} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Thumbnail.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -5978,6 +6019,7 @@ proto.proto.Thumbnail.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.Thumbnail} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Thumbnail.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -6115,6 +6157,7 @@ proto.proto.File.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.File} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.File.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -6232,6 +6275,7 @@ proto.proto.File.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.File} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.File.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -6549,6 +6593,7 @@ proto.proto.Wallpaper.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.Wallpaper} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Wallpaper.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -6624,6 +6669,7 @@ proto.proto.Wallpaper.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.Wallpaper} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Wallpaper.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -6733,6 +6779,7 @@ proto.proto.Pagination.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.Pagination} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Pagination.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -6807,6 +6854,7 @@ proto.proto.Pagination.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.Pagination} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.Pagination.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

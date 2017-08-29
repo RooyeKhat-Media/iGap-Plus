@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.GeoGetNearbyDistance.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GeoGetNearbyDistance} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetNearbyDistance.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -137,6 +140,7 @@ proto.proto.GeoGetNearbyDistance.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GeoGetNearbyDistance} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetNearbyDistance.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -275,6 +279,7 @@ proto.proto.GeoGetNearbyDistanceResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GeoGetNearbyDistanceResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetNearbyDistanceResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -352,6 +357,7 @@ proto.proto.GeoGetNearbyDistanceResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GeoGetNearbyDistanceResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetNearbyDistanceResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -417,6 +423,7 @@ proto.proto.GeoGetNearbyDistanceResponse.Result.prototype.toObject = function(op
  *     http://goto/soy-param-migration
  * @param {!proto.proto.GeoGetNearbyDistanceResponse.Result} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetNearbyDistanceResponse.Result.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -496,6 +503,7 @@ proto.proto.GeoGetNearbyDistanceResponse.Result.prototype.serializeBinary = func
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.GeoGetNearbyDistanceResponse.Result} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.GeoGetNearbyDistanceResponse.Result.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -602,8 +610,6 @@ proto.proto.GeoGetNearbyDistanceResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Result result = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.GeoGetNearbyDistanceResponse.Result>}
  */
 proto.proto.GeoGetNearbyDistanceResponse.prototype.getResultList = function() {

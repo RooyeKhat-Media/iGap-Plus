@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationResendVerifyEmail.prototype.toObject = functi
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationResendVerifyEmail} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationResendVerifyEmail.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -126,6 +129,7 @@ proto.proto.UserTwoStepVerificationResendVerifyEmail.prototype.serializeBinary =
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationResendVerifyEmail} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationResendVerifyEmail.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -213,6 +217,7 @@ proto.proto.UserTwoStepVerificationResendVerifyEmailResponse.prototype.toObject 
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationResendVerifyEmailResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationResendVerifyEmailResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -288,6 +293,7 @@ proto.proto.UserTwoStepVerificationResendVerifyEmailResponse.prototype.serialize
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationResendVerifyEmailResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationResendVerifyEmailResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

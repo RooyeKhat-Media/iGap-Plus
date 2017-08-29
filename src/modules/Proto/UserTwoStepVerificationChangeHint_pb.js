@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -56,6 +58,7 @@ proto.proto.UserTwoStepVerificationChangeHint.prototype.toObject = function(opt_
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationChangeHint} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeHint.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -136,6 +139,7 @@ proto.proto.UserTwoStepVerificationChangeHint.prototype.serializeBinary = functi
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationChangeHint} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeHint.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -267,6 +271,7 @@ proto.proto.UserTwoStepVerificationChangeHintResponse.prototype.toObject = funct
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserTwoStepVerificationChangeHintResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeHintResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -337,6 +342,7 @@ proto.proto.UserTwoStepVerificationChangeHintResponse.prototype.serializeBinary 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserTwoStepVerificationChangeHintResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserTwoStepVerificationChangeHintResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;

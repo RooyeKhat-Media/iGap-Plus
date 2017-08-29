@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.UserRegister.prototype.toObject = function(opt_includeInstance) {
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserRegister} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserRegister.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -137,6 +140,7 @@ proto.proto.UserRegister.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserRegister} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserRegister.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -275,6 +279,7 @@ proto.proto.UserRegisterResponse.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.UserRegisterResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserRegisterResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -284,7 +289,7 @@ proto.proto.UserRegisterResponse.toObject = function(includeInstance, msg) {
     authorHash: jspb.Message.getFieldWithDefault(msg, 4, ""),
     method: jspb.Message.getFieldWithDefault(msg, 5, 0),
     resendDelay: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    smsNumberList: jspb.Message.getField(msg, 7),
+    smsNumberList: jspb.Message.getRepeatedField(msg, 7),
     verifyCodeRegex: jspb.Message.getFieldWithDefault(msg, 8, ""),
     verifyCodeDigitCount: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
@@ -385,6 +390,7 @@ proto.proto.UserRegisterResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.UserRegisterResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.UserRegisterResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -571,12 +577,10 @@ proto.proto.UserRegisterResponse.prototype.setResendDelay = function(value) {
 
 /**
  * repeated uint64 sms_number = 7;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<number>}
  */
 proto.proto.UserRegisterResponse.prototype.getSmsNumberList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getField(this, 7));
+  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 7));
 };
 
 

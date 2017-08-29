@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -59,6 +61,7 @@ proto.proto.ClientSearchUsername.prototype.toObject = function(opt_includeInstan
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientSearchUsername} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientSearchUsername.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -134,6 +137,7 @@ proto.proto.ClientSearchUsername.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientSearchUsername} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientSearchUsername.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -250,6 +254,7 @@ proto.proto.ClientSearchUsernameResponse.prototype.toObject = function(opt_inclu
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientSearchUsernameResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientSearchUsernameResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -327,6 +332,7 @@ proto.proto.ClientSearchUsernameResponse.prototype.serializeBinary = function() 
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientSearchUsernameResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientSearchUsernameResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -392,6 +398,7 @@ proto.proto.ClientSearchUsernameResponse.Result.prototype.toObject = function(op
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ClientSearchUsernameResponse.Result} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientSearchUsernameResponse.Result.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -478,6 +485,7 @@ proto.proto.ClientSearchUsernameResponse.Result.prototype.serializeBinary = func
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ClientSearchUsernameResponse.Result} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ClientSearchUsernameResponse.Result.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -646,8 +654,6 @@ proto.proto.ClientSearchUsernameResponse.prototype.hasResponse = function() {
 
 /**
  * repeated Result result = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.ClientSearchUsernameResponse.Result>}
  */
 proto.proto.ClientSearchUsernameResponse.prototype.getResultList = function() {

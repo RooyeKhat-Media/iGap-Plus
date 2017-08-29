@@ -9,7 +9,7 @@
 	"dependencies": {
 		"babel-plugin-transform-remove-console": "^6.8.4",
 		"fastpriorityqueue": "^0.3.1",
-		"google-protobuf": "^3.3.0",
+		"google-protobuf": "^3.4.0",
 		"intl": "^1.2.5",
 		"intl-locales-supported": "^1.0.0",
 		"node-forge": "^0.7.1",

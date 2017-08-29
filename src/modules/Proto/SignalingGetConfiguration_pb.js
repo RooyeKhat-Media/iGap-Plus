@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -57,6 +59,7 @@ proto.proto.SignalingGetConfiguration.prototype.toObject = function(opt_includeI
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingGetConfiguration} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingGetConfiguration.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -127,6 +130,7 @@ proto.proto.SignalingGetConfiguration.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingGetConfiguration} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingGetConfiguration.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -221,6 +225,7 @@ proto.proto.SignalingGetConfigurationResponse.prototype.toObject = function(opt_
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingGetConfigurationResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingGetConfigurationResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -318,6 +323,7 @@ proto.proto.SignalingGetConfigurationResponse.prototype.serializeBinary = functi
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingGetConfigurationResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingGetConfigurationResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -411,6 +417,7 @@ proto.proto.SignalingGetConfigurationResponse.IceServer.prototype.toObject = fun
  *     http://goto/soy-param-migration
  * @param {!proto.proto.SignalingGetConfigurationResponse.IceServer} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingGetConfigurationResponse.IceServer.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -490,6 +497,7 @@ proto.proto.SignalingGetConfigurationResponse.IceServer.prototype.serializeBinar
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.SignalingGetConfigurationResponse.IceServer} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.SignalingGetConfigurationResponse.IceServer.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -594,8 +602,6 @@ proto.proto.SignalingGetConfigurationResponse.prototype.hasResponse = function()
 
 /**
  * repeated IceServer ice_server = 2;
- * If you change this array by adding, removing or replacing elements, or if you
- * replace the array itself, then you must call the setter to update it.
  * @return {!Array.<!proto.proto.SignalingGetConfigurationResponse.IceServer>}
  */
 proto.proto.SignalingGetConfigurationResponse.prototype.getIceServerList = function() {

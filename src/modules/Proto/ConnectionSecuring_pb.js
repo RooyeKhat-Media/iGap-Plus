@@ -1,6 +1,8 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
@@ -58,6 +60,7 @@ proto.proto.ConnectionSecuringResponse.prototype.toObject = function(opt_include
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ConnectionSecuringResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ConnectionSecuringResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -153,6 +156,7 @@ proto.proto.ConnectionSecuringResponse.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ConnectionSecuringResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ConnectionSecuringResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -350,6 +354,7 @@ proto.proto.ConnectionSymmetricKey.prototype.toObject = function(opt_includeInst
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ConnectionSymmetricKey} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ConnectionSymmetricKey.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -430,6 +435,7 @@ proto.proto.ConnectionSymmetricKey.prototype.serializeBinary = function() {
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ConnectionSymmetricKey} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ConnectionSymmetricKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
@@ -585,6 +591,7 @@ proto.proto.ConnectionSymmetricKeyResponse.prototype.toObject = function(opt_inc
  *     http://goto/soy-param-migration
  * @param {!proto.proto.ConnectionSymmetricKeyResponse} msg The msg instance to transform.
  * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ConnectionSymmetricKeyResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
@@ -675,6 +682,7 @@ proto.proto.ConnectionSymmetricKeyResponse.prototype.serializeBinary = function(
  * format), writing to the given BinaryWriter.
  * @param {!proto.proto.ConnectionSymmetricKeyResponse} message
  * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.proto.ConnectionSymmetricKeyResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
