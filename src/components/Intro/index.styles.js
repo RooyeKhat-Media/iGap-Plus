@@ -2,9 +2,10 @@ import * as _ from 'lodash';
 import Device from '../../modules/Responsive/Device';
 
 import {
-  NORMAL_WIDTH, NORMAL_HEIGHT, MIN_WIDTH_NORMAL_WIDTH, ORIENTATION_LANDSCAPE,
-  ORIENTATION_PORTRAIT, MIN_WIDTH_NORMAL_HEIGHT, MIN_HEIGHT_NORMAL_HEIGHT,
-  MIN_HEIGHT_NORMAL_WIDTH,
+  NORMAL_HEIGHT,
+  NORMAL_WIDTH,
+  ORIENTATION_LANDSCAPE,
+  ORIENTATION_PORTRAIT,
 } from '../../constants/screenBreakPoints';
 
 const id = _.uniqueId();
@@ -20,11 +21,9 @@ export default [
       query: {},
       style: {
         wrapper: {
-          flex: 1,
           backgroundColor: '#f0f0f0',
         },
         layout: {
-          flex: 1,
           backgroundColor: 'white',
         },
         swiperWrap: {
@@ -94,58 +93,6 @@ export default [
         svgStyle: {
           width: svgSize,
           height: svgSize,
-        },
-      },
-    },
-    {
-      query: {...MIN_WIDTH_NORMAL_WIDTH, ...ORIENTATION_PORTRAIT},
-      style: {
-        layout: {
-          flex: 0,
-          width: NORMAL_WIDTH,
-        },
-        wrapper: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      },
-    },
-    {
-      query: {...MIN_WIDTH_NORMAL_HEIGHT, ...ORIENTATION_LANDSCAPE},
-      style: {
-        layout: {
-          flex: 0,
-          width: NORMAL_HEIGHT,
-        },
-        wrapper: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      },
-    },
-    {
-      query: {...MIN_HEIGHT_NORMAL_WIDTH, ...ORIENTATION_LANDSCAPE},
-      style: {
-        layout: {
-          flex: 0,
-          height: NORMAL_WIDTH,
-        },
-        wrapper: {
-          justifyContent: 'center',
-          alignItems: 'center',
-        },
-      },
-    },
-    {
-      query: {...MIN_HEIGHT_NORMAL_HEIGHT, ...ORIENTATION_PORTRAIT},
-      style: {
-        layout: {
-          flex: 0,
-          height: NORMAL_HEIGHT,
-        },
-        wrapper: {
-          justifyContent: 'center',
-          alignItems: 'center',
         },
       },
     },

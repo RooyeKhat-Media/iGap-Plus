@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {Button} from '../BaseUI';
-import {intlShape, injectIntl} from 'react-intl';
-import {responsive, MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
+import {injectIntl, intlShape} from 'react-intl';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../modules/Responsive';
 import styleSheet from './index.styles';
 import * as _ from 'lodash';
 import i18n from '../../i18n';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../constants/screenBreakPoints';
+import DimensionLimiter from '../BaseUI/DimensionLimiter';
+
+const uniqueId = _.uniqueId();
 
 class Intro extends React.Component {
   constructor() {
@@ -43,41 +46,40 @@ class Intro extends React.Component {
       intl.formatMessage(i18n.introBtnStart);
 
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.layout}>
-          <View style={[styles.swiperWrap]}>
-            <Swiper loop={false}
-              index={currentPage}
-              width={boxWidth}
-              height={boxHeight}
-              showsButtons={false}
-              onMomentumScrollEnd={this._handleWhenScrollEnd}
-              dotStyle={styles.dotStyle}
-              paginationStyle={styles.paginationStyle}
-              activeDotStyle={styles.activeDotStyle}>
+      <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}
+        layoutStyle={styles.layout}>
+        <View style={[styles.swiperWrap]}>
+          <Swiper loop={false}
+            index={currentPage}
+            width={boxWidth}
+            height={boxHeight}
+            showsButtons={false}
+            onMomentumScrollEnd={this._handleWhenScrollEnd}
+            dotStyle={styles.dotStyle}
+            paginationStyle={styles.paginationStyle}
+            activeDotStyle={styles.activeDotStyle}>
 
-              {pages.map(({ImageSvg, title, subtitle}, idx) => (
-                <View key={idx} style={styles.slide}>
-                  <View style={styles.svgWrap}>
-                    <ImageSvg style={styles.svgStyle}/>
-                  </View>
-                  <View style={styles.titleWrap}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.subTitle}>
-                      {subtitle}
-                    </Text>
-                  </View>
+            {pages.map(({ImageSvg, title, subtitle}, idx) => (
+              <View key={idx} style={styles.slide}>
+                <View style={styles.svgWrap}>
+                  <ImageSvg style={styles.svgStyle}/>
                 </View>
-              ))}
+                <View style={styles.titleWrap}>
+                  <Text style={styles.title}>{title}</Text>
+                  <Text style={styles.subTitle}>
+                    {subtitle}
+                  </Text>
+                </View>
+              </View>
+            ))}
 
-            </Swiper>
-          </View>
-          <View style={styles.btnWrap}>
-            <Button style={styles.btn} upperCase={false} primary raised accent={false} onPress={onBtnClick}
-              text={btnTitle}/>
-          </View>
+          </Swiper>
         </View>
-      </View>
+        <View style={styles.btnWrap}>
+          <Button style={styles.btn} upperCase={false} primary raised accent={false} onPress={onBtnClick}
+            text={btnTitle}/>
+        </View>
+      </DimensionLimiter>
     );
   }
 
