@@ -4,6 +4,7 @@ import {clientStatusChanged} from '../../../actions/api';
 import store from '../../../configureStore';
 import {CLIENT_STATUS} from '../../Api';
 import Base from '../Base';
+import {login} from '../../../utils/app';
 
 export default class SymmetricKey extends Base {
   handle() {
@@ -12,6 +13,9 @@ export default class SymmetricKey extends Base {
       Client.instance.symmetricIvSize = this._response.getSymmetricIvSize();
       Client.instance.secure = true;
       store.dispatch(clientStatusChanged(CLIENT_STATUS.SECURED));
+
+      login().catch();
+      
     } else {
       // TODO [Amerehie] - 7/24/2017 12:55 PM -REJECTED || SecurityIssue
     }
