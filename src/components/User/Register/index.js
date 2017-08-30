@@ -1,7 +1,7 @@
 import React from 'react';
-import {TextInput, View} from 'react-native';
+import {View} from 'react-native';
 import Picker from '../../BaseUI/Picker/index';
-import {Button, DialogModal, Spinner, Toolbar} from '../../BaseUI/index';
+import {Button, DialogModal, Spinner, TextInput, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';

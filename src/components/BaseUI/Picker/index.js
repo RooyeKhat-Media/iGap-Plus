@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {FlatList, Icon, Modal} from '../index';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Icon, Modal, TextInput} from '../index';
 import styles from './index.styles';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
@@ -28,7 +28,7 @@ class Picker extends React.Component {
     }
 
     const selectedItem = options.find(function(option) {
-      return option.key == defaultSelected;
+      return option.key === defaultSelected;
     });
 
     const selectTitle = selectedItem ? selectedItem.value : placeHolder;

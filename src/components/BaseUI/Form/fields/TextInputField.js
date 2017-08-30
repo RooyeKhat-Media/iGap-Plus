@@ -1,11 +1,10 @@
 import React from 'react';
-import {TextInput} from 'react-native';
+import {TextInput} from '../../index';
 import BaseField from './BaseField';
 
 class TextInputField extends BaseField {
   constructor(props) {
     super(props);
-    this.fieldType = 'BaseField';
   }
 
   getContent() {
@@ -23,7 +22,8 @@ class TextInputField extends BaseField {
     }
 
     return (
-      <TextInput {...this.props} style={this.props.style.textInput} onChangeText={this.setValue} {...additionalProps} />
+      <TextInput {...this.props} style={this.props.style ? this.props.style.textInput : {}}
+        onChangeText={this.setValue} {...additionalProps} />
     );
   }
 }

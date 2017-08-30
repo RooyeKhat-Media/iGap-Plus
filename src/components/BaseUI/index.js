@@ -5,6 +5,7 @@ import Modal from './Modal';
 import AppModal from './AppModal';
 import DialogModal from './DialogModal';
 import Spinner from './Spinner';
+import TextInput from './TextInput';
 
 export {
   AppModal,
@@ -20,4 +21,5 @@ export {
   Modal,
   DialogModal,
   Spinner,
+  TextInput,
 };

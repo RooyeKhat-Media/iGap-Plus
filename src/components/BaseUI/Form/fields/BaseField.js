@@ -62,11 +62,17 @@ class BaseField extends Component {
   }
 
   render() {
-    const {help, defaultError, style} = this.props;
+    const {help, defaultError} = this.props;
     const {error} = this.state;
 
+    let {style} = this.props;
+
+    if (!this.props.style) {
+      style = styles.inputStyle;
+    }
+
     return (
-      <View style={style.container}>
+      <View style={[style.container]}>
         {this.getContent()}
         {(defaultError || error) ? (
           <Text style={[styles.errorMessage, style.error]}>{defaultError || error}</Text>) : null}
