@@ -15,15 +15,15 @@ const uniqueId = _.uniqueId();
 
 class UserRegisterComponent extends React.Component {
   render() {
-    const {intl, countryList, formRules, formData, submitForm, onChangeCallingCode, onSelectCountry} = this.props;
+    const {intl, countryList, formRules, formData, handleFormData, onChangeCallingCode, onSelectCountry, phoneNumberError} = this.props;
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <View>
 
           <Toolbar
-            leftElement="info"
-            onLeftElementPress={() => {
+            rightElement="info"
+            onRightElementPress={() => {
               this.dialog.open();
             }}
             centerElement={intl.formatMessage(i18n.registerToolbarTitle)}/>
@@ -31,8 +31,8 @@ class UserRegisterComponent extends React.Component {
           <DialogModal control={(dialog) => {
             this.dialog = dialog;
           }}
-          title={<FormattedMessage {...i18n.registerInfoTitle} />}
-          content={<FormattedMessage {...i18n.registerInfoContent} />}/>
+                       title={<FormattedMessage {...i18n.registerInfoTitle} />}
+                       content={<FormattedMessage {...i18n.registerInfoContent} />}/>
 
           <Form style={styles.panel} control={(form) => {
             this.form = form;
@@ -60,6 +60,7 @@ class UserRegisterComponent extends React.Component {
                   name="phoneNumber"
                   label={intl.formatMessage(i18n.registerPhoneNumberTitle)}
                   defaultValue={formData.phoneNumber}
+                  defaultError={phoneNumberError}
                   style={styles.phoneNumberInput}
                   keyboardType="phone-pad"
                   underlineColorAndroid="#eee"
@@ -75,14 +76,14 @@ class UserRegisterComponent extends React.Component {
             }}/>
 
             <View style={styles.formGroup}>
-              <Button raised primary text="Next" onPress={() => {
-                this.form.submit()
-                  .then((data) => {
-                    this.loading.on();
-                    submitForm(data).then(() => {
-                      this.loading.off();
-                    });
-                  });
+              <Button raised primary text={intl.formatMessage(i18n.registerSubmitBtnTitle)} onPress={async () => {
+                try {
+                  this.loading.on();
+                  const data = await this.form.submit();
+                  await handleFormData(data);
+                } finally {
+                  this.loading.off();
+                }
               }}/>
             </View>
           </Form>

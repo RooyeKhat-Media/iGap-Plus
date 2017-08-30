@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react';
 import UserRegisterComponent from '../../components/User/Register';
-import {regexValidator, requiredValidator, stringValidator} from '../../utils/validator';
+import {integerValidator, regexValidator, requiredValidator} from '../../utils/validator';
 import countries from '../../constants/country/index';
 import {Text} from 'react-native';
 import {ListItem} from '../../components/BaseUI/index';
@@ -13,13 +13,13 @@ import i18n from '../../i18n/index';
 import Api from '../../modules/Api/index';
 import {INFO_LOCATION, USER_REGISTER} from '../../constants/methods/index';
 import {InfoLocation, UserRegister} from '../../modules/Proto/index';
-import {goVerify} from '../../navigators/AppNavigator';
-import {setAuthorHash, setUserId} from "../../utils/app";
+import {goUserVerifyScreen} from '../../navigators/AppNavigator';
+import {setAuthorHash, setUserId} from '../../utils/app';
 
 const rules = {
   phoneNumber: [
     {validate: requiredValidator},
-    {validate: stringValidator},
+    {validate: integerValidator},
   ],
 };
 
@@ -51,7 +51,7 @@ class UserRegisterScreen extends Component {
   }
 
   onSelectCountry = (key) => {
-    const country = countries.find(function (country) {
+    const country = countries.find(function(country) {
       return key === country[0];
     });
     if (country) {
@@ -63,8 +63,8 @@ class UserRegisterScreen extends Component {
   }
 
   onChangeCallingCode = (code) => {
-    this.setState({callingCode: code}, function () {
-      const country = countries.find(function (country) {
+    this.setState({callingCode: code}, function() {
+      const country = countries.find(function(country) {
         return code === country[1];
       });
       if (country) {
@@ -75,37 +75,39 @@ class UserRegisterScreen extends Component {
     });
   }
 
-  submitForm = (formData) => {
-    const {countryCode} = this.state;
+  handleFormData = async (formData) => {
+    const {intl} = this.props;
+    const {countryCode, callingCode} = this.state;
     const data = {
       phoneNumber: formData.phoneNumber,
       countryCode,
     };
-    const userRegister = new UserRegister();
-    userRegister.setPhoneNumber(parseInt(data.phoneNumber));
-    userRegister.setCountryCode(data.countryCode);
-    return Api.invoke(USER_REGISTER, userRegister)
-      .then((response) => {
+    try {
+      const userRegister = new UserRegister();
+      userRegister.setPhoneNumber(parseInt(data.phoneNumber));
+      userRegister.setCountryCode(data.countryCode);
+      const response = await Api.invoke(USER_REGISTER, userRegister);
 
-        setUserId(response.getUserId());
-        setAuthorHash(response.getAuthorHash());
-
-        goVerify(response.getUsername(),
-          response.getMethod(),
-          response.getResendDelay(),
-          [],
-          response.getVerifyCodeRegex(),
-          response.getVerifyCodeDigitCount());
-
-        return Promise.resolve();
-      }, function () {
-        return Promise.resolve();
-      });
+      setUserId(response.getUserId());
+      setAuthorHash(response.getAuthorHash());
+      goUserVerifyScreen(
+        callingCode + ' ' + data.phoneNumber,
+        response.getUsername(),
+        response.getMethod(),
+        response.getResendDelay(),
+        [],
+        response.getVerifyCodeRegex(),
+        response.getVerifyCodeDigitCount(),
+        data);
+    } catch (e) {
+      // TODO COMPLETE ERRORS
+      this.setState({phoneNumberError: e.name + ': ' + e.message});
+    }
   }
 
   render() {
     const {intl} = this.props;
-    const {phoneNumber, callingCode, countryCode} = this.state;
+    const {phoneNumber, callingCode, countryCode, phoneNumberError} = this.state;
     const formData = {phoneNumber, callingCode, countryCode};
     const countryList = [];
 
@@ -117,7 +119,7 @@ class UserRegisterScreen extends Component {
         key: country[0],
         value: countryName,
         element: (<ListItem centerElement={{primaryText: countryName}} rightElement={<Text>{countryCode}</Text>}
-                            style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
+          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
         filter: countryName.toLowerCase() + ',' + countryCode,
       });
     });
@@ -127,9 +129,10 @@ class UserRegisterScreen extends Component {
         formRules={rules}
         formData={formData}
         countryList={countryList}
-        submitForm={this.submitForm}
+        handleFormData={this.handleFormData}
         onSelectCountry={this.onSelectCountry}
         onChangeCallingCode={this.onChangeCallingCode}
+        phoneNumberError={phoneNumberError}
       />
     );
   }
