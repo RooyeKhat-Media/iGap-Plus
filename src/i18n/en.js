@@ -98,6 +98,11 @@ export default {
     defaultMessage: 'Ex: (+98)9123456789',
     description: 'UserRegister Page',
   },
+  registerSubmitBtnTitle: {
+    id: 'UserRegister.submitBtnTitle',
+    defaultMessage: 'Next',
+    description: 'UserRegister Page',
+  },
   registerInfoTitle: {
     id: 'UserRegister.infoTitle',
     defaultMessage: 'Hello world',
@@ -149,25 +154,68 @@ export default {
     description: 'error',
   },
 
+
+  verifyTitle: {
+    id: 'UserVerify.title',
+    defaultMessage: 'We\'ve sent an {method, select,0{Sms} 1{iGap Message} 2{iGap Message and Sms}} with an activation code to your phone {phoneNumber}.',
+    description: 'UserVerify Page',
+  },
   verifyToolbarTitle: {
     id: 'UserVerify.toolbarTitle',
     defaultMessage: 'User Verify',
     description: 'UserVerify Page',
   },
   verifyInfoTitle: {
-    id: 'UserRegister.infoTitle',
+    id: 'UserVerify.infoTitle',
     defaultMessage: 'Hello world',
-    description: 'UserRegister Page',
+    description: 'UserVerify Page',
   },
   verifyInfoContent: {
-    id: 'UserRegister.infoContent',
+    id: 'UserVerify.infoContent',
     defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description: 'UserRegister Page',
+    description: 'UserVerify Page',
+  },
+  verifyCodeTitle: {
+    id: 'UserVerify.codeTitle',
+    defaultMessage: 'Code',
+    description: 'UserVerify Page',
+  },
+  verifyCodePlaceholder: {
+    id: 'UserVerify.codePlaceholder',
+    defaultMessage: 'Verification Code.',
+    description: 'UserVerify Page',
+  },
+  verifyResendCodeTimer: {
+    id: 'UserVerify.codePlaceholder',
+    defaultMessage: 'resend code in {time} Second.',
+    description: 'UserVerify Page',
+  },
+
+  verifyResendCodeBtnTitle: {
+    id: 'UserVerify.resendCodeBtnTitle',
+    defaultMessage: 'Resend Code',
+    description: 'UserVerify Page',
+  },
+  verifyCodeBtnTitle: {
+    id: 'UserVerify.verifyCodeBtnTitle',
+    defaultMessage: 'Verify Code',
+    description: 'UserVerify Page',
+  },
+  verifyCodeInvalidError: {
+    id: 'UserVerify.verifyCodeInvalidError',
+    defaultMessage: 'Verification Code is Invalid .',
+    description: 'UserVerify Page',
   },
 
   spinnerDefaultTitle: {
     id: 'spinner.defaultTitle',
     defaultMessage: 'Please Wait ...',
     description: 'Spinner component',
+  },
+
+  twoStepVerificationTitle: {
+    id: 'twoStepVerification.toolbarTitle',
+    defaultMessage: 'Two Step Verification',
+    description: 'twoStepVerification Page',
   },
 };

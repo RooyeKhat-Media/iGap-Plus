@@ -1,20 +1,22 @@
 export default {
   palette: {
-    primaryColor: '#D3EFFA',
-    canvasColor: '#3D325B',
+    primaryColor: '#0277bd',
+    canvasColor: '#e1f5fe',
   },
   toolbar: {
     container: {
       height: 50,
     },
     titleText: {
-      color: '#3D325B',
+      color: '#e1f5fe',
     },
-    leftElement: {
-      color: '#3D325B',
+    rightElement: {
+      color: '#e1f5fe',
     },
   },
   primary: {
-    color: '#3D325B',
+    txt: {
+      color: '#3D325B',
+    },
   },
 };

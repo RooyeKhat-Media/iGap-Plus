@@ -17,22 +17,8 @@ export const requiredValidator = function(value, options = {}) {
     }
   });
 };
-export const numberValidator = function(value, options = {}) {
-  return new Promise(function(resolve, reject) {
-    if (typeof value !== 'number') {
-      console.log('number Typer', typeof value);
-      reject(_messageSelector(options.messageNumber, i18n.errorTypeNumber));
-
-    } else if (_.has(options, 'min') && value < options.min) {
-      reject(_messageSelector(options.errorNumberSmallMin, {...i18n.errorNumberSmallMin, values: {min: options.min}}));
-
-    } else if (_.has(options, 'max') && value > options.max) {
-      reject(_messageSelector(options.errorNumberBigMax, {...i18n.errorNumberBigMax, values: {max: options.max}}));
-
-    } else {
-      resolve();
-    }
-  });
+export const integerValidator = function(value, options = {}) {
+  return regexValidator(value, {pattern: /^\d+$/});
 };
 export const stringValidator = function(value, options = {}) {
   return new Promise(function(resolve, reject) {

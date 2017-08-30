@@ -7,7 +7,7 @@ import Logo from '../assets/images/intro/logo';
 import Security from '../assets/images/intro/security';
 import Transfer from '../assets/images/intro/transfer';
 import {FormattedMessage} from 'react-intl';
-import {goRegister} from '../navigators/AppNavigator';
+import {goUserRegisterScreen} from '../navigators/AppNavigator';
 import i18n from '../i18n';
 
 const pages = [
@@ -43,13 +43,13 @@ const pages = [
   },
 ];
 
-class Intro extends Component {
+class IntroScreen extends Component {
   static navigationOptions = {
     header: null,
   };
 
   _onClick = () => {
-    goRegister();
+    goUserRegisterScreen();
   };
 
   render() {
@@ -59,4 +59,4 @@ class Intro extends Component {
   }
 }
 
-export default Intro;
+export default IntroScreen;

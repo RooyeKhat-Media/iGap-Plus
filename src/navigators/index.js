@@ -3,10 +3,7 @@
  */
 
 import store from '../configureStore';
-import {
-  NavigationParams,
-  NavigationAction,
-} from 'react-navigation/src/TypeDefinition';
+import {NavigationAction, NavigationParams,} from 'react-navigation/src/TypeDefinition';
 import {navigatorGo} from '../actions/navigator';
 
 

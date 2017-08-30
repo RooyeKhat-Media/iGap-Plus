@@ -37,42 +37,42 @@ if (goog.DEBUG && !COMPILED) {
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.proto.UserRegister.prototype.toObject = function(opt_includeInstance) {
-  return proto.proto.UserRegister.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.proto.UserRegister} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.proto.UserRegister.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    request: (f = msg.getRequest()) && Request_pb.Request.toObject(includeInstance, f),
-    phoneNumber: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    countryCode: jspb.Message.getFieldWithDefault(msg, 3, "")
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.proto.UserRegister.prototype.toObject = function(opt_includeInstance) {
+    return proto.proto.UserRegister.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.proto.UserRegister} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.proto.UserRegister.toObject = function(includeInstance, msg) {
+    var f, obj = {
+      request: (f = msg.getRequest()) && Request_pb.Request.toObject(includeInstance, f),
+      phoneNumber: jspb.Message.getFieldWithDefault(msg, 2, 0),
+      countryCode: jspb.Message.getFieldWithDefault(msg, 3, ''),
+    };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
 }
 
 
@@ -83,7 +83,7 @@ proto.proto.UserRegister.toObject = function(includeInstance, msg) {
  */
 proto.proto.UserRegister.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.proto.UserRegister;
+  var msg = new proto.proto.UserRegister();
   return proto.proto.UserRegister.deserializeBinaryFromReader(msg, reader);
 };
 
@@ -102,22 +102,22 @@ proto.proto.UserRegister.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new Request_pb.Request;
-      reader.readMessage(value,Request_pb.Request.deserializeBinaryFromReader);
-      msg.setRequest(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setPhoneNumber(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCountryCode(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new Request_pb.Request();
+        reader.readMessage(value, Request_pb.Request.deserializeBinaryFromReader);
+        msg.setRequest(value);
+        break;
+      case 2:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setPhoneNumber(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setCountryCode(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
@@ -219,7 +219,7 @@ proto.proto.UserRegister.prototype.setPhoneNumber = function(value) {
  * @return {string}
  */
 proto.proto.UserRegister.prototype.getCountryCode = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ''));
 };
 
 
@@ -227,7 +227,6 @@ proto.proto.UserRegister.prototype.getCountryCode = function() {
 proto.proto.UserRegister.prototype.setCountryCode = function(value) {
   jspb.Message.setField(this, 3, value);
 };
-
 
 
 /**
@@ -241,64 +240,56 @@ proto.proto.UserRegister.prototype.setCountryCode = function(value) {
  * @constructor
  */
 proto.proto.UserRegisterResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.proto.UserRegisterResponse.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.proto.UserRegisterResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.proto.UserRegisterResponse.displayName = 'proto.proto.UserRegisterResponse';
 }
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.proto.UserRegisterResponse.repeatedFields_ = [7];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.proto.UserRegisterResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.proto.UserRegisterResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.proto.UserRegisterResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.proto.UserRegisterResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    response: (f = msg.getResponse()) && Response_pb.Response.toObject(includeInstance, f),
-    username: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    userId: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    authorHash: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    method: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    resendDelay: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    smsNumberList: jspb.Message.getRepeatedField(msg, 7),
-    verifyCodeRegex: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    verifyCodeDigitCount: jspb.Message.getFieldWithDefault(msg, 9, 0)
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.proto.UserRegisterResponse.prototype.toObject = function(opt_includeInstance) {
+    return proto.proto.UserRegisterResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.proto.UserRegisterResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.proto.UserRegisterResponse.toObject = function(includeInstance, msg) {
+    var f, obj = {
+      response: (f = msg.getResponse()) && Response_pb.Response.toObject(includeInstance, f),
+      username: jspb.Message.getFieldWithDefault(msg, 2, ''),
+      userId: jspb.Message.getFieldWithDefault(msg, 3, 0),
+      authorHash: jspb.Message.getFieldWithDefault(msg, 4, ''),
+      method: jspb.Message.getFieldWithDefault(msg, 5, 0),
+      resendDelay: jspb.Message.getFieldWithDefault(msg, 6, 0),
+      verifyCodeRegex: jspb.Message.getFieldWithDefault(msg, 8, ''),
+      verifyCodeDigitCount: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
 }
 
 
@@ -309,7 +300,7 @@ proto.proto.UserRegisterResponse.toObject = function(includeInstance, msg) {
  */
 proto.proto.UserRegisterResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.proto.UserRegisterResponse;
+  var msg = new proto.proto.UserRegisterResponse();
   return proto.proto.UserRegisterResponse.deserializeBinaryFromReader(msg, reader);
 };
 
@@ -328,46 +319,42 @@ proto.proto.UserRegisterResponse.deserializeBinaryFromReader = function(msg, rea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new Response_pb.Response;
-      reader.readMessage(value,Response_pb.Response.deserializeBinaryFromReader);
-      msg.setResponse(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setUserId(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAuthorHash(value);
-      break;
-    case 5:
-      var value = /** @type {!proto.proto.UserRegisterResponse.Method} */ (reader.readEnum());
-      msg.setMethod(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setResendDelay(value);
-      break;
-    case 7:
-      var value = /** @type {!Array.<number>} */ (reader.readPackedUint64());
-      msg.setSmsNumberList(value);
-      break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setVerifyCodeRegex(value);
-      break;
-    case 9:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setVerifyCodeDigitCount(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new Response_pb.Response();
+        reader.readMessage(value, Response_pb.Response.deserializeBinaryFromReader);
+        msg.setResponse(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setUsername(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readUint64());
+        msg.setUserId(value);
+        break;
+      case 4:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setAuthorHash(value);
+        break;
+      case 5:
+        var value = /** @type {!proto.proto.UserRegisterResponse.Method} */ (reader.readEnum());
+        msg.setMethod(value);
+        break;
+      case 6:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setResendDelay(value);
+        break;
+      case 8:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setVerifyCodeRegex(value);
+        break;
+      case 9:
+        var value = /** @type {number} */ (reader.readUint32());
+        msg.setVerifyCodeDigitCount(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
@@ -437,13 +424,6 @@ proto.proto.UserRegisterResponse.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getSmsNumberList();
-  if (f.length > 0) {
-    writer.writePackedUint64(
-      7,
-      f
-    );
-  }
   f = message.getVerifyCodeRegex();
   if (f.length > 0) {
     writer.writeString(
@@ -467,7 +447,7 @@ proto.proto.UserRegisterResponse.serializeBinaryToWriter = function(message, wri
 proto.proto.UserRegisterResponse.Method = {
   VERIFY_CODE_SMS: 0,
   VERIFY_CODE_SOCKET: 1,
-  VERIFY_CODE_SMS_SOCKET: 2
+  VERIFY_CODE_SMS_SOCKET: 2,
 };
 
 /**
@@ -505,7 +485,7 @@ proto.proto.UserRegisterResponse.prototype.hasResponse = function() {
  * @return {string}
  */
 proto.proto.UserRegisterResponse.prototype.getUsername = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
 
 
@@ -535,7 +515,7 @@ proto.proto.UserRegisterResponse.prototype.setUserId = function(value) {
  * @return {string}
  */
 proto.proto.UserRegisterResponse.prototype.getAuthorHash = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ''));
 };
 
 
@@ -576,40 +556,11 @@ proto.proto.UserRegisterResponse.prototype.setResendDelay = function(value) {
 
 
 /**
- * repeated uint64 sms_number = 7;
- * @return {!Array.<number>}
- */
-proto.proto.UserRegisterResponse.prototype.getSmsNumberList = function() {
-  return /** @type {!Array.<number>} */ (jspb.Message.getRepeatedField(this, 7));
-};
-
-
-/** @param {!Array.<number>} value */
-proto.proto.UserRegisterResponse.prototype.setSmsNumberList = function(value) {
-  jspb.Message.setField(this, 7, value || []);
-};
-
-
-/**
- * @param {!number} value
- * @param {number=} opt_index
- */
-proto.proto.UserRegisterResponse.prototype.addSmsNumber = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 7, value, opt_index);
-};
-
-
-proto.proto.UserRegisterResponse.prototype.clearSmsNumberList = function() {
-  this.setSmsNumberList([]);
-};
-
-
-/**
  * optional string verify_code_regex = 8;
  * @return {string}
  */
 proto.proto.UserRegisterResponse.prototype.getVerifyCodeRegex = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ''));
 };
 
 
