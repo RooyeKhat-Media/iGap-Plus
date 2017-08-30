@@ -14,6 +14,7 @@ import Api from '../../modules/Api/index';
 import {INFO_LOCATION, USER_REGISTER} from '../../constants/methods/index';
 import {InfoLocation, UserRegister} from '../../modules/Proto/index';
 import {goVerify} from '../../navigators/AppNavigator';
+import {setAuthorHash, setUserId} from "../../utils/app";
 
 const rules = {
   phoneNumber: [
@@ -50,7 +51,7 @@ class UserRegisterScreen extends Component {
   }
 
   onSelectCountry = (key) => {
-    const country = countries.find(function(country) {
+    const country = countries.find(function (country) {
       return key === country[0];
     });
     if (country) {
@@ -62,8 +63,8 @@ class UserRegisterScreen extends Component {
   }
 
   onChangeCallingCode = (code) => {
-    this.setState({callingCode: code}, function() {
-      const country = countries.find(function(country) {
+    this.setState({callingCode: code}, function () {
+      const country = countries.find(function (country) {
         return code === country[1];
       });
       if (country) {
@@ -85,14 +86,19 @@ class UserRegisterScreen extends Component {
     userRegister.setCountryCode(data.countryCode);
     return Api.invoke(USER_REGISTER, userRegister)
       .then((response) => {
+
+        setUserId(response.getUserId());
+        setAuthorHash(response.getAuthorHash());
+
         goVerify(response.getUsername(),
           response.getMethod(),
           response.getResendDelay(),
-          response.getSmsNumberList(),
+          [],
           response.getVerifyCodeRegex(),
           response.getVerifyCodeDigitCount());
+
         return Promise.resolve();
-      }, function() {
+      }, function () {
         return Promise.resolve();
       });
   }
@@ -111,7 +117,7 @@ class UserRegisterScreen extends Component {
         key: country[0],
         value: countryName,
         element: (<ListItem centerElement={{primaryText: countryName}} rightElement={<Text>{countryCode}</Text>}
-          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
+                            style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
         filter: countryName.toLowerCase() + ',' + countryCode,
       });
     });

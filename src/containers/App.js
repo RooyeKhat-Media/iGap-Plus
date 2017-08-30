@@ -12,6 +12,7 @@ import {ActivityIndicator, AppModal} from '../components/BaseUI';
 import AppNavigator from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
+import {loadAuthorHash, loadUserId} from '../utils/app';
 
 class App extends Component {
 
@@ -21,10 +22,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    migrate().catch(function() {
+    migrate().catch(function () {
       console.log('Migration failed');
     }).then(() => {
       Api.instance;
+
+      return Promise.all([
+        loadUserId,
+        loadAuthorHash,
+      ]);
+    }).then(() => {
       this.setState({ready: true});
     });
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
