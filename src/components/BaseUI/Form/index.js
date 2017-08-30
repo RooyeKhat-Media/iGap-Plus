@@ -61,13 +61,10 @@ class Form extends Component {
         return child;
       }
 
-      let childProps = {};
+      let childProps = {...child.props};
       if (child.props.isField) {
-        childProps = {
-          ...child.props,
-          control: (input) => {
-            this.inputs[child.props.name] = input;
-          },
+        childProps.control = (input) => {
+          this.inputs[child.props.name] = input;
         };
       }
 

@@ -22,7 +22,8 @@ class BaseField extends Component {
 
   setValue = (value) => {
     this.setState({value: value}, () => {
-      this.validate();
+      this.validate().catch(() => {
+      });
     });
   };
   getValue = () => {
