@@ -159,7 +159,11 @@ export default class Client {
           try {
             reject(reason);
           } finally {
-            wrapper.reject(reason);
+            try {
+              wrapper.reject(reason);
+            } finally {
+              this._runHandler(responseActionId, responseProto, wrapper);
+            }
           }
         } else {
           resolve(responseProto);
@@ -170,11 +174,11 @@ export default class Client {
       switch (wrapper.handlerPrecedence) {
         case HANDLER_PRECEDENCE.BEFORE:
           promise.then(responseProto => {
-            this._runHandler(responseActionId, responseProto, wrapper);
-          }).catch(() => {
-            // TODO [Amerehie] - 7/24/2017 12:20 PM - Log me
-          }).then(() => {
-            wrapper.resolve(responseProto);
+            try {
+              this._runHandler(responseActionId, responseProto, wrapper);
+            } finally {
+              wrapper.resolve(responseProto);
+            }
           });
           break;
         case HANDLER_PRECEDENCE.AFTER:
