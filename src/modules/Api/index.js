@@ -12,7 +12,7 @@ import isGuestMethod from '../../constants/methods/guest';
 import RequestWrapper from './RequestWrapper';
 import Client from '../Api/Client';
 import FastPriorityQueue from 'fastpriorityqueue';
-import {randomString} from '../../utils/core';
+import {msSleep, randomString} from '../../utils/core';
 import {Request} from '../../modules/Proto/Request_pb';
 import {ErrorResponse} from '../Proto/index';
 import {ERROR_TIMEOUT} from './errors/index';
@@ -182,7 +182,7 @@ export default class Api {
     }
   }
 
-  __pollPending() {
+  async __pollPending() {
     if (pollPendingIsRunning) {
       return;
     }
@@ -213,6 +213,7 @@ export default class Api {
             wrapper.priority *= 2;
           }
           pending.add(wrapper);
+          await msSleep(100);
         }
 
       } while (running.size < API_CONCURRENCY && !pending.isEmpty());
