@@ -26,6 +26,7 @@ export default class Client {
   _socket: ?WebSocket;
   _keepAlive = true;
   _secure = false;
+  _loggedIn = false;
   _symmetricKey;
   _heartbeatInterval;
   _symmetricMethod;
@@ -57,12 +58,20 @@ export default class Client {
     return (this.isOnline && this._secure);
   }
 
+  get isLoggedIn() {
+    return (this.isOnline && this._loggedIn);
+  }
+
   set keepAlive(value) {
     this._keepAlive = value;
   }
 
   set secure(value) {
     this._secure = value;
+  }
+
+  set loggedIn(value) {
+    this._loggedIn = value;
   }
 
   set symmetricKey(value) {
@@ -95,6 +104,7 @@ export default class Client {
     }
 
     this.secure = false;
+    this.loggedIn = false;
     store.dispatch(clientStatusChanged(CLIENT_STATUS.CONNECTING));
 
     return new Promise(function(resolve, reject) {

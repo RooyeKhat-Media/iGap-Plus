@@ -33,6 +33,10 @@ export default class RequestWrapper {
     return this._priority;
   }
 
+  set priority(value) {
+    this._priority = value;
+  }
+
   get handlerPrecedence() {
     return this._handlerPrecedence;
   }

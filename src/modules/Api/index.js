@@ -8,6 +8,7 @@ import {API_CONCURRENCY} from '../../constants/configs';
 import getPriority from '../../constants/methods/priority';
 import getDurability from '../../constants/methods/durable';
 import isInsecure from '../../constants/methods/insecure';
+import isGuestMethod from '../../constants/methods/guest';
 import RequestWrapper from './RequestWrapper';
 import Client from '../Api/Client';
 import FastPriorityQueue from 'fastpriorityqueue';
@@ -20,9 +21,12 @@ import ServerError from '../Error/ServerError';
 const apiSingleton = Symbol();
 const apiSingletonEnforcer = Symbol();
 
-const pending = new FastPriorityQueue(function(a, b) {
+const pendingComparator = function(a, b) {
   return a.priority > b.priority;
-});
+};
+let pending = new FastPriorityQueue(pendingComparator);
+let rejectWeakPendingIsRunning = false;
+let pollPendingIsRunning = false;
 const running = new Map();
 
 
@@ -36,6 +40,7 @@ export const CLIENT_STATUS = {
   CONNECTING: Symbol('CONNECTING'),
   CONNECTED: Symbol('CONNECTED'),
   SECURED: Symbol('SECURED'),
+  LOGGED_IN: Symbol('LOGGED_IN'),
   DISCONNECTED: Symbol('DISCONNECTED'),
 };
 
@@ -105,9 +110,11 @@ export default class Api {
 
   __schedule(wrapper) {
     if (
-      Client.instance.isSecure
+      Client.instance.isLoggedIn
       ||
       (Client.instance.isOnline && isInsecure(wrapper.actionId))
+      ||
+      (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
     ) {
       if (running.size < API_CONCURRENCY) {
         this._run(wrapper);
@@ -151,18 +158,68 @@ export default class Api {
   }
 
   __rejectWeakPending() {
-    // TODO [Amerehie] - 7/25/2017 5:16 PM - Reject and remove from pending if not durable
+    if (rejectWeakPendingIsRunning) {
+      return;
+    }
+    try {
+      rejectWeakPendingIsRunning = true;
+      pending.trim();
+      const wrappers = pending.array;
+
+      pending = new FastPriorityQueue(pendingComparator);
+      wrappers.forEach(function(wrapper) {
+        if (wrapper.durable) {
+          pending.add(wrapper);
+        } else {
+          const errorResponse = new ErrorResponse();
+          errorResponse.setMajorCode(ERROR_TIMEOUT);
+          errorResponse.setMinorCode(4);
+          wrapper.reject(new ServerError(errorResponse));
+        }
+      });
+    } finally {
+      rejectWeakPendingIsRunning = false;
+    }
   }
 
   __pollPending() {
-    let pendingPoll = false;
-    while (Client.instance.isSecure && running.size < API_CONCURRENCY && !pending.isEmpty()) {
-      pendingPoll = true;
-      this._run(pending.poll());
+    if (pollPendingIsRunning) {
+      return;
     }
 
-    if (pendingPoll) {
+    try {
+      pollPendingIsRunning = true;
+
+      do {
+        const wrapper = pending.poll();
+        if (!wrapper) {
+          break;
+        }
+
+        if (
+          Client.instance.isLoggedIn
+          ||
+          (Client.instance.isOnline && isInsecure(wrapper.actionId))
+          ||
+          (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
+        ) {
+          this._run(wrapper);
+        } else {
+          if (0 < wrapper.priority) {
+            wrapper.priority = parseInt(wrapper.priority / 2);
+          } else if (wrapper.priority === 0) {
+            wrapper.priority = -1;
+          } else {
+            wrapper.priority *= 2;
+          }
+          pending.add(wrapper);
+        }
+
+      } while (running.size < API_CONCURRENCY && !pending.isEmpty());
+
       pending.trim();
+    } finally {
+      pollPendingIsRunning = false;
     }
   }
 }

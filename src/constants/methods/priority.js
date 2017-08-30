@@ -3,16 +3,18 @@
  */
 
 import * as methods from '../../constants/methods';
+import isInsecure from '../../constants/methods/insecure';
+import isGuestMethod from '../../constants/methods/guest';
 import Client from '../../modules/Api/Client';
 
 const priorityTable = {
-  [methods.CONNECTION_SYMMETRIC_KEY]: 1000,
-  [methods.HEARTBEAT]: 1000,
+  [methods.CONNECTION_SYMMETRIC_KEY]: 100000,
+  [methods.HEARTBEAT]: 100000,
 
   //User 1xx
-  [methods.USER_REGISTER]: 1000,
-  [methods.USER_VERIFY]: 1000,
-  [methods.USER_LOGIN]: 1000,
+  [methods.USER_REGISTER]: 10000,
+  [methods.USER_VERIFY]: 10000,
+  [methods.USER_LOGIN]: 10000,
   // [methods.USER_PROFILE_SET_EMAIL]: 50,
   // [methods.USER_PROFILE_SET_GENDER]: 50,
   // [methods.USER_PROFILE_SET_NICKNAME]: 50,
@@ -40,16 +42,16 @@ const priorityTable = {
   // [methods.USER_CONTACTS_BLOCK]: 50,
   // [methods.USER_CONTACTS_UNBLOCK]: 50,
   // [methods.USER_CONTACTS_GET_BLOCKED_LIST]: 50,
-  // [methods.USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL]: 50,
-  // [methods.USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD]: 50,
+  [methods.USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL]: 10000,
+  [methods.USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD]: 10000,
   // [methods.USER_TWO_STEP_VERIFICATION_SET_PASSWORD]: 50,
   // [methods.USER_TWO_STEP_VERIFICATION_UNSET_PASSWORD]: 50,
   // [methods.USER_TWO_STEP_VERIFICATION_CHECK_PASSWORD]: 50,
   // [methods.USER_TWO_STEP_VERIFICATION_VERIFY_RECOVERY_EMAIL]: 50,
   // [methods.USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_EMAIL]: 50,
-  // [methods.USER_TWO_STEP_VERIFICATION_REQUEST_RECOVERY_TOKEN]: 50,
-  // [methods.USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN]: 50,
-  // [methods.USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS]: 50,
+  [methods.USER_TWO_STEP_VERIFICATION_REQUEST_RECOVERY_TOKEN]: 10000,
+  [methods.USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN]: 10000,
+  [methods.USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS]: 10000,
   // [methods.USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION]: 50,
   // [methods.USER_TWO_STEP_VERIFICATION_CHANGE_HINT]: 50,
   // [methods.USER_TWO_STEP_VERIFICATION_RESEND_VERIFY_EMAIL]: 50,
@@ -127,10 +129,10 @@ const priorityTable = {
   // [methods.CHANNEL_EDIT_MESSAGE]: 50,
 
   //Info 5xx
-  [methods.INFO_LOCATION]: 1000,
-  [methods.INFO_COUNTRY]: 1000,
-  [methods.INFO_TIME]: 1000,
-  [methods.INFO_PAGE]: 1000,
+  [methods.INFO_LOCATION]: 10000,
+  [methods.INFO_COUNTRY]: 10000,
+  [methods.INFO_TIME]: 10000,
+  [methods.INFO_PAGE]: 10000,
   // [methods.INFO_WALLPAPER]: 50,
 
   //Client 6xx
@@ -160,7 +162,7 @@ const priorityTable = {
   //QrCode 8xx
   // [methods.QR_CODE_JOIN]: 50,
   // [methods.QR_CODE_RESOLVE]: 50,
-  // [methods.QR_CODE_NEW_DEVICE]: 50,
+  [methods.QR_CODE_NEW_DEVICE]: 10000,
   // [methods.QR_CODE_ADD_CONTACT]: 50,
   // [methods.QR_CODE_ADD_ME]: 50,
 
@@ -194,7 +196,11 @@ const priorityTable = {
 
 export default function(actionId) {
   let priority = priorityTable[actionId] || 50;
-  if (!Client.instance.isSecure) {
+  if (
+    (!Client.instance.isSecure && !isInsecure(actionId))
+    ||
+    (!Client.instance.isLoggedIn && !isGuestMethod(actionId))
+  ) {
     priority = Math.floor(priority * 0.6);
   }
   return priority;
