@@ -15,7 +15,7 @@ const uniqueId = _.uniqueId();
 class TwoStepVerificationComponent extends Component {
 
   render() {
-    const {intl, handleFormData, formRules, hint, passwordError} = this.props;
+    const {intl, handleFormData, formRules, hint, passwordError, forgetPassword} = this.props;
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
@@ -47,6 +47,8 @@ class TwoStepVerificationComponent extends Component {
             </View>
 
             <View style={styles.btnWrap}>
+              <Button upperCase={false} accent={false} primary style={styles.forgetBtnColor} onPress={forgetPassword}
+                text={intl.formatMessage(i18n.twoStepVerificationForgetBtnTitle)}/>
               <Button accent={false} raised primary text={intl.formatMessage(i18n.twoStepVerificationBtnTitle)}
                 onPress={async () => {
                   try {

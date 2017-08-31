@@ -11,6 +11,8 @@ import UserTwoStepVerificationScreen from '../screens/User/TwoStep/UserTwoStepVe
 import UserTwoStepForgetScreen from '../screens/User/TwoStep/UserTwoStepForgetScreen';
 import MainScreen from '../screens/MainScreen';
 import InitialScreen from '../screens/InitialScreen';
+import UserTwoStepRecoveryByEmailScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByEmailScreen';
+import UserTwoStepRecoveryByQuestionScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByQuestionScreen';
 
 import {
   INITIAL_SCREEN,
@@ -18,6 +20,8 @@ import {
   MAIN_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_FORGET_SCREEN,
+  USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN,
+  USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN,
   USER_TWO_STEP_VERIFICATION_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
@@ -30,6 +34,8 @@ const AppNavigator = StackNavigator({
   [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
   [MAIN_SCREEN]: {screen: MainScreen},
   [INITIAL_SCREEN]: {screen: InitialScreen},
+  [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},
+  [USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN]: {screen: UserTwoStepRecoveryByQuestionScreen},
 });
 
 export default AppNavigator;
@@ -39,9 +45,9 @@ export function goInitialScreen() {
 }
 
 export function goMainScreen(reset = true) {
-  if (resetNavigation) {
+  if (reset) {
     //todo MAIN_SCREEN
-    resetNavigation(USER_TWO_STEP_FORGET_SCREEN);
+    resetNavigation(MAIN_SCREEN);
   } else {
 
     navigate(MAIN_SCREEN);
@@ -75,4 +81,12 @@ export function goUserTwoStepVerificationScreen() {
 
 export function goUserTwoStepForgetScreen() {
   navigate(USER_TWO_STEP_FORGET_SCREEN);
+}
+
+export function goUserTwoStepRecoveryByEmailScreen() {
+  navigate(USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN);
+}
+
+export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {
+  navigate(USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN, {needLogin});
 }

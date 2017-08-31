@@ -12,19 +12,30 @@ const uniqueId = _.uniqueId();
 
 class UserTwoStepForgetComponent extends Component {
   render() {
-    const {intl, hasConfirmedEmail, recoveryByEmail, recoveryByQuestionAndAnswer} = this.props;
+    const {intl, goBack, hasConfirmedEmail, recoveryByEmail, recoveryByQuestionAndAnswer} = this.props;
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <Toolbar
+          leftElement="arrow-back"
+          onLeftElementPress={goBack}
           rightElement="info"
           onRightElementPress={() => {
             this.dialog.open();
           }}
           centerElement={intl.formatMessage(i18n.twoStepForgetTitle)}/>
 
-        <View>
-          <Button text="Recovery By Email"/>
+        <View style={styles.recoveryBtnWrap}>
+          <View style={styles.recoveryBtn}>
+            <Button disabled={!hasConfirmedEmail} raised accent
+              onPress={recoveryByEmail}
+              text={intl.formatMessage(i18n.twoStepForgetRecoveryByEmailBtn)}/>
+          </View>
+          <View style={styles.recoveryBtn}>
+            <Button raised accent
+              onPress={recoveryByQuestionAndAnswer}
+              text={intl.formatMessage(i18n.twoStepForgetRecoveryByQuestionBtn)}/>
+          </View>
         </View>
 
         <DialogModal control={(dialog) => {

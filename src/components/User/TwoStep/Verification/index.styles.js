@@ -20,14 +20,14 @@ export default {
   btnWrap: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   resendTxt: {
     fontSize: 12,
     color: '#aaa',
     paddingTop: 10,
   },
-  resendBtnColor: {
+  forgetBtnColor: {
     text: {
       fontSize: 12,
       color: '#2196f3',

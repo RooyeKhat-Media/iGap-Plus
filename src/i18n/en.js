@@ -233,6 +233,11 @@ export default {
     defaultMessage: 'Submit',
     description: 'twoStepVerification Page',
   },
+  twoStepVerificationForgetBtnTitle: {
+    id: 'twoStepVerification.forgetBtnTitle',
+    defaultMessage: 'Forget Password?',
+    description: 'twoStepVerification Page',
+  },
 
   twoStepVerificationInfoTitle: {
     id: 'twoStepVerification.infoTitle',
@@ -260,5 +265,55 @@ export default {
     defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description: 'twoStepVerification Page',
   },
+  twoStepForgetRecoveryByEmailBtn: {
+    id: 'twoStepForget.recoveryByEmailBtn',
+    defaultMessage: 'Recovery By Email',
+    description: 'forget Page',
+  },
+  twoStepForgetRecoveryByQuestionBtn: {
+    id: 'twoStepForget.recoveryByQuestionBtn',
+    defaultMessage: 'Recovery By Question',
+    description: 'forget Page',
+  },
+  twoStepRecoveryByQuestionTitle: {
+    id: 'twoStepRecoveryByQuestion.title',
+    defaultMessage: 'Recovery Password',
+    description: 'RecoveryByQuestion Page',
+  },
+  twoStepRecoveryByQuestionQuestionOne: {
+    id: 'twoStepRecoveryByQuestion.questionOne',
+    defaultMessage: 'Question one: ',
+    description: 'RecoveryByQuestion Page',
+  },
+  twoStepRecoveryByQuestionQuestionTwo: {
+    id: 'twoStepRecoveryByQuestion.questioTwo',
+    defaultMessage: 'Question two: ',
+    description: 'RecoveryByQuestion Page',
+  },
+  twoStepRecoveryByQuestionAnswerOnePlaceholder: {
+    id: 'twoStepRecoveryByQuestion.answerOnePlaceholder',
+    defaultMessage: 'Answer one',
+    description: 'RecoveryByQuestion Page',
+  },
+  twoStepRecoveryByQuestionAnswerTwoPlaceholder: {
+    id: 'twoStepRecoveryByQuestion.answerTwoPlaceholder',
+    defaultMessage: 'Answer two',
+    description: 'RecoveryByQuestion Page',
+  },
+  twoStepRecoveryByQuestionSubmitFormBtnTitle: {
+    id: 'twoStepRecoveryByQuestion.submitFormBtnTitle',
+    defaultMessage: 'Recovery',
+    description: 'RecoveryByQuestion Page',
+  },
 
+  twoStepRecoveryByQuestionInfoTitle: {
+    id: 'twoStepForget.infoTitle',
+    defaultMessage: 'Hello world',
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByQuestionInfoContent: {
+    id: 'twoStepForget.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'twoStepVerification Page',
+  },
 };

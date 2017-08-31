@@ -16,7 +16,7 @@ import {
 } from '../../../constants/methods/index';
 import Api from '../../../modules/Api/index';
 import {login, setUserToken} from '../../../utils/app';
-import {goMainScreen} from '../../../navigators/AppNavigator';
+import {goMainScreen, goUserTwoStepForgetScreen} from '../../../navigators/AppNavigator';
 
 const rules = {
   password: [
@@ -61,7 +61,7 @@ class UserTwoStepVerificationScreen extends Component {
     }
   }
   forgetPassword = async () => {
-    // TODO GO TO FORGET PASSWORD SCREEN
+    goUserTwoStepForgetScreen();
   }
 
   render() {

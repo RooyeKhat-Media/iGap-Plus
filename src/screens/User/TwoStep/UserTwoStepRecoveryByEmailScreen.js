@@ -8,12 +8,8 @@ import UserTwoStepForgetComponent from '../../../components/User/TwoStep/Forget'
 import {UserTwoStepVerificationGetPasswordDetail} from '../../../modules/Proto/index';
 import {USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL} from '../../../constants/methods/index';
 import Api from '../../../modules/Api/index';
-import {
-  goUserTwoStepRecoveryByEmailScreen,
-  goUserTwoStepRecoveryByQuestionScreen,
-} from '../../../navigators/AppNavigator';
 
-class UserTwoStepForgetScreen extends Component {
+class UserTwoStepRecoveryByEmailScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -32,14 +28,6 @@ class UserTwoStepForgetScreen extends Component {
       });
   }
 
-  recoveryByEmail = () => {
-    goUserTwoStepRecoveryByEmailScreen();
-  };
-
-  recoveryByQuestionAndAnswer = () => {
-    goUserTwoStepRecoveryByQuestionScreen(true);
-  };
-
   render() {
     const {hasConfirmedEmail} = this.state;
     return (
@@ -47,18 +35,17 @@ class UserTwoStepForgetScreen extends Component {
         hasConfirmedEmail={hasConfirmedEmail}
         recoveryByEmail={this.recoveryByEmail}
         recoveryByQuestionAndAnswer={this.recoveryByQuestionAndAnswer}
-        goBack={this.props.navigation.goBack}
       />
     );
   }
 }
 
 
-UserTwoStepForgetScreen.propTypes = {
+UserTwoStepRecoveryByEmailScreen.propTypes = {
   intl: intlShape.isRequired,
 };
-const UserTwoStepForgetScreenIntl = injectIntl(UserTwoStepForgetScreen);
-UserTwoStepForgetScreenIntl.navigationOptions = {
+const UserTwoStepRecoveryByEmailScreenIntl = injectIntl(UserTwoStepRecoveryByEmailScreen);
+UserTwoStepRecoveryByEmailScreenIntl.navigationOptions = {
   header: null,
 };
-export default UserTwoStepForgetScreenIntl;
+export default UserTwoStepRecoveryByEmailScreenIntl;
