@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import * as _ from 'lodash';
+import {Spinner} from '../index';
 
 class Form extends Component {
   inputs = {};
@@ -14,6 +15,8 @@ class Form extends Component {
       submit: this.submit,
       validate: this.validate,
       setValue: this.setValue,
+      loadingOn: this.loadingOn,
+      loadingOff: this.loadingOff,
     });
   }
 
@@ -35,6 +38,14 @@ class Form extends Component {
     });
   };
 
+  loadingOn = () => {
+    this.loading.on();
+  };
+
+  loadingOff = () => {
+    this.loading.off();
+  };
+
   validate = () => {
     const inputs = this.inputs;
     let promises = [];
@@ -49,6 +60,9 @@ class Form extends Component {
     return (
       <View {...this.props}>
         {wrappedChildren}
+        <Spinner control={(loading) => {
+          this.loading = loading;
+        }}/>
       </View>
     );
   }

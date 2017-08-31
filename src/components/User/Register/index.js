@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import Picker from '../../BaseUI/Picker/index';
-import {Button, DialogModal, Spinner, TextInput, Toolbar} from '../../BaseUI/index';
+import {Button, DialogModal, TextInput, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
@@ -31,8 +31,8 @@ class UserRegisterComponent extends React.Component {
           <DialogModal control={(dialog) => {
             this.dialog = dialog;
           }}
-                       title={<FormattedMessage {...i18n.registerInfoTitle} />}
-                       content={<FormattedMessage {...i18n.registerInfoContent} />}/>
+          title={<FormattedMessage {...i18n.registerInfoTitle} />}
+          content={<FormattedMessage {...i18n.registerInfoContent} />}/>
 
           <Form style={styles.panel} control={(form) => {
             this.form = form;
@@ -71,18 +71,14 @@ class UserRegisterComponent extends React.Component {
               </View>
             </View>
 
-            <Spinner control={(loading) => {
-              this.loading = loading;
-            }}/>
-
             <View style={styles.formGroup}>
               <Button raised primary text={intl.formatMessage(i18n.registerSubmitBtnTitle)} onPress={async () => {
                 try {
-                  this.loading.on();
+                  this.form.loadingOn();
                   const data = await this.form.submit();
                   await handleFormData(data);
                 } finally {
-                  this.loading.off();
+                  this.form.loadingOff();
                 }
               }}/>
             </View>

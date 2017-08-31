@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
-import {Button, DialogModal, Spinner, Toolbar} from '../../BaseUI/index';
+import {Button, DialogModal, Toolbar} from '../../BaseUI/index';
 import {Text, View} from 'react-native';
 import styles from './index.styles';
 import * as _ from 'lodash';
@@ -30,7 +30,7 @@ class UserVerifyComponent extends Component {
           this.form = form;
         }}>
 
-          <View style={styles.verifyTitleWrap}>
+          <View style={styles.TWStepTitleWrap}>
 
             <Text style={styles.verifyTitle}>
               <FormattedMessage {...i18n.verifyTitle} values={{method: method, phoneNumber: phoneNumber}}/>
@@ -52,21 +52,21 @@ class UserVerifyComponent extends Component {
 
             <View style={styles.resendWrap}>
               {resendDelay ? (<Text style={styles.resendTxt}><FormattedMessage {...i18n.verifyResendCodeTimer}
-                                                                               values={{time: resendDelay}}/></Text>) :
+                values={{time: resendDelay}}/></Text>) :
                 (<Button accent={false} primary style={styles.resendBtnColor} onPress={() => {
                   resendCode();
                 }}
-                         text={intl.formatMessage(i18n.verifyResendCodeBtnTitle)}/>)}
+                text={intl.formatMessage(i18n.verifyResendCodeBtnTitle)}/>)}
               <Button accent={false} raised primary text={intl.formatMessage(i18n.verifyCodeBtnTitle)}
-                      onPress={async () => {
-                        try {
-                          this.loading.on();
-                          const data = await this.form.submit();
-                          await handleFormData(data);
-                        } finally {
-                          this.loading.off();
-                        }
-                      }}/>
+                onPress={async () => {
+                  try {
+                    this.form.loadingOn();
+                    const data = await this.form.submit();
+                    await handleFormData(data);
+                  } finally {
+                    this.form.loadingOff();
+                  }
+                }}/>
             </View>
 
           </View>
@@ -75,12 +75,8 @@ class UserVerifyComponent extends Component {
         <DialogModal control={(dialog) => {
           this.dialog = dialog;
         }}
-                     title={<FormattedMessage {...i18n.verifyInfoTitle} />}
-                     content={<FormattedMessage {...i18n.verifyInfoContent} />}/>
-
-        <Spinner control={(loading) => {
-          this.loading = loading;
-        }}/>
+        title={<FormattedMessage {...i18n.verifyInfoTitle} />}
+        content={<FormattedMessage {...i18n.verifyInfoContent} />}/>
 
       </DimensionLimiter>
 

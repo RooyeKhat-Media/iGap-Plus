@@ -87,7 +87,10 @@ BaseField.propTypes = {
   isField: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  defaultError: PropTypes.element,
+  defaultError: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
   defaultValue: PropTypes.string.isRequired,
   help: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
