@@ -76,7 +76,6 @@ class UserRegisterScreen extends Component {
   }
 
   handleFormData = async (formData) => {
-    const {intl} = this.props;
     const {countryCode, callingCode} = this.state;
     const data = {
       phoneNumber: formData.phoneNumber,
@@ -88,8 +87,8 @@ class UserRegisterScreen extends Component {
       userRegister.setCountryCode(data.countryCode);
       const response = await Api.invoke(USER_REGISTER, userRegister);
 
-      setUserId(response.getUserId());
-      setAuthorHash(response.getAuthorHash());
+      await setUserId(response.getUserId());
+      await setAuthorHash(response.getAuthorHash());
       goUserVerifyScreen(
         callingCode + ' ' + data.phoneNumber,
         response.getUsername(),

@@ -10,6 +10,7 @@ import {UserRegister, UserVerify} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {USER_REGISTER, USER_VERIFY} from '../../constants/methods/index';
 import {login, setUserToken} from '../../utils/app';
+import {goMainScreen} from '../../navigators/AppNavigator';
 
 const rules = {
   code: [
@@ -48,7 +49,6 @@ class UserVerifyScreen extends Component {
 
 
   handleFormData = async (formData) => {
-    const {intl} = this.props;
     const {username} = this.props.navigation.state.params;
     const {verifyCode} = formData;
 
@@ -61,6 +61,7 @@ class UserVerifyScreen extends Component {
       await setUserToken(response.getToken());
       await login();
       this.setState({codeError: ''});
+      goMainScreen();
     } catch (e) {
       // TODO COMPLETE ERRORS
       this.setState({codeError: e.name + ': ' + e.message});
@@ -78,7 +79,6 @@ class UserVerifyScreen extends Component {
         resendDelay: response.getResendDelay(),
       });
       this.interval = setInterval(() => this.tick(), 1000);
-
     } catch (e) {
       this.setState({codeError: e.name + ': ' + e.message});
     }

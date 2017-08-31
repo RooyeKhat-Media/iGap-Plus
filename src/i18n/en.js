@@ -218,4 +218,31 @@ export default {
     defaultMessage: 'Two Step Verification',
     description: 'twoStepVerification Page',
   },
+  twoStepVerificationHintTitle: {
+    id: 'twoStepVerification.hintTitle',
+    defaultMessage: 'Hint is : "{hint}"',
+    description: 'twoStepVerification Page',
+  },
+  twoStepVerificationPasswordLabel: {
+    id: 'twoStepVerification.passwordLabel',
+    defaultMessage: 'Password',
+    description: 'twoStepVerification Page',
+  },
+  twoStepVerificationBtnTitle: {
+    id: 'twoStepVerification.btnTitle',
+    defaultMessage: 'Submit',
+    description: 'twoStepVerification Page',
+  },
+
+  twoStepVerificationInfoTitle: {
+    id: 'twoStepVerification.infoTitle',
+    defaultMessage: 'Hello world',
+    description: 'twoStepVerification Page',
+  },
+  twoStepVerificationInfoContent: {
+    id: 'twoStepVerification.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'twoStepVerification Page',
+  },
+
 };

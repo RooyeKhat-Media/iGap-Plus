@@ -7,19 +7,20 @@ export default {
     padding: 15,
     backgroundColor: '#fafafa',
   },
-  verifyTitleWrap: {},
-  verifyTitle: {
-    fontSize: 13,
+  TWStepTitleWrap: {},
+  TWStepTitle: {
+    fontSize: 12,
     lineHeight: 22,
+    textAlign: 'center',
   },
-  codeRow: {
+  inputRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
-  resendWrap: {
+  btnWrap: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
   },
   resendTxt: {
     fontSize: 12,
