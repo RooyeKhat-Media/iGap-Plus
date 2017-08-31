@@ -245,4 +245,20 @@ export default {
     description: 'twoStepVerification Page',
   },
 
+  twoStepForgetTitle: {
+    id: 'twoStepForget.toolbarTitle',
+    defaultMessage: 'Recover password via:',
+    description: 'twoStepVerification Page',
+  },
+  twoStepForgetInfoTitle: {
+    id: 'twoStepForget.infoTitle',
+    defaultMessage: 'Hello world',
+    description: 'twoStepVerification Page',
+  },
+  twoStepForgetInfoContent: {
+    id: 'twoStepForget.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'twoStepVerification Page',
+  },
+
 };

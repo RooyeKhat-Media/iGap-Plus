@@ -8,6 +8,7 @@ import IntroScreen from '../screens/IntroScreen';
 import UserRegister from '../screens/User/UserRegisterScreen';
 import UserVerify from '../screens/User/UserVerifyScreen';
 import UserTwoStepVerificationScreen from '../screens/User/TwoStep/UserTwoStepVerificationScreen';
+import UserTwoStepForgetScreen from '../screens/User/TwoStep/UserTwoStepForgetScreen';
 import MainScreen from '../screens/MainScreen';
 import InitialScreen from '../screens/InitialScreen';
 
@@ -16,6 +17,7 @@ import {
   INTRO_SCREEN,
   MAIN_SCREEN,
   USER_REGISTER_SCREEN,
+  USER_TWO_STEP_FORGET_SCREEN,
   USER_TWO_STEP_VERIFICATION_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
@@ -25,6 +27,7 @@ const AppNavigator = StackNavigator({
   [USER_REGISTER_SCREEN]: {screen: UserRegister},
   [USER_VERIFY_SCREEN]: {screen: UserVerify},
   [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
+  [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
   [MAIN_SCREEN]: {screen: MainScreen},
   [INITIAL_SCREEN]: {screen: InitialScreen},
 });
@@ -37,8 +40,10 @@ export function goInitialScreen() {
 
 export function goMainScreen(reset = true) {
   if (resetNavigation) {
-    resetNavigation(MAIN_SCREEN);
+    //todo MAIN_SCREEN
+    resetNavigation(USER_TWO_STEP_FORGET_SCREEN);
   } else {
+
     navigate(MAIN_SCREEN);
   }
 }
@@ -66,4 +71,8 @@ export function goUserVerifyScreen(phoneNumber, username, method, resendDelay, s
 
 export function goUserTwoStepVerificationScreen() {
   navigate(USER_TWO_STEP_VERIFICATION_SCREEN);
+}
+
+export function goUserTwoStepForgetScreen() {
+  navigate(USER_TWO_STEP_FORGET_SCREEN);
 }
