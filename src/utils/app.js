@@ -19,7 +19,7 @@ export function getUserId() {
 
 export function setUserId(userId) {
   _userId = userId;
-  MetaData.save(META_USER_ID, userId);
+  return MetaData.save(META_USER_ID, userId);
 }
 
 export async function loadUserId() {
@@ -33,7 +33,7 @@ export function getAuthorHash() {
 
 export function setAuthorHash(authorHash) {
   _authorHash = authorHash;
-  MetaData.save(META_AUTHOR_HASH, authorHash);
+  return MetaData.save(META_AUTHOR_HASH, authorHash);
 }
 
 export async function loadAuthorHash() {
@@ -42,7 +42,7 @@ export async function loadAuthorHash() {
 
 
 export function setUserToken(userToken) {
-  MetaData.save(META_USER_TOKEN, userToken);
+  return MetaData.save(META_USER_TOKEN, userToken);
 }
 
 export async function loadUserToken() {

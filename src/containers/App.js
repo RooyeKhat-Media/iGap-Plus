@@ -6,13 +6,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
-import {BackHandler, View} from 'react-native';
+import {BackHandler, Platform, View} from 'react-native';
 
-import {ActivityIndicator, AppModal} from '../components/BaseUI';
-import AppNavigator from '../navigators/AppNavigator';
+import {AppModal} from '../components/BaseUI';
+import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
-import {loadAuthorHash, loadUserId} from '../utils/app';
+import {loadAuthorHash, loadUserId, loadUserToken, setUserToken} from '../utils/app';
 
 class App extends Component {
 
@@ -21,18 +21,25 @@ class App extends Component {
     this.state = {ready: false};
   }
 
-  componentDidMount() {
-    migrate().catch(function () {
+  async componentDidMount() {
+    migrate().catch(function() {
       console.log('Migration failed');
     }).then(() => {
       Api.instance;
-
       return Promise.all([
         loadUserId,
         loadAuthorHash,
       ]);
     }).then(() => {
-      this.setState({ready: true});
+      return loadUserToken();
+    }).then((token) => {
+      if (token) {
+        goMainScreen();
+      } else if (Platform.OS === 'ios' || Platform.OS === 'android') {
+        goIntroScreen();
+      } else {
+        goUserRegisterScreen();
+      }
     });
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
@@ -42,7 +49,6 @@ class App extends Component {
   }
 
   onBackPress = () => {
-
     const {dispatch, nav} = this.props;
     if (nav.index === 0) {
       return false;
@@ -52,14 +58,6 @@ class App extends Component {
   };
 
   render() {
-    if (!this.state.ready) {
-      return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size="large"/>
-        </View>
-      );
-    }
-
     const {dispatch, nav} = this.props;
     return (
       <View style={{flex: 1}}>

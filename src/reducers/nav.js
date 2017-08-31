@@ -3,10 +3,10 @@
  */
 import AppNavigator from '../navigators/AppNavigator';
 import {NavigationActions} from 'react-navigation';
-import {INTRO_SCREEN} from '../constants/navigators';
+import {INITIAL_SCREEN} from '../constants/navigators';
 import {NAVIGATOR_GO} from '../actions/navigator';
 
-const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams(INTRO_SCREEN));
+const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams(INITIAL_SCREEN));
 
 export function nav(state = initialState, action) {
   let nextState;

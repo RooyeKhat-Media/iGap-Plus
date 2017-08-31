@@ -2,14 +2,19 @@
  * @flow
  */
 
-import {navigate} from './index';
+import {navigate, resetNavigation} from './index';
 import {StackNavigator} from 'react-navigation';
 import IntroScreen from '../screens/IntroScreen';
 import UserRegister from '../screens/User/UserRegisterScreen';
 import UserVerify from '../screens/User/UserVerifyScreen';
-import UserTwoStepVerificationScreen from '../screens/User/UserTwoStepVerificationScreen';
+import UserTwoStepVerificationScreen from '../screens/User/TwoStep/UserTwoStepVerificationScreen';
+import MainScreen from '../screens/MainScreen';
+import InitialScreen from '../screens/InitialScreen';
+
 import {
+  INITIAL_SCREEN,
   INTRO_SCREEN,
+  MAIN_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_VERIFICATION_SCREEN,
   USER_VERIFY_SCREEN,
@@ -20,11 +25,25 @@ const AppNavigator = StackNavigator({
   [USER_REGISTER_SCREEN]: {screen: UserRegister},
   [USER_VERIFY_SCREEN]: {screen: UserVerify},
   [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
+  [MAIN_SCREEN]: {screen: MainScreen},
+  [INITIAL_SCREEN]: {screen: InitialScreen},
 });
 
 export default AppNavigator;
 
-export function goIntro() {
+export function goInitialScreen() {
+  navigate(INITIAL_SCREEN);
+}
+
+export function goMainScreen(reset = true) {
+  if (resetNavigation) {
+    resetNavigation(MAIN_SCREEN);
+  } else {
+    navigate(MAIN_SCREEN);
+  }
+}
+
+export function goIntroScreen() {
   navigate(INTRO_SCREEN);
 }
 
