@@ -92,7 +92,10 @@ BaseField.propTypes = {
     PropTypes.string,
   ]),
   defaultValue: PropTypes.string.isRequired,
-  help: PropTypes.string,
+  help: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
   placeholder: PropTypes.string.isRequired,
   rules: PropTypes.arrayOf(PropTypes.shape({
     validate: PropTypes.func.isRequired,

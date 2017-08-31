@@ -307,12 +307,49 @@ export default {
   },
 
   twoStepRecoveryByQuestionInfoTitle: {
-    id: 'twoStepForget.infoTitle',
+    id: 'twoStepRecoveryByQuestion.infoTitle',
     defaultMessage: 'Hello world',
     description: 'twoStepVerification Page',
   },
   twoStepRecoveryByQuestionInfoContent: {
-    id: 'twoStepForget.infoContent',
+    id: 'twoStepRecoveryByQuestion.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'twoStepVerification Page',
+  },
+
+  twoStepRecoveryByEmailTitle: {
+    id: 'twoStepRecoveryByEmail.infoContent',
+    defaultMessage: 'Recovery By Email',
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByEmailTokenLabel: {
+    id: 'twoStepRecoveryByEmail.tokenLabel',
+    defaultMessage: 'Recovery Token.',
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByEmailTokenHelp: {
+    id: 'twoStepRecoveryByEmail.tokenHelp',
+    defaultMessage: 'Send a recovery token to {email}.',
+
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByEmailSubmitFormBtnTitle: {
+    id: 'twoStepRecoveryByEmail.submitFormBtnTitle',
+    defaultMessage: 'Recovery',
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByEmailResendBtnTitle: {
+    id: 'twoStepRecoveryByEmail.resendBtnTitle',
+    defaultMessage: 'Resend Token',
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByEmailInfoTitle: {
+    id: 'twoStepRecoveryByEmail.infoTitle',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'twoStepVerification Page',
+  },
+  twoStepRecoveryByEmailInfoContent: {
+    id: 'twoStepRecoveryByEmail.infoContent',
     defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description: 'twoStepVerification Page',
   },

@@ -24,6 +24,11 @@ class MainScreen extends Component {
         <Text>Main Screen</Text>
 
         <Button raised accent
+          onPress={this.recoveryByEmail}
+          text="Recovery By Email"/>
+        <Text>Main Screen</Text>
+
+        <Button raised accent
           onPress={this.recoveryByQuestionAndAnswer}
           text="Recovery By Answer"/>
       </View>
