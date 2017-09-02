@@ -14,7 +14,7 @@ export default class SymmetricKey extends Base {
       Client.instance.secure = true;
       store.dispatch(clientStatusChanged(CLIENT_STATUS.SECURED));
 
-      login().catch();
+      login().catch(() => {});
       
     } else {
       // TODO [Amerehie] - 7/24/2017 12:55 PM -REJECTED || SecurityIssue
