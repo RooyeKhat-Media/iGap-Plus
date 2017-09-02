@@ -190,11 +190,8 @@ export default class Api {
     try {
       pollPendingIsRunning = true;
 
-      do {
+      while (running.size < API_CONCURRENCY && !pending.isEmpty()) {
         const wrapper = pending.poll();
-        if (!wrapper) {
-          break;
-        }
 
         if (
           Client.instance.isLoggedIn
@@ -215,8 +212,7 @@ export default class Api {
           pending.add(wrapper);
           await msSleep(100);
         }
-
-      } while (running.size < API_CONCURRENCY && !pending.isEmpty());
+      }
 
       pending.trim();
     } finally {
