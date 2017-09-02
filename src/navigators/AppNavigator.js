@@ -7,6 +7,7 @@ import {StackNavigator} from 'react-navigation';
 import IntroScreen from '../screens/IntroScreen';
 import UserRegister from '../screens/User/UserRegisterScreen';
 import UserVerify from '../screens/User/UserVerifyScreen';
+import UserNewProfile from '../screens/User/UserNewProfileScreen';
 import UserTwoStepVerificationScreen from '../screens/User/TwoStep/UserTwoStepVerificationScreen';
 import UserTwoStepForgetScreen from '../screens/User/TwoStep/UserTwoStepForgetScreen';
 import MainScreen from '../screens/MainScreen';
@@ -18,6 +19,7 @@ import {
   INITIAL_SCREEN,
   INTRO_SCREEN,
   MAIN_SCREEN,
+  USER_NEW_PROFILE_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_FORGET_SCREEN,
   USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN,
@@ -30,6 +32,7 @@ const AppNavigator = StackNavigator({
   [INTRO_SCREEN]: {screen: IntroScreen},
   [USER_REGISTER_SCREEN]: {screen: UserRegister},
   [USER_VERIFY_SCREEN]: {screen: UserVerify},
+  [USER_NEW_PROFILE_SCREEN]: {screen: UserNewProfile},
   [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
   [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
   [MAIN_SCREEN]: {screen: MainScreen},
@@ -73,6 +76,10 @@ export function goUserVerifyScreen(phoneNumber, username, method, resendDelay, s
     verifyCodeDigitCount: verifyCodeDigitCount,
     resendParams: resendParams,
   });
+}
+
+export function goUserNewProfileScreen() {
+  navigate(USER_NEW_PROFILE_SCREEN);
 }
 
 export function goUserTwoStepVerificationScreen() {

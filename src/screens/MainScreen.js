@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-import {goUserTwoStepRecoveryByEmailScreen, goUserTwoStepRecoveryByQuestionScreen} from '../navigators/AppNavigator';
+import {
+  goUserNewProfileScreen,
+  goUserTwoStepRecoveryByEmailScreen,
+  goUserTwoStepRecoveryByQuestionScreen,
+} from '../navigators/AppNavigator';
 import {Button} from 'react-native-material-ui';
+import {connect} from 'react-redux';
 
 class MainScreen extends Component {
   static navigationOptions = {
     title: 'Main Screen',
-  }
-
+  };
 
   recoveryByEmail = () => {
     goUserTwoStepRecoveryByEmailScreen();
@@ -17,17 +21,27 @@ class MainScreen extends Component {
     goUserTwoStepRecoveryByQuestionScreen();
   };
 
+  userNewProfileScreen = () => {
+    goUserNewProfileScreen();
+  };
+
 
   render() {
+
+    const {nickName} = this.props;
     return (
       <View>
-        <Text>Main Screen</Text>
+        <Text>{nickName}</Text>
+        <Button raised accent
+          onPress={this.userNewProfileScreen}
+          text="New Profile"/>
 
+        <Text>Main Screen</Text>
         <Button raised accent
           onPress={this.recoveryByEmail}
           text="Recovery By Email"/>
-        <Text>Main Screen</Text>
 
+        <Text>Main Screen</Text>
         <Button raised accent
           onPress={this.recoveryByQuestionAndAnswer}
           text="Recovery By Answer"/>
@@ -39,5 +53,11 @@ class MainScreen extends Component {
 MainScreen.propTypes = {
   // myProp: PropTypes.string.isRequired
 };
-
-export default MainScreen;
+const mapStateToProps = state => {
+  return {
+    nickName: state.methods.nickName,
+  };
+};
+export default connect(
+  mapStateToProps,
+)(MainScreen);

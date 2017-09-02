@@ -10,7 +10,7 @@ import {UserRegister, UserVerify} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {USER_REGISTER, USER_VERIFY} from '../../constants/methods/index';
 import {login, setUserToken} from '../../utils/app';
-import {goMainScreen} from '../../navigators/AppNavigator';
+import {goMainScreen, goUserNewProfileScreen} from '../../navigators/AppNavigator';
 
 const rules = {
   code: [
@@ -47,7 +47,6 @@ class UserVerifyScreen extends Component {
     this.interval = setInterval(() => this.tick(), 1000);
   }
 
-
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -65,12 +64,16 @@ class UserVerifyScreen extends Component {
       await setUserToken(response.getToken());
       await login();
       this.setState({codeError: ''});
-      goMainScreen();
+      if (response.getNewUser()) {
+        goUserNewProfileScreen();
+      } else {
+        goMainScreen();
+      }
     } catch (e) {
       // TODO COMPLETE ERRORS
       this.setState({codeError: e.name + ': ' + e.message});
     }
-  }
+  };
 
   resendCode = async () => {
     const {resendParams} = this.props.navigation.state.params;
@@ -86,7 +89,7 @@ class UserVerifyScreen extends Component {
     } catch (e) {
       this.setState({codeError: e.name + ': ' + e.message});
     }
-  }
+  };
 
   render() {
     const {phoneNumber, method} = this.props.navigation.state.params;

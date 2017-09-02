@@ -353,4 +353,30 @@ export default {
     defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description: 'twoStepVerification Page',
   },
+
+  newProfileTitle: {
+    id: 'newProfile.title',
+    defaultMessage: 'New Profile',
+    description: 'New Profile Page',
+  },
+  newProfileBtnTitle: {
+    id: 'newProfile.btnTitle',
+    defaultMessage: 'Submit',
+    description: 'New Profile Page',
+  },
+  newProfileNicknameLabel: {
+    id: 'newProfile.nicknameLabel',
+    defaultMessage: 'Nickname',
+    description: 'New Profile Page',
+  },
+  newProfileInfoTitle: {
+    id: 'UserVerify.infoTitle',
+    defaultMessage: 'Hello world',
+    description: 'UserVerify Page',
+  },
+  newProfileInfoContent: {
+    id: 'UserVerify.infoContent',
+    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'UserVerify Page',
+  },
 };
