@@ -48,6 +48,10 @@ class UserVerifyScreen extends Component {
   }
 
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   handleFormData = async (formData) => {
     const {username} = this.props.navigation.state.params;
     const {verifyCode} = formData;
