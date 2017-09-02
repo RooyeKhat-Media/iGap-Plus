@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
@@ -83,5 +84,10 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
 
 UserTwoStepRecoveryByEmailComponent.propTypes = {
   intl: intlShape.isRequired,
+  goBack: PropTypes.func.isRequired,
+  handleFormData: PropTypes.func.isRequired,
+  resendToken: PropTypes.func.isRequired,
+  tokenError: PropTypes.string,
+  emailPattern: PropTypes.string,
 };
 export default injectIntl(UserTwoStepRecoveryByEmailComponent);

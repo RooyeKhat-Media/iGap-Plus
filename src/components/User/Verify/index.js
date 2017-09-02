@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {Button, DialogModal, Toolbar} from '../../BaseUI/index';
 import {Text, View} from 'react-native';
@@ -86,6 +87,10 @@ class UserVerifyComponent extends Component {
 
 UserVerifyComponent.propTypes = {
   intl: intlShape.isRequired,
-
+  handleFormData: PropTypes.func.isRequired,
+  resendCode: PropTypes.func.isRequired,
+  resendDelay: PropTypes.number.isRequired,
+  method: PropTypes.number.isRequired,
+  codeError: PropTypes.string,
 };
 export default injectIntl(UserVerifyComponent);

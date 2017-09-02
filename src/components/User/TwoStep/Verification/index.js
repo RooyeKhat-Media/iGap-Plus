@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
 import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
 import styles from './index.styles';
@@ -79,5 +80,9 @@ class TwoStepVerificationComponent extends Component {
 
 TwoStepVerificationComponent.propTypes = {
   intl: intlShape.isRequired,
+  handleFormData: PropTypes.func.isRequired,
+  forgetPassword: PropTypes.func.isRequired,
+  passwordError: PropTypes.string,
+  hint: PropTypes.string,
 };
 export default injectIntl(TwoStepVerificationComponent);

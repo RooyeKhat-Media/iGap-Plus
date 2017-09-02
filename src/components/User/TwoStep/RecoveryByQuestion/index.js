@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
@@ -91,5 +92,11 @@ class UserTwoStepRecoveryByQuestionComponent extends Component {
 
 UserTwoStepRecoveryByQuestionComponent.propTypes = {
   intl: intlShape.isRequired,
+  goBack: PropTypes.func.isRequired,
+  handleFormData: PropTypes.func.isRequired,
+  question1: PropTypes.string.isRequired,
+  question2: PropTypes.string.isRequired,
+  errorQuestion1: PropTypes.string,
+  errorQuestion2: PropTypes.string,
 };
 export default injectIntl(UserTwoStepRecoveryByQuestionComponent);

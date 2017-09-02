@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import Picker from '../../BaseUI/Picker/index';
 import {Button, DialogModal, TextInput, Toolbar} from '../../BaseUI/index';
@@ -91,5 +92,20 @@ class UserRegisterComponent extends React.Component {
 
 UserRegisterComponent.propTypes = {
   intl: intlShape.isRequired,
+  countryList: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    element: PropTypes.element.isRequired,
+    filter: PropTypes.string.isRequired,
+  })).isRequired,
+  formData: PropTypes.shape({
+    phoneNumber: PropTypes.string,
+    callingCode: PropTypes.string,
+    countryCode: PropTypes.string,
+  }),
+  handleFormData: PropTypes.func.isRequired,
+  onSelectCountry: PropTypes.func.isRequired,
+  onChangeCallingCode: PropTypes.func.isRequired,
+  phoneNumberError: PropTypes.string,
 };
 export default injectIntl(UserRegisterComponent);
