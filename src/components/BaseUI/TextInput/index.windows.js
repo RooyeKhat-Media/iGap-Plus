@@ -1,8 +1,17 @@
 import React from 'react';
 import TextInput from './index.js';
-import * as _ from 'lodash';
 
 export default (props) => {
-  const defultProps = _.merge(props, {style: {height: 49}});
-  return (<TextInput {...defultProps} />);
+  const defaultProps = {
+    ...props,
+    ...{
+      style: {
+        height: 30,
+        borderWidth:0,
+        ...(props.style || {}),
+      },
+    },
+  };
+
+  return (<TextInput {...defaultProps} />);
 };
