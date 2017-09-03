@@ -17,6 +17,7 @@ class Form extends Component {
       setValue: this.setValue,
       loadingOn: this.loadingOn,
       loadingOff: this.loadingOff,
+      setError: this.setError,
     });
   }
 
@@ -26,6 +27,13 @@ class Form extends Component {
       inputs[name].setValue(val);
     }
   };
+
+  setError = (name, error) => {
+    const inputs = this.inputs;
+    if (inputs[name]) {
+      inputs[name].setError(error);
+    }
+  }
 
   submit = () => {
     const output = {};

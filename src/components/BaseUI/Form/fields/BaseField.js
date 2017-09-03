@@ -17,6 +17,7 @@ class BaseField extends Component {
       setValue: this.setValue,
       getValue: this.getValue,
       validate: this.validate,
+      setError: this.setError,
     });
   }
 
@@ -57,6 +58,12 @@ class BaseField extends Component {
     error.values.field = label;
     return (<FormattedMessage {...error} />);
   };
+
+  setError = (error) => {
+    this.setState({
+      error: error,
+    });
+  }
 
   getContent() {
     return null;
