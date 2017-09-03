@@ -1,7 +1,7 @@
 export default {
   palette: {
     primaryColor: '#0277bd',
-    canvasColor: '#e1f5fe',
+    // canvasColor: '#e1f5fe',
   },
   toolbar: {
     container: {

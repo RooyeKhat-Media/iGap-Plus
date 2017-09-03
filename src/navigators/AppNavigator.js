@@ -29,13 +29,14 @@ import {
 } from '../constants/navigators';
 
 const AppNavigator = StackNavigator({
+  [MAIN_SCREEN]: {screen: MainScreen},
+
   [INTRO_SCREEN]: {screen: IntroScreen},
   [USER_REGISTER_SCREEN]: {screen: UserRegister},
   [USER_VERIFY_SCREEN]: {screen: UserVerify},
   [USER_NEW_PROFILE_SCREEN]: {screen: UserNewProfile},
   [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
   [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
-  [MAIN_SCREEN]: {screen: MainScreen},
   [INITIAL_SCREEN]: {screen: InitialScreen},
   [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},
   [USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN]: {screen: UserTwoStepRecoveryByQuestionScreen},
@@ -49,7 +50,6 @@ export function goInitialScreen() {
 
 export function goMainScreen(reset = true) {
   if (reset) {
-    //todo MAIN_SCREEN
     resetNavigation(MAIN_SCREEN);
   } else {
 
