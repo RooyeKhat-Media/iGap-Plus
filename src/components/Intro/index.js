@@ -40,10 +40,7 @@ class Intro extends React.Component {
       boxHeight = _.min([height, NORMAL_HEIGHT]);
     }
     boxHeight -= 70;
-
-    const btnTitle = currentPage < pages.length - 1 ?
-      intl.formatMessage(i18n.introBtnSkip) :
-      intl.formatMessage(i18n.introBtnStart);
+    const isLastPage = currentPage === pages.length - 1;
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}
@@ -76,8 +73,10 @@ class Intro extends React.Component {
           </Swiper>
         </View>
         <View style={styles.btnWrap}>
-          <Button style={styles.btn} upperCase={false} primary raised accent={false} onPress={onBtnClick}
-            text={btnTitle}/>
+          <Button style={isLastPage ? styles.btnActive : styles.btn}
+            upperCase={false} primary raised accent={false}
+            onPress={onBtnClick}
+            text={isLastPage ? intl.formatMessage(i18n.introBtnStart) : intl.formatMessage(i18n.introBtnSkip)}/>
         </View>
       </DimensionLimiter>
     );

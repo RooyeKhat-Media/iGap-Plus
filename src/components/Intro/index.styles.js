@@ -43,12 +43,12 @@ export default [
         title: {
           fontSize: 20,
           fontWeight: 'bold',
-          color: '#3D325B',
+          color: '#222222',
           alignItems: 'center',
         },
         subTitle: {
           fontSize: 14,
-          color: '#504479',
+          color: '#c7c7c7',
           paddingLeft: 20,
           paddingRight: 20,
           lineHeight: 25,
@@ -62,10 +62,19 @@ export default [
         btn: {
           container: {
             flex: 1,
-            backgroundColor: '#D3EFFA',
+            backgroundColor: '#fafafa',
           },
           text: {
-            color: '#3D325B',
+            color: '#222',
+          },
+        },
+        btnActive: {
+          container: {
+            flex: 1,
+            backgroundColor: '#3298ee',
+          },
+          text: {
+            color: '#fff',
           },
         },
         paginationStyle: {
@@ -73,9 +82,9 @@ export default [
         },
         dotStyle: {
           borderRadius: 5,
-          backgroundColor: '#fff',
+          backgroundColor: '#c7c7c7',
           borderWidth: 2,
-          borderColor: '#3D325B',
+          borderColor: '#c7c7c7',
           width: 18,
           height: 9,
         },
@@ -83,7 +92,7 @@ export default [
           borderRadius: 5,
           width: 18,
           height: 9,
-          backgroundColor: '#3D325B',
+          backgroundColor: '#222222',
         },
         svgWrap: {
           padding: 10,
