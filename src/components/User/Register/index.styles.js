@@ -2,14 +2,58 @@ export default {
   layout: {
     backgroundColor: 'white',
   },
+  wrapper: {
+    flex: 1,
+  },
+  changeLanguageWrap: {
+    padding: 5, flexDirection: 'row', justifyContent: 'center',
+    zIndex: 10,
+  },
+  changeLanguagePicker: {
+    wrapper: {
+      height: 20,
+      flex: 1,
+    },
+    touchable: {
+      backgroundColor: '#fff',
+      padding: 0,
+      borderWidth: 0,
+      justifyContent: 'center',
+    },
+    selectBox: {
+      flex: null,
+      width: 100,
+    },
+  },
+  languagePicker: {
+    fontSize: 12,
+  },
+  headerWrapper: {
+    padding: 20, marginTop: 60,
+  },
+  logoWrap: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontFamily: 'neuropolitical',
+    fontSize: 30,
+    color: '#444',
+  },
+  plusWrap: {
+    backgroundColor: '#3298ee', height: 17, padding: 1, borderRadius: 2,
+  },
+  plusTitle: {
+    fontSize: 25, fontWeight: 'bold',
+    color: '#fff',
+    lineHeight: 15,
+  },
+  headerSubTitle: {
+    fontSize: 12, color: '#aaa',
+    textAlign: 'center',
+  },
   panel: {
     padding: 15,
-  },
-  divider: {
-    marginBottom: 15,
-    marginTop: 15,
-    borderBottomColor: '#eee',
-    borderBottomWidth: 1,
   },
   formGroup: {
     marginBottom: 15,
@@ -30,8 +74,8 @@ export default {
       flex: 1,
     },
     help: {
-      fontSize: 11,
-      color: '#aaa',
+      fontSize: 10,
+      color: '#afafaf',
     },
     error: {
       fontSize: 11,
@@ -48,5 +92,54 @@ export default {
   },
   countryListItem: {
     container: {backgroundColor: 'transparent', paddingLeft: 0},
+  },
+  btnSubmit: {
+    container: {
+      backgroundColor: '#3298ee',
+      height: 43,
+      elevation: 0,
+    },
+    text: {
+      fontWeight: 'bold', color: '#fff',
+      fontSize: 13,
+    },
+  },
+
+  privacyBtn: {
+    container: {
+      borderWidth: 0,
+      marginTop: 5,
+      marginBottom: 5,
+    },
+    text: {
+      fontSize: 10,
+      color: '#7d7d7d',
+      fontWeight: '100',
+    },
+  },
+
+  divider: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+  },
+  dividerLine: {
+    flex: 1, borderTopWidth: 1, borderTopColor: '#e6e6e6',
+  },
+  dividerTitle: {
+    height: 20,
+    width: 40,
+    fontWeight: 'bold',
+    color: '#a2a2a2',
+    fontSize: 12,
+    textAlign: 'center',
+    backgroundColor: '#fff',
+  },
+  qrLoginBtn: {
+    container: {
+      borderWidth: 0,
+    },
+    text: {
+      color: '#3298ee',
+      fontSize: 12,
+    },
   },
 };

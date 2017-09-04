@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import Picker from '../../BaseUI/Picker/index';
-import {Button, DialogModal, TextInput, Toolbar} from '../../BaseUI/index';
+import {Button, DialogModal, MCIcon, TextInput} from '../../BaseUI/index';
 import styles from './index.styles';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
@@ -20,14 +20,30 @@ class UserRegisterComponent extends React.Component {
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
-        <View>
+        <View style={styles.wrapper}>
 
-          <Toolbar
-            rightElement="info"
-            onRightElementPress={() => {
-              this.dialog.open();
-            }}
-            centerElement={intl.formatMessage(i18n.registerToolbarTitle)}/>
+          <View style={styles.changeLanguageWrap}>
+            <Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
+              style={styles.changeLanguagePicker}
+              defaultValue="US"
+              options={countryList} onItemSelect={() => {
+              }}
+              placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>
+          </View>
+
+          <View style={styles.headerWrapper}>
+            <View style={styles.logoWrap}>
+              <Text style={styles.headerTitle}>
+                <FormattedMessage {...i18n.iGap}/>
+              </Text>
+              <View style={styles.plusWrap}>
+                <Text style={styles.plusTitle}>+</Text>
+              </View>
+            </View>
+            <Text style={styles.headerSubTitle}>
+              <FormattedMessage {...i18n.registerDescription}/>
+            </Text>
+          </View>
 
           <DialogModal control={(dialog) => {
             this.dialog = dialog;
@@ -39,7 +55,7 @@ class UserRegisterComponent extends React.Component {
             this.form = form;
           }}>
             <View style={styles.formGroup}>
-              <Picker
+              <Picker searchable={true}
                 defaultValue={formData.countryCode}
                 options={countryList} onItemSelect={onSelectCountry}
                 placeHolder={(<FormattedMessage {...i18n.registerCountryPlaceHolder} />)}/>
@@ -48,7 +64,6 @@ class UserRegisterComponent extends React.Component {
               <View style={styles.phoneNumberRow}>
 
                 <TextInput
-                  underlineColorAndroid="#eee"
                   keyboardType="phone-pad"
                   style={styles.countryCodeInput}
                   defaultValue={formData.callingCode}
@@ -64,7 +79,6 @@ class UserRegisterComponent extends React.Component {
                   defaultError={phoneNumberError}
                   style={styles.phoneNumberInput}
                   keyboardType="phone-pad"
-                  underlineColorAndroid="#eee"
                   placeholder={intl.formatMessage(i18n.registerPhoneNumberPlaceHolder)}
                   help={intl.formatMessage(i18n.registerPhoneNumberHelp)}
                 />
@@ -72,17 +86,33 @@ class UserRegisterComponent extends React.Component {
               </View>
             </View>
 
-            <View style={styles.formGroup}>
+            <View>
               <Button raised primary text={intl.formatMessage(i18n.registerSubmitBtnTitle)} onPress={async () => {
                 try {
                   this.form.loadingOn();
                   const data = await this.form.submit();
-                  await handleFormData(data);
+                  await handleFormData(data, this.form.setError);
                 } finally {
                   this.form.loadingOff();
                 }
-              }}/>
+              }} upperCase={false} style={styles.btnSubmit}/>
+              <Button upperCase={false} style={styles.privacyBtn}
+                text={intl.formatMessage(i18n.registerPrivacyBtnTitle)}
+                icon={<MCIcon color="#7d7d7d" name="alert-decagram" size={14}/>}/>
             </View>
+
+            <View style={styles.divider}>
+              <View style={styles.dividerLine}/>
+              <Text style={styles.dividerTitle}>
+                <FormattedMessage {...i18n.registerLoginDivider}/>
+              </Text>
+              <View style={styles.dividerLine}/>
+            </View>
+
+            <Button upperCase={false} style={styles.qrLoginBtn}
+              text={intl.formatMessage(i18n.registerQrCodeLoginBtn)}
+              icon={<MCIcon color="#3298ee" name="qrcode-scan" size={14}/>}/>
+
           </Form>
         </View>
       </DimensionLimiter>

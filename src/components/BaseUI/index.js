@@ -6,6 +6,7 @@ import AppModal from './AppModal';
 import DialogModal from './DialogModal';
 import Spinner from './Spinner';
 import TextInput from './TextInput';
+import MCIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 
 export {
   AppModal,
@@ -23,4 +24,5 @@ export {
   Spinner,
   TextInput,
   Drawer,
+  MCIcon,
 };

@@ -1,7 +1,18 @@
 import country from '../constants/country/en';
 
 export default {
+  iGap: {
+    id: 'iGap',
+    defaultMessage: 'iGap',
+    description: 'iGap',
+  },
+  iGapPlus: {
+    id: 'iGapPlus',
+    defaultMessage: 'iGap+',
+    description: 'iGap+',
+  },
   ...country,
+
   introLogoTitle: {
     id: 'Intro.logoTitle',
     defaultMessage: 'iGap Messenger',
@@ -100,7 +111,7 @@ export default {
   },
   registerSubmitBtnTitle: {
     id: 'UserRegister.submitBtnTitle',
-    defaultMessage: 'Next',
+    defaultMessage: 'Log In',
     description: 'UserRegister Page',
   },
   registerInfoTitle: {
@@ -111,6 +122,36 @@ export default {
   registerInfoContent: {
     id: 'UserRegister.infoContent',
     defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'UserRegister Page',
+  },
+  registerChangeLanguagePlaceholder: {
+    id: 'UserRegister.changeLanguagePlaceholder',
+    defaultMessage: 'Hello world',
+    description: 'UserRegister Page',
+  },
+  registerChangeLanguageTitle: {
+    id: 'UserRegister.changeLanguageTitle',
+    defaultMessage: 'Chose Your Language',
+    description: 'UserRegister Page',
+  },
+  registerDescription: {
+    id: 'UserRegister.description',
+    defaultMessage: 'Welcome Back',
+    description: 'UserRegister Page',
+  },
+  registerPrivacyBtnTitle: {
+    id: 'UserRegister.privacyBtnTitle',
+    defaultMessage: 'Privacy and Policy',
+    description: 'UserRegister Page',
+  },
+  registerLoginDivider: {
+    id: 'UserRegister.loginDivider',
+    defaultMessage: 'OR',
+    description: 'UserRegister Page',
+  },
+  registerQrCodeLoginBtn: {
+    id: 'UserRegister.qrCodeLoginBtn',
+    defaultMessage: 'Log in with QR Code',
     description: 'UserRegister Page',
   },
   errorRequired: {

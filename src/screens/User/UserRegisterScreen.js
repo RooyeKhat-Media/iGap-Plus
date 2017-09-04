@@ -75,7 +75,7 @@ class UserRegisterScreen extends Component {
     });
   }
 
-  handleFormData = async (formData) => {
+  handleFormData = async (formData, setError) => {
     const {countryCode, callingCode} = this.state;
     const data = {
       phoneNumber: formData.phoneNumber,
@@ -100,7 +100,7 @@ class UserRegisterScreen extends Component {
         data);
     } catch (e) {
       // TODO COMPLETE ERRORS
-      this.setState({phoneNumberError: e.name + ': ' + e.message});
+      setError('phoneNumber', e.name + ': ' + e.message);
     }
   }
 
