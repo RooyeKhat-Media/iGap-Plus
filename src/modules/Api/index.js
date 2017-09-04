@@ -190,7 +190,7 @@ export default class Api {
     try {
       pollPendingIsRunning = true;
 
-      while (running.size < API_CONCURRENCY && !pending.isEmpty()) {
+      while (running.size < API_CONCURRENCY && !pending.isEmpty() && Client.instance.isOnline) {
         const wrapper = pending.poll();
 
         if (
