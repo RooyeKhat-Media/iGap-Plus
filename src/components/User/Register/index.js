@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import Picker from '../../BaseUI/Picker/index';
 import {Button, DialogModal, MCIcon, TextInput} from '../../BaseUI/index';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
@@ -11,55 +11,68 @@ import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import * as _ from 'lodash';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 
 const uniqueId = _.uniqueId();
 
 class UserRegisterComponent extends React.Component {
+  get styles() {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  }
+
   render() {
     const {intl, countryList, formRules, formData, handleFormData, onChangeCallingCode, onSelectCountry, phoneNumberError} = this.props;
+    const {styles} = this;
 
     return (
+
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <View style={styles.wrapper}>
 
-          <View style={styles.changeLanguageWrap}>
-            <Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
-              style={styles.changeLanguagePicker}
-              defaultValue="US"
-              options={countryList} onItemSelect={() => {
-              }}
-              placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>
-          </View>
+          <View style={styles.topWrap}>
 
-          <View style={styles.headerWrapper}>
-            <View style={styles.logoWrap}>
-              <Text style={styles.headerTitle}>
-                <FormattedMessage {...i18n.iGap}/>
-              </Text>
-              <View style={styles.plusWrap}>
-                <Text style={styles.plusTitle}>+</Text>
-              </View>
+            <View style={styles.changeLanguageWrap}>
+              <Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
+                style={styles.changeLanguagePicker}
+                defaultValue="US"
+                options={countryList} onItemSelect={() => {
+                }}
+                placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>
             </View>
-            <Text style={styles.headerSubTitle}>
-              <FormattedMessage {...i18n.registerDescription}/>
-            </Text>
+
+            <View style={styles.headerWrapper}>
+              <View style={styles.logoWrap}>
+                <Text style={styles.headerTitle}>
+                  <FormattedMessage {...i18n.iGap}/>
+                </Text>
+                <View style={styles.plusWrap}>
+                  <Text style={styles.plusTitle}>+</Text>
+                </View>
+              </View>
+              <Text style={styles.headerSubTitle}>
+                <FormattedMessage {...i18n.registerDescription}/>
+              </Text>
+            </View>
+
+            <DialogModal control={(dialog) => {
+              this.dialog = dialog;
+            }}
+            title={<FormattedMessage {...i18n.registerInfoTitle} />}
+            content={<FormattedMessage {...i18n.registerInfoContent} />}/>
+
           </View>
 
-          <DialogModal control={(dialog) => {
-            this.dialog = dialog;
-          }}
-          title={<FormattedMessage {...i18n.registerInfoTitle} />}
-          content={<FormattedMessage {...i18n.registerInfoContent} />}/>
-
-          <Form style={styles.panel} control={(form) => {
+          <Form style={styles.formWrap} control={(form) => {
             this.form = form;
           }}>
+
             <View style={styles.formGroup}>
               <Picker searchable={true}
                 defaultValue={formData.countryCode}
                 options={countryList} onItemSelect={onSelectCountry}
                 placeHolder={(<FormattedMessage {...i18n.registerCountryPlaceHolder} />)}/>
             </View>
+
             <View style={styles.formGroup}>
               <View style={styles.phoneNumberRow}>
 
@@ -138,4 +151,4 @@ UserRegisterComponent.propTypes = {
   onChangeCallingCode: PropTypes.func.isRequired,
   phoneNumberError: PropTypes.string,
 };
-export default injectIntl(UserRegisterComponent);
+export default injectIntl(responsive(UserRegisterComponent));
