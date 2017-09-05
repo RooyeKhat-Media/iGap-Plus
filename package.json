@@ -4,17 +4,19 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest",
+		"proto": "node script/proto/index.js"
 	},
 	"dependencies": {
 		"babel-plugin-transform-remove-console": "^6.8.4",
 		"fastpriorityqueue": "^0.3.1",
-		"google-protobuf": "^3.4.0",
 		"intl": "^1.2.5",
 		"intl-locales-supported": "^1.0.0",
+		"long": "^3.2.0",
 		"node-forge": "^0.7.1",
 		"pouchdb-react-native": "^6.3.4",
 		"prop-types": "^15.5.10",
+		"protobufjs": "~6.8.0",
 		"react": "16.0.0-alpha.12",
 		"react-intl": "^2.3.0",
 		"react-intl-redux": "^0.6.0",

@@ -13,7 +13,7 @@ import RequestWrapper from './RequestWrapper';
 import Client from '../Api/Client';
 import FastPriorityQueue from 'fastpriorityqueue';
 import {msSleep, randomString} from '../../utils/core';
-import {Request} from '../../modules/Proto/Request_pb';
+import {Proto} from '../../modules/Proto';
 import {ErrorResponse} from '../Proto/index';
 import {ERROR_TIMEOUT} from './errors/index';
 import ServerError from '../Error/ServerError';
@@ -132,7 +132,7 @@ export default class Api {
   }
 
   _run(wrapper) {
-    const request = new Request();
+    const request = new Proto.Request();
     request.setId(randomString(10));
 
     wrapper.request.setRequest(request);

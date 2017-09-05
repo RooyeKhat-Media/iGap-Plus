@@ -1,6 +1,6 @@
 import MetaData from '../models/MetaData';
 import {UserLogin} from '../modules/Proto/index';
-import {Device, Language, Platform} from '../modules/Proto/Global_pb';
+import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION} from '../constants/configs';
 import {USER_LOGIN} from '../constants/methods/index';
 import Api from '../modules/Api/index';
@@ -64,12 +64,12 @@ export async function login() {
   userLogin.setAppBuildVersion(APP_BUILD_VERSION);
   userLogin.setAppVersion(APP_VERSION);
 
-  userLogin.setPlatform(Platform.UNKNOWN_PLATFORM);
+  userLogin.setPlatform(Proto.Platform.UNKNOWN_PLATFORM);
   userLogin.setPlatformVersion('0');
 
-  userLogin.setDevice(Device.UNKNOWN_DEVICE);
+  userLogin.setDevice(Proto.Device.UNKNOWN_DEVICE);
   userLogin.setDeviceName('UNKNOWN_DEVICE');
-  userLogin.setLanguage(Language.FA_IR);
+  userLogin.setLanguage(Proto.Language.FA_IR);
   // TODO [Amerehie] - 8/30/2017 2:05 PM - setPlatform , setPlatformVersion ...
 
   return Api.invoke(USER_LOGIN, userLogin);

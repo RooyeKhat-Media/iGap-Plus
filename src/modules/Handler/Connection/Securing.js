@@ -19,6 +19,9 @@ mwIDAQAB
 
 const embeddedPublicKey = forge.pki.publicKeyFromPem(embeddedPem);
 
+/**
+ * @property {ProtoConnectionSecuringResponse} _response
+ */
 export default class Securing extends Base {
   handle() {
     const publicKey = forge.pki.publicKeyFromPem(this._response.getPublicKey());
