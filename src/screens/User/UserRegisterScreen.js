@@ -6,15 +6,17 @@ import React, {Component} from 'react';
 import UserRegisterComponent from '../../components/User/Register';
 import {integerValidator, regexValidator, requiredValidator} from '../../utils/validator';
 import countries from '../../constants/country/index';
+import {LOCALES} from '../../constants/locale';
 import {Text} from 'react-native';
 import {ListItem} from '../../components/BaseUI/index';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../i18n/index';
 import Api from '../../modules/Api/index';
-import {INFO_LOCATION, USER_REGISTER} from '../../constants/methods/index';
-import {InfoLocation, UserRegister} from '../../modules/Proto/index';
+import {INFO_COUNTRY, INFO_LOCATION, USER_REGISTER} from '../../constants/methods/index';
+import {InfoCountry, InfoLocation, UserRegister} from '../../modules/Proto/index';
 import {goUserVerifyScreen} from '../../navigators/AppNavigator';
 import {setAuthorHash, setUserId} from '../../utils/app';
+import {changeLocale, getUserLocale} from '../../utils/locale';
 
 const rules = {
   phoneNumber: [
@@ -22,7 +24,7 @@ const rules = {
     {validate: integerValidator},
   ],
 };
-
+let phoneNumberRegexValidate;
 class UserRegisterScreen extends Component {
 
   constructor(props) {
@@ -38,14 +40,19 @@ class UserRegisterScreen extends Component {
     let infoLocation = new InfoLocation();
     Api.invoke(INFO_LOCATION, infoLocation)
       .then((response) => {
-        this.setState({
-          countryCode: response.getIsoCode(),
-          callingCode: '+' + response.getCallingCode(),
-        });
-        rules.phoneNumber.push({
-          validate: regexValidator, options: {
-            pattern: response.getRegex(),
-          },
+        this.setState((prevState) => {
+          if (!prevState.countryCode) {
+            phoneNumberRegexValidate = {
+              validate: regexValidator, options: {
+                pattern: response.getRegex(),
+              },
+            };
+            return {
+              countryCode: response.getIsoCode(),
+              callingCode: '+' + response.getCallingCode(),
+            };
+          }
+          return prevState;
         });
       });
   }
@@ -58,7 +65,7 @@ class UserRegisterScreen extends Component {
       this.setState({
         countryCode: country[0],
         callingCode: country[1],
-      });
+      }, this._onCountryCodeChange);
     }
   }
 
@@ -70,9 +77,27 @@ class UserRegisterScreen extends Component {
       if (country) {
         this.setState({
           countryCode: country[0],
-        });
+        }, this._onCountryCodeChange);
       }
     });
+  }
+
+  _onCountryCodeChange = async () => {
+    const {countryCode} = this.state;
+
+    const infoCountry = new InfoCountry();
+    infoCountry.setIsoCode(countryCode);
+
+    try {
+      const response = await Api.invoke(INFO_COUNTRY, infoCountry);
+      phoneNumberRegexValidate = {
+        validate: regexValidator, options: {
+          pattern: response.getRegex(),
+        },
+      };
+    } catch (e) {
+
+    }
   }
 
   handleFormData = async (formData, setError) => {
@@ -81,7 +106,12 @@ class UserRegisterScreen extends Component {
       phoneNumber: formData.phoneNumber,
       countryCode,
     };
+
     try {
+      if (phoneNumberRegexValidate) {
+        await phoneNumberRegexValidate.validate(formData.phoneNumber, phoneNumberRegexValidate.options);
+      }
+
       const userRegister = new UserRegister();
       userRegister.setPhoneNumber(parseInt(data.phoneNumber));
       userRegister.setCountryCode(data.countryCode);
@@ -104,12 +134,26 @@ class UserRegisterScreen extends Component {
     }
   }
 
+  selectNewLocale = (locale) => {
+    changeLocale(locale);
+  }
+
   render() {
     const {intl} = this.props;
     const {phoneNumber, callingCode, countryCode, phoneNumberError} = this.state;
     const formData = {phoneNumber, callingCode, countryCode};
     const countryList = [];
+    const localesList = [];
 
+    Object.keys(LOCALES).map((locale) => {
+      localesList.push({
+        key: locale,
+        value: LOCALES[locale].en,
+        element: (<ListItem centerElement={{primaryText: LOCALES[locale].en}} rightElement={<Text>{LOCALES[locale].native}</Text>}
+          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
+        filter: locale,
+      });
+    });
     countries.map((country) => {
       let id = 'country' + country[0];
       let countryName = intl.formatMessage(i18n[id]);
@@ -123,6 +167,7 @@ class UserRegisterScreen extends Component {
       });
     });
 
+    const defaultLocale = getUserLocale();
     return (
       <UserRegisterComponent
         formRules={rules}
@@ -132,6 +177,9 @@ class UserRegisterScreen extends Component {
         onSelectCountry={this.onSelectCountry}
         onChangeCallingCode={this.onChangeCallingCode}
         phoneNumberError={phoneNumberError}
+        localesList={localesList}
+        selectNewLocale={this.selectNewLocale}
+        defaultLocale={defaultLocale}
       />
     );
   }
