@@ -2,7 +2,7 @@
  * @flow
  */
 
-import {createStore, applyMiddleware} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
@@ -18,5 +18,13 @@ function configureStore(preloadedState) {
   );
 }
 
-const store = configureStore();
+const initialState = {
+  intl: {
+    defaultLocale: 'en',
+    locale: 'en',
+    // messages: messagesEn,// todo un comment default messages
+  },
+};
+
+const store = configureStore(initialState);
 export default store;

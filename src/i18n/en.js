@@ -198,12 +198,12 @@ export default {
 
   verifyTitle: {
     id: 'UserVerify.title',
-    defaultMessage: 'We\'ve sent an {method, select,0{Sms} 1{iGap Message} 2{iGap Message and Sms}} with an activation code to your phone {phoneNumber}.',
+    defaultMessage: 'Verify Phone Number',
     description: 'UserVerify Page',
   },
-  verifyToolbarTitle: {
-    id: 'UserVerify.toolbarTitle',
-    defaultMessage: 'User Verify',
+  verifySubTitle: {
+    id: 'UserVerify.subTitle',
+    defaultMessage: 'We\'ve sent an {method, select,0{Sms} 1{iGap Message} 2{iGap Message and Sms}} with an activation code to your phone {phoneNumber}.',
     description: 'UserVerify Page',
   },
   verifyInfoTitle: {

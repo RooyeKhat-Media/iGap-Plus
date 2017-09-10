@@ -51,7 +51,7 @@ export default [
           color: '#444',
         },
         plusWrap: {
-          backgroundColor: '#3298ee', height: 17, padding: 1, borderRadius: 2,
+          backgroundColor: '#aaa', height: 17, padding: 1, borderRadius: 2,
         },
         plusTitle: {
           fontSize: 25, fontWeight: 'bold',

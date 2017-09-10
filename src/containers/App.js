@@ -6,13 +6,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
-import {BackHandler, Platform, View, StatusBar} from 'react-native';
+import {BackHandler, Platform, StatusBar, View} from 'react-native';
 
 import {AppModal} from '../components/BaseUI';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
-import {loadAuthorHash, loadUserId, loadUserToken, setUserToken} from '../utils/app';
+import {loadAuthorHash, loadUserId, loadUserToken} from '../utils/app';
+import {changeLocale, getUserLocale, loadUserLocale} from '../utils/locale';
 
 class App extends Component {
 
@@ -30,6 +31,10 @@ class App extends Component {
         loadUserId,
         loadAuthorHash,
       ]);
+    }).then(() => {
+      return loadUserLocale();
+    }).then(() => {
+      return changeLocale(getUserLocale());
     }).then(() => {
       return loadUserToken();
     }).then((token) => {
@@ -62,7 +67,7 @@ class App extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1, zIndex: 2}}>
-          <StatusBar backgroundColor="#f0f0f0" barStyle="dark-content" />
+          <StatusBar backgroundColor="#f0f0f0" barStyle="dark-content"/>
           <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
         </View>
         <AppModal/>

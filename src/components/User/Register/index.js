@@ -21,7 +21,11 @@ class UserRegisterComponent extends React.Component {
   }
 
   render() {
-    const {intl, countryList, formRules, formData, handleFormData, onChangeCallingCode, onSelectCountry, phoneNumberError} = this.props;
+    const {
+      intl, countryList, formRules, formData, handleFormData,
+      onChangeCallingCode, onSelectCountry, phoneNumberError,
+      selectNewLocale, localesList, defaultLocale,
+    } = this.props;
     const {styles} = this;
 
     return (
@@ -34,9 +38,8 @@ class UserRegisterComponent extends React.Component {
             <View style={styles.changeLanguageWrap}>
               <Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
                 style={styles.changeLanguagePicker}
-                defaultValue="US"
-                options={countryList} onItemSelect={() => {
-                }}
+                defaultValue={defaultLocale}
+                options={localesList} onItemSelect={selectNewLocale}
                 placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>
             </View>
 
