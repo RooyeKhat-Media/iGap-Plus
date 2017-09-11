@@ -39,9 +39,16 @@ export default [
           fontSize: 12,
         },
         headerWrapper: {
-          padding: 20, marginTop: 60,
+          padding: 20,
+        },
+        svgWrap: {
+          height: 150, alignItems: 'center', marginBottom: 15,
+        },
+        svg: {
+          width: 150, height: 150,
         },
         logoWrap: {
+          height: 40,
           flexDirection: 'row',
           justifyContent: 'center',
         },
@@ -57,10 +64,6 @@ export default [
           fontSize: 25, fontWeight: 'bold',
           color: '#fff',
           lineHeight: 15,
-        },
-        headerSubTitle: {
-          fontSize: 12, color: '#aaa',
-          textAlign: 'center',
         },
         topWrap: {},
         formWrap: {
@@ -164,6 +167,10 @@ export default [
         },
         topWrap: {
           flex: 1,
+        },
+        headerWrapper: {
+          flex: 1,
+          justifyContent: 'center',
 
         },
         formWrap: {

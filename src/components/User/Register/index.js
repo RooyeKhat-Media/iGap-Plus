@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+import LinerLog from '../../../assets/images/linerLogo';
 
 const uniqueId = _.uniqueId();
 
@@ -44,6 +45,9 @@ class UserRegisterComponent extends React.Component {
             </View>
 
             <View style={styles.headerWrapper}>
+              <View style={styles.svgWrap}>
+                <LinerLog style={styles.svg}/>
+              </View>
               <View style={styles.logoWrap}>
                 <Text style={styles.headerTitle}>
                   <FormattedMessage {...i18n.iGap}/>
@@ -52,9 +56,6 @@ class UserRegisterComponent extends React.Component {
                   <Text style={styles.plusTitle}>+</Text>
                 </View>
               </View>
-              <Text style={styles.headerSubTitle}>
-                <FormattedMessage {...i18n.registerDescription}/>
-              </Text>
             </View>
 
             <DialogModal control={(dialog) => {
