@@ -53,6 +53,16 @@ export default {
     defaultMessage: 'Intro callSubTitle',
     description: 'Intro Page',
   },
+  introLocationTitle: {
+    id: 'Intro.locationTitle',
+    defaultMessage: 'Intro locationTitle',
+    description: 'Intro Page',
+  },
+  introLocationSubTitle: {
+    id: 'Intro.locationSubTitle',
+    defaultMessage: 'Intro locationSubTitle',
+    description: 'Intro Page',
+  },
   introTransferTitle: {
     id: 'Intro.transferTitle',
     defaultMessage: 'File Transferring',
@@ -132,11 +142,6 @@ export default {
   registerChangeLanguageTitle: {
     id: 'UserRegister.changeLanguageTitle',
     defaultMessage: 'Chose Your Language',
-    description: 'UserRegister Page',
-  },
-  registerDescription: {
-    id: 'UserRegister.description',
-    defaultMessage: 'Welcome Back',
     description: 'UserRegister Page',
   },
   registerPrivacyBtnTitle: {

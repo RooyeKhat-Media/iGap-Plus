@@ -6,6 +6,7 @@ import Free from '../assets/images/intro/free';
 import Logo from '../assets/images/intro/logo';
 import Security from '../assets/images/intro/security';
 import Transfer from '../assets/images/intro/transfer';
+import Location from '../assets/images/intro/location';
 import {FormattedMessage} from 'react-intl';
 import {goUserRegisterScreen} from '../navigators/AppNavigator';
 import i18n from '../i18n';
@@ -30,6 +31,11 @@ const pages = [
     ImageSvg: Call,
     title: (<FormattedMessage {...i18n.introCallTitle}/>),
     subtitle: (<FormattedMessage {...i18n.introCallSubTitle}/>),
+  },
+  {
+    ImageSvg: Location,
+    title: (<FormattedMessage {...i18n.introLocationTitle}/>),
+    subtitle: (<FormattedMessage {...i18n.introLocationSubTitle}/>),
   },
   {
     ImageSvg: Transfer,
