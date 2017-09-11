@@ -100,5 +100,9 @@ export default {
       TWStepTitleColor: black500,
       resendTxtColor: gray700,
     },
+    UserNewProfile: {
+      layoutBackgroundColor: white,
+      selectAvatarBorderColor: gray950,
+    },
   },
 };
