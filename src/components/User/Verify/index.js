@@ -1,26 +1,36 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
-import {Button, DialogModal} from '../../BaseUI/index';
+import {Button} from '../../BaseUI/index';
 import {Text, View} from 'react-native';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import * as _ from 'lodash';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
 import i18n from '../../../i18n/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+
 
 const uniqueId = _.uniqueId();
 
 class UserVerifyComponent extends Component {
 
+  static contextTypes = {
+    uiTheme: PropTypes.object.isRequired,
+  };
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserVerify));
+  };
+
   render() {
     const {intl, resendDelay, codeError, phoneNumber, method, formRules, handleFormData, resendCode} = this.props;
+    const styles = this.getStyles();
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
-
 
         <Form style={styles.panel} control={(form) => {
           this.form = form;
@@ -63,7 +73,7 @@ class UserVerifyComponent extends Component {
                   }
                 }} style={styles.verifyBtn}/>
               {!resendDelay ?
-                (<Button upperCase={false} style={styles.resendBtnColor} onPress={() => {
+                (<Button upperCase={false} primary style={styles.resendBtn} onPress={() => {
                   resendCode();
                 }} text={intl.formatMessage(i18n.verifyResendCodeBtnTitle)}/>) : null}
             </View>
@@ -71,14 +81,7 @@ class UserVerifyComponent extends Component {
           </View>
         </Form>
 
-        <DialogModal control={(dialog) => {
-          this.dialog = dialog;
-        }}
-        title={<FormattedMessage {...i18n.verifyInfoTitle} />}
-        content={<FormattedMessage {...i18n.verifyInfoContent} />}/>
-
       </DimensionLimiter>
-
     );
   }
 }
@@ -91,4 +94,4 @@ UserVerifyComponent.propTypes = {
   method: PropTypes.number.isRequired,
   codeError: PropTypes.string,
 };
-export default injectIntl(UserVerifyComponent);
+export default injectIntl(responsive(UserVerifyComponent));
