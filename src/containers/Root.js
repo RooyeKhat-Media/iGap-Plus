@@ -6,12 +6,14 @@ import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {Provider} from 'react-redux';
 import {IntlProvider} from 'react-intl-redux';
-import {ThemeProvider} from 'react-native-material-ui';
-import defaultTheme from '../themes/default';
 import store from '../configureStore';
 import App from './App';
 
 import {addLocaleData} from 'react-intl';
+/**
+ * End  Intl Polyfill
+ */
+import fa from 'react-intl/locale-data/fa';
 
 /**
  * Start Intl Polyfill
@@ -44,11 +46,7 @@ if (requireLocalesPolyfill) {
   const fa = require('intl/locale-data/jsonp/fa');
   addLocaleData([...en, ...fa]);
 }
-/**
- * End  Intl Polyfill
- */
 
-import fa from 'react-intl/locale-data/fa';
 
 addLocaleData([...fa]);
 
@@ -57,9 +55,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <IntlProvider textComponent={Text}>
-          <ThemeProvider uiTheme={defaultTheme}>
-            <App/>
-          </ThemeProvider>
+          <App/>
         </IntlProvider>
       </Provider>
     );

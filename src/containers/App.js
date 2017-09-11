@@ -14,6 +14,9 @@ import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
 import {loadAuthorHash, loadUserId, loadUserToken} from '../utils/app';
 import {changeLocale, getUserLocale, loadUserLocale} from '../utils/locale';
+import {getAppTheme} from '../themes';
+import ThemeProvider from '../modules/ThemeProvider';
+import {loadAppThemeName} from '../themes/index';
 
 class App extends Component {
 
@@ -35,6 +38,8 @@ class App extends Component {
       return loadUserLocale();
     }).then(() => {
       return changeLocale(getUserLocale());
+    }).then(() => {
+      return loadAppThemeName();
     }).then(() => {
       return loadUserToken();
     }).then((token) => {
@@ -63,15 +68,18 @@ class App extends Component {
   };
 
   render() {
-    const {dispatch, nav} = this.props;
+    const {dispatch, nav, theme} = this.props;
+    const appTheme = getAppTheme(theme);
     return (
-      <View style={{flex: 1}}>
-        <View style={{flex: 1, zIndex: 2}}>
-          <StatusBar backgroundColor="#f0f0f0" barStyle="dark-content"/>
-          <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
+      <ThemeProvider uiTheme={appTheme}>
+        <View style={{flex: 1}}>
+          <View style={{flex: 1, zIndex: 2}}>
+            <StatusBar backgroundColor="#f0f0f0" barStyle="dark-content"/>
+            <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
+          </View>
+          <AppModal/>
         </View>
-        <AppModal/>
-      </View>
+      </ThemeProvider>
     );
   }
 }
@@ -83,6 +91,7 @@ App.propTypes = {
 
 const mapStateToProps = state => ({
   nav: state.nav,
+  theme: state.theme,
 });
 
 export default connect(mapStateToProps)(App);

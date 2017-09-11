@@ -1,6 +1,19 @@
+export const primary = '#3298ee';
+export const white = '#ffffff';
+export const gray100 = '#fafafa';
+export const gray200 = '#f0f0f0';
+export const gray300 = '#eeeeee';
+export const gray400 = '#e6e6e6';
+export const gray500 = '#c7c7c7';
+export const gray600 = '#afafaf';
+export const gray700 = '#aaaaaa';
+export const gray800 = '#a2a2a2';
+
+export const black500 = '#222222';
+
 export default {
   palette: {
-    primaryColor: '#fafafa',
+    primaryColor: '#2196f3',
     canvasColor: '#252525',
   },
   toolbar: {
@@ -23,6 +36,10 @@ export default {
     text: {
       marginLeft: 3,
     },
+    container: {
+      height: 43,
+      elevation: 0,
+    },
   },
   primary: {
     text: {
@@ -40,5 +57,21 @@ export default {
   buttonPrimary: {
     backgroundColor: 'red',
 
+  },
+
+  pages: {
+    Intro: {
+      wrapperBackgroundColor: gray200,
+      layoutBackgroundColor: white,
+      titleColor: black500,
+      subTitleColor: gray500,
+      btnBackgroundColor: gray100,
+      btnTextColor: black500,
+      btnActiveBackgroundColor: primary,
+      btnActiveTextColor: white,
+      dotBackgroundColor: gray500,
+      dotBorderColor: gray500,
+      dotActiveBackgroundColor: black500,
+    },
   },
 };

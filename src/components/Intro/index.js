@@ -14,8 +14,13 @@ import DimensionLimiter from '../BaseUI/DimensionLimiter';
 const uniqueId = _.uniqueId();
 
 class Intro extends React.Component {
-  constructor() {
-    super();
+
+  static contextTypes = {
+    uiTheme: PropTypes.object.isRequired,
+  };
+
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       currentPage: 0,
     };
@@ -26,7 +31,7 @@ class Intro extends React.Component {
   };
 
   render() {
-    const {styles} = this;
+    const styles = this.getStyles();
     const {currentPage} = this.state;
     const {pages, onBtnClick, intl} = this.props;
 
@@ -82,8 +87,8 @@ class Intro extends React.Component {
     );
   }
 
-  get styles() {
-    return MemoizeResponsiveStyleSheet(styleSheet);
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.Intro));
   }
 }
 
