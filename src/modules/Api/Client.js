@@ -17,6 +17,7 @@ import forge from 'node-forge';
 import {arrayBufferToString, stringToArrayBuffer} from '../../utils/buffer';
 import {clientStatusChanged} from '../../actions/api';
 import store from '../../configureStore';
+import 'es6-symbol/implement';
 
 const singleton = Symbol();
 const singletonEnforcer = Symbol();

@@ -17,6 +17,7 @@ import {Proto} from '../../modules/Proto';
 import {ErrorResponse} from '../Proto/index';
 import {ERROR_TIMEOUT} from './errors/index';
 import ServerError from '../Error/ServerError';
+import 'es6-symbol/implement';
 
 const apiSingleton = Symbol();
 const apiSingletonEnforcer = Symbol();
