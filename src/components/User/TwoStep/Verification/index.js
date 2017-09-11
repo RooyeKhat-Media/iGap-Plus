@@ -1,37 +1,49 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
-import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
-import styles from './index.styles';
+import {Button} from '../../../BaseUI/index';
+import styleSheet from './index.styles';
 import * as _ from 'lodash';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../../../modules/Responsive';
 import i18n from '../../../../i18n/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import Form from '../../../BaseUI/Form/index';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
 
 const uniqueId = _.uniqueId();
 
 class TwoStepVerificationComponent extends Component {
 
+  static contextTypes = {
+    uiTheme: PropTypes.object.isRequired,
+  };
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserTwoStepVerification));
+  };
+
   render() {
     const {intl, handleFormData, formRules, hint, passwordError, forgetPassword} = this.props;
+    const styles = this.getStyles();
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
-        <Toolbar
-          rightElement="info"
-          onRightElementPress={() => {
-            this.dialog.open();
-          }}
-          centerElement={intl.formatMessage(i18n.twoStepVerificationTitle)}/>
 
         <Form style={styles.panel} control={(form) => {
           this.form = form;
         }}>
 
           <View style={styles.TWStepTitleWrap}>
+            <Text style={styles.TWStepTitle}>
+              <FormattedMessage {...i18n.twoStepVerificationTitle}/>
+            </Text>
+
+            <Text style={styles.TWStepSubTitle}>
+              <FormattedMessage {...i18n.twoStepVerificationHintTitle} values={{hint: hint}}/>
+            </Text>
+
             <View style={styles.inputRow}>
               <TextInputField
                 isField={true}
@@ -43,14 +55,12 @@ class TwoStepVerificationComponent extends Component {
                 secureTextEntry={true}
                 label={intl.formatMessage(i18n.twoStepVerificationPasswordLabel)}
                 placeholder={intl.formatMessage(i18n.twoStepVerificationPasswordLabel)}
-                help={intl.formatMessage(i18n.twoStepVerificationHintTitle, {hint: hint})}
               />
             </View>
 
             <View style={styles.btnWrap}>
-              <Button upperCase={false} accent={false} primary style={styles.forgetBtnColor} onPress={forgetPassword}
-                text={intl.formatMessage(i18n.twoStepVerificationForgetBtnTitle)}/>
-              <Button accent={false} raised primary text={intl.formatMessage(i18n.twoStepVerificationBtnTitle)}
+              <Button text={intl.formatMessage(i18n.twoStepVerificationBtnTitle)}
+                raised primary
                 onPress={async () => {
                   try {
                     this.form.loadingOn();
@@ -60,17 +70,12 @@ class TwoStepVerificationComponent extends Component {
                     this.form.loadingOff();
                   }
                 }}/>
+              <Button upperCase={false} primary style={styles.forgetBtnColor} onPress={forgetPassword}
+                text={intl.formatMessage(i18n.twoStepVerificationForgetBtnTitle)}/>
             </View>
 
           </View>
         </Form>
-
-
-        <DialogModal control={(dialog) => {
-          this.dialog = dialog;
-        }}
-        title={<FormattedMessage {...i18n.twoStepVerificationInfoTitle} />}
-        content={<FormattedMessage {...i18n.twoStepVerificationInfoContent} />}/>
 
       </DimensionLimiter>
 
@@ -85,4 +90,4 @@ TwoStepVerificationComponent.propTypes = {
   passwordError: PropTypes.string,
   hint: PropTypes.string,
 };
-export default injectIntl(TwoStepVerificationComponent);
+export default injectIntl(responsive(TwoStepVerificationComponent));

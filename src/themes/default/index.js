@@ -95,5 +95,10 @@ export default {
       verifySubTitleColor: black500,
       resendTxtColor: gray700,
     },
+    UserTwoStepVerification: {
+      layoutBackgroundColor: white,
+      TWStepTitleColor: black500,
+      resendTxtColor: gray700,
+    },
   },
 };
