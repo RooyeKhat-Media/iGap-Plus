@@ -14,7 +14,7 @@ export const black500 = '#222222';
 export default {
   palette: {
     primaryColor: '#2196f3',
-    canvasColor: '#252525',
+    canvasColor: '#ffffff',
   },
   toolbar: {
     container: {

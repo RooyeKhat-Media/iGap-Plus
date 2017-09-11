@@ -42,10 +42,10 @@ export default [
           padding: 20,
         },
         svgWrap: {
-          height: 150, alignItems: 'center', marginBottom: 15,
+          height: 120, alignItems: 'center', marginBottom: 15,
         },
         svg: {
-          width: 150, height: 150,
+          width: 120, height: 120,
         },
         logoWrap: {
           height: 40,

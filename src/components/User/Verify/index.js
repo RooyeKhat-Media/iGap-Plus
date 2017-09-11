@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
-import {Button, DialogModal, Toolbar} from '../../BaseUI/index';
+import {Button, DialogModal} from '../../BaseUI/index';
 import {Text, View} from 'react-native';
 import styles from './index.styles';
 import * as _ from 'lodash';
@@ -20,21 +20,19 @@ class UserVerifyComponent extends Component {
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
-        <Toolbar
-          rightElement="info"
-          onRightElementPress={() => {
-            this.dialog.open();
-          }}
-          centerElement={intl.formatMessage(i18n.verifyToolbarTitle)}/>
+
 
         <Form style={styles.panel} control={(form) => {
           this.form = form;
         }}>
 
-          <View style={styles.TWStepTitleWrap}>
+          <View style={styles.verifyTitleWrap}>
 
             <Text style={styles.verifyTitle}>
-              <FormattedMessage {...i18n.verifyTitle} values={{method: method, phoneNumber: phoneNumber}}/>
+              <FormattedMessage {...i18n.verifyTitle}/>
+            </Text>
+            <Text style={styles.verifySubTitle}>
+              <FormattedMessage {...i18n.verifySubTitle} values={{method: method, phoneNumber: phoneNumber}}/>
             </Text>
 
             <View style={styles.codeRow}>
@@ -53,11 +51,7 @@ class UserVerifyComponent extends Component {
 
             <View style={styles.resendWrap}>
               {resendDelay ? (<Text style={styles.resendTxt}><FormattedMessage {...i18n.verifyResendCodeTimer}
-                values={{time: resendDelay}}/></Text>) :
-                (<Button accent={false} primary style={styles.resendBtnColor} onPress={() => {
-                  resendCode();
-                }}
-                text={intl.formatMessage(i18n.verifyResendCodeBtnTitle)}/>)}
+                values={{time: resendDelay}}/></Text>) : null}
               <Button accent={false} raised primary text={intl.formatMessage(i18n.verifyCodeBtnTitle)}
                 onPress={async () => {
                   try {
@@ -67,7 +61,11 @@ class UserVerifyComponent extends Component {
                   } finally {
                     this.form.loadingOff();
                   }
-                }}/>
+                }} style={styles.verifyBtn}/>
+              {!resendDelay ?
+                (<Button upperCase={false} style={styles.resendBtnColor} onPress={() => {
+                  resendCode();
+                }} text={intl.formatMessage(i18n.verifyResendCodeBtnTitle)}/>) : null}
             </View>
 
           </View>
