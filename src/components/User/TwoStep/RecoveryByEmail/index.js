@@ -4,18 +4,29 @@ import PropTypes from 'prop-types';
 import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
 import {View} from 'react-native';
 import Form from '../../../BaseUI/Form/index';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
+import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
 const uniqueId = _.uniqueId();
 
 class UserTwoStepRecoveryByEmailComponent extends Component {
+
+  static contextTypes = {
+    uiTheme: PropTypes.object.isRequired,
+  };
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserTwoStepRecoveryByEmail));
+  };
+
   render() {
     const {intl, formRules, resendToken, handleFormData, tokenError, emailPattern, goBack} = this.props;
+    const styles = this.getStyles();
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
@@ -46,18 +57,6 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
           </View>
 
           <View style={styles.btnWrap}>
-
-            <Button upperCase={false} accent={false} primary style={styles.resendBtnColor}
-              onPress={
-                async () => {
-                  try {
-                    this.form.loadingOn();
-                    await resendToken();
-                  } finally {
-                    this.form.loadingOff();
-                  }
-                }}
-              text={intl.formatMessage(i18n.twoStepRecoveryByEmailResendBtnTitle)}/>
             <Button raised primary text={intl.formatMessage(i18n.twoStepRecoveryByEmailSubmitFormBtnTitle)}
               onPress={async () => {
                 try {
@@ -68,6 +67,17 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
                   this.form.loadingOff();
                 }
               }}/>
+            <Button upperCase={false} accent={false} primary style={styles.resendBtn}
+              onPress={
+                async () => {
+                  try {
+                    this.form.loadingOn();
+                    await resendToken();
+                  } finally {
+                    this.form.loadingOff();
+                  }
+                }}
+              text={intl.formatMessage(i18n.twoStepRecoveryByEmailResendBtnTitle)}/>
           </View>
         </Form>
 

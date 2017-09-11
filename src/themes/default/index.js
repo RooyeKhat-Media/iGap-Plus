@@ -104,5 +104,14 @@ export default {
       layoutBackgroundColor: white,
       selectAvatarBorderColor: gray950,
     },
+    UserTwoStepForget: {
+      layoutBackgroundColor: white,
+    },
+    UserTwoStepRecoveryByEmail: {
+      layoutBackgroundColor: white,
+    },
+    UserTwoStepRecoveryByQuestion: {
+      layoutBackgroundColor: white,
+    },
   },
 };

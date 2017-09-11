@@ -4,18 +4,29 @@ import React, {Component} from 'react';
 import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
 import {Text, View} from 'react-native';
 import Form from '../../../BaseUI/Form/index';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
+import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
 const uniqueId = _.uniqueId();
 
 class UserTwoStepRecoveryByQuestionComponent extends Component {
+
+  static contextTypes = {
+    uiTheme: PropTypes.object.isRequired,
+  };
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserTwoStepRecoveryByQuestion));
+  };
+
   render() {
     const {intl, formRules, handleFormData, errorQuestion1, errorQuestion2, question1, question2, goBack} = this.props;
+    const styles = this.getStyles();
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
@@ -65,7 +76,7 @@ class UserTwoStepRecoveryByQuestionComponent extends Component {
             />
           </View>
 
-          <View style={styles.formGroup}>
+          <View>
             <Button raised primary text={intl.formatMessage(i18n.twoStepRecoveryByQuestionSubmitFormBtnTitle)}
               onPress={async () => {
                 try {

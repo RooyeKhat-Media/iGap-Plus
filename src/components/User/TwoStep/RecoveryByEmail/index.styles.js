@@ -1,36 +1,46 @@
-export default {
-  layout: {
-    backgroundColor: 'white',
-  },
-  panel: {
-    padding: 15,
-  },
-  divider: {
-    marginBottom: 15,
-    marginTop: 15,
-    borderBottomColor: '#eee',
-    borderBottomWidth: 1,
-  },
-  formGroup: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 15,
-  },
-  btnWrap: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
+import {uniqueId} from 'lodash';
 
-  resendBtnColor: {
-    text: {
-      fontSize: 12,
-      color: '#2196f3',
-      fontWeight: '100',
-    },
-  },
-  label: {
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-};
+const id = uniqueId();
+export default (UserTwoStepForget) => ([
+  id,
+  [
+    {
+      query: {},
+      style: {
+        layout: {
+          backgroundColor: UserTwoStepForget.layoutBackgroundColor,
+        },
+        panel: {
+          padding: 15,
+        },
+        divider: {
+          marginBottom: 15,
+          marginTop: 15,
+          borderBottomColor: '#eee',
+          borderBottomWidth: 1,
+        },
+        formGroup: {
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          marginBottom: 15,
+        },
+        btnWrap: {
+          marginTop: 10,
+        },
+        resendBtn: {
+          text: {
+            fontSize: 12,
+            fontWeight: '100',
+          },
+          container: {
+            marginTop: 10,
+            borderWidth: 0,
+          },
+        },
+        label: {
+          fontWeight: 'bold',
+          fontSize: 15,
+        },
+      },
+    }],
+]);
