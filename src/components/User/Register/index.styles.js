@@ -1,15 +1,16 @@
-import * as _ from 'lodash';
+import {uniqueId} from 'lodash';
 import {ORIENTATION_LANDSCAPE} from '../../../constants/screenBreakPoints';
 
-const id = _.uniqueId();
-export default [
+const id = uniqueId();
+
+export default (UserRegister) => ([
   id,
   [
     {
       query: {},
       style: {
         layout: {
-          backgroundColor: 'white',
+          backgroundColor: UserRegister.layoutBackgroundColor,
         },
         wrapper: {
           flex: 1,
@@ -25,7 +26,7 @@ export default [
             flex: 1,
           },
           touchable: {
-            backgroundColor: '#fff',
+            backgroundColor: UserRegister.changeLanguagePickerBackgrodColor,
             padding: 0,
             borderWidth: 0,
             justifyContent: 'center',
@@ -55,14 +56,15 @@ export default [
         headerTitle: {
           fontFamily: 'neuropolitical',
           fontSize: 30,
-          color: '#444',
+          color: UserRegister.headerTitleColor,
         },
         plusWrap: {
-          backgroundColor: '#aaa', height: 17, padding: 1, borderRadius: 2,
+          backgroundColor: UserRegister.plusWrapBackgroundColor,
+          height: 17, padding: 1, borderRadius: 2,
         },
         plusTitle: {
           fontSize: 25, fontWeight: 'bold',
-          color: '#fff',
+          color: UserRegister.plusTitleColor,
           lineHeight: 15,
         },
         topWrap: {},
@@ -89,7 +91,7 @@ export default [
           },
           help: {
             fontSize: 10,
-            color: '#afafaf',
+            color: UserRegister.helpColor,
           },
           error: {
             fontSize: 11,
@@ -102,23 +104,21 @@ export default [
         },
         help: {
           fontSize: 11,
-          color: '#aaa',
+          color: UserRegister.helpColor,
         },
         countryListItem: {
           container: {backgroundColor: 'transparent', paddingLeft: 0},
         },
         btnSubmit: {
           container: {
-            backgroundColor: '#3298ee',
             height: 43,
             elevation: 0,
           },
           text: {
-            fontWeight: 'bold', color: '#fff',
+            fontWeight: 'bold',
             fontSize: 13,
           },
         },
-
         privacyBtn: {
           container: {
             borderWidth: 0,
@@ -127,7 +127,7 @@ export default [
           },
           text: {
             fontSize: 10,
-            color: '#7d7d7d',
+            color: UserRegister.privacyBtnColor,
             fontWeight: '100',
           },
         },
@@ -142,17 +142,16 @@ export default [
           height: 20,
           width: 40,
           fontWeight: 'bold',
-          color: '#a2a2a2',
+          color: UserRegister.dividerTitleColor,
           fontSize: 12,
           textAlign: 'center',
-          backgroundColor: '#fff',
+          backgroundColor: UserRegister.dividerTitleBackgroundColor,
         },
         qrLoginBtn: {
           container: {
             borderWidth: 0,
           },
           text: {
-            color: '#3298ee',
             fontSize: 12,
           },
         },
@@ -181,4 +180,4 @@ export default [
       },
     },
   ],
-];
+]);

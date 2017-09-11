@@ -94,11 +94,7 @@ export default {
     description: 'Intro Page',
   },
 
-  registerToolbarTitle: {
-    id: 'UserRegister.toolbarTitle',
-    defaultMessage: 'UserRegister',
-    description: 'UserRegister Page',
-  },
+
   registerCountryPlaceHolder: {
     id: 'UserRegister.countryPlaceHolder',
     defaultMessage: 'Select Your Country ...',
@@ -122,16 +118,6 @@ export default {
   registerSubmitBtnTitle: {
     id: 'UserRegister.submitBtnTitle',
     defaultMessage: 'Log In',
-    description: 'UserRegister Page',
-  },
-  registerInfoTitle: {
-    id: 'UserRegister.infoTitle',
-    defaultMessage: 'Hello world',
-    description: 'UserRegister Page',
-  },
-  registerInfoContent: {
-    id: 'UserRegister.infoContent',
-    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     description: 'UserRegister Page',
   },
   registerChangeLanguagePlaceholder: {
@@ -211,16 +197,6 @@ export default {
     defaultMessage: 'We\'ve sent an {method, select,0{Sms} 1{iGap Message} 2{iGap Message and Sms}} with an activation code to your phone {phoneNumber}.',
     description: 'UserVerify Page',
   },
-  verifyInfoTitle: {
-    id: 'UserVerify.infoTitle',
-    defaultMessage: 'Hello world',
-    description: 'UserVerify Page',
-  },
-  verifyInfoContent: {
-    id: 'UserVerify.infoContent',
-    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description: 'UserVerify Page',
-  },
   verifyCodeTitle: {
     id: 'UserVerify.codeTitle',
     defaultMessage: 'Code',
@@ -285,16 +261,6 @@ export default {
     description: 'twoStepVerification Page',
   },
 
-  twoStepVerificationInfoTitle: {
-    id: 'twoStepVerification.infoTitle',
-    defaultMessage: 'Hello world',
-    description: 'twoStepVerification Page',
-  },
-  twoStepVerificationInfoContent: {
-    id: 'twoStepVerification.infoContent',
-    defaultMessage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    description: 'twoStepVerification Page',
-  },
 
   twoStepForgetTitle: {
     id: 'twoStepForget.toolbarTitle',

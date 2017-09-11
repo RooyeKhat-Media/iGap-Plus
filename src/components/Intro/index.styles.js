@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import {max, min, uniqueId} from 'lodash';
 import Device from '../../modules/Responsive/Device';
 
 import {
@@ -8,12 +8,12 @@ import {
   ORIENTATION_PORTRAIT,
 } from '../../constants/screenBreakPoints';
 
-const id = _.uniqueId();
+const id = uniqueId();
 const {width, height} = Device.dimensions.window;
-const min = _.min([width, height]);
-const max = _.max([width, height]);
-const svgSize = _.min([_.min([min, NORMAL_WIDTH]) - 120,
-  _.min([max, NORMAL_HEIGHT]) - 330]);
+const minSize = min([width, height]);
+const maxSize = max([width, height]);
+const svgSize = min([min([minSize, NORMAL_WIDTH]) - 120,
+  min([maxSize, NORMAL_HEIGHT]) - 330]);
 export default (Intro) => (
   [
     id,

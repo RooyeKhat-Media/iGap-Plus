@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import Picker from '../../BaseUI/Picker/index';
-import {Button, DialogModal, MCIcon, TextInput} from '../../BaseUI/index';
+import {Button, MCIcon, TextInput} from '../../BaseUI/index';
 import styleSheet from './index.styles';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
@@ -17,20 +17,22 @@ import LinerLog from '../../../assets/images/linerLogo';
 const uniqueId = _.uniqueId();
 
 class UserRegisterComponent extends React.Component {
-  get styles() {
-    return MemoizeResponsiveStyleSheet(styleSheet);
-  }
+  static contextTypes = {
+    uiTheme: PropTypes.object.isRequired,
+  };
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserRegister));
+  };
 
   render() {
+    const styles = this.getStyles();
     const {
       intl, countryList, formRules, formData, handleFormData,
       onChangeCallingCode, onSelectCountry, phoneNumberError,
       selectNewLocale, localesList, defaultLocale,
     } = this.props;
-    const {styles} = this;
 
     return (
-
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <View style={styles.wrapper}>
 
@@ -57,12 +59,6 @@ class UserRegisterComponent extends React.Component {
                 </View>
               </View>
             </View>
-
-            <DialogModal control={(dialog) => {
-              this.dialog = dialog;
-            }}
-            title={<FormattedMessage {...i18n.registerInfoTitle} />}
-            content={<FormattedMessage {...i18n.registerInfoContent} />}/>
 
           </View>
 
@@ -126,7 +122,7 @@ class UserRegisterComponent extends React.Component {
               <View style={styles.dividerLine}/>
             </View>
 
-            <Button upperCase={false} style={styles.qrLoginBtn}
+            <Button upperCase={false} primary style={styles.qrLoginBtn}
               text={intl.formatMessage(i18n.registerQrCodeLoginBtn)}
               icon={<MCIcon color="#3298ee" name="qrcode-scan" size={14}/>}/>
 
