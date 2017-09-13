@@ -17,12 +17,12 @@ export default (UserRegister) => ([
           flexDirection: 'column',
         },
         changeLanguageWrap: {
-          padding: 5, flexDirection: 'row', justifyContent: 'center',
+          flexDirection: 'row', justifyContent: 'center',
           zIndex: 10,
         },
         changeLanguagePicker: {
           wrapper: {
-            height: 20,
+            height: 30,
             flex: 1,
           },
           touchable: {
@@ -82,7 +82,7 @@ export default (UserRegister) => ([
           paddingRight: 5,
           paddingLeft: 5,
           marginRight: 5,
-          width: 50,
+          width: 65,
           textAlign: 'center',
         },
         phoneNumberInput: {
@@ -95,6 +95,7 @@ export default (UserRegister) => ([
           },
           error: {
             fontSize: 11,
+            height: 20,
           },
         },
         picker: {},
