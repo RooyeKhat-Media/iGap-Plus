@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import TextInput from './index.js';
 
 export default (props) => {
@@ -7,7 +8,7 @@ export default (props) => {
     ...{
       style: {
         height: 30,
-        borderWidth:0,
+        borderWidth:1,
         ...(props.style || {}),
       },
     },

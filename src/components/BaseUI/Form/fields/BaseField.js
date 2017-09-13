@@ -12,7 +12,6 @@ class BaseField extends Component {
       value: defaultValue,
       error: '',
     };
-    this.setValue = this.setValue.bind(this);
     control({
       setValue: this.setValue,
       getValue: this.getValue,
