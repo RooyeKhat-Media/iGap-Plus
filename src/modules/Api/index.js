@@ -128,7 +128,7 @@ export default class Api {
       const errorResponse = new ErrorResponse();
       errorResponse.setMajorCode(ERROR_TIMEOUT);
       errorResponse.setMinorCode(3);
-      wrapper.reject(new ServerError(errorResponse));
+      wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
     }
   }
 
@@ -154,7 +154,7 @@ export default class Api {
       const errorResponse = new ErrorResponse();
       errorResponse.setMajorCode(ERROR_TIMEOUT);
       errorResponse.setMinorCode(2);
-      wrapper.reject(new ServerError(errorResponse));
+      wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
     });
   }
 
@@ -175,7 +175,7 @@ export default class Api {
           const errorResponse = new ErrorResponse();
           errorResponse.setMajorCode(ERROR_TIMEOUT);
           errorResponse.setMinorCode(4);
-          wrapper.reject(new ServerError(errorResponse));
+          wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
         }
       });
     } finally {

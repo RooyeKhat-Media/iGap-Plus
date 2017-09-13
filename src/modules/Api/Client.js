@@ -166,7 +166,7 @@ export default class Client {
 
       let promise = new Promise((resolve, reject) => {
         if (responseActionId === 0) {
-          const reason = new ServerError(responseProto);
+          const reason = new ServerError(responseProto, wrapper.actionId);
           try {
             reject(reason);
           } finally {

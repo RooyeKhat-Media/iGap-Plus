@@ -54,7 +54,7 @@ export default class RequestWrapper {
       const errorResponse = new ErrorResponse();
       errorResponse.setMajorCode(ERROR_TIMEOUT);
       errorResponse.setMinorCode(1);
-      this.reject(new ServerError(errorResponse));
+      this.reject(new ServerError(errorResponse, this.actionId));
     }, getTimeout(this.actionId));
   }
 
