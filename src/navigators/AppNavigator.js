@@ -18,6 +18,7 @@ import ContactListScreen from '../screens/Contact/ContactListScreen';
 
 import {
   CONTACT_LIST_SCREEN,
+  CONTACT_NEW_SCREEN,
   INITIAL_SCREEN,
   INTRO_SCREEN,
   MAIN_SCREEN,
@@ -34,6 +35,7 @@ import {
   USER_TWO_STEP_VERIFICATION_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
+import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 
 export function goInitialScreen() {
   navigate(INITIAL_SCREEN);
@@ -114,10 +116,15 @@ export function goContactList() {
   navigate(CONTACT_LIST_SCREEN);
 }
 
+export function goContactNew() {
+  navigate(CONTACT_NEW_SCREEN);
+}
+
 
 const AppNavigator = StackNavigator({
   [MAIN_SCREEN]: {screen: MainScreen},
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
+  [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
 
   [INTRO_SCREEN]: {screen: IntroScreen},
   [USER_REGISTER_SCREEN]: {screen: UserRegister},

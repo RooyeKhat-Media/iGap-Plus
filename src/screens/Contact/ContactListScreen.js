@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {USER_CONTACTS_GET_LIST} from '../../constants/methods/index';
 import {UserContactsGetList} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
+import {goContactNew} from '../../navigators/AppNavigator';
 
 class ContactListScreen extends Component {
   state = {
@@ -23,7 +24,8 @@ class ContactListScreen extends Component {
     const {contactList} = this.props;
     const {loading} = this.state;
     return (
-      <ContactListComponent goBack={this.props.navigation.goBack} loading={loading} contactList={contactList}/>
+      <ContactListComponent goBack={this.props.navigation.goBack} goContactNew={goContactNew} loading={loading}
+        contactList={contactList}/>
     );
   }
 }

@@ -7,9 +7,7 @@ export default {
     color: '#888',
   },
   inputStyle: {
-    container: {
-      flex: 1,
-    },
+    container: {},
     help: {
       fontSize: 11,
       color: '#aaa',

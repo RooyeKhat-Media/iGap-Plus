@@ -424,9 +424,34 @@ export default {
     description: 'Main Screen Drawer',
   },
 
-  contactListTitle: {
-    id: 'contactList.Title',
+  contactListTitleToolbar: {
+    id: 'contactList.titleToolbar',
     defaultMessage: 'Contact List',
     description: 'Contact List Screen',
+  },
+  contactFormTitleToolbar: {
+    id: 'contactForm.titleToolbar',
+    defaultMessage: 'New Contact',
+    description: 'Contact New Screen',
+  },
+  contactFormFirstNameLabel: {
+    id: 'contactForm.firstNameLabel',
+    defaultMessage: 'First Name',
+    description: 'Contact New Screen',
+  },
+  contactFormLastNameLabel: {
+    id: 'contactForm.lastNameLabel',
+    defaultMessage: 'Last Name',
+    description: 'Contact New Screen',
+  },
+  contactFormPhoneLabel: {
+    id: 'contactForm.phoneLabel',
+    defaultMessage: 'Phone Number',
+    description: 'Contact New Screen',
+  },
+  contactFormPhoneHelp: {
+    id: 'contactForm.phoneHelp',
+    defaultMessage: 'Ex:(+98) 9123456789',
+    description: 'Contact New Screen',
   },
 };
