@@ -1,5 +1,15 @@
 import {ActivityIndicator} from 'react-native';
-import {Avatar, Button, Dialog, DialogDefaultActions, Drawer, Icon, ListItem, Toolbar} from 'react-native-material-ui';
+import {
+  Avatar,
+  BottomNavigation,
+  Button,
+  Dialog,
+  DialogDefaultActions,
+  Drawer,
+  Icon,
+  ListItem,
+  Toolbar,
+} from 'react-native-material-ui';
 import FlatList from './FlatList';
 import Modal from './Modal';
 import AppModal from './AppModal';
@@ -25,4 +35,5 @@ export {
   TextInput,
   Drawer,
   MCIcon,
+  BottomNavigation,
 };

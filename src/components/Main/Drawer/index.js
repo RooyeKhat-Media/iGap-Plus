@@ -1,11 +1,16 @@
 import React from 'react';
 import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {Avatar, Drawer} from '../BaseUI';
-import {goUserTwoStepRecoveryByEmailScreen} from '../../navigators/AppNavigator';
+import {Avatar, Drawer} from '../../BaseUI/index';
+import i18n from '../../../i18n/index';
 
-class MainDrawer extends React.Component {
+class MainDrawerComponent extends React.Component {
   render() {
+    const {
+      intl,
+      goContacts,
+    } = this.props;
+
     return (
       <View style={{flex: 1}}>
         <Drawer>
@@ -30,19 +35,10 @@ class MainDrawer extends React.Component {
             divider
             items={[
               {
-                icon: 'bookmark-border', value: 'Notifications', onPress: () => {
-                  goUserTwoStepRecoveryByEmailScreen();
+                icon: 'people', value: intl.formatMessage(i18n.mainDrawerContacts), onPress: () => {
+                  goContacts();
                 },
               },
-              {icon: 'today', value: 'Calendar'},
-              {icon: 'people', value: 'Clients'},
-            ]}
-          />
-          <Drawer.Section
-            title="Personal"
-            items={[
-              {icon: 'info', value: 'Info'},
-              {icon: 'settings', value: 'Settings'},
             ]}
           />
         </Drawer>
@@ -51,7 +47,7 @@ class MainDrawer extends React.Component {
   }
 }
 
-MainDrawer.propTypes = {
+MainDrawerComponent.propTypes = {
   intl: intlShape.isRequired,
 };
-export default injectIntl(MainDrawer);
+export default injectIntl(MainDrawerComponent);

@@ -14,11 +14,18 @@ import MainScreen from '../screens/MainScreen';
 import InitialScreen from '../screens/InitialScreen';
 import UserTwoStepRecoveryByEmailScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByEmailScreen';
 import UserTwoStepRecoveryByQuestionScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByQuestionScreen';
+import ContactListScreen from '../screens/Contact/ContactListScreen';
 
 import {
+  CONTACT_LIST_SCREEN,
   INITIAL_SCREEN,
   INTRO_SCREEN,
   MAIN_SCREEN,
+  NEW_SCREEN,
+  PROFILE_SCREEN,
+  PUBLIC_SCREEN,
+  ROOMS_SCREEN,
+  SEARCH_SCREEN,
   USER_NEW_PROFILE_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_FORGET_SCREEN,
@@ -27,22 +34,6 @@ import {
   USER_TWO_STEP_VERIFICATION_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
-
-const AppNavigator = StackNavigator({
-  [MAIN_SCREEN]: {screen: MainScreen},
-
-  [INTRO_SCREEN]: {screen: IntroScreen},
-  [USER_REGISTER_SCREEN]: {screen: UserRegister},
-  [USER_VERIFY_SCREEN]: {screen: UserVerify},
-  [USER_NEW_PROFILE_SCREEN]: {screen: UserNewProfile},
-  [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
-  [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
-  [INITIAL_SCREEN]: {screen: InitialScreen},
-  [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},
-  [USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN]: {screen: UserTwoStepRecoveryByQuestionScreen},
-});
-
-export default AppNavigator;
 
 export function goInitialScreen() {
   navigate(INITIAL_SCREEN);
@@ -97,3 +88,46 @@ export function goUserTwoStepRecoveryByEmailScreen() {
 export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {
   navigate(USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN, {needLogin});
 }
+
+
+export function goRooms() {
+  navigate(ROOMS_SCREEN);
+}
+
+export function goSearch() {
+  navigate(SEARCH_SCREEN);
+}
+
+export function goPublic() {
+  navigate(PUBLIC_SCREEN);
+}
+
+export function goNew() {
+  navigate(NEW_SCREEN);
+}
+
+export function goProfile() {
+  navigate(PROFILE_SCREEN);
+}
+
+export function goContactList() {
+  navigate(CONTACT_LIST_SCREEN);
+}
+
+
+const AppNavigator = StackNavigator({
+  [MAIN_SCREEN]: {screen: MainScreen},
+  [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
+
+  [INTRO_SCREEN]: {screen: IntroScreen},
+  [USER_REGISTER_SCREEN]: {screen: UserRegister},
+  [USER_VERIFY_SCREEN]: {screen: UserVerify},
+  [USER_NEW_PROFILE_SCREEN]: {screen: UserNewProfile},
+  [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
+  [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
+  [INITIAL_SCREEN]: {screen: InitialScreen},
+  [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},
+  [USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN]: {screen: UserTwoStepRecoveryByQuestionScreen},
+});
+
+export default AppNavigator;

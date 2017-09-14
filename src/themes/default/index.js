@@ -63,6 +63,28 @@ export default {
   buttonPrimary: {
     backgroundColor: 'red',
   },
+  bottomNavigation: {
+    container: {
+      elevation: 0,
+      borderTopWidth: 1,
+      borderTopColor: gray400,
+    },
+  },
+  bottomNavigationAction: {
+    container: {
+      minWidth: 60,
+      maxWidth: 130,
+    },
+    label: {
+      fontSize: 11,
+    },
+    labelActive: {
+      fontSize: 11,
+    },
+    containerActive: {
+      paddingTop: 8,
+    },
+  },
 
   pages: {
     Intro: {
