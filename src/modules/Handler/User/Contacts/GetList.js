@@ -1,4 +1,6 @@
 import Base from '../../Base';
+import store from '../../../../configureStore';
+import {getList} from '../../../../actions/methods/user/contacts/getList';
 
 /**
  * @property {ProtoUserContactsGetList} _request
@@ -6,6 +8,6 @@ import Base from '../../Base';
  */
 export default class GetList extends Base {
   handle() {
-    console.error('GetList', 'Not implemented yet', this);
+    store.dispatch(getList(this._response.getRegisteredUserList()));
   }
 }

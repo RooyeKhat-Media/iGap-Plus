@@ -86,6 +86,13 @@ export default {
     },
   },
 
+  listItem: {
+    primaryText: {
+      textAlign: 'left',
+    },
+  },
+
+
   pages: {
     Intro: {
       wrapperBackgroundColor: gray200,
