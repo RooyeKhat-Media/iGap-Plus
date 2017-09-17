@@ -85,10 +85,14 @@ class ContactNewScreen extends Component {
   handleFormData = async (formData, setError) => {
     const {callingCode} = this.state;
     try {
-      const contact = new UserContactsImport.prototype.Contact();
+      /**
+       * @type ProtoUserContactsImport_Contact
+       */
+      const contact = new UserContactsImport.Contact();
       contact.setFirstName(formData.firstName);
       contact.setLastName(formData.lastName);
       contact.setPhone(callingCode + formData.phone);
+
       const userContactImport = new UserContactsImport();
       userContactImport.setContactsList([contact]);
       userContactImport.setForce(true);
