@@ -37,7 +37,7 @@ class Picker extends React.Component {
     return (
       <View style={[styles.wrapper, style.wrapper]}>
         <TouchableOpacity onPress={() => {
-          this.modal.open();
+          this.modal.open(true);
         }} style={[styles.touchable, style.touchable]}>
           <View style={[styles.touchableView, style.touchableView]}>
             <View style={[styles.selectBox, style.selectBox]}>
@@ -70,7 +70,7 @@ class SelectListModal extends React.Component {
     const {onSelectItem, searchable, headerTitle} = this.props;
     const {searchText} = this.state;
     const options = this.props.options.filter(function(option) {
-      return searchText == '' || option.filter.search(searchText.toLowerCase()) >= 0;
+      return searchText === '' || option.filter.search(searchText.toLowerCase()) >= 0;
     });
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.dWrapper}

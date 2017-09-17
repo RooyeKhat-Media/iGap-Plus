@@ -14,9 +14,9 @@ class Modal extends Component {
     });
   }
 
-  open = () => {
+  open = (closeable = true) => {
     const {openModal, children} = this.props;
-    openModal(<View style={{flex: 1}}>{children}</View>);
+    openModal(<View style={{flex: 1}}>{children}</View>, closeable);
   };
   close = () => {
     const {closeModal} = this.props;
@@ -36,8 +36,8 @@ Modal.propTypes = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openModal: content => {
-      dispatch(openModal(content));
+    openModal: (content, closeable) => {
+      dispatch(openModal(content, closeable));
     },
     closeModal: () => {
       dispatch(closeModal());
