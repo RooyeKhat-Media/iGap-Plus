@@ -20,8 +20,6 @@ export default (UserTwoStepForget) => ([
           borderBottomWidth: 1,
         },
         formGroup: {
-          flexDirection: 'row',
-          alignItems: 'flex-start',
           marginBottom: 15,
         },
         btnWrap: {

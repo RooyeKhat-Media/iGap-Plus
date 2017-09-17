@@ -33,10 +33,7 @@ export default (UserVerify) => ([
         lineHeight: 22,
         marginBottom: 15,
       },
-      codeRow: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-      },
+      codeRow: {},
       verifyBtn: {
         container: {marginTop: 15},
       },

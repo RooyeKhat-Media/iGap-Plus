@@ -32,8 +32,6 @@ export default (Verification) => ([
           marginBottom: 20,
         },
         inputRow: {
-          flexDirection: 'row',
-          alignItems: 'flex-start',
           marginBottom: 10,
         },
         btnWrap: {},

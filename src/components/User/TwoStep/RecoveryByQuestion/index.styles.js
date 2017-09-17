@@ -20,8 +20,6 @@ export default (UserTwoStepRecoveryByQuestion) => ([
           borderBottomWidth: 1,
         },
         formGroup: {
-          flexDirection: 'row',
-          alignItems: 'flex-start',
           marginBottom: 15,
         },
         label: {
