@@ -5,7 +5,7 @@
 import store from '../configureStore';
 import {NavigationAction, NavigationParams} from 'react-navigation/src/TypeDefinition';
 import {NavigationActions} from 'react-navigation';
-import {navigatorGo} from '../actions/navigator';
+import {navigatorGo, navigatorReset} from '../actions/navigator';
 
 
 export function navigate(routeName: string,
@@ -19,7 +19,7 @@ export function navigate(routeName: string,
 }
 
 export function resetNavigation(routeName: string) {
-  store.dispatch(NavigationActions.reset(
+  store.dispatch(navigatorReset(
     {
       index: 0,
       actions: [NavigationActions.navigate({routeName})],
