@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {Avatar, Drawer} from '../../BaseUI/index';
-import i18n from '../../../i18n/index';
+import {Avatar, Drawer} from '../BaseUI/index';
+import i18n from '../../i18n/index';
 
 class MainDrawerComponent extends React.Component {
   render() {
@@ -16,10 +16,9 @@ class MainDrawerComponent extends React.Component {
         <Drawer>
           <Drawer.Header>
             <Drawer.Header.Account
-              avatar={<Avatar text={'A'}/>}
+              avatar={<Avatar key="a" text={'A'}/>}
               accounts={[
-                {avatar: <Avatar text="B"/>},
-                {avatar: <Avatar text="C"/>},
+                {key: 1, avatar: <Avatar key="b" text="B"/>},
               ]}
               footer={{
                 dense: true,

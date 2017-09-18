@@ -1,7 +1,7 @@
 import React from 'react';
 import {injectIntl, intlShape} from 'react-intl';
-import {BottomNavigation} from '../../BaseUI/index';
-import i18n from '../../../i18n/index';
+import {BottomNavigation} from '../BaseUI/index';
+import i18n from '../../i18n/index';
 
 const States = ['home', 'search', 'new', 'public', 'profile'];
 
