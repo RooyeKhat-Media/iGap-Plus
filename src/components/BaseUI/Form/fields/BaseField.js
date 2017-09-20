@@ -41,11 +41,17 @@ class BaseField extends Component {
     });
 
     return promise.then(() => {
-      this.setState({error: ''});
+      this.setError();
       return Promise.resolve();
     }, (error) => {
-      this.setState({error: this.getErrorMessage(error)});
+      this.setError(error);
       return Promise.reject(error);
+    });
+  };
+
+  setError = (errorObject) => {
+    this.setState({
+      error: errorObject ? this.getErrorMessage(errorObject) : '',
     });
   };
 
@@ -57,12 +63,6 @@ class BaseField extends Component {
     error.values.field = label;
     return (<FormattedMessage {...error} />);
   };
-
-  setError = (error) => {
-    this.setState({
-      error: error,
-    });
-  }
 
   getContent() {
     return null;
