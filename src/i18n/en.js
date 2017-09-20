@@ -1,4 +1,5 @@
 import country from '../constants/country/en';
+import apiErrors from '../constants/apiErrors/en';
 
 export default {
   iGap: {
@@ -12,6 +13,7 @@ export default {
     description: 'iGap+',
   },
   ...country,
+  ...apiErrors,
 
   introLogoTitle: {
     id: 'Intro.logoTitle',

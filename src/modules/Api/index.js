@@ -18,6 +18,7 @@ import {ErrorResponse} from '../Proto/index';
 import {ERROR_TIMEOUT} from './errors/index';
 import ServerError from '../Error/ServerError';
 import 'es6-symbol/implement';
+import {mapReact} from '../Error/index';
 
 const apiSingleton = Symbol();
 const apiSingletonEnforcer = Symbol();
@@ -82,6 +83,10 @@ export default class Api {
       throw new Error(`Invalid actionId #${actionId}`);
     }
 
+    if (!proto) {
+      throw new Error(`Proto is required for actionId #${actionId}`);
+    }
+
     if (!priority) {
       priority = getPriority(actionId);
     }
@@ -101,6 +106,71 @@ export default class Api {
         handlerPrecedence,
         durable
       );
+      Api.instance.__schedule(wrapper);
+    });
+  }
+
+  /**
+   * @callback errorMapReactionCallback
+   * @param {number|string} id Element id
+   * @param {{id:string,defaultMessage:string,description:string,values:object}} error
+   */
+
+  /**
+   * @param {number} actionId
+   * @param {object} proto
+   * @param {errorMapReactionCallback} errorMapReactionCallback
+   * @param {object.<string,number|string>} errorMapTable Table that map errorId to elementId
+   * @param {number|null} priority
+   * @param {enum} handlerPrecedence
+   * @param {bool|null} durable
+   * @returns {Promise}
+   */
+  static invokeMapError(actionId,
+    proto,
+    errorMapReactionCallback,
+    errorMapTable,
+    priority = null,
+    handlerPrecedence = HANDLER_PRECEDENCE.BEFORE,
+    durable = null) {
+    if (30000 < actionId) {
+      throw new Error(`Invalid actionId #${actionId}`);
+    }
+
+    if (!proto) {
+      throw new Error(`Proto is required for actionId #${actionId}`);
+    }
+
+    if (!errorMapReactionCallback) {
+      throw new Error(`errorMapReactionCallback is required for actionId #${actionId}`);
+    }
+
+    if (!errorMapTable) {
+      throw new Error(`errorMapTable is required for actionId #${actionId}`);
+    }
+
+    if (!priority) {
+      priority = getPriority(actionId);
+    }
+
+    if (durable == null) {
+      durable = getDurability(actionId);
+    }
+
+    return new Promise((resolve, reject) => {
+      const wrapper = new RequestWrapper(
+        resolve,
+        reject,
+        Api.instance.__done.bind(Api.instance),
+        actionId,
+        proto,
+        priority,
+        handlerPrecedence,
+        durable
+      );
+
+      wrapper.errorReactionFunction = mapReact(errorMapTable, errorMapReactionCallback);
+
       Api.instance.__schedule(wrapper);
     });
   }
@@ -204,7 +274,7 @@ export default class Api {
           this._run(wrapper);
         } else {
           if (0 < wrapper.priority) {
-            wrapper.priority = parseInt(wrapper.priority / 2);
+            wrapper.priority = parseInt(wrapper.priority / 2, 10);
           } else if (wrapper.priority === 0) {
             wrapper.priority = -1;
           } else {

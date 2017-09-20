@@ -1,16 +1,15 @@
 import Base from './Base';
-import {goUserTwoStepVerificationScreen} from '../../navigators/AppNavigator';
+import {errorId} from '../Error/index';
 
 /**
  * @property {ProtoErrorResponse} _response
  */
 export default class Error extends Base {
   handle() {
-    console.log('Error', this._response.getMajorCode(), this._response.getMinorCode());
-    switch (this._response.getMajorCode()) {
-      case 184:
-        goUserTwoStepVerificationScreen();
-        break;
-    }
+    console.log(
+      'ErrorHandler',
+      errorId(this._response.getMajorCode(), this._response.getMinorCode()),
+      this._response
+    );
   }
 }

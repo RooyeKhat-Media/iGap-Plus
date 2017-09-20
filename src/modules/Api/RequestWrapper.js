@@ -6,9 +6,15 @@ import {ERROR_TIMEOUT} from './errors';
 import getTimeout from '../../constants/methods/timeout';
 import ServerError from '../Error/ServerError';
 import {ErrorResponse} from '../Proto/index';
+import {autoReact} from '../Error/index';
 
 export default class RequestWrapper {
   _timeout;
+
+  /**
+   * @type {errorReactionFunction}
+   */
+  _errorReactionFunction = autoReact;
 
   constructor(resolve, reject, onDone, actionId, request, priority, handlerPrecedence, durable) {
     this._resolve = resolve;
@@ -45,6 +51,20 @@ export default class RequestWrapper {
     return this._durable;
   }
 
+  /**
+   * @return {errorReactionFunction}
+   */
+  get errorReactionFunction() {
+    return this._errorReactionFunction;
+  }
+
+  /**
+   * @param {errorReactionFunction} value
+   */
+  set errorReactionFunction(value) {
+    this._errorReactionFunction = value;
+  }
+
   startTimeout() {
     if (this._timeout) {
       throw new Error('Cannot start timeout multiple times');
@@ -68,7 +88,13 @@ export default class RequestWrapper {
 
   reject(reason) {
     try {
-      this._reject(reason);
+      try {
+        this._reject(reason);
+      } finally {
+        if (reason instanceof ServerError) {
+          this._errorReactionFunction(reason.errorResponse, this);
+        }
+      }
     } finally {
       this._done();
     }
