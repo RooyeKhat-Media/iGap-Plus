@@ -57,7 +57,7 @@ class UserVerifyScreen extends Component {
 
     const userVerify = new UserVerify();
     userVerify.setUsername(username);
-    userVerify.setCode(parseInt(verifyCode));
+    userVerify.setCode(parseInt(verifyCode, 10));
 
     try {
       const response = await Api.invoke(USER_VERIFY, userVerify);
@@ -79,7 +79,7 @@ class UserVerifyScreen extends Component {
     const {resendParams} = this.props.navigation.state.params;
     try {
       const userRegister = new UserRegister();
-      userRegister.setPhoneNumber(parseInt(resendParams.phoneNumber));
+      userRegister.setPhoneNumber(parseInt(resendParams.phoneNumber, 10));
       userRegister.setCountryCode(resendParams.countryCode);
       const response = await Api.invoke(USER_REGISTER, userRegister);
       this.setState({

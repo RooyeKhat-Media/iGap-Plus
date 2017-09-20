@@ -113,7 +113,7 @@ class UserRegisterScreen extends Component {
       }
 
       const userRegister = new UserRegister();
-      userRegister.setPhoneNumber(parseInt(data.phoneNumber));
+      userRegister.setPhoneNumber(parseInt(data.phoneNumber, 10));
       userRegister.setCountryCode(data.countryCode);
       const response = await Api.invoke(USER_REGISTER, userRegister);
 
