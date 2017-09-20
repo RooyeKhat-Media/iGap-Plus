@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
-import linerLogo from '../../../assets/images/linerLogo';
+import LinerLogo from '../../../assets/images/linerLogo';
 
 const uniqueId = _.uniqueId();
 
@@ -50,7 +50,7 @@ class UserRegisterComponent extends React.Component {
 
               <View style={styles.headerWrapper}>
                 <View style={styles.svgWrap}>
-                  <linerLogo style={styles.svg}/>
+                  <LinerLogo style={styles.svg}/>
                 </View>
 
                 {(OS === 'android' || OS === 'ios') ?
