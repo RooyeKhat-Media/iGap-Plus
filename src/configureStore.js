@@ -6,6 +6,7 @@ import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
+import {middleware as FileManagerMiddleware} from './modules/FileManager';
 
 function configureStore(preloadedState) {
   return createStore(
@@ -13,7 +14,8 @@ function configureStore(preloadedState) {
     preloadedState,
     applyMiddleware(
       thunkMiddleware,
-      apiMiddleware
+      apiMiddleware,
+      FileManagerMiddleware,
     )
   );
 }

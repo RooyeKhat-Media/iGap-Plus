@@ -328,7 +328,7 @@ export default class Client {
     let decrypted = '';
     do {
       decrypted += decipher.output.getBytes();
-      const buf = forge.util.createBuffer(arrayBufferToString(encryptedBytes.slice(index, index + chunkSize)));
+      const buf = forge.util.createBuffer(encryptedBytes.slice(index, index + chunkSize));
       decipher.update(buf);
       index += chunkSize;
     } while (index < length);
