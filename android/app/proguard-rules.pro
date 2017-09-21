@@ -62,6 +62,10 @@
 -keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
 
+-keep class _okhttp3.** { *; }
+-keep interface _okhttp3.** { *; }
+-dontwarn _okhttp3.**
+
 # okio
 
 -keep class sun.misc.Unsafe { *; }

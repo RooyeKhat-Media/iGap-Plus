@@ -4,6 +4,7 @@
 
 'use strict';
 
+import WebSocket from 'react-native-web-socket';
 import {sleep} from '../../utils/core';
 import {WEBSOCKET_ENDPOINT, WEBSOCKET_RECONNECT_INTERVAL_SEC} from '../../constants/configs';
 import protoTable from '../Proto';
@@ -239,7 +240,7 @@ export default class Client {
         pack = this._encrypt(pack.buffer);
       }
 
-      this._socket.send(pack);// TODO [Amerehie] - 7/24/2017 4:27 PM - check time takes
+      this._socket.send(pack, !this.isSecure);// TODO [Amerehie] - 7/24/2017 4:27 PM - check time takes
     } finally {
       wrapper.startTimeout();
     }
@@ -296,7 +297,7 @@ export default class Client {
     let encrypted = '';
     do {
       encrypted += cipher.output.getBytes();
-      const buf = forge.util.createBuffer(data.slice(index, chunkSize));
+      const buf = forge.util.createBuffer(data.slice(index, index + chunkSize));
       cipher.update(buf);
       index += chunkSize;
     } while (index < length);
@@ -327,7 +328,7 @@ export default class Client {
     let decrypted = '';
     do {
       decrypted += decipher.output.getBytes();
-      const buf = forge.util.createBuffer(arrayBufferToString(encryptedBytes.slice(index, chunkSize)));
+      const buf = forge.util.createBuffer(arrayBufferToString(encryptedBytes.slice(index, index + chunkSize)));
       decipher.update(buf);
       index += chunkSize;
     } while (index < length);

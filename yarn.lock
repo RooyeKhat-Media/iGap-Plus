@@ -5238,6 +5238,9 @@ react-native-vector-icons@^4.3.0:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
+"react-native-web-socket@file:./native/modules/WebSocket":
+  version "1.0.0"
+
 react-native-windows@0.47.0-rc.5:
   version "0.47.0-rc.5"
   resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.47.0-rc.5.tgz#fb76b0b863e9eee2b2a1de511cb229c95e1df505"

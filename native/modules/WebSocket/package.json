@@ -1,0 +1,19 @@
+
+{
+  "name": "react-native-web-socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "",
+  "license": "",
+  "peerDependencies": {
+    "react-native": "0.47.2",
+    "react-native-windows": "0.47.0-rc.5"
+  }
+}
