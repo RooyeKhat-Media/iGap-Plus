@@ -1,5 +1,6 @@
 using ReactNative;
 using ReactNative.Modules.Core;
+using iGapPlus.RNFileSystem;
 using iGapPlus.RNWebSocket;
 using ReactNative.Shell;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace iGapPlus
                 return new List<IReactPackage>
                 {
                     new MainReactPackage(),
+                    new RNFileSystemPackage(),
                     new RNWebSocketPackage(),
                 };
             }

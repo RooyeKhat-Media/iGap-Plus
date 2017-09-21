@@ -61,6 +61,7 @@
 		75679F1F912F4B15BFC249B1 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3227A2F6B9AE4303998C3A03 /* libRNSVG.a */; };
 		12EAF23682DB4D8BBC39C045 /* neuropolitical.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33B661601FD746868A1D76FA /* neuropolitical.ttf */; };
 		22065480FC0F44CFA383D62F /* libRNWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DA484D3EE44E008B90C43B /* libRNWebSocket.a */; };
+		D4AB0E374FE743B09ED8C5B3 /* libRNFileSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD287221301D42F1A651E0BC /* libRNFileSystem.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +310,8 @@
 		33B661601FD746868A1D76FA /* neuropolitical.ttf */ = {isa = PBXFileReference; name = "neuropolitical.ttf"; path = "../src/assets/fonts/neuropolitical/neuropolitical.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		148299093F464E1D919B327D /* RNWebSocket.xcodeproj */ = {isa = PBXFileReference; name = "RNWebSocket.xcodeproj"; path = "../node_modules/react-native-web-socket/ios/RNWebSocket.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F6DA484D3EE44E008B90C43B /* libRNWebSocket.a */ = {isa = PBXFileReference; name = "libRNWebSocket.a"; path = "libRNWebSocket.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		45A7E18816A14060B0846402 /* RNFileSystem.xcodeproj */ = {isa = PBXFileReference; name = "RNFileSystem.xcodeproj"; path = "../node_modules/react-native-file-system/ios/RNFileSystem.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FD287221301D42F1A651E0BC /* libRNFileSystem.a */ = {isa = PBXFileReference; name = "libRNFileSystem.a"; path = "libRNFileSystem.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +341,7 @@
 				AA1DE048FF864C139202DC08 /* libRNVectorIcons.a in Frameworks */,
 				75679F1F912F4B15BFC249B1 /* libRNSVG.a in Frameworks */,
 				22065480FC0F44CFA383D62F /* libRNWebSocket.a in Frameworks */,
+				D4AB0E374FE743B09ED8C5B3 /* libRNFileSystem.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +511,7 @@
 				A108D638E4FC4C03A7DEF805 /* RNVectorIcons.xcodeproj */,
 				7F2FE85D3F9744208C1815C6 /* RNSVG.xcodeproj */,
 				148299093F464E1D919B327D /* RNWebSocket.xcodeproj */,
+				45A7E18816A14060B0846402 /* RNFileSystem.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1092,12 +1097,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-web-socket\ios",
+					"$(SRCROOT)\..\node_modules\react-native-file-system\ios",
 				);
 			};
 			name = Debug;
@@ -1121,12 +1128,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-web-socket\ios",
+					"$(SRCROOT)\..\node_modules\react-native-file-system\ios",
 				);
 			};
 			name = Release;
@@ -1151,6 +1160,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-web-socket\ios",
+					"$(SRCROOT)\..\node_modules\react-native-file-system\ios",
 				);
 			};
 			name = Debug;
@@ -1174,6 +1184,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-web-socket\ios",
+					"$(SRCROOT)\..\node_modules\react-native-file-system\ios",
 				);
 			};
 			name = Release;
@@ -1206,12 +1217,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-web-socket\ios",
+					"$(SRCROOT)\..\node_modules\react-native-file-system\ios",
 				);
 			};
 			name = Debug;
@@ -1244,12 +1257,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-web-socket\ios",
+					"$(SRCROOT)\..\node_modules\react-native-file-system\ios",
 				);
 			};
 			name = Release;
@@ -1277,6 +1292,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1301,6 +1317,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

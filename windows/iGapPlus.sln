@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChakraBridge", "..\node_mod
 EndProject
 Project("{CDEC2FB2-0EF4-57DE-7208-A9AE9F1D3938}") = "C:\projects\iGapPlus\node_modules\react-native-web-socket\windows\RNWebSocket\RNWebSocket", "..\node_modules\react-native-web-socket\windows\RNWebSocket\RNWebSocket.csproj", "{5B6678E1-9585-DF62-8F60-CF302ACAA949}"
 EndProject
+Project("{692EC2B5-6988-21D1-637A-32FF91439661}") = "C:\projects\iGapPlus\node_modules\react-native-file-system\windows\RNFileSystem\RNFileSystem", "..\node_modules\react-native-file-system\windows\RNFileSystem\RNFileSystem.csproj", "{DD8DF128-0930-E258-374D-3DEB012D675A}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\ReactWindows\ReactNative.Shared\ReactNative.Shared.projitems*{c7673ad5-e3aa-468c-a5fd-fa38154e205c}*SharedItemsImports = 4

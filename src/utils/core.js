@@ -38,3 +38,19 @@ export function randomString(length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWX
   }
   return str;
 }
+
+/**
+ * Strip whitespace (or other characters) from the end of a string
+ * @param {string} str
+ * @param {string} charlist
+ * @return {string}
+ */
+export function rtrim(str, charlist) {
+
+  charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
+    .replace(/([[\]().?/*{}+$^:])/g, '\\$1');
+
+  const re = new RegExp('[' + charlist + ']+$', 'g');
+
+  return (str + '').replace(re, '');
+}
