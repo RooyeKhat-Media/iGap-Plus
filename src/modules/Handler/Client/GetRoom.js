@@ -1,4 +1,6 @@
 import Base from '../Base';
+import store from '../../../configureStore';
+import {getRoom} from '../../../actions/methods/client/getRoom';
 
 /**
  * @property {ProtoClientGetRoom} _request
@@ -6,6 +8,6 @@ import Base from '../Base';
  */
 export default class GetRoom extends Base {
   handle() {
-    console.error('GetRoom', 'Not implemented yet', this);
+    store.dispatch(getRoom(this._response.getRoom()));
   }
 }

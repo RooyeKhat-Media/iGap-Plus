@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
-import {BackHandler, View} from 'react-native';
+import {BackHandler} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers} from 'react-navigation';
 
-import PrimaryNavigator from '../navigators/PrimaryNavigator';
-import SecondaryNavigator from '../navigators/SecondaryNavigator';
 import {primaryNavigatorBack, secondaryNavigatorBack} from '../actions/navigator';
 import {MAIN_SCREEN, PRIMARY_DRAWER_NAVIGATION} from '../constants/navigators';
+import MainComponent from '../components/Main';
+import PrimaryNavigator from '../navigators/PrimaryNavigator';
+import SecondaryNavigator from '../navigators/SecondaryNavigator';
+
+import Device from '../modules/Responsive/Device';
+import {NORMAL_HEIGHT} from '../constants/screenBreakPoints';
+import {responsive} from '../modules/Responsive';
+
 
 class MainScreen extends Component {
-  static navigationOptions = {
-    header: null,
-  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
@@ -30,7 +33,7 @@ class MainScreen extends Component {
         dispatch(secondaryNavigatorBack());
       } else if (navPrimary.index > 0 || (
         navPrimary.routes[navPrimary.index] &&
-        navPrimary.routes[navPrimary.index].routeName === PRIMARY_DRAWER_NAVIGATION &&
+          navPrimary.routes[navPrimary.index].routeName === PRIMARY_DRAWER_NAVIGATION &&
           navPrimary.routes[navPrimary.index].routes[
             navPrimary.routes[navPrimary.index].index
           ].routeName === 'DrawerOpen'
@@ -46,16 +49,14 @@ class MainScreen extends Component {
 
   render() {
     const {dispatch, navSecondary, navPrimary} = this.props;
-
+    const {width} = Device.dimensions.window;
+    const primaryNavigator = (<PrimaryNavigator navigation={addNavigationHelpers({dispatch, state: navPrimary})}/>);
+    const secondaryNavigator = (
+      <SecondaryNavigator navigation={addNavigationHelpers({dispatch, state: navSecondary})}/>);
+    const isSecondaryActive = (navSecondary.index > 0) || (width > NORMAL_HEIGHT);
     return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        <View style={{flex: 1}}>
-          <PrimaryNavigator navigation={addNavigationHelpers({dispatch, state: navPrimary})}/>
-        </View>
-        <View style={{flex: 1}}>
-          <SecondaryNavigator navigation={addNavigationHelpers({dispatch, state: navSecondary})}/>
-        </View>
-      </View>
+      <MainComponent isSecondaryActive={isSecondaryActive} PrimaryNavigator={primaryNavigator}
+        SecondaryNavigator={secondaryNavigator}/>
     );
   }
 }
@@ -73,4 +74,9 @@ const mapStateToProps = state => ({
   navPrimary: state.navPrimary,
 });
 
-export default connect(mapStateToProps)(MainScreen);
+const ResponsiveMainScreen = responsive(MainScreen);
+ResponsiveMainScreen.navigationOptions = {
+  header: null,
+};
+
+export default connect(mapStateToProps)(ResponsiveMainScreen);

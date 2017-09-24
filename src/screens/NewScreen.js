@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MainComponent from '../components/Main';
+import {Text, View} from 'react-native';
 
 class NewScreen extends Component {
   onMenuPressed = () => {
@@ -8,7 +8,7 @@ class NewScreen extends Component {
 
   render() {
     return (
-      <MainComponent title="NewScreen" onMenuPressed={this.onMenuPressed}/>
+      <View style={{backgroundColor: 'blue'}}><Text>Drawer Test</Text></View>
     );
   }
 }

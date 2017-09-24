@@ -6,6 +6,7 @@ import RoomScreen from '../screens/RoomScreen';
 import SecondaryInitialScreen from '../screens/SecondaryInitialScreen';
 
 export function goRoom(id) {
+  console.log('goRoom', id);
   navigate(ROOM_SCREEN, {id});
 }
 

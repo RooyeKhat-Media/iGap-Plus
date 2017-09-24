@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import MainComponent from '../components/Main';
+import {Text, View} from 'react-native';
+
 
 class SearchScreen extends Component {
 
@@ -9,7 +10,7 @@ class SearchScreen extends Component {
 
   render() {
     return (
-      <MainComponent title="Search" onMenuPressed={this.onMenuPressed}/>
+      <View style={{backgroundColor: 'blue'}}><Text>Drawer Test</Text></View>
     );
   }
 }

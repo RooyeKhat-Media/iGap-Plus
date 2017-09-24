@@ -1,6 +1,9 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
+import styleSheet from './index.styles';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../modules/Responsive';
+
 
 class MainComponent extends React.Component {
   constructor(props, context) {
@@ -10,14 +13,27 @@ class MainComponent extends React.Component {
     };
   }
 
+
   render() {
+    const {isSecondaryActive, PrimaryNavigator, SecondaryNavigator} = this.props;
+    const styles = this.getStyles();
+
     return (
-      <View style={{backgroundColor: 'blue'}}><Text>Drawer Test</Text></View>
+      <View style={styles.container}>
+        <View style={styles.primary}>
+          {PrimaryNavigator}
+        </View>
+        {isSecondaryActive ? (<View style={styles.secondary}>{SecondaryNavigator}</View>) : null}
+      </View>
     );
+  }
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
   }
 }
 
 MainComponent.propTypes = {
   intl: intlShape.isRequired,
 };
-export default injectIntl(MainComponent);
+export default injectIntl(responsive(MainComponent));

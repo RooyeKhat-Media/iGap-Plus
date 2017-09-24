@@ -8,21 +8,22 @@ import MainToolbar from '../containers/MainToolbar';
 import {
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
-  NEW_SCREEN, PRIMARY_DRAWER_NAVIGATION,
+  NEW_SCREEN,
+  PRIMARY_DRAWER_NAVIGATION,
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
-  ROOMS_SCREEN,
+  ROOM_LIST_SCREEN,
   SEARCH_SCREEN,
 } from '../constants/navigators';
 import ProfileScreen from '../screens/ProfileScreen';
 import SearchScreen from '../screens/SearchScreen';
-import RoomsScreen from '../screens/RoomsScreen';
+import RoomsScreen from '../screens/RoomListScreen';
 import NewScreen from '../screens/NewScreen';
 import PublicScreen from '../screens/PublicScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
 
-export function goRooms() {
-  navigate(ROOMS_SCREEN);
+export function goRoomList() {
+  navigate(ROOM_LIST_SCREEN);
 }
 
 export function goSearch() {
@@ -50,7 +51,7 @@ export function goContactNew() {
 }
 
 const tabNav = TabNavigator({
-  [ROOMS_SCREEN]: {screen: RoomsScreen},
+  [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [SEARCH_SCREEN]: {screen: SearchScreen},
   [NEW_SCREEN]: {screen: NewScreen},
   [PUBLIC_SCREEN]: {screen: PublicScreen},
@@ -61,16 +62,20 @@ const tabNav = TabNavigator({
 });
 
 const drawerNav = DrawerNavigator({
-  tabNav: {screen: tabNav},
+  tabNav: {
+    screen: tabNav,
+  },
 }, {
   contentComponent: props => (<MainDrawer {...props}/>),
-  navigationOptions: {
-    header: props => (<MainToolbar {...props}/>),
-  },
 });
 
 const PrimaryNavigator = StackNavigator({
-  [PRIMARY_DRAWER_NAVIGATION]: {screen: drawerNav},
+  [PRIMARY_DRAWER_NAVIGATION]: {
+    screen: drawerNav,
+    navigationOptions: {
+      header: props => (<MainToolbar {...props}/>),
+    },
+  },
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
 });
 

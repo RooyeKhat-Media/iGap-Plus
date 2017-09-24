@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MainComponent from '../components/Main';
+import {Text, View} from 'react-native';
 
 class PublicScreen extends Component {
 
@@ -9,7 +9,7 @@ class PublicScreen extends Component {
 
   render() {
     return (
-      <MainComponent title="PublicScreen" onMenuPressed={this.onMenuPressed}/>
+      <View style={{backgroundColor: 'blue'}}><Text>Drawer Test</Text></View>
     );
   }
 }

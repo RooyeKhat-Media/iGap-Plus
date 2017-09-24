@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
-import MainComponent from '../components/Main';
+import {Text, View} from 'react-native';
 
 class RoomScreen extends Component {
-
-  onMenuPressed = () => {
-    this.props.navigation.navigate('DrawerOpen');
-  }
-
   render() {
+    const {id} = this.props.navigation.state.params;
     return (
-      <MainComponent title="Room Screen" onMenuPressed={this.onMenuPressed}/>
+      <View style={{backgroundColor: 'blue'}}><Text>Room id: {id}</Text></View>
     );
   }
 }
