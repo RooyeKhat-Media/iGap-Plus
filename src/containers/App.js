@@ -30,10 +30,10 @@ class App extends Component {
       console.log('Migration failed');
     }).then(() => {
       Api.instance;
-      return Promise.all([
-        loadUserId,
-        loadAuthorHash,
-      ]);
+    }).then(() => {
+      return loadUserId();
+    }).then(() => {
+      return loadAuthorHash();
     }).then(() => {
       return loadUserLocale();
     }).then(() => {

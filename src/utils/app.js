@@ -24,6 +24,7 @@ export function setUserId(userId) {
 
 export async function loadUserId() {
   _userId = await MetaData.load(META_USER_ID);
+  return _userId;
 }
 
 
@@ -38,6 +39,7 @@ export function setAuthorHash(authorHash) {
 
 export async function loadAuthorHash() {
   _authorHash = await MetaData.load(META_AUTHOR_HASH);
+  return _authorHash;
 }
 
 
