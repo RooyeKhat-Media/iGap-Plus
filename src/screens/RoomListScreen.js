@@ -4,7 +4,7 @@ import {ClientGetRoomList} from '../modules/Proto/index';
 import {CLIENT_GET_ROOM_LIST} from '../constants/methods/index';
 import Api from '../modules/Api/index';
 import {connect} from 'react-redux';
-import {goRoom} from '../navigators/SecondaryNavigator';
+import {goRoomHistory} from '../navigators/SecondaryNavigator';
 
 class RoomListScreen extends Component {
 
@@ -23,7 +23,7 @@ class RoomListScreen extends Component {
     const {loading} = this.state;
 
     return (
-      <RoomListComponent loading={loading} goRoom={goRoom} roomList={roomList}/>
+      <RoomListComponent loading={loading} goRoom={goRoomHistory} roomList={roomList}/>
     );
   }
 }

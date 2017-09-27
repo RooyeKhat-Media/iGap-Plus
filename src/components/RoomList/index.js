@@ -12,8 +12,9 @@ class RoomListComponent extends React.Component {
         <View style={styles.container}>
           {!loading ? (<FlatList
             data={roomList}
+            keyExtractor={(item, index) => ('room-' + item.getId().toString())}
             renderItem={({item}) =>
-              (<ListItem key={'room-' + item.getId().toString()}
+              (<ListItem
                 onPress={() => {
                   goRoom(item.getId());
                 }}

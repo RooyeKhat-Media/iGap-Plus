@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import {Button} from '../components/BaseUI';
-import {goRoom} from '../navigators/SecondaryNavigator';
+import {goRoomHistory} from '../navigators/SecondaryNavigator';
 
 import Device from '../modules/Responsive/Device';
 import {NORMAL_HEIGHT} from '../constants/screenBreakPoints';
@@ -16,7 +16,7 @@ class InitialScreen extends Component {
       return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Button text="goRoom" onPress={() => {
-            goRoom();
+            goRoomHistory();
           }}/>
         </View>
       );
