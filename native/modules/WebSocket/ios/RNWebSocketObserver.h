@@ -8,25 +8,11 @@
  */
 
 #import <React/RCTDefines.h>
+#import "RNWebSocketObserverProtocol.h"
 
 #if RCT_DEV // Only supported in dev mode
 
-@class RCTSRWebSocket;
-
-@protocol RCTWebSocketProtocolDelegate
-
-- (void)webSocket:(RCTSRWebSocket *)webSocket didReceiveMessage:(id)message;
-
-@end
-
-@interface RCTReconnectingWebSocket : NSObject
-
-- (instancetype)initWithURL:(NSURL *)url;
-@property (nonatomic, weak) id<RCTWebSocketProtocolDelegate> delegate;
-- (void)send:(id)data;
-- (void)start;
-- (void)stop;
-
+@interface RNWebSocketObserver : NSObject <RNWebSocketObserver>
 @end
 
 #endif

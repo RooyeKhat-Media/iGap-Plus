@@ -8,14 +8,18 @@
  */
 
 #import <React/RCTDefines.h>
-#import <React/RCTJavaScriptExecutor.h>
 
-#if RCT_DEV // Debug executors are only supported in dev mode
+#if RCT_DEV // Only supported in dev mode
 
-@interface RCTWebSocketExecutor : NSObject <RCTJavaScriptExecutor>
+@protocol RNWebSocketObserverDelegate
+- (void)didReceiveWebSocketMessage:(NSDictionary<NSString *, id> *)message;
+@end
 
-- (instancetype)initWithURL:(NSURL *)URL;
-
+@protocol RNWebSocketObserver
+- (instancetype)initWithURL:(NSURL *)url;
+@property (nonatomic, weak) id<RNWebSocketObserverDelegate> delegate;
+- (void)start;
+- (void)stop;
 @end
 
 #endif

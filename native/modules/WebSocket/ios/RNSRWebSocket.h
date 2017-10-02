@@ -17,42 +17,42 @@
 #import <Foundation/Foundation.h>
 #import <Security/SecCertificate.h>
 
-typedef NS_ENUM(unsigned int, RCTSRReadyState) {
-    RCTSR_CONNECTING   = 0,
-    RCTSR_OPEN         = 1,
-    RCTSR_CLOSING      = 2,
-    RCTSR_CLOSED       = 3,
+typedef NS_ENUM(unsigned int, RNSRReadyState) {
+    RNSR_CONNECTING   = 0,
+    RNSR_OPEN         = 1,
+    RNSR_CLOSING      = 2,
+    RNSR_CLOSED       = 3,
 };
 
-typedef NS_ENUM(NSInteger, RCTSRStatusCode) {
-    RCTSRStatusCodeNormal = 1000,
-    RCTSRStatusCodeGoingAway = 1001,
-    RCTSRStatusCodeProtocolError = 1002,
-    RCTSRStatusCodeUnhandledType = 1003,
+typedef NS_ENUM(NSInteger, RNSRStatusCode) {
+    RNSRStatusCodeNormal = 1000,
+    RNSRStatusCodeGoingAway = 1001,
+    RNSRStatusCodeProtocolError = 1002,
+    RNSRStatusCodeUnhandledType = 1003,
     // 1004 reserved.
-    RCTSRStatusNoStatusReceived = 1005,
+    RNSRStatusNoStatusReceived = 1005,
     // 1004-1006 reserved.
-    RCTSRStatusCodeInvalidUTF8 = 1007,
-    RCTSRStatusCodePolicyViolated = 1008,
-    RCTSRStatusCodeMessageTooBig = 1009,
+    RNSRStatusCodeInvalidUTF8 = 1007,
+    RNSRStatusCodePolicyViolated = 1008,
+    RNSRStatusCodeMessageTooBig = 1009,
 };
 
-@class RCTSRWebSocket;
+@class RNSRWebSocket;
 
-extern NSString *const RCTSRWebSocketErrorDomain;
-extern NSString *const RCTSRHTTPResponseErrorKey;
+extern NSString *const RNSRWebSocketErrorDomain;
+extern NSString *const RNSRHTTPResponseErrorKey;
 
-#pragma mark - RCTSRWebSocketDelegate
+#pragma mark - RNSRWebSocketDelegate
 
-@protocol RCTSRWebSocketDelegate;
+@protocol RNSRWebSocketDelegate;
 
-#pragma mark - RCTSRWebSocket
+#pragma mark - RNSRWebSocket
 
-@interface RCTSRWebSocket : NSObject <NSStreamDelegate>
+@interface RNSRWebSocket : NSObject <NSStreamDelegate>
 
-@property (nonatomic, weak) id<RCTSRWebSocketDelegate> delegate;
+@property (nonatomic, weak) id<RNSRWebSocketDelegate> delegate;
 
-@property (nonatomic, readonly) RCTSRReadyState readyState;
+@property (nonatomic, readonly) RNSRReadyState readyState;
 @property (nonatomic, readonly, strong) NSURL *url;
 
 // This returns the negotiated protocol.
@@ -72,11 +72,11 @@ extern NSString *const RCTSRHTTPResponseErrorKey;
 - (void)setDelegateOperationQueue:(NSOperationQueue *)queue;
 - (void)setDelegateDispatchQueue:(dispatch_queue_t)queue;
 
-// By default, it will schedule itself on +[NSRunLoop RCTSR_networkRunLoop] using defaultModes.
+// By default, it will schedule itself on +[NSRunLoop RNSR_networkRunLoop] using defaultModes.
 - (void)scheduleInRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode;
 - (void)unscheduleFromRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode;
 
-// RCTSRWebSockets are intended for one-time-use only.  Open should be called once and only once.
+// RNSRWebSockets are intended for one-time-use only.  Open should be called once and only once.
 - (void)open;
 
 - (void)close;
@@ -84,26 +84,27 @@ extern NSString *const RCTSRHTTPResponseErrorKey;
 
 // Send a UTF8 String or Data.
 - (void)send:(id)data;
+- (void)send:(id)data mask:(BOOL)mask;
 
 // Send Data (can be nil) in a ping message.
 - (void)sendPing:(NSData *)data;
 
 @end
 
-#pragma mark - RCTSRWebSocketDelegate
+#pragma mark - RNSRWebSocketDelegate
 
-@protocol RCTSRWebSocketDelegate <NSObject>
+@protocol RNSRWebSocketDelegate <NSObject>
 
 // message will either be an NSString if the server is using text
 // or NSData if the server is using binary.
-- (void)webSocket:(RCTSRWebSocket *)webSocket didReceiveMessage:(id)message;
+- (void)webSocket:(RNSRWebSocket *)webSocket didReceiveMessage:(id)message;
 
 @optional
 
-- (void)webSocketDidOpen:(RCTSRWebSocket *)webSocket;
-- (void)webSocket:(RCTSRWebSocket *)webSocket didFailWithError:(NSError *)error;
-- (void)webSocket:(RCTSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
-- (void)webSocket:(RCTSRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload;
+- (void)webSocketDidOpen:(RNSRWebSocket *)webSocket;
+- (void)webSocket:(RNSRWebSocket *)webSocket didFailWithError:(NSError *)error;
+- (void)webSocket:(RNSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
+- (void)webSocket:(RNSRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload;
 
 @end
 
@@ -111,7 +112,7 @@ extern NSString *const RCTSRHTTPResponseErrorKey;
 
 @interface NSURLRequest (CertificateAdditions)
 
-@property (nonatomic, readonly, copy) NSArray *RCTSR_SSLPinnedCertificates;
+@property (nonatomic, readonly, copy) NSArray *RNSR_SSLPinnedCertificates;
 
 @end
 
@@ -119,14 +120,14 @@ extern NSString *const RCTSRHTTPResponseErrorKey;
 
 @interface NSMutableURLRequest (CertificateAdditions)
 
-@property (nonatomic, copy) NSArray *RCTSR_SSLPinnedCertificates;
+@property (nonatomic, copy) NSArray *RNSR_SSLPinnedCertificates;
 
 @end
 
-#pragma mark - NSRunLoop (RCTSRWebSocket)
+#pragma mark - NSRunLoop (RNSRWebSocket)
 
-@interface NSRunLoop (RCTSRWebSocket)
+@interface NSRunLoop (RNSRWebSocket)
 
-+ (NSRunLoop *)RCTSR_networkRunLoop;
++ (NSRunLoop *)RNSR_networkRunLoop;
 
 @end

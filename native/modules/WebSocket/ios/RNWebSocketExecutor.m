@@ -7,7 +7,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "RCTWebSocketExecutor.h"
+#import "RNWebSocketExecutor.h"
 
 #import <React/RCTAssert.h>
 #import <React/RCTBridge.h>
@@ -16,21 +16,21 @@
 #import <React/RCTLog.h>
 #import <React/RCTUtils.h>
 
-#import "RCTSRWebSocket.h"
+#import "RNSRWebSocket.h"
 
 #if RCT_DEV // Debug executors are only supported in dev mode
 
-typedef void (^RCTWSMessageCallback)(NSError *error, NSDictionary<NSString *, id> *reply);
+typedef void (^RNWSMessageCallback)(NSError *error, NSDictionary<NSString *, id> *reply);
 
-@interface RCTWebSocketExecutor () <RCTSRWebSocketDelegate>
+@interface RNWebSocketExecutor () <RNSRWebSocketDelegate>
 
 @end
 
-@implementation RCTWebSocketExecutor
+@implementation RNWebSocketExecutor
 {
-  RCTSRWebSocket *_socket;
+  RNSRWebSocket *_socket;
   dispatch_queue_t _jsQueue;
-  NSMutableDictionary<NSNumber *, RCTWSMessageCallback> *_callbacks;
+  NSMutableDictionary<NSNumber *, RNWSMessageCallback> *_callbacks;
   dispatch_semaphore_t _socketOpenSemaphore;
   NSMutableDictionary<NSString *, NSString *> *_injectedObjects;
   NSURL *_url;
@@ -61,7 +61,7 @@ RCT_EXPORT_MODULE()
   }
 
   _jsQueue = dispatch_queue_create("com.facebook.react.WebSocketExecutor", DISPATCH_QUEUE_SERIAL);
-  _socket = [[RCTSRWebSocket alloc] initWithURL:_url];
+  _socket = [[RNSRWebSocket alloc] initWithURL:_url];
   _socket.delegate = self;
   _callbacks = [NSMutableDictionary new];
   _injectedObjects = [NSMutableDictionary new];
@@ -106,7 +106,7 @@ RCT_EXPORT_MODULE()
   _socketOpenSemaphore = dispatch_semaphore_create(0);
   [_socket open];
   long connected = dispatch_semaphore_wait(_socketOpenSemaphore, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 10));
-  return connected == 0 && _socket.readyState == RCTSR_OPEN;
+  return connected == 0 && _socket.readyState == RNSR_OPEN;
 }
 
 - (BOOL)prepareJSRuntime
@@ -124,30 +124,30 @@ RCT_EXPORT_MODULE()
   return runtimeIsReady == 0 && initError == nil;
 }
 
-- (void)webSocket:(RCTSRWebSocket *)webSocket didReceiveMessage:(id)message
+- (void)webSocket:(RNSRWebSocket *)webSocket didReceiveMessage:(id)message
 {
   NSError *error = nil;
   NSDictionary<NSString *, id> *reply = RCTJSONParse(message, &error);
   NSNumber *messageID = reply[@"replyID"];
-  RCTWSMessageCallback callback = _callbacks[messageID];
+  RNWSMessageCallback callback = _callbacks[messageID];
   if (callback) {
     callback(error, reply);
     [_callbacks removeObjectForKey:messageID];
   }
 }
 
-- (void)webSocketDidOpen:(RCTSRWebSocket *)webSocket
+- (void)webSocketDidOpen:(RNSRWebSocket *)webSocket
 {
   dispatch_semaphore_signal(_socketOpenSemaphore);
 }
 
-- (void)webSocket:(RCTSRWebSocket *)webSocket didFailWithError:(NSError *)error
+- (void)webSocket:(RNSRWebSocket *)webSocket didFailWithError:(NSError *)error
 {
   dispatch_semaphore_signal(_socketOpenSemaphore);
   RCTLogInfo(@"WebSocket connection failed with error %@", error);
 }
 
-- (void)sendMessage:(NSDictionary<NSString *, id> *)message onReply:(RCTWSMessageCallback)callback
+- (void)sendMessage:(NSDictionary<NSString *, id> *)message onReply:(RNWSMessageCallback)callback
 {
   static NSUInteger lastID = 10000;
 
@@ -262,7 +262,7 @@ RCT_EXPORT_MODULE()
 
 - (BOOL)isValid
 {
-  return _socket != nil && _socket.readyState == RCTSR_OPEN;
+  return _socket != nil && _socket.readyState == RNSR_OPEN;
 }
 
 - (void)dealloc

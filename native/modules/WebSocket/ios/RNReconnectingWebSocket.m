@@ -7,21 +7,21 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "RCTReconnectingWebSocket.h"
+#import "RNReconnectingWebSocket.h"
 
 #import <React/RCTConvert.h>
 #import <React/RCTDefines.h>
 
-#import "RCTSRWebSocket.h"
+#import "RNSRWebSocket.h"
 
 #if RCT_DEV // Only supported in dev mode
 
-@interface RCTReconnectingWebSocket () <RCTSRWebSocketDelegate>
+@interface RNReconnectingWebSocket () <RNSRWebSocketDelegate>
 @end
 
-@implementation RCTReconnectingWebSocket {
+@implementation RNReconnectingWebSocket {
   NSURL *_url;
-  RCTSRWebSocket *_socket;
+  RNSRWebSocket *_socket;
 }
 
 @synthesize delegate = _delegate;
@@ -42,7 +42,7 @@
 - (void)start
 {
   [self stop];
-  _socket = [[RCTSRWebSocket alloc] initWithURL:_url];
+  _socket = [[RNSRWebSocket alloc] initWithURL:_url];
   _socket.delegate = self;
 
   [_socket open];
@@ -55,7 +55,7 @@
   _socket = nil;
 }
 
-- (void)webSocket:(RCTSRWebSocket *)webSocket didReceiveMessage:(id)message
+- (void)webSocket:(RNSRWebSocket *)webSocket didReceiveMessage:(id)message
 {
   if (_delegate) {
     [_delegate webSocket:webSocket didReceiveMessage:message];
@@ -64,7 +64,7 @@
 
 - (void)reconnect
 {
-  __weak RCTSRWebSocket *socket = _socket;
+  __weak RNSRWebSocket *socket = _socket;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     // Only reconnect if the observer wasn't stoppped while we were waiting
     if (socket) {
@@ -73,12 +73,12 @@
   });
 }
 
-- (void)webSocket:(RCTSRWebSocket *)webSocket didFailWithError:(NSError *)error
+- (void)webSocket:(RNSRWebSocket *)webSocket didFailWithError:(NSError *)error
 {
   [self reconnect];
 }
 
-- (void)webSocket:(RCTSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
+- (void)webSocket:(RNSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
 {
   [self reconnect];
 }

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F8C15B31F66BFA900EAAB07 /* RCTReconnectingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15AC1F66BFA900EAAB07 /* RCTReconnectingWebSocket.m */; };
-		4F8C15B41F66BFA900EAAB07 /* RCTSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15AE1F66BFA900EAAB07 /* RCTSRWebSocket.m */; };
-		4F8C15B51F66BFA900EAAB07 /* RCTWebSocketExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15B01F66BFA900EAAB07 /* RCTWebSocketExecutor.m */; };
-		4F8C15B61F66BFA900EAAB07 /* RCTWebSocketObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15B21F66BFA900EAAB07 /* RCTWebSocketObserver.m */; };
-		B3E7B58A1CC2AC0600A0062D /* RNWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNWebSocket.m */; };
+		4F27A4E91F7BA5FD004223CE /* RNWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNWebSocket.m */; };
+		4F27A4EA1F7BA5FD004223CE /* RNReconnectingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15AC1F66BFA900EAAB07 /* RNReconnectingWebSocket.m */; };
+		4F27A4EB1F7BA5FD004223CE /* RNSRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15AE1F66BFA900EAAB07 /* RNSRWebSocket.m */; };
+		4F27A4EC1F7BA5FD004223CE /* RNWebSocketExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15B01F66BFA900EAAB07 /* RNWebSocketExecutor.m */; };
+		4F27A4ED1F7BA5FD004223CE /* RNWebSocketObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C15B21F66BFA900EAAB07 /* RNWebSocketObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,14 +28,15 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNWebSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNWebSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F8C15AB1F66BFA900EAAB07 /* RCTReconnectingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTReconnectingWebSocket.h; sourceTree = "<group>"; };
-		4F8C15AC1F66BFA900EAAB07 /* RCTReconnectingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTReconnectingWebSocket.m; sourceTree = "<group>"; };
-		4F8C15AD1F66BFA900EAAB07 /* RCTSRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSRWebSocket.h; sourceTree = "<group>"; };
-		4F8C15AE1F66BFA900EAAB07 /* RCTSRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSRWebSocket.m; sourceTree = "<group>"; };
-		4F8C15AF1F66BFA900EAAB07 /* RCTWebSocketExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTWebSocketExecutor.h; sourceTree = "<group>"; };
-		4F8C15B01F66BFA900EAAB07 /* RCTWebSocketExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTWebSocketExecutor.m; sourceTree = "<group>"; };
-		4F8C15B11F66BFA900EAAB07 /* RCTWebSocketObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTWebSocketObserver.h; sourceTree = "<group>"; };
-		4F8C15B21F66BFA900EAAB07 /* RCTWebSocketObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTWebSocketObserver.m; sourceTree = "<group>"; };
+		4F8C15AB1F66BFA900EAAB07 /* RNReconnectingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReconnectingWebSocket.h; sourceTree = "<group>"; };
+		4F8C15AC1F66BFA900EAAB07 /* RNReconnectingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNReconnectingWebSocket.m; sourceTree = "<group>"; };
+		4F8C15AD1F66BFA900EAAB07 /* RNSRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNSRWebSocket.h; sourceTree = "<group>"; };
+		4F8C15AE1F66BFA900EAAB07 /* RNSRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNSRWebSocket.m; sourceTree = "<group>"; };
+		4F8C15AF1F66BFA900EAAB07 /* RNWebSocketExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNWebSocketExecutor.h; sourceTree = "<group>"; };
+		4F8C15B01F66BFA900EAAB07 /* RNWebSocketExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNWebSocketExecutor.m; sourceTree = "<group>"; };
+		4F8C15B11F66BFA900EAAB07 /* RNWebSocketObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNWebSocketObserver.h; sourceTree = "<group>"; };
+		4F8C15B21F66BFA900EAAB07 /* RNWebSocketObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNWebSocketObserver.m; sourceTree = "<group>"; };
+		4FC996611F78D3EE00BD0E8F /* RNWebSocketObserverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNWebSocketObserverProtocol.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNWebSocket.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNWebSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,16 +63,17 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				4FC996611F78D3EE00BD0E8F /* RNWebSocketObserverProtocol.h */,
 				B3E7B5881CC2AC0600A0062D /* RNWebSocket.h */,
 				B3E7B5891CC2AC0600A0062D /* RNWebSocket.m */,
-				4F8C15AB1F66BFA900EAAB07 /* RCTReconnectingWebSocket.h */,
-				4F8C15AC1F66BFA900EAAB07 /* RCTReconnectingWebSocket.m */,
-				4F8C15AD1F66BFA900EAAB07 /* RCTSRWebSocket.h */,
-				4F8C15AE1F66BFA900EAAB07 /* RCTSRWebSocket.m */,
-				4F8C15AF1F66BFA900EAAB07 /* RCTWebSocketExecutor.h */,
-				4F8C15B01F66BFA900EAAB07 /* RCTWebSocketExecutor.m */,
-				4F8C15B11F66BFA900EAAB07 /* RCTWebSocketObserver.h */,
-				4F8C15B21F66BFA900EAAB07 /* RCTWebSocketObserver.m */,
+				4F8C15AB1F66BFA900EAAB07 /* RNReconnectingWebSocket.h */,
+				4F8C15AC1F66BFA900EAAB07 /* RNReconnectingWebSocket.m */,
+				4F8C15AD1F66BFA900EAAB07 /* RNSRWebSocket.h */,
+				4F8C15AE1F66BFA900EAAB07 /* RNSRWebSocket.m */,
+				4F8C15AF1F66BFA900EAAB07 /* RNWebSocketExecutor.h */,
+				4F8C15B01F66BFA900EAAB07 /* RNWebSocketExecutor.m */,
+				4F8C15B11F66BFA900EAAB07 /* RNWebSocketObserver.h */,
+				4F8C15B21F66BFA900EAAB07 /* RNWebSocketObserver.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,11 +134,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F8C15B51F66BFA900EAAB07 /* RCTWebSocketExecutor.m in Sources */,
-				4F8C15B31F66BFA900EAAB07 /* RCTReconnectingWebSocket.m in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* RNWebSocket.m in Sources */,
-				4F8C15B41F66BFA900EAAB07 /* RCTSRWebSocket.m in Sources */,
-				4F8C15B61F66BFA900EAAB07 /* RCTWebSocketObserver.m in Sources */,
+				4F27A4E91F7BA5FD004223CE /* RNWebSocket.m in Sources */,
+				4F27A4EA1F7BA5FD004223CE /* RNReconnectingWebSocket.m in Sources */,
+				4F27A4EB1F7BA5FD004223CE /* RNSRWebSocket.m in Sources */,
+				4F27A4EC1F7BA5FD004223CE /* RNWebSocketExecutor.m in Sources */,
+				4F27A4ED1F7BA5FD004223CE /* RNWebSocketObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

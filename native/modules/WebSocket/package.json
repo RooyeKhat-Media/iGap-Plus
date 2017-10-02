@@ -13,7 +13,7 @@
   "author": "",
   "license": "",
   "peerDependencies": {
-    "react-native": "0.47.2",
+    "react-native": "0.48.4",
     "react-native-windows": "0.47.0-rc.5"
   }
 }

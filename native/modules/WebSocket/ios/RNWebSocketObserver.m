@@ -7,22 +7,22 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-#import "RCTWebSocketObserver.h"
+#import "RNWebSocketObserver.h"
 
 #import <React/RCTConvert.h>
 #import <React/RCTDefines.h>
 #import <React/RCTLog.h>
 #import <React/RCTUtils.h>
 
-#import "RCTReconnectingWebSocket.h"
+#import "RNReconnectingWebSocket.h"
 
 #if RCT_DEV // Only supported in dev mode
 
-@interface RCTWebSocketObserver () <RCTWebSocketProtocolDelegate>
+@interface RNWebSocketObserver () <RNWebSocketProtocolDelegate>
 @end
 
-@implementation RCTWebSocketObserver {
-  RCTReconnectingWebSocket *_socket;
+@implementation RNWebSocketObserver {
+  RNReconnectingWebSocket *_socket;
 }
 
 @synthesize delegate = _delegate;
@@ -30,7 +30,7 @@
 - (instancetype)initWithURL:(NSURL *)url
 {
   if (self = [super init]) {
-    _socket = [[RCTReconnectingWebSocket alloc] initWithURL:url];
+    _socket = [[RNReconnectingWebSocket alloc] initWithURL:url];
     _socket.delegate = self;
   }
   return self;
@@ -47,7 +47,7 @@
   [_socket stop];
 }
 
-- (void)webSocket:(RCTSRWebSocket *)webSocket didReceiveMessage:(id)message
+- (void)webSocket:(RNSRWebSocket *)webSocket didReceiveMessage:(id)message
 {
   if (_delegate) {
     NSError *error = nil;
