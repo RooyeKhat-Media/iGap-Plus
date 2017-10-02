@@ -118,6 +118,9 @@ const room = new schema.Entity('rooms', {
   chatPeer: registeredUser,
 }, {
   processStrategy: roomProcessStrategy,
+  idAttribute: function(value) {
+    return value.getId().toString();
+  },
 });
 
 export default room;

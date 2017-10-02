@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {Avatar, FlatList, ListItem, Toolbar} from '../BaseUI';
 import styles from './index.styles';
-import RoomMessage from '../../containers/RoomMessage';
+import RoomMessage from '../../containers/Unit/RoomMessage';
 
 class RoomHistoryComponent extends React.Component {
   render() {

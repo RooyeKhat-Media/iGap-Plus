@@ -71,6 +71,9 @@ const roomMessageProcessStrategy = (roomMessage, parent, key) => flatProtoRoomMe
 
 const roomMessage = new schema.Entity('roomMessages', {}, {
   processStrategy: roomMessageProcessStrategy,
+  idAttribute: function(value) {
+    return value.getMessageId().toString();
+  },
 });
 
 /**

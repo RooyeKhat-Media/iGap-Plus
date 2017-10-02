@@ -1,4 +1,4 @@
-import {primary} from '../../themes/default/index';
+import {primary} from '../../../themes/default/index';
 
 export default {
   container: {

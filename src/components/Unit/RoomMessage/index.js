@@ -2,9 +2,9 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles, {defaultStyle, groupStyle, logStyle, ownerStyle} from './index.styles';
-import MessageBox from './MessageBox';
+import MessageBox from './MessageBox/index';
 import Log from './MessageBox/Log';
-import {Avatar, Icon} from '../BaseUI';
+import {Avatar, Icon} from '../../BaseUI/index';
 
 class RoomMessage extends React.Component {
 

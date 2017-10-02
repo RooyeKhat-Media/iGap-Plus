@@ -45,6 +45,9 @@ const registeredUserProcessStrategy = (user, parent, key) => flatProtoRegistered
 
 const registeredUser = new schema.Entity('registeredUsers', {}, {
   processStrategy: registeredUserProcessStrategy,
+  idAttribute: function(value) {
+    return value.getId().toString();
+  },
 });
 
 export default registeredUser;

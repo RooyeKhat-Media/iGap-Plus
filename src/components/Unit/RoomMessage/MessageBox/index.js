@@ -10,7 +10,7 @@ import Gif from './Gif';
 import File from './File';
 import Location from './Location';
 import Contact from './Contact';
-import {Proto} from '../../../modules/Proto/index';
+import {Proto} from '../../../../modules/Proto/index';
 
 class MessageBox extends React.Component {
   render() {
