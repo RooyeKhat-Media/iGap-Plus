@@ -11,6 +11,8 @@ import {modal} from './modal';
 import {fileManager} from './fileManager';
 import {theme} from './theme';
 import methodsReducer from './methods';
+import entities from './entities';
+import messenger from './messenger';
 
 const rootReducer = combineReducers({
   api,
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   fileManager,
   methods: methodsReducer,
   theme,
+  entities,
+  messenger,
 });
 
 export default rootReducer;

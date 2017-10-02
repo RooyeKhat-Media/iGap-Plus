@@ -1,7 +1,8 @@
 import Base from '../Base';
-
-import store from '../../../configureStore';
-import {getRoomList} from '../../../actions/methods/client/getRoomList';
+import {normalize} from 'normalizr';
+import room from '../../../schemas/room';
+import {entitiesRoomsAddFull} from '../../../actions/entities/rooms';
+import {messengerRoomOverrideList} from '../../../actions/messenger/room';
 
 /**
  * @property {ProtoClientGetRoomList} _request
@@ -9,6 +10,15 @@ import {getRoomList} from '../../../actions/methods/client/getRoomList';
  */
 export default class GetRoomList extends Base {
   handle() {
-    store.dispatch(getRoomList(this._response.getRoomsList()));
+    let roomList = [];
+    this._response.getRoomsList().forEach((roomProto) => {
+      const normalizedData = normalize(roomProto, room);
+
+      this.dispatch(entitiesRoomsAddFull(normalizedData));
+
+      roomList.push(normalizedData.result);
+    });
+
+    this.dispatch(messengerRoomOverrideList(roomList));
   }
 }

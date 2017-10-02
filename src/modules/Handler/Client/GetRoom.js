@@ -1,6 +1,4 @@
 import Base from '../Base';
-import store from '../../../configureStore';
-import {getRoom} from '../../../actions/methods/client/getRoom';
 
 /**
  * @property {ProtoClientGetRoom} _request
@@ -8,6 +6,5 @@ import {getRoom} from '../../../actions/methods/client/getRoom';
  */
 export default class GetRoom extends Base {
   handle() {
-    store.dispatch(getRoom(this._response.getRoom()));
   }
 }
