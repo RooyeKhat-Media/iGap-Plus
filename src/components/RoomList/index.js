@@ -7,7 +7,7 @@ import RoomListItem from '../../containers/Unit/RoomListItem';
 
 class RoomListComponent extends React.Component {
   render() {
-    const {goRoom, roomList} = this.props;
+    const {onPress, roomList} = this.props;
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>
@@ -15,7 +15,9 @@ class RoomListComponent extends React.Component {
             data={roomList}
             keyExtractor={(item, index) => ('room-' + item)}
             renderItem={({item}) =>
-              (<RoomListItem onPress={(item) => {goRoom(item)}} roomId={item}/>)}/>
+              (<RoomListItem onPress={() => {
+                onPress(item);
+              }} roomId={item}/>)}/>
         </View>
         <ActionSheet control={(action) => {
           this.action = action;

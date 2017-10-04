@@ -17,7 +17,9 @@ class RoomListScreen extends Component {
     const {roomList} = this.props;
 
     return (
-      <RoomListComponent goRoom={goRoomHistory} roomList={roomList}/>
+      <RoomListComponent onPress={(id) => {
+        goRoomHistory(id);
+      }} roomList={roomList}/>
     );
   }
 }

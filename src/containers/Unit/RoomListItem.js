@@ -4,12 +4,11 @@ import RoomListItemComponent from '../../components/Unit/RoomListItem';
 import {connect} from 'react-redux';
 import {Proto} from '../../modules/Proto/index';
 import {getAuthorHash} from '../../utils/app';
-import {goRoomHistory} from '../../navigators/SecondaryNavigator';
-import {makeGetRoomWithMessages} from '../../selector/entities/room';
+import {getRoomWithMessages} from '../../selector/entities/room';
 
 class RoomListItem extends Component {
   render() {
-    const {room} = this.props;
+    const {room, onPress} = this.props;
     if (!room) {
       return null;
     }
@@ -26,9 +25,7 @@ class RoomListItem extends Component {
       lastMessageTime={room.lastMessage ? room.lastMessage.createTime : null}
       ownerLastMessage={ownerLastMessage}
       lastMessageStatue={lastMessageStatus}
-      onPress={() => {
-        goRoomHistory(room.id);
-      }}
+      onPress={onPress}
     />);
   }
 
@@ -63,10 +60,9 @@ RoomListItem.propTypes = {
 };
 
 const makeMapStateToProps = () => {
-  const getRoomSelector = makeGetRoomWithMessages();
   return (state, props) => {
     return {
-      room: getRoomSelector(state, props),
+      room: getRoomWithMessages(state, props),
     };
   };
 };
