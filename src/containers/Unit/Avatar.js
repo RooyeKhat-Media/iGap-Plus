@@ -1,58 +1,38 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Avatar as BaseAvatar} from '../../components/BaseUI/index';
-import {ClientGetRoom, UserInfo} from '../../modules/Proto/index';
-import {CLIENT_GET_ROOM, USER_INFO} from '../../constants/methods/index';
-import Api from '../../modules/Api/index';
+import {connect} from 'react-redux';
+import {makeGetRoom} from '../../selector/entities/room';
 
 class Avatar extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      initials: '',
-      color: '',
-    };
-  }
-
-  async componentDidMount() {
-    const {id, user, room} = this.props;
-    if (user) {
-      let userInfo = new UserInfo();
-      userInfo.setUserId(id);
-      /**
-       * @type {ProtoUserInfoResponse}
-       */
-      const userInfoResponse = Api.invoke(USER_INFO, userInfo);
-      this.setState({
-        initials: userInfoResponse.getUser().getInitials(),
-        color: userInfoResponse.getUser().getColor(),
-      });
-    } else if (room) {
-      let clientGetRoom = new ClientGetRoom();
-      clientGetRoom.setRoomId(id);
-      /**
-       * @type {ProtoClientGetRoomResponse}
-       */
-      const clientGetRoomResponse = Api.invoke(CLIENT_GET_ROOM, clientGetRoom);
-      this.setState({
-        initials: clientGetRoomResponse.getRoom().getInitials(),
-        color: clientGetRoomResponse.getRoom().getColor(),
-      });
-    }
-  }
-
   render() {
-    const {initials, color} = this.state;
+    const {roomObject, userObject} = this.props;
     const style = {...this.props.style};
-    if (color) {
-      style.container = {backgroundColor: color};
+    let color = '';
+    let initials = '';
+
+    if (roomObject) {
+      color = roomObject.color;
+      initials = roomObject.initials;
+
+    } else if (userObject) {
+      color = userObject.color;
+      initials = userObject.initials;
     }
+
+    if (color) {
+      if (!style.container) {
+        style.container = {};
+      }
+      style.container.backgroundColor = color;
+    }
+
     return (
       <BaseAvatar
+        {...this.props}
         text={initials}
         style={style}
-        {...this.props}
       />
     );
   }
@@ -60,9 +40,23 @@ class Avatar extends Component {
 
 
 Avatar.propTypes = {
-  id: PropTypes.string.isRequired,
-  user: PropTypes.bool,
-  room: PropTypes.bool,
+  roomId: PropTypes.string,
+  userId: PropTypes.string,
 };
 
-export default Avatar;
+const makeMapStateToProps = () => {
+  const getRoomObject = makeGetRoom();
+  return (state, props) => {
+    if (props.roomId) {
+      return {
+        roomObject: getRoomObject(state, props),
+      };
+    }
+    return {};
+  };
+};
+
+export default connect(
+  makeMapStateToProps,
+)(Avatar);
+

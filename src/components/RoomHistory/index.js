@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {Avatar, FlatList, ListItem, Toolbar} from '../BaseUI';
+import {FlatList, ListItem, Toolbar} from '../BaseUI';
 import styles from './index.styles';
 import RoomMessage from '../../containers/Unit/RoomMessage';
 
@@ -21,10 +21,6 @@ class RoomHistoryComponent extends React.Component {
                 secondaryText: 'Online',
               }}
               style={styles.toolBarListItem}
-              leftElement={<Avatar size={40}
-                style={{container: {backgroundColor: room.getColor()}}}
-                text={room.getInitials()}
-              />}
             />
           }
           rightElement={{

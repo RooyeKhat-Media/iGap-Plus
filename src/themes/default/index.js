@@ -89,10 +89,14 @@ export default {
   listItem: {
     primaryText: {
       textAlign: 'left',
+      lineHeight: 20,
+      fontWeight: 'bold',
+    },
+    leftElementContainer: {
+      width: 55,
+      marginLeft: 10,
     },
   },
-
-
   pages: {
     Intro: {
       wrapperBackgroundColor: gray200,

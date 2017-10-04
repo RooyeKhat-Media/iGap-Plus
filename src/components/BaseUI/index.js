@@ -1,6 +1,7 @@
 import {ActivityIndicator} from 'react-native';
 import {
   Avatar,
+  Badge,
   BottomNavigation,
   Button,
   Dialog,
@@ -38,4 +39,5 @@ export {
   MCIcon,
   BottomNavigation,
   ActionSheet,
+  Badge,
 };
