@@ -3,6 +3,7 @@
  */
 
 import {entitiesRoomMessagesAdd} from './roomMessages';
+import {entitiesRegisteredUserAdd} from './registeredUser';
 import {messengerRoomMessagePush, messengerRoomMessageUnshift} from '../messenger/roomMessages';
 
 export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
@@ -24,14 +25,16 @@ export function entitiesRoomsAdd(rooms) {
  */
 export function entitiesRoomsAddFull(data) {
   return function(dispatch) {
-    dispatch(entitiesRoomsAdd(data.entities.rooms));
+    dispatch(entitiesRegisteredUserAdd(data.entities.registeredUsers));
     dispatch(entitiesRoomMessagesAdd(data.entities.roomMessages));
+    dispatch(entitiesRoomsAdd(data.entities.rooms));
 
     Object.keys(data.entities.rooms).forEach(function(key) {
       if (data.entities.rooms[key].firstUnreadMessage) {
         dispatch(messengerRoomMessagePush(key, data.entities.rooms[key].firstUnreadMessage));
 
-      } else if (data.entities.rooms[key].lastMessage) {
+      }
+      if (data.entities.rooms[key].lastMessage) {
         dispatch(messengerRoomMessageUnshift(key, data.entities.rooms[key].lastMessage));
       }
     });
