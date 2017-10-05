@@ -1,6 +1,13 @@
 import {createSelector} from 'reselect';
+import {FileDownload} from '../../modules/Proto/index';
 
-const getRoom = (state, props) => state.entities.rooms[props.roomId];
+const getRoom = (state, props) => {
+  const room = state.entities.rooms[props.roomId];
+  return {
+    ...room,
+    chatPeer: room.chatPeer ? state.entities.registeredUsers[room.chatPeer] : null,
+  };
+};
 
 export const getRoomWithMessages = createSelector(
   getRoom,
@@ -14,14 +21,33 @@ export const getRoomWithMessages = createSelector(
   }
 );
 
-
 export const getRoomAvatar = createSelector(
   getRoom,
-  (room) => {
+  (state, props) => props.size,
+  (room, size) => {
+    const avatar = room.groupAvatar || room.channelAvatar || (room.chatPeer ? room.chatPeer.avatar : null);
+    let selector = null;
+    let fileSelector = null;
+
+    if (avatar) {
+      if (size > 100 && avatar.file.getLargeThumbnail()) {
+        selector = FileDownload.Selector.LARGE_THUMBNAIL;
+        fileSelector = avatar.file.getLargeThumbnail();
+      } else if (avatar.file.getSmallThumbnail()) {
+        selector = FileDownload.Selector.SMALL_THUMBNAIL;
+        fileSelector = avatar.file.getSmallThumbnail();
+      }
+    }
+
     return {
       color: room.color,
       initials: room.initials,
-      avatar: room.avatar,
+      avatar: fileSelector ? {
+        token: avatar.file.getToken(),
+        selector,
+        size: fileSelector.getSize(),
+        cacheId: fileSelector.getCacheId(),
+      } : null,
     };
   }
 );
