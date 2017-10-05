@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import makeGetRooms from '../selector/messenger/room';
+import {getRoomList} from '../selector/messenger/room';
 import RoomListComponent from '../components/RoomList';
 import {goRoomHistory} from '../navigators/SecondaryNavigator';
 
@@ -15,7 +15,6 @@ class RoomListScreen extends Component {
 
   render() {
     const {roomList} = this.props;
-
     return (
       <RoomListComponent onPress={(id) => {
         goRoomHistory(id);
@@ -25,10 +24,9 @@ class RoomListScreen extends Component {
 }
 
 const makeMapStateToProps = () => {
-  const getRooms = makeGetRooms();
   return (state) => {
     return {
-      roomList: getRooms(state),
+      roomList: getRoomList(state),
     };
   };
 };

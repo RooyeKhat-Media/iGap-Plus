@@ -13,11 +13,11 @@ class RoomListComponent extends React.Component {
         <View style={styles.container}>
           <FlatList
             data={roomList}
-            keyExtractor={(item, index) => ('room-' + item)}
+            keyExtractor={(item, index) => ('room-' + item.id)}
             renderItem={({item}) =>
               (<RoomListItem onPress={() => {
-                onPress(item);
-              }} roomId={item}/>)}/>
+                onPress(item.id);
+              }} roomId={item.id}/>)}/>
         </View>
         <ActionSheet control={(action) => {
           this.action = action;

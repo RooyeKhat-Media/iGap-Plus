@@ -42,5 +42,14 @@ export default async function loadRoomList() {
     }
   } while (true);
 
-  store.dispatch(messengerRoomOverrideList(roomList));
+  let order = 100000;
+  const payload = {};
+  while (roomList.length) {
+    const roomId = roomList.pop();
+    payload[roomId] = {
+      id: roomId,
+      order: ++order,
+    };
+  }
+  store.dispatch(messengerRoomOverrideList(payload));
 }
