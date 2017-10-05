@@ -70,7 +70,7 @@ Avatar.propTypes = {
       cacheId: PropTypes.string.isRequired,
     }),
   }).isRequired,
-  avatarFile: PropTypes.object.isRequired,
+  avatarFile: PropTypes.object,
   download: PropTypes.func.isRequired,
 };
 
