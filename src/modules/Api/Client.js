@@ -273,7 +273,7 @@ export default class Client {
   _runHandler(responseActionId, responseProto, wrapper) {
     const handlerClass = handlerTable[responseActionId];
     if (handlerClass) {
-      const handler = new handlerClass(responseProto);
+      const handler = new handlerClass(responseProto, wrapper.request);
       handler.handle();
     }
   }
