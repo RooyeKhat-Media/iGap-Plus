@@ -1,13 +1,21 @@
 import {createSelector} from 'reselect';
 import {FileDownload} from '../../modules/Proto/index';
 
-const getRoom = (state, props) => {
-  const room = state.entities.rooms[props.roomId];
-  return {
-    ...room,
-    chatPeer: room.chatPeer ? state.entities.registeredUsers[room.chatPeer] : null,
-  };
+export const getRoomId = (state, props) => {
+  return props.roomId || (props.navigation ? props.navigation.state.params.roomId : null);
 };
+
+export const getRoom = createSelector(
+  (state) => state.entities,
+  getRoomId,
+  (entities, roomId) => {
+    const room = entities.rooms[roomId];
+    return {
+      ...room,
+      chatPeer: room.chatPeer ? entities.registeredUsers[room.chatPeer] : null,
+    };
+  }
+);
 
 export const getRoomWithMessages = createSelector(
   getRoom,

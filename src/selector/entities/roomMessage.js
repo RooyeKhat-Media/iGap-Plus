@@ -1,15 +1,17 @@
 import {createSelector} from 'reselect';
 
-const getRoomMessage = (state, props) =>
-  state.entities.roomMessages[props.messageId];
+export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
-const makeGetRoomMessage = () => {
-  createSelector(
-    getRoomMessage,
-    (roomMessage) => {
-      return roomMessage;
+export const getFullMessage = createSelector(
+  getRoomMessage,
+  (state) => state.entities.registeredUsers,
+  (roomMessage, registeredUsers) => {
+    if (!roomMessage) {
+      return null;
     }
-  );
-};
-
-export default makeGetRoomMessage;
+    return {
+      ...roomMessage,
+      authorUserObject: roomMessage.authorUser ? registeredUsers[roomMessage.authorUser] : null,
+    };
+  }
+);

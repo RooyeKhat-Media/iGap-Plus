@@ -5,7 +5,7 @@
 import {schema} from 'normalizr';
 
 /**
- * @typedef {{id: string, longId: (string|Long|*), username:string, phone: (Long|string), first_name: string, last_name: string, display_name, initials: string, color: string, status: (ProtoRegisteredUser_Status|ProtoRoomMessageStatus|ProtoChannelCheckUsernameResponse_Status|ProtoConnectionSymmetricKeyResponse_Status|ProtoFileUploadStatusResponse_Status|ProtoGroupCheckUsernameResponse_Status|*), last_seen: number, avatar_count: number, avatar: (ProtoAvatar|null|undefined), mutual: boolean, deleted: boolean, cache_id: string}} FlatRegisteredUser
+ * @typedef {{id: string, longId: (string|Long|*), username:string, phone: (Long|string), firstName: string, lastName: string, displayName, initials: string, color: string, status: (ProtoRegisteredUser_Status|ProtoRoomMessageStatus|ProtoChannelCheckUsernameResponseStatus|ProtoConnectionSymmetricKeyResponse_Status|ProtoFileUploadStatusResponse_Status|ProtoGroupCheckUsernameResponse_Status|*), lastSeen: number, avatarCount: number, avatar: (ProtoAvatar|null|undefined), mutual: boolean, deleted: boolean, cacheId: string}} FlatRegisteredUser
  */
 
 /**
@@ -18,18 +18,18 @@ export const flatProtoRegisteredUser = (user) => {
     longId: user.getId(),
     username: user.getUsername(),
     phone: user.getPhone(),
-    first_name: user.getFirstName(),
-    last_name: user.getLastName(),
-    display_name: user.getDisplayName(),
+    firstName: user.getFirstName(),
+    lastName: user.getLastName(),
+    displayName: user.getDisplayName(),
     initials: user.getInitials(),
     color: user.getColor(),
     status: user.getStatus(),
-    last_seen: user.getLastSeen(),
-    avatar_count: user.getAvatarCount(),
+    lastSeen: user.getLastSeen(),
+    avatarCount: user.getAvatarCount(),
     avatar: user.getAvatar(),
     mutual: user.getMutual(),
     deleted: user.getDeleted(),
-    cache_id: user.getCacheId(),
+    cacheId: user.getCacheId(),
   };
 };
 
