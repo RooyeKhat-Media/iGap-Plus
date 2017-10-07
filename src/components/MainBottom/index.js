@@ -7,37 +7,37 @@ const States = ['home', 'search', 'new', 'public', 'profile'];
 
 class MainBottomNavigationComponent extends React.Component {
   render() {
-    const {intl, index, goRooms, goSearch, goNew, goPublic, goProfile} = this.props;
+    const {index, goRooms, goSearch, goNew, goPublic, goProfile} = this.props;
     return (
       <BottomNavigation active={States[index]}>
         <BottomNavigation.Action
           key="home"
           icon="home"
-          label={intl.formatMessage(i18n.mainTabBarActionHome)}
+          label=" "
           onPress={goRooms}
         />
         <BottomNavigation.Action
           key="search"
           icon="search"
-          label={intl.formatMessage(i18n.mainTabBarActionSearch)}
+          label=" "
           onPress={goSearch}
         />
         <BottomNavigation.Action
           key="new"
           icon="add-box"
-          label={intl.formatMessage(i18n.mainTabBarActionNew)}
+          label=" "
           onPress={goNew}
         />
         <BottomNavigation.Action
           key="public"
           icon="public"
-          label={intl.formatMessage(i18n.mainTabBarActionPublic)}
+          label=" "
           onPress={goPublic}
         />
         <BottomNavigation.Action
           key="profile"
           icon="person"
-          label={intl.formatMessage(i18n.mainTabBarActionProfile)}
+          label=" "
           onPress={goProfile}
         />
       </BottomNavigation>

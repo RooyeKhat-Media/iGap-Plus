@@ -20,6 +20,7 @@ class ContactListComponent extends React.Component {
           {loading && !contactList.length ? (<Text>Please Wait ...</Text>) :
             ( <FlatList
               data={contactList}
+              keyExtractor={(item, index) => ('contact-' + item.getId())}
               renderItem={({item}) =>
                 (<ListItem key={item.getId()} onPress={(key) => {
                   console.log('iTem Press', key);

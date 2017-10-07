@@ -395,31 +395,6 @@ export default {
   },
 
 
-  mainTabBarActionHome: {
-    id: 'mainTabBarAction.home',
-    defaultMessage: 'Home',
-    description: 'Main Screen Tab Bar',
-  },
-  mainTabBarActionSearch: {
-    id: 'mainTabBarAction.search',
-    defaultMessage: 'Search',
-    description: 'Main Screen Tab Bar',
-  },
-  mainTabBarActionNew: {
-    id: 'mainTabBarAction.new',
-    defaultMessage: 'New',
-    description: 'Main Screen Tab Bar',
-  },
-  mainTabBarActionPublic: {
-    id: 'mainTabBarAction.public',
-    defaultMessage: 'Public',
-    description: 'Main Screen Tab Bar',
-  },
-  mainTabBarActionProfile: {
-    id: 'mainTabBarAction.profile',
-    defaultMessage: 'Profile',
-    description: 'Main Screen Tab Bar',
-  },
   mainDrawerContacts: {
     id: 'mainDrawer.contacts',
     defaultMessage: 'Contacts',

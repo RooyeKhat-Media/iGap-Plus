@@ -72,17 +72,22 @@ export default {
   },
   bottomNavigationAction: {
     container: {
-      minWidth: 60,
-      maxWidth: 130,
-    },
-    label: {
-      fontSize: 11,
-    },
-    labelActive: {
-      fontSize: 11,
+      minWidth: 61,
+      maxWidth: 132,
+      paddingBottom: 6,
+      paddingTop: 12,
+      paddingLeft: 12,
+      paddingRight: 12,
     },
     containerActive: {
-      paddingTop: 8,
+      paddingTop: 12,
+    },
+    icon: {
+      fontSize: 30,
+      color: gray950,
+    },
+    iconActive: {
+      color: black500,
     },
   },
 
