@@ -26,40 +26,39 @@ class MessageBox extends React.Component {
      * @type {ProtoRoomMessage}
      */
     const {message} = this.props;
-    console.log('message', message);
-    switch (message.getMessageType()) {
+    switch (message.messageType) {
 
       case Proto.RoomMessageType.TEXT:
-        return (<Text message={message.getMessage()}/>);
+        return (<Text message={message.message}/>);
 
       case Proto.RoomMessageType.IMAGE:
       case Proto.RoomMessageType.IMAGE_TEXT:
-        return (<Image message={message.getMessage()} attachment={message.getAttachment()}/>);
+        return (<Image message={message.message} attachment={message.attachment}/>);
 
       case Proto.RoomMessageType.VIDEO:
       case Proto.RoomMessageType.VIDEO_TEXT:
-        return (<Video message={message.getMessage()} attachment={message.getAttachment()}/>);
+        return (<Video message={message.message} attachment={message.attachment}/>);
 
       case Proto.RoomMessageType.AUDIO:
       case Proto.RoomMessageType.AUDIO_TEXT:
-        return (<Audio message={message.getMessage()} attachment={message.getAttachment()}/>);
+        return (<Audio message={message.message} attachment={message.attachment}/>);
 
       case Proto.RoomMessageType.VOICE:
-        return (<Voice attachment={message.getAttachment()}/>);
+        return (<Voice attachment={message.attachment}/>);
 
       case Proto.RoomMessageType.GIF:
       case Proto.RoomMessageType.GIF_TEXT:
-        return (<Gif message={message.getMessage()} attachment={message.getAttachment()}/>);
+        return (<Gif message={message.message} attachment={message.attachment}/>);
 
       case Proto.RoomMessageType.FILE:
       case Proto.RoomMessageType.FILE_TEXT:
-        return (<File message={message.getMessage()} attachment={message.getAttachment()}/>);
+        return (<File message={message.message} attachment={message.attachment}/>);
 
       case Proto.RoomMessageType.LOCATION:
-        return (<Location location={message.getLocation()}/>);
+        return (<Location location={message.location}/>);
 
       case Proto.RoomMessageType.CONTACT:
-        return (<Contact contact={message.getContact()}/>);
+        return (<Contact contact={message.contact}/>);
 
     }
   }

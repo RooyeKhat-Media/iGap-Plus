@@ -17,7 +17,7 @@ class RoomHistoryComponent extends React.Component {
           centerElement={
             <ListItem
               centerElement={{
-                primaryText: room.getTitle(),
+                primaryText: room.title,
                 secondaryText: 'Online',
               }}
               style={styles.toolBarListItem}
@@ -38,8 +38,8 @@ class RoomHistoryComponent extends React.Component {
 
             <FlatList
               data={messageList}
-              keyExtractor={(item, index) => ('history-' + item.getMessageId().toString())}
-              renderItem={({item}) => (<RoomMessage message={item}/>)}/>
+              keyExtractor={(item, index) => ('history-' + item)}
+              renderItem={({item}) => (<RoomMessage roomType={room.type} roomId={room.id} messageId={item}/>)}/>
 
           </View>
           <View style={styles.editorWrap}>

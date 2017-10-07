@@ -1,42 +1,20 @@
 import React, {Component} from 'react';
-import Api from '../modules/Api/index';
-import {ClientGetRoom, ClientGetRoomHistory} from '../modules/Proto/index';
-import {CLIENT_GET_ROOM, CLIENT_GET_ROOM_HISTORY} from '../constants/methods/index';
 import RoomHistoryComponent from '../components/RoomHistory';
+import {getRoom} from '../selector/entities/room';
+import {connect} from 'react-redux';
+import loadRoomHistory from '../modules/Messenger/loadRoomHistory';
+import {getRoomMessageList} from '../selector/messenger/roomMessage';
 
 class RoomHistoryScreen extends Component {
 
-  state = {
-    loading: true,
-    room: null,
-    messageList: [],
-  };
-
   async componentDidMount() {
-    const {id} = this.props.navigation.state.params;
-
-    const clientGetRoom = new ClientGetRoom();
-    clientGetRoom.setRoomId(id);
-    const clientGetRoomResponse = await Api.invoke(CLIENT_GET_ROOM, clientGetRoom);
-    const currentRoom = clientGetRoomResponse.getRoom();
-    this.setState({loading: false, room: currentRoom});
-
-    const clientRoomHistory = new ClientGetRoomHistory();
-    clientRoomHistory.setRoomId(currentRoom.getId());
-    clientRoomHistory.setLimit(100);
-
-    /**
-     * @type {ProtoClientGetRoomHistoryResponse}
-     */
-    const clientRoomHistoryResponse = await Api.invoke(CLIENT_GET_ROOM_HISTORY, clientRoomHistory);
-    this.setState({messageList: clientRoomHistoryResponse.getMessageList()});
+    const {roomId} = this.props.navigation.state.params;
+    loadRoomHistory(roomId);
   }
 
   render() {
-    const {room, loading, messageList} = this.state;
-    if (loading) {
-      return null;
-    }
+    const {room, messageList} = this.props;
+
     return (
       <RoomHistoryComponent
         room={room}
@@ -47,4 +25,16 @@ class RoomHistoryScreen extends Component {
   }
 }
 
-export default RoomHistoryScreen;
+const makeMapStateToProps = () => {
+  return (state, props) => {
+    return {
+      room: getRoom(state, props),
+      messageList: getRoomMessageList(state, props),
+    };
+  };
+};
+
+
+export default connect(
+  makeMapStateToProps,
+)(RoomHistoryScreen);

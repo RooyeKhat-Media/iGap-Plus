@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {getRoomAvatar} from '../../selector/entities/room';
 import {fileManagerDownload} from '../../actions/fileManager';
 import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
+import {getUserAvatar} from '../../selector/entities/registeredUser';
 
 class Avatar extends Component {
 
@@ -59,7 +60,7 @@ Avatar.propTypes = {
   roomId: PropTypes.string,
   userId: PropTypes.string,
   size: PropTypes.number.isRequired,
-
+  //Connect
   avatarObject: PropTypes.shape({
     color: PropTypes.string.isRequired,
     initials: PropTypes.string.isRequired,
@@ -79,6 +80,8 @@ const makeMapStateToProps = () => {
     let avatarObject = null;
     if (props.roomId) {
       avatarObject = getRoomAvatar(state, props);
+    } else if (props.userId) {
+      avatarObject = getUserAvatar(state, props);
     }
     return {
       avatarObject,

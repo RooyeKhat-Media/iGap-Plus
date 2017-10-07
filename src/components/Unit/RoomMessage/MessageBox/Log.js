@@ -8,47 +8,47 @@ import {StyleSheet, Text, View} from 'react-native';
  */
 export default ({message}) => {
   let messageText = '';
-  switch (message.getLog().getType()) {
-    case message.getLog().Type.USER_JOINED :
+  switch (message.log.getType()) {
+    case message.log.Type.USER_JOINED :
       messageText = 'user joined ';
       break;
-    case message.getLog().Type.USER_DELETED :
+    case message.log.Type.USER_DELETED :
       messageText = 'user deleted ';
       break;
-    case message.getLog().Type.ROOM_CREATED :
+    case message.log.Type.ROOM_CREATED :
       messageText = 'room created';
       break;
-    case message.getLog().Type.MEMBER_ADDED:
+    case message.log.Type.MEMBER_ADDED:
       messageText = 'member added';
       break;
-    case message.getLog().Type.MEMBER_KICKED :
+    case message.log.Type.MEMBER_KICKED :
       messageText = 'member kicked ';
       break;
-    case message.getLog().Type.MEMBER_LEFT :
+    case message.log.Type.MEMBER_LEFT :
       messageText = 'member left ';
       break;
-    case message.getLog().Type.ROOM_CONVERTED_TO_PUBLIC :
+    case message.log.Type.ROOM_CONVERTED_TO_PUBLIC :
       messageText = 'room converted to public ';
       break;
-    case message.getLog().Type.ROOM_CONVERTED_TO_PRIVATE :
+    case message.log.Type.ROOM_CONVERTED_TO_PRIVATE :
       messageText = 'room converted to private ';
       break;
-    case message.getLog().Type.MEMBER_JOINED_BY_INVITE_LINK :
+    case message.log.Type.MEMBER_JOINED_BY_INVITE_LINK :
       messageText = 'member joined by invite link ';
       break;
-    case message.getLog().Type.ROOM_DELETED :
+    case message.log.Type.ROOM_DELETED :
       messageText = 'room deleted ';
       break;
-    case message.getLog().Type.MISSED_VOICE_CALL :
+    case message.log.Type.MISSED_VOICE_CALL :
       messageText = 'missed voice call ';
       break;
-    case message.getLog().Type.MISSED_VIDEO_CALL :
+    case message.log.Type.MISSED_VIDEO_CALL :
       messageText = 'missed video call ';
       break;
-    case message.getLog().Type.MISSED_SCREEN_SHARE :
+    case message.log.Type.MISSED_SCREEN_SHARE :
       messageText = 'missed screen share';
       break;
-    case message.getLog().Type.MISSED_SECRET_CHAT :
+    case message.log.Type.MISSED_SECRET_CHAT :
       messageText = 'missed secret chat';
       break;
   }

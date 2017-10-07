@@ -5,8 +5,8 @@ import {navigate} from './index';
 import RoomScreen from '../screens/RoomHistoryScreen';
 import SecondaryInitialScreen from '../screens/SecondaryInitialScreen';
 
-export function goRoomHistory(id) {
-  navigate(ROOM_HISTORY_SCREEN, {id});
+export function goRoomHistory(roomId) {
+  navigate(ROOM_HISTORY_SCREEN, {roomId});
 }
 
 const SecondaryNavigator = StackNavigator({

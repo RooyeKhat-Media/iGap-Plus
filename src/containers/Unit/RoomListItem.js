@@ -32,7 +32,7 @@ class RoomListItem extends Component {
   getSecondaryTitle() {
     const {room} = this.props;
     if (!room.lastMessage) {
-      return '';
+      return 'No Message';
     }
     if (room.lastMessage.message) {
       return room.lastMessage.message;

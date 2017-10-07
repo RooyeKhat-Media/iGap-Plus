@@ -6,13 +6,6 @@ import {goRoomHistory} from '../navigators/SecondaryNavigator';
 
 class RoomListScreen extends Component {
 
-  state = {
-    loading: true,
-  };
-
-  async componentDidMount() {
-  }
-
   render() {
     const {roomList} = this.props;
     return (
