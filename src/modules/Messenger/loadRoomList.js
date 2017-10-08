@@ -16,7 +16,7 @@ export default async function loadRoomList() {
   const payload = {};
   let offset = 0;
   let order = Long.fromInt(10000000);
-  const override = isEmpty(store.getState().messenger.room);
+  const override = !isEmpty(store.getState().messenger.room);
   do {
     const pagination = new Proto.Pagination();
     pagination.setLimit(CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT);
@@ -56,6 +56,9 @@ export default async function loadRoomList() {
       console.error('clientGetRoomListResponse', e);
     }
 
-    store.dispatch(messengerRoomOverrideList(payload));
   } while (true);
+
+  if (override) {
+    store.dispatch(messengerRoomOverrideList(payload));
+  }
 }
