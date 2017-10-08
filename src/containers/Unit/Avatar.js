@@ -7,6 +7,7 @@ import {getRoomAvatar} from '../../selector/entities/room';
 import {fileManagerDownload} from '../../actions/fileManager';
 import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 import {getUserAvatar} from '../../selector/entities/registeredUser';
+import Long from 'long';
 
 class Avatar extends Component {
 
@@ -67,7 +68,7 @@ Avatar.propTypes = {
     avatar: PropTypes.shape({
       token: PropTypes.string.isRequired,
       selector: PropTypes.number.isRequired,
-      size: PropTypes.number.isRequired,
+      size: PropTypes.instanceOf(Long).isRequired,
       cacheId: PropTypes.string.isRequired,
     }),
   }).isRequired,
