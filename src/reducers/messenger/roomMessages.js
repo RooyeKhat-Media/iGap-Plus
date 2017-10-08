@@ -31,7 +31,7 @@ export function roomMessages(state = initialState, action) {
     case MESSENGER_ROOM_MESSAGE_CONCAT:
       return {
         ...state,
-        [action.roomId]: uniq(concat(state[action.roomId], action.messageIds)),
+        [action.roomId]: state[action.roomId] ? uniq(concat(state[action.roomId], action.messageIds)) : uniq(action.messageIds),
       };
     default:
       return state;

@@ -1,23 +1,28 @@
 import {normalize} from 'normalizr';
 import Long from 'long';
-import {isEmpty} from 'lodash';
+import {difference} from 'lodash';
 import {ClientGetRoomList, Proto} from '../Proto/index';
 import {CLIENT_GET_ROOM_LIST} from '../../constants/methods/index';
 import Api from '../Api/index';
 import {CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT} from '../../constants/configs';
 import store from '../../configureStore';
-import {messengerRoomAdd, messengerRoomOverrideList} from '../../actions/messenger/room';
+import {messengerRoomAddList, messengerRoomRemove} from '../../actions/messenger/room';
 import {entitiesRoomsAddFull} from '../../actions/entities/rooms';
 import room from '../../schemas/room';
 
 
 export default async function loadRoomList() {
 
-  const payload = {};
   let offset = 0;
   let order = Long.fromInt(10000000);
-  const override = !isEmpty(store.getState().messenger.room);
+
+  const newRoomList = [];
+  const oldRoomList = Object.keys(store.getState().messenger.room);
+
   do {
+
+    const payload = {};
+
     const pagination = new Proto.Pagination();
     pagination.setLimit(CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT);
     pagination.setOffset(offset);
@@ -35,30 +40,30 @@ export default async function loadRoomList() {
         break;
       }
 
-      clientGetRoomListResponse.getRoomsList().forEach((roomProto) => {
-        const normalizedData = normalize(roomProto, room);
-        store.dispatch(entitiesRoomsAddFull(normalizedData));
+      const normalizedData = normalize(clientGetRoomListResponse.getRoomsList(), [room]);
+      store.dispatch(entitiesRoomsAddFull(normalizedData));
 
+      clientGetRoomListResponse.getRoomsList().forEach((roomProto) => {
         order = order.sub(1);
-        const roomPayload = {
-          id: normalizedData.result,
+        const roomId = roomProto.getId().toString();
+        payload[roomId] = {
+          id: roomId,
           order: order.toString(),
         };
-        if (override) {
-          payload[roomPayload.id] = roomPayload;
-        } else {
-          store.dispatch(messengerRoomAdd(roomPayload));
-        }
+        newRoomList.push(roomId);
       });
 
+      store.dispatch(messengerRoomAddList(payload));
+
       offset += clientGetRoomListResponse.getRoomsList().length;
+
     } catch (e) {
       console.error('clientGetRoomListResponse', e);
     }
-
   } while (true);
 
-  if (override) {
-    store.dispatch(messengerRoomOverrideList(payload));
-  }
+  difference(oldRoomList, newRoomList).forEach(function(roomId) {
+    store.dispatch(messengerRoomRemove(roomId));
+  });
+
 }
