@@ -6,12 +6,13 @@ import roomMessage from '../../schemas/roomMessage';
 import store from '../../configureStore';
 import {messengerRoomMessageConcat} from '../../actions/messenger/roomMessages';
 import {entitiesRoomMessagesAdd} from '../../actions/entities/roomMessages';
+import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from "../../constants/configs";
 
 export default async function loadRoomHistory(roomId) {
 
   const clientRoomHistory = new ClientGetRoomHistory();
   clientRoomHistory.setRoomId(roomId);
-  clientRoomHistory.setLimit(100);
+  clientRoomHistory.setLimit(CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT);
 
   /**
    * @type {ProtoClientGetRoomHistoryResponse}
