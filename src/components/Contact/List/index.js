@@ -17,7 +17,7 @@ class ContactListComponent extends React.Component {
           onLeftElementPress={goBack}
           centerElement={intl.formatMessage(i18n.contactListTitleToolbar)}/>
         <View style={styles.container}>
-          {loading ? (<Text>Please Wait ...</Text>) :
+          {loading && !contactList.length ? (<Text>Please Wait ...</Text>) :
             ( <FlatList
               data={contactList}
               renderItem={({item}) =>
