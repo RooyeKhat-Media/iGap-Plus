@@ -65,7 +65,7 @@ export default function(state = initialState, action) {
 }
 
 function assertDisposing(id, message) {
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'development') {
     setTimeout(function() {
       if (store.getState.fileManager.upload[id] !== undefined) {
         console.warn(message);
