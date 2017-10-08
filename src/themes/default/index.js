@@ -18,6 +18,7 @@ export default {
     primaryColor: primary,
     canvasColor: white,
   },
+  fontFamily: 'IRANSans',
   toolbar: {
     container: {
       height: 50,
@@ -93,9 +94,14 @@ export default {
 
   listItem: {
     primaryText: {
+      fontFamily: 'IRANSans_Medium',
       textAlign: 'left',
+      fontSize: 15,
       lineHeight: 20,
-      fontWeight: 'bold',
+    },
+    secondaryText: {
+      fontFamily: 'IRANSans',
+      fontSize: 12,
     },
     leftElementContainer: {
       width: 55,

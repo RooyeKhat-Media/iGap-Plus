@@ -9,6 +9,7 @@ class MainToolbar extends Component {
         onLeftElementPress={() => {
           this.props.navigation.navigate('DrawerOpen');
         }}
+        style={{titleText: {fontFamily: 'neuropolitical', fontWeight: '100'}}}
         centerElement="iGap+"/>
     );
   }

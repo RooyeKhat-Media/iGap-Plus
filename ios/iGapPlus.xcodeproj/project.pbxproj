@@ -64,6 +64,14 @@
 		EE3C237DC5A14C34A22AF091 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F960C750DCFB45D980E1CB3B /* Roboto-Light.ttf */; };
 		F0AC6069F9DC4D1D8DD3AB4D /* libRNWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9183855F5A54E7FA7873918 /* libRNWebSocket.a */; };
 		F59CAA8E174B4FD88FAEFDBF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45283F4755454A9F9C93AB8B /* Octicons.ttf */; };
+		783FCEA2B0ED4579949B9B32 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10BFD50FF37D4467B5AD68B1 /* SimpleLineIcons.ttf */; };
+		0B9C43901FCA4FE3BDFC761A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 327E9C0C1DD3416DB1E4EE14 /* Zocial.ttf */; };
+		053E49A04ACF4479A8313A94 /* IRANSans_Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB50B241DB574DC39FCE48D2 /* IRANSans_Black.ttf */; };
+		181DB34DF6F640B1B5C5EA4C /* IRANSans_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2030546DE6FA4CF2AF46CAA3 /* IRANSans_Bold.ttf */; };
+		C9AD5FB644564DCC94588120 /* IRANSans_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27DDC3ECDCFA49E8BA1D79BF /* IRANSans_Light.ttf */; };
+		C7330C21D30E4F40A6092C31 /* IRANSans_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66288E065EF14217BD24CF3D /* IRANSans_Medium.ttf */; };
+		659A47E679B9443B8B8BFFA9 /* IRANSans_UltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCA8A15475634C2EBB878184 /* IRANSans_UltraLight.ttf */; };
+		CF674D6BC1764E36802CFD81 /* IRANSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD061A84A32D411994FAF72F /* IRANSans.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +373,12 @@
 		F1DB34972724486F8D3467CD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		F960C750DCFB45D980E1CB3B /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		FFF893B2541144B48AF47EF7 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		AB50B241DB574DC39FCE48D2 /* IRANSans_Black.ttf */ = {isa = PBXFileReference; name = "IRANSans_Black.ttf"; path = "../src/assets/fonts/IRANSans/IRANSans_Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2030546DE6FA4CF2AF46CAA3 /* IRANSans_Bold.ttf */ = {isa = PBXFileReference; name = "IRANSans_Bold.ttf"; path = "../src/assets/fonts/IRANSans/IRANSans_Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		27DDC3ECDCFA49E8BA1D79BF /* IRANSans_Light.ttf */ = {isa = PBXFileReference; name = "IRANSans_Light.ttf"; path = "../src/assets/fonts/IRANSans/IRANSans_Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		66288E065EF14217BD24CF3D /* IRANSans_Medium.ttf */ = {isa = PBXFileReference; name = "IRANSans_Medium.ttf"; path = "../src/assets/fonts/IRANSans/IRANSans_Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FCA8A15475634C2EBB878184 /* IRANSans_UltraLight.ttf */ = {isa = PBXFileReference; name = "IRANSans_UltraLight.ttf"; path = "../src/assets/fonts/IRANSans/IRANSans_UltraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BD061A84A32D411994FAF72F /* IRANSans.ttf */ = {isa = PBXFileReference; name = "IRANSans.ttf"; path = "../src/assets/fonts/IRANSans/IRANSans.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +692,12 @@
 				45283F4755454A9F9C93AB8B /* Octicons.ttf */,
 				10BFD50FF37D4467B5AD68B1 /* SimpleLineIcons.ttf */,
 				327E9C0C1DD3416DB1E4EE14 /* Zocial.ttf */,
+				AB50B241DB574DC39FCE48D2 /* IRANSans_Black.ttf */,
+				2030546DE6FA4CF2AF46CAA3 /* IRANSans_Bold.ttf */,
+				27DDC3ECDCFA49E8BA1D79BF /* IRANSans_Light.ttf */,
+				66288E065EF14217BD24CF3D /* IRANSans_Medium.ttf */,
+				FCA8A15475634C2EBB878184 /* IRANSans_UltraLight.ttf */,
+				BD061A84A32D411994FAF72F /* IRANSans.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1150,6 +1170,12 @@
 				F59CAA8E174B4FD88FAEFDBF /* Octicons.ttf in Resources */,
 				783FCEA2B0ED4579949B9B32 /* SimpleLineIcons.ttf in Resources */,
 				0B9C43901FCA4FE3BDFC761A /* Zocial.ttf in Resources */,
+				053E49A04ACF4479A8313A94 /* IRANSans_Black.ttf in Resources */,
+				181DB34DF6F640B1B5C5EA4C /* IRANSans_Bold.ttf in Resources */,
+				C9AD5FB644564DCC94588120 /* IRANSans_Light.ttf in Resources */,
+				C7330C21D30E4F40A6092C31 /* IRANSans_Medium.ttf in Resources */,
+				659A47E679B9443B8B8BFFA9 /* IRANSans_UltraLight.ttf in Resources */,
+				CF674D6BC1764E36802CFD81 /* IRANSans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
