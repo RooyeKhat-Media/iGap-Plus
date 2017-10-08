@@ -7,16 +7,23 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
 import {middleware as FileManagerMiddleware} from './modules/FileManager';
+import reduxLogger from 'redux-logger';
 
 function configureStore(preloadedState) {
+  const middlewares = [
+    thunkMiddleware,
+    apiMiddleware,
+    FileManagerMiddleware,
+  ];
+
+  if (process.env.NODE_ENV === `development`) {
+    //middlewares.push(reduxLogger);
+  }
+
   return createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(
-      thunkMiddleware,
-      apiMiddleware,
-      FileManagerMiddleware,
-    )
+    applyMiddleware(...middlewares)
   );
 }
 
