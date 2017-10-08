@@ -1,5 +1,9 @@
 /*eslint-disable block-scoped-var, no-redeclare, no-control-regex, no-prototype-builtins*/
 import * as $protobuf from 'protobufjs/minimal';
+import Long from 'long';
+
+$protobuf.util.Long = Long;
+$protobuf.configure();
 
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
