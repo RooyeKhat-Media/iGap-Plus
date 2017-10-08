@@ -18,7 +18,11 @@ import {ErrorResponse} from '../Proto/index';
 import {ERROR_TIMEOUT} from './errors/index';
 import ServerError from '../Error/ServerError';
 import 'es6-symbol/implement';
+import 'es6-map/implement';
 import {mapReact} from '../Error/index';
+import {getCacheId} from '../../constants/methods/cacheable';
+import CacheableMethod from '../../models/CacheableMethod';
+import protoTable from '../Proto';
 
 const apiSingleton = Symbol();
 const apiSingletonEnforcer = Symbol();
@@ -45,6 +49,25 @@ export const CLIENT_STATUS = {
   LOGGED_IN: Symbol('LOGGED_IN'),
   DISCONNECTED: Symbol('DISCONNECTED'),
 };
+
+export const API_RESPONSE_ACTION_ID_OFFSET = 30000;
+
+let __sessionUid = (new Date()).getTime();
+
+/**
+ * @return {number}
+ */
+export function getSessionUid() {
+  return __sessionUid;
+}
+
+/**
+ * @return {number}
+ */
+export function changeSessionUid() {
+  __sessionUid = (new Date()).getTime();
+  return __sessionUid;
+}
 
 export default class Api {
 
@@ -179,7 +202,21 @@ export default class Api {
     return running.get(id);
   }
 
-  __schedule(wrapper) {
+  async __schedule(wrapper) {
+    const cacheId = getCacheId(wrapper);
+
+    /**
+     * @type {null|CachedMethodResponse}
+     */
+    let cachedResponse = null;
+    if (cacheId) {
+      try {
+        cachedResponse = await CacheableMethod.loadFromQueue(cacheId);
+      } catch (e) {
+        //No cache data is available
+      }
+    }
+
     if (
       Client.instance.isLoggedIn
       ||
@@ -187,13 +224,25 @@ export default class Api {
       ||
       (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
     ) {
-      if (running.size < API_CONCURRENCY) {
+      if (cachedResponse && cachedResponse.sessionUid === getSessionUid()) {
+        this._fakeRun(wrapper, cachedResponse.data);
+      } else if (running.size < API_CONCURRENCY) {
         this._run(wrapper);
       } else {
         pending.add(wrapper);
       }
     } else if (wrapper.durable) {
       pending.add(wrapper);
+
+      if (wrapper.handlerPrecedence !== HANDLER_PRECEDENCE.NONE) {
+        const cachedResponseActionId = wrapper.actionId + API_RESPONSE_ACTION_ID_OFFSET;
+        if (cachedResponse && protoTable.hasOwnProperty(cachedResponseActionId)) {
+          const responseProto = protoTable[cachedResponseActionId].deserializeBinary(cachedResponse.data);
+          Client.instance.__runHandler(cachedResponseActionId, responseProto, wrapper);
+        }
+      }
+    } else if (cachedResponse) {
+      this._fakeRun(wrapper, cachedResponse.data);
     } else {
       const errorResponse = new ErrorResponse();
       errorResponse.setMajorCode(ERROR_TIMEOUT);
@@ -202,13 +251,26 @@ export default class Api {
     }
   }
 
-  _run(wrapper) {
+  _fakeRun(wrapper, payload) {
+    try {
+      this._initRun(wrapper);
+      Client.instance.__processMessage(wrapper.actionId + API_RESPONSE_ACTION_ID_OFFSET, payload, false, wrapper);
+    } finally {
+      wrapper.startTimeout();
+    }
+  }
+
+  _initRun(wrapper) {
     const request = new Proto.Request();
     request.setId(randomString(10));
 
     wrapper.request.setRequest(request);
 
     running.set(request.getId(), wrapper);
+  }
+
+  _run(wrapper) {
+    this._initRun(wrapper);
     Client.instance.sendRequest(wrapper);
   }
 
@@ -271,7 +333,11 @@ export default class Api {
           ||
           (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
         ) {
-          this._run(wrapper);
+          const cacheId = getCacheId(wrapper);
+          if (cacheId) {
+            await msSleep(100);
+          }
+          this.__schedule(wrapper);
         } else {
           if (0 < wrapper.priority) {
             wrapper.priority = parseInt(wrapper.priority / 2, 10);

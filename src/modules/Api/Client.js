@@ -9,7 +9,7 @@ import {sleep} from '../../utils/core';
 import {WEBSOCKET_ENDPOINT, WEBSOCKET_RECONNECT_INTERVAL_SEC} from '../../constants/configs';
 import protoTable from '../Proto';
 import handlerTable from '../Handler';
-import Api, {CLIENT_STATUS, HANDLER_PRECEDENCE} from './index';
+import Api, {API_RESPONSE_ACTION_ID_OFFSET, changeSessionUid, CLIENT_STATUS, HANDLER_PRECEDENCE} from './index';
 import RequestWrapper from './RequestWrapper';
 import ClientError from '../Error/ClientError';
 import ServerError from '../Error/ServerError';
@@ -19,6 +19,8 @@ import {arrayBufferToString, stringToArrayBuffer} from '../../utils/buffer';
 import {clientStatusChanged} from '../../actions/api';
 import store from '../../configureStore';
 import 'es6-symbol/implement';
+import {getCacheId, getCacheRevokeIds} from '../../constants/methods/cacheable';
+import CacheableMethod from '../../models/CacheableMethod';
 
 const singleton = Symbol();
 const singletonEnforcer = Symbol();
@@ -102,7 +104,7 @@ export default class Client {
 
   _connect() {
     if (!this._keepAlive) {
-      return;
+      return Promise.reject();
     }
 
     this.secure = false;
@@ -113,6 +115,7 @@ export default class Client {
       this._socket = new WebSocket(WEBSOCKET_ENDPOINT);
       this._socket.binaryType = 'arraybuffer';
       this._socket.onopen = function() {
+        changeSessionUid();
         store.dispatch(clientStatusChanged(CLIENT_STATUS.CONNECTED));
         resolve(true);
       };
@@ -140,29 +143,35 @@ export default class Client {
       throw new ClientError(`Insecure connection cannot accept action #${responseActionId}`);
     }
 
-    if (protoTable.hasOwnProperty(responseActionId)) {
-      const responseProto = protoTable[responseActionId].deserializeBinary(new Uint8Array(data, 2));
+    this.__processMessage(responseActionId, new Uint8Array(data, 2), true);
+  }
 
-      let wrapper;
-      if (responseProto.getResponse() && responseProto.getResponse().getId()) {
-        wrapper = Api.instance.getRequestWrapper(responseProto.getResponse().getId());
-        if (!wrapper) {
-          return;
+  __processMessage(responseActionId, payload, isFromServer, inputWrapper = null) {
+    if (protoTable.hasOwnProperty(responseActionId)) {
+      const responseProto = protoTable[responseActionId].deserializeBinary(payload);
+
+      let wrapper = inputWrapper;
+      if (!wrapper) {
+        if (responseProto.getResponse() && responseProto.getResponse().getId()) {
+          wrapper = Api.instance.getRequestWrapper(responseProto.getResponse().getId());
+          if (!wrapper) {
+            return;
+          }
+        } else {
+          new Promise((resolve, reject) => {
+            wrapper = new RequestWrapper(
+              resolve,
+              reject,
+              () => {
+              },
+              (responseActionId > 30001 && responseActionId < 60000) ? (responseActionId - API_RESPONSE_ACTION_ID_OFFSET) : undefined,
+              undefined,
+              1,
+              HANDLER_PRECEDENCE.BEFORE,
+              false
+            );
+          });
         }
-      } else {
-        new Promise((resolve, reject) => {
-          wrapper = new RequestWrapper(
-            resolve,
-            reject,
-            () => {
-            },
-            (responseActionId > 30001 && responseActionId < 60000) ? (responseActionId - 3000) : undefined,
-            undefined,
-            1,
-            HANDLER_PRECEDENCE.BEFORE,
-            false
-          );
-        });
       }
 
       let promise = new Promise((resolve, reject) => {
@@ -174,7 +183,7 @@ export default class Client {
             try {
               wrapper.reject(reason);
             } finally {
-              this._runHandler(responseActionId, responseProto, wrapper);
+              this.__runHandler(responseActionId, responseProto, wrapper);
             }
           }
         } else {
@@ -187,7 +196,7 @@ export default class Client {
         case HANDLER_PRECEDENCE.BEFORE:
           promise.then(responseProto => {
             try {
-              this._runHandler(responseActionId, responseProto, wrapper);
+              this.__runHandler(responseActionId, responseProto, wrapper);
             } finally {
               wrapper.resolve(responseProto);
             }
@@ -197,7 +206,7 @@ export default class Client {
           promise.then(responseProto => {
             wrapper.resolve(responseProto);
           }).then(() => {
-            this._runHandler(responseActionId, responseProto, wrapper);
+            this.__runHandler(responseActionId, responseProto, wrapper);
           });
           break;
         case HANDLER_PRECEDENCE.NONE:
@@ -211,12 +220,28 @@ export default class Client {
           });
       }
 
+      if (isFromServer) {
+        const cacheId = getCacheId(wrapper);
+        if (cacheId) {
+          CacheableMethod.saveToQueue(cacheId, payload);
+        }
+
+        const cacheRevokeIds = getCacheRevokeIds(wrapper);
+        if (cacheRevokeIds) {
+          cacheRevokeIds.forEach(function(cacheRevokeId) {
+            CacheableMethod.revokeToQueue(cacheRevokeId);
+          });
+
+        }
+      }
+
     } else {
       console.warn('Unsupported method ' + responseActionId);
     }
   }
 
   async _onClose(event) {
+    changeSessionUid();
     store.dispatch(clientStatusChanged(CLIENT_STATUS.DISCONNECTED));
 
     try {
@@ -268,9 +293,8 @@ export default class Client {
    * @param {number} responseActionId
    * @param {object} responseProto
    * @param {RequestWrapper} wrapper
-   * @private
    */
-  _runHandler(responseActionId, responseProto, wrapper) {
+  __runHandler(responseActionId, responseProto, wrapper) {
     const handlerClass = handlerTable[responseActionId];
     if (handlerClass) {
       const handler = new handlerClass(responseProto, wrapper.request);
