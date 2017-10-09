@@ -132,21 +132,39 @@ RCT_EXPORT_METHOD(fOpen:(NSString *)fileUri mode:(int)mode resolve:(RCTPromiseRe
         if (mode == FILE_MODE_OPEN_WRITE) {
             loadData = NO;
         }
-        RNFile *file = [RNFile fileWithId:lastUid andUri:fileUri loadData:loadData];
-        [files setObject:file forKey:[NSNumber numberWithInt:file.refId]];
-        resolve([NSNumber numberWithInt:file.refId]);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            RNFile *file = [RNFile fileWithId:lastUid andUri:fileUri loadData:loadData];
+            [files setObject:file forKey:[NSNumber numberWithInt:file.refId]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                resolve([NSNumber numberWithInt:file.refId]);
+            });
+        });
     }
     @catch (NSException * e){
         reject(e.name, e.description, nil);
     }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+    });
 
 }
 
 RCT_EXPORT_METHOD(fRead:(NSInteger)refId offset:(NSString *)offset limit:(int)limit resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
     RNFile *file = [files objectForKey:[NSNumber numberWithInteger:refId]];
     if (file != nil) {
-        NSData *data = [file.data subdataWithRange:NSMakeRange(offset.intValue, limit)];
-        resolve([data base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0]);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData *data = [file.data subdataWithRange:NSMakeRange(offset.intValue, limit)];
+            NSString *base64 = [data base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                resolve(base64);
+            });
+        });
+        
+        
     } else {
         reject(ERROR_NO_DATA, @"fRead: file does not exists", nil);
     }
@@ -155,30 +173,36 @@ RCT_EXPORT_METHOD(fRead:(NSInteger)refId offset:(NSString *)offset limit:(int)li
 RCT_EXPORT_METHOD(fSha256:(NSInteger)refId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
     RNFile *file = [files objectForKey:[NSNumber numberWithInteger:refId]];
     if (file != nil) {
-        unsigned char result[CC_SHA256_DIGEST_LENGTH];
-        CC_SHA256([file.data bytes], (int)[file.data length], result);
-        NSData *data = [NSData dataWithBytes:result length:CC_SHA256_DIGEST_LENGTH];
-        NSString *a = [data base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0];
-        resolve(a);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            unsigned char result[CC_SHA256_DIGEST_LENGTH];
+            CC_SHA256([file.data bytes], (int)[file.data length], result);
+            NSData *data = [NSData dataWithBytes:result length:CC_SHA256_DIGEST_LENGTH];
+            NSString *a = [data base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                resolve(a);
+            });
+        });
     } else {
         reject(ERROR_NO_DATA, @"fSha256: file does not exists", nil);
     }
 }
 
 RCT_EXPORT_METHOD(fAppend:(NSInteger)refId base64String:(NSString *)base64String resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
-    RNFile *file = [files objectForKey:[NSNumber numberWithInteger:refId]];
-    NSMutableData *mutableData = [NSMutableData dataWithData:file.data];
-    [mutableData appendData:[[NSData alloc] initWithBase64EncodedString:base64String options:(NSDataBase64DecodingOptions)0]];
-    file.data = mutableData;
-    
-    
-    NSError *error = nil;
-    [file.data writeToFile:file.uri options:NSDataWritingAtomic error:&error];
-    if (error == nil) {
-        resolve(@"");
-    } else {
-        reject(ERROR_FATAL, @"Could not write to file", nil);
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        RNFile *file = [files objectForKey:[NSNumber numberWithInteger:refId]];
+        NSMutableData *mutableData = [NSMutableData dataWithData:file.data];
+        [mutableData appendData:[[NSData alloc] initWithBase64EncodedString:base64String options:(NSDataBase64DecodingOptions)0]];
+        file.data = mutableData;
+        NSError *error = nil;
+        [file.data writeToFile:file.uri options:NSDataWritingAtomic error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error == nil) {
+                resolve(@"");
+            } else {
+                reject(ERROR_FATAL, @"Could not write to file", nil);
+            }
+        });
+    });            
 }
 
 RCT_EXPORT_METHOD(fClose:(NSInteger)refId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
@@ -420,6 +444,7 @@ RCT_EXPORT_METHOD(getFilesDir:(RCTPromiseResolveBlock)resolve reject:(RCTPromise
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:true completion:nil];
     currentRejectCallBack(ERROR_NO_DATA, @"", nil);
 }
 
