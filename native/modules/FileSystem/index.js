@@ -38,12 +38,18 @@ class FileSystem {
    * @returns {Promise<{fileUri:string ,fileName:string ,fileSize:Long}[]>}
    */
   filesPicker(fileType) {
-    return RNFileSystem.filePicker(fileType).then(function({fileUri, fileName, fileSize}) {
-      return {
-        fileUri,
-        fileName,
-        fileSize: Long.fromString(fileSize),
-      };
+    return RNFileSystem.filesPicker(fileType).then(function(data) {
+      const result = [];
+      data.forEach(function(element) {
+        const {fileUri, fileName, fileSize} = element;
+        result.push({
+          fileUri,
+          fileName,
+          fileSize: Long.fromString(fileSize),
+        });
+      });
+
+      return result;
     });
   }
 
