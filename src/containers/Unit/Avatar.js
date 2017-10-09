@@ -3,47 +3,47 @@ import {Image} from 'react-native';
 import PropTypes from 'prop-types';
 import {Avatar as BaseAvatar} from '../../components/BaseUI/index';
 import {connect} from 'react-redux';
-import {getRoomAvatar} from '../../selector/entities/room';
+import {getRoomAvatar, getRoomAvatarUri} from '../../selector/entities/room';
 import {fileManagerDownload} from '../../actions/fileManager';
-import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
-import {getUserAvatar} from '../../selector/entities/registeredUser';
+import {FILE_MANAGER_DOWNLOAD_MANNER} from '../../constants/fileManager';
+import {getUserAvatar, getUserAvatarUri} from '../../selector/entities/registeredUser';
 import Long from 'long';
 
 class Avatar extends Component {
 
   componentDidMount() {
-    const {avatarObject, download} = this.props;
-    if (avatarObject.avatar) {
-      download(avatarObject.avatar);
+    const {avatarUri, avatarProps, download} = this.props;
+    if (!avatarUri && avatarProps.avatar) {
+      download(avatarProps.avatar);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const nextAvatar = nextProps.avatarObject.avatar;
-    const prevAvatar = this.props.avatarObject.avatar;
+    const nextAvatar = nextProps.avatarProps.avatar;
+    const prevAvatar = this.props.avatarProps.avatar;
     if (nextAvatar && prevAvatar !== nextAvatar) {
       nextProps.download(nextAvatar);
     }
   }
 
   render() {
-    const {avatarObject, avatarFile, size} = this.props;
+    const {avatarProps, avatarUri, size} = this.props;
     const style = {...this.props.style};
 
-    if (avatarObject.color) {
+    if (avatarProps.color) {
       if (!style.container) {
         style.container = {};
       }
-      style.container.backgroundColor = avatarObject.color;
+      style.container.backgroundColor = avatarProps.color;
     }
 
     let imageContent = null;
     let initials = null;
-    if (avatarFile && avatarFile.status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
-      imageContent = (<Image source={{uri: 'file://' + avatarFile.uri}}
+    if (avatarUri) {
+      imageContent = (<Image source={{uri: 'file://' + avatarUri}}
         style={{width: size, height: size, borderRadius: (size / 2)}}/>);
     } else {
-      initials = avatarObject.initials;
+      initials = avatarProps.initials;
     }
 
     return (
@@ -62,7 +62,7 @@ Avatar.propTypes = {
   userId: PropTypes.string,
   size: PropTypes.number.isRequired,
   //Connect
-  avatarObject: PropTypes.shape({
+  avatarProps: PropTypes.shape({
     color: PropTypes.string.isRequired,
     initials: PropTypes.string.isRequired,
     avatar: PropTypes.shape({
@@ -72,21 +72,24 @@ Avatar.propTypes = {
       cacheId: PropTypes.string.isRequired,
     }),
   }).isRequired,
-  avatarFile: PropTypes.object,
+  avatarUri: PropTypes.string,
   download: PropTypes.func.isRequired,
 };
 
 const makeMapStateToProps = () => {
   return (state, props) => {
-    let avatarObject = null;
+    let avatarProps = null;
+    let avatarUri = null;
     if (props.roomId) {
-      avatarObject = getRoomAvatar(state, props);
+      avatarProps = getRoomAvatar(state, props);
+      avatarUri = getRoomAvatarUri(state, props);
     } else if (props.userId) {
-      avatarObject = getUserAvatar(state, props);
+      avatarProps = getUserAvatar(state, props);
+      avatarUri = getUserAvatarUri(state, props);
     }
     return {
-      avatarObject,
-      avatarFile: avatarObject.avatar ? state.fileManager.download[avatarObject.avatar.cacheId] : null,
+      avatarProps,
+      avatarUri,
     };
   };
 };

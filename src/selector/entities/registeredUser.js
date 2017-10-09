@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect';
 import {FileDownload} from '../../modules/Proto/index';
+import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 
 
 export const getUserId = (state, props) => {
@@ -41,5 +42,21 @@ export const getUserAvatar = createSelector(
         cacheId: fileSelector.getCacheId(),
       } : null,
     };
+  }
+);
+
+
+export const getUserAvatarUri = createSelector(
+  getUserAvatar,
+  (state) => state.fileManager.download,
+  (userAvatar, downloads) => {
+    if (
+      userAvatar.avatar &&
+      downloads[userAvatar.avatar.cacheId] &&
+      downloads[userAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
+    ) {
+      return downloads[userAvatar.avatar.cacheId].uri;
+    }
+    return null;
   }
 );

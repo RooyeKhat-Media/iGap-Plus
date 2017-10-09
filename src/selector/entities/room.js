@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect';
 import {FileDownload} from '../../modules/Proto/index';
+import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 
 export const getRoomId = (state, props) => {
   return props.roomId || (props.navigation ? props.navigation.state.params.roomId : null);
@@ -57,5 +58,20 @@ export const getRoomAvatar = createSelector(
         cacheId: fileSelector.getCacheId(),
       } : null,
     };
+  }
+);
+
+export const getRoomAvatarUri = createSelector(
+  getRoomAvatar,
+  (state) => state.fileManager.download,
+  (roomAvatar, downloads) => {
+    if (
+      roomAvatar.avatar &&
+      downloads[roomAvatar.avatar.cacheId] &&
+      downloads[roomAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
+    ) {
+      return downloads[roomAvatar.avatar.cacheId].uri;
+    }
+    return null;
   }
 );
