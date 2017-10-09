@@ -1271,6 +1271,8 @@ static const size_t RNSRFrameHeaderOverhead = 32;
     
     if (mask) {
         useMask = YES;
+    } else {
+        useMask = NO;
     }
 
   if (useMask) {
