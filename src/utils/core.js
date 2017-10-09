@@ -54,3 +54,20 @@ export function rtrim(str, charlist) {
 
   return (str + '').replace(re, '');
 }
+
+/**
+ * Get extension
+ * @param {string} path
+ * @param {bool} includeDot
+ * @return {string}
+ */
+export function getExtension(path, includeDot = false) {
+  const lastIndexOfDot = path.lastIndexOf('.');
+  if (lastIndexOfDot === -1) {
+    return '';
+  }
+
+  const extension = path.substring(lastIndexOfDot + 1);
+
+  return ((includeDot && extension ? '.' : '') + extension);
+}

@@ -71,12 +71,13 @@ const downloadLimiter = PromiseLimiter(FILE_MANAGER_MAX_CONCURRENT_DOWNLOAD);
  * @param {ProtoFileDownload_Selector} selector
  * @param {Long} size
  * @param {string} cacheId
+ * @param {string} fileName
  * @param {number} priority
  * @returns {Promise.<void>}
  */
-export function download(token, selector, size, cacheId, priority) {
+export function download(token, selector, size, cacheId, fileName, priority) {
   return downloadLimiter(() => {
-    return _download(token, selector, size, cacheId);
+    return _download(token, selector, size, cacheId, fileName);
   }, priority);
 }
 

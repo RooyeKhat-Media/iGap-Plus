@@ -56,10 +56,11 @@ export function fileManagerDownloadManuallyPaused(cacheId) {
  * @param {ProtoFileDownload_Selector} selector
  * @param {Long} size
  * @param {string} cacheId
+ * @param {string} fileName
  * @param {number} priority
  * @return {Function}
  */
-export function fileManagerDownload(manner, token, selector, size, cacheId, priority) {
+export function fileManagerDownload(manner, token, selector, size, cacheId, fileName, priority) {
   return (dispatch, getState) => {
     const file = getState().fileManager.download[cacheId];
 
@@ -78,7 +79,7 @@ export function fileManagerDownload(manner, token, selector, size, cacheId, prio
       }
     }
 
-    const promise = download(token, selector, size, cacheId, priority);
+    const promise = download(token, selector, size, cacheId, fileName, priority);
     dispatch(fileManagerDownloadPending(cacheId, promise));
     return promise;
   };

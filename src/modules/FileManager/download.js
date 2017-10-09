@@ -14,6 +14,7 @@ import {fileManagerDownloadCompleted, fileManagerDownloadProgress} from '../../a
 
 import {getDownloadChunkSize, getRootDir, setDownloadChunkSize} from './index';
 import ServerError from '../Error/ServerError';
+import {getExtension} from '../../utils/core';
 
 /**
  * Download file
@@ -21,13 +22,14 @@ import ServerError from '../Error/ServerError';
  * @param {!proto.proto.FileDownload.Selector} selector
  * @param {Long} size
  * @param {string} cacheId
+ * @param {string} originalFileName
  * @returns {Promise.<void>}
  * @private
  */
-export default async function(token, selector, size, cacheId) {
+export default async function(token, selector, size, cacheId, originalFileName) {
   const rootUri = await getRootDir();
 
-  const fileName = cacheId;
+  const fileName = cacheId + getExtension(originalFileName, true);
   const fileUri = FileUtil.uriCombine(rootUri, fileName);
 
   let fileInfo;
