@@ -133,6 +133,7 @@ RCT_EXPORT_METHOD(fOpen:(NSString *)fileUri mode:(int)mode resolve:(RCTPromiseRe
             loadData = NO;
         }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            lastUid++;
             RNFile *file = [RNFile fileWithId:lastUid andUri:fileUri loadData:loadData];
             [files setObject:file forKey:[NSNumber numberWithInt:file.refId]];
             dispatch_async(dispatch_get_main_queue(), ^{
