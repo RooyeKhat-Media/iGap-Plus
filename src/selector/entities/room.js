@@ -56,6 +56,7 @@ export const getRoomAvatar = createSelector(
         selector,
         size: fileSelector.getSize(),
         cacheId: fileSelector.getCacheId(),
+        fileName: avatar.file.getName(),
       } : null,
     };
   }

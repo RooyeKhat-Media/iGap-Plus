@@ -99,8 +99,7 @@ const mapDispatchToProps = (dispatch) => {
     download: (avatar) => {
       dispatch(fileManagerDownload(
         FILE_MANAGER_DOWNLOAD_MANNER.FORCE,
-        avatar.token, avatar.selector, avatar.size, avatar.cacheId
-      ));
+        avatar.token, avatar.selector, avatar.size, avatar.cacheId, avatar.fileName));
     },
   };
 };

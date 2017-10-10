@@ -40,6 +40,7 @@ export const getUserAvatar = createSelector(
         selector,
         size: fileSelector.getSize(),
         cacheId: fileSelector.getCacheId(),
+        fileName: user.avatar.file.getName(),
       } : null,
     };
   }

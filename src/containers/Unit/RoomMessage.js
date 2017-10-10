@@ -18,7 +18,8 @@ class RoomMessage extends Component {
           message.attachment.getToken(),
           Proto.FileDownload.Selector.SMALL_THUMBNAIL,
           message.attachment.getSmallThumbnail().getSize(),
-          message.attachment.getSmallThumbnail().getCacheId());
+          message.attachment.getSmallThumbnail().getCacheId(),
+          message.attachment.getName());
       }
       if (message.attachment.getWaveformThumbnail()) {
         download(
@@ -26,7 +27,8 @@ class RoomMessage extends Component {
           message.attachment.getToken(),
           Proto.FileDownload.Selector.WAVEFORM_THUMBNAIL,
           message.attachment.getWaveformThumbnail().getSize(),
-          message.attachment.getWaveformThumbnail().getCacheId());
+          message.attachment.getWaveformThumbnail().getCacheId(),
+          message.attachment.getName());
       }
     }
   }
@@ -79,8 +81,8 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    download: (manner, token, selector, size, cacheId) => {
-      dispatch(fileManagerDownload(manner, token, selector, size, cacheId));
+    download: (manner, token, selector, size, cacheId, fileName) => {
+      dispatch(fileManagerDownload(manner, token, selector, size, cacheId, fileName));
     },
   };
 };
