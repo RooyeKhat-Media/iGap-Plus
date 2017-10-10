@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 
 export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
@@ -15,3 +16,37 @@ export const getFullMessage = createSelector(
     };
   }
 );
+
+export const getAttachment = createSelector(
+  getFullMessage,
+  (message) => message.attachment
+);
+
+export const getSmallThumbnailUri = createSelector(
+  getAttachment,
+  (state) => state.fileManager.download,
+  (attachment, downloads) => {
+    if (attachment) {
+      const smallTC = attachment.getSmallThumbnail() ? attachment.getSmallThumbnail().getCacheId() : null;
+      if (smallTC && downloads[smallTC] && downloads[smallTC].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
+        return downloads[smallTC].uri;
+      }
+    }
+    return null;
+  }
+);
+
+export const getWaveformThumbnailUri = createSelector(
+  getAttachment,
+  (state) => state.fileManager.download,
+  (attachment, downloads) => {
+    if (attachment) {
+      const waveformTC = attachment.getWaveformThumbnail() ? attachment.getWaveformThumbnail().getCacheId() : null;
+      if (waveformTC && downloads[waveformTC] && downloads[waveformTC].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
+        return downloads[waveformTC].uri;
+      }
+    }
+    return null;
+  }
+);
+

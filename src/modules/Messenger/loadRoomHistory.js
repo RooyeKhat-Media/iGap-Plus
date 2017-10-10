@@ -6,7 +6,7 @@ import roomMessage from '../../schemas/roomMessage';
 import store from '../../configureStore';
 import {messengerRoomMessageConcat} from '../../actions/messenger/roomMessages';
 import {entitiesRoomMessagesAdd} from '../../actions/entities/roomMessages';
-import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from "../../constants/configs";
+import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from '../../constants/configs';
 
 export default async function loadRoomHistory(roomId) {
 
@@ -29,6 +29,6 @@ export default async function loadRoomHistory(roomId) {
 
   const normalizedData = normalize(clientRoomHistoryResponse.getMessageList(), [roomMessage]);
 
-  store.dispatch(messengerRoomMessageConcat(roomId, normalizedData.result));
   store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
+  store.dispatch(messengerRoomMessageConcat(roomId, normalizedData.result));
 }
