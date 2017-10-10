@@ -1,13 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import Text from './Text';
 
 export default ({message, attachment}) => (
-  <View style={styles.container}><Text>{message}</Text></View>
+  <View style={styles.container}>
+    <View style={styles.fileWrap}></View>
+    {message && (<Text message={message}/>)}
+  </View>
 );
 
 const styles = StyleSheet.create({
   container: {},
-  message: {
-    color: '#202020',
+  fileWrap: {
+    height: 40,
+    backgroundColor: '#d5ebee',
+    borderRadius: 3,
   },
 });

@@ -60,6 +60,8 @@ class MessageBox extends React.Component {
       case Proto.RoomMessageType.CONTACT:
         return (<Contact contact={message.contact}/>);
 
+      default:
+        return null;
     }
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import MessageBox from './MessageBox/index';
-import {FormattedRelative} from 'react-intl';
 import Avatar from '../../../containers/Unit/Avatar';
+import AddonTime from './MessageBox/AddonTime';
 
 export default ({message}) => (
   <View style={styles.container}>
@@ -15,9 +15,7 @@ export default ({message}) => (
       </Text>) : null}
       <MessageBox message={message}/>
       <View style={styles.footerWrap}>
-        <Text style={styles.timeText}>
-          <FormattedRelative updateInterval={0} value={message.createTime * 1000}/>
-        </Text>
+        <AddonTime createTime={message.createTime}/>
       </View>
     </View>
   </View>
@@ -46,8 +44,5 @@ const styles = StyleSheet.create({
   author: {
     fontSize: 11,
     fontWeight: 'bold',
-  },
-  timeText: {
-    fontSize: 10,
   },
 });

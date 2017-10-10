@@ -1,6 +1,7 @@
 /**
  * @flow
  */
+import {ceil, floor, max, min} from 'lodash';
 
 /**
  * Mili-seconds sleep
@@ -70,4 +71,24 @@ export function getExtension(path, includeDot = false) {
   const extension = path.substring(lastIndexOfDot + 1);
 
   return ((includeDot && extension ? '.' : '') + extension);
+}
+
+/**
+ * calculate dimension of width and height
+ * @param originalWidth
+ * @param originalHeight
+ * @param limiterWidth
+ * @param limiterHeight
+ * @returns {{width: *, height: *}}
+ */
+export function dimensionCalculate(originalWidth, originalHeight, limiterWidth, limiterHeight) {
+  let width, height;
+  if (originalWidth > originalHeight) {
+    width = max([100, min([originalWidth, limiterWidth])]);
+    height = ceil((width * originalHeight) / originalWidth);
+  } else {
+    height = max([100, min([originalHeight, limiterHeight])]);
+    width = floor((height * originalWidth) / originalHeight);
+  }
+  return {width, height};
 }
