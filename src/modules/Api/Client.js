@@ -226,7 +226,7 @@ export default class Client {
           CacheableMethod.saveToQueue(cacheId, payload);
         }
 
-        const cacheRevokeIds = getCacheRevokeIds(wrapper);
+        const cacheRevokeIds = getCacheRevokeIds(wrapper, responseProto);
         if (cacheRevokeIds) {
           cacheRevokeIds.forEach(function(cacheRevokeId) {
             CacheableMethod.revokeToQueue(cacheRevokeId);

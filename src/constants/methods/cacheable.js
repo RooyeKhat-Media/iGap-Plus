@@ -44,7 +44,7 @@ const cacheTable = {
      * @type ProtoUserAvatarGetList
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.USER_AVATAR_GET_LIST, request.getUserId().toString());
+    return request ? createCacheId(methods.USER_AVATAR_GET_LIST, request.getUserId().toString()) : null;
   },
 
   [methods.USER_PROFILE_GET_SELF_REMOVE]: function(requestWrapper) {
@@ -60,7 +60,7 @@ const cacheTable = {
      * @type ProtoUserPrivacyGetRule
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.USER_PRIVACY_GET_RULE, request.getType());
+    return request ? createCacheId(methods.USER_PRIVACY_GET_RULE, request.getType()) : null;
   },
 
   //Chat 2xx
@@ -71,7 +71,7 @@ const cacheTable = {
      * @type ProtoGroupAvatarGetList
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.GROUP_AVATAR_GET_LIST, request.getRoomId());
+    return request ? createCacheId(methods.GROUP_AVATAR_GET_LIST, request.getRoomId()) : null;
   },
 
   //Channel 4xx
@@ -80,7 +80,7 @@ const cacheTable = {
      * @type ProtoChannelAvatarGetList
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.CHANNEL_AVATAR_GET_LIST, request.getRoomId());
+    return request ? createCacheId(methods.CHANNEL_AVATAR_GET_LIST, request.getRoomId()) : null;
   },
 
   //Info 5xx
@@ -93,7 +93,7 @@ const cacheTable = {
      * @type ProtoInfoCountry
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.INFO_COUNTRY, request.getIsoCode());
+    return request ? createCacheId(methods.INFO_COUNTRY, request.getIsoCode()) : null;
   },
 
   [methods.INFO_PAGE]: function(requestWrapper) {
@@ -101,7 +101,7 @@ const cacheTable = {
      * @type ProtoInfoPage
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.INFO_PAGE, request.getId());
+    return request ? createCacheId(methods.INFO_PAGE, request.getId()) : null;
   },
 
   [methods.INFO_WALLPAPER]: function(requestWrapper) {
@@ -109,7 +109,7 @@ const cacheTable = {
      * @type ProtoInfoWallpaper
      */
     const request = requestWrapper.request;
-    return createCacheId(methods.INFO_WALLPAPER, request.getFit());
+    return request ? createCacheId(methods.INFO_WALLPAPER, request.getFit()) : null;
   },
 
   //Client 6xx
@@ -145,6 +145,7 @@ export function getCacheId(requestWrapper) {
 /**
  * @callback cacheRevokeTableFunction
  * @param {RequestWrapper} requestWrapper
+ * @param {object} responseProto
  * @return {string[]|null}
  */
 
@@ -153,123 +154,123 @@ export function getCacheId(requestWrapper) {
  */
 const cacheRevokeTable = {
   //User 1xx
-  [methods.USER_PROFILE_SET_EMAIL]: function(requestWrapper) {
+  [methods.USER_PROFILE_SET_EMAIL]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_PROFILE_GET_EMAIL),
     ];
   },
 
-  [methods.USER_PROFILE_SET_GENDER]: function(requestWrapper) {
+  [methods.USER_PROFILE_SET_GENDER]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_PROFILE_GET_GENDER),
     ];
   },
 
-  [methods.USER_PROFILE_SET_NICKNAME]: function(requestWrapper) {
+  [methods.USER_PROFILE_SET_NICKNAME]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_PROFILE_GET_NICKNAME),
     ];
   },
 
-  [methods.USER_CONTACTS_IMPORT]: function(requestWrapper) {
+  [methods.USER_CONTACTS_IMPORT]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_CONTACTS_GET_LIST),
     ];
   },
 
-  [methods.USER_CONTACTS_DELETE]: function(requestWrapper) {
+  [methods.USER_CONTACTS_DELETE]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_CONTACTS_GET_LIST),
     ];
   },
 
-  [methods.USER_CONTACTS_EDIT]: function(requestWrapper) {
+  [methods.USER_CONTACTS_EDIT]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_CONTACTS_GET_LIST),
     ];
   },
 
-  [methods.USER_AVATAR_ADD]: function(requestWrapper) {
+  [methods.USER_AVATAR_ADD]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_AVATAR_GET_LIST, getUserId().toString()),
     ];
   },
 
-  [methods.USER_AVATAR_DELETE]: function(requestWrapper) {
+  [methods.USER_AVATAR_DELETE]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_AVATAR_GET_LIST, getUserId().toString()),
     ];
   },
 
-  [methods.USER_PROFILE_SET_SELF_REMOVE]: function(requestWrapper) {
+  [methods.USER_PROFILE_SET_SELF_REMOVE]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_PROFILE_GET_SELF_REMOVE),
     ];
   },
 
-  [methods.USER_CONTACTS_BLOCK]: function(requestWrapper) {
+  [methods.USER_CONTACTS_BLOCK]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_CONTACTS_GET_BLOCKED_LIST),
     ];
   },
 
-  [methods.USER_CONTACTS_UNBLOCK]: function(requestWrapper) {
+  [methods.USER_CONTACTS_UNBLOCK]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.USER_CONTACTS_GET_BLOCKED_LIST),
     ];
   },
 
-  [methods.USER_PRIVACY_SET_RULE]: function(requestWrapper) {
+  [methods.USER_PRIVACY_SET_RULE]: function(requestWrapper, responseProto) {
     /**
-     * @type ProtoUserPrivacySetRule
+     * @type ProtoUserPrivacySetRuleResponse
      */
-    const request = requestWrapper.request;
+    const response = responseProto;
     return [
-      createCacheId(methods.USER_PRIVACY_GET_RULE, request.getType()),
+      createCacheId(methods.USER_PRIVACY_GET_RULE, response.getType()),
     ];
   },
 
   //Chat 2xx
 
   //Group chat 3xx
-  [methods.GROUP_AVATAR_ADD]: function(requestWrapper) {
+  [methods.GROUP_AVATAR_ADD]: function(requestWrapper, responseProto) {
     /**
-     * @type ProtoGroupAvatarAdd
+     * @type ProtoGroupAvatarAddResponse
      */
-    const request = requestWrapper.request;
+    const response = responseProto;
     return [
-      createCacheId(methods.GROUP_AVATAR_GET_LIST, request.getRoomId()),
+      createCacheId(methods.GROUP_AVATAR_GET_LIST, response.getRoomId()),
     ];
   },
 
-  [methods.GROUP_AVATAR_DELETE]: function(requestWrapper) {
+  [methods.GROUP_AVATAR_DELETE]: function(requestWrapper, responseProto) {
     /**
-     * @type ProtoGroupAvatarDelete
+     * @type ProtoGroupAvatarDeleteResponse
      */
-    const request = requestWrapper.request;
+    const response = responseProto;
     return [
-      createCacheId(methods.GROUP_AVATAR_GET_LIST, request.getRoomId()),
+      createCacheId(methods.GROUP_AVATAR_GET_LIST, response.getRoomId()),
     ];
   },
 
   //Channel 4xx
-  [methods.CHANNEL_AVATAR_ADD]: function(requestWrapper) {
+  [methods.CHANNEL_AVATAR_ADD]: function(requestWrapper, responseProto) {
     /**
-     * @type ProtoChannelAvatarAdd
+     * @type ProtoChannelAvatarAddResponse
      */
-    const request = requestWrapper.request;
+    const response = responseProto;
     return [
-      createCacheId(methods.CHANNEL_AVATAR_GET_LIST, request.getRoomId()),
+      createCacheId(methods.CHANNEL_AVATAR_GET_LIST, response.getRoomId()),
     ];
   },
 
-  [methods.CHANNEL_AVATAR_DELETE]: function(requestWrapper) {
+  [methods.CHANNEL_AVATAR_DELETE]: function(requestWrapper, responseProto) {
     /**
-     * @type ProtoChannelAvatarDelete
+     * @type ProtoChannelAvatarDeleteResponse
      */
-    const request = requestWrapper.request;
+    const response = responseProto;
     return [
-      createCacheId(methods.CHANNEL_AVATAR_GET_LIST, request.getRoomId()),
+      createCacheId(methods.CHANNEL_AVATAR_GET_LIST, response.getRoomId()),
     ];
   },
 
@@ -284,7 +285,7 @@ const cacheRevokeTable = {
   //Signaling 9xx
 
   //Geo 10xx
-  [methods.GEO_REGISTER]: function(requestWrapper) {
+  [methods.GEO_REGISTER]: function(requestWrapper, responseProto) {
     return [
       createCacheId(methods.GEO_GET_REGISTER_STATUS),
     ];
@@ -293,13 +294,14 @@ const cacheRevokeTable = {
 
 /**
  * @param {RequestWrapper} requestWrapper
+ * @param {object} responseProto
  * @return {string[]|null}
  */
-export function getCacheRevokeIds(requestWrapper) {
+export function getCacheRevokeIds(requestWrapper, responseProto) {
   const cacheRevokeTableFunction = cacheRevokeTable[requestWrapper.actionId];
 
   if (cacheRevokeTableFunction) {
-    const ids = cacheRevokeTableFunction(requestWrapper);
+    const ids = cacheRevokeTableFunction(requestWrapper, responseProto);
     if (ids && ids.length) {
       return [...ids];
     }
