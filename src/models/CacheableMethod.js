@@ -5,8 +5,6 @@
 import Db from '../modules/Db';
 import QueueDb from '../modules/QueueDb';
 import {getSessionUid} from '../modules/Api';
-import base64 from 'base64-js';
-import binaryToBase64 from 'react-native/Libraries/Utilities/binaryToBase64';
 
 const storage = new Db('modelCacheableMethod');
 const {save, remove, load} = QueueDb(storage);
@@ -32,7 +30,7 @@ export default class CacheableMethod {
    */
   static saveToQueue(id, data) {
     save(id, {
-      data: binaryToBase64(data),
+      data,
       sessionUid: getSessionUid(),
     });
   }
@@ -52,7 +50,7 @@ export default class CacheableMethod {
     return load(id).then(function(value) {
       return {
         ...value,
-        data: new Uint8Array(base64.toByteArray(value.data).buffer),
+        data: new Uint8Array(value.data),
       };
     });
   }
