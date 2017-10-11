@@ -10,14 +10,20 @@ import {FILE_DOWNLOAD} from '../../constants/methods/index';
 import {FileDownload} from '../Proto/index';
 import {ERROR_TIMEOUT} from '../Api/errors/index';
 import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
-import {fileManagerDownloadCompleted, fileManagerDownloadProgress} from '../../actions/fileManager';
+import {
+  fileManagerDownloadAutoPaused,
+  fileManagerDownloadCompleted,
+  fileManagerDownloadProgress,
+} from '../../actions/fileManager';
 
 import {getDownloadChunkSize, getRootDir, setDownloadChunkSize} from './index';
 import ServerError from '../Error/ServerError';
 import {getExtension} from '../../utils/core';
+import ClientError from '../Error/ClientError';
 
 /**
  * Download file
+ * @param {string} uid
  * @param {string} token
  * @param {!proto.proto.FileDownload.Selector} selector
  * @param {Long} size
@@ -26,7 +32,7 @@ import {getExtension} from '../../utils/core';
  * @returns {Promise.<void>}
  * @private
  */
-export default async function(token, selector, size, cacheId, originalFileName) {
+export default async function(uid, token, selector, size, cacheId, originalFileName) {
   const rootUri = await getRootDir();
 
   const fileName = cacheId + getExtension(originalFileName, true);
@@ -57,9 +63,9 @@ export default async function(token, selector, size, cacheId, originalFileName) 
       const storeFile = store.getState().fileManager.download[cacheId];
       if (storeFile) {
         if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED) {
-          throw new Error('Manually paused');
+          throw new ClientError('Manually paused');
         } else if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED) {
-          throw new Error('Automatically paused');
+          throw new ClientError('Automatically paused');
         }
       }
 
@@ -76,6 +82,11 @@ export default async function(token, selector, size, cacheId, originalFileName) 
          */
         const fileDownloadResponse = await Api.invoke(FILE_DOWNLOAD, fileDownload);
 
+        const storeSameFile = store.getState().fileManager.download[cacheId];
+        if (storeSameFile && storeSameFile.uid && storeSameFile.uid !== uid) {
+          throw new ClientError('Append conflict detected');
+        }
+
         await RNFileSystem.fAppend(fHandle, fileDownloadResponse.getBytes());
         fileInfo.fileSize = fileInfo.fileSize.add(fileDownloadResponse.getBytes().byteLength);
       } catch (e) {
@@ -86,6 +97,11 @@ export default async function(token, selector, size, cacheId, originalFileName) 
       }
     }
     store.dispatch(fileManagerDownloadCompleted(cacheId, fileInfo.fileUri));
+  } catch (e) {
+    if (!(e instanceof ClientError)) {
+      store.dispatch(fileManagerDownloadAutoPaused(cacheId));
+    }
+    throw e;
   } finally {
     if (fHandle !== undefined) {
       await RNFileSystem.fClose(fHandle);

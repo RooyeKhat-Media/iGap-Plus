@@ -21,6 +21,7 @@ export default function(state = initialState, action) {
         [action.cacheId]: {
           status: FILE_MANAGER_DOWNLOAD_STATUS.PENDING,
           promise: action.promise,
+          uid: action.uid,
         },
       };
     case FILE_MANAGER_DOWNLOAD_PROGRESS:
