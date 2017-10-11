@@ -146,6 +146,12 @@ export default class Client {
     this.__processMessage(responseActionId, new Uint8Array(data, 2), true);
   }
 
+  /**
+   * @param {number} responseActionId
+   * @param {Uint8Array} payload
+   * @param {boolean} isFromServer
+   * @param {RequestWrapper|null} inputWrapper
+   */
   __processMessage(responseActionId, payload, isFromServer, inputWrapper = null) {
     if (protoTable.hasOwnProperty(responseActionId)) {
       const responseProto = protoTable[responseActionId].deserializeBinary(payload);
@@ -158,7 +164,7 @@ export default class Client {
             return;
           }
         } else {
-          new Promise((resolve, reject) => {
+          const requestWrapperPromise = new Promise((resolve, reject) => {
             wrapper = new RequestWrapper(
               resolve,
               reject,
@@ -171,6 +177,7 @@ export default class Client {
               false
             );
           });
+          wrapper.promise = requestWrapperPromise;
         }
       }
 

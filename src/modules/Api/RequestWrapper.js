@@ -16,6 +16,11 @@ export default class RequestWrapper {
    */
   _errorReactionFunction = autoReact;
 
+  /**
+   * @type Promise
+   */
+  _promise;
+
   constructor(resolve, reject, onDone, actionId, request, priority, handlerPrecedence, durable) {
     this._resolve = resolve;
     this._reject = reject;
@@ -63,6 +68,20 @@ export default class RequestWrapper {
    */
   set errorReactionFunction(value) {
     this._errorReactionFunction = value;
+  }
+
+  /**
+   * @return {Promise}
+   */
+  get promise() {
+    return this._promise;
+  }
+
+  /**
+   * @param {Promise} value
+   */
+  set promise(value) {
+    this._promise = value;
   }
 
   startTimeout() {

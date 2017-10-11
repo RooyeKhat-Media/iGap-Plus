@@ -13,6 +13,7 @@ export const WEBSOCKET_ENDPOINT = 'wss://secure.igap.net/test/';
 export const WEBSOCKET_RECONNECT_INTERVAL_SEC = 10;
 
 export const API_CONCURRENCY = 40;
+export const API_AGGREGATE_DELAY_MS = 2000;
 
 export const FILE_MANAGER_DOWNLOAD_MAX_CHUNK_SIZE = 100 * 1024;
 export const FILE_MANAGER_DOWNLOAD_MIN_CHUNK_SIZE = 20 * 1024;

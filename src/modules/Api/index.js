@@ -4,7 +4,7 @@
 
 'use strict';
 
-import {API_CONCURRENCY} from '../../constants/configs';
+import {API_AGGREGATE_DELAY_MS, API_CONCURRENCY} from '../../constants/configs';
 import getPriority from '../../constants/methods/priority';
 import getDurability from '../../constants/methods/durable';
 import isInsecure from '../../constants/methods/insecure';
@@ -23,6 +23,7 @@ import {mapReact} from '../Error/index';
 import {getCacheId} from '../../constants/methods/cacheable';
 import CacheableMethod from '../../models/CacheableMethod';
 import protoTable from '../Proto';
+import {getAggregateId} from '../../constants/methods/aggregate';
 
 const apiSingleton = Symbol();
 const apiSingletonEnforcer = Symbol();
@@ -34,6 +35,11 @@ let pending = new FastPriorityQueue(pendingComparator);
 let rejectWeakPendingIsRunning = false;
 let pollPendingIsRunning = false;
 const running = new Map();
+
+/**
+ * @type {Map.<string,Promise>}
+ */
+const aggregate = new Map();
 
 
 export const HANDLER_PRECEDENCE = {
@@ -118,8 +124,12 @@ export default class Api {
       durable = getDurability(actionId);
     }
 
-    return new Promise((resolve, reject) => {
-      const wrapper = new RequestWrapper(
+    /**
+     * @type {RequestWrapper}
+     */
+    let wrapper;
+    const promise = new Promise((resolve, reject) => {
+      wrapper = new RequestWrapper(
         resolve,
         reject,
         Api.instance.__done.bind(Api.instance),
@@ -129,8 +139,10 @@ export default class Api {
         handlerPrecedence,
         durable
       );
-      Api.instance.__schedule(wrapper);
     });
+    wrapper.promise = promise;
+    Api.instance.__schedule(wrapper);
+    return promise;
   }
 
   /**
@@ -180,8 +192,12 @@ export default class Api {
       durable = getDurability(actionId);
     }
 
-    return new Promise((resolve, reject) => {
-      const wrapper = new RequestWrapper(
+    /**
+     * @type {RequestWrapper}
+     */
+    let wrapper;
+    const promise = new Promise((resolve, reject) => {
+      wrapper = new RequestWrapper(
         resolve,
         reject,
         Api.instance.__done.bind(Api.instance),
@@ -193,9 +209,10 @@ export default class Api {
       );
 
       wrapper.errorReactionFunction = mapReact(errorMapTable, errorMapReactionCallback);
-
-      Api.instance.__schedule(wrapper);
     });
+    wrapper.promise = promise;
+    Api.instance.__schedule(wrapper);
+    return promise;
   }
 
   getRequestWrapper(id) {
@@ -203,51 +220,59 @@ export default class Api {
   }
 
   async __schedule(wrapper) {
-    const cacheId = getCacheId(wrapper);
-
-    /**
-     * @type {null|CachedMethodResponse}
-     */
-    let cachedResponse = null;
-    if (cacheId) {
-      try {
-        cachedResponse = await CacheableMethod.loadFromQueue(cacheId);
-      } catch (e) {
-        //No cache data is available
+    const aggregateId = getAggregateId(wrapper);
+    if (aggregateId && aggregate.has(aggregateId)) {
+      wrapper.resolve(aggregate.get(aggregateId));
+    } else {
+      if (aggregateId) {
+        aggregate.set(aggregateId, wrapper.promise);
       }
-    }
+      const cacheId = getCacheId(wrapper);
 
-    if (
-      Client.instance.isLoggedIn
-      ||
-      (Client.instance.isOnline && isInsecure(wrapper.actionId))
-      ||
-      (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
-    ) {
-      if (cachedResponse && cachedResponse.sessionUid === getSessionUid()) {
-        this._fakeRun(wrapper, cachedResponse.data);
-      } else if (running.size < API_CONCURRENCY) {
-        this._run(wrapper);
-      } else {
-        pending.add(wrapper);
-      }
-    } else if (wrapper.durable) {
-      pending.add(wrapper);
-
-      if (wrapper.handlerPrecedence !== HANDLER_PRECEDENCE.NONE) {
-        const cachedResponseActionId = wrapper.actionId + API_RESPONSE_ACTION_ID_OFFSET;
-        if (cachedResponse && protoTable.hasOwnProperty(cachedResponseActionId)) {
-          const responseProto = protoTable[cachedResponseActionId].deserializeBinary(cachedResponse.data);
-          Client.instance.__runHandler(cachedResponseActionId, responseProto, wrapper);
+      /**
+       * @type {null|CachedMethodResponse}
+       */
+      let cachedResponse = null;
+      if (cacheId) {
+        try {
+          cachedResponse = await CacheableMethod.loadFromQueue(cacheId);
+        } catch (e) {
+          //No cache data is available
         }
       }
-    } else if (cachedResponse) {
-      this._fakeRun(wrapper, cachedResponse.data);
-    } else {
-      const errorResponse = new ErrorResponse();
-      errorResponse.setMajorCode(ERROR_TIMEOUT);
-      errorResponse.setMinorCode(3);
-      wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
+
+      if (
+        Client.instance.isLoggedIn
+        ||
+        (Client.instance.isOnline && isInsecure(wrapper.actionId))
+        ||
+        (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
+      ) {
+        if (cachedResponse && cachedResponse.sessionUid === getSessionUid()) {
+          this._fakeRun(wrapper, cachedResponse.data);
+        } else if (running.size < API_CONCURRENCY) {
+          this._run(wrapper);
+        } else {
+          pending.add(wrapper);
+        }
+      } else if (wrapper.durable) {
+        pending.add(wrapper);
+
+        if (wrapper.handlerPrecedence !== HANDLER_PRECEDENCE.NONE) {
+          const cachedResponseActionId = wrapper.actionId + API_RESPONSE_ACTION_ID_OFFSET;
+          if (cachedResponse && protoTable.hasOwnProperty(cachedResponseActionId)) {
+            const responseProto = protoTable[cachedResponseActionId].deserializeBinary(cachedResponse.data);
+            Client.instance.__runHandler(cachedResponseActionId, responseProto, wrapper);
+          }
+        }
+      } else if (cachedResponse) {
+        this._fakeRun(wrapper, cachedResponse.data);
+      } else {
+        const errorResponse = new ErrorResponse();
+        errorResponse.setMajorCode(ERROR_TIMEOUT);
+        errorResponse.setMinorCode(3);
+        wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
+      }
     }
   }
 
@@ -276,8 +301,20 @@ export default class Api {
 
   __done(wrapper) {
     if (wrapper.request) {
-      running.delete(wrapper.request.getRequest().getId());
-      this.__pollPending();
+      const aggregateId = getAggregateId(wrapper);
+      if (aggregateId) {
+        if (aggregate.has(aggregateId)) {
+          running.delete(wrapper.request.getRequest().getId());
+          this.__pollPending();
+
+          setTimeout(() => {
+            aggregate.delete(aggregateId);
+          }, API_AGGREGATE_DELAY_MS);
+        }
+      } else {
+        running.delete(wrapper.request.getRequest().getId());
+        this.__pollPending();
+      }
     }
   }
 
