@@ -26,7 +26,7 @@ class RoomMessage extends Component {
           Proto.FileDownload.Selector.SMALL_THUMBNAIL,
           message.attachment.getSmallThumbnail().getSize(),
           message.attachment.getSmallThumbnail().getCacheId(),
-          message.attachment.getName());
+          message.attachment.getName()); //todo Use thumbnail's filename instead of file
       }
 
       if (!waveformThumbnailUri && message.attachment.getWaveformThumbnail()) {
@@ -36,7 +36,7 @@ class RoomMessage extends Component {
           Proto.FileDownload.Selector.WAVEFORM_THUMBNAIL,
           message.attachment.getWaveformThumbnail().getSize(),
           message.attachment.getWaveformThumbnail().getCacheId(),
-          message.attachment.getName());
+          message.attachment.getName()); //todo Use thumbnail's filename instead of file
       }
 
     }
