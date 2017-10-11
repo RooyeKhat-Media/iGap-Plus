@@ -19,6 +19,7 @@ import Spinner from './Spinner';
 import TextInput from './TextInput';
 import ActionSheet from './ActionSheet';
 import MCIcon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import ProgressBar from './ProgressBar';
 
 export {
   AppModal,
@@ -40,4 +41,5 @@ export {
   BottomNavigation,
   ActionSheet,
   Badge,
+  ProgressBar,
 };
