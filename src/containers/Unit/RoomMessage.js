@@ -1,18 +1,25 @@
 import React, {Component} from 'react';
-import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
-import {getAuthorHash} from '../../utils/app';
-import {Proto} from '../../modules/Proto/index';
-import {getFullMessage, getSmallThumbnailUri, getWaveformThumbnailUri} from '../../selector/entities/roomMessage';
 import {connect} from 'react-redux';
-import {fileManagerDownload} from '../../actions/fileManager';
+import {getAuthorHash} from '../../utils/app';
+import {fileManagerDownload, fileManagerDownloadManuallyPaused} from '../../actions/fileManager';
+import {info} from '../../modules/FileManager';
+import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
 import {FILE_MANAGER_DOWNLOAD_MANNER} from '../../constants/fileManager';
+import {Proto} from '../../modules/Proto/index';
+import {
+  getDownloadFile,
+  getFullMessage,
+  getSmallThumbnailUri,
+  getWaveformThumbnailUri,
+} from '../../selector/entities/roomMessage';
 
 class RoomMessage extends Component {
 
   componentDidMount() {
-    const {message, download} = this.props;
+    const {message, download, smallThumbnailUri, waveformThumbnailUri} = this.props;
     if (message.attachment) {
-      if (message.attachment.getSmallThumbnail()) {
+      info(message.attachment.getSize(), message.attachment.getCacheId(), message.attachment.getName());
+      if (!smallThumbnailUri && message.attachment.getSmallThumbnail()) {
         download(
           FILE_MANAGER_DOWNLOAD_MANNER.AUTO,
           message.attachment.getToken(),
@@ -21,7 +28,8 @@ class RoomMessage extends Component {
           message.attachment.getSmallThumbnail().getCacheId(),
           message.attachment.getName());
       }
-      if (message.attachment.getWaveformThumbnail()) {
+
+      if (!waveformThumbnailUri && message.attachment.getWaveformThumbnail()) {
         download(
           FILE_MANAGER_DOWNLOAD_MANNER.AUTO,
           message.attachment.getToken(),
@@ -30,40 +38,63 @@ class RoomMessage extends Component {
           message.attachment.getWaveformThumbnail().getCacheId(),
           message.attachment.getName());
       }
+
     }
   }
 
+  startDownload = () => {
+    const {message, download} = this.props;
+    if (message.attachment) {
+      // todo Add Priority for manual download
+      download(
+        FILE_MANAGER_DOWNLOAD_MANNER.MANUAL,
+        message.attachment.getToken(),
+        Proto.FileDownload.Selector.FILE,
+        message.attachment.getSize(),
+        message.attachment.getCacheId(),
+        message.attachment.getName());
+    }
+  };
+
+  pauseDownload = () => {
+    const {message, pauseDownload} = this.props;
+    if (message.attachment) {
+      pauseDownload(message.attachment.getCacheId());
+    }
+  };
+
   render() {
-    let messageType = null;
+    let messageBox = null;
     const authorHash = getAuthorHash();
-    const {smallThumbnailUri, waveformThumbnailUri, message, roomType} = this.props;
+    const {downloadFile, smallThumbnailUri, waveformThumbnailUri, message, roomType} = this.props;
 
     if (!message || message.deleted) {
       return null;
     }
-    if (message.messageType === Proto.RoomMessageType.LOG) {
-      messageType = 'log';
-    } else if (message.authorHash === authorHash) {
-      messageType = 'owner';
-    } else if (roomType === Proto.Room.Type.CHAT) {
-      messageType = 'chat';
-    } else if (roomType === Proto.Room.Type.GROUP) {
-      messageType = 'group';
-    } else if (roomType === Proto.Room.Type.CHANNEL) {
-      messageType = 'channel';
+
+    if (message.attachment) {
+      message.attachment.startDownload = this.startDownload;
+      message.attachment.pauseDownload = this.pauseDownload;
+    }
+
+    if (downloadFile) {
+      message.attachment.downloadFile = downloadFile;
     }
 
     if (smallThumbnailUri) {
       message.attachment.smallThumbnailUri = smallThumbnailUri;
     }
+
     if (waveformThumbnailUri) {
       message.attachment.waveformThumbnailUri = waveformThumbnailUri;
     }
 
     return (
       <RoomMessageComponent
+        authorHash={authorHash}
+        roomType={roomType}
         message={message}
-        messageType={messageType}/>
+        messageBox={messageBox}/>
     );
   }
 }
@@ -73,6 +104,7 @@ const makeMapStateToProps = () => {
   return (state, props) => {
     return {
       message: getFullMessage(state, props),
+      downloadFile: getDownloadFile(state, props),
       smallThumbnailUri: getSmallThumbnailUri(state, props),
       waveformThumbnailUri: getWaveformThumbnailUri(state, props),
     };
@@ -83,6 +115,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     download: (manner, token, selector, size, cacheId, fileName) => {
       dispatch(fileManagerDownload(manner, token, selector, size, cacheId, fileName));
+    },
+    pauseDownload: (cacheId) => {
+      dispatch(fileManagerDownloadManuallyPaused(cacheId));
     },
   };
 };

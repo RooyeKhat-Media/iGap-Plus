@@ -22,6 +22,15 @@ export const getAttachment = createSelector(
   (message) => message.attachment
 );
 
+
+export const getDownloadFile = createSelector(
+  getAttachment,
+  (state) => state.fileManager.download,
+  (attachment, downloads) => {
+    return attachment ? downloads[attachment.getCacheId()] : null;
+  }
+);
+
 export const getSmallThumbnailUri = createSelector(
   getAttachment,
   (state) => state.fileManager.download,
