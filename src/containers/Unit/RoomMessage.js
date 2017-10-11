@@ -4,7 +4,7 @@ import {getAuthorHash} from '../../utils/app';
 import {fileManagerDownload, fileManagerDownloadManuallyPaused} from '../../actions/fileManager';
 import {info} from '../../modules/FileManager';
 import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
-import {FILE_MANAGER_DOWNLOAD_MANNER} from '../../constants/fileManager';
+import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 import {Proto} from '../../modules/Proto/index';
 import {
   getDownloadFile,
@@ -44,6 +44,7 @@ class RoomMessage extends Component {
 
   startDownload = () => {
     const {message, download} = this.props;
+
     if (message.attachment) {
       // todo Add Priority for manual download
       download(
@@ -58,9 +59,28 @@ class RoomMessage extends Component {
 
   pauseDownload = () => {
     const {message, pauseDownload} = this.props;
+
     if (message.attachment) {
       pauseDownload(message.attachment.getCacheId());
     }
+  };
+
+  openFile = () => {
+
+  };
+
+  togglePress = () => {
+    const {message} = this.props;
+    if (message.attachment.downloadFile) {
+      switch (message.attachment.downloadFile.status) {
+        case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
+          return this.openFile();
+        case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
+        case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
+          return this.pauseDownload();
+      }
+    }
+    return this.startDownload();
   };
 
   render() {
@@ -75,6 +95,27 @@ class RoomMessage extends Component {
     if (message.attachment) {
       message.attachment.startDownload = this.startDownload;
       message.attachment.pauseDownload = this.pauseDownload;
+      message.attachment.togglePress = this.togglePress;
+
+      message.attachment.isCompleted = false;
+      message.attachment.isProcessing = false;
+      message.attachment.isPending = false;
+      message.attachment.isPaused = false;
+
+      if (downloadFile) {
+        switch (downloadFile.status) {
+          case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
+            message.attachment.isCompleted = true;
+            break;
+          case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
+            message.attachment.isPending = true;
+            break;
+          case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
+            message.attachment.isProcessing = true;
+            break;
+        }
+      }
+      message.attachment.isPaused = (!message.attachment.isCompleted && !message.attachment.isPending && !message.attachment.isProcessing);
     }
 
     if (downloadFile) {

@@ -5,7 +5,6 @@ import {min} from 'lodash';
 import {Icon, ProgressBar} from '../../../BaseUI';
 import Device from '../../../../modules/Responsive/Device';
 import {dimensionCalculate} from '../../../../utils/core';
-import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../../../constants/fileManager';
 
 const {width, height} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
@@ -14,54 +13,26 @@ const boxHeight = min([500, (0.8 * height)]);
 export default ({message, attachment}) => {
 
   const {width, height} = dimensionCalculate(attachment.getWidth(), attachment.getHeight(), boxWidth, boxHeight);
-  const uri = 'file://' + (attachment.downloadFile && attachment.downloadFile.uri ? attachment.downloadFile.uri : attachment.smallThumbnailUri);
-
-  let isCompleted = false;
-  let isPending = false;
-  let isProcessing = false;
-
-  if (attachment.downloadFile) {
-    if (attachment.downloadFile.status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
-      isCompleted = true;
-    }
-    if (attachment.downloadFile.status === FILE_MANAGER_DOWNLOAD_STATUS.PENDING) {
-      isPending = true;
-    } else if (attachment.downloadFile.status === FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING) {
-      isProcessing = true;
-    }
-  }
-
-  const isPaused = (!isCompleted && !isPending && !isProcessing);
+  const uri = 'file://' + (attachment.isCompleted ? attachment.downloadFile.uri : attachment.smallThumbnailUri);
 
   return (<View style={[styles.container, {width}]}>
-    <Image blurRadius={isCompleted ? 0 : 0.5}
-      source={{uri: uri}}
-      style={[styles.imageWrap, {width, height}]}>
 
-      <TouchableOpacity activeOpacity={1} onPress={() => {
-        if (!isCompleted) {
+    <TouchableOpacity onPress={attachment.togglePress} activeOpacity={0.9}>
+      <Image blurRadius={attachment.isCompleted ? 0 : 0.5}
+        source={{uri: uri}}
+        style={[styles.imageWrap, {width, height}]}>
 
-        }
-        if (isPending || isProcessing) {
-          attachment.pauseDownload();
-        } else {
-          attachment.startDownload();
-        }
-      }}>
-        <View>
-          {isPending && (<ActivityIndicator size="large"/>)}
+        {attachment.isPending && (<ActivityIndicator size="large"/>)}
+        {attachment.isProcessing && ((<ProgressBar
+          style={[styles.progressStyle]}
+          width={width - 10}
+          initialProgress={attachment.downloadFile.progress}
+          progress={attachment.downloadFile.progress}/>))}
+        {attachment.isPaused && (
+          <View style={styles.downloadBtn}><Icon name="file-download" size={30} color="#fafafa"/></View>)}
 
-          {isProcessing && ((<ProgressBar
-            style={[styles.progressStyle]}
-            width={width - 10}
-            initialProgress={0}
-            progress={attachment.downloadFile.progress}/>))}
-
-          {isPaused && (<View style={styles.downloadBtn}><Icon name="file-download" size={30} color="#fafafa"/></View>)}
-        </View>
-      </TouchableOpacity>
-
-    </Image>
+      </Image>
+    </TouchableOpacity>
 
     {message ? (<Text message={message}/>) : null}
   </View>);
