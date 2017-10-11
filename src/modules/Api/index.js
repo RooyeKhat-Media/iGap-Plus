@@ -304,10 +304,7 @@ export default class Api {
         if (wrapper.durable) {
           pending.add(wrapper);
         } else {
-          const errorResponse = new ErrorResponse();
-          errorResponse.setMajorCode(ERROR_TIMEOUT);
-          errorResponse.setMinorCode(4);
-          wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
+          Api.instance.__schedule(wrapper);
         }
       });
     } finally {
