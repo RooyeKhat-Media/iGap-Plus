@@ -10,12 +10,14 @@ export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
 
 /**
  * @param {NormalizedRoomEntities} rooms
- * @return {{type: string, room: FlatRoom}}
+ * @param {bool} fromServer
+ * @return {{type: string, rooms: FlatRoom[], fromServer:bool}}
  */
-export function entitiesRoomsAdd(rooms) {
+export function entitiesRoomsAdd(rooms, fromServer = true) {
   return {
     type: ENTITIES_ROOM_ADD,
     rooms,
+    fromServer,
   };
 }
 

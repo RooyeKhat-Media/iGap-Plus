@@ -16,9 +16,9 @@ export default function(storage,
   saveDelay = 5000,
   loadDelay = 1000,
   saveQueueSize = 100,
-  loadQueueSize = 100, ) {
+  loadQueueSize = 100) {
   /**
-   * @type {Map.<string,{doc:object,deleted:bool}>}
+   * @type {Map.<string,{doc:object,transform:null|function,deleted:bool}>}
    */
   let saveQueue = new Map();
   let saveQueueTimer = null;
@@ -30,9 +30,9 @@ export default function(storage,
   let loadQueueTimer = null;
 
   const persistSaveQueue = async () => {
+    saveQueueTimer = null;
     const persist = saveQueue;
     saveQueue = new Map();
-    saveQueueTimer = null;
 
     const allDocs = await storage.allDocs({
       keys: [...persist.keys()],
@@ -44,7 +44,11 @@ export default function(storage,
       const dataInPersist = persist.get(element.key);
       let doc = {
         _id: element.key,
-        ...(dataInPersist.deleted ? {_deleted: true} : dataInPersist.doc),
+        ...(
+          dataInPersist.deleted ?
+            {_deleted: true} :
+            (dataInPersist.transform ? dataInPersist.transform(dataInPersist.doc) : dataInPersist.doc)
+        ),
       };
 
       if (element.value && element.value.rev) {
@@ -57,9 +61,9 @@ export default function(storage,
   };
 
   const retrieveLoadQueue = async () => {
+    loadQueueTimer = null;
     const retrieve = loadQueue;
     loadQueue = new Map();
-    loadQueueTimer = null;
 
 
     for (const [id, dataInRetrieve] of retrieve) {
@@ -92,18 +96,17 @@ export default function(storage,
 
   };
 
-  const persistQueue = (id, doc, deleted) => {
+  const persistQueue = (id, doc, transform, deleted) => {
     saveQueue.set(id, {
       doc,
+      transform,
       deleted,
     });
 
-    if (saveQueue.size < saveQueueSize) {
+    if (saveQueueSize <= saveQueue.size) {
       clearTimeout(saveQueueTimer);
-      saveQueueTimer = null;
-    }
-
-    if (saveQueueTimer === null) {
+      persistSaveQueue();
+    } else if (saveQueueTimer === null) {
       saveQueueTimer = setTimeout(persistSaveQueue, saveDelay);
     }
   };
@@ -113,9 +116,10 @@ export default function(storage,
      * @function QueueDbSave
      * @param {string} id
      * @param {object} doc
+     * @param {null|function} transform
      */
-    save: (id, doc) => {
-      persistQueue(id, doc, false);
+    save: (id, doc, transform = null) => {
+      persistQueue(id, doc, transform, false);
     },
 
     /**
@@ -123,7 +127,7 @@ export default function(storage,
      * @param {string} id
      */
     remove: (id) => {
-      persistQueue(id, {}, true);
+      persistQueue(id, {}, null, true);
     },
 
 
@@ -146,12 +150,10 @@ export default function(storage,
 
       loadQueue.set(id, data);
 
-      if (loadQueue.size < loadQueueSize) {
+      if (loadQueueSize <= loadQueue.size) {
         clearTimeout(loadQueueTimer);
-        loadQueueTimer = null;
-      }
-
-      if (loadQueueTimer === null) {
+        retrieveLoadQueue();
+      } else if (loadQueueTimer === null) {
         loadQueueTimer = setTimeout(retrieveLoadQueue, loadDelay);
       }
 

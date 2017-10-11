@@ -5,9 +5,11 @@
 import {schema} from 'normalizr';
 import roomMessage from './roomMessage';
 import registeredUser from './registeredUser';
+import {Proto} from '../modules/Proto';
+import {objectToLong} from '../utils/core';
 
 /**
- * @typedef {{id: string, longId: (string|Long|*), type: (ProtoRoomMessageLog_Type|ProtoRoom_Type|ProtoGroupRoom_Type|ProtoChannelRoom_Type|ProtoClientResolveUsernameResponse_Type|ProtoClientSearchUsernameResponse_Result_Type|*), title: string, initials: string, color: string, unreadCount: number, lastMessage: (ProtoRoomMessage|null|undefined), readOnly: boolean, isParticipant: boolean, draft: (ProtoRoomDraft|null|undefined), firstUnreadMessage: (ProtoRoomMessage|null|undefined)}} FlatRoom
+ * @typedef {{id: string, longId: (string|Long|*), type: (ProtoRoomMessageLog_Type|ProtoRoom_Type|ProtoGroupRoom_Type|ProtoChannelRoom_Type|ProtoClientResolveUsernameResponse_Type|ProtoClientSearchUsernameResponse_Result_Type|*), title: string, initials: string, color: string, unreadCount: number, lastMessage: (ProtoRoomMessage|null|undefined|string), readOnly: boolean, isParticipant: boolean, draft: (ProtoRoomDraft|null|undefined), firstUnreadMessage: (ProtoRoomMessage|null|undefined|string)}} FlatRoom
  */
 
 /**
@@ -89,6 +91,53 @@ export const flatProtoRoom = (room) => {
     }
   }
   return flat;
+};
+
+
+/**
+ * MUST BE PURE FUNCTION
+ * Convert normalized room to serializable object
+ * @param {FlatRoom} normalizedRoom
+ * @return object
+ */
+export const normalizedRoomToSerializableRoom = (normalizedRoom) => {
+  return {
+    ...normalizedRoom,
+    draft: normalizedRoom.draft ? normalizedRoom.draft.serializeBinary() : null,
+
+    /**
+     * groupRoomExtra
+     */
+    groupAvatar: normalizedRoom.groupAvatar ? normalizedRoom.groupAvatar.serializeBinary() : null,
+
+    /**
+     * channelRoomExtra
+     */
+    channelAvatar: normalizedRoom.channelAvatar ? normalizedRoom.channelAvatar.serializeBinary() : null,
+  };
+};
+
+/**
+ * Convert serializable object to normalized room
+ * @param {object} serializableRoom
+ * @return {FlatRoom}
+ */
+export const serializableRoomToNormalizedRoom = (serializableRoom) => {
+  return {
+    ...serializableRoom,
+    longId: objectToLong(serializableRoom.longId),
+    draft: serializableRoom.draft ? Proto.RoomDraft.deserializeBinary(new Uint8Array(serializableRoom.draft)) : null,
+
+    /**
+     * groupRoomExtra
+     */
+    groupAvatar: serializableRoom.groupAvatar ? Proto.Avatar.deserializeBinary(new Uint8Array(serializableRoom.groupAvatar)) : null,
+
+    /**
+     * channelRoomExtra
+     */
+    channelAvatar: serializableRoom.groupAvatar ? Proto.Avatar.deserializeBinary(new Uint8Array(serializableRoom.groupAvatar)) : null,
+  };
 };
 
 /**

@@ -1,6 +1,7 @@
 /**
  * @flow
  */
+import Long from 'long';
 import {ceil, floor, max, min} from 'lodash';
 
 /**
@@ -22,6 +23,19 @@ export function msSleep(miliSeconds) {
  */
 export function sleep(seconds) {
   return msSleep(seconds * 1000);
+}
+
+/**
+ * Convert object to Long
+ * @param {{low:number,high:number,unsigned:bool}} object
+ * @return {Long}
+ */
+export function objectToLong(object) {
+  return new Long(
+    object.low || 0,
+    object.high || 0,
+    object.unsigned || false,
+  );
 }
 
 /**
