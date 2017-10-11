@@ -93,17 +93,14 @@ export function getExtension(path, includeDot = false) {
  * @param originalHeight
  * @param limiterWidth
  * @param limiterHeight
+ * @param minWidth
+ * @param minheight
  * @returns {{width: *, height: *}}
  */
-export function dimensionCalculate(originalWidth, originalHeight, limiterWidth, limiterHeight) {
-  let width, height;
-  if (originalWidth > originalHeight) {
-    width = max([100, min([originalWidth, limiterWidth])]);
-    height = ceil((width * originalHeight) / originalWidth);
-  } else {
-    height = max([100, min([originalHeight, limiterHeight])]);
-    width = floor((height * originalWidth) / originalHeight);
-  }
+export function dimensionCalculate(originalWidth, originalHeight, limiterWidth, limiterHeight, minWidth = 100, minheight = 100) {
+  const width = max([minWidth, min([limiterWidth, originalWidth])]);
+  const height = max([minheight, min([limiterHeight, ceil(width * originalHeight / originalWidth)])]);
+
   return {width, height};
 }
 
