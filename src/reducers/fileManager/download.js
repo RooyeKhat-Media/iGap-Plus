@@ -3,6 +3,7 @@
  */
 
 import {
+  FILE_MANAGER_DOWNLOAD_AUTO_PAUSED,
   FILE_MANAGER_DOWNLOAD_COMPLETED,
   FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED,
   FILE_MANAGER_DOWNLOAD_PENDING,
@@ -45,6 +46,13 @@ export default function(state = initialState, action) {
         ...state,
         [action.cacheId]: {
           status: FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED,
+        },
+      };
+    case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
+      return {
+        ...state,
+        [action.cacheId]: {
+          status: FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED,
         },
       };
     default:

@@ -55,8 +55,12 @@ export default async function(token, selector, size, cacheId, originalFileName) 
 
     while (fileInfo.fileSize.lessThan(size)) {
       const storeFile = store.getState().fileManager.download[cacheId];
-      if (storeFile && storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED) {
-        throw new Error('Manually paused');
+      if (storeFile) {
+        if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED) {
+          throw new Error('Manually paused');
+        } else if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED) {
+          throw new Error('Automatically paused');
+        }
       }
 
       store.dispatch(fileManagerDownloadProgress(cacheId, fileInfo.fileSize.multiply(100).divide(size).toInt()));

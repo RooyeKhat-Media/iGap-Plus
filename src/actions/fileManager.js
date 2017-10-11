@@ -10,6 +10,7 @@ export const FILE_MANAGER_DOWNLOAD_PENDING = 'FILE_MANAGER_DOWNLOAD_PENDING';
 export const FILE_MANAGER_DOWNLOAD_PROGRESS = 'FILE_MANAGER_DOWNLOAD_PROGRESS';
 export const FILE_MANAGER_DOWNLOAD_COMPLETED = 'FILE_MANAGER_DOWNLOAD_COMPLETED';
 export const FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED = 'FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED';
+export const FILE_MANAGER_DOWNLOAD_AUTO_PAUSED = 'FILE_MANAGER_DOWNLOAD_AUTO_PAUSED';
 
 export const FILE_MANAGER_UPLOAD_PENDING = 'FILE_MANAGER_UPLOAD_PENDING';
 export const FILE_MANAGER_UPLOAD_UPLOADING = 'FILE_MANAGER_UPLOAD_UPLOADING';
@@ -45,6 +46,13 @@ export function fileManagerDownloadCompleted(cacheId, uri) {
 export function fileManagerDownloadManuallyPaused(cacheId) {
   return {
     type: FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED,
+    cacheId,
+  };
+}
+
+export function fileManagerDownloadAutoPaused(cacheId) {
+  return {
+    type: FILE_MANAGER_DOWNLOAD_AUTO_PAUSED,
     cacheId,
   };
 }

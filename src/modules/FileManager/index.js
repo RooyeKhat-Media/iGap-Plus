@@ -9,11 +9,13 @@ import {
   FILE_MANAGER_DOWNLOAD_MAX_CHUNK_SIZE,
   FILE_MANAGER_DOWNLOAD_MIN_CHUNK_SIZE,
   FILE_MANAGER_MAX_CONCURRENT_DOWNLOAD,
+  FILE_MANAGER_MAX_CONCURRENT_INFO,
   FILE_MANAGER_MAX_CONCURRENT_UPLOAD,
 } from '../../constants/configs';
 import {CLIENT_STATUS_CHANGED} from '../../actions/api';
 import _download from './download';
 import _upload from './upload';
+import _info from './info';
 
 let getRootDirCache;
 
@@ -96,4 +98,20 @@ export function upload(id, fileUri, fileName, fileSize, priority) {
   return uploadLimiter(() => {
     return _upload(id, fileUri, fileName, fileSize);
   }, priority);
+}
+
+const infoLimiter = PromiseLimiter(FILE_MANAGER_MAX_CONCURRENT_INFO);
+let infoPriority = 0;
+
+/**
+ * Update file state
+ * @param {Long} size
+ * @param {string} cacheId
+ * @param {string} fileName
+ * @return {Promise.<void>}
+ */
+export function info(size, cacheId, fileName) {
+  return infoLimiter(() => {
+    return _info(size, cacheId, fileName);
+  }, --infoPriority);
 }
