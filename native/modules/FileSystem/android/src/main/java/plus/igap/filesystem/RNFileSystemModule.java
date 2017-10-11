@@ -198,7 +198,7 @@ public class RNFileSystemModule extends ReactContextBaseJavaModule implements Ac
                             fileWrapper = new FileWrapper(randomAccessFile);
                             break;
                         case FILE_OPEN_MODE_WRITE:
-                            FileOutputStream fileOutputStream = new FileOutputStream(new File(fileUri));
+                            FileOutputStream fileOutputStream = new FileOutputStream(new File(fileUri),true);
 
                             fileWrapper = new FileWrapper(fileOutputStream);
                             break;
