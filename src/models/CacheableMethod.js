@@ -5,6 +5,7 @@
 import Db from '../modules/Db';
 import QueueDb from '../modules/QueueDb';
 import {getSessionUid} from '../modules/Api';
+import {objectToUint8Array} from '../utils/core';
 
 const storage = new Db('modelCacheableMethod');
 const {save, remove, load} = QueueDb(storage);
@@ -50,7 +51,7 @@ export default class CacheableMethod {
     return load(id).then(function(value) {
       return {
         ...value,
-        data: new Uint8Array(value.data),
+        data: objectToUint8Array(value.data),
       };
     });
   }

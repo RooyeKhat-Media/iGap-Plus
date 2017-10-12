@@ -6,7 +6,7 @@ import {schema} from 'normalizr';
 import roomMessage from './roomMessage';
 import registeredUser from './registeredUser';
 import {Proto} from '../modules/Proto';
-import {objectToLong} from '../utils/core';
+import {objectToLong, objectToUint8Array} from '../utils/core';
 
 /**
  * @typedef {{id: string, longId: (string|Long|*), type: (ProtoRoomMessageLog_Type|ProtoRoom_Type|ProtoGroupRoom_Type|ProtoChannelRoom_Type|ProtoClientResolveUsernameResponse_Type|ProtoClientSearchUsernameResponse_Result_Type|*), title: string, initials: string, color: string, unreadCount: number, lastMessage: (ProtoRoomMessage|null|undefined|string), readOnly: boolean, isParticipant: boolean, draft: (ProtoRoomDraft|null|undefined), firstUnreadMessage: (ProtoRoomMessage|null|undefined|string)}} FlatRoom
@@ -126,17 +126,17 @@ export const serializableRoomToNormalizedRoom = (serializableRoom) => {
   return {
     ...serializableRoom,
     longId: objectToLong(serializableRoom.longId),
-    draft: serializableRoom.draft ? Proto.RoomDraft.deserializeBinary(new Uint8Array(serializableRoom.draft)) : null,
+    draft: serializableRoom.draft ? Proto.RoomDraft.deserializeBinary(objectToUint8Array(serializableRoom.draft)) : null,
 
     /**
      * groupRoomExtra
      */
-    groupAvatar: serializableRoom.groupAvatar ? Proto.Avatar.deserializeBinary(new Uint8Array(serializableRoom.groupAvatar)) : null,
+    groupAvatar: serializableRoom.groupAvatar ? Proto.Avatar.deserializeBinary(objectToUint8Array(serializableRoom.groupAvatar)) : null,
 
     /**
      * channelRoomExtra
      */
-    channelAvatar: serializableRoom.groupAvatar ? Proto.Avatar.deserializeBinary(new Uint8Array(serializableRoom.groupAvatar)) : null,
+    channelAvatar: serializableRoom.channelAvatar ? Proto.Avatar.deserializeBinary(objectToUint8Array(serializableRoom.channelAvatar)) : null,
   };
 };
 

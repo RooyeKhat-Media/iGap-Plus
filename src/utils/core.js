@@ -2,7 +2,7 @@
  * @flow
  */
 import Long from 'long';
-import {ceil, floor, max, min} from 'lodash';
+import {ceil, floor, max, min, values} from 'lodash';
 
 /**
  * Mili-seconds sleep
@@ -105,4 +105,13 @@ export function dimensionCalculate(originalWidth, originalHeight, limiterWidth, 
     width = floor((height * originalWidth) / originalHeight);
   }
   return {width, height};
+}
+
+/**
+ * Convert object to Uint8Array
+ * @param {Object} object
+ * @return {Uint8Array}
+ */
+export function objectToUint8Array(object) {
+  return new Uint8Array(values(object));
 }

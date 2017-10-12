@@ -5,9 +5,11 @@ const middleware = ({dispatch, getState}) => next => action => {
   switch (action.type) {
     case ENTITIES_ROOM_ADD:
       if (action.fromServer) {
-        action.rooms.forEach(function(normalizedRoom) {
-          Rooms.saveToQueue(normalizedRoom);
-        });
+        for (const roomId in action.rooms) {
+          if (action.rooms.hasOwnProperty(roomId)) {
+            Rooms.saveToQueue(action.rooms[roomId]);
+          }
+        }
       }
       break;
   }
