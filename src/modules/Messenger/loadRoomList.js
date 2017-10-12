@@ -6,7 +6,7 @@ import {CLIENT_GET_ROOM_LIST} from '../../constants/methods/index';
 import Api from '../Api/index';
 import {CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT} from '../../constants/configs';
 import store from '../../configureStore';
-import {messengerRoomAddList, messengerRoomRemove} from '../../actions/messenger/room';
+import {messengerRoomAddList, messengerRoomRemove} from '../../actions/messenger/rooms';
 import {entitiesRoomsAddFull} from '../../actions/entities/rooms';
 import room from '../../schemas/room';
 
@@ -17,7 +17,7 @@ export default async function loadRoomList() {
   let order = Long.fromInt(10000000);
 
   const newRoomList = [];
-  const oldRoomList = Object.keys(store.getState().messenger.room);
+  const oldRoomList = Object.keys(store.getState().messenger.rooms);
 
   do {
 

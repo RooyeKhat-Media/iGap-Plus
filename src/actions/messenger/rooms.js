@@ -8,7 +8,9 @@ export const MESSENGER_ROOM_OVERRIDE_LIST = 'MESSENGER_ROOM_OVERRIDE_LIST';
 export const MESSENGER_ROOM_REMOVE = 'MESSENGER_ROOM_REMOVE';
 
 /**
- * @param {{id:string, sort: string}} payload
+ * @typedef {{id:string, sort: string}} MessengerRoomPayload
+ * @typedef {Object.<string,MessengerRoomPayload>} MessengerRoomsPayload
+ * @param {MessengerRoomPayload} payload
  * @return {{type: string, payload: payload}}
  */
 export function messengerRoomAdd(payload) {
@@ -20,7 +22,7 @@ export function messengerRoomAdd(payload) {
 
 /**
  * @param {string} roomId
- * @return {{type: string, payload: payload}}
+ * @return {{type: string}}
  */
 export function messengerRoomRemove(roomId) {
   return {
@@ -30,7 +32,7 @@ export function messengerRoomRemove(roomId) {
 }
 
 /**
- * @param payload
+ * @param {MessengerRoomsPayload} payload
  * @return {{type: string, payload: object}}
  */
 export function messengerRoomAddList(payload) {

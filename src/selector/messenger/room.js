@@ -6,7 +6,7 @@ import {orderBy, values} from 'lodash';
 import {createSelector} from 'reselect';
 
 const getRooms = (state) =>
-  state.messenger.room;
+  state.messenger.rooms;
 
 export const getRoomList = createSelector(
   getRooms,

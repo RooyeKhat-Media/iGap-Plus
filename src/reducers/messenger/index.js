@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import {room} from './room';
+import {rooms} from './rooms';
 import {roomMessages} from './roomMessages';
 
 const messengerReducer = combineReducers({
-  room,
+  rooms,
   roomMessages,
 });
 export default messengerReducer;

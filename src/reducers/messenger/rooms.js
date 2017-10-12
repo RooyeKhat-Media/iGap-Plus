@@ -7,11 +7,11 @@ import {
   MESSENGER_ROOM_ADD_LIST,
   MESSENGER_ROOM_OVERRIDE_LIST,
   MESSENGER_ROOM_REMOVE,
-} from '../../actions/messenger/room';
+} from '../../actions/messenger/rooms';
 
 const initialState = {};
 
-export function room(state = initialState, action) {
+export function rooms(state = initialState, action) {
   switch (action.type) {
     case MESSENGER_ROOM_ADD:
       return {
