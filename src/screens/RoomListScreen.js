@@ -3,8 +3,13 @@ import {connect} from 'react-redux';
 import {getRoomList} from '../selector/messenger/room';
 import RoomListComponent from '../components/RoomList';
 import {goRoomHistory} from '../navigators/SecondaryNavigator';
+import {initialRoomsState} from '../modules/Messenger/Rooms/index';
 
 class RoomListScreen extends Component {
+
+  async componentDidMount() {
+    await initialRoomsState();
+  }
 
   render() {
     const {roomList} = this.props;
@@ -23,7 +28,6 @@ const makeMapStateToProps = () => {
     };
   };
 };
-
 
 export default connect(
   makeMapStateToProps,

@@ -11,6 +11,8 @@ import reduxLogger from 'redux-logger';
 //Entities
 import entitiesRoomsMiddleware from './modules/Entities/Rooms/middleware';
 import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUsers/middleware';
+//Messenger
+import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
 
 function configureStore(preloadedState) {
   const middlewares = [
@@ -20,6 +22,8 @@ function configureStore(preloadedState) {
     //Entities
     entitiesRoomsMiddleware,
     entitiesRegisteredUsersMiddleware,
+    //Messenger
+    messengerRoomsMiddleware,
   ];
 
   if (process.env.NODE_ENV === `development`) {

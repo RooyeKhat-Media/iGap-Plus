@@ -1,28 +1,48 @@
 import {normalize} from 'normalizr';
 import Long from 'long';
-import {difference} from 'lodash';
-import {ClientGetRoomList, Proto} from '../Proto/index';
-import {CLIENT_GET_ROOM_LIST} from '../../constants/methods/index';
-import Api from '../Api/index';
-import {CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT} from '../../constants/configs';
-import store from '../../configureStore';
-import {messengerRoomAddList, messengerRoomRemove} from '../../actions/messenger/rooms';
-import {entitiesRoomsAddFull} from '../../actions/entities/rooms';
-import room from '../../schemas/room';
+import {difference, isEmpty, keys} from 'lodash';
+import Api from '../../Api/index';
+import store from '../../../configureStore';
+import {ClientGetRoomList, Proto} from '../../Proto/index';
+import {CLIENT_GET_ROOM_LIST} from '../../../constants/methods/index';
+import {CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT} from '../../../constants/configs';
+
+import {messengerRoomAddList, messengerRoomRemove} from '../../../actions/messenger/rooms';
+import {entitiesRoomsAddFull} from '../../../actions/entities/rooms';
+import room from '../../../schemas/room';
+import Rooms from '../../../models/messenger/Rooms';
+import putState from '../../Entities/Rooms/index';
 
 
-export default async function loadRoomList() {
+/**
+ * @return {Promise.<void>}
+ */
+export async function initialRoomsState() {
+  if (isEmpty(store.getState().messenger.rooms)) {
+    const rooms = await Rooms.loadAllFromDb();
+    for (const roomId in rooms) {
+      if (rooms.hasOwnProperty(roomId)) {
+        await putState(roomId);
+      }
+    }
+    if (isEmpty(store.getState().messenger.rooms)) {
+      store.dispatch(messengerRoomAddList(rooms, false));
+    }
+  }
+}
+
+/**
+ * @return {Promise.<void>}
+ */
+export async function serverRoomsState() {
 
   let offset = 0;
   let order = Long.fromInt(10000000);
 
   const newRoomList = [];
-  const oldRoomList = Object.keys(store.getState().messenger.rooms);
 
   do {
-
     const payload = {};
-
     const pagination = new Proto.Pagination();
     pagination.setLimit(CLIENT_GET_ROOM_LIST_PAGINATION_LIMIT);
     pagination.setOffset(offset);
@@ -62,6 +82,7 @@ export default async function loadRoomList() {
     }
   } while (true);
 
+  const oldRoomList = keys(store.getState().messenger.rooms);
   difference(oldRoomList, newRoomList).forEach(function(roomId) {
     store.dispatch(messengerRoomRemove(roomId));
   });
