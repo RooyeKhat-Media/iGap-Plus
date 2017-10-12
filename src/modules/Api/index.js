@@ -301,10 +301,12 @@ export default class Api {
 
   __done(wrapper) {
     if (wrapper.request) {
+      if (wrapper.request.getRequest()) {
+        running.delete(wrapper.request.getRequest().getId());
+      }
       const aggregateId = getAggregateId(wrapper);
       if (aggregateId) {
         if (aggregate.has(aggregateId)) {
-          running.delete(wrapper.request.getRequest().getId());
           this.__pollPending();
 
           setTimeout(() => {
@@ -312,7 +314,6 @@ export default class Api {
           }, API_AGGREGATE_DELAY_MS);
         }
       } else {
-        running.delete(wrapper.request.getRequest().getId());
         this.__pollPending();
       }
     }
