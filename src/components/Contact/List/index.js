@@ -18,17 +18,16 @@ class ContactListComponent extends React.Component {
           centerElement={intl.formatMessage(i18n.contactListTitleToolbar)}/>
         <View style={styles.container}>
           {loading && !contactList.length ? (<Text>Please Wait ...</Text>) :
-            ( <FlatList
+            (<FlatList
               data={contactList}
               keyExtractor={(item, index) => ('contact-' + item.getId())}
               renderItem={({item}) =>
-                (<ListItem key={item.getId()} onPress={(key) => {
-                  console.log('iTem Press', key);
-                }}
-                centerElement={{primaryText: item.getDisplayName(), secondaryText: item.getPhone()}}
-                leftElement={<Avatar style={{container: {backgroundColor: item.getColor()}}}
-                  text={item.getInitials()}/>}
-                style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>)}/>)}
+                (<ListItem key={item.getId()}
+                  centerElement={{primaryText: item.getDisplayName(), secondaryText: item.getPhone().toString()}}
+                  leftElement={<Avatar style={{container: {backgroundColor: item.getColor()}}}
+                    text={item.getInitials()}/>}
+                  style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>
+                )}/>)}
         </View>
       </View>
     );
