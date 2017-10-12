@@ -17,9 +17,12 @@ export default async function putState(id, cacheId = null) {
     try {
       // todo collector map
       const normalizedRegisteredUser = await RegisteredUsers.loadFromQueue(id);
-      store.dispatch(entitiesRegisteredUserAdd({
-        [normalizedRegisteredUser.id]: normalizedRegisteredUser,
-      }, false));
+
+      if (!store.getState().entities.registeredUsers[id]) {
+        store.dispatch(entitiesRegisteredUserAdd({
+          [normalizedRegisteredUser.id]: normalizedRegisteredUser,
+        }, false));
+      }
 
       if (cacheId && normalizedRegisteredUser.cacheId !== cacheId) {
         throw new Error('User cacheId is changed and local data is not valid');

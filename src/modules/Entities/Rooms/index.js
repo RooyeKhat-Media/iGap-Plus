@@ -6,10 +6,11 @@ import {CLIENT_GET_ROOM} from '../../../constants/methods/index';
 import {ClientGetRoom} from '../../Proto/index';
 import Rooms from '../../../models/entities/Rooms';
 import {entitiesRoomsAdd} from '../../../actions/entities/rooms';
+import putRegisteredUserState from '../RegisteredUsers';
 
 /**
  * @param {string} id
- * @param {bool} offlineInvokeApi Whether to need invoke api in offline mode
+ * @param {boolean} offlineInvokeApi Whether to need invoke api in offline mode
  * @return {Promise.<void>}
  */
 export default async function putState(id, offlineInvokeApi = false) {
@@ -20,9 +21,14 @@ export default async function putState(id, offlineInvokeApi = false) {
     } else {
       try {
         const normalizedRoom = await Rooms.loadFromQueue(id);
-        store.dispatch(entitiesRoomsAdd({
-          [normalizedRoom.id]: normalizedRoom,
-        }, false));
+        if (normalizedRoom.chatPeer) {
+          putRegisteredUserState(normalizedRoom.chatPeer);
+        }
+        if (!store.getState().entities.rooms[id]) {
+          store.dispatch(entitiesRoomsAdd({
+            [normalizedRoom.id]: normalizedRoom,
+          }, false));
+        }
       } finally {
         if (offlineInvokeApi) {
           await apiInvoke(id);
