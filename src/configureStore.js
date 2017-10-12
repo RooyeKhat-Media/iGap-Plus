@@ -8,9 +8,9 @@ import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
 import reduxLogger from 'redux-logger';
-
 //Entities
 import entitiesRoomsMiddleware from './modules/Entities/Rooms/middleware';
+import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUsers/middleware';
 
 function configureStore(preloadedState) {
   const middlewares = [
@@ -19,6 +19,7 @@ function configureStore(preloadedState) {
     fileManagerMiddleware,
     //Entities
     entitiesRoomsMiddleware,
+    entitiesRegisteredUsersMiddleware,
   ];
 
   if (process.env.NODE_ENV === `development`) {

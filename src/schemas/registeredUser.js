@@ -3,6 +3,8 @@
  */
 
 import {schema} from 'normalizr';
+import {objectToLong, objectToUint8Array} from '../utils/core';
+import {Proto} from '../modules/Proto/index';
 
 /**
  * @typedef {{id: string, longId: (string|Long|*), username:string, phone: (Long|string), firstName: string, lastName: string, displayName, initials: string, color: string, status: (ProtoRegisteredUser_Status|ProtoRoomMessageStatus|ProtoChannelCheckUsernameResponseStatus|ProtoConnectionSymmetricKeyResponse_Status|ProtoFileUploadStatusResponse_Status|ProtoGroupCheckUsernameResponse_Status|*), lastSeen: number, avatarCount: number, avatar: (ProtoAvatar|null|undefined), mutual: boolean, deleted: boolean, cacheId: string}} FlatRegisteredUser
@@ -33,6 +35,39 @@ export const flatProtoRegisteredUser = (user) => {
   };
 };
 
+
+/**
+ * MUST BE PURE FUNCTION
+ * Convert normalized registeredUser to serializable object
+ * @param {FlatRegisteredUser} normalizedRegisteredUser
+ * @return object
+ */
+export const normalizedRegisteredUserToSerializableRegisteredUser = (normalizedRegisteredUser) => {
+  return {
+    ...normalizedRegisteredUser,
+    avatar: normalizedRegisteredUser.avatar ? normalizedRegisteredUser.avatar.serializeBinary() : null,
+  };
+};
+
+/**
+ * Convert serializable object to normalized registeredUser
+ * @param {object} serializableRegisteredUser
+ * @return {FlatRegisteredUser}
+ */
+export const serializableRegisteredUserToNormalizedRegisteredUser = (serializableRegisteredUser) => {
+  return {
+    ...serializableRegisteredUser,
+    longId: objectToLong(serializableRegisteredUser.longId),
+    avatar: serializableRegisteredUser.avatar ? Proto.Avatar.deserializeBinary(objectToUint8Array(serializableRegisteredUser.avatar)) : null,
+    phone: serializableRegisteredUser.phone ? objectToLong(serializableRegisteredUser.phone) : null,
+  };
+};
+
+/**
+ * @param {ProtoRegisteredUser} user
+ * @param {object} parent
+ * @param {string} key
+ */
 const registeredUserProcessStrategy = (user, parent, key) => flatProtoRegisteredUser(user);
 
 /**

@@ -11,7 +11,7 @@ export function registeredUsers(state = initialState, action) {
     case ENTITIES_REGISTERED_USER_ADD:
       return {
         ...state,
-        ...action.registeredUser,
+        ...action.registeredUsers,
       };
     default:
       return state;

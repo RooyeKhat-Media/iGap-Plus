@@ -10,8 +10,8 @@ export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
 
 /**
  * @param {NormalizedRoomEntities} rooms
- * @param {bool} fromServer
- * @return {{type: string, rooms: FlatRoom[], fromServer:bool}}
+ * @param {boolean} fromServer
+ * @return {{type: string, rooms: NormalizedRoomEntities, fromServer:boolean}}
  */
 export function entitiesRoomsAdd(rooms, fromServer = true) {
   return {
