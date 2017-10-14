@@ -5,6 +5,7 @@ import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION} from '../constants/con
 import {USER_LOGIN} from '../constants/methods/index';
 import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
+import {objectToLong} from './core';
 
 const META_USER_ID = 'userId';
 const META_AUTHOR_HASH = 'authorHash';
@@ -24,6 +25,7 @@ export function setUserId(userId) {
 
 export async function loadUserId() {
   _userId = await MetaData.load(META_USER_ID);
+  _userId = objectToLong(_userId);
   return _userId;
 }
 
