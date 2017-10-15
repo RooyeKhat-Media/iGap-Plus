@@ -3,6 +3,8 @@
  */
 
 import {schema} from 'normalizr';
+import {objectToLong, objectToUint8Array} from '../utils/core';
+import {Proto} from '../modules/Proto/index';
 
 /**
  * @typedef {{id:string, longId:Long, messageVersion: Long, status: (ProtoRegisteredUser_Status|ProtoRoomMessageStatus|ProtoChannelCheckUsernameResponse_Status|ProtoConnectionSymmetricKeyResponse_Status|ProtoFileUploadStatusResponse_Status|ProtoGroupCheckUsernameResponse_Status|*), statusVersion: Long, messageType: ProtoRoomMessageType, message: (string|ProtoRoomMessage|null|undefined|string|Object), attachment: (ProtoFile|null|undefined|string), authorHash: (string|null), location: (ProtoRoomMessageLocation|null|undefined), log: (ProtoRoomMessageLog|null|undefined), contact: (ProtoRoomMessageContact|null|undefined), edited: boolean, createTime: number, updateTime: number, deleted: boolean, forwardFrom: (ProtoRoomMessage|null|undefined|ProtoRoomMessageForwardFrom), replyTo: (ProtoRoomMessage|null|undefined|Long), previousMessageId: Long}} FlatRoomMessage
@@ -60,6 +62,45 @@ export const flatProtoRoomMessage = (roomMessage) => {
 
   return flat;
 };
+
+
+/**
+ * MUST BE PURE FUNCTION
+ * Convert normalized roomMessage to serializable object
+ * @param {FlatRoomMessage} normalizedRoomMessage
+ * @return object
+ */
+export const normalizedRoomMessageToSerializableRoomMessage = (normalizedRoomMessage) => {
+  return {
+    ...normalizedRoomMessage,
+    attachment: normalizedRoomMessage.attachment ? normalizedRoomMessage.attachment.serializeBinary() : null,
+    location: normalizedRoomMessage.location ? normalizedRoomMessage.location.serializeBinary() : null,
+    log: normalizedRoomMessage.log ? normalizedRoomMessage.log.serializeBinary() : null,
+    contact: normalizedRoomMessage.contact ? normalizedRoomMessage.contact.serializeBinary() : null,
+    forwardFrom: normalizedRoomMessage.forwardFrom ? normalizedRoomMessage.forwardFrom.serializeBinary() : null,
+  };
+};
+
+/**
+ * Convert serializable object to normalized roomMessage
+ * @param {object} serializableRoomMessage
+ * @return {FlatRoomMessage}
+ */
+export const serializableRoomMessageToNormalizedRoomMessage = (serializableRoomMessage) => {
+  return {
+    ...serializableRoomMessage,
+    longId: objectToLong(serializableRoomMessage.longId),
+    messageVersion: objectToLong(serializableRoomMessage.messageVersion),
+    statusVersion: objectToLong(serializableRoomMessage.statusVersion),
+
+    attachment: serializableRoomMessage.attachment ? Proto.File.deserializeBinary(objectToUint8Array(serializableRoomMessage.attachment)) : null,
+    location: serializableRoomMessage.location ? Proto.RoomMessageLocation.deserializeBinary(objectToUint8Array(serializableRoomMessage.location)) : null,
+    log: serializableRoomMessage.log ? Proto.RoomMessageLog.deserializeBinary(objectToUint8Array(serializableRoomMessage.log)) : null,
+    contact: serializableRoomMessage.contact ? Proto.RoomMessageContact.deserializeBinary(objectToUint8Array(serializableRoomMessage.contact)) : null,
+    forwardFrom: serializableRoomMessage.forwardFrom ? Proto.RoomMessage.deserializeBinary(objectToUint8Array(serializableRoomMessage.forwardFrom)) : null,
+  };
+};
+
 
 /**
  * @param {ProtoRoomMessage} roomMessage

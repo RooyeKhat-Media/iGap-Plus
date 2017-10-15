@@ -11,6 +11,7 @@ import reduxLogger from 'redux-logger';
 //Entities
 import entitiesRoomsMiddleware from './modules/Entities/Rooms/middleware';
 import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUsers/middleware';
+import entitiesRoomMessagesMiddleware from './modules/Entities/RoomMessages/middleware';
 //Messenger
 import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
 
@@ -22,6 +23,7 @@ function configureStore(preloadedState) {
     //Entities
     entitiesRoomsMiddleware,
     entitiesRegisteredUsersMiddleware,
+    entitiesRoomMessagesMiddleware,
     //Messenger
     messengerRoomsMiddleware,
   ];

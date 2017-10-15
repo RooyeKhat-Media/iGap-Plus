@@ -30,6 +30,18 @@ export function entitiesRoomsAddFull(data) {
     if (data.entities.registeredUsers) {
       dispatch(entitiesRegisteredUserAdd(data.entities.registeredUsers));
     }
+    for (const roomId in data.entities.rooms) {
+      if (data.entities.rooms.hasOwnProperty(roomId)) {
+        if (data.entities.rooms[roomId].lastMessage) {
+          const lastMessage = data.entities.rooms[roomId].lastMessage;
+          data.entities.roomMessages[lastMessage].roomId = roomId;
+        }
+        if (data.entities.rooms[roomId].firstUnreadMessage) {
+          const firstUnreadMessage = data.entities.rooms[roomId].firstUnreadMessage;
+          data.entities.roomMessages[firstUnreadMessage].roomId = roomId;
+        }
+      }
+    }
     dispatch(entitiesRoomMessagesAdd(data.entities.roomMessages));
     dispatch(entitiesRoomsAdd(data.entities.rooms));
 
