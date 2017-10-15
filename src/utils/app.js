@@ -25,7 +25,7 @@ export function setUserId(userId) {
 
 export async function loadUserId() {
   _userId = await MetaData.load(META_USER_ID);
-  _userId = objectToLong(_userId);
+  _userId = _userId ? objectToLong(_userId) : null;
   return _userId;
 }
 
