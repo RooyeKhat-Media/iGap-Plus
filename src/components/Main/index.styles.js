@@ -51,6 +51,7 @@ export default [
           flexDirection: 'row',
         },
         primary: {
+          flex: null,
           width: primaryWidth,
         },
         secondary: {

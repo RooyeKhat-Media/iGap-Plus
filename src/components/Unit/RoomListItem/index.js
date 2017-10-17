@@ -21,12 +21,12 @@ class RoomListItem extends React.Component {
         <View style={styles.rightElementWrap}>
           <View style={styles.row}>
             <MessageStatus status={lastMessageStatue} size={15}/>
-            <Text style={styles.timeTitle}>
+            <Text style={styles.timeTitle} numberOfLines={1}>
               {lastMessageTime ? (<FormattedRelative updateInterval={0} value={lastMessageTime * 1000}/>) : null}
             </Text>
           </View>
           <View style={styles.row}>
-            {unreadCount ? (<Badge style={styles.badge} text={unreadCount}/>) : null}
+            {unreadCount ? (<Badge style={styles.badge} text={unreadCount.toString()}/>) : null}
           </View>
         </View>}
     />);

@@ -20,7 +20,7 @@ class RoomListItem extends Component {
     return (<RoomListItemComponent roomId={room.id}
       roomTitle={room.title}
       roomType={room.type}
-      unreadCount={0}
+      unreadCount={room.unreadCount}
       lastMessageTitle={this.getSecondaryTitle()}
       lastMessageTime={room.lastMessage ? room.lastMessage.createTime : null}
       ownerLastMessage={ownerLastMessage}

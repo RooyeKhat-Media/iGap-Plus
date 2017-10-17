@@ -10,13 +10,13 @@ import {serverRoomsState} from '../../Messenger/Rooms';
  * @property {ProtoUserLoginResponse} _response
  */
 export default class Login extends Base {
-  handle() {
+  async handle() {
     // TODO [Amerehie] - 8/30/2017 11:26 AM - deprecated_client
     // TODO [Amerehie] - 8/30/2017 11:26 AM - update_available
 
     Client.instance.loggedIn = true;
     store.dispatch(clientStatusChanged(CLIENT_STATUS.LOGGED_IN));
 
-    serverRoomsState();
+    await serverRoomsState();
   }
 }
