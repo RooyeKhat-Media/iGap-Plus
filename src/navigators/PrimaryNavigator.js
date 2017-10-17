@@ -3,7 +3,6 @@ import {DrawerNavigator, StackNavigator, TabNavigator} from 'react-navigation';
 import {navigate} from './index';
 import MainBottom from '../containers/MainBottom';
 import MainDrawer from '../containers/MainDrawer';
-import MainToolbar from '../containers/MainToolbar';
 
 import {
   CONTACT_LIST_SCREEN,
@@ -59,6 +58,8 @@ const tabNav = TabNavigator({
 }, {
   tabBarComponent: props => (<MainBottom {...props}/>),
   tabBarPosition: 'bottom',
+  swipeEnabled: false,
+  lazy: true,
 });
 
 const drawerNav = DrawerNavigator({
@@ -73,7 +74,7 @@ const PrimaryNavigator = StackNavigator({
   [PRIMARY_DRAWER_NAVIGATION]: {
     screen: drawerNav,
     navigationOptions: {
-      header: props => (<MainToolbar {...props}/>),
+      header: null,
     },
   },
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
