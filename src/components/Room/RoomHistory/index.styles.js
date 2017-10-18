@@ -1,4 +1,4 @@
-import {gray100, gray500} from '../../themes/default/index';
+import {gray100, gray500} from '../../../themes/default/index';
 
 export default {
   container: {

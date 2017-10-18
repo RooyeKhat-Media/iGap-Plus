@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import RoomHistoryComponent from '../components/RoomHistory';
-import {getRoom} from '../selector/entities/room';
+import RoomHistoryComponent from '../../components/Room/RoomHistory';
+import {getRoom} from '../../selector/entities/room';
 import {connect} from 'react-redux';
-import loadRoomHistory from '../modules/Messenger/loadRoomHistory';
-import {getRoomMessageList} from '../selector/messenger/roomMessage';
+import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
+import {getRoomMessageList} from '../../selector/messenger/roomMessage';
 
 class RoomHistoryScreen extends Component {
 

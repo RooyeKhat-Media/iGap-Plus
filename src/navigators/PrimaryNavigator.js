@@ -12,11 +12,11 @@ import {
   ROOM_LIST_SCREEN,
   SEARCH_SCREEN,
 } from '../constants/navigators';
-import ProfileScreen from '../screens/ProfileScreen';
-import SearchScreen from '../screens/SearchScreen';
-import RoomsScreen from '../screens/RoomListScreen';
-import NewScreen from '../screens/NewScreen';
-import PublicScreen from '../screens/PublicScreen';
+import ProfileScreen from '../screens/MainTabs/ProfileScreen';
+import SearchScreen from '../screens/MainTabs/SearchScreen';
+import RoomsScreen from '../screens/MainTabs/RoomListScreen';
+import NewScreen from '../screens/MainTabs/NewScreen';
+import PublicScreen from '../screens/MainTabs/PublicScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
 
 export function goRoomList() {

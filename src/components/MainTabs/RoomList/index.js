@@ -2,8 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
-import {ActionSheet, FlatList, Toolbar} from '../BaseUI';
-import RoomListItem from '../../containers/Unit/RoomListItem';
+import {ActionSheet, FlatList, Toolbar} from '../../BaseUI/index';
+import RoomListItem from '../../../containers/Unit/RoomListItem';
 
 class RoomListComponent extends React.Component {
   render() {

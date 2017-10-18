@@ -2,7 +2,7 @@ import {StackNavigator} from 'react-navigation';
 
 import {ROOM_HISTORY_SCREEN, SECONDARY_INITIAL_SCREEN} from '../constants/navigators';
 import {navigate} from './index';
-import RoomScreen from '../screens/RoomHistoryScreen';
+import RoomScreen from '../screens/Room/RoomHistoryScreen';
 import SecondaryInitialScreen from '../screens/SecondaryInitialScreen';
 
 export function goRoomHistory(roomId) {

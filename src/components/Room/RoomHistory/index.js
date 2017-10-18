@@ -1,13 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {FlatList, ListItem, Toolbar} from '../BaseUI';
+import {FlatList, ListItem, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
-import RoomMessage from '../../containers/Unit/RoomMessage';
+import RoomMessage from '../../../containers/Unit/RoomMessage';
 
 class RoomHistoryComponent extends React.Component {
   render() {
-    const {intl, room, messageList, goBack} = this.props;
+    const {room, messageList, goBack} = this.props;
     return (
       <View style={styles.container}>
         <Toolbar
