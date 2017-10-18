@@ -31,25 +31,23 @@ class App extends Component {
     }).then(() => {
       Api.instance;
     }).then(() => {
-      return loadUserId();
-    }).then(() => {
-      return loadAuthorHash();
-    }).then(() => {
-      return loadUserLocale();
-    }).then(() => {
-      return changeLocale(getUserLocale());
-    }).then(() => {
-      return loadAppThemeName();
-    }).then(() => {
-      return loadUserToken();
-    }).then((token) => {
-      if (token) {
-        goMainScreen();
-      } else if (Platform.OS === 'ios' || Platform.OS === 'android') {
-        goIntroScreen();
-      } else {
-        goUserRegisterScreen();
-      }
+      return Promise.all([
+        loadUserId(),
+        loadAuthorHash(),
+        loadUserLocale().then(() => {
+          return changeLocale(getUserLocale());
+        }),
+        loadAppThemeName(),
+        loadUserToken().then((token) => {
+          if (token) {
+            goMainScreen();
+          } else if (Platform.OS === 'ios' || Platform.OS === 'android') {
+            goIntroScreen();
+          } else {
+            goUserRegisterScreen();
+          }
+        }),
+      ]);
     });
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
