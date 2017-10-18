@@ -4,12 +4,18 @@ import {getRoom} from '../../selector/entities/room';
 import {connect} from 'react-redux';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
+import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 
 class RoomHistoryScreen extends Component {
 
   async componentDidMount() {
     const {roomId} = this.props.navigation.state.params;
-    loadRoomHistory(roomId);
+    await loadRoomHistory(roomId);
+  }
+
+  goRoomInfoBtn = () => {
+    const {roomId} = this.props.navigation.state.params;
+    goRoomInfo(roomId);
   }
 
   render() {
@@ -19,6 +25,7 @@ class RoomHistoryScreen extends Component {
       <RoomHistoryComponent
         room={room}
         messageList={messageList}
+        goRoomInfoBtn={this.goRoomInfoBtn}
         goBack={this.props.navigation.goBack}
       />
     );

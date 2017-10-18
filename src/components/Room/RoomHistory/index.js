@@ -7,7 +7,7 @@ import RoomMessage from '../../../containers/Unit/RoomMessage';
 
 class RoomHistoryComponent extends React.Component {
   render() {
-    const {room, messageList, goBack} = this.props;
+    const {room, messageList, goRoomInfoBtn, goBack} = this.props;
     return (
       <View style={styles.container}>
         <Toolbar
@@ -32,6 +32,7 @@ class RoomHistoryComponent extends React.Component {
               ],
             },
           }}
+          onPress={goRoomInfoBtn}
         />
         <View style={styles.mainWrap}>
           <View style={styles.messageListWrap}>
