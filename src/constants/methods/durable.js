@@ -52,6 +52,9 @@ const durability = [
   methods.USER_PRIVACY_GET_RULE,
   methods.USER_PRIVACY_SET_RULE,
   methods.USER_VERIFY_NEW_DEVICE,
+  methods.USER_PROFILE_SET_BIO,
+  methods.USER_PROFILE_GET_BIO,
+  methods.USER_REPORT,
 
   //Chat 2xx
   methods.CHAT_GET_ROOM,
@@ -141,6 +144,9 @@ const durability = [
   methods.CLIENT_UNSUBSCRIBE_FROM_ROOM,
   methods.CLIENT_SEARCH_USERNAME,
   methods.CLIENT_COUNT_ROOM_HISTORY,
+  methods.CLIENT_MUTE_ROOM,
+  methods.CLIENT_PIN_ROOM,
+  methods.CLIENT_ROOM_REPORT,
 
   //File 7xx
   methods.FILE_UPLOAD_OPTION,

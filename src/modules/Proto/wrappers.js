@@ -1247,6 +1247,24 @@ proto.proto.RegisteredUser.prototype.setCacheId = function(value) {
 };
 
 /**
+ * Get RegisteredUser bio.
+ * @memberof ProtoRegisteredUser
+ * @return {string}
+ */
+proto.proto.RegisteredUser.prototype.getBio = function() {
+  return this.bio;
+};
+
+/**
+ * Set RegisteredUser bio.
+ * @memberof ProtoRegisteredUser
+ * @param {string} value
+ */
+proto.proto.RegisteredUser.prototype.setBio = function(value) {
+  this.bio = value;
+};
+
+/**
  * @typedef {number} ProtoRegisteredUser_Status
  */
 
@@ -2067,6 +2085,20 @@ proto.proto.RoomDraft.prototype.setReplyTo = function(value) {
 };
 
 /**
+ * @typedef {number} ProtoRoomMute
+ */
+
+/**
+ * RoomMute enum.
+ * @enum {ProtoRoomMute}
+ * @memberof Proto
+ */
+proto.proto.RoomMute = {
+  UNMUTE : 0,
+  MUTE : 1,
+};
+
+/**
  * @interface ProtoRoom
  */
 
@@ -2283,6 +2315,42 @@ proto.proto.Room.prototype.getFirstUnreadMessage = function() {
  */
 proto.proto.Room.prototype.setFirstUnreadMessage = function(value) {
   this.firstUnreadMessage = value;
+};
+
+/**
+ * Get Room roomMute.
+ * @memberof ProtoRoom
+ * @return {ProtoRoomMute}
+ */
+proto.proto.Room.prototype.getRoomMute = function() {
+  return this.roomMute;
+};
+
+/**
+ * Set Room roomMute.
+ * @memberof ProtoRoom
+ * @param {ProtoRoomMute} value
+ */
+proto.proto.Room.prototype.setRoomMute = function(value) {
+  this.roomMute = value;
+};
+
+/**
+ * Get Room pinId.
+ * @memberof ProtoRoom
+ * @return {Long}
+ */
+proto.proto.Room.prototype.getPinId = function() {
+  return this.pinId;
+};
+
+/**
+ * Set Room pinId.
+ * @memberof ProtoRoom
+ * @param {Long} value
+ */
+proto.proto.Room.prototype.setPinId = function(value) {
+  this.pinId = value;
 };
 
 /**
@@ -3177,6 +3245,42 @@ proto.proto.Thumbnail.prototype.setCacheId = function(value) {
 };
 
 /**
+ * Get Thumbnail name.
+ * @memberof ProtoThumbnail
+ * @return {string}
+ */
+proto.proto.Thumbnail.prototype.getName = function() {
+  return this.name;
+};
+
+/**
+ * Set Thumbnail name.
+ * @memberof ProtoThumbnail
+ * @param {string} value
+ */
+proto.proto.Thumbnail.prototype.setName = function(value) {
+  this.name = value;
+};
+
+/**
+ * Get Thumbnail mime.
+ * @memberof ProtoThumbnail
+ * @return {string}
+ */
+proto.proto.Thumbnail.prototype.getMime = function() {
+  return this.mime;
+};
+
+/**
+ * Set Thumbnail mime.
+ * @memberof ProtoThumbnail
+ * @param {string} value
+ */
+proto.proto.Thumbnail.prototype.setMime = function(value) {
+  this.mime = value;
+};
+
+/**
  * @interface ProtoFile
  */
 
@@ -3375,6 +3479,24 @@ proto.proto.File.prototype.getCacheId = function() {
  */
 proto.proto.File.prototype.setCacheId = function(value) {
   this.cacheId = value;
+};
+
+/**
+ * Get File mime.
+ * @memberof ProtoFile
+ * @return {string}
+ */
+proto.proto.File.prototype.getMime = function() {
+  return this.mime;
+};
+
+/**
+ * Set File mime.
+ * @memberof ProtoFile
+ * @param {string} value
+ */
+proto.proto.File.prototype.setMime = function(value) {
+  this.mime = value;
 };
 
 /**
@@ -8074,6 +8196,24 @@ proto.proto.ChatDeleteMessage.prototype.setMessageId = function(value) {
 };
 
 /**
+ * Get ChatDeleteMessage both.
+ * @memberof ProtoChatDeleteMessage
+ * @return {boolean}
+ */
+proto.proto.ChatDeleteMessage.prototype.getBoth = function() {
+  return this.both;
+};
+
+/**
+ * Set ChatDeleteMessage both.
+ * @memberof ProtoChatDeleteMessage
+ * @param {boolean} value
+ */
+proto.proto.ChatDeleteMessage.prototype.setBoth = function(value) {
+  this.both = value;
+};
+
+/**
  * @interface ProtoChatDeleteMessageResponse
  */
 
@@ -9697,21 +9837,21 @@ proto.proto.ClientCondition.Room.prototype.setDeleteVersion = function(value) {
 };
 
 /**
- * Get Room offlineDeleted.
+ * Get Room offlineDeletedDeprecated.
  * @memberof ProtoClientCondition_Room
  * @return {Array.<Long>}
  */
-proto.proto.ClientCondition.Room.prototype.getOfflineDeletedList = function() {
-  return this.offlineDeleted;
+proto.proto.ClientCondition.Room.prototype.getOfflineDeletedDeprecatedList = function() {
+  return this.offlineDeletedDeprecated;
 };
 
 /**
- * Set Room offlineDeleted.
+ * Set Room offlineDeletedDeprecated.
  * @memberof ProtoClientCondition_Room
  * @param {Array.<Long>} value
  */
-proto.proto.ClientCondition.Room.prototype.setOfflineDeletedList = function(value) {
-  this.offlineDeleted = value;
+proto.proto.ClientCondition.Room.prototype.setOfflineDeletedDeprecatedList = function(value) {
+  this.offlineDeletedDeprecated = value;
 };
 
 /**
@@ -9841,6 +9981,24 @@ proto.proto.ClientCondition.Room.prototype.setOfflineListenedList = function(val
 };
 
 /**
+ * Get Room offlineDeleted.
+ * @memberof ProtoClientCondition_Room
+ * @return {Array.<ProtoClientCondition_Room_OfflineDeleted>}
+ */
+proto.proto.ClientCondition.Room.prototype.getOfflineDeletedList = function() {
+  return this.offlineDeleted;
+};
+
+/**
+ * Set Room offlineDeleted.
+ * @memberof ProtoClientCondition_Room
+ * @param {Array.<ProtoClientCondition_Room_OfflineDeleted>} value
+ */
+proto.proto.ClientCondition.Room.prototype.setOfflineDeletedList = function(value) {
+  this.offlineDeleted = value;
+};
+
+/**
  * @interface ProtoClientCondition_Room_OfflineEdited
  */
 
@@ -9910,6 +10068,63 @@ proto.proto.ClientCondition.Room.OfflineMute = proto.proto.ClientCondition.Room.
   UNCHANGED : 0,
   MUTED : 1,
   UNMUTED : 2,
+};
+
+/**
+ * @interface ProtoClientCondition_Room_OfflineDeleted
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientCondition.Room.OfflineDeleted.prototype.serializeBinary = function() {
+  return proto.proto.ClientCondition.Room.OfflineDeleted.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientCondition_Room_OfflineDeleted}
+ */
+proto.proto.ClientCondition.Room.OfflineDeleted.deserializeBinary = function(buffer) {
+  return proto.proto.ClientCondition.Room.OfflineDeleted.decode(buffer);
+};
+
+/**
+ * Get OfflineDeleted messageId.
+ * @memberof ProtoClientCondition_Room_OfflineDeleted
+ * @return {Long}
+ */
+proto.proto.ClientCondition.Room.OfflineDeleted.prototype.getMessageId = function() {
+  return this.messageId;
+};
+
+/**
+ * Set OfflineDeleted messageId.
+ * @memberof ProtoClientCondition_Room_OfflineDeleted
+ * @param {Long} value
+ */
+proto.proto.ClientCondition.Room.OfflineDeleted.prototype.setMessageId = function(value) {
+  this.messageId = value;
+};
+
+/**
+ * Get OfflineDeleted both.
+ * @memberof ProtoClientCondition_Room_OfflineDeleted
+ * @return {boolean}
+ */
+proto.proto.ClientCondition.Room.OfflineDeleted.prototype.getBoth = function() {
+  return this.both;
+};
+
+/**
+ * Set OfflineDeleted both.
+ * @memberof ProtoClientCondition_Room_OfflineDeleted
+ * @param {boolean} value
+ */
+proto.proto.ClientCondition.Room.OfflineDeleted.prototype.setBoth = function(value) {
+  this.both = value;
 };
 
 /**
@@ -10926,6 +11141,306 @@ proto.proto.ClientJoinByUsernameResponse.prototype.setResponse = function(value)
 };
 
 /**
+ * @interface ProtoClientMuteRoom
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientMuteRoom.prototype.serializeBinary = function() {
+  return proto.proto.ClientMuteRoom.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientMuteRoom}
+ */
+proto.proto.ClientMuteRoom.deserializeBinary = function(buffer) {
+  return proto.proto.ClientMuteRoom.decode(buffer);
+};
+
+/**
+ * Get ClientMuteRoom request.
+ * @memberof ProtoClientMuteRoom
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.ClientMuteRoom.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set ClientMuteRoom request.
+ * @memberof ProtoClientMuteRoom
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.ClientMuteRoom.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get ClientMuteRoom roomId.
+ * @memberof ProtoClientMuteRoom
+ * @return {Long}
+ */
+proto.proto.ClientMuteRoom.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ClientMuteRoom roomId.
+ * @memberof ProtoClientMuteRoom
+ * @param {Long} value
+ */
+proto.proto.ClientMuteRoom.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ClientMuteRoom roomMute.
+ * @memberof ProtoClientMuteRoom
+ * @return {ProtoRoomMute}
+ */
+proto.proto.ClientMuteRoom.prototype.getRoomMute = function() {
+  return this.roomMute;
+};
+
+/**
+ * Set ClientMuteRoom roomMute.
+ * @memberof ProtoClientMuteRoom
+ * @param {ProtoRoomMute} value
+ */
+proto.proto.ClientMuteRoom.prototype.setRoomMute = function(value) {
+  this.roomMute = value;
+};
+
+/**
+ * @interface ProtoClientMuteRoomResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientMuteRoomResponse.prototype.serializeBinary = function() {
+  return proto.proto.ClientMuteRoomResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientMuteRoomResponse}
+ */
+proto.proto.ClientMuteRoomResponse.deserializeBinary = function(buffer) {
+  return proto.proto.ClientMuteRoomResponse.decode(buffer);
+};
+
+/**
+ * Get ClientMuteRoomResponse response.
+ * @memberof ProtoClientMuteRoomResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.ClientMuteRoomResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set ClientMuteRoomResponse response.
+ * @memberof ProtoClientMuteRoomResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.ClientMuteRoomResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get ClientMuteRoomResponse roomId.
+ * @memberof ProtoClientMuteRoomResponse
+ * @return {Long}
+ */
+proto.proto.ClientMuteRoomResponse.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ClientMuteRoomResponse roomId.
+ * @memberof ProtoClientMuteRoomResponse
+ * @param {Long} value
+ */
+proto.proto.ClientMuteRoomResponse.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ClientMuteRoomResponse roomMute.
+ * @memberof ProtoClientMuteRoomResponse
+ * @return {ProtoRoomMute}
+ */
+proto.proto.ClientMuteRoomResponse.prototype.getRoomMute = function() {
+  return this.roomMute;
+};
+
+/**
+ * Set ClientMuteRoomResponse roomMute.
+ * @memberof ProtoClientMuteRoomResponse
+ * @param {ProtoRoomMute} value
+ */
+proto.proto.ClientMuteRoomResponse.prototype.setRoomMute = function(value) {
+  this.roomMute = value;
+};
+
+/**
+ * @interface ProtoClientPinRoom
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientPinRoom.prototype.serializeBinary = function() {
+  return proto.proto.ClientPinRoom.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientPinRoom}
+ */
+proto.proto.ClientPinRoom.deserializeBinary = function(buffer) {
+  return proto.proto.ClientPinRoom.decode(buffer);
+};
+
+/**
+ * Get ClientPinRoom request.
+ * @memberof ProtoClientPinRoom
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.ClientPinRoom.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set ClientPinRoom request.
+ * @memberof ProtoClientPinRoom
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.ClientPinRoom.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get ClientPinRoom roomId.
+ * @memberof ProtoClientPinRoom
+ * @return {Long}
+ */
+proto.proto.ClientPinRoom.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ClientPinRoom roomId.
+ * @memberof ProtoClientPinRoom
+ * @param {Long} value
+ */
+proto.proto.ClientPinRoom.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ClientPinRoom pin.
+ * @memberof ProtoClientPinRoom
+ * @return {boolean}
+ */
+proto.proto.ClientPinRoom.prototype.getPin = function() {
+  return this.pin;
+};
+
+/**
+ * Set ClientPinRoom pin.
+ * @memberof ProtoClientPinRoom
+ * @param {boolean} value
+ */
+proto.proto.ClientPinRoom.prototype.setPin = function(value) {
+  this.pin = value;
+};
+
+/**
+ * @interface ProtoClientPinRoomResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientPinRoomResponse.prototype.serializeBinary = function() {
+  return proto.proto.ClientPinRoomResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientPinRoomResponse}
+ */
+proto.proto.ClientPinRoomResponse.deserializeBinary = function(buffer) {
+  return proto.proto.ClientPinRoomResponse.decode(buffer);
+};
+
+/**
+ * Get ClientPinRoomResponse response.
+ * @memberof ProtoClientPinRoomResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.ClientPinRoomResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set ClientPinRoomResponse response.
+ * @memberof ProtoClientPinRoomResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.ClientPinRoomResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get ClientPinRoomResponse roomId.
+ * @memberof ProtoClientPinRoomResponse
+ * @return {Long}
+ */
+proto.proto.ClientPinRoomResponse.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ClientPinRoomResponse roomId.
+ * @memberof ProtoClientPinRoomResponse
+ * @param {Long} value
+ */
+proto.proto.ClientPinRoomResponse.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ClientPinRoomResponse pinId.
+ * @memberof ProtoClientPinRoomResponse
+ * @return {Long}
+ */
+proto.proto.ClientPinRoomResponse.prototype.getPinId = function() {
+  return this.pinId;
+};
+
+/**
+ * Set ClientPinRoomResponse pinId.
+ * @memberof ProtoClientPinRoomResponse
+ * @param {Long} value
+ */
+proto.proto.ClientPinRoomResponse.prototype.setPinId = function(value) {
+  this.pinId = value;
+};
+
+/**
  * @interface ProtoClientResolveUsername
  */
 
@@ -11087,6 +11602,173 @@ proto.proto.ClientResolveUsernameResponse.prototype.setRoom = function(value) {
 proto.proto.ClientResolveUsernameResponse.Type = proto.proto.ClientResolveUsernameResponse.prototype.Type = {
   USER : 0,
   ROOM : 1,
+};
+
+/**
+ * @interface ProtoClientRoomReport
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientRoomReport.prototype.serializeBinary = function() {
+  return proto.proto.ClientRoomReport.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientRoomReport}
+ */
+proto.proto.ClientRoomReport.deserializeBinary = function(buffer) {
+  return proto.proto.ClientRoomReport.decode(buffer);
+};
+
+/**
+ * Get ClientRoomReport request.
+ * @memberof ProtoClientRoomReport
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.ClientRoomReport.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set ClientRoomReport request.
+ * @memberof ProtoClientRoomReport
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.ClientRoomReport.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get ClientRoomReport roomId.
+ * @memberof ProtoClientRoomReport
+ * @return {Long}
+ */
+proto.proto.ClientRoomReport.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ClientRoomReport roomId.
+ * @memberof ProtoClientRoomReport
+ * @param {Long} value
+ */
+proto.proto.ClientRoomReport.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ClientRoomReport messageId.
+ * @memberof ProtoClientRoomReport
+ * @return {Long}
+ */
+proto.proto.ClientRoomReport.prototype.getMessageId = function() {
+  return this.messageId;
+};
+
+/**
+ * Set ClientRoomReport messageId.
+ * @memberof ProtoClientRoomReport
+ * @param {Long} value
+ */
+proto.proto.ClientRoomReport.prototype.setMessageId = function(value) {
+  this.messageId = value;
+};
+
+/**
+ * Get ClientRoomReport reason.
+ * @memberof ProtoClientRoomReport
+ * @return {ProtoClientRoomReport_Reason}
+ */
+proto.proto.ClientRoomReport.prototype.getReason = function() {
+  return this.reason;
+};
+
+/**
+ * Set ClientRoomReport reason.
+ * @memberof ProtoClientRoomReport
+ * @param {ProtoClientRoomReport_Reason} value
+ */
+proto.proto.ClientRoomReport.prototype.setReason = function(value) {
+  this.reason = value;
+};
+
+/**
+ * Get ClientRoomReport description.
+ * @memberof ProtoClientRoomReport
+ * @return {string}
+ */
+proto.proto.ClientRoomReport.prototype.getDescription = function() {
+  return this.description;
+};
+
+/**
+ * Set ClientRoomReport description.
+ * @memberof ProtoClientRoomReport
+ * @param {string} value
+ */
+proto.proto.ClientRoomReport.prototype.setDescription = function(value) {
+  this.description = value;
+};
+
+/**
+ * @typedef {number} ProtoClientRoomReport_Reason
+ */
+
+/**
+ * Reason enum.
+ * @enum {ProtoClientRoomReport_Reason}
+ * @memberof ProtoClientRoomReport
+ */
+proto.proto.ClientRoomReport.Reason = proto.proto.ClientRoomReport.prototype.Reason = {
+  OTHER : 0,
+  SPAM : 1,
+  PORNOGRAPHY : 2,
+  VIOLENCE : 3,
+  ABUSE : 4,
+};
+
+/**
+ * @interface ProtoClientRoomReportResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientRoomReportResponse.prototype.serializeBinary = function() {
+  return proto.proto.ClientRoomReportResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientRoomReportResponse}
+ */
+proto.proto.ClientRoomReportResponse.deserializeBinary = function(buffer) {
+  return proto.proto.ClientRoomReportResponse.decode(buffer);
+};
+
+/**
+ * Get ClientRoomReportResponse response.
+ * @memberof ProtoClientRoomReportResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.ClientRoomReportResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set ClientRoomReportResponse response.
+ * @memberof ProtoClientRoomReportResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.ClientRoomReportResponse.prototype.setResponse = function(value) {
+  this.response = value;
 };
 
 /**
@@ -22857,6 +23539,24 @@ proto.proto.UserContactsGetBlockedListResponse.User.prototype.setUserId = functi
 };
 
 /**
+ * Get User cacheId.
+ * @memberof ProtoUserContactsGetBlockedListResponse_User
+ * @return {string}
+ */
+proto.proto.UserContactsGetBlockedListResponse.User.prototype.getCacheId = function() {
+  return this.cacheId;
+};
+
+/**
+ * Set User cacheId.
+ * @memberof ProtoUserContactsGetBlockedListResponse_User
+ * @param {string} value
+ */
+proto.proto.UserContactsGetBlockedListResponse.User.prototype.setCacheId = function(value) {
+  this.cacheId = value;
+};
+
+/**
  * @interface ProtoUserContactsGetList
  */
 
@@ -24052,6 +24752,24 @@ proto.proto.UserLoginResponse.prototype.setUpdateAvailable = function(value) {
 };
 
 /**
+ * Get UserLoginResponse chatDeleteMessageForBothPeriod.
+ * @memberof ProtoUserLoginResponse
+ * @return {number}
+ */
+proto.proto.UserLoginResponse.prototype.getChatDeleteMessageForBothPeriod = function() {
+  return this.chatDeleteMessageForBothPeriod;
+};
+
+/**
+ * Set UserLoginResponse chatDeleteMessageForBothPeriod.
+ * @memberof ProtoUserLoginResponse
+ * @param {number} value
+ */
+proto.proto.UserLoginResponse.prototype.setChatDeleteMessageForBothPeriod = function(value) {
+  this.chatDeleteMessageForBothPeriod = value;
+};
+
+/**
  * @interface ProtoUserPrivacyGetRule
  */
 
@@ -24445,6 +25163,102 @@ proto.proto.UserProfileCheckUsernameResponse.Status = proto.proto.UserProfileChe
 };
 
 /**
+ * @interface ProtoUserProfileGetBio
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.UserProfileGetBio.prototype.serializeBinary = function() {
+  return proto.proto.UserProfileGetBio.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoUserProfileGetBio}
+ */
+proto.proto.UserProfileGetBio.deserializeBinary = function(buffer) {
+  return proto.proto.UserProfileGetBio.decode(buffer);
+};
+
+/**
+ * Get UserProfileGetBio request.
+ * @memberof ProtoUserProfileGetBio
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.UserProfileGetBio.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set UserProfileGetBio request.
+ * @memberof ProtoUserProfileGetBio
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.UserProfileGetBio.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * @interface ProtoUserProfileGetBioResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.UserProfileGetBioResponse.prototype.serializeBinary = function() {
+  return proto.proto.UserProfileGetBioResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoUserProfileGetBioResponse}
+ */
+proto.proto.UserProfileGetBioResponse.deserializeBinary = function(buffer) {
+  return proto.proto.UserProfileGetBioResponse.decode(buffer);
+};
+
+/**
+ * Get UserProfileGetBioResponse response.
+ * @memberof ProtoUserProfileGetBioResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.UserProfileGetBioResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set UserProfileGetBioResponse response.
+ * @memberof ProtoUserProfileGetBioResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.UserProfileGetBioResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get UserProfileGetBioResponse bio.
+ * @memberof ProtoUserProfileGetBioResponse
+ * @return {string}
+ */
+proto.proto.UserProfileGetBioResponse.prototype.getBio = function() {
+  return this.bio;
+};
+
+/**
+ * Set UserProfileGetBioResponse bio.
+ * @memberof ProtoUserProfileGetBioResponse
+ * @param {string} value
+ */
+proto.proto.UserProfileGetBioResponse.prototype.setBio = function(value) {
+  this.bio = value;
+};
+
+/**
  * @interface ProtoUserProfileGetEmail
  */
 
@@ -24826,6 +25640,120 @@ proto.proto.UserProfileGetSelfRemoveResponse.prototype.getSelfRemove = function(
  */
 proto.proto.UserProfileGetSelfRemoveResponse.prototype.setSelfRemove = function(value) {
   this.selfRemove = value;
+};
+
+/**
+ * @interface ProtoUserProfileSetBio
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.UserProfileSetBio.prototype.serializeBinary = function() {
+  return proto.proto.UserProfileSetBio.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoUserProfileSetBio}
+ */
+proto.proto.UserProfileSetBio.deserializeBinary = function(buffer) {
+  return proto.proto.UserProfileSetBio.decode(buffer);
+};
+
+/**
+ * Get UserProfileSetBio request.
+ * @memberof ProtoUserProfileSetBio
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.UserProfileSetBio.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set UserProfileSetBio request.
+ * @memberof ProtoUserProfileSetBio
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.UserProfileSetBio.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get UserProfileSetBio bio.
+ * @memberof ProtoUserProfileSetBio
+ * @return {string}
+ */
+proto.proto.UserProfileSetBio.prototype.getBio = function() {
+  return this.bio;
+};
+
+/**
+ * Set UserProfileSetBio bio.
+ * @memberof ProtoUserProfileSetBio
+ * @param {string} value
+ */
+proto.proto.UserProfileSetBio.prototype.setBio = function(value) {
+  this.bio = value;
+};
+
+/**
+ * @interface ProtoUserProfileSetBioResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.UserProfileSetBioResponse.prototype.serializeBinary = function() {
+  return proto.proto.UserProfileSetBioResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoUserProfileSetBioResponse}
+ */
+proto.proto.UserProfileSetBioResponse.deserializeBinary = function(buffer) {
+  return proto.proto.UserProfileSetBioResponse.decode(buffer);
+};
+
+/**
+ * Get UserProfileSetBioResponse response.
+ * @memberof ProtoUserProfileSetBioResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.UserProfileSetBioResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set UserProfileSetBioResponse response.
+ * @memberof ProtoUserProfileSetBioResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.UserProfileSetBioResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get UserProfileSetBioResponse bio.
+ * @memberof ProtoUserProfileSetBioResponse
+ * @return {string}
+ */
+proto.proto.UserProfileSetBioResponse.prototype.getBio = function() {
+  return this.bio;
+};
+
+/**
+ * Set UserProfileSetBioResponse bio.
+ * @memberof ProtoUserProfileSetBioResponse
+ * @param {string} value
+ */
+proto.proto.UserProfileSetBioResponse.prototype.setBio = function(value) {
+  this.bio = value;
 };
 
 /**
@@ -25687,6 +26615,154 @@ proto.proto.UserRegisterResponse.Method = proto.proto.UserRegisterResponse.proto
   VERIFY_CODE_SMS : 0,
   VERIFY_CODE_SOCKET : 1,
   VERIFY_CODE_SMS_SOCKET : 2,
+};
+
+/**
+ * @interface ProtoUserReport
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.UserReport.prototype.serializeBinary = function() {
+  return proto.proto.UserReport.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoUserReport}
+ */
+proto.proto.UserReport.deserializeBinary = function(buffer) {
+  return proto.proto.UserReport.decode(buffer);
+};
+
+/**
+ * Get UserReport request.
+ * @memberof ProtoUserReport
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.UserReport.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set UserReport request.
+ * @memberof ProtoUserReport
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.UserReport.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get UserReport userId.
+ * @memberof ProtoUserReport
+ * @return {Long}
+ */
+proto.proto.UserReport.prototype.getUserId = function() {
+  return this.userId;
+};
+
+/**
+ * Set UserReport userId.
+ * @memberof ProtoUserReport
+ * @param {Long} value
+ */
+proto.proto.UserReport.prototype.setUserId = function(value) {
+  this.userId = value;
+};
+
+/**
+ * Get UserReport reason.
+ * @memberof ProtoUserReport
+ * @return {ProtoUserReport_Reason}
+ */
+proto.proto.UserReport.prototype.getReason = function() {
+  return this.reason;
+};
+
+/**
+ * Set UserReport reason.
+ * @memberof ProtoUserReport
+ * @param {ProtoUserReport_Reason} value
+ */
+proto.proto.UserReport.prototype.setReason = function(value) {
+  this.reason = value;
+};
+
+/**
+ * Get UserReport description.
+ * @memberof ProtoUserReport
+ * @return {string}
+ */
+proto.proto.UserReport.prototype.getDescription = function() {
+  return this.description;
+};
+
+/**
+ * Set UserReport description.
+ * @memberof ProtoUserReport
+ * @param {string} value
+ */
+proto.proto.UserReport.prototype.setDescription = function(value) {
+  this.description = value;
+};
+
+/**
+ * @typedef {number} ProtoUserReport_Reason
+ */
+
+/**
+ * Reason enum.
+ * @enum {ProtoUserReport_Reason}
+ * @memberof ProtoUserReport
+ */
+proto.proto.UserReport.Reason = proto.proto.UserReport.prototype.Reason = {
+  OTHER : 0,
+  SPAM : 1,
+  ABUSE : 2,
+  FAKE_ACCOUNT : 3,
+};
+
+/**
+ * @interface ProtoUserReportResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.UserReportResponse.prototype.serializeBinary = function() {
+  return proto.proto.UserReportResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoUserReportResponse}
+ */
+proto.proto.UserReportResponse.deserializeBinary = function(buffer) {
+  return proto.proto.UserReportResponse.decode(buffer);
+};
+
+/**
+ * Get UserReportResponse response.
+ * @memberof ProtoUserReportResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.UserReportResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set UserReportResponse response.
+ * @memberof ProtoUserReportResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.UserReportResponse.prototype.setResponse = function(value) {
+  this.response = value;
 };
 
 /**

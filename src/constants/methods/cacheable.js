@@ -63,6 +63,10 @@ const cacheTable = {
     return request ? createCacheId(methods.USER_PRIVACY_GET_RULE, request.getType()) : null;
   },
 
+  [methods.USER_PROFILE_GET_BIO]: function(requestWrapper) {
+    return createCacheId(methods.USER_PROFILE_GET_BIO);
+  },
+
   //Chat 2xx
 
   //Group chat 3xx
@@ -227,6 +231,12 @@ const cacheRevokeTable = {
     const response = responseProto;
     return [
       createCacheId(methods.USER_PRIVACY_GET_RULE, response.getType()),
+    ];
+  },
+
+  [methods.USER_PROFILE_SET_BIO]: function(requestWrapper, responseProto) {
+    return [
+      createCacheId(methods.USER_PROFILE_GET_BIO),
     ];
   },
 

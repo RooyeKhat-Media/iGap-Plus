@@ -1844,6 +1844,7 @@ export const proto = $root.proto = (() => {
          * @property {boolean} [mutual] RegisteredUser mutual
          * @property {boolean} [deleted] RegisteredUser deleted
          * @property {string} [cacheId] RegisteredUser cacheId
+         * @property {string} [bio] RegisteredUser bio
          */
 
     /**
@@ -1982,6 +1983,14 @@ export const proto = $root.proto = (() => {
     RegisteredUser.prototype.cacheId = '';
 
     /**
+         * RegisteredUser bio.
+         * @member {string}bio
+         * @memberof proto.RegisteredUser
+         * @instance
+         */
+    RegisteredUser.prototype.bio = '';
+
+    /**
          * Creates a new RegisteredUser instance using the specified properties.
          * @function create
          * @memberof proto.RegisteredUser
@@ -2019,6 +2028,7 @@ export const proto = $root.proto = (() => {
       if (message.mutual != null && message.hasOwnProperty('mutual')) {writer.uint32(/* id 13, wireType 0 =*/104).bool(message.mutual);}
       if (message.deleted != null && message.hasOwnProperty('deleted')) {writer.uint32(/* id 14, wireType 0 =*/112).bool(message.deleted);}
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {writer.uint32(/* id 15, wireType 2 =*/122).string(message.cacheId);}
+      if (message.bio != null && message.hasOwnProperty('bio')) {writer.uint32(/* id 16, wireType 2 =*/130).string(message.bio);}
       return writer;
     };
 
@@ -2083,6 +2093,9 @@ export const proto = $root.proto = (() => {
             break;
           case 15:
             message.cacheId = reader.string();
+            break;
+          case 16:
+            message.bio = reader.string();
             break;
           default:
             reader.skipType(tag & 7);
@@ -2159,6 +2172,9 @@ export const proto = $root.proto = (() => {
       }
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {
         if (!$util.isString(message.cacheId)) {return 'cacheId: string expected';}
+      }
+      if (message.bio != null && message.hasOwnProperty('bio')) {
+        if (!$util.isString(message.bio)) {return 'bio: string expected';}
       }
       return null;
     };
@@ -3463,6 +3479,19 @@ export const proto = $root.proto = (() => {
     return RoomDraft;
   })();
 
+  /**
+     * RoomMute enum.
+     * @enum {string}
+     * @property {number} UNMUTE=0 UNMUTE value
+     * @property {number} MUTE=1 MUTE value
+     */
+  proto.RoomMute = (function() {
+    const valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = 'UNMUTE'] = 0;
+    values[valuesById[1] = 'MUTE'] = 1;
+    return values;
+  })();
+
   proto.Room = (function() {
 
     /**
@@ -3480,6 +3509,8 @@ export const proto = $root.proto = (() => {
          * @property {boolean} [isParticipant] Room isParticipant
          * @property {proto.RoomDraft} [draft] Room draft
          * @property {proto.RoomMessage} [firstUnreadMessage] Room firstUnreadMessage
+         * @property {proto.RoomMute} [roomMute] Room roomMute
+         * @property {Long} [pinId] Room pinId
          * @property {proto.ChatRoom} [chatRoomExtra] Room chatRoomExtra
          * @property {proto.GroupRoom} [groupRoomExtra] Room groupRoomExtra
          * @property {proto.ChannelRoom} [channelRoomExtra] Room channelRoomExtra
@@ -3589,6 +3620,22 @@ export const proto = $root.proto = (() => {
     Room.prototype.firstUnreadMessage = null;
 
     /**
+         * Room roomMute.
+         * @member {proto.RoomMute}roomMute
+         * @memberof proto.Room
+         * @instance
+         */
+    Room.prototype.roomMute = 0;
+
+    /**
+         * Room pinId.
+         * @member {Long}pinId
+         * @memberof proto.Room
+         * @instance
+         */
+    Room.prototype.pinId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
          * Room chatRoomExtra.
          * @member {(proto.ChatRoom|null|undefined)}chatRoomExtra
          * @memberof proto.Room
@@ -3649,6 +3696,8 @@ export const proto = $root.proto = (() => {
       if (message.groupRoomExtra != null && message.hasOwnProperty('groupRoomExtra')) {$root.proto.GroupRoom.encode(message.groupRoomExtra, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();}
       if (message.channelRoomExtra != null && message.hasOwnProperty('channelRoomExtra')) {$root.proto.ChannelRoom.encode(message.channelRoomExtra, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();}
       if (message.firstUnreadMessage != null && message.hasOwnProperty('firstUnreadMessage')) {$root.proto.RoomMessage.encode(message.firstUnreadMessage, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();}
+      if (message.roomMute != null && message.hasOwnProperty('roomMute')) {writer.uint32(/* id 15, wireType 0 =*/120).int32(message.roomMute);}
+      if (message.pinId != null && message.hasOwnProperty('pinId')) {writer.uint32(/* id 16, wireType 0 =*/128).uint64(message.pinId);}
       return writer;
     };
 
@@ -3701,6 +3750,12 @@ export const proto = $root.proto = (() => {
             break;
           case 14:
             message.firstUnreadMessage = $root.proto.RoomMessage.decode(reader, reader.uint32());
+            break;
+          case 15:
+            message.roomMute = reader.int32();
+            break;
+          case 16:
+            message.pinId = reader.uint64();
             break;
           case 11:
             message.chatRoomExtra = $root.proto.ChatRoom.decode(reader, reader.uint32());
@@ -3771,6 +3826,18 @@ export const proto = $root.proto = (() => {
       if (message.firstUnreadMessage != null && message.hasOwnProperty('firstUnreadMessage')) {
         error = $root.proto.RoomMessage.verify(message.firstUnreadMessage);
         if (error) {return 'firstUnreadMessage.' + error;}
+      }
+      if (message.roomMute != null && message.hasOwnProperty('roomMute')) {
+        switch (message.roomMute) {
+          default:
+            return 'roomMute: enum value expected';
+          case 0:
+          case 1:
+            break;
+        }
+      }
+      if (message.pinId != null && message.hasOwnProperty('pinId')) {
+        if (!$util.isInteger(message.pinId) && !(message.pinId && $util.isInteger(message.pinId.low) && $util.isInteger(message.pinId.high))) {return 'pinId: integer|Long expected';}
       }
       if (message.chatRoomExtra != null && message.hasOwnProperty('chatRoomExtra')) {
         error = $root.proto.ChatRoom.verify(message.chatRoomExtra);
@@ -5004,6 +5071,8 @@ export const proto = $root.proto = (() => {
          * @property {number} [width] Thumbnail width
          * @property {number} [height] Thumbnail height
          * @property {string} [cacheId] Thumbnail cacheId
+         * @property {string} [name] Thumbnail name
+         * @property {string} [mime] Thumbnail mime
          */
 
     /**
@@ -5054,6 +5123,22 @@ export const proto = $root.proto = (() => {
     Thumbnail.prototype.cacheId = '';
 
     /**
+         * Thumbnail name.
+         * @member {string}name
+         * @memberof proto.Thumbnail
+         * @instance
+         */
+    Thumbnail.prototype.name = '';
+
+    /**
+         * Thumbnail mime.
+         * @member {string}mime
+         * @memberof proto.Thumbnail
+         * @instance
+         */
+    Thumbnail.prototype.mime = '';
+
+    /**
          * Creates a new Thumbnail instance using the specified properties.
          * @function create
          * @memberof proto.Thumbnail
@@ -5080,6 +5165,8 @@ export const proto = $root.proto = (() => {
       if (message.width != null && message.hasOwnProperty('width')) {writer.uint32(/* id 2, wireType 0 =*/16).int32(message.width);}
       if (message.height != null && message.hasOwnProperty('height')) {writer.uint32(/* id 3, wireType 0 =*/24).int32(message.height);}
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {writer.uint32(/* id 4, wireType 2 =*/34).string(message.cacheId);}
+      if (message.name != null && message.hasOwnProperty('name')) {writer.uint32(/* id 5, wireType 2 =*/42).string(message.name);}
+      if (message.mime != null && message.hasOwnProperty('mime')) {writer.uint32(/* id 6, wireType 2 =*/50).string(message.mime);}
       return writer;
     };
 
@@ -5112,6 +5199,12 @@ export const proto = $root.proto = (() => {
           case 4:
             message.cacheId = reader.string();
             break;
+          case 5:
+            message.name = reader.string();
+            break;
+          case 6:
+            message.mime = reader.string();
+            break;
           default:
             reader.skipType(tag & 7);
             break;
@@ -5142,6 +5235,12 @@ export const proto = $root.proto = (() => {
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {
         if (!$util.isString(message.cacheId)) {return 'cacheId: string expected';}
       }
+      if (message.name != null && message.hasOwnProperty('name')) {
+        if (!$util.isString(message.name)) {return 'name: string expected';}
+      }
+      if (message.mime != null && message.hasOwnProperty('mime')) {
+        if (!$util.isString(message.mime)) {return 'mime: string expected';}
+      }
       return null;
     };
 
@@ -5164,6 +5263,7 @@ export const proto = $root.proto = (() => {
          * @property {number} [height] File height
          * @property {number} [duration] File duration
          * @property {string} [cacheId] File cacheId
+         * @property {string} [mime] File mime
          */
 
     /**
@@ -5262,6 +5362,14 @@ export const proto = $root.proto = (() => {
     File.prototype.cacheId = '';
 
     /**
+         * File mime.
+         * @member {string}mime
+         * @memberof proto.File
+         * @instance
+         */
+    File.prototype.mime = '';
+
+    /**
          * Creates a new File instance using the specified properties.
          * @function create
          * @memberof proto.File
@@ -5294,6 +5402,7 @@ export const proto = $root.proto = (() => {
       if (message.height != null && message.hasOwnProperty('height')) {writer.uint32(/* id 8, wireType 0 =*/64).int32(message.height);}
       if (message.duration != null && message.hasOwnProperty('duration')) {writer.uint32(/* id 9, wireType 1 =*/73).double(message.duration);}
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {writer.uint32(/* id 10, wireType 2 =*/82).string(message.cacheId);}
+      if (message.mime != null && message.hasOwnProperty('mime')) {writer.uint32(/* id 11, wireType 2 =*/90).string(message.mime);}
       return writer;
     };
 
@@ -5343,6 +5452,9 @@ export const proto = $root.proto = (() => {
             break;
           case 10:
             message.cacheId = reader.string();
+            break;
+          case 11:
+            message.mime = reader.string();
             break;
           default:
             reader.skipType(tag & 7);
@@ -5394,6 +5506,9 @@ export const proto = $root.proto = (() => {
       }
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {
         if (!$util.isString(message.cacheId)) {return 'cacheId: string expected';}
+      }
+      if (message.mime != null && message.hasOwnProperty('mime')) {
+        if (!$util.isString(message.mime)) {return 'mime: string expected';}
       }
       return null;
     };
@@ -14028,6 +14143,7 @@ export const proto = $root.proto = (() => {
          * @property {proto.Request} [request] ChatDeleteMessage request
          * @property {Long} [roomId] ChatDeleteMessage roomId
          * @property {Long} [messageId] ChatDeleteMessage messageId
+         * @property {boolean} [both] ChatDeleteMessage both
          */
 
     /**
@@ -14070,6 +14186,14 @@ export const proto = $root.proto = (() => {
     ChatDeleteMessage.prototype.messageId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
     /**
+         * ChatDeleteMessage both.
+         * @member {boolean}both
+         * @memberof proto.ChatDeleteMessage
+         * @instance
+         */
+    ChatDeleteMessage.prototype.both = false;
+
+    /**
          * Creates a new ChatDeleteMessage instance using the specified properties.
          * @function create
          * @memberof proto.ChatDeleteMessage
@@ -14095,6 +14219,7 @@ export const proto = $root.proto = (() => {
       if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
       if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
       if (message.messageId != null && message.hasOwnProperty('messageId')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.messageId);}
+      if (message.both != null && message.hasOwnProperty('both')) {writer.uint32(/* id 4, wireType 0 =*/32).bool(message.both);}
       return writer;
     };
 
@@ -14124,6 +14249,9 @@ export const proto = $root.proto = (() => {
           case 3:
             message.messageId = reader.uint64();
             break;
+          case 4:
+            message.both = reader.bool();
+            break;
           default:
             reader.skipType(tag & 7);
             break;
@@ -14151,6 +14279,9 @@ export const proto = $root.proto = (() => {
       }
       if (message.messageId != null && message.hasOwnProperty('messageId')) {
         if (!$util.isInteger(message.messageId) && !(message.messageId && $util.isInteger(message.messageId.low) && $util.isInteger(message.messageId.high))) {return 'messageId: integer|Long expected';}
+      }
+      if (message.both != null && message.hasOwnProperty('both')) {
+        if (typeof message.both !== 'boolean') {return 'both: boolean expected';}
       }
       return null;
     };
@@ -16940,7 +17071,7 @@ export const proto = $root.proto = (() => {
              * @property {Long} [messageVersion] Room messageVersion
              * @property {Long} [statusVersion] Room statusVersion
              * @property {Long} [deleteVersion] Room deleteVersion
-             * @property {Array.<Long>} [offlineDeleted] Room offlineDeleted
+             * @property {Array.<Long>} [offlineDeletedDeprecated] Room offlineDeletedDeprecated
              * @property {Array.<proto.ClientCondition.Room.OfflineEdited>} [offlineEdited] Room offlineEdited
              * @property {Array.<Long>} [offlineSeen] Room offlineSeen
              * @property {Long} [clearId] Room clearId
@@ -16948,6 +17079,7 @@ export const proto = $root.proto = (() => {
              * @property {Long} [cacheEndId] Room cacheEndId
              * @property {proto.ClientCondition.Room.OfflineMute} [offlineMute] Room offlineMute
              * @property {Array.<Long>} [offlineListened] Room offlineListened
+             * @property {Array.<proto.ClientCondition.Room.OfflineDeleted>} [offlineDeleted] Room offlineDeleted
              */
 
       /**
@@ -16958,10 +17090,11 @@ export const proto = $root.proto = (() => {
              * @param {proto.ClientCondition.IRoom=} [properties] Properties to set
              */
       function Room(properties) {
-        this.offlineDeleted = [];
+        this.offlineDeletedDeprecated = [];
         this.offlineEdited = [];
         this.offlineSeen = [];
         this.offlineListened = [];
+        this.offlineDeleted = [];
         if (properties) {
           for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
             if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
@@ -17002,12 +17135,12 @@ export const proto = $root.proto = (() => {
       Room.prototype.deleteVersion = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
       /**
-             * Room offlineDeleted.
-             * @member {Array.<Long>}offlineDeleted
+             * Room offlineDeletedDeprecated.
+             * @member {Array.<Long>}offlineDeletedDeprecated
              * @memberof proto.ClientCondition.Room
              * @instance
              */
-      Room.prototype.offlineDeleted = $util.emptyArray;
+      Room.prototype.offlineDeletedDeprecated = $util.emptyArray;
 
       /**
              * Room offlineEdited.
@@ -17066,6 +17199,14 @@ export const proto = $root.proto = (() => {
       Room.prototype.offlineListened = $util.emptyArray;
 
       /**
+             * Room offlineDeleted.
+             * @member {Array.<proto.ClientCondition.Room.OfflineDeleted>}offlineDeleted
+             * @memberof proto.ClientCondition.Room
+             * @instance
+             */
+      Room.prototype.offlineDeleted = $util.emptyArray;
+
+      /**
              * Creates a new Room instance using the specified properties.
              * @function create
              * @memberof proto.ClientCondition.Room
@@ -17092,9 +17233,9 @@ export const proto = $root.proto = (() => {
         if (message.messageVersion != null && message.hasOwnProperty('messageVersion')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.messageVersion);}
         if (message.statusVersion != null && message.hasOwnProperty('statusVersion')) {writer.uint32(/* id 4, wireType 0 =*/32).uint64(message.statusVersion);}
         if (message.deleteVersion != null && message.hasOwnProperty('deleteVersion')) {writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.deleteVersion);}
-        if (message.offlineDeleted != null && message.offlineDeleted.length) {
+        if (message.offlineDeletedDeprecated != null && message.offlineDeletedDeprecated.length) {
           writer.uint32(/* id 6, wireType 2 =*/50).fork();
-          for (let i = 0; i < message.offlineDeleted.length; ++i) {writer.uint64(message.offlineDeleted[i]);}
+          for (let i = 0; i < message.offlineDeletedDeprecated.length; ++i) {writer.uint64(message.offlineDeletedDeprecated[i]);}
           writer.ldelim();
         }
         if (message.offlineEdited != null && message.offlineEdited.length) {
@@ -17113,6 +17254,9 @@ export const proto = $root.proto = (() => {
           writer.uint32(/* id 13, wireType 2 =*/106).fork();
           for (let i = 0; i < message.offlineListened.length; ++i) {writer.uint64(message.offlineListened[i]);}
           writer.ldelim();
+        }
+        if (message.offlineDeleted != null && message.offlineDeleted.length) {
+          for (let i = 0; i < message.offlineDeleted.length; ++i) {$root.proto.ClientCondition.Room.OfflineDeleted.encode(message.offlineDeleted[i], writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();}
         }
         return writer;
       };
@@ -17147,11 +17291,11 @@ export const proto = $root.proto = (() => {
               message.deleteVersion = reader.uint64();
               break;
             case 6:
-              if (!(message.offlineDeleted && message.offlineDeleted.length)) {message.offlineDeleted = [];}
+              if (!(message.offlineDeletedDeprecated && message.offlineDeletedDeprecated.length)) {message.offlineDeletedDeprecated = [];}
               if ((tag & 7) === 2) {
                 let end2 = reader.uint32() + reader.pos;
-                while (reader.pos < end2) {message.offlineDeleted.push(reader.uint64());}
-              } else {message.offlineDeleted.push(reader.uint64());}
+                while (reader.pos < end2) {message.offlineDeletedDeprecated.push(reader.uint64());}
+              } else {message.offlineDeletedDeprecated.push(reader.uint64());}
               break;
             case 7:
               if (!(message.offlineEdited && message.offlineEdited.length)) {message.offlineEdited = [];}
@@ -17183,6 +17327,10 @@ export const proto = $root.proto = (() => {
                 while (reader.pos < end2) {message.offlineListened.push(reader.uint64());}
               } else {message.offlineListened.push(reader.uint64());}
               break;
+            case 14:
+              if (!(message.offlineDeleted && message.offlineDeleted.length)) {message.offlineDeleted = [];}
+              message.offlineDeleted.push($root.proto.ClientCondition.Room.OfflineDeleted.decode(reader, reader.uint32()));
+              break;
             default:
               reader.skipType(tag & 7);
               break;
@@ -17213,10 +17361,10 @@ export const proto = $root.proto = (() => {
         if (message.deleteVersion != null && message.hasOwnProperty('deleteVersion')) {
           if (!$util.isInteger(message.deleteVersion) && !(message.deleteVersion && $util.isInteger(message.deleteVersion.low) && $util.isInteger(message.deleteVersion.high))) {return 'deleteVersion: integer|Long expected';}
         }
-        if (message.offlineDeleted != null && message.hasOwnProperty('offlineDeleted')) {
-          if (!Array.isArray(message.offlineDeleted)) {return 'offlineDeleted: array expected';}
-          for (let i = 0; i < message.offlineDeleted.length; ++i) {
-            if (!$util.isInteger(message.offlineDeleted[i]) && !(message.offlineDeleted[i] && $util.isInteger(message.offlineDeleted[i].low) && $util.isInteger(message.offlineDeleted[i].high))) {return 'offlineDeleted: integer|Long[] expected';}
+        if (message.offlineDeletedDeprecated != null && message.hasOwnProperty('offlineDeletedDeprecated')) {
+          if (!Array.isArray(message.offlineDeletedDeprecated)) {return 'offlineDeletedDeprecated: array expected';}
+          for (let i = 0; i < message.offlineDeletedDeprecated.length; ++i) {
+            if (!$util.isInteger(message.offlineDeletedDeprecated[i]) && !(message.offlineDeletedDeprecated[i] && $util.isInteger(message.offlineDeletedDeprecated[i].low) && $util.isInteger(message.offlineDeletedDeprecated[i].high))) {return 'offlineDeletedDeprecated: integer|Long[] expected';}
           }
         }
         if (message.offlineEdited != null && message.hasOwnProperty('offlineEdited')) {
@@ -17255,6 +17403,13 @@ export const proto = $root.proto = (() => {
           if (!Array.isArray(message.offlineListened)) {return 'offlineListened: array expected';}
           for (let i = 0; i < message.offlineListened.length; ++i) {
             if (!$util.isInteger(message.offlineListened[i]) && !(message.offlineListened[i] && $util.isInteger(message.offlineListened[i].low) && $util.isInteger(message.offlineListened[i].high))) {return 'offlineListened: integer|Long[] expected';}
+          }
+        }
+        if (message.offlineDeleted != null && message.hasOwnProperty('offlineDeleted')) {
+          if (!Array.isArray(message.offlineDeleted)) {return 'offlineDeleted: array expected';}
+          for (let i = 0; i < message.offlineDeleted.length; ++i) {
+            error = $root.proto.ClientCondition.Room.OfflineDeleted.verify(message.offlineDeleted[i]);
+            if (error) {return 'offlineDeleted.' + error;}
           }
         }
         return null;
@@ -17395,6 +17550,128 @@ export const proto = $root.proto = (() => {
         values[valuesById[1] = 'MUTED'] = 1;
         values[valuesById[2] = 'UNMUTED'] = 2;
         return values;
+      })();
+
+      Room.OfflineDeleted = (function() {
+
+        /**
+                 * Properties of an OfflineDeleted.
+                 * @memberof proto.ClientCondition.Room
+                 * @interface IOfflineDeleted
+                 * @property {Long} [messageId] OfflineDeleted messageId
+                 * @property {boolean} [both] OfflineDeleted both
+                 */
+
+        /**
+                 * Constructs a new OfflineDeleted.
+                 * @memberof proto.ClientCondition.Room
+                 * @classdesc Represents an OfflineDeleted.
+                 * @constructor
+                 * @param {proto.ClientCondition.Room.IOfflineDeleted=} [properties] Properties to set
+                 */
+        function OfflineDeleted(properties) {
+          if (properties) {
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+              if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+            }
+          }
+        }
+
+        /**
+                 * OfflineDeleted messageId.
+                 * @member {Long}messageId
+                 * @memberof proto.ClientCondition.Room.OfflineDeleted
+                 * @instance
+                 */
+        OfflineDeleted.prototype.messageId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+        /**
+                 * OfflineDeleted both.
+                 * @member {boolean}both
+                 * @memberof proto.ClientCondition.Room.OfflineDeleted
+                 * @instance
+                 */
+        OfflineDeleted.prototype.both = false;
+
+        /**
+                 * Creates a new OfflineDeleted instance using the specified properties.
+                 * @function create
+                 * @memberof proto.ClientCondition.Room.OfflineDeleted
+                 * @static
+                 * @param {proto.ClientCondition.Room.IOfflineDeleted=} [properties] Properties to set
+                 * @returns {proto.ClientCondition.Room.OfflineDeleted} OfflineDeleted instance
+                 */
+        OfflineDeleted.create = function create(properties) {
+          return new OfflineDeleted(properties);
+        };
+
+        /**
+                 * Encodes the specified OfflineDeleted message. Does not implicitly {@link proto.ClientCondition.Room.OfflineDeleted.verify|verify} messages.
+                 * @function encode
+                 * @memberof proto.ClientCondition.Room.OfflineDeleted
+                 * @static
+                 * @param {proto.ClientCondition.Room.OfflineDeleted} message OfflineDeleted message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+        OfflineDeleted.encode = function encode(message, writer) {
+          if (!writer) {writer = $Writer.create();}
+          if (message.messageId != null && message.hasOwnProperty('messageId')) {writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.messageId);}
+          if (message.both != null && message.hasOwnProperty('both')) {writer.uint32(/* id 4, wireType 0 =*/32).bool(message.both);}
+          return writer;
+        };
+
+        /**
+                 * Decodes an OfflineDeleted message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof proto.ClientCondition.Room.OfflineDeleted
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {proto.ClientCondition.Room.OfflineDeleted} OfflineDeleted
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+        OfflineDeleted.decode = function decode(reader, length) {
+          if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+          let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientCondition.Room.OfflineDeleted();
+          while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+              case 1:
+                message.messageId = reader.uint64();
+                break;
+              case 4:
+                message.both = reader.bool();
+                break;
+              default:
+                reader.skipType(tag & 7);
+                break;
+            }
+          }
+          return message;
+        };
+
+        /**
+                 * Verifies an OfflineDeleted message.
+                 * @function verify
+                 * @memberof proto.ClientCondition.Room.OfflineDeleted
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+        OfflineDeleted.verify = function verify(message) {
+          if (typeof message !== 'object' || message === null) {return 'object expected';}
+          if (message.messageId != null && message.hasOwnProperty('messageId')) {
+            if (!$util.isInteger(message.messageId) && !(message.messageId && $util.isInteger(message.messageId.low) && $util.isInteger(message.messageId.high))) {return 'messageId: integer|Long expected';}
+          }
+          if (message.both != null && message.hasOwnProperty('both')) {
+            if (typeof message.both !== 'boolean') {return 'both: boolean expected';}
+          }
+          return null;
+        };
+
+        return OfflineDeleted;
       })();
 
       return Room;
@@ -19414,6 +19691,574 @@ export const proto = $root.proto = (() => {
     return ClientJoinByUsernameResponse;
   })();
 
+  proto.ClientMuteRoom = (function() {
+
+    /**
+         * Properties of a ClientMuteRoom.
+         * @memberof proto
+         * @interface IClientMuteRoom
+         * @property {proto.Request} [request] ClientMuteRoom request
+         * @property {Long} [roomId] ClientMuteRoom roomId
+         * @property {proto.RoomMute} [roomMute] ClientMuteRoom roomMute
+         */
+
+    /**
+         * Constructs a new ClientMuteRoom.
+         * @memberof proto
+         * @classdesc Represents a ClientMuteRoom.
+         * @constructor
+         * @param {proto.IClientMuteRoom=} [properties] Properties to set
+         */
+    function ClientMuteRoom(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientMuteRoom request.
+         * @member {(proto.Request|null|undefined)}request
+         * @memberof proto.ClientMuteRoom
+         * @instance
+         */
+    ClientMuteRoom.prototype.request = null;
+
+    /**
+         * ClientMuteRoom roomId.
+         * @member {Long}roomId
+         * @memberof proto.ClientMuteRoom
+         * @instance
+         */
+    ClientMuteRoom.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ClientMuteRoom roomMute.
+         * @member {proto.RoomMute}roomMute
+         * @memberof proto.ClientMuteRoom
+         * @instance
+         */
+    ClientMuteRoom.prototype.roomMute = 0;
+
+    /**
+         * Creates a new ClientMuteRoom instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientMuteRoom
+         * @static
+         * @param {proto.IClientMuteRoom=} [properties] Properties to set
+         * @returns {proto.ClientMuteRoom} ClientMuteRoom instance
+         */
+    ClientMuteRoom.create = function create(properties) {
+      return new ClientMuteRoom(properties);
+    };
+
+    /**
+         * Encodes the specified ClientMuteRoom message. Does not implicitly {@link proto.ClientMuteRoom.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientMuteRoom
+         * @static
+         * @param {proto.ClientMuteRoom} message ClientMuteRoom message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientMuteRoom.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.roomMute != null && message.hasOwnProperty('roomMute')) {writer.uint32(/* id 3, wireType 0 =*/24).int32(message.roomMute);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientMuteRoom message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientMuteRoom
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientMuteRoom} ClientMuteRoom
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientMuteRoom.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientMuteRoom();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.roomMute = reader.int32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientMuteRoom message.
+         * @function verify
+         * @memberof proto.ClientMuteRoom
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientMuteRoom.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.roomMute != null && message.hasOwnProperty('roomMute')) {
+        switch (message.roomMute) {
+          default:
+            return 'roomMute: enum value expected';
+          case 0:
+          case 1:
+            break;
+        }
+      }
+      return null;
+    };
+
+    return ClientMuteRoom;
+  })();
+
+  proto.ClientMuteRoomResponse = (function() {
+
+    /**
+         * Properties of a ClientMuteRoomResponse.
+         * @memberof proto
+         * @interface IClientMuteRoomResponse
+         * @property {proto.Response} [response] ClientMuteRoomResponse response
+         * @property {Long} [roomId] ClientMuteRoomResponse roomId
+         * @property {proto.RoomMute} [roomMute] ClientMuteRoomResponse roomMute
+         */
+
+    /**
+         * Constructs a new ClientMuteRoomResponse.
+         * @memberof proto
+         * @classdesc Represents a ClientMuteRoomResponse.
+         * @constructor
+         * @param {proto.IClientMuteRoomResponse=} [properties] Properties to set
+         */
+    function ClientMuteRoomResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientMuteRoomResponse response.
+         * @member {(proto.Response|null|undefined)}response
+         * @memberof proto.ClientMuteRoomResponse
+         * @instance
+         */
+    ClientMuteRoomResponse.prototype.response = null;
+
+    /**
+         * ClientMuteRoomResponse roomId.
+         * @member {Long}roomId
+         * @memberof proto.ClientMuteRoomResponse
+         * @instance
+         */
+    ClientMuteRoomResponse.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ClientMuteRoomResponse roomMute.
+         * @member {proto.RoomMute}roomMute
+         * @memberof proto.ClientMuteRoomResponse
+         * @instance
+         */
+    ClientMuteRoomResponse.prototype.roomMute = 0;
+
+    /**
+         * Creates a new ClientMuteRoomResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientMuteRoomResponse
+         * @static
+         * @param {proto.IClientMuteRoomResponse=} [properties] Properties to set
+         * @returns {proto.ClientMuteRoomResponse} ClientMuteRoomResponse instance
+         */
+    ClientMuteRoomResponse.create = function create(properties) {
+      return new ClientMuteRoomResponse(properties);
+    };
+
+    /**
+         * Encodes the specified ClientMuteRoomResponse message. Does not implicitly {@link proto.ClientMuteRoomResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientMuteRoomResponse
+         * @static
+         * @param {proto.ClientMuteRoomResponse} message ClientMuteRoomResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientMuteRoomResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.roomMute != null && message.hasOwnProperty('roomMute')) {writer.uint32(/* id 3, wireType 0 =*/24).int32(message.roomMute);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientMuteRoomResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientMuteRoomResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientMuteRoomResponse} ClientMuteRoomResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientMuteRoomResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientMuteRoomResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.roomMute = reader.int32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientMuteRoomResponse message.
+         * @function verify
+         * @memberof proto.ClientMuteRoomResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientMuteRoomResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.roomMute != null && message.hasOwnProperty('roomMute')) {
+        switch (message.roomMute) {
+          default:
+            return 'roomMute: enum value expected';
+          case 0:
+          case 1:
+            break;
+        }
+      }
+      return null;
+    };
+
+    return ClientMuteRoomResponse;
+  })();
+
+  proto.ClientPinRoom = (function() {
+
+    /**
+         * Properties of a ClientPinRoom.
+         * @memberof proto
+         * @interface IClientPinRoom
+         * @property {proto.Request} [request] ClientPinRoom request
+         * @property {Long} [roomId] ClientPinRoom roomId
+         * @property {boolean} [pin] ClientPinRoom pin
+         */
+
+    /**
+         * Constructs a new ClientPinRoom.
+         * @memberof proto
+         * @classdesc Represents a ClientPinRoom.
+         * @constructor
+         * @param {proto.IClientPinRoom=} [properties] Properties to set
+         */
+    function ClientPinRoom(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientPinRoom request.
+         * @member {(proto.Request|null|undefined)}request
+         * @memberof proto.ClientPinRoom
+         * @instance
+         */
+    ClientPinRoom.prototype.request = null;
+
+    /**
+         * ClientPinRoom roomId.
+         * @member {Long}roomId
+         * @memberof proto.ClientPinRoom
+         * @instance
+         */
+    ClientPinRoom.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ClientPinRoom pin.
+         * @member {boolean}pin
+         * @memberof proto.ClientPinRoom
+         * @instance
+         */
+    ClientPinRoom.prototype.pin = false;
+
+    /**
+         * Creates a new ClientPinRoom instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientPinRoom
+         * @static
+         * @param {proto.IClientPinRoom=} [properties] Properties to set
+         * @returns {proto.ClientPinRoom} ClientPinRoom instance
+         */
+    ClientPinRoom.create = function create(properties) {
+      return new ClientPinRoom(properties);
+    };
+
+    /**
+         * Encodes the specified ClientPinRoom message. Does not implicitly {@link proto.ClientPinRoom.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientPinRoom
+         * @static
+         * @param {proto.ClientPinRoom} message ClientPinRoom message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientPinRoom.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.pin != null && message.hasOwnProperty('pin')) {writer.uint32(/* id 3, wireType 0 =*/24).bool(message.pin);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientPinRoom message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientPinRoom
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientPinRoom} ClientPinRoom
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientPinRoom.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientPinRoom();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.pin = reader.bool();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientPinRoom message.
+         * @function verify
+         * @memberof proto.ClientPinRoom
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientPinRoom.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.pin != null && message.hasOwnProperty('pin')) {
+        if (typeof message.pin !== 'boolean') {return 'pin: boolean expected';}
+      }
+      return null;
+    };
+
+    return ClientPinRoom;
+  })();
+
+  proto.ClientPinRoomResponse = (function() {
+
+    /**
+         * Properties of a ClientPinRoomResponse.
+         * @memberof proto
+         * @interface IClientPinRoomResponse
+         * @property {proto.Response} [response] ClientPinRoomResponse response
+         * @property {Long} [roomId] ClientPinRoomResponse roomId
+         * @property {Long} [pinId] ClientPinRoomResponse pinId
+         */
+
+    /**
+         * Constructs a new ClientPinRoomResponse.
+         * @memberof proto
+         * @classdesc Represents a ClientPinRoomResponse.
+         * @constructor
+         * @param {proto.IClientPinRoomResponse=} [properties] Properties to set
+         */
+    function ClientPinRoomResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientPinRoomResponse response.
+         * @member {(proto.Response|null|undefined)}response
+         * @memberof proto.ClientPinRoomResponse
+         * @instance
+         */
+    ClientPinRoomResponse.prototype.response = null;
+
+    /**
+         * ClientPinRoomResponse roomId.
+         * @member {Long}roomId
+         * @memberof proto.ClientPinRoomResponse
+         * @instance
+         */
+    ClientPinRoomResponse.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ClientPinRoomResponse pinId.
+         * @member {Long}pinId
+         * @memberof proto.ClientPinRoomResponse
+         * @instance
+         */
+    ClientPinRoomResponse.prototype.pinId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * Creates a new ClientPinRoomResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientPinRoomResponse
+         * @static
+         * @param {proto.IClientPinRoomResponse=} [properties] Properties to set
+         * @returns {proto.ClientPinRoomResponse} ClientPinRoomResponse instance
+         */
+    ClientPinRoomResponse.create = function create(properties) {
+      return new ClientPinRoomResponse(properties);
+    };
+
+    /**
+         * Encodes the specified ClientPinRoomResponse message. Does not implicitly {@link proto.ClientPinRoomResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientPinRoomResponse
+         * @static
+         * @param {proto.ClientPinRoomResponse} message ClientPinRoomResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientPinRoomResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.pinId != null && message.hasOwnProperty('pinId')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.pinId);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientPinRoomResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientPinRoomResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientPinRoomResponse} ClientPinRoomResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientPinRoomResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientPinRoomResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.pinId = reader.uint64();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientPinRoomResponse message.
+         * @function verify
+         * @memberof proto.ClientPinRoomResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientPinRoomResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.pinId != null && message.hasOwnProperty('pinId')) {
+        if (!$util.isInteger(message.pinId) && !(message.pinId && $util.isInteger(message.pinId.low) && $util.isInteger(message.pinId.high))) {return 'pinId: integer|Long expected';}
+      }
+      return null;
+    };
+
+    return ClientPinRoomResponse;
+  })();
+
   proto.ClientResolveUsername = (function() {
 
     /**
@@ -19711,6 +20556,312 @@ export const proto = $root.proto = (() => {
     })();
 
     return ClientResolveUsernameResponse;
+  })();
+
+  proto.ClientRoomReport = (function() {
+
+    /**
+         * Properties of a ClientRoomReport.
+         * @memberof proto
+         * @interface IClientRoomReport
+         * @property {proto.Request} [request] ClientRoomReport request
+         * @property {Long} [roomId] ClientRoomReport roomId
+         * @property {Long} [messageId] ClientRoomReport messageId
+         * @property {proto.ClientRoomReport.Reason} [reason] ClientRoomReport reason
+         * @property {string} [description] ClientRoomReport description
+         */
+
+    /**
+         * Constructs a new ClientRoomReport.
+         * @memberof proto
+         * @classdesc Represents a ClientRoomReport.
+         * @constructor
+         * @param {proto.IClientRoomReport=} [properties] Properties to set
+         */
+    function ClientRoomReport(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientRoomReport request.
+         * @member {(proto.Request|null|undefined)}request
+         * @memberof proto.ClientRoomReport
+         * @instance
+         */
+    ClientRoomReport.prototype.request = null;
+
+    /**
+         * ClientRoomReport roomId.
+         * @member {Long}roomId
+         * @memberof proto.ClientRoomReport
+         * @instance
+         */
+    ClientRoomReport.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ClientRoomReport messageId.
+         * @member {Long}messageId
+         * @memberof proto.ClientRoomReport
+         * @instance
+         */
+    ClientRoomReport.prototype.messageId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ClientRoomReport reason.
+         * @member {proto.ClientRoomReport.Reason}reason
+         * @memberof proto.ClientRoomReport
+         * @instance
+         */
+    ClientRoomReport.prototype.reason = 0;
+
+    /**
+         * ClientRoomReport description.
+         * @member {string}description
+         * @memberof proto.ClientRoomReport
+         * @instance
+         */
+    ClientRoomReport.prototype.description = '';
+
+    /**
+         * Creates a new ClientRoomReport instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientRoomReport
+         * @static
+         * @param {proto.IClientRoomReport=} [properties] Properties to set
+         * @returns {proto.ClientRoomReport} ClientRoomReport instance
+         */
+    ClientRoomReport.create = function create(properties) {
+      return new ClientRoomReport(properties);
+    };
+
+    /**
+         * Encodes the specified ClientRoomReport message. Does not implicitly {@link proto.ClientRoomReport.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientRoomReport
+         * @static
+         * @param {proto.ClientRoomReport} message ClientRoomReport message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientRoomReport.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.messageId != null && message.hasOwnProperty('messageId')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.messageId);}
+      if (message.reason != null && message.hasOwnProperty('reason')) {writer.uint32(/* id 4, wireType 0 =*/32).int32(message.reason);}
+      if (message.description != null && message.hasOwnProperty('description')) {writer.uint32(/* id 5, wireType 2 =*/42).string(message.description);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientRoomReport message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientRoomReport
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientRoomReport} ClientRoomReport
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientRoomReport.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientRoomReport();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.messageId = reader.uint64();
+            break;
+          case 4:
+            message.reason = reader.int32();
+            break;
+          case 5:
+            message.description = reader.string();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientRoomReport message.
+         * @function verify
+         * @memberof proto.ClientRoomReport
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientRoomReport.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.messageId != null && message.hasOwnProperty('messageId')) {
+        if (!$util.isInteger(message.messageId) && !(message.messageId && $util.isInteger(message.messageId.low) && $util.isInteger(message.messageId.high))) {return 'messageId: integer|Long expected';}
+      }
+      if (message.reason != null && message.hasOwnProperty('reason')) {
+        switch (message.reason) {
+          default:
+            return 'reason: enum value expected';
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            break;
+        }
+      }
+      if (message.description != null && message.hasOwnProperty('description')) {
+        if (!$util.isString(message.description)) {return 'description: string expected';}
+      }
+      return null;
+    };
+
+    /**
+         * Reason enum.
+         * @enum {string}
+         * @property {number} OTHER=0 OTHER value
+         * @property {number} SPAM=1 SPAM value
+         * @property {number} PORNOGRAPHY=2 PORNOGRAPHY value
+         * @property {number} VIOLENCE=3 VIOLENCE value
+         * @property {number} ABUSE=4 ABUSE value
+         */
+    ClientRoomReport.Reason = (function() {
+      const valuesById = {}, values = Object.create(valuesById);
+      values[valuesById[0] = 'OTHER'] = 0;
+      values[valuesById[1] = 'SPAM'] = 1;
+      values[valuesById[2] = 'PORNOGRAPHY'] = 2;
+      values[valuesById[3] = 'VIOLENCE'] = 3;
+      values[valuesById[4] = 'ABUSE'] = 4;
+      return values;
+    })();
+
+    return ClientRoomReport;
+  })();
+
+  proto.ClientRoomReportResponse = (function() {
+
+    /**
+         * Properties of a ClientRoomReportResponse.
+         * @memberof proto
+         * @interface IClientRoomReportResponse
+         * @property {proto.Response} [response] ClientRoomReportResponse response
+         */
+
+    /**
+         * Constructs a new ClientRoomReportResponse.
+         * @memberof proto
+         * @classdesc Represents a ClientRoomReportResponse.
+         * @constructor
+         * @param {proto.IClientRoomReportResponse=} [properties] Properties to set
+         */
+    function ClientRoomReportResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientRoomReportResponse response.
+         * @member {(proto.Response|null|undefined)}response
+         * @memberof proto.ClientRoomReportResponse
+         * @instance
+         */
+    ClientRoomReportResponse.prototype.response = null;
+
+    /**
+         * Creates a new ClientRoomReportResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientRoomReportResponse
+         * @static
+         * @param {proto.IClientRoomReportResponse=} [properties] Properties to set
+         * @returns {proto.ClientRoomReportResponse} ClientRoomReportResponse instance
+         */
+    ClientRoomReportResponse.create = function create(properties) {
+      return new ClientRoomReportResponse(properties);
+    };
+
+    /**
+         * Encodes the specified ClientRoomReportResponse message. Does not implicitly {@link proto.ClientRoomReportResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientRoomReportResponse
+         * @static
+         * @param {proto.ClientRoomReportResponse} message ClientRoomReportResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientRoomReportResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientRoomReportResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientRoomReportResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientRoomReportResponse} ClientRoomReportResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientRoomReportResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientRoomReportResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientRoomReportResponse message.
+         * @function verify
+         * @memberof proto.ClientRoomReportResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientRoomReportResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      return null;
+    };
+
+    return ClientRoomReportResponse;
   })();
 
   proto.ClientSearchRoomHistory = (function() {
@@ -42089,6 +43240,7 @@ export const proto = $root.proto = (() => {
              * @memberof proto.UserContactsGetBlockedListResponse
              * @interface IUser
              * @property {Long} [userId] User userId
+             * @property {string} [cacheId] User cacheId
              */
 
       /**
@@ -42115,6 +43267,14 @@ export const proto = $root.proto = (() => {
       User.prototype.userId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
       /**
+             * User cacheId.
+             * @member {string}cacheId
+             * @memberof proto.UserContactsGetBlockedListResponse.User
+             * @instance
+             */
+      User.prototype.cacheId = '';
+
+      /**
              * Creates a new User instance using the specified properties.
              * @function create
              * @memberof proto.UserContactsGetBlockedListResponse.User
@@ -42138,6 +43298,7 @@ export const proto = $root.proto = (() => {
       User.encode = function encode(message, writer) {
         if (!writer) {writer = $Writer.create();}
         if (message.userId != null && message.hasOwnProperty('userId')) {writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.userId);}
+        if (message.cacheId != null && message.hasOwnProperty('cacheId')) {writer.uint32(/* id 2, wireType 2 =*/18).string(message.cacheId);}
         return writer;
       };
 
@@ -42161,6 +43322,9 @@ export const proto = $root.proto = (() => {
             case 1:
               message.userId = reader.uint64();
               break;
+            case 2:
+              message.cacheId = reader.string();
+              break;
             default:
               reader.skipType(tag & 7);
               break;
@@ -42181,6 +43345,9 @@ export const proto = $root.proto = (() => {
         if (typeof message !== 'object' || message === null) {return 'object expected';}
         if (message.userId != null && message.hasOwnProperty('userId')) {
           if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high))) {return 'userId: integer|Long expected';}
+        }
+        if (message.cacheId != null && message.hasOwnProperty('cacheId')) {
+          if (!$util.isString(message.cacheId)) {return 'cacheId: string expected';}
         }
         return null;
       };
@@ -44330,6 +45497,7 @@ export const proto = $root.proto = (() => {
          * @property {boolean} [deprecatedClient] UserLoginResponse deprecatedClient
          * @property {string} [secondaryNodeName] UserLoginResponse secondaryNodeName
          * @property {boolean} [updateAvailable] UserLoginResponse updateAvailable
+         * @property {number} [chatDeleteMessageForBothPeriod] UserLoginResponse chatDeleteMessageForBothPeriod
          */
 
     /**
@@ -44380,6 +45548,14 @@ export const proto = $root.proto = (() => {
     UserLoginResponse.prototype.updateAvailable = false;
 
     /**
+         * UserLoginResponse chatDeleteMessageForBothPeriod.
+         * @member {number}chatDeleteMessageForBothPeriod
+         * @memberof proto.UserLoginResponse
+         * @instance
+         */
+    UserLoginResponse.prototype.chatDeleteMessageForBothPeriod = 0;
+
+    /**
          * Creates a new UserLoginResponse instance using the specified properties.
          * @function create
          * @memberof proto.UserLoginResponse
@@ -44406,6 +45582,7 @@ export const proto = $root.proto = (() => {
       if (message.deprecatedClient != null && message.hasOwnProperty('deprecatedClient')) {writer.uint32(/* id 2, wireType 0 =*/16).bool(message.deprecatedClient);}
       if (message.secondaryNodeName != null && message.hasOwnProperty('secondaryNodeName')) {writer.uint32(/* id 3, wireType 2 =*/26).string(message.secondaryNodeName);}
       if (message.updateAvailable != null && message.hasOwnProperty('updateAvailable')) {writer.uint32(/* id 4, wireType 0 =*/32).bool(message.updateAvailable);}
+      if (message.chatDeleteMessageForBothPeriod != null && message.hasOwnProperty('chatDeleteMessageForBothPeriod')) {writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.chatDeleteMessageForBothPeriod);}
       return writer;
     };
 
@@ -44438,6 +45615,9 @@ export const proto = $root.proto = (() => {
           case 4:
             message.updateAvailable = reader.bool();
             break;
+          case 5:
+            message.chatDeleteMessageForBothPeriod = reader.uint32();
+            break;
           default:
             reader.skipType(tag & 7);
             break;
@@ -44468,6 +45648,9 @@ export const proto = $root.proto = (() => {
       }
       if (message.updateAvailable != null && message.hasOwnProperty('updateAvailable')) {
         if (typeof message.updateAvailable !== 'boolean') {return 'updateAvailable: boolean expected';}
+      }
+      if (message.chatDeleteMessageForBothPeriod != null && message.hasOwnProperty('chatDeleteMessageForBothPeriod')) {
+        if (!$util.isInteger(message.chatDeleteMessageForBothPeriod)) {return 'chatDeleteMessageForBothPeriod: integer expected';}
       }
       return null;
     };
@@ -45322,6 +46505,236 @@ export const proto = $root.proto = (() => {
     })();
 
     return UserProfileCheckUsernameResponse;
+  })();
+
+  proto.UserProfileGetBio = (function() {
+
+    /**
+         * Properties of a UserProfileGetBio.
+         * @memberof proto
+         * @interface IUserProfileGetBio
+         * @property {proto.Request} [request] UserProfileGetBio request
+         */
+
+    /**
+         * Constructs a new UserProfileGetBio.
+         * @memberof proto
+         * @classdesc Represents a UserProfileGetBio.
+         * @constructor
+         * @param {proto.IUserProfileGetBio=} [properties] Properties to set
+         */
+    function UserProfileGetBio(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * UserProfileGetBio request.
+         * @member {(proto.Request|null|undefined)}request
+         * @memberof proto.UserProfileGetBio
+         * @instance
+         */
+    UserProfileGetBio.prototype.request = null;
+
+    /**
+         * Creates a new UserProfileGetBio instance using the specified properties.
+         * @function create
+         * @memberof proto.UserProfileGetBio
+         * @static
+         * @param {proto.IUserProfileGetBio=} [properties] Properties to set
+         * @returns {proto.UserProfileGetBio} UserProfileGetBio instance
+         */
+    UserProfileGetBio.create = function create(properties) {
+      return new UserProfileGetBio(properties);
+    };
+
+    /**
+         * Encodes the specified UserProfileGetBio message. Does not implicitly {@link proto.UserProfileGetBio.verify|verify} messages.
+         * @function encode
+         * @memberof proto.UserProfileGetBio
+         * @static
+         * @param {proto.UserProfileGetBio} message UserProfileGetBio message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserProfileGetBio.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a UserProfileGetBio message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.UserProfileGetBio
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.UserProfileGetBio} UserProfileGetBio
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserProfileGetBio.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.UserProfileGetBio();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a UserProfileGetBio message.
+         * @function verify
+         * @memberof proto.UserProfileGetBio
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserProfileGetBio.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      return null;
+    };
+
+    return UserProfileGetBio;
+  })();
+
+  proto.UserProfileGetBioResponse = (function() {
+
+    /**
+         * Properties of a UserProfileGetBioResponse.
+         * @memberof proto
+         * @interface IUserProfileGetBioResponse
+         * @property {proto.Response} [response] UserProfileGetBioResponse response
+         * @property {string} [bio] UserProfileGetBioResponse bio
+         */
+
+    /**
+         * Constructs a new UserProfileGetBioResponse.
+         * @memberof proto
+         * @classdesc Represents a UserProfileGetBioResponse.
+         * @constructor
+         * @param {proto.IUserProfileGetBioResponse=} [properties] Properties to set
+         */
+    function UserProfileGetBioResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * UserProfileGetBioResponse response.
+         * @member {(proto.Response|null|undefined)}response
+         * @memberof proto.UserProfileGetBioResponse
+         * @instance
+         */
+    UserProfileGetBioResponse.prototype.response = null;
+
+    /**
+         * UserProfileGetBioResponse bio.
+         * @member {string}bio
+         * @memberof proto.UserProfileGetBioResponse
+         * @instance
+         */
+    UserProfileGetBioResponse.prototype.bio = '';
+
+    /**
+         * Creates a new UserProfileGetBioResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.UserProfileGetBioResponse
+         * @static
+         * @param {proto.IUserProfileGetBioResponse=} [properties] Properties to set
+         * @returns {proto.UserProfileGetBioResponse} UserProfileGetBioResponse instance
+         */
+    UserProfileGetBioResponse.create = function create(properties) {
+      return new UserProfileGetBioResponse(properties);
+    };
+
+    /**
+         * Encodes the specified UserProfileGetBioResponse message. Does not implicitly {@link proto.UserProfileGetBioResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.UserProfileGetBioResponse
+         * @static
+         * @param {proto.UserProfileGetBioResponse} message UserProfileGetBioResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserProfileGetBioResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.bio != null && message.hasOwnProperty('bio')) {writer.uint32(/* id 2, wireType 2 =*/18).string(message.bio);}
+      return writer;
+    };
+
+    /**
+         * Decodes a UserProfileGetBioResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.UserProfileGetBioResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.UserProfileGetBioResponse} UserProfileGetBioResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserProfileGetBioResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.UserProfileGetBioResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.bio = reader.string();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a UserProfileGetBioResponse message.
+         * @function verify
+         * @memberof proto.UserProfileGetBioResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserProfileGetBioResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.bio != null && message.hasOwnProperty('bio')) {
+        if (!$util.isString(message.bio)) {return 'bio: string expected';}
+      }
+      return null;
+    };
+
+    return UserProfileGetBioResponse;
   })();
 
   proto.UserProfileGetEmail = (function() {
@@ -46249,6 +47662,252 @@ export const proto = $root.proto = (() => {
     };
 
     return UserProfileGetSelfRemoveResponse;
+  })();
+
+  proto.UserProfileSetBio = (function() {
+
+    /**
+         * Properties of a UserProfileSetBio.
+         * @memberof proto
+         * @interface IUserProfileSetBio
+         * @property {proto.Request} [request] UserProfileSetBio request
+         * @property {string} [bio] UserProfileSetBio bio
+         */
+
+    /**
+         * Constructs a new UserProfileSetBio.
+         * @memberof proto
+         * @classdesc Represents a UserProfileSetBio.
+         * @constructor
+         * @param {proto.IUserProfileSetBio=} [properties] Properties to set
+         */
+    function UserProfileSetBio(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * UserProfileSetBio request.
+         * @member {(proto.Request|null|undefined)}request
+         * @memberof proto.UserProfileSetBio
+         * @instance
+         */
+    UserProfileSetBio.prototype.request = null;
+
+    /**
+         * UserProfileSetBio bio.
+         * @member {string}bio
+         * @memberof proto.UserProfileSetBio
+         * @instance
+         */
+    UserProfileSetBio.prototype.bio = '';
+
+    /**
+         * Creates a new UserProfileSetBio instance using the specified properties.
+         * @function create
+         * @memberof proto.UserProfileSetBio
+         * @static
+         * @param {proto.IUserProfileSetBio=} [properties] Properties to set
+         * @returns {proto.UserProfileSetBio} UserProfileSetBio instance
+         */
+    UserProfileSetBio.create = function create(properties) {
+      return new UserProfileSetBio(properties);
+    };
+
+    /**
+         * Encodes the specified UserProfileSetBio message. Does not implicitly {@link proto.UserProfileSetBio.verify|verify} messages.
+         * @function encode
+         * @memberof proto.UserProfileSetBio
+         * @static
+         * @param {proto.UserProfileSetBio} message UserProfileSetBio message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserProfileSetBio.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.bio != null && message.hasOwnProperty('bio')) {writer.uint32(/* id 2, wireType 2 =*/18).string(message.bio);}
+      return writer;
+    };
+
+    /**
+         * Decodes a UserProfileSetBio message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.UserProfileSetBio
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.UserProfileSetBio} UserProfileSetBio
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserProfileSetBio.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.UserProfileSetBio();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.bio = reader.string();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a UserProfileSetBio message.
+         * @function verify
+         * @memberof proto.UserProfileSetBio
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserProfileSetBio.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.bio != null && message.hasOwnProperty('bio')) {
+        if (!$util.isString(message.bio)) {return 'bio: string expected';}
+      }
+      return null;
+    };
+
+    return UserProfileSetBio;
+  })();
+
+  proto.UserProfileSetBioResponse = (function() {
+
+    /**
+         * Properties of a UserProfileSetBioResponse.
+         * @memberof proto
+         * @interface IUserProfileSetBioResponse
+         * @property {proto.Response} [response] UserProfileSetBioResponse response
+         * @property {string} [bio] UserProfileSetBioResponse bio
+         */
+
+    /**
+         * Constructs a new UserProfileSetBioResponse.
+         * @memberof proto
+         * @classdesc Represents a UserProfileSetBioResponse.
+         * @constructor
+         * @param {proto.IUserProfileSetBioResponse=} [properties] Properties to set
+         */
+    function UserProfileSetBioResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * UserProfileSetBioResponse response.
+         * @member {(proto.Response|null|undefined)}response
+         * @memberof proto.UserProfileSetBioResponse
+         * @instance
+         */
+    UserProfileSetBioResponse.prototype.response = null;
+
+    /**
+         * UserProfileSetBioResponse bio.
+         * @member {string}bio
+         * @memberof proto.UserProfileSetBioResponse
+         * @instance
+         */
+    UserProfileSetBioResponse.prototype.bio = '';
+
+    /**
+         * Creates a new UserProfileSetBioResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.UserProfileSetBioResponse
+         * @static
+         * @param {proto.IUserProfileSetBioResponse=} [properties] Properties to set
+         * @returns {proto.UserProfileSetBioResponse} UserProfileSetBioResponse instance
+         */
+    UserProfileSetBioResponse.create = function create(properties) {
+      return new UserProfileSetBioResponse(properties);
+    };
+
+    /**
+         * Encodes the specified UserProfileSetBioResponse message. Does not implicitly {@link proto.UserProfileSetBioResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.UserProfileSetBioResponse
+         * @static
+         * @param {proto.UserProfileSetBioResponse} message UserProfileSetBioResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserProfileSetBioResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.bio != null && message.hasOwnProperty('bio')) {writer.uint32(/* id 2, wireType 2 =*/18).string(message.bio);}
+      return writer;
+    };
+
+    /**
+         * Decodes a UserProfileSetBioResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.UserProfileSetBioResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.UserProfileSetBioResponse} UserProfileSetBioResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserProfileSetBioResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.UserProfileSetBioResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.bio = reader.string();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a UserProfileSetBioResponse message.
+         * @function verify
+         * @memberof proto.UserProfileSetBioResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserProfileSetBioResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.bio != null && message.hasOwnProperty('bio')) {
+        if (!$util.isString(message.bio)) {return 'bio: string expected';}
+      }
+      return null;
+    };
+
+    return UserProfileSetBioResponse;
   })();
 
   proto.UserProfileSetEmail = (function() {
@@ -47917,6 +49576,293 @@ export const proto = $root.proto = (() => {
     })();
 
     return UserRegisterResponse;
+  })();
+
+  proto.UserReport = (function() {
+
+    /**
+         * Properties of a UserReport.
+         * @memberof proto
+         * @interface IUserReport
+         * @property {proto.Request} [request] UserReport request
+         * @property {Long} [userId] UserReport userId
+         * @property {proto.UserReport.Reason} [reason] UserReport reason
+         * @property {string} [description] UserReport description
+         */
+
+    /**
+         * Constructs a new UserReport.
+         * @memberof proto
+         * @classdesc Represents a UserReport.
+         * @constructor
+         * @param {proto.IUserReport=} [properties] Properties to set
+         */
+    function UserReport(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * UserReport request.
+         * @member {(proto.Request|null|undefined)}request
+         * @memberof proto.UserReport
+         * @instance
+         */
+    UserReport.prototype.request = null;
+
+    /**
+         * UserReport userId.
+         * @member {Long}userId
+         * @memberof proto.UserReport
+         * @instance
+         */
+    UserReport.prototype.userId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * UserReport reason.
+         * @member {proto.UserReport.Reason}reason
+         * @memberof proto.UserReport
+         * @instance
+         */
+    UserReport.prototype.reason = 0;
+
+    /**
+         * UserReport description.
+         * @member {string}description
+         * @memberof proto.UserReport
+         * @instance
+         */
+    UserReport.prototype.description = '';
+
+    /**
+         * Creates a new UserReport instance using the specified properties.
+         * @function create
+         * @memberof proto.UserReport
+         * @static
+         * @param {proto.IUserReport=} [properties] Properties to set
+         * @returns {proto.UserReport} UserReport instance
+         */
+    UserReport.create = function create(properties) {
+      return new UserReport(properties);
+    };
+
+    /**
+         * Encodes the specified UserReport message. Does not implicitly {@link proto.UserReport.verify|verify} messages.
+         * @function encode
+         * @memberof proto.UserReport
+         * @static
+         * @param {proto.UserReport} message UserReport message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserReport.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.userId != null && message.hasOwnProperty('userId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.userId);}
+      if (message.reason != null && message.hasOwnProperty('reason')) {writer.uint32(/* id 3, wireType 0 =*/24).int32(message.reason);}
+      if (message.description != null && message.hasOwnProperty('description')) {writer.uint32(/* id 4, wireType 2 =*/34).string(message.description);}
+      return writer;
+    };
+
+    /**
+         * Decodes a UserReport message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.UserReport
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.UserReport} UserReport
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserReport.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.UserReport();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.userId = reader.uint64();
+            break;
+          case 3:
+            message.reason = reader.int32();
+            break;
+          case 4:
+            message.description = reader.string();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a UserReport message.
+         * @function verify
+         * @memberof proto.UserReport
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserReport.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.userId != null && message.hasOwnProperty('userId')) {
+        if (!$util.isInteger(message.userId) && !(message.userId && $util.isInteger(message.userId.low) && $util.isInteger(message.userId.high))) {return 'userId: integer|Long expected';}
+      }
+      if (message.reason != null && message.hasOwnProperty('reason')) {
+        switch (message.reason) {
+          default:
+            return 'reason: enum value expected';
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            break;
+        }
+      }
+      if (message.description != null && message.hasOwnProperty('description')) {
+        if (!$util.isString(message.description)) {return 'description: string expected';}
+      }
+      return null;
+    };
+
+    /**
+         * Reason enum.
+         * @enum {string}
+         * @property {number} OTHER=0 OTHER value
+         * @property {number} SPAM=1 SPAM value
+         * @property {number} ABUSE=2 ABUSE value
+         * @property {number} FAKE_ACCOUNT=3 FAKE_ACCOUNT value
+         */
+    UserReport.Reason = (function() {
+      const valuesById = {}, values = Object.create(valuesById);
+      values[valuesById[0] = 'OTHER'] = 0;
+      values[valuesById[1] = 'SPAM'] = 1;
+      values[valuesById[2] = 'ABUSE'] = 2;
+      values[valuesById[3] = 'FAKE_ACCOUNT'] = 3;
+      return values;
+    })();
+
+    return UserReport;
+  })();
+
+  proto.UserReportResponse = (function() {
+
+    /**
+         * Properties of a UserReportResponse.
+         * @memberof proto
+         * @interface IUserReportResponse
+         * @property {proto.Response} [response] UserReportResponse response
+         */
+
+    /**
+         * Constructs a new UserReportResponse.
+         * @memberof proto
+         * @classdesc Represents a UserReportResponse.
+         * @constructor
+         * @param {proto.IUserReportResponse=} [properties] Properties to set
+         */
+    function UserReportResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * UserReportResponse response.
+         * @member {(proto.Response|null|undefined)}response
+         * @memberof proto.UserReportResponse
+         * @instance
+         */
+    UserReportResponse.prototype.response = null;
+
+    /**
+         * Creates a new UserReportResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.UserReportResponse
+         * @static
+         * @param {proto.IUserReportResponse=} [properties] Properties to set
+         * @returns {proto.UserReportResponse} UserReportResponse instance
+         */
+    UserReportResponse.create = function create(properties) {
+      return new UserReportResponse(properties);
+    };
+
+    /**
+         * Encodes the specified UserReportResponse message. Does not implicitly {@link proto.UserReportResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.UserReportResponse
+         * @static
+         * @param {proto.UserReportResponse} message UserReportResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    UserReportResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a UserReportResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.UserReportResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.UserReportResponse} UserReportResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    UserReportResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.UserReportResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a UserReportResponse message.
+         * @function verify
+         * @memberof proto.UserReportResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    UserReportResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      return null;
+    };
+
+    return UserReportResponse;
   })();
 
   proto.UserSessionGetActiveList = (function() {

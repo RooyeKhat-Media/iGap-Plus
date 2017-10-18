@@ -9,1635 +9,1695 @@ import proto from './wrappers';
 export const Proto = proto.proto;
 
 /**
-* @type ProtoErrorResponse
-**/
+ * @type ProtoErrorResponse
+ **/
 export const ErrorResponse = Proto.ErrorResponse;
 
 /**
-* @type ProtoConnectionSecuringResponse
-**/
+ * @type ProtoConnectionSecuringResponse
+ **/
 export const ConnectionSecuringResponse = Proto.ConnectionSecuringResponse;
 
 /**
-* @type ProtoConnectionSymmetricKey
-**/
+ * @type ProtoConnectionSymmetricKey
+ **/
 export const ConnectionSymmetricKey = Proto.ConnectionSymmetricKey;
 
 /**
-* @type ProtoConnectionSymmetricKeyResponse
-**/
+ * @type ProtoConnectionSymmetricKeyResponse
+ **/
 export const ConnectionSymmetricKeyResponse = Proto.ConnectionSymmetricKeyResponse;
 
 /**
-* @type ProtoHeartbeat
-**/
+ * @type ProtoHeartbeat
+ **/
 export const Heartbeat = Proto.Heartbeat;
 
 /**
-* @type ProtoHeartbeatResponse
-**/
+ * @type ProtoHeartbeatResponse
+ **/
 export const HeartbeatResponse = Proto.HeartbeatResponse;
 
 //User 1XX
 
 /**
-* @type ProtoUserRegister
-**/
+ * @type ProtoUserRegister
+ **/
 export const UserRegister = Proto.UserRegister;
 
 /**
-* @type ProtoUserRegisterResponse
-**/
+ * @type ProtoUserRegisterResponse
+ **/
 export const UserRegisterResponse = Proto.UserRegisterResponse;
 
 /**
-* @type ProtoUserVerify
-**/
+ * @type ProtoUserVerify
+ **/
 export const UserVerify = Proto.UserVerify;
 
 /**
-* @type ProtoUserVerifyResponse
-**/
+ * @type ProtoUserVerifyResponse
+ **/
 export const UserVerifyResponse = Proto.UserVerifyResponse;
 
 /**
-* @type ProtoUserLogin
-**/
+ * @type ProtoUserLogin
+ **/
 export const UserLogin = Proto.UserLogin;
 
 /**
-* @type ProtoUserLoginResponse
-**/
+ * @type ProtoUserLoginResponse
+ **/
 export const UserLoginResponse = Proto.UserLoginResponse;
 
 /**
-* @type ProtoUserProfileSetEmail
-**/
+ * @type ProtoUserProfileSetEmail
+ **/
 export const UserProfileSetEmail = Proto.UserProfileSetEmail;
 
 /**
-* @type ProtoUserProfileSetEmailResponse
-**/
+ * @type ProtoUserProfileSetEmailResponse
+ **/
 export const UserProfileSetEmailResponse = Proto.UserProfileSetEmailResponse;
 
 /**
-* @type ProtoUserProfileSetGender
-**/
+ * @type ProtoUserProfileSetGender
+ **/
 export const UserProfileSetGender = Proto.UserProfileSetGender;
 
 /**
-* @type ProtoUserProfileSetGenderResponse
-**/
+ * @type ProtoUserProfileSetGenderResponse
+ **/
 export const UserProfileSetGenderResponse = Proto.UserProfileSetGenderResponse;
 
 /**
-* @type ProtoUserProfileSetNickname
-**/
+ * @type ProtoUserProfileSetNickname
+ **/
 export const UserProfileSetNickname = Proto.UserProfileSetNickname;
 
 /**
-* @type ProtoUserProfileSetNicknameResponse
-**/
+ * @type ProtoUserProfileSetNicknameResponse
+ **/
 export const UserProfileSetNicknameResponse = Proto.UserProfileSetNicknameResponse;
 
 /**
-* @type ProtoUserContactsImport
-**/
+ * @type ProtoUserContactsImport
+ **/
 export const UserContactsImport = Proto.UserContactsImport;
 
 /**
-* @type ProtoUserContactsImportResponse
-**/
+ * @type ProtoUserContactsImportResponse
+ **/
 export const UserContactsImportResponse = Proto.UserContactsImportResponse;
 
 /**
-* @type ProtoUserContactsGetList
-**/
+ * @type ProtoUserContactsGetList
+ **/
 export const UserContactsGetList = Proto.UserContactsGetList;
 
 /**
-* @type ProtoUserContactsGetListResponse
-**/
+ * @type ProtoUserContactsGetListResponse
+ **/
 export const UserContactsGetListResponse = Proto.UserContactsGetListResponse;
 
 /**
-* @type ProtoUserContactsDelete
-**/
+ * @type ProtoUserContactsDelete
+ **/
 export const UserContactsDelete = Proto.UserContactsDelete;
 
 /**
-* @type ProtoUserContactsDeleteResponse
-**/
+ * @type ProtoUserContactsDeleteResponse
+ **/
 export const UserContactsDeleteResponse = Proto.UserContactsDeleteResponse;
 
 /**
-* @type ProtoUserContactsEdit
-**/
+ * @type ProtoUserContactsEdit
+ **/
 export const UserContactsEdit = Proto.UserContactsEdit;
 
 /**
-* @type ProtoUserContactsEditResponse
-**/
+ * @type ProtoUserContactsEditResponse
+ **/
 export const UserContactsEditResponse = Proto.UserContactsEditResponse;
 
 /**
-* @type ProtoUserProfileGetEmail
-**/
+ * @type ProtoUserProfileGetEmail
+ **/
 export const UserProfileGetEmail = Proto.UserProfileGetEmail;
 
 /**
-* @type ProtoUserProfileGetEmailResponse
-**/
+ * @type ProtoUserProfileGetEmailResponse
+ **/
 export const UserProfileGetEmailResponse = Proto.UserProfileGetEmailResponse;
 
 /**
-* @type ProtoUserProfileGetGender
-**/
+ * @type ProtoUserProfileGetGender
+ **/
 export const UserProfileGetGender = Proto.UserProfileGetGender;
 
 /**
-* @type ProtoUserProfileGetGenderResponse
-**/
+ * @type ProtoUserProfileGetGenderResponse
+ **/
 export const UserProfileGetGenderResponse = Proto.UserProfileGetGenderResponse;
 
 /**
-* @type ProtoUserProfileGetNickname
-**/
+ * @type ProtoUserProfileGetNickname
+ **/
 export const UserProfileGetNickname = Proto.UserProfileGetNickname;
 
 /**
-* @type ProtoUserProfileGetNicknameResponse
-**/
+ * @type ProtoUserProfileGetNicknameResponse
+ **/
 export const UserProfileGetNicknameResponse = Proto.UserProfileGetNicknameResponse;
 
 /**
-* @type ProtoUserAvatarAdd
-**/
+ * @type ProtoUserAvatarAdd
+ **/
 export const UserAvatarAdd = Proto.UserAvatarAdd;
 
 /**
-* @type ProtoUserAvatarAddResponse
-**/
+ * @type ProtoUserAvatarAddResponse
+ **/
 export const UserAvatarAddResponse = Proto.UserAvatarAddResponse;
 
 /**
-* @type ProtoUserAvatarDelete
-**/
+ * @type ProtoUserAvatarDelete
+ **/
 export const UserAvatarDelete = Proto.UserAvatarDelete;
 
 /**
-* @type ProtoUserAvatarDeleteResponse
-**/
+ * @type ProtoUserAvatarDeleteResponse
+ **/
 export const UserAvatarDeleteResponse = Proto.UserAvatarDeleteResponse;
 
 /**
-* @type ProtoUserAvatarGetList
-**/
+ * @type ProtoUserAvatarGetList
+ **/
 export const UserAvatarGetList = Proto.UserAvatarGetList;
 
 /**
-* @type ProtoUserAvatarGetListResponse
-**/
+ * @type ProtoUserAvatarGetListResponse
+ **/
 export const UserAvatarGetListResponse = Proto.UserAvatarGetListResponse;
 
 /**
-* @type ProtoUserInfo
-**/
+ * @type ProtoUserInfo
+ **/
 export const UserInfo = Proto.UserInfo;
 
 /**
-* @type ProtoUserInfoResponse
-**/
+ * @type ProtoUserInfoResponse
+ **/
 export const UserInfoResponse = Proto.UserInfoResponse;
 
 /**
-* @type ProtoUserGetDeleteToken
-**/
+ * @type ProtoUserGetDeleteToken
+ **/
 export const UserGetDeleteToken = Proto.UserGetDeleteToken;
 
 /**
-* @type ProtoUserGetDeleteTokenResponse
-**/
+ * @type ProtoUserGetDeleteTokenResponse
+ **/
 export const UserGetDeleteTokenResponse = Proto.UserGetDeleteTokenResponse;
 
 /**
-* @type ProtoUserDelete
-**/
+ * @type ProtoUserDelete
+ **/
 export const UserDelete = Proto.UserDelete;
 
 /**
-* @type ProtoUserDeleteResponse
-**/
+ * @type ProtoUserDeleteResponse
+ **/
 export const UserDeleteResponse = Proto.UserDeleteResponse;
 
 /**
-* @type ProtoUserProfileSetSelfRemove
-**/
+ * @type ProtoUserProfileSetSelfRemove
+ **/
 export const UserProfileSetSelfRemove = Proto.UserProfileSetSelfRemove;
 
 /**
-* @type ProtoUserProfileSetSelfRemoveResponse
-**/
+ * @type ProtoUserProfileSetSelfRemoveResponse
+ **/
 export const UserProfileSetSelfRemoveResponse = Proto.UserProfileSetSelfRemoveResponse;
 
 /**
-* @type ProtoUserProfileGetSelfRemove
-**/
+ * @type ProtoUserProfileGetSelfRemove
+ **/
 export const UserProfileGetSelfRemove = Proto.UserProfileGetSelfRemove;
 
 /**
-* @type ProtoUserProfileGetSelfRemoveResponse
-**/
+ * @type ProtoUserProfileGetSelfRemoveResponse
+ **/
 export const UserProfileGetSelfRemoveResponse = Proto.UserProfileGetSelfRemoveResponse;
 
 /**
-* @type ProtoUserProfileCheckUsername
-**/
+ * @type ProtoUserProfileCheckUsername
+ **/
 export const UserProfileCheckUsername = Proto.UserProfileCheckUsername;
 
 /**
-* @type ProtoUserProfileCheckUsernameResponse
-**/
+ * @type ProtoUserProfileCheckUsernameResponse
+ **/
 export const UserProfileCheckUsernameResponse = Proto.UserProfileCheckUsernameResponse;
 
 /**
-* @type ProtoUserProfileUpdateUsername
-**/
+ * @type ProtoUserProfileUpdateUsername
+ **/
 export const UserProfileUpdateUsername = Proto.UserProfileUpdateUsername;
 
 /**
-* @type ProtoUserProfileUpdateUsernameResponse
-**/
+ * @type ProtoUserProfileUpdateUsernameResponse
+ **/
 export const UserProfileUpdateUsernameResponse = Proto.UserProfileUpdateUsernameResponse;
 
 /**
-* @type ProtoUserUpdateStatus
-**/
+ * @type ProtoUserUpdateStatus
+ **/
 export const UserUpdateStatus = Proto.UserUpdateStatus;
 
 /**
-* @type ProtoUserUpdateStatusResponse
-**/
+ * @type ProtoUserUpdateStatusResponse
+ **/
 export const UserUpdateStatusResponse = Proto.UserUpdateStatusResponse;
 
 /**
-* @type ProtoUserSessionGetActiveList
-**/
+ * @type ProtoUserSessionGetActiveList
+ **/
 export const UserSessionGetActiveList = Proto.UserSessionGetActiveList;
 
 /**
-* @type ProtoUserSessionGetActiveListResponse
-**/
+ * @type ProtoUserSessionGetActiveListResponse
+ **/
 export const UserSessionGetActiveListResponse = Proto.UserSessionGetActiveListResponse;
 
 /**
-* @type ProtoUserSessionTerminate
-**/
+ * @type ProtoUserSessionTerminate
+ **/
 export const UserSessionTerminate = Proto.UserSessionTerminate;
 
 /**
-* @type ProtoUserSessionTerminateResponse
-**/
+ * @type ProtoUserSessionTerminateResponse
+ **/
 export const UserSessionTerminateResponse = Proto.UserSessionTerminateResponse;
 
 /**
-* @type ProtoUserSessionLogout
-**/
+ * @type ProtoUserSessionLogout
+ **/
 export const UserSessionLogout = Proto.UserSessionLogout;
 
 /**
-* @type ProtoUserSessionLogoutResponse
-**/
+ * @type ProtoUserSessionLogoutResponse
+ **/
 export const UserSessionLogoutResponse = Proto.UserSessionLogoutResponse;
 
 /**
-* @type ProtoUserContactsBlock
-**/
+ * @type ProtoUserContactsBlock
+ **/
 export const UserContactsBlock = Proto.UserContactsBlock;
 
 /**
-* @type ProtoUserContactsBlockResponse
-**/
+ * @type ProtoUserContactsBlockResponse
+ **/
 export const UserContactsBlockResponse = Proto.UserContactsBlockResponse;
 
 /**
-* @type ProtoUserContactsUnblock
-**/
+ * @type ProtoUserContactsUnblock
+ **/
 export const UserContactsUnblock = Proto.UserContactsUnblock;
 
 /**
-* @type ProtoUserContactsUnblockResponse
-**/
+ * @type ProtoUserContactsUnblockResponse
+ **/
 export const UserContactsUnblockResponse = Proto.UserContactsUnblockResponse;
 
 /**
-* @type ProtoUserContactsGetBlockedList
-**/
+ * @type ProtoUserContactsGetBlockedList
+ **/
 export const UserContactsGetBlockedList = Proto.UserContactsGetBlockedList;
 
 /**
-* @type ProtoUserContactsGetBlockedListResponse
-**/
+ * @type ProtoUserContactsGetBlockedListResponse
+ **/
 export const UserContactsGetBlockedListResponse = Proto.UserContactsGetBlockedListResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationGetPasswordDetail
-**/
+ * @type ProtoUserTwoStepVerificationGetPasswordDetail
+ **/
 export const UserTwoStepVerificationGetPasswordDetail = Proto.UserTwoStepVerificationGetPasswordDetail;
 
 /**
-* @type ProtoUserTwoStepVerificationGetPasswordDetailResponse
-**/
+ * @type ProtoUserTwoStepVerificationGetPasswordDetailResponse
+ **/
 export const UserTwoStepVerificationGetPasswordDetailResponse = Proto.UserTwoStepVerificationGetPasswordDetailResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationVerifyPassword
-**/
+ * @type ProtoUserTwoStepVerificationVerifyPassword
+ **/
 export const UserTwoStepVerificationVerifyPassword = Proto.UserTwoStepVerificationVerifyPassword;
 
 /**
-* @type ProtoUserTwoStepVerificationVerifyPasswordResponse
-**/
+ * @type ProtoUserTwoStepVerificationVerifyPasswordResponse
+ **/
 export const UserTwoStepVerificationVerifyPasswordResponse = Proto.UserTwoStepVerificationVerifyPasswordResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationSetPassword
-**/
+ * @type ProtoUserTwoStepVerificationSetPassword
+ **/
 export const UserTwoStepVerificationSetPassword = Proto.UserTwoStepVerificationSetPassword;
 
 /**
-* @type ProtoUserTwoStepVerificationSetPasswordResponse
-**/
+ * @type ProtoUserTwoStepVerificationSetPasswordResponse
+ **/
 export const UserTwoStepVerificationSetPasswordResponse = Proto.UserTwoStepVerificationSetPasswordResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationUnsetPassword
-**/
+ * @type ProtoUserTwoStepVerificationUnsetPassword
+ **/
 export const UserTwoStepVerificationUnsetPassword = Proto.UserTwoStepVerificationUnsetPassword;
 
 /**
-* @type ProtoUserTwoStepVerificationUnsetPasswordResponse
-**/
+ * @type ProtoUserTwoStepVerificationUnsetPasswordResponse
+ **/
 export const UserTwoStepVerificationUnsetPasswordResponse = Proto.UserTwoStepVerificationUnsetPasswordResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationCheckPassword
-**/
+ * @type ProtoUserTwoStepVerificationCheckPassword
+ **/
 export const UserTwoStepVerificationCheckPassword = Proto.UserTwoStepVerificationCheckPassword;
 
 /**
-* @type ProtoUserTwoStepVerificationCheckPasswordResponse
-**/
+ * @type ProtoUserTwoStepVerificationCheckPasswordResponse
+ **/
 export const UserTwoStepVerificationCheckPasswordResponse = Proto.UserTwoStepVerificationCheckPasswordResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationVerifyRecoveryEmail
-**/
+ * @type ProtoUserTwoStepVerificationVerifyRecoveryEmail
+ **/
 export const UserTwoStepVerificationVerifyRecoveryEmail = Proto.UserTwoStepVerificationVerifyRecoveryEmail;
 
 /**
-* @type ProtoUserTwoStepVerificationVerifyRecoveryEmailResponse
-**/
+ * @type ProtoUserTwoStepVerificationVerifyRecoveryEmailResponse
+ **/
 export const UserTwoStepVerificationVerifyRecoveryEmailResponse = Proto.UserTwoStepVerificationVerifyRecoveryEmailResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationChangeRecoveryEmail
-**/
+ * @type ProtoUserTwoStepVerificationChangeRecoveryEmail
+ **/
 export const UserTwoStepVerificationChangeRecoveryEmail = Proto.UserTwoStepVerificationChangeRecoveryEmail;
 
 /**
-* @type ProtoUserTwoStepVerificationChangeRecoveryEmailResponse
-**/
+ * @type ProtoUserTwoStepVerificationChangeRecoveryEmailResponse
+ **/
 export const UserTwoStepVerificationChangeRecoveryEmailResponse = Proto.UserTwoStepVerificationChangeRecoveryEmailResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationRequestRecoveryToken
-**/
+ * @type ProtoUserTwoStepVerificationRequestRecoveryToken
+ **/
 export const UserTwoStepVerificationRequestRecoveryToken = Proto.UserTwoStepVerificationRequestRecoveryToken;
 
 /**
-* @type ProtoUserTwoStepVerificationRequestRecoveryTokenResponse
-**/
+ * @type ProtoUserTwoStepVerificationRequestRecoveryTokenResponse
+ **/
 export const UserTwoStepVerificationRequestRecoveryTokenResponse = Proto.UserTwoStepVerificationRequestRecoveryTokenResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationRecoverPasswordByToken
-**/
+ * @type ProtoUserTwoStepVerificationRecoverPasswordByToken
+ **/
 export const UserTwoStepVerificationRecoverPasswordByToken = Proto.UserTwoStepVerificationRecoverPasswordByToken;
 
 /**
-* @type ProtoUserTwoStepVerificationRecoverPasswordByTokenResponse
-**/
+ * @type ProtoUserTwoStepVerificationRecoverPasswordByTokenResponse
+ **/
 export const UserTwoStepVerificationRecoverPasswordByTokenResponse = Proto.UserTwoStepVerificationRecoverPasswordByTokenResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationRecoverPasswordByAnswers
-**/
+ * @type ProtoUserTwoStepVerificationRecoverPasswordByAnswers
+ **/
 export const UserTwoStepVerificationRecoverPasswordByAnswers = Proto.UserTwoStepVerificationRecoverPasswordByAnswers;
 
 /**
-* @type ProtoUserTwoStepVerificationRecoverPasswordByAnswersResponse
-**/
+ * @type ProtoUserTwoStepVerificationRecoverPasswordByAnswersResponse
+ **/
 export const UserTwoStepVerificationRecoverPasswordByAnswersResponse = Proto.UserTwoStepVerificationRecoverPasswordByAnswersResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationChangeRecoveryQuestion
-**/
+ * @type ProtoUserTwoStepVerificationChangeRecoveryQuestion
+ **/
 export const UserTwoStepVerificationChangeRecoveryQuestion = Proto.UserTwoStepVerificationChangeRecoveryQuestion;
 
 /**
-* @type ProtoUserTwoStepVerificationChangeRecoveryQuestionResponse
-**/
+ * @type ProtoUserTwoStepVerificationChangeRecoveryQuestionResponse
+ **/
 export const UserTwoStepVerificationChangeRecoveryQuestionResponse = Proto.UserTwoStepVerificationChangeRecoveryQuestionResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationChangeHint
-**/
+ * @type ProtoUserTwoStepVerificationChangeHint
+ **/
 export const UserTwoStepVerificationChangeHint = Proto.UserTwoStepVerificationChangeHint;
 
 /**
-* @type ProtoUserTwoStepVerificationChangeHintResponse
-**/
+ * @type ProtoUserTwoStepVerificationChangeHintResponse
+ **/
 export const UserTwoStepVerificationChangeHintResponse = Proto.UserTwoStepVerificationChangeHintResponse;
 
 /**
-* @type ProtoUserTwoStepVerificationResendVerifyEmail
-**/
+ * @type ProtoUserTwoStepVerificationResendVerifyEmail
+ **/
 export const UserTwoStepVerificationResendVerifyEmail = Proto.UserTwoStepVerificationResendVerifyEmail;
 
 /**
-* @type ProtoUserTwoStepVerificationResendVerifyEmailResponse
-**/
+ * @type ProtoUserTwoStepVerificationResendVerifyEmailResponse
+ **/
 export const UserTwoStepVerificationResendVerifyEmailResponse = Proto.UserTwoStepVerificationResendVerifyEmailResponse;
 
 /**
-* @type ProtoUserPrivacyGetRule
-**/
+ * @type ProtoUserPrivacyGetRule
+ **/
 export const UserPrivacyGetRule = Proto.UserPrivacyGetRule;
 
 /**
-* @type ProtoUserPrivacyGetRuleResponse
-**/
+ * @type ProtoUserPrivacyGetRuleResponse
+ **/
 export const UserPrivacyGetRuleResponse = Proto.UserPrivacyGetRuleResponse;
 
 /**
-* @type ProtoUserPrivacySetRule
-**/
+ * @type ProtoUserPrivacySetRule
+ **/
 export const UserPrivacySetRule = Proto.UserPrivacySetRule;
 
 /**
-* @type ProtoUserPrivacySetRuleResponse
-**/
+ * @type ProtoUserPrivacySetRuleResponse
+ **/
 export const UserPrivacySetRuleResponse = Proto.UserPrivacySetRuleResponse;
 
 /**
-* @type ProtoUserVerifyNewDevice
-**/
+ * @type ProtoUserVerifyNewDevice
+ **/
 export const UserVerifyNewDevice = Proto.UserVerifyNewDevice;
 
 /**
-* @type ProtoUserVerifyNewDeviceResponse
-**/
+ * @type ProtoUserVerifyNewDeviceResponse
+ **/
 export const UserVerifyNewDeviceResponse = Proto.UserVerifyNewDeviceResponse;
+
+/**
+ * @type ProtoUserProfileSetBio
+ **/
+export const UserProfileSetBio = Proto.UserProfileSetBio;
+
+/**
+ * @type ProtoUserProfileSetBioResponse
+ **/
+export const UserProfileSetBioResponse = Proto.UserProfileSetBioResponse;
+
+/**
+ * @type ProtoUserProfileGetBio
+ **/
+export const UserProfileGetBio = Proto.UserProfileGetBio;
+
+/**
+ * @type ProtoUserProfileGetBioResponse
+ **/
+export const UserProfileGetBioResponse = Proto.UserProfileGetBioResponse;
+
+/**
+ * @type ProtoUserReport
+ **/
+export const UserReport = Proto.UserReport;
+
+/**
+ * @type ProtoUserReportResponse
+ **/
+export const UserReportResponse = Proto.UserReportResponse;
 
 //Chat 2XX
 
 /**
-* @type ProtoChatGetRoom
-**/
+ * @type ProtoChatGetRoom
+ **/
 export const ChatGetRoom = Proto.ChatGetRoom;
 
 /**
-* @type ProtoChatGetRoomResponse
-**/
+ * @type ProtoChatGetRoomResponse
+ **/
 export const ChatGetRoomResponse = Proto.ChatGetRoomResponse;
 
 /**
-* @type ProtoChatSendMessage
-**/
+ * @type ProtoChatSendMessage
+ **/
 export const ChatSendMessage = Proto.ChatSendMessage;
 
 /**
-* @type ProtoChatSendMessageResponse
-**/
+ * @type ProtoChatSendMessageResponse
+ **/
 export const ChatSendMessageResponse = Proto.ChatSendMessageResponse;
 
 /**
-* @type ProtoChatUpdateStatus
-**/
+ * @type ProtoChatUpdateStatus
+ **/
 export const ChatUpdateStatus = Proto.ChatUpdateStatus;
 
 /**
-* @type ProtoChatUpdateStatusResponse
-**/
+ * @type ProtoChatUpdateStatusResponse
+ **/
 export const ChatUpdateStatusResponse = Proto.ChatUpdateStatusResponse;
 
 /**
-* @type ProtoChatEditMessage
-**/
+ * @type ProtoChatEditMessage
+ **/
 export const ChatEditMessage = Proto.ChatEditMessage;
 
 /**
-* @type ProtoChatEditMessageResponse
-**/
+ * @type ProtoChatEditMessageResponse
+ **/
 export const ChatEditMessageResponse = Proto.ChatEditMessageResponse;
 
 /**
-* @type ProtoChatDeleteMessage
-**/
+ * @type ProtoChatDeleteMessage
+ **/
 export const ChatDeleteMessage = Proto.ChatDeleteMessage;
 
 /**
-* @type ProtoChatDeleteMessageResponse
-**/
+ * @type ProtoChatDeleteMessageResponse
+ **/
 export const ChatDeleteMessageResponse = Proto.ChatDeleteMessageResponse;
 
 /**
-* @type ProtoChatClearMessage
-**/
+ * @type ProtoChatClearMessage
+ **/
 export const ChatClearMessage = Proto.ChatClearMessage;
 
 /**
-* @type ProtoChatClearMessageResponse
-**/
+ * @type ProtoChatClearMessageResponse
+ **/
 export const ChatClearMessageResponse = Proto.ChatClearMessageResponse;
 
 /**
-* @type ProtoChatDelete
-**/
+ * @type ProtoChatDelete
+ **/
 export const ChatDelete = Proto.ChatDelete;
 
 /**
-* @type ProtoChatDeleteResponse
-**/
+ * @type ProtoChatDeleteResponse
+ **/
 export const ChatDeleteResponse = Proto.ChatDeleteResponse;
 
 /**
-* @type ProtoChatUpdateDraft
-**/
+ * @type ProtoChatUpdateDraft
+ **/
 export const ChatUpdateDraft = Proto.ChatUpdateDraft;
 
 /**
-* @type ProtoChatUpdateDraftResponse
-**/
+ * @type ProtoChatUpdateDraftResponse
+ **/
 export const ChatUpdateDraftResponse = Proto.ChatUpdateDraftResponse;
 
 /**
-* @type ProtoChatGetDraft
-**/
+ * @type ProtoChatGetDraft
+ **/
 export const ChatGetDraft = Proto.ChatGetDraft;
 
 /**
-* @type ProtoChatGetDraftResponse
-**/
+ * @type ProtoChatGetDraftResponse
+ **/
 export const ChatGetDraftResponse = Proto.ChatGetDraftResponse;
 
 /**
-* @type ProtoChatConvertToGroup
-**/
+ * @type ProtoChatConvertToGroup
+ **/
 export const ChatConvertToGroup = Proto.ChatConvertToGroup;
 
 /**
-* @type ProtoChatConvertToGroupResponse
-**/
+ * @type ProtoChatConvertToGroupResponse
+ **/
 export const ChatConvertToGroupResponse = Proto.ChatConvertToGroupResponse;
 
 /**
-* @type ProtoChatSetAction
-**/
+ * @type ProtoChatSetAction
+ **/
 export const ChatSetAction = Proto.ChatSetAction;
 
 /**
-* @type ProtoChatSetActionResponse
-**/
+ * @type ProtoChatSetActionResponse
+ **/
 export const ChatSetActionResponse = Proto.ChatSetActionResponse;
 
 //Group chat 3XX
 
 /**
-* @type ProtoGroupCreate
-**/
+ * @type ProtoGroupCreate
+ **/
 export const GroupCreate = Proto.GroupCreate;
 
 /**
-* @type ProtoGroupCreateResponse
-**/
+ * @type ProtoGroupCreateResponse
+ **/
 export const GroupCreateResponse = Proto.GroupCreateResponse;
 
 /**
-* @type ProtoGroupAddMember
-**/
+ * @type ProtoGroupAddMember
+ **/
 export const GroupAddMember = Proto.GroupAddMember;
 
 /**
-* @type ProtoGroupAddMemberResponse
-**/
+ * @type ProtoGroupAddMemberResponse
+ **/
 export const GroupAddMemberResponse = Proto.GroupAddMemberResponse;
 
 /**
-* @type ProtoGroupAddAdmin
-**/
+ * @type ProtoGroupAddAdmin
+ **/
 export const GroupAddAdmin = Proto.GroupAddAdmin;
 
 /**
-* @type ProtoGroupAddAdminResponse
-**/
+ * @type ProtoGroupAddAdminResponse
+ **/
 export const GroupAddAdminResponse = Proto.GroupAddAdminResponse;
 
 /**
-* @type ProtoGroupAddModerator
-**/
+ * @type ProtoGroupAddModerator
+ **/
 export const GroupAddModerator = Proto.GroupAddModerator;
 
 /**
-* @type ProtoGroupAddModeratorResponse
-**/
+ * @type ProtoGroupAddModeratorResponse
+ **/
 export const GroupAddModeratorResponse = Proto.GroupAddModeratorResponse;
 
 /**
-* @type ProtoGroupClearMessage
-**/
+ * @type ProtoGroupClearMessage
+ **/
 export const GroupClearMessage = Proto.GroupClearMessage;
 
 /**
-* @type ProtoGroupClearMessageResponse
-**/
+ * @type ProtoGroupClearMessageResponse
+ **/
 export const GroupClearMessageResponse = Proto.GroupClearMessageResponse;
 
 /**
-* @type ProtoGroupEdit
-**/
+ * @type ProtoGroupEdit
+ **/
 export const GroupEdit = Proto.GroupEdit;
 
 /**
-* @type ProtoGroupEditResponse
-**/
+ * @type ProtoGroupEditResponse
+ **/
 export const GroupEditResponse = Proto.GroupEditResponse;
 
 /**
-* @type ProtoGroupKickAdmin
-**/
+ * @type ProtoGroupKickAdmin
+ **/
 export const GroupKickAdmin = Proto.GroupKickAdmin;
 
 /**
-* @type ProtoGroupKickAdminResponse
-**/
+ * @type ProtoGroupKickAdminResponse
+ **/
 export const GroupKickAdminResponse = Proto.GroupKickAdminResponse;
 
 /**
-* @type ProtoGroupKickMember
-**/
+ * @type ProtoGroupKickMember
+ **/
 export const GroupKickMember = Proto.GroupKickMember;
 
 /**
-* @type ProtoGroupKickMemberResponse
-**/
+ * @type ProtoGroupKickMemberResponse
+ **/
 export const GroupKickMemberResponse = Proto.GroupKickMemberResponse;
 
 /**
-* @type ProtoGroupKickModerator
-**/
+ * @type ProtoGroupKickModerator
+ **/
 export const GroupKickModerator = Proto.GroupKickModerator;
 
 /**
-* @type ProtoGroupKickModeratorResponse
-**/
+ * @type ProtoGroupKickModeratorResponse
+ **/
 export const GroupKickModeratorResponse = Proto.GroupKickModeratorResponse;
 
 /**
-* @type ProtoGroupLeft
-**/
+ * @type ProtoGroupLeft
+ **/
 export const GroupLeft = Proto.GroupLeft;
 
 /**
-* @type ProtoGroupLeftResponse
-**/
+ * @type ProtoGroupLeftResponse
+ **/
 export const GroupLeftResponse = Proto.GroupLeftResponse;
 
 /**
-* @type ProtoGroupSendMessage
-**/
+ * @type ProtoGroupSendMessage
+ **/
 export const GroupSendMessage = Proto.GroupSendMessage;
 
 /**
-* @type ProtoGroupSendMessageResponse
-**/
+ * @type ProtoGroupSendMessageResponse
+ **/
 export const GroupSendMessageResponse = Proto.GroupSendMessageResponse;
 
 /**
-* @type ProtoGroupUpdateStatus
-**/
+ * @type ProtoGroupUpdateStatus
+ **/
 export const GroupUpdateStatus = Proto.GroupUpdateStatus;
 
 /**
-* @type ProtoGroupUpdateStatusResponse
-**/
+ * @type ProtoGroupUpdateStatusResponse
+ **/
 export const GroupUpdateStatusResponse = Proto.GroupUpdateStatusResponse;
 
 /**
-* @type ProtoGroupAvatarAdd
-**/
+ * @type ProtoGroupAvatarAdd
+ **/
 export const GroupAvatarAdd = Proto.GroupAvatarAdd;
 
 /**
-* @type ProtoGroupAvatarAddResponse
-**/
+ * @type ProtoGroupAvatarAddResponse
+ **/
 export const GroupAvatarAddResponse = Proto.GroupAvatarAddResponse;
 
 /**
-* @type ProtoGroupAvatarDelete
-**/
+ * @type ProtoGroupAvatarDelete
+ **/
 export const GroupAvatarDelete = Proto.GroupAvatarDelete;
 
 /**
-* @type ProtoGroupAvatarDeleteResponse
-**/
+ * @type ProtoGroupAvatarDeleteResponse
+ **/
 export const GroupAvatarDeleteResponse = Proto.GroupAvatarDeleteResponse;
 
 /**
-* @type ProtoGroupAvatarGetList
-**/
+ * @type ProtoGroupAvatarGetList
+ **/
 export const GroupAvatarGetList = Proto.GroupAvatarGetList;
 
 /**
-* @type ProtoGroupAvatarGetListResponse
-**/
+ * @type ProtoGroupAvatarGetListResponse
+ **/
 export const GroupAvatarGetListResponse = Proto.GroupAvatarGetListResponse;
 
 /**
-* @type ProtoGroupUpdateDraft
-**/
+ * @type ProtoGroupUpdateDraft
+ **/
 export const GroupUpdateDraft = Proto.GroupUpdateDraft;
 
 /**
-* @type ProtoGroupUpdateDraftResponse
-**/
+ * @type ProtoGroupUpdateDraftResponse
+ **/
 export const GroupUpdateDraftResponse = Proto.GroupUpdateDraftResponse;
 
 /**
-* @type ProtoGroupGetDraft
-**/
+ * @type ProtoGroupGetDraft
+ **/
 export const GroupGetDraft = Proto.GroupGetDraft;
 
 /**
-* @type ProtoGroupGetDraftResponse
-**/
+ * @type ProtoGroupGetDraftResponse
+ **/
 export const GroupGetDraftResponse = Proto.GroupGetDraftResponse;
 
 /**
-* @type ProtoGroupGetMemberList
-**/
+ * @type ProtoGroupGetMemberList
+ **/
 export const GroupGetMemberList = Proto.GroupGetMemberList;
 
 /**
-* @type ProtoGroupGetMemberListResponse
-**/
+ * @type ProtoGroupGetMemberListResponse
+ **/
 export const GroupGetMemberListResponse = Proto.GroupGetMemberListResponse;
 
 /**
-* @type ProtoGroupDelete
-**/
+ * @type ProtoGroupDelete
+ **/
 export const GroupDelete = Proto.GroupDelete;
 
 /**
-* @type ProtoGroupDeleteResponse
-**/
+ * @type ProtoGroupDeleteResponse
+ **/
 export const GroupDeleteResponse = Proto.GroupDeleteResponse;
 
 /**
-* @type ProtoGroupSetAction
-**/
+ * @type ProtoGroupSetAction
+ **/
 export const GroupSetAction = Proto.GroupSetAction;
 
 /**
-* @type ProtoGroupSetActionResponse
-**/
+ * @type ProtoGroupSetActionResponse
+ **/
 export const GroupSetActionResponse = Proto.GroupSetActionResponse;
 
 /**
-* @type ProtoGroupDeleteMessage
-**/
+ * @type ProtoGroupDeleteMessage
+ **/
 export const GroupDeleteMessage = Proto.GroupDeleteMessage;
 
 /**
-* @type ProtoGroupDeleteMessageResponse
-**/
+ * @type ProtoGroupDeleteMessageResponse
+ **/
 export const GroupDeleteMessageResponse = Proto.GroupDeleteMessageResponse;
 
 /**
-* @type ProtoGroupCheckUsername
-**/
+ * @type ProtoGroupCheckUsername
+ **/
 export const GroupCheckUsername = Proto.GroupCheckUsername;
 
 /**
-* @type ProtoGroupCheckUsernameResponse
-**/
+ * @type ProtoGroupCheckUsernameResponse
+ **/
 export const GroupCheckUsernameResponse = Proto.GroupCheckUsernameResponse;
 
 /**
-* @type ProtoGroupUpdateUsername
-**/
+ * @type ProtoGroupUpdateUsername
+ **/
 export const GroupUpdateUsername = Proto.GroupUpdateUsername;
 
 /**
-* @type ProtoGroupUpdateUsernameResponse
-**/
+ * @type ProtoGroupUpdateUsernameResponse
+ **/
 export const GroupUpdateUsernameResponse = Proto.GroupUpdateUsernameResponse;
 
 /**
-* @type ProtoGroupRemoveUsername
-**/
+ * @type ProtoGroupRemoveUsername
+ **/
 export const GroupRemoveUsername = Proto.GroupRemoveUsername;
 
 /**
-* @type ProtoGroupRemoveUsernameResponse
-**/
+ * @type ProtoGroupRemoveUsernameResponse
+ **/
 export const GroupRemoveUsernameResponse = Proto.GroupRemoveUsernameResponse;
 
 /**
-* @type ProtoGroupRevokeLink
-**/
+ * @type ProtoGroupRevokeLink
+ **/
 export const GroupRevokeLink = Proto.GroupRevokeLink;
 
 /**
-* @type ProtoGroupRevokeLinkResponse
-**/
+ * @type ProtoGroupRevokeLinkResponse
+ **/
 export const GroupRevokeLinkResponse = Proto.GroupRevokeLinkResponse;
 
 /**
-* @type ProtoGroupEditMessage
-**/
+ * @type ProtoGroupEditMessage
+ **/
 export const GroupEditMessage = Proto.GroupEditMessage;
 
 /**
-* @type ProtoGroupEditMessageResponse
-**/
+ * @type ProtoGroupEditMessageResponse
+ **/
 export const GroupEditMessageResponse = Proto.GroupEditMessageResponse;
 
 //Channel 4XX
 
 /**
-* @type ProtoChannelCreate
-**/
+ * @type ProtoChannelCreate
+ **/
 export const ChannelCreate = Proto.ChannelCreate;
 
 /**
-* @type ProtoChannelCreateResponse
-**/
+ * @type ProtoChannelCreateResponse
+ **/
 export const ChannelCreateResponse = Proto.ChannelCreateResponse;
 
 /**
-* @type ProtoChannelAddMember
-**/
+ * @type ProtoChannelAddMember
+ **/
 export const ChannelAddMember = Proto.ChannelAddMember;
 
 /**
-* @type ProtoChannelAddMemberResponse
-**/
+ * @type ProtoChannelAddMemberResponse
+ **/
 export const ChannelAddMemberResponse = Proto.ChannelAddMemberResponse;
 
 /**
-* @type ProtoChannelAddAdmin
-**/
+ * @type ProtoChannelAddAdmin
+ **/
 export const ChannelAddAdmin = Proto.ChannelAddAdmin;
 
 /**
-* @type ProtoChannelAddAdminResponse
-**/
+ * @type ProtoChannelAddAdminResponse
+ **/
 export const ChannelAddAdminResponse = Proto.ChannelAddAdminResponse;
 
 /**
-* @type ProtoChannelAddModerator
-**/
+ * @type ProtoChannelAddModerator
+ **/
 export const ChannelAddModerator = Proto.ChannelAddModerator;
 
 /**
-* @type ProtoChannelAddModeratorResponse
-**/
+ * @type ProtoChannelAddModeratorResponse
+ **/
 export const ChannelAddModeratorResponse = Proto.ChannelAddModeratorResponse;
 
 /**
-* @type ProtoChannelDelete
-**/
+ * @type ProtoChannelDelete
+ **/
 export const ChannelDelete = Proto.ChannelDelete;
 
 /**
-* @type ProtoChannelDeleteResponse
-**/
+ * @type ProtoChannelDeleteResponse
+ **/
 export const ChannelDeleteResponse = Proto.ChannelDeleteResponse;
 
 /**
-* @type ProtoChannelEdit
-**/
+ * @type ProtoChannelEdit
+ **/
 export const ChannelEdit = Proto.ChannelEdit;
 
 /**
-* @type ProtoChannelEditResponse
-**/
+ * @type ProtoChannelEditResponse
+ **/
 export const ChannelEditResponse = Proto.ChannelEditResponse;
 
 /**
-* @type ProtoChannelKickAdmin
-**/
+ * @type ProtoChannelKickAdmin
+ **/
 export const ChannelKickAdmin = Proto.ChannelKickAdmin;
 
 /**
-* @type ProtoChannelKickAdminResponse
-**/
+ * @type ProtoChannelKickAdminResponse
+ **/
 export const ChannelKickAdminResponse = Proto.ChannelKickAdminResponse;
 
 /**
-* @type ProtoChannelKickMember
-**/
+ * @type ProtoChannelKickMember
+ **/
 export const ChannelKickMember = Proto.ChannelKickMember;
 
 /**
-* @type ProtoChannelKickMemberResponse
-**/
+ * @type ProtoChannelKickMemberResponse
+ **/
 export const ChannelKickMemberResponse = Proto.ChannelKickMemberResponse;
 
 /**
-* @type ProtoChannelKickModerator
-**/
+ * @type ProtoChannelKickModerator
+ **/
 export const ChannelKickModerator = Proto.ChannelKickModerator;
 
 /**
-* @type ProtoChannelKickModeratorResponse
-**/
+ * @type ProtoChannelKickModeratorResponse
+ **/
 export const ChannelKickModeratorResponse = Proto.ChannelKickModeratorResponse;
 
 /**
-* @type ProtoChannelLeft
-**/
+ * @type ProtoChannelLeft
+ **/
 export const ChannelLeft = Proto.ChannelLeft;
 
 /**
-* @type ProtoChannelLeftResponse
-**/
+ * @type ProtoChannelLeftResponse
+ **/
 export const ChannelLeftResponse = Proto.ChannelLeftResponse;
 
 /**
-* @type ProtoChannelSendMessage
-**/
+ * @type ProtoChannelSendMessage
+ **/
 export const ChannelSendMessage = Proto.ChannelSendMessage;
 
 /**
-* @type ProtoChannelSendMessageResponse
-**/
+ * @type ProtoChannelSendMessageResponse
+ **/
 export const ChannelSendMessageResponse = Proto.ChannelSendMessageResponse;
 
 /**
-* @type ProtoChannelDeleteMessage
-**/
+ * @type ProtoChannelDeleteMessage
+ **/
 export const ChannelDeleteMessage = Proto.ChannelDeleteMessage;
 
 /**
-* @type ProtoChannelDeleteMessageResponse
-**/
+ * @type ProtoChannelDeleteMessageResponse
+ **/
 export const ChannelDeleteMessageResponse = Proto.ChannelDeleteMessageResponse;
 
 /**
-* @type ProtoChannelAvatarAdd
-**/
+ * @type ProtoChannelAvatarAdd
+ **/
 export const ChannelAvatarAdd = Proto.ChannelAvatarAdd;
 
 /**
-* @type ProtoChannelAvatarAddResponse
-**/
+ * @type ProtoChannelAvatarAddResponse
+ **/
 export const ChannelAvatarAddResponse = Proto.ChannelAvatarAddResponse;
 
 /**
-* @type ProtoChannelAvatarDelete
-**/
+ * @type ProtoChannelAvatarDelete
+ **/
 export const ChannelAvatarDelete = Proto.ChannelAvatarDelete;
 
 /**
-* @type ProtoChannelAvatarDeleteResponse
-**/
+ * @type ProtoChannelAvatarDeleteResponse
+ **/
 export const ChannelAvatarDeleteResponse = Proto.ChannelAvatarDeleteResponse;
 
 /**
-* @type ProtoChannelAvatarGetList
-**/
+ * @type ProtoChannelAvatarGetList
+ **/
 export const ChannelAvatarGetList = Proto.ChannelAvatarGetList;
 
 /**
-* @type ProtoChannelAvatarGetListResponse
-**/
+ * @type ProtoChannelAvatarGetListResponse
+ **/
 export const ChannelAvatarGetListResponse = Proto.ChannelAvatarGetListResponse;
 
 /**
-* @type ProtoChannelUpdateDraft
-**/
+ * @type ProtoChannelUpdateDraft
+ **/
 export const ChannelUpdateDraft = Proto.ChannelUpdateDraft;
 
 /**
-* @type ProtoChannelUpdateDraftResponse
-**/
+ * @type ProtoChannelUpdateDraftResponse
+ **/
 export const ChannelUpdateDraftResponse = Proto.ChannelUpdateDraftResponse;
 
 /**
-* @type ProtoChannelGetDraft
-**/
+ * @type ProtoChannelGetDraft
+ **/
 export const ChannelGetDraft = Proto.ChannelGetDraft;
 
 /**
-* @type ProtoChannelGetDraftResponse
-**/
+ * @type ProtoChannelGetDraftResponse
+ **/
 export const ChannelGetDraftResponse = Proto.ChannelGetDraftResponse;
 
 /**
-* @type ProtoChannelGetMemberList
-**/
+ * @type ProtoChannelGetMemberList
+ **/
 export const ChannelGetMemberList = Proto.ChannelGetMemberList;
 
 /**
-* @type ProtoChannelGetMemberListResponse
-**/
+ * @type ProtoChannelGetMemberListResponse
+ **/
 export const ChannelGetMemberListResponse = Proto.ChannelGetMemberListResponse;
 
 /**
-* @type ProtoChannelCheckUsername
-**/
+ * @type ProtoChannelCheckUsername
+ **/
 export const ChannelCheckUsername = Proto.ChannelCheckUsername;
 
 /**
-* @type ProtoChannelCheckUsernameResponse
-**/
+ * @type ProtoChannelCheckUsernameResponse
+ **/
 export const ChannelCheckUsernameResponse = Proto.ChannelCheckUsernameResponse;
 
 /**
-* @type ProtoChannelUpdateUsername
-**/
+ * @type ProtoChannelUpdateUsername
+ **/
 export const ChannelUpdateUsername = Proto.ChannelUpdateUsername;
 
 /**
-* @type ProtoChannelUpdateUsernameResponse
-**/
+ * @type ProtoChannelUpdateUsernameResponse
+ **/
 export const ChannelUpdateUsernameResponse = Proto.ChannelUpdateUsernameResponse;
 
 /**
-* @type ProtoChannelRemoveUsername
-**/
+ * @type ProtoChannelRemoveUsername
+ **/
 export const ChannelRemoveUsername = Proto.ChannelRemoveUsername;
 
 /**
-* @type ProtoChannelRemoveUsernameResponse
-**/
+ * @type ProtoChannelRemoveUsernameResponse
+ **/
 export const ChannelRemoveUsernameResponse = Proto.ChannelRemoveUsernameResponse;
 
 /**
-* @type ProtoChannelRevokeLink
-**/
+ * @type ProtoChannelRevokeLink
+ **/
 export const ChannelRevokeLink = Proto.ChannelRevokeLink;
 
 /**
-* @type ProtoChannelRevokeLinkResponse
-**/
+ * @type ProtoChannelRevokeLinkResponse
+ **/
 export const ChannelRevokeLinkResponse = Proto.ChannelRevokeLinkResponse;
 
 /**
-* @type ProtoChannelUpdateSignature
-**/
+ * @type ProtoChannelUpdateSignature
+ **/
 export const ChannelUpdateSignature = Proto.ChannelUpdateSignature;
 
 /**
-* @type ProtoChannelUpdateSignatureResponse
-**/
+ * @type ProtoChannelUpdateSignatureResponse
+ **/
 export const ChannelUpdateSignatureResponse = Proto.ChannelUpdateSignatureResponse;
 
 /**
-* @type ProtoChannelGetMessagesStats
-**/
+ * @type ProtoChannelGetMessagesStats
+ **/
 export const ChannelGetMessagesStats = Proto.ChannelGetMessagesStats;
 
 /**
-* @type ProtoChannelGetMessagesStatsResponse
-**/
+ * @type ProtoChannelGetMessagesStatsResponse
+ **/
 export const ChannelGetMessagesStatsResponse = Proto.ChannelGetMessagesStatsResponse;
 
 /**
-* @type ProtoChannelAddMessageReaction
-**/
+ * @type ProtoChannelAddMessageReaction
+ **/
 export const ChannelAddMessageReaction = Proto.ChannelAddMessageReaction;
 
 /**
-* @type ProtoChannelAddMessageReactionResponse
-**/
+ * @type ProtoChannelAddMessageReactionResponse
+ **/
 export const ChannelAddMessageReactionResponse = Proto.ChannelAddMessageReactionResponse;
 
 /**
-* @type ProtoChannelEditMessage
-**/
+ * @type ProtoChannelEditMessage
+ **/
 export const ChannelEditMessage = Proto.ChannelEditMessage;
 
 /**
-* @type ProtoChannelEditMessageResponse
-**/
+ * @type ProtoChannelEditMessageResponse
+ **/
 export const ChannelEditMessageResponse = Proto.ChannelEditMessageResponse;
 
 //Info 5XX
 
 /**
-* @type ProtoInfoLocation
-**/
+ * @type ProtoInfoLocation
+ **/
 export const InfoLocation = Proto.InfoLocation;
 
 /**
-* @type ProtoInfoLocationResponse
-**/
+ * @type ProtoInfoLocationResponse
+ **/
 export const InfoLocationResponse = Proto.InfoLocationResponse;
 
 /**
-* @type ProtoInfoCountry
-**/
+ * @type ProtoInfoCountry
+ **/
 export const InfoCountry = Proto.InfoCountry;
 
 /**
-* @type ProtoInfoCountryResponse
-**/
+ * @type ProtoInfoCountryResponse
+ **/
 export const InfoCountryResponse = Proto.InfoCountryResponse;
 
 /**
-* @type ProtoInfoTime
-**/
+ * @type ProtoInfoTime
+ **/
 export const InfoTime = Proto.InfoTime;
 
 /**
-* @type ProtoInfoTimeResponse
-**/
+ * @type ProtoInfoTimeResponse
+ **/
 export const InfoTimeResponse = Proto.InfoTimeResponse;
 
 /**
-* @type ProtoInfoPage
-**/
+ * @type ProtoInfoPage
+ **/
 export const InfoPage = Proto.InfoPage;
 
 /**
-* @type ProtoInfoPageResponse
-**/
+ * @type ProtoInfoPageResponse
+ **/
 export const InfoPageResponse = Proto.InfoPageResponse;
 
 /**
-* @type ProtoInfoWallpaper
-**/
+ * @type ProtoInfoWallpaper
+ **/
 export const InfoWallpaper = Proto.InfoWallpaper;
 
 /**
-* @type ProtoInfoWallpaperResponse
-**/
+ * @type ProtoInfoWallpaperResponse
+ **/
 export const InfoWallpaperResponse = Proto.InfoWallpaperResponse;
 
 //Client 6XX
 
 /**
-* @type ProtoClientCondition
-**/
+ * @type ProtoClientCondition
+ **/
 export const ClientCondition = Proto.ClientCondition;
 
 /**
-* @type ProtoClientConditionResponse
-**/
+ * @type ProtoClientConditionResponse
+ **/
 export const ClientConditionResponse = Proto.ClientConditionResponse;
 
 /**
-* @type ProtoClientGetRoomList
-**/
+ * @type ProtoClientGetRoomList
+ **/
 export const ClientGetRoomList = Proto.ClientGetRoomList;
 
 /**
-* @type ProtoClientGetRoomListResponse
-**/
+ * @type ProtoClientGetRoomListResponse
+ **/
 export const ClientGetRoomListResponse = Proto.ClientGetRoomListResponse;
 
 /**
-* @type ProtoClientGetRoom
-**/
+ * @type ProtoClientGetRoom
+ **/
 export const ClientGetRoom = Proto.ClientGetRoom;
 
 /**
-* @type ProtoClientGetRoomResponse
-**/
+ * @type ProtoClientGetRoomResponse
+ **/
 export const ClientGetRoomResponse = Proto.ClientGetRoomResponse;
 
 /**
-* @type ProtoClientGetRoomHistory
-**/
+ * @type ProtoClientGetRoomHistory
+ **/
 export const ClientGetRoomHistory = Proto.ClientGetRoomHistory;
 
 /**
-* @type ProtoClientGetRoomHistoryResponse
-**/
+ * @type ProtoClientGetRoomHistoryResponse
+ **/
 export const ClientGetRoomHistoryResponse = Proto.ClientGetRoomHistoryResponse;
 
 /**
-* @type ProtoClientGetRoomMessage
-**/
+ * @type ProtoClientGetRoomMessage
+ **/
 export const ClientGetRoomMessage = Proto.ClientGetRoomMessage;
 
 /**
-* @type ProtoClientGetRoomMessageResponse
-**/
+ * @type ProtoClientGetRoomMessageResponse
+ **/
 export const ClientGetRoomMessageResponse = Proto.ClientGetRoomMessageResponse;
 
 /**
-* @type ProtoClientSearchRoomHistory
-**/
+ * @type ProtoClientSearchRoomHistory
+ **/
 export const ClientSearchRoomHistory = Proto.ClientSearchRoomHistory;
 
 /**
-* @type ProtoClientSearchRoomHistoryResponse
-**/
+ * @type ProtoClientSearchRoomHistoryResponse
+ **/
 export const ClientSearchRoomHistoryResponse = Proto.ClientSearchRoomHistoryResponse;
 
 /**
-* @type ProtoClientResolveUsername
-**/
+ * @type ProtoClientResolveUsername
+ **/
 export const ClientResolveUsername = Proto.ClientResolveUsername;
 
 /**
-* @type ProtoClientResolveUsernameResponse
-**/
+ * @type ProtoClientResolveUsernameResponse
+ **/
 export const ClientResolveUsernameResponse = Proto.ClientResolveUsernameResponse;
 
 /**
-* @type ProtoClientCheckInviteLink
-**/
+ * @type ProtoClientCheckInviteLink
+ **/
 export const ClientCheckInviteLink = Proto.ClientCheckInviteLink;
 
 /**
-* @type ProtoClientCheckInviteLinkResponse
-**/
+ * @type ProtoClientCheckInviteLinkResponse
+ **/
 export const ClientCheckInviteLinkResponse = Proto.ClientCheckInviteLinkResponse;
 
 /**
-* @type ProtoClientJoinByInviteLink
-**/
+ * @type ProtoClientJoinByInviteLink
+ **/
 export const ClientJoinByInviteLink = Proto.ClientJoinByInviteLink;
 
 /**
-* @type ProtoClientJoinByInviteLinkResponse
-**/
+ * @type ProtoClientJoinByInviteLinkResponse
+ **/
 export const ClientJoinByInviteLinkResponse = Proto.ClientJoinByInviteLinkResponse;
 
 /**
-* @type ProtoClientJoinByUsername
-**/
+ * @type ProtoClientJoinByUsername
+ **/
 export const ClientJoinByUsername = Proto.ClientJoinByUsername;
 
 /**
-* @type ProtoClientJoinByUsernameResponse
-**/
+ * @type ProtoClientJoinByUsernameResponse
+ **/
 export const ClientJoinByUsernameResponse = Proto.ClientJoinByUsernameResponse;
 
 /**
-* @type ProtoClientSubscribeToRoom
-**/
+ * @type ProtoClientSubscribeToRoom
+ **/
 export const ClientSubscribeToRoom = Proto.ClientSubscribeToRoom;
 
 /**
-* @type ProtoClientSubscribeToRoomResponse
-**/
+ * @type ProtoClientSubscribeToRoomResponse
+ **/
 export const ClientSubscribeToRoomResponse = Proto.ClientSubscribeToRoomResponse;
 
 /**
-* @type ProtoClientUnsubscribeFromRoom
-**/
+ * @type ProtoClientUnsubscribeFromRoom
+ **/
 export const ClientUnsubscribeFromRoom = Proto.ClientUnsubscribeFromRoom;
 
 /**
-* @type ProtoClientUnsubscribeFromRoomResponse
-**/
+ * @type ProtoClientUnsubscribeFromRoomResponse
+ **/
 export const ClientUnsubscribeFromRoomResponse = Proto.ClientUnsubscribeFromRoomResponse;
 
 /**
-* @type ProtoClientSearchUsername
-**/
+ * @type ProtoClientSearchUsername
+ **/
 export const ClientSearchUsername = Proto.ClientSearchUsername;
 
 /**
-* @type ProtoClientSearchUsernameResponse
-**/
+ * @type ProtoClientSearchUsernameResponse
+ **/
 export const ClientSearchUsernameResponse = Proto.ClientSearchUsernameResponse;
 
 /**
-* @type ProtoClientCountRoomHistory
-**/
+ * @type ProtoClientCountRoomHistory
+ **/
 export const ClientCountRoomHistory = Proto.ClientCountRoomHistory;
 
 /**
-* @type ProtoClientCountRoomHistoryResponse
-**/
+ * @type ProtoClientCountRoomHistoryResponse
+ **/
 export const ClientCountRoomHistoryResponse = Proto.ClientCountRoomHistoryResponse;
+
+/**
+ * @type ProtoClientMuteRoom
+ **/
+export const ClientMuteRoom = Proto.ClientMuteRoom;
+
+/**
+ * @type ProtoClientMuteRoomResponse
+ **/
+export const ClientMuteRoomResponse = Proto.ClientMuteRoomResponse;
+
+/**
+ * @type ProtoClientPinRoom
+ **/
+export const ClientPinRoom = Proto.ClientPinRoom;
+
+/**
+ * @type ProtoClientPinRoomResponse
+ **/
+export const ClientPinRoomResponse = Proto.ClientPinRoomResponse;
+
+/**
+ * @type ProtoClientRoomReport
+ **/
+export const ClientRoomReport = Proto.ClientRoomReport;
+
+/**
+ * @type ProtoClientRoomReportResponse
+ **/
+export const ClientRoomReportResponse = Proto.ClientRoomReportResponse;
 
 //File 7XX
 
 /**
-* @type ProtoFileUploadOption
-**/
+ * @type ProtoFileUploadOption
+ **/
 export const FileUploadOption = Proto.FileUploadOption;
 
 /**
-* @type ProtoFileUploadOptionResponse
-**/
+ * @type ProtoFileUploadOptionResponse
+ **/
 export const FileUploadOptionResponse = Proto.FileUploadOptionResponse;
 
 /**
-* @type ProtoFileUploadInit
-**/
+ * @type ProtoFileUploadInit
+ **/
 export const FileUploadInit = Proto.FileUploadInit;
 
 /**
-* @type ProtoFileUploadInitResponse
-**/
+ * @type ProtoFileUploadInitResponse
+ **/
 export const FileUploadInitResponse = Proto.FileUploadInitResponse;
 
 /**
-* @type ProtoFileUpload
-**/
+ * @type ProtoFileUpload
+ **/
 export const FileUpload = Proto.FileUpload;
 
 /**
-* @type ProtoFileUploadResponse
-**/
+ * @type ProtoFileUploadResponse
+ **/
 export const FileUploadResponse = Proto.FileUploadResponse;
 
 /**
-* @type ProtoFileUploadStatus
-**/
+ * @type ProtoFileUploadStatus
+ **/
 export const FileUploadStatus = Proto.FileUploadStatus;
 
 /**
-* @type ProtoFileUploadStatusResponse
-**/
+ * @type ProtoFileUploadStatusResponse
+ **/
 export const FileUploadStatusResponse = Proto.FileUploadStatusResponse;
 
 /**
-* @type ProtoFileInfo
-**/
+ * @type ProtoFileInfo
+ **/
 export const FileInfo = Proto.FileInfo;
 
 /**
-* @type ProtoFileInfoResponse
-**/
+ * @type ProtoFileInfoResponse
+ **/
 export const FileInfoResponse = Proto.FileInfoResponse;
 
 /**
-* @type ProtoFileDownload
-**/
+ * @type ProtoFileDownload
+ **/
 export const FileDownload = Proto.FileDownload;
 
 /**
-* @type ProtoFileDownloadResponse
-**/
+ * @type ProtoFileDownloadResponse
+ **/
 export const FileDownloadResponse = Proto.FileDownloadResponse;
 
 //QrCode 8XX
 
 /**
-* @type ProtoQrCodeJoin
-**/
+ * @type ProtoQrCodeJoin
+ **/
 export const QrCodeJoin = Proto.QrCodeJoin;
 
 /**
-* @type ProtoQrCodeJoinResponse
-**/
+ * @type ProtoQrCodeJoinResponse
+ **/
 export const QrCodeJoinResponse = Proto.QrCodeJoinResponse;
 
 /**
-* @type ProtoQrCodeResolve
-**/
+ * @type ProtoQrCodeResolve
+ **/
 export const QrCodeResolve = Proto.QrCodeResolve;
 
 /**
-* @type ProtoQrCodeResolveResponse
-**/
+ * @type ProtoQrCodeResolveResponse
+ **/
 export const QrCodeResolveResponse = Proto.QrCodeResolveResponse;
 
 /**
-* @type ProtoQrCodeNewDevice
-**/
+ * @type ProtoQrCodeNewDevice
+ **/
 export const QrCodeNewDevice = Proto.QrCodeNewDevice;
 
 /**
-* @type ProtoQrCodeNewDeviceResponse
-**/
+ * @type ProtoQrCodeNewDeviceResponse
+ **/
 export const QrCodeNewDeviceResponse = Proto.QrCodeNewDeviceResponse;
 
 /**
-* @type ProtoQrCodeAddContact
-**/
+ * @type ProtoQrCodeAddContact
+ **/
 export const QrCodeAddContact = Proto.QrCodeAddContact;
 
 /**
-* @type ProtoQrCodeAddContactResponse
-**/
+ * @type ProtoQrCodeAddContactResponse
+ **/
 export const QrCodeAddContactResponse = Proto.QrCodeAddContactResponse;
 
 /**
-* @type ProtoQrCodeAddMe
-**/
+ * @type ProtoQrCodeAddMe
+ **/
 export const QrCodeAddMe = Proto.QrCodeAddMe;
 
 /**
-* @type ProtoQrCodeAddMeResponse
-**/
+ * @type ProtoQrCodeAddMeResponse
+ **/
 export const QrCodeAddMeResponse = Proto.QrCodeAddMeResponse;
 
 //Signaling 9XX
 
 /**
-* @type ProtoSignalingGetConfiguration
-**/
+ * @type ProtoSignalingGetConfiguration
+ **/
 export const SignalingGetConfiguration = Proto.SignalingGetConfiguration;
 
 /**
-* @type ProtoSignalingGetConfigurationResponse
-**/
+ * @type ProtoSignalingGetConfigurationResponse
+ **/
 export const SignalingGetConfigurationResponse = Proto.SignalingGetConfigurationResponse;
 
 /**
-* @type ProtoSignalingOffer
-**/
+ * @type ProtoSignalingOffer
+ **/
 export const SignalingOffer = Proto.SignalingOffer;
 
 /**
-* @type ProtoSignalingOfferResponse
-**/
+ * @type ProtoSignalingOfferResponse
+ **/
 export const SignalingOfferResponse = Proto.SignalingOfferResponse;
 
 /**
-* @type ProtoSignalingRinging
-**/
+ * @type ProtoSignalingRinging
+ **/
 export const SignalingRinging = Proto.SignalingRinging;
 
 /**
-* @type ProtoSignalingRingingResponse
-**/
+ * @type ProtoSignalingRingingResponse
+ **/
 export const SignalingRingingResponse = Proto.SignalingRingingResponse;
 
 /**
-* @type ProtoSignalingAccept
-**/
+ * @type ProtoSignalingAccept
+ **/
 export const SignalingAccept = Proto.SignalingAccept;
 
 /**
-* @type ProtoSignalingAcceptResponse
-**/
+ * @type ProtoSignalingAcceptResponse
+ **/
 export const SignalingAcceptResponse = Proto.SignalingAcceptResponse;
 
 /**
-* @type ProtoSignalingCandidate
-**/
+ * @type ProtoSignalingCandidate
+ **/
 export const SignalingCandidate = Proto.SignalingCandidate;
 
 /**
-* @type ProtoSignalingCandidateResponse
-**/
+ * @type ProtoSignalingCandidateResponse
+ **/
 export const SignalingCandidateResponse = Proto.SignalingCandidateResponse;
 
 /**
-* @type ProtoSignalingLeave
-**/
+ * @type ProtoSignalingLeave
+ **/
 export const SignalingLeave = Proto.SignalingLeave;
 
 /**
-* @type ProtoSignalingLeaveResponse
-**/
+ * @type ProtoSignalingLeaveResponse
+ **/
 export const SignalingLeaveResponse = Proto.SignalingLeaveResponse;
 
 /**
-* @type ProtoSignalingSessionHold
-**/
+ * @type ProtoSignalingSessionHold
+ **/
 export const SignalingSessionHold = Proto.SignalingSessionHold;
 
 /**
-* @type ProtoSignalingSessionHoldResponse
-**/
+ * @type ProtoSignalingSessionHoldResponse
+ **/
 export const SignalingSessionHoldResponse = Proto.SignalingSessionHoldResponse;
 
 /**
-* @type ProtoSignalingGetLog
-**/
+ * @type ProtoSignalingGetLog
+ **/
 export const SignalingGetLog = Proto.SignalingGetLog;
 
 /**
-* @type ProtoSignalingGetLogResponse
-**/
+ * @type ProtoSignalingGetLogResponse
+ **/
 export const SignalingGetLogResponse = Proto.SignalingGetLogResponse;
 
 /**
-* @type ProtoSignalingClearLog
-**/
+ * @type ProtoSignalingClearLog
+ **/
 export const SignalingClearLog = Proto.SignalingClearLog;
 
 /**
-* @type ProtoSignalingClearLogResponse
-**/
+ * @type ProtoSignalingClearLogResponse
+ **/
 export const SignalingClearLogResponse = Proto.SignalingClearLogResponse;
 
 /**
-* @type ProtoSignalingRate
-**/
+ * @type ProtoSignalingRate
+ **/
 export const SignalingRate = Proto.SignalingRate;
 
 /**
-* @type ProtoSignalingRateResponse
-**/
+ * @type ProtoSignalingRateResponse
+ **/
 export const SignalingRateResponse = Proto.SignalingRateResponse;
 
 //Geo 10XX
 
 /**
-* @type ProtoGeoGetRegisterStatus
-**/
+ * @type ProtoGeoGetRegisterStatus
+ **/
 export const GeoGetRegisterStatus = Proto.GeoGetRegisterStatus;
 
 /**
-* @type ProtoGeoGetRegisterStatusResponse
-**/
+ * @type ProtoGeoGetRegisterStatusResponse
+ **/
 export const GeoGetRegisterStatusResponse = Proto.GeoGetRegisterStatusResponse;
 
 /**
-* @type ProtoGeoRegister
-**/
+ * @type ProtoGeoRegister
+ **/
 export const GeoRegister = Proto.GeoRegister;
 
 /**
-* @type ProtoGeoRegisterResponse
-**/
+ * @type ProtoGeoRegisterResponse
+ **/
 export const GeoRegisterResponse = Proto.GeoRegisterResponse;
 
 /**
-* @type ProtoGeoUpdatePosition
-**/
+ * @type ProtoGeoUpdatePosition
+ **/
 export const GeoUpdatePosition = Proto.GeoUpdatePosition;
 
 /**
-* @type ProtoGeoUpdatePositionResponse
-**/
+ * @type ProtoGeoUpdatePositionResponse
+ **/
 export const GeoUpdatePositionResponse = Proto.GeoUpdatePositionResponse;
 
 /**
-* @type ProtoGeoGetComment
-**/
+ * @type ProtoGeoGetComment
+ **/
 export const GeoGetComment = Proto.GeoGetComment;
 
 /**
-* @type ProtoGeoGetCommentResponse
-**/
+ * @type ProtoGeoGetCommentResponse
+ **/
 export const GeoGetCommentResponse = Proto.GeoGetCommentResponse;
 
 /**
-* @type ProtoGeoUpdateComment
-**/
+ * @type ProtoGeoUpdateComment
+ **/
 export const GeoUpdateComment = Proto.GeoUpdateComment;
 
 /**
-* @type ProtoGeoUpdateCommentResponse
-**/
+ * @type ProtoGeoUpdateCommentResponse
+ **/
 export const GeoUpdateCommentResponse = Proto.GeoUpdateCommentResponse;
 
 /**
-* @type ProtoGeoGetNearbyDistance
-**/
+ * @type ProtoGeoGetNearbyDistance
+ **/
 export const GeoGetNearbyDistance = Proto.GeoGetNearbyDistance;
 
 /**
-* @type ProtoGeoGetNearbyDistanceResponse
-**/
+ * @type ProtoGeoGetNearbyDistanceResponse
+ **/
 export const GeoGetNearbyDistanceResponse = Proto.GeoGetNearbyDistanceResponse;
 
 /**
-* @type ProtoGeoGetNearbyCoordinate
-**/
+ * @type ProtoGeoGetNearbyCoordinate
+ **/
 export const GeoGetNearbyCoordinate = Proto.GeoGetNearbyCoordinate;
 
 /**
-* @type ProtoGeoGetNearbyCoordinateResponse
-**/
+ * @type ProtoGeoGetNearbyCoordinateResponse
+ **/
 export const GeoGetNearbyCoordinateResponse = Proto.GeoGetNearbyCoordinateResponse;
 
 //Push 600XX
 
 /**
-* @type ProtoPushLoginTokenResponse
-**/
+ * @type ProtoPushLoginTokenResponse
+ **/
 export const PushLoginTokenResponse = Proto.PushLoginTokenResponse;
 
 /**
-* @type ProtoPushTwoStepVerificationResponse
-**/
+ * @type ProtoPushTwoStepVerificationResponse
+ **/
 export const PushTwoStepVerificationResponse = Proto.PushTwoStepVerificationResponse;
 
 /**
-* @type ProtoPushUserInfoExpiredResponse
-**/
+ * @type ProtoPushUserInfoExpiredResponse
+ **/
 export const PushUserInfoExpiredResponse = Proto.PushUserInfoExpiredResponse;
 
 /**
-* @type ProtoPushRateSignalingResponse
-**/
+ * @type ProtoPushRateSignalingResponse
+ **/
 export const PushRateSignalingResponse = Proto.PushRateSignalingResponse;
 
 export default {
