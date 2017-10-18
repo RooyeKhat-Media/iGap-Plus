@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {addNavigationHelpers} from 'react-navigation';
 
 import {primaryNavigatorBack, secondaryNavigatorBack} from '../actions/navigator';
-import {MAIN_SCREEN, PRIMARY_DRAWER_NAVIGATION} from '../constants/navigators';
+import {MAIN_SCREEN} from '../constants/navigators';
 import MainComponent from '../components/Main';
 import PrimaryNavigator from '../navigators/PrimaryNavigator';
 import SecondaryNavigator from '../navigators/SecondaryNavigator';
@@ -31,13 +31,7 @@ class MainScreen extends Component {
     if (nav.routes[nav.index] && nav.routes[nav.index].routeName === MAIN_SCREEN) {
       if (navSecondary.index > 0) {
         dispatch(secondaryNavigatorBack());
-      } else if (navPrimary.index > 0 || (
-        navPrimary.routes[navPrimary.index] &&
-          navPrimary.routes[navPrimary.index].routeName === PRIMARY_DRAWER_NAVIGATION &&
-          navPrimary.routes[navPrimary.index].routes[
-            navPrimary.routes[navPrimary.index].index
-          ].routeName === 'DrawerOpen'
-      )) {
+      } else if (navPrimary.index > 0) {
         dispatch(primaryNavigatorBack());
       } else {
         return false;

@@ -1,14 +1,12 @@
 import React from 'react';
-import {DrawerNavigator, StackNavigator, TabNavigator} from 'react-navigation';
+import {StackNavigator, TabNavigator} from 'react-navigation';
 import {navigate} from './index';
 import MainBottom from '../containers/MainBottom';
-import MainDrawer from '../containers/MainDrawer';
 
 import {
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
   NEW_SCREEN,
-  PRIMARY_DRAWER_NAVIGATION,
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
   ROOM_LIST_SCREEN,
@@ -62,17 +60,9 @@ const tabNav = TabNavigator({
   lazy: true,
 });
 
-const drawerNav = DrawerNavigator({
+const PrimaryNavigator = StackNavigator({
   tabNav: {
     screen: tabNav,
-  },
-}, {
-  contentComponent: props => (<MainDrawer {...props}/>),
-});
-
-const PrimaryNavigator = StackNavigator({
-  [PRIMARY_DRAWER_NAVIGATION]: {
-    screen: drawerNav,
     navigationOptions: {
       header: null,
     },

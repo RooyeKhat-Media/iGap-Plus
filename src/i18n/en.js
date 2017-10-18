@@ -395,12 +395,6 @@ export default {
   },
 
 
-  mainDrawerContacts: {
-    id: 'mainDrawer.contacts',
-    defaultMessage: 'Contacts',
-    description: 'Main Screen Drawer',
-  },
-
   contactListTitleToolbar: {
     id: 'contactList.titleToolbar',
     defaultMessage: 'Contact List',
