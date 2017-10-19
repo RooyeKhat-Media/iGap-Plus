@@ -1,4 +1,7 @@
 import Base from '../Base';
+import {normalize} from 'normalizr';
+import room from '../../../schemas/room';
+import {entitiesRoomsAddFull} from '../../../actions/entities/rooms';
 
 /**
  * @property {ProtoChatGetRoom} _request
@@ -6,6 +9,7 @@ import Base from '../Base';
  */
 export default class GetRoom extends Base {
   handle() {
-    console.error('GetRoom', 'Not implemented yet', this);
+    const normalizedData = normalize(this.getRoom(), room);
+    this.dispatch(entitiesRoomsAddFull(normalizedData));
   }
 }
