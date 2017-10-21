@@ -426,6 +426,52 @@ export default {
     description: 'Contact New Screen',
   },
 
+  userProfileChat: {
+    id: 'userProfile.chat',
+    defaultMessage: 'Chat',
+    description: 'page user profile',
+  },
+  userProfileUserName: {
+    id: 'userProfile.username',
+    defaultMessage: 'User Name : ',
+    description: 'page user profile',
+  },
+  userProfilePhoneNumber: {
+    id: 'userProfile.phonenumber',
+    defaultMessage: 'Phone Number : ',
+    description: 'page user profile',
+  },
+  userProfileBlock: {
+    id: 'userProfile.block',
+    defaultMessage: 'Block',
+    description: 'page user profile',
+  },
+  userProfileClearHistory: {
+    id: 'userProfile.clearhistory',
+    defaultMessage: 'Clear History',
+    description: 'page user profile',
+  },
+  userProfileConvertToGroup: {
+    id: 'userProfile.userprofileconverttogroup',
+    defaultMessage: 'Convert To Group',
+    description: 'page user profile',
+  },
+  userProfileIgapBalance: {
+    id: 'userProfile.igapBalance',
+    defaultMessage: 'iGap Balance',
+    description: 'page user profile',
+  },
+  userProfileDetailLabel: {
+    id: 'userProfile.detailLabel',
+    defaultMessage: 'Detail',
+    description: 'page user profile',
+  },
+  userProfileAvailableBalance: {
+    id: 'userProfile.availableBalance',
+    defaultMessage: 'Available Balance',
+    description: 'page user profile',
+  },
+
   roomInfoDetails: {
     id: 'roomInfo.details',
     defaultMessage: 'Details',

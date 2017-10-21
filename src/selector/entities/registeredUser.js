@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 import {FileDownload} from '../../modules/Proto/index';
 import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
-
+import {getUserId as getCurrentUserId} from '../../utils/app';
 
 export const getUserId = (state, props) => {
   return props.userId || (props.navigation ? props.navigation.state.params.userId : null);
@@ -12,6 +12,13 @@ export const getUser = createSelector(
   (state) => state.entities.registeredUsers,
   (userId, registeredUsers) => {
     return registeredUsers[userId];
+  }
+);
+
+export const getCurrentUser = createSelector(
+  (state) => state.entities.registeredUsers,
+  (registeredUsers) => {
+    return registeredUsers[getCurrentUserId()];
   }
 );
 
