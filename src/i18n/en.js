@@ -425,4 +425,82 @@ export default {
     defaultMessage: 'Ex:(+98) 9123456789',
     description: 'Contact New Screen',
   },
+
+  roomInfoDetails: {
+    id: 'roomInfo.details',
+    defaultMessage: 'Details',
+    description: 'RoomInfo screen',
+  },
+
+  roomInfoLeave: {
+    id: 'roomInfo.leave',
+    defaultMessage: 'Leave',
+    description: 'RoomInfo screen',
+  },
+
+  roomInfoJoin: {
+    id: 'roomInfo.join',
+    defaultMessage: 'Join',
+    description: 'RoomInfo screen',
+  },
+  roomInfoMessage: {
+    id: 'roomInfo.message',
+    defaultMessage: 'Message',
+    description: 'RoomInfo screen',
+  },
+  roomInfoCall: {
+    id: 'roomInfo.call',
+    defaultMessage: 'Call',
+    description: 'RoomInfo screen',
+  },
+  roomInfoMember: {
+    id: 'roomInfo.member',
+    defaultMessage: 'Member',
+    description: 'RoomInfo screen',
+  },
+  roomInfoUsername: {
+    id: 'roomInfo.username',
+    defaultMessage: 'Username',
+    description: 'RoomInfo screen',
+  },
+  roomInfoMuteNotifications: {
+    id: 'roomInfo.mute.notifications',
+    defaultMessage: 'Mute Notifications',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedMedia: {
+    id: 'roomInfo.shared.media',
+    defaultMessage: 'Shared Media',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedImages: {
+    id: 'roomInfo.shared.images',
+    defaultMessage: 'Images',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedVideos: {
+    id: 'roomInfo.videos',
+    defaultMessage: 'Videos',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedAudios: {
+    id: 'roomInfo.audios',
+    defaultMessage: 'Audios',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedVoices: {
+    id: 'roomInfo.voices',
+    defaultMessage: 'Voices',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedFiles: {
+    id: 'roomInfo.files',
+    defaultMessage: 'Files',
+    description: 'RoomInfo screen',
+  },
+  roomInfoSharedLinks: {
+    id: 'roomInfo.links',
+    defaultMessage: 'Links',
+    description: 'RoomInfo screen',
+  },
 };
