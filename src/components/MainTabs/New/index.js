@@ -12,10 +12,6 @@ class NewComponent extends Component {
       return MemoizeResponsiveStyleSheet(styleSheet);
     };
 
-    newChannel = () => {
-      alert('newChannel');
-    };
-
     newSecretP2pChat = () => {
       alert('newSecretP2pChat');
     };
@@ -25,13 +21,13 @@ class NewComponent extends Component {
     };
 
     render() {
-      const {intl, goContactNew, goGroupCreate} = this.props;
+      const {intl, goContactNew, goGroupCreate, goChannelCreate} = this.props;
       const styles = this.getStyles();
 
       return (
         <View style={styles.container}>
           <Toolbar
-            leftElement={<Text style={styles.igapCallText}>plus</Text>}
+            leftElement={<Text style={styles.titleText}>{intl.formatMessage(i18n.newPlus)}</Text>}
             rightElement="more-vert"
             onRightElementPress={() => alert('menu')}
             searchable={{
@@ -47,7 +43,7 @@ class NewComponent extends Component {
                 <Text  style={styles.textitem} >{intl.formatMessage(i18n.newNewGroup)}</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.rowField} onPress={ this.newChannel }>
+              <TouchableOpacity style={styles.rowField} onPress={ goChannelCreate }>
                 <MCIcon name="bullhorn" style={styles.iconFeild} size={24}/>
                 <Text  style={styles.textitem} >{intl.formatMessage(i18n.newNewChannel)}</Text>
               </TouchableOpacity>
@@ -82,6 +78,7 @@ class NewComponent extends Component {
 NewComponent.propTypes = {
   goContactNew: PropTypes.func.isRequired,
   goGroupCreate : PropTypes.func.isRequired,
+  goChannelCreate: PropTypes.func.isRequired,
 };
 
 export default injectIntl(NewComponent);

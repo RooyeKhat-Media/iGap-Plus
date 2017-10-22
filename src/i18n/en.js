@@ -508,6 +508,11 @@ export default {
     defaultMessage: 'New Group',
     description: 'new Screen',
   },
+  newPlus: {
+    id: 'new.plus',
+    defaultMessage: 'Plus',
+    description: 'new Screen',
+  },
   newNewChannel: {
     id: 'new.newChannel',
     defaultMessage: 'New Channel',
@@ -547,6 +552,21 @@ export default {
     id: 'roomGroupCreate.groupDescription',
     defaultMessage: 'Group Description',
     description: 'room Group Create screen',
+  },
+  roomChannelCreateNewChannel: {
+    id: 'roomChannelCreate.newChannel',
+    defaultMessage: 'New Channel',
+    description: 'room Channel Create screen',
+  },
+  roomChannelCreateChannelName: {
+    id: 'roomChannelCreate.channelName',
+    defaultMessage: 'Channel Name',
+    description: 'room Channel Create screen',
+  },
+  roomChannelCreateChannelDescription: {
+    id: 'roomChannelCreate.channelDescription',
+    defaultMessage: 'Channel Description',
+    description: 'room Channel Create screen',
   },
 
 };
