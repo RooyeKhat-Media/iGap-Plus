@@ -8,7 +8,7 @@ import {
   CONTACT_NEW_SCREEN,
   NEW_SCREEN,
   PROFILE_SCREEN,
-  PUBLIC_SCREEN,
+  PUBLIC_SCREEN, ROOM_GROUP_CREATE_SCREEN,
   ROOM_LIST_SCREEN,
   SEARCH_SCREEN,
 } from '../constants/navigators';
@@ -19,6 +19,7 @@ import NewScreen from '../screens/MainTabs/NewScreen';
 import PublicScreen from '../screens/MainTabs/PublicScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
+import RoomGroupCreateScreen from '../screens/Room/RoomGroupCreateScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -48,13 +49,16 @@ export function goContactNew() {
   navigate(CONTACT_NEW_SCREEN);
 }
 
+export function goGroupCreate() {
+  navigate(ROOM_GROUP_CREATE_SCREEN);
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [SEARCH_SCREEN]: {screen: SearchScreen},
   [NEW_SCREEN]: {screen: NewScreen},
   [PUBLIC_SCREEN]: {screen: PublicScreen},
   [PROFILE_SCREEN]: {screen: ProfileScreen},
-  [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
 }, {
   tabBarComponent: props => (<MainBottom {...props}/>),
   tabBarPosition: 'bottom',
@@ -70,6 +74,8 @@ const PrimaryNavigator = StackNavigator({
     },
   },
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
+  [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
+  [ROOM_GROUP_CREATE_SCREEN]: {screen: RoomGroupCreateScreen},
 });
 
 export default PrimaryNavigator;

@@ -12,10 +12,6 @@ class NewComponent extends Component {
       return MemoizeResponsiveStyleSheet(styleSheet);
     };
 
-    newGroup = () => {
-      alert('newGroup');
-    };
-
     newChannel = () => {
       alert('newChannel');
     };
@@ -29,7 +25,7 @@ class NewComponent extends Component {
     };
 
     render() {
-      const {intl, goContactNew} = this.props;
+      const {intl, goContactNew, goGroupCreate} = this.props;
       const styles = this.getStyles();
 
       return (
@@ -46,7 +42,7 @@ class NewComponent extends Component {
           <ScrollView>
 
             <View   style={styles.sectionTop}>
-              <TouchableOpacity style={styles.rowField} onPress={ this.newGroup }>
+              <TouchableOpacity style={styles.rowField} onPress={goGroupCreate}>
                 <MCIcon name="account-multiple" style={styles.iconFeild} size={24}/>
                 <Text  style={styles.textitem} >{intl.formatMessage(i18n.newNewGroup)}</Text>
               </TouchableOpacity>
@@ -85,6 +81,7 @@ class NewComponent extends Component {
 
 NewComponent.propTypes = {
   goContactNew: PropTypes.func.isRequired,
+  goGroupCreate : PropTypes.func.isRequired,
 };
 
 export default injectIntl(NewComponent);
