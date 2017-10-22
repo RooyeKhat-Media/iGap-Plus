@@ -18,6 +18,7 @@ import RoomsScreen from '../screens/MainTabs/RoomListScreen';
 import NewScreen from '../screens/MainTabs/NewScreen';
 import PublicScreen from '../screens/MainTabs/PublicScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
+import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -53,6 +54,7 @@ const tabNav = TabNavigator({
   [NEW_SCREEN]: {screen: NewScreen},
   [PUBLIC_SCREEN]: {screen: PublicScreen},
   [PROFILE_SCREEN]: {screen: ProfileScreen},
+  [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
 }, {
   tabBarComponent: props => (<MainBottom {...props}/>),
   tabBarPosition: 'bottom',

@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import NewComponent from '../../components/MainTabs/New/index';
+import {goContactNew} from '../../navigators/PrimaryNavigator';
+
 
 class NewScreen extends Component {
-  onMenuPressed = () => {
-    this.props.navigation.navigate('DrawerOpen');
-  }
 
   render() {
     return (
-      <View style={{backgroundColor: 'blue'}}><Text>Drawer Test</Text></View>
+      <NewComponent  goContactNew={goContactNew}/>
     );
   }
 }

@@ -503,4 +503,42 @@ export default {
     defaultMessage: 'Links',
     description: 'RoomInfo screen',
   },
+
+
+  newNewGroup: {
+    id: 'new.newGroup',
+    defaultMessage: 'New Group',
+    description: 'new Screen',
+  },
+
+  newNewChannel: {
+    id: 'new.newChannel',
+    defaultMessage: 'New Channel',
+    description: 'new Screen',
+  },
+
+  newNewSecretP2PChat: {
+    id: 'new.newSecretP2PChat',
+    defaultMessage: 'New Secret P2P Chat',
+    description: 'new Screen',
+  },
+
+  newNewCreateInvoice: {
+    id: 'new.newCreateInvoice',
+    defaultMessage: 'New Create Invoice',
+    description: 'new Screen',
+  },
+
+  newContacts: {
+    id: 'new.contacts',
+    defaultMessage: 'Contacts',
+    description: 'new Screen',
+  },
+
+  newAddContacts: {
+    id: 'new.addContacts',
+    defaultMessage: 'Add Contacts',
+    description: 'new Screen',
+  },
+
 };

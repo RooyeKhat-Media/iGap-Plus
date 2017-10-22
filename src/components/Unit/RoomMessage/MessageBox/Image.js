@@ -18,7 +18,7 @@ export default ({message, attachment}) => {
   return (<View style={[styles.container, {width}]}>
 
     <TouchableOpacity onPress={attachment.togglePress} activeOpacity={0.9}>
-      <Image blurRadius={attachment.isCompleted ? 0 : 0.5}
+      <Image
         source={{uri: uri}}
         style={[styles.imageWrap, {width, height}]}>
 
