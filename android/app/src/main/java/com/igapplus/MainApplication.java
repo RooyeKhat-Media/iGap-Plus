@@ -3,6 +3,7 @@ package com.igapplus;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.RNSqlite2Package;
 import plus.igap.filesystem.RNFileSystemPackage;
 import plus.igap.websocket.RNWebSocketPackage;
 import com.horcrux.svg.SvgPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSqlite2Package(),
             new RNFileSystemPackage(),
             new RNWebSocketPackage(),
             new SvgPackage(),

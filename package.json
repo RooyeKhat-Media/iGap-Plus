@@ -28,6 +28,7 @@
     "react-native": "0.48.4",
     "react-native-file-system": "./native/modules/FileSystem",
     "react-native-material-ui": "^1.12.0",
+    "react-native-sqlite-2": "^1.5.0",
     "react-native-svg": "^5.4.1",
     "react-native-swiper": "^1.5.10",
     "react-native-vector-icons": "^4.3.0",

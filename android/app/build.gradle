@@ -133,6 +133,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-sqlite-2')
     compile project(':react-native-file-system')
     compile project(':react-native-web-socket')
     compile project(':react-native-svg')
