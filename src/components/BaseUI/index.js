@@ -1,4 +1,6 @@
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator,
+  Switch,
+} from 'react-native';
 import {
   Avatar,
   Badge,
@@ -23,6 +25,7 @@ import ProgressBar from './ProgressBar';
 
 export {
   AppModal,
+  Switch,
   ActivityIndicator,
   Button,
   Toolbar,

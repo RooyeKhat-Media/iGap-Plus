@@ -1,70 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View, ScrollView, Switch, TouchableOpacity} from 'react-native';
+import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import {injectIntl, intlShape, FormattedRelative} from 'react-intl';
-import { Toolbar, Button, MCIcon} from '../../BaseUI/index';
+import { Toolbar, Button, MCIcon, Switch} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
 
-const sharedList = {image:'image', video:'video', audio:'audio', voice:'voice', file:'file', link:'link'};
 
 class RoomInfoComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMute :false,
+      canChangeMute:true,
+    };
+  }
 
     getStyles = () => {
       return MemoizeResponsiveStyleSheet(styleSheet);
     };
 
-    onLeaveClick = () => {
-      alert('onLeaveClick');
-    };
-
-    onJoinClick = () => {
-      alert('onJoinClick');
-    };
-
-    onCallClick = () => {
-      alert('onCallClick');
-    };
-
-    onMessageClick = () => {
-      alert('onMessageClick');
-    };
-
-    onNotificationClick = () => {
-      alert('onNotificationClick');
-    };
-
-    showSharedMediaList = (selectionType) => {
-      switch (selectionType) {
-        case sharedList.image:
-          alert('Images');
-          break;
-        case sharedList.video:
-          alert('video');
-          break;
-        case sharedList.audio:
-          alert('audio');
-          break;
-        case sharedList.voice:
-          alert('voice');
-          break;
-        case sharedList.file:
-          alert('file');
-          break;
-        case sharedList.link:
-          alert('link');
-          break;
-      }
-    };
+    changeMute = () => {
+      const { actionClick, actions} = this.props;
+      actionClick(actions.mute);
+      this.setState({isMute: !this.state.isMute, canChangeMute:false});
+    }
 
     render() {
-      const {intl, goBack, room, countRoomHistory} = this.props;
+      const {intl, goBack, room, countRoomHistory, actionClick, actions} = this.props;
       const styles = this.getStyles();
       const isUser = !!room.chatPeer;
       const isGroup = room.type === 1;
-      const isMutual = room.chatPeer ? room.chatPeer.mutual : false;
+      if (this.state.canChangeMute) {
+        this.state.isMute = room.chatPeer ? room.chatPeer.mutual : false;
+      }
 
       return (
         <View style={styles.container}>
@@ -84,19 +56,19 @@ class RoomInfoComponent extends React.Component {
               <View  style={styles.containerJoinLeav}>
                 {!isUser && room.isParticipant && <Button style={styles.buttonLeave}
                   upperCase={false} primary raised accent={false}
-                  onPress={this.onLeaveClick}
+                  onPress={() => actionClick(actions.leave)}
                   text={intl.formatMessage(i18n.roomInfoLeave)}/>}
                 {!isUser && !room.isParticipant && <Button style={styles.buttonjoin}
                   upperCase={false} primary raised accent={false}
-                  onPress={this.onJoinClick}
+                  onPress={() => actionClick(actions.join)}
                   text={intl.formatMessage(i18n.roomInfoJoin)}/>}
                 {isUser && <Button style={styles.buttonBlue}
                   upperCase={false} primary raised accent={false}
-                  onPress={this.onMessageClick}
+                  onPress={() => actionClick(actions.message)}
                   text={intl.formatMessage(i18n.roomInfoMessage)}/>}
                 {isUser &&  <Button style={styles.buttonwhite}
                   upperCase={false} primary raised accent={false}
-                  onPress={this.onCallClick}
+                  onPress={() => actionClick(actions.call)}
                   text={intl.formatMessage(i18n.roomInfoCall)}/>}
               </View>
 
@@ -110,7 +82,7 @@ class RoomInfoComponent extends React.Component {
               <Text  style={styles.textSub} >{intl.formatMessage(i18n.roomInfoUsername)}</Text>
               <View  style={styles.layoutMuteNotificaion}>
                 <Text  style={[styles.textInfo, {flex:1}]} >{intl.formatMessage(i18n.roomInfoMuteNotifications)}</Text>
-                <Switch  value={isMutual}  onValueChange={this.onNotificationClick} />
+                <Switch  value={this.state.isMute}  onValueChange={this.changeMute } />
               </View>
             </View>
             {countRoomHistory && <View style={styles.sectionShearedMedia}>
@@ -119,29 +91,29 @@ class RoomInfoComponent extends React.Component {
                 <View   style={styles.divider}/>
               </View>
               <View style={styles.rowField}>
-                <TouchableOpacity style={styles.sharedItem} onPress={ () => this.showSharedMediaList(sharedList.image) }>
+                <TouchableOpacity style={styles.sharedItem} onPress={ () => actionClick(actions.image) }>
                   <MCIcon name="image" style={styles.sharedIcon} size={24}/>
                   <Text  style={styles.textSharedMedia} >{intl.formatMessage(i18n.roomInfoSharedImages) + ' ' + (countRoomHistory.image + countRoomHistory.gif) }</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.sharedItem} onPress={ () => this.showSharedMediaList(sharedList.video)}>
+                <TouchableOpacity style={styles.sharedItem} onPress={ () => actionClick(actions.video)}>
                   <MCIcon name="camcorder" style={styles.sharedIcon} size={24}/>
                   <Text  style={styles.textSharedMedia} >{intl.formatMessage(i18n.roomInfoSharedVideos) + ' ' + countRoomHistory.video }</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.sharedItem} onPress={ () => this.showSharedMediaList(sharedList.audio)}>
+                <TouchableOpacity style={styles.sharedItem} onPress={ () => actionClick(actions.audio)}>
                   <MCIcon name="itunes" style={styles.sharedIcon} size={24}/>
                   <Text  style={styles.textSharedMedia} >{intl.formatMessage(i18n.roomInfoSharedAudios) + ' ' + countRoomHistory.audio }</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.rowField}>
-                <TouchableOpacity style={styles.sharedItem} onPress={ () => this.showSharedMediaList(sharedList.voice)}>
+                <TouchableOpacity style={styles.sharedItem} onPress={ () => actionClick(actions.voice)}>
                   <MCIcon name="microphone-outline" style={styles.sharedIcon}  size={24}/>
                   <Text  style={styles.textSharedMedia} >{intl.formatMessage(i18n.roomInfoSharedVoices) + ' ' + countRoomHistory.voice }</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.sharedItem} onPress={ () => this.showSharedMediaList(sharedList.file)}>
+                <TouchableOpacity style={styles.sharedItem} onPress={ () => actionClick(actions.file)}>
                   <MCIcon name="file" style={styles.sharedIcon}  size={24}/>
                   <Text  style={styles.textSharedMedia} >{intl.formatMessage(i18n.roomInfoSharedFiles) + ' ' + countRoomHistory.file }</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.sharedItem} onPress={ () => this.showSharedMediaList(sharedList.link)}>
+                <TouchableOpacity style={styles.sharedItem} onPress={ () => actionClick(actions.link)}>
                   <MCIcon name="link-variant" style={styles.sharedIcon}  size={24} />
                   <Text  style={styles.textSharedMedia}   >{intl.formatMessage(i18n.roomInfoSharedLinks) + ' ' + countRoomHistory.url }</Text>
                 </TouchableOpacity>
@@ -167,6 +139,8 @@ RoomInfoComponent.propTypes = {
     url: PropTypes.number.isRequired,
   }),
   goBack: PropTypes.func.isRequired,
+  actionClick:PropTypes.func.isRequired,
+  actions :PropTypes.object.isRequired,
 };
 
 export default injectIntl(RoomInfoComponent);

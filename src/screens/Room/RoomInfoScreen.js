@@ -9,29 +9,75 @@ import {CLIENT_COUNT_ROOM_HISTORY} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
 
+const actions = {image:'image', video:'video', audio:'audio', voice:'voice', file:'file', link:'link', leave:'leave', join:'join', call:'call', message:'message', mute:'mute'};
+
 class RoomInfoScreen extends Component {
 
-  async componentDidMount() {
-    const {roomId} = this.props.navigation.state.params;
-    await putState(roomId);
-    const {room} = this.props;
 
-    const clientCountRoomHistory = new ClientCountRoomHistory();
-    clientCountRoomHistory.setRoomId(room.longId);
+    actionClick = (action) => {
+      switch (action) {
+        case actions.image:
+          alert('Images');
+          break;
+        case actions.video:
+          alert('video');
+          break;
+        case actions.audio:
+          alert('audio');
+          break;
+        case actions.voice:
+          alert('voice');
+          break;
+        case actions.file:
+          alert('file');
+          break;
+        case actions.link:
+          alert('link');
+          break;
 
-    await Api.invoke(CLIENT_COUNT_ROOM_HISTORY, clientCountRoomHistory);
-  }
+        case actions.join:
+          alert('onJoinClick');
+          break;
+        case actions.leave:
+          alert('onLeaveClick');
+          break;
+        case actions.call:
+          alert('onCallClick');
+          break;
+        case actions.message:
+          alert('onMessageClick');
+          break;
+        case actions.mute:
+          alert('onNotificationClick');
+          break;
+      }
+    };
 
-  render() {
-    const {room, countRoomHistory} = this.props;
-    return (
-      <RoomViewComponent
-        room={room}
-        countRoomHistory={countRoomHistory}
-        goBack={this.props.navigation.goBack}
-      />
-    );
-  }
+
+
+    async componentDidMount() {
+      const {roomId} = this.props.navigation.state.params;
+      await putState(roomId);
+      const {room} = this.props;
+
+      const clientCountRoomHistory = new ClientCountRoomHistory();
+      clientCountRoomHistory.setRoomId(room.longId);
+
+      await Api.invoke(CLIENT_COUNT_ROOM_HISTORY, clientCountRoomHistory);
+    }
+
+    render() {
+      const {room, countRoomHistory} = this.props;
+      return (
+        <RoomViewComponent
+          room={room}
+          countRoomHistory={countRoomHistory}
+          goBack={this.props.navigation.goBack}
+          actionClick={this.actionClick}
+          actions={actions}
+        />
+      );
+    }
 }
 
 RoomInfoScreen.propTypes = {
