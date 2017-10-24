@@ -221,8 +221,14 @@ export default class Api {
 
   async __schedule(wrapper) {
     const aggregateId = getAggregateId(wrapper);
+
+    let aggregatePromise = null;
     if (aggregateId && aggregate.has(aggregateId)) {
-      wrapper.resolve(aggregate.get(aggregateId));
+      aggregatePromise = aggregate.get(aggregateId);
+    }
+
+    if (aggregatePromise && aggregatePromise !== wrapper.promise) {
+      wrapper.resolve(aggregatePromise);
     } else {
       if (aggregateId) {
         aggregate.set(aggregateId, wrapper.promise);
