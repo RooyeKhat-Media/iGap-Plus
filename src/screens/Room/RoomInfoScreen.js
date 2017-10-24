@@ -8,11 +8,12 @@ import {ClientCountRoomHistory} from '../../modules/Proto/index';
 import {CLIENT_COUNT_ROOM_HISTORY} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
+import {goCall} from '../../navigators/SecondaryNavigator';
 
-const actions = {image:'image', video:'video', audio:'audio', voice:'voice', file:'file', link:'link', leave:'leave', join:'join', call:'call', message:'message', mute:'mute'};
+const actions = {image:'image', video:'video', audio:'audio', voice:'voice', file:'file', link:'link',
+  leave:'leave', join:'join', call:'call', message:'message', mute:'mute'};
 
 class RoomInfoScreen extends Component {
-
 
     actionClick = (action) => {
       switch (action) {
@@ -42,7 +43,8 @@ class RoomInfoScreen extends Component {
           alert('onLeaveClick');
           break;
         case actions.call:
-          alert('onCallClick');
+          const {room} = this.props;
+          goCall(room.chatPeer.id);
           break;
         case actions.message:
           alert('onMessageClick');
@@ -52,8 +54,6 @@ class RoomInfoScreen extends Component {
           break;
       }
     };
-
-
 
     async componentDidMount() {
       const {roomId} = this.props.navigation.state.params;

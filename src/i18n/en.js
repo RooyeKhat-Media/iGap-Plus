@@ -568,5 +568,29 @@ export default {
     defaultMessage: 'Channel Description',
     description: 'room Channel Create screen',
   },
-
+  callMute: {
+    id: 'call.mute',
+    defaultMessage: 'Mute',
+    description: 'call screen',
+  },
+  callSpeaker: {
+    id: 'call.speaker.',
+    defaultMessage: 'Speaker',
+    description: 'call screen',
+  },
+  callSendMessage: {
+    id: 'call.sendMessage',
+    defaultMessage: ' Send Message',
+    description: 'call screen',
+  },
+  callKeyPad: {
+    id: 'call.keyPad',
+    defaultMessage: 'KeyPad',
+    description: 'call screen',
+  },
+  calliGapCall: {
+    id: 'call.iGapCall',
+    defaultMessage: 'iGap Call',
+    description: 'call screen',
+  },
 };
