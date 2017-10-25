@@ -37,7 +37,7 @@ export async function initialRoomsState() {
 export async function serverRoomsState() {
 
   let offset = 0;
-  let order = Long.fromInt(10000000);
+  let sort = Long.fromInt(10000000);
 
   const newRoomList = [];
 
@@ -64,11 +64,11 @@ export async function serverRoomsState() {
       store.dispatch(entitiesRoomsAddFull(normalizedData));
 
       clientGetRoomListResponse.getRoomsList().forEach((roomProto) => {
-        order = order.sub(1);
+        sort = sort.sub(1);
         const roomId = roomProto.getId().toString();
         payload[roomId] = {
           id: roomId,
-          order: order.toString(),
+          sort: sort.toString(),
         };
         newRoomList.push(roomId);
       });

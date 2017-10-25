@@ -1,9 +1,10 @@
 /**
  * @flow
  */
-import PouchDB from 'pouchdb-react-native';
-import PouchDBFind from 'pouchdb-find';
+import SQLite from 'react-native-sqlite-2';
 
-PouchDB.plugin(PouchDBFind);
+/**
+ * @typedef {Object}  DB
+ */
 
-export default PouchDB;
+export default SQLite;

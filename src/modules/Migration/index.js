@@ -3,23 +3,25 @@
  */
 
 import MetaData from '../../models/MetaData';
+
 import {DATABASE_SCHEMA_VERSION} from '../../constants/configs';
+import {doMigration} from './doMigration';
 
 const SCHEMA_VERSION_ID = 'schemaVersion';
 
-function saveSchemaVersion(newVersion) {
-  MetaData.save(SCHEMA_VERSION_ID, newVersion);
+export function saveSchemaVersion(newVersion) {
+  return MetaData.save(SCHEMA_VERSION_ID, newVersion);
 }
 
 export async function migrate() {
-  const schemaVersion = await MetaData.load(SCHEMA_VERSION_ID);
-  if (schemaVersion === null) {
-    saveSchemaVersion(DATABASE_SCHEMA_VERSION);
-  } else {
-    doMigration(schemaVersion);
+  let schemaVersion = null;
+  try {
+    schemaVersion = await MetaData.load(SCHEMA_VERSION_ID);
+  } catch (e) {
+    console.warn('Migration ', e);
   }
-}
 
-function doMigration(schemaVersion) {
-
+  if (schemaVersion !== DATABASE_SCHEMA_VERSION) {
+    await doMigration(schemaVersion);
+  }
 }

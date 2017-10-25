@@ -2,13 +2,15 @@
  * @flow
  */
 
-import Db from '../modules/Db';
-import QueueDb from '../modules/QueueDb';
-import {getSessionUid} from '../modules/Api';
-import {objectToUint8Array} from '../utils/core';
+import QueueDb from '../../modules/QueueDb';
+import {getSessionUid} from '../../modules/Api';
+import {persistCallback, retrieveCallback} from './backend';
 
-const storage = new Db('modelCacheableMethod');
-const {save, remove, load} = QueueDb(storage);
+const {save, remove, load} = QueueDb(
+  persistCallback,
+  retrieveCallback
+);
+
 
 /**
  * @typedef {{data:Uint8Array,sessionUid:number}} CachedMethodResponse
@@ -16,14 +18,6 @@ const {save, remove, load} = QueueDb(storage);
 
 
 export default class CacheableMethod {
-
-  /**
-   * Get Storage
-   * @returns {Db}
-   */
-  static getStorage() {
-    return storage;
-  }
 
   /**
    * @param {string} id
@@ -48,11 +42,6 @@ export default class CacheableMethod {
    * @return {Promise.<CachedMethodResponse>}
    */
   static loadFromQueue(id) {
-    return load(id).then(function(value) {
-      return {
-        ...value,
-        data: objectToUint8Array(value.data),
-      };
-    });
+    return load(id);
   }
 }

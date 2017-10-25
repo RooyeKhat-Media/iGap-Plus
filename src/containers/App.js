@@ -26,8 +26,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    migrate().catch(function() {
-      console.log('Migration failed');
+    migrate().catch(function(error) {
+      console.log('Migration failed', error);
     }).then(() => {
       Api.instance;
     }).then(() => {

@@ -4,27 +4,42 @@
 
 import 'es6-map/implement';
 
+
 /**
- * @param storage
+ * @callback DbPersistCallback
+ * @param {DbSaveQueueMap} persist
+ */
+
+/**
+ * @callback DbRetrieveCallback
+ * @param {DbLoadQueueMap} retrieve
+ */
+
+/**
+ * @param {DbPersistCallback} persistCallback
+ * @param {DbRetrieveCallback} retrieveCallback
  * @param {number} saveDelay
  * @param {number} loadDelay
  * @param {number} saveQueueSize
  * @param {number} loadQueueSize
  * @return {{save: QueueDbSave, load: QueueDbLoad}}
  */
-export default function(storage,
-  saveDelay = 5000,
-  loadDelay = 1000,
+export default function(persistCallback,
+  retrieveCallback,
+  saveDelay = 500,
+  loadDelay = 500,
   saveQueueSize = 100,
   loadQueueSize = 100) {
   /**
-   * @type {Map.<string,{doc:object,transform:null|function,deleted:bool}>}
+   * @typedef {Map.<string,{doc:object,deleted:bool}>} DbSaveQueueMap
+   * @type {DbSaveQueueMap}
    */
   let saveQueue = new Map();
   let saveQueueTimer = null;
 
   /**
-   * @type {Map.<string,{promise:Promise,resolve:function,reject:function}>}
+   * @typedef {Map.<string,{promise:Promise,resolve:function,reject:function}>} DbLoadQueueMap
+   * @type {DbLoadQueueMap}
    */
   let loadQueue = new Map();
   let loadQueueTimer = null;
@@ -34,30 +49,7 @@ export default function(storage,
     const persist = saveQueue;
     saveQueue = new Map();
 
-    const allDocs = await storage.allDocs({
-      keys: [...persist.keys()],
-    });
-
-    let bulkDocs = [];
-
-    allDocs.rows.forEach(function(element) {
-      const dataInPersist = persist.get(element.key);
-      let doc = {
-        _id: element.key,
-        ...(
-          dataInPersist.deleted ?
-            {_deleted: true} :
-            (dataInPersist.transform ? dataInPersist.transform(dataInPersist.doc) : dataInPersist.doc)
-        ),
-      };
-
-      if (element.value && element.value.rev) {
-        doc._rev = element.value.rev;
-      }
-      bulkDocs.push(doc);
-    });
-
-    await storage.bulkDocs(bulkDocs);
+    persistCallback(persist);
   };
 
   const retrieveLoadQueue = async () => {
@@ -79,27 +71,14 @@ export default function(storage,
     }
 
     if (retrieve.size) {
-      const allDocs = await storage.allDocs({
-        keys: [...retrieve.keys()],
-        include_docs: true,
-      });
-
-      allDocs.rows.forEach(function(element) {
-        const dataInRetrieve = retrieve.get(element.key);
-        if (element.doc) {
-          dataInRetrieve.resolve(element.doc);
-        } else {
-          dataInRetrieve.reject();
-        }
-      });
+      retrieveCallback(retrieve);
     }
 
   };
 
-  const persistQueue = (id, doc, transform, deleted) => {
+  const persistQueue = (id, doc, deleted) => {
     saveQueue.set(id, {
       doc,
-      transform,
       deleted,
     });
 
@@ -116,10 +95,9 @@ export default function(storage,
      * @function QueueDbSave
      * @param {string} id
      * @param {object} doc
-     * @param {null|function} transform
      */
-    save: (id, doc, transform = null) => {
-      persistQueue(id, doc, transform, false);
+    save: (id, doc) => {
+      persistQueue(id, doc, false);
     },
 
     /**
@@ -127,7 +105,7 @@ export default function(storage,
      * @param {string} id
      */
     remove: (id) => {
-      persistQueue(id, {}, null, true);
+      persistQueue(id, {}, true);
     },
 
 
