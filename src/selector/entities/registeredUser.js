@@ -40,7 +40,7 @@ export const getUserAvatar = createSelector(
         selector,
         size: fileSelector.getSize(),
         cacheId: fileSelector.getCacheId(),
-        fileName: user.avatar.file.getName(),
+        fileName: fileSelector.getName(),
       } : null,
     };
   }
@@ -53,8 +53,8 @@ export const getUserAvatarUri = createSelector(
   (userAvatar, downloads) => {
     if (
       userAvatar.avatar &&
-      downloads[userAvatar.avatar.cacheId] &&
-      downloads[userAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
+            downloads[userAvatar.avatar.cacheId] &&
+            downloads[userAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
     ) {
       return downloads[userAvatar.avatar.cacheId].uri;
     }

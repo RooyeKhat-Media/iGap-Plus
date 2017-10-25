@@ -26,7 +26,7 @@ class RoomMessage extends Component {
           Proto.FileDownload.Selector.SMALL_THUMBNAIL,
           message.attachment.getSmallThumbnail().getSize(),
           message.attachment.getSmallThumbnail().getCacheId(),
-          message.attachment.getName()); //todo Use thumbnail's filename instead of file
+          message.attachment.getSmallThumbnail().getName());
       }
 
       if (!waveformThumbnailUri && message.attachment.getWaveformThumbnail()) {
@@ -36,108 +36,108 @@ class RoomMessage extends Component {
           Proto.FileDownload.Selector.WAVEFORM_THUMBNAIL,
           message.attachment.getWaveformThumbnail().getSize(),
           message.attachment.getWaveformThumbnail().getCacheId(),
-          message.attachment.getName()); //todo Use thumbnail's filename instead of file
+          message.attachment.getWaveformThumbnail().getName());
       }
 
     }
   }
 
-  startDownload = () => {
-    const {message, download} = this.props;
+    startDownload = () => {
+      const {message, download} = this.props;
 
-    if (message.attachment) {
-      // todo Add Priority for manual download
-      download(
-        FILE_MANAGER_DOWNLOAD_MANNER.MANUAL,
-        message.attachment.getToken(),
-        Proto.FileDownload.Selector.FILE,
-        message.attachment.getSize(),
-        message.attachment.getCacheId(),
-        message.attachment.getName());
-    }
-  };
-
-  pauseDownload = () => {
-    const {message, pauseDownload} = this.props;
-
-    if (message.attachment) {
-      pauseDownload(message.attachment.getCacheId());
-    }
-  };
-
-  openFile = () => {
-
-  };
-
-  togglePress = () => {
-    const {message} = this.props;
-    if (message.attachment.downloadFile) {
-      switch (message.attachment.downloadFile.status) {
-        case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
-          return this.openFile();
-        case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
-        case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
-          return this.pauseDownload();
+      if (message.attachment) {
+        // todo Add Priority for manual download
+        download(
+          FILE_MANAGER_DOWNLOAD_MANNER.MANUAL,
+          message.attachment.getToken(),
+          Proto.FileDownload.Selector.FILE,
+          message.attachment.getSize(),
+          message.attachment.getCacheId(),
+          message.attachment.getName());
       }
-    }
-    return this.startDownload();
-  };
+    };
 
-  render() {
-    let messageBox = null;
-    const authorHash = getAuthorHash();
-    const {downloadFile, smallThumbnailUri, waveformThumbnailUri, message, roomType} = this.props;
+    pauseDownload = () => {
+      const {message, pauseDownload} = this.props;
 
-    if (!message || message.deleted) {
-      return null;
-    }
+      if (message.attachment) {
+        pauseDownload(message.attachment.getCacheId());
+      }
+    };
 
-    if (message.attachment) {
-      message.attachment.startDownload = this.startDownload;
-      message.attachment.pauseDownload = this.pauseDownload;
-      message.attachment.togglePress = this.togglePress;
+    openFile = () => {
 
-      message.attachment.isCompleted = false;
-      message.attachment.isProcessing = false;
-      message.attachment.isPending = false;
-      message.attachment.isPaused = false;
+    };
 
-      if (downloadFile) {
-        switch (downloadFile.status) {
+    togglePress = () => {
+      const {message} = this.props;
+      if (message.attachment.downloadFile) {
+        switch (message.attachment.downloadFile.status) {
           case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
-            message.attachment.isCompleted = true;
-            break;
+            return this.openFile();
           case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
-            message.attachment.isPending = true;
-            break;
           case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
-            message.attachment.isProcessing = true;
-            break;
+            return this.pauseDownload();
         }
       }
-      message.attachment.isPaused = (!message.attachment.isCompleted && !message.attachment.isPending && !message.attachment.isProcessing);
-    }
+      return this.startDownload();
+    };
 
-    if (downloadFile) {
-      message.attachment.downloadFile = downloadFile;
-    }
+    render() {
+      let messageBox = null;
+      const authorHash = getAuthorHash();
+      const {downloadFile, smallThumbnailUri, waveformThumbnailUri, message, roomType} = this.props;
 
-    if (smallThumbnailUri) {
-      message.attachment.smallThumbnailUri = smallThumbnailUri;
-    }
+      if (!message || message.deleted) {
+        return null;
+      }
 
-    if (waveformThumbnailUri) {
-      message.attachment.waveformThumbnailUri = waveformThumbnailUri;
-    }
+      if (message.attachment) {
+        message.attachment.startDownload = this.startDownload;
+        message.attachment.pauseDownload = this.pauseDownload;
+        message.attachment.togglePress = this.togglePress;
 
-    return (
-      <RoomMessageComponent
-        authorHash={authorHash}
-        roomType={roomType}
-        message={message}
-        messageBox={messageBox}/>
-    );
-  }
+        message.attachment.isCompleted = false;
+        message.attachment.isProcessing = false;
+        message.attachment.isPending = false;
+        message.attachment.isPaused = false;
+
+        if (downloadFile) {
+          switch (downloadFile.status) {
+            case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
+              message.attachment.isCompleted = true;
+              break;
+            case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
+              message.attachment.isPending = true;
+              break;
+            case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
+              message.attachment.isProcessing = true;
+              break;
+          }
+        }
+        message.attachment.isPaused = (!message.attachment.isCompleted && !message.attachment.isPending && !message.attachment.isProcessing);
+      }
+
+      if (downloadFile) {
+        message.attachment.downloadFile = downloadFile;
+      }
+
+      if (smallThumbnailUri) {
+        message.attachment.smallThumbnailUri = smallThumbnailUri;
+      }
+
+      if (waveformThumbnailUri) {
+        message.attachment.waveformThumbnailUri = waveformThumbnailUri;
+      }
+
+      return (
+        <RoomMessageComponent
+          authorHash={authorHash}
+          roomType={roomType}
+          message={message}
+          messageBox={messageBox}/>
+      );
+    }
 }
 
 

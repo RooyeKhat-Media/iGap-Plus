@@ -56,7 +56,7 @@ export const getRoomAvatar = createSelector(
         selector,
         size: fileSelector.getSize(),
         cacheId: fileSelector.getCacheId(),
-        fileName: avatar.file.getName(),
+        fileName: fileSelector.getName(),
       } : null,
     };
   }
@@ -68,8 +68,8 @@ export const getRoomAvatarUri = createSelector(
   (roomAvatar, downloads) => {
     if (
       roomAvatar.avatar &&
-      downloads[roomAvatar.avatar.cacheId] &&
-      downloads[roomAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
+            downloads[roomAvatar.avatar.cacheId] &&
+            downloads[roomAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
     ) {
       return downloads[roomAvatar.avatar.cacheId].uri;
     }
