@@ -1,10 +1,12 @@
 import React from 'react';
-import {ActivityIndicator, Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Text from './Text';
 import {min} from 'lodash';
-import {Icon, ProgressBar} from '../../../BaseUI';
+import {Icon} from '../../../BaseUI';
 import Device from '../../../../modules/Responsive/Device';
 import {dimensionCalculate} from '../../../../utils/core';
+import ProgressBar from '../../../BaseUI/ProgressBar';
+import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/ProgressBar/index';
 
 const {width, height} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
@@ -21,17 +23,15 @@ export default ({message, attachment}) => {
       <Image
         source={{uri: uri}}
         style={[styles.imageWrap, {width, height}]}>
-
-        {attachment.isPending && (<ActivityIndicator size="large"/>)}
-        {attachment.isProcessing && ((<ProgressBar
-          style={[styles.progressStyle]}
-          width={width - 10}
-          initialProgress={attachment.downloadFile.progress}
-          progress={attachment.downloadFile.progress}/>))}
         {attachment.isPaused && (
           <View style={styles.downloadBtn}><Icon name="file-download" size={30} color="#fafafa"/></View>)}
-
       </Image>
+
+      {attachment.isPending && (<ProgressBar width={width} status={PROGRESS_BAR_PENDING}/>)}
+      {attachment.isProcessing && ((<ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+        initialProgress={attachment.downloadFile.progress}
+        progress={attachment.downloadFile.progress}/>))}
+
     </TouchableOpacity>
 
     {message ? (<Text message={message}/>) : null}
@@ -53,7 +53,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  progressStyle: {
-    marginBottom: 5,
-  },
+
 });
