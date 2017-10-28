@@ -1,19 +1,40 @@
 import React from 'react';
-import {TextInput} from 'react-native';
+import {TextInput as BaseTextInput} from 'react-native';
 import styles from './index.style';
 
-export default (props) => {
-  const defaultProps = {
-    ...props,
-    ...{
+export default class TextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false,
+    };
+  }
+
+  focuse = () => {
+    this.setState({focused: true});
+  }
+
+  blur = () => {
+    this.setState({focused: false});
+  }
+
+  render() {
+    const props = this.props;
+    const {focused} = this.state;
+
+    const defaultProps = {
+      ...props,
       underlineColorAndroid: 'transparent',
       placeholderTextColor: '#adadad',
       style: {
-        ...styles.textInput,
+        ...(styles.textInput ? styles.textInput : {}),
+        ...(focused ? styles.focused : {}),
         ...(props.style || {}),
       },
-    },
-  };
+    };
 
-  return (<TextInput {...defaultProps}/>);
-};
+    return (<BaseTextInput
+      onFocus={this.focuse}
+      onBlur={this.blur} {...defaultProps} />);
+  }
+}

@@ -20,6 +20,12 @@ class BaseField extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultValue !== this.props.defaultValue) {
+      this.setValue(nextProps.defaultValue);
+    }
+  }
+
   setValue = (value) => {
     this.setState({value: value}, () => {
       this.validate().catch(() => {
@@ -97,12 +103,15 @@ BaseField.propTypes = {
     PropTypes.element,
     PropTypes.string,
   ]),
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   help: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.string,
   ]),
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   rules: PropTypes.arrayOf(PropTypes.shape({
     validate: PropTypes.func.isRequired,
     options: PropTypes.object,

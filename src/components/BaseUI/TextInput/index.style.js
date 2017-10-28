@@ -1,3 +1,5 @@
+import {primary} from '../../../themes/default/index';
+
 export default {
   textInput: {
     height: 45,
@@ -9,5 +11,8 @@ export default {
     color: '#252525',
     paddingLeft: 15,
     paddingRight: 15,
+  },
+  focused: {
+    borderColor: primary,
   },
 };
