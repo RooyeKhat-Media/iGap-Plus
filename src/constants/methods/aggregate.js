@@ -59,7 +59,7 @@ const aggregateTable = {
 
 /**
  * @param {RequestWrapper} requestWrapper
- * @return {string|null}
+ * @return {string|number|null}
  */
 export function getAggregateId(requestWrapper) {
   const aggregateTableFunction = aggregateTable[requestWrapper.actionId];

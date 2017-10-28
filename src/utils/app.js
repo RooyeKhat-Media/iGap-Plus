@@ -6,10 +6,7 @@ import {USER_LOGIN} from '../constants/methods/index';
 import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
-
-const META_USER_ID = 'userId';
-const META_AUTHOR_HASH = 'authorHash';
-const META_USER_TOKEN = 'userToken';
+import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
 
 let _userId;
 let _authorHash;
@@ -20,11 +17,11 @@ export function getUserId() {
 
 export function setUserId(userId) {
   _userId = userId;
-  return MetaData.save(META_USER_ID, userId);
+  return MetaData.save(METADATA_USER_ID, userId);
 }
 
 export async function loadUserId() {
-  _userId = await MetaData.load(META_USER_ID);
+  _userId = await MetaData.load(METADATA_USER_ID);
   _userId = _userId ? objectToLong(_userId) : null;
   return _userId;
 }
@@ -36,21 +33,21 @@ export function getAuthorHash() {
 
 export function setAuthorHash(authorHash) {
   _authorHash = authorHash;
-  return MetaData.save(META_AUTHOR_HASH, authorHash);
+  return MetaData.save(METADATA_AUTHOR_HASH, authorHash);
 }
 
 export async function loadAuthorHash() {
-  _authorHash = await MetaData.load(META_AUTHOR_HASH);
+  _authorHash = await MetaData.load(METADATA_AUTHOR_HASH);
   return _authorHash;
 }
 
 
 export function setUserToken(userToken) {
-  return MetaData.save(META_USER_TOKEN, userToken);
+  return MetaData.save(METADATA_USER_TOKEN, userToken);
 }
 
 export async function loadUserToken() {
-  return await MetaData.load(META_USER_TOKEN);
+  return await MetaData.load(METADATA_USER_TOKEN);
 }
 
 

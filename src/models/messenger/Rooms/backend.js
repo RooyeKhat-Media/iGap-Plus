@@ -37,7 +37,10 @@ export function retrieveAllCallback() {
   return new Promise((resolve, reject) => {
     storage.readTransaction((transaction) => {
       const payload = {};
-      const query = Squel.select().from('messenger_rooms').toString();
+      const query = Squel.select().from('messenger_rooms')
+        .field('CAST(id AS TEXT) AS id')
+        .field('CAST(sort AS TEXT) AS sort')
+        .toString();
       transaction.executeSql(query, [], (transaction, results) => {
         for (let i = 0; i < results.rows.length; i++) {
           const row = results.rows.item(i);

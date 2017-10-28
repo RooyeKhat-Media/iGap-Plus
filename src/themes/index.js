@@ -2,14 +2,14 @@ import defaultTheme from './default';
 import MetaData from '../models/MetaData';
 import store from '../configureStore';
 import {themeChange} from '../actions/theme';
+import {METADATA_APP_THEME} from '../models/MetaData/constant';
 
 export const DEFAULT_THEME_NAME = 'defaultTheme';
 
-const META_APP_THEME = 'appTheme';
 let _appTheme = DEFAULT_THEME_NAME;
 
 export async function loadAppThemeName() {
-  _appTheme = await MetaData.load(META_APP_THEME);
+  _appTheme = await MetaData.load(METADATA_APP_THEME);
   return _appTheme;
 }
 
@@ -22,7 +22,7 @@ export function getAppTheme() {
 
 export async function setAppThemeName(newTheme) {
   _appTheme = newTheme;
-  return MetaData.save(META_APP_THEME, newTheme);
+  return MetaData.save(METADATA_APP_THEME, newTheme);
 }
 
 export function changeAppTheme(newTheme) {

@@ -374,10 +374,6 @@ export default class Api {
           ||
           (Client.instance.isSecure && isGuestMethod(wrapper.actionId))
         ) {
-          const cacheId = getCacheId(wrapper);
-          if (cacheId) {
-            await msSleep(100);
-          }
           this.__schedule(wrapper);
         } else {
           if (0 < wrapper.priority) {

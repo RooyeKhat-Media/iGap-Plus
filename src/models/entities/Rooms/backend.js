@@ -51,7 +51,12 @@ export function persistCallback(persist) {
  */
 export function retrieveCallback(retrieve) {
   storage.readTransaction((transaction) => {
-    const query = Squel.select().from('entities_rooms').where('id IN ?', [...retrieve.keys()]).toString();
+    const query = Squel.select().from('entities_rooms')
+      .field('CAST(id AS TEXT) AS id')
+      .field('type')
+      .field('title')
+      .field('data')
+      .where('id IN ?', [...retrieve.keys()]).toString();
     transaction.executeSql(query, [], (transaction, results) => {
       for (let i = 0; i < results.rows.length; i++) {
         const row = results.rows.item(i);

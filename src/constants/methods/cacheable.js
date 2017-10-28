@@ -1,21 +1,22 @@
 /**
  * @flow
  */
+import * as CRC32 from 'crc-32';
 import * as methods from '../../constants/methods';
 import {getUserId} from '../../utils/app';
 
 /**
  * @param {string[]} params
- * @return {string}
+ * @return {number}
  */
 function createCacheId(...params) {
-  return params.join('_');
+  return CRC32.str(params.join('_'));
 }
 
 /**
  * @callback cacheTableFunction
  * @param {RequestWrapper} requestWrapper
- * @return {string|null}
+ * @return {number|null}
  */
 
 /**
@@ -135,7 +136,7 @@ const cacheTable = {
 
 /**
  * @param {RequestWrapper} requestWrapper
- * @return {string|null}
+ * @return {number|null}
  */
 export function getCacheId(requestWrapper) {
   const cacheTableFunction = cacheTable[requestWrapper.actionId];
@@ -150,7 +151,7 @@ export function getCacheId(requestWrapper) {
  * @callback cacheRevokeTableFunction
  * @param {RequestWrapper} requestWrapper
  * @param {object} responseProto
- * @return {string[]|null}
+ * @return {number[]|null}
  */
 
 /**
@@ -305,7 +306,7 @@ const cacheRevokeTable = {
 /**
  * @param {RequestWrapper} requestWrapper
  * @param {object} responseProto
- * @return {string[]|null}
+ * @return {number[]|null}
  */
 export function getCacheRevokeIds(requestWrapper, responseProto) {
   const cacheRevokeTableFunction = cacheRevokeTable[requestWrapper.actionId];
