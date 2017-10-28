@@ -12,6 +12,7 @@ export const gray950 = '#7d7d7d';
 
 export const black200 = '#444444';
 export const black500 = '#222222';
+export const black600 = '#202020';
 
 export default {
   palette: {
