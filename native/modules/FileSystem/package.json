@@ -12,8 +12,8 @@
   "author": "",
   "license": "",
   "peerDependencies": {
-    "react-native": "0.47.2",
-    "react-native-windows": "0.47.0-rc.5"
+    "react-native": "0.49.5",
+    "react-native-windows": "v0.49.0-rc.2"
   },
   "dependencies": {
     "base64-js": "^1.2.1",

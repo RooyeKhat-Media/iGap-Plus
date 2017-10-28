@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved, import/extensions */
-import {Component, PropTypes} from 'react';
-/* eslint-enable import/no-unresolved, import/extensions */
+import {Component} from 'react';
+import PropTypes from 'prop-types';
 import getTheme from 'react-native-material-ui/src/styles/getTheme';
 
 const propTypes = {

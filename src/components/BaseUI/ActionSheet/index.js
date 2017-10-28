@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import styles from './index.styles';
 import {Text, View} from 'react-native';
 import {Modal} from '../index';
