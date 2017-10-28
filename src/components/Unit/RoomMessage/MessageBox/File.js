@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text as BaseText, TouchableOpacity, View, Image} from 'react-native';
-import {ActivityIndicator, Icon, ProgressBar} from '../../../BaseUI';
+import {Image, StyleSheet, Text as BaseText, TouchableOpacity, View} from 'react-native';
+import {Icon, ProgressBar} from '../../../BaseUI';
 import Text from './Text';
 import {min} from 'lodash';
 import Device from '../../../../modules/Responsive/Device';
 import {gray700, primary} from '../../../../themes/default/index';
 import {convertBytes} from '../../../../utils/filters';
+import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/ProgressBar/index';
 
 const {width} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
@@ -15,12 +16,10 @@ export default ({message, attachment}) => {
   return (
     <View style={styles.container}>
       <View style={styles.fileWrap}>
-
         <Image
           source={{uri: uri}}
           style={[styles.imageWrap]}>
           <TouchableOpacity style={styles.tochableWrap} activeOpacity={1} onPress={attachment.togglePress}>
-            {attachment.isPending && (<ActivityIndicator size="large"/>)}
             {attachment.isProcessing &&
             (<View style={styles.btnWrap}>
               <Icon color="#fffaf7" name="close" size={25}/>
@@ -40,11 +39,13 @@ export default ({message, attachment}) => {
           <BaseText numberOfLines={1} style={styles.fileName}>{attachment.getName()} </BaseText>
           <BaseText style={styles.fileSize}>{convertBytes(attachment.getSize().toNumber())}</BaseText>
 
-          {attachment.isProcessing && ((<ProgressBar
-            style={[styles.progressStyle]}
-            width={boxWidth - 100}
-            initialProgress={attachment.downloadFile.progress}
-            progress={attachment.downloadFile.progress}/>))}
+          <View style={[styles.progressStyle]}>
+            {attachment.isPending && (<ProgressBar width={boxWidth - 100} status={PROGRESS_BAR_PENDING}/>)}
+            {attachment.isProcessing && ((
+              <ProgressBar width={boxWidth - 100} status={PROGRESS_BAR_PROGRESSING}
+                initialProgress={attachment.downloadFile.progress}
+                progress={attachment.downloadFile.progress}/>))}
+          </View>
 
         </View>
       </View>
