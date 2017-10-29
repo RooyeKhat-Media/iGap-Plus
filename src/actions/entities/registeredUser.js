@@ -21,15 +21,15 @@ export function entitiesRegisteredUserAdd(registeredUsers, fromServer = true) {
 /**
  * @param {string} id
  * @param {object} payload
- * @param {boolean} updateServer
+ * @param {boolean} updateDb
  * @returns {{type: string, payload: object, fromServer: boolean}}
  */
-export function entitiesRegisteredUserEdit(id, payload, updateServer = true) {
+export function entitiesRegisteredUserEdit(id, payload, updateDb = true) {
   return {
     type: ENTITIES_REGISTERED_USER_EDIT,
     id,
     payload,
-    updateServer,
+    updateDb,
   };
 }
 

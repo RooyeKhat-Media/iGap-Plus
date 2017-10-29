@@ -1,5 +1,5 @@
 import {uniqueId} from 'lodash';
-import {black200, gray500, gray800, primary, white} from '../../themes/default/index';
+import {black200, gray500, gray800, primary, white} from '../../../themes/default/index';
 
 
 const id = uniqueId();

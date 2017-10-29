@@ -1,5 +1,6 @@
-import React, {PropTypes, Component} from 'react';
-import {View, ScrollView, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import {Avatar, Toolbar} from '../../BaseUI';

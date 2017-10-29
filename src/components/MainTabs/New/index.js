@@ -1,8 +1,9 @@
-import React, {PropTypes, Component} from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import { Toolbar, MCIcon} from '../../BaseUI/index';
+import {MCIcon, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import {injectIntl} from 'react-intl';
 

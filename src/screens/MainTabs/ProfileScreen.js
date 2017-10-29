@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ProfileComponent from '../../components/Profile/index';
+import ProfileComponent from '../../components/MainTabs/Profile/index';
 import {connect} from 'react-redux';
 import {USER_CONTACTS_GET_LIST} from '../../constants/methods/index';
 import {UserContactsGetList} from '../../modules/Proto/index';

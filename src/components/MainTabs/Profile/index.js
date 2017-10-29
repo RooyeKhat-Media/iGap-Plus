@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {BottomNavigation, FlatList, MCIcon, Toolbar} from '../BaseUI/index';
-import {Button} from '../BaseUI';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {BottomNavigation, Button, FlatList, MCIcon, Toolbar} from '../../BaseUI/index';
 import {ScrollView, Text, View} from 'react-native';
-import i18n from '../../i18n/index';
+import i18n from '../../../i18n/index';
 import styleSheet from './index.styles';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
-import Avatar from '../../containers/Unit/Avatar';
-import UserListItem from '../../containers/Unit/UserListItem';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
+import Avatar from '../../../containers/Unit/Avatar';
+import UserListItem from '../../../containers/Unit/UserListItem';
 
 class ProfileComponent extends Component {
 

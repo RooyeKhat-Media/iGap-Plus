@@ -1,5 +1,6 @@
-import React, { PropTypes, Component} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {Avatar as CircleIcon, Icon} from '../BaseUI/index';
 import i18n from '../../i18n/index';
