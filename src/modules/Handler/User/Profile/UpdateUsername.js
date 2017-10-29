@@ -1,4 +1,6 @@
 import Base from '../../Base';
+import {entitiesRegisteredUserEdit} from '../../../../actions/entities/registeredUser';
+import {getUserId} from '../../../../utils/app';
 
 /**
  * @property {ProtoUserProfileUpdateUsername} _request
@@ -6,6 +8,6 @@ import Base from '../../Base';
  */
 export default class UpdateUsername extends Base {
   handle() {
-    //todo set action for update user name in registered user
+    this.dispatch(entitiesRegisteredUserEdit(getUserId(true), {username: this._response.getUsername()}, true));
   }
 }

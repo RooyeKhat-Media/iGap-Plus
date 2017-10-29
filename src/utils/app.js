@@ -9,20 +9,26 @@ import {objectToLong} from './core';
 import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
 
 let _userId;
+let _userIdString;
 let _authorHash;
 
-export function getUserId() {
+export function getUserId(asString = false) {
+  if (asString) {
+    return _userIdString;
+  }
   return _userId;
 }
 
 export function setUserId(userId) {
   _userId = userId;
+  _userIdString = _userId.toString();
   return MetaData.save(METADATA_USER_ID, userId);
 }
 
 export async function loadUserId() {
   _userId = await MetaData.load(METADATA_USER_ID);
   _userId = _userId ? objectToLong(_userId) : null;
+  _userIdString = _userId ? _userId.toString() : null;
   return _userId;
 }
 
