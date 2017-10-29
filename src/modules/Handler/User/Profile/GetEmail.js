@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {setEmail} from '../../../../actions/methods/user/profile/email';
 
 /**
  * @property {ProtoUserProfileGetEmail} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class GetEmail extends Base {
   handle() {
-    console.error('GetEmail', 'Not implemented yet', this);
+    this.dispatch(setEmail(this._response.getEmail()));
   }
 }

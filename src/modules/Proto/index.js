@@ -1802,6 +1802,12 @@ export default {
   [methods.USER_PRIVACY_SET_RULE_RESPONSE]: UserPrivacySetRuleResponse,
   [methods.USER_VERIFY_NEW_DEVICE]: UserVerifyNewDevice,
   [methods.USER_VERIFY_NEW_DEVICE_RESPONSE]: UserVerifyNewDeviceResponse,
+  [methods.USER_PROFILE_SET_BIO]: UserProfileSetBio,
+  [methods.USER_PROFILE_SET_BIO_RESPONSE]: UserProfileSetBioResponse,
+  [methods.USER_PROFILE_GET_BIO]: UserProfileGetBio,
+  [methods.USER_PROFILE_GET_BIO_RESPONSE]: UserProfileGetBioResponse,
+  [methods.USER_REPORT]: UserReport,
+  [methods.USER_REPORT_RESPONSE]: UserReportResponse,
 
   //Chat 2XX
   [methods.CHAT_GET_ROOM]: ChatGetRoom,
@@ -1976,6 +1982,11 @@ export default {
   [methods.CLIENT_SEARCH_USERNAME_RESPONSE]: ClientSearchUsernameResponse,
   [methods.CLIENT_COUNT_ROOM_HISTORY]: ClientCountRoomHistory,
   [methods.CLIENT_COUNT_ROOM_HISTORY_RESPONSE]: ClientCountRoomHistoryResponse,
+  [methods.CLIENT_MUTE_ROOM]: ClientMuteRoom,
+  [methods.CLIENT_MUTE_ROOM_RESPONSE]: ClientMuteRoomResponse,
+  [methods.CLIENT_PIN_ROOM]: ClientPinRoom,
+  [methods.CLIENT_ROOM_REPORT]: ClientRoomReport,
+  [methods.CLIENT_ROOM_REPORT_RESPONSE]: ClientRoomReportResponse,
 
   //File 7XX
   [methods.FILE_UPLOAD_OPTION]: FileUploadOption,

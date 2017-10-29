@@ -472,6 +472,78 @@ export default {
     description: 'page user profile',
   },
 
+  editProfileName: {
+    id: 'editProfile.name',
+    defaultMessage: 'Name',
+    description: 'EditProfile Page',
+  },
+  editProfileUserName: {
+    id: 'editProfile.userName',
+    defaultMessage: 'User Name',
+    description: 'EditProfile Page',
+  },
+  editProfilePhoneNumber: {
+    id: 'editProfile.phoneNumber',
+    defaultMessage: 'Phone Number',
+    description: 'EditProfile Page',
+  },
+  editProfileBio: {
+    id: 'editProfile.bio',
+    defaultMessage: 'Bio',
+    description: 'EditProfile Page',
+  },
+  editProfilePrivateInformation: {
+    id: 'editProfile.privateInformation',
+    defaultMessage: 'Private Information',
+    description: 'EditProfile Page',
+  },
+  editProfileEmail: {
+    id: 'editProfile.email',
+    defaultMessage: 'Email',
+    description: 'EditProfile Page',
+  },
+  editProfileMale: {
+    id: 'editProfile.male',
+    defaultMessage: 'Male',
+    description: 'EditProfile Page',
+  },
+  editProfileFemale: {
+    id: 'editProfile.female',
+    defaultMessage: 'Female',
+    description: 'EditProfile Page',
+  },
+  editProfileNotSpecified: {
+    id: 'editProfile.notSpecified',
+    defaultMessage: 'Not Specified',
+    description: 'EditProfile Page',
+  },
+  editProfileGender: {
+    id: 'editProfile.gender',
+    defaultMessage: 'Gender',
+    description: 'EditProfile Page',
+  },
+  editProfileEditProfile: {
+    id: 'editProfile.ditProfile',
+    defaultMessage: 'Edit Profile',
+    description: 'EditProfile Page',
+  },
+  editProfileChangePhoto: {
+    id: 'editProfile.changePhoto',
+    defaultMessage: 'Change Photo',
+    description: 'EditProfile Page',
+  },
+
+  editProfileCheckUsernameInvalid: {
+    id: 'editProfile.checkUsernameInvalid',
+    defaultMessage: 'Username is Invalid',
+    description: 'EditProfile Page',
+  },
+  editProfileCheckUsernameTaken: {
+    id: 'editProfile.checkUsernameTaken',
+    defaultMessage: 'Username is Taken',
+    description: 'EditProfile Page',
+  },
+
   roomInfoDetails: {
     id: 'roomInfo.details',
     defaultMessage: 'Details',

@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {setNickname} from '../../../../actions/methods/user/profile/nickname';
 
 /**
  * @property {ProtoUserProfileGetNickname} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class GetNickname extends Base {
   handle() {
-    console.error('GetNickname', 'Not implemented yet', this);
+    this.dispatch(setNickname(this._response.getNickname()));
   }
 }

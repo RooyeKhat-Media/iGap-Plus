@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {setGender} from '../../../../actions/methods/user/profile/gender';
 
 /**
  * @property {ProtoUserProfileGetGender} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class GetGender extends Base {
   handle() {
-    console.error('GetGender', 'Not implemented yet', this);
+    this.dispatch(setGender(this._response.getGender()));
   }
 }

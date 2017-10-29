@@ -6,6 +6,7 @@ import MainBottom from '../containers/MainBottom';
 import {
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
+  EDIT_PROFILE_SCREEN,
   NEW_SCREEN,
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
@@ -20,6 +21,7 @@ import RoomsScreen from '../screens/MainTabs/RoomListScreen';
 import NewScreen from '../screens/MainTabs/NewScreen';
 import PublicScreen from '../screens/MainTabs/PublicScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
+import EditProfileScreen from '../screens/User/UserEditProfileScreen';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 import RoomGroupCreateScreen from '../screens/Room/RoomGroupCreateScreen';
 import RoomChannelCreateScreen from '../screens/Room/RoomChannelCreateScreen';
@@ -52,6 +54,10 @@ export function goContactNew() {
   navigate(CONTACT_NEW_SCREEN);
 }
 
+export function goEditProfile() {
+  navigate(EDIT_PROFILE_SCREEN);
+}
+
 export function goGroupCreate() {
   navigate(ROOM_GROUP_CREATE_SCREEN);
 }
@@ -81,6 +87,7 @@ const PrimaryNavigator = StackNavigator({
     },
   },
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
+  [EDIT_PROFILE_SCREEN]: {screen: EditProfileScreen},
   [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
   [ROOM_GROUP_CREATE_SCREEN]: {screen: RoomGroupCreateScreen},
   [ROOM_CHANNEL_CREATE_SCREEN]: {screen: RoomChannelCreateScreen},

@@ -6,12 +6,16 @@ import {UserContactsGetList} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {makeGetContactList} from '../../selector/methods/user/contacts/getList';
 import {getCurrentUser} from '../../selector/entities/registeredUser';
+import {goEditProfile} from '../../navigators/PrimaryNavigator';
+import putState from '../../modules/Entities/RegisteredUsers/index';
+import {getUserId} from '../../utils/app';
 
 class ProfileScreen extends Component {
 
   async componentDidMount() {
     const userContactGetList = new UserContactsGetList();
     await Api.invoke(USER_CONTACTS_GET_LIST, userContactGetList);
+    await putState(getUserId().toString());
   }
 
   render() {
@@ -20,8 +24,7 @@ class ProfileScreen extends Component {
       <ProfileComponent
         currentUser={currentUser}
         contactList={contactList}
-        editProfileBtn={() => {
-        }}
+        editProfileBtn={goEditProfile}
       />
     );
   }

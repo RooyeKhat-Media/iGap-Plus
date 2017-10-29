@@ -20,6 +20,19 @@ export const requiredValidator = function(value, options = {}) {
 export const integerValidator = function(value, options = {}) {
   return regexValidator(value, {pattern: /^\d+$/});
 };
+
+export const emailValidator = function(value, options = {}) {
+  if (!value && options.optional) {
+    return new Promise(function(resolve, reject) {
+      resolve();
+    });
+  } else {
+    return regexValidator(value, {
+      pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    });
+  }
+};
+
 export const stringValidator = function(value, options = {}) {
   return new Promise(function(resolve, reject) {
     if (typeof value !== 'string') {
