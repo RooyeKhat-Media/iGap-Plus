@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import UserEditProfileComponent from '../../components/User/EditProfile/index';
 import {
   Proto,
+  UserAvatarAdd,
   UserProfileCheckUsername,
   UserProfileGetBio,
   UserProfileGetEmail,
@@ -14,6 +16,7 @@ import {
   UserProfileUpdateUsername,
 } from '../../modules/Proto/index';
 import {
+  USER_AVATAR_ADD,
   USER_PROFILE_CHECK_USERNAME,
   USER_PROFILE_GET_BIO,
   USER_PROFILE_GET_EMAIL,
@@ -39,6 +42,8 @@ import {
   ERROR_USER_PROFILE_UPDATE_USERNAME_BAD_PAYLOAD,
   ERROR_USER_PROFILE_UPDATE_USERNAME_UPDATE_LOCK,
 } from '../../modules/Api/errors/index';
+import {fileManagerUpload, fileManagerUploadDisposed} from '../../actions/fileManager';
+import {FILE_UPLOAD_ID_EDIT_PROFILE} from '../../constants/app';
 
 const formRules = {
   email: [
@@ -157,10 +162,23 @@ class UserEditProfileScreen extends Component {
             [errorId(ERROR_USER_PROFILE_SET_EMAIL_BAD_PAYLOAD)]: 'email',
           }),
       ];
-      const response = await Promise.all(promiseList);
-      console.log('handleFormData.response', response);
+      await Promise.all(promiseList);
     } catch (e) {
       console.warn('handleFormData:Error', e);
+    }
+  }
+
+  selectPhoto = async () => {
+    const {upload, dispose} = this.props;
+    try {
+      const file = await RNFileSystem.filePicker(FileUtil.images());
+      const token = await upload(file);
+
+      const userAvatarAdd = new UserAvatarAdd();
+      userAvatarAdd.setAttachment(token);
+      await Api.invoke(USER_AVATAR_ADD, userAvatarAdd);
+    } finally {
+      dispose();
     }
   }
 
@@ -168,14 +186,15 @@ class UserEditProfileScreen extends Component {
     const {nickName, gender, email, bio, currentUser} = this.props;
     return (
       <UserEditProfileComponent
-        goBack={this.props.navigation.goBack}
+        currentUser={currentUser}
         formRules={formRules}
         nickName={nickName}
-        currentUser={currentUser}
         gender={gender}
         email={email}
         bio={bio}
+        selectPhoto={this.selectPhoto}
         handleFormData={this.handleFormData}
+        goBack={this.props.navigation.goBack}
       />
     );
   }
@@ -191,4 +210,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(UserEditProfileScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    upload: (file) => {
+      return dispatch(fileManagerUpload(FILE_UPLOAD_ID_EDIT_PROFILE, file.fileUri, file.fileName, file.fileSize));
+    },
+    dispose: () => {
+      return dispatch(fileManagerUploadDisposed(FILE_UPLOAD_ID_EDIT_PROFILE));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserEditProfileScreen);

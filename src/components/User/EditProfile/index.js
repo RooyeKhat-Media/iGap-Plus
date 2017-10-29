@@ -9,16 +9,8 @@ import Avatar from '../../../containers/Unit/Avatar';
 
 class UserEditProfile extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
-  };
-
-  changePhoto = () => {
-    alert('change photo');
   };
 
   handleFormData = async () => {
@@ -34,7 +26,7 @@ class UserEditProfile extends Component {
 
   render() {
     const styles = this.getStyles();
-    const {intl, formRules, goBack, nickName, email, gender, bio, currentUser} = this.props;
+    const {intl, currentUser, formRules, nickName, email, gender, bio, selectPhoto, goBack} = this.props;
 
     if (!currentUser) {
       return null;
@@ -54,7 +46,7 @@ class UserEditProfile extends Component {
             {currentUser && <Avatar userId={currentUser.id} size={110}/>}
           </View>
 
-          <Text style={styles.text_changePhoto} onPress={this.changePhoto}>
+          <Text style={styles.text_changePhoto} onPress={selectPhoto}>
             {intl.formatMessage(i18n.editProfileChangePhoto)}
           </Text>
 

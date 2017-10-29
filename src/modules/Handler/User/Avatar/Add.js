@@ -1,4 +1,6 @@
 import Base from '../../Base';
+import {entitiesRegisteredUserEdit} from '../../../../actions/entities/registeredUser';
+import {getUserId} from '../../../../utils/app';
 
 /**
  * @property {ProtoUserAvatarAdd} _request
@@ -6,6 +8,6 @@ import Base from '../../Base';
  */
 export default class Add extends Base {
   handle() {
-    console.error('Add', 'Not implemented yet', this);
+    this.dispatch(entitiesRegisteredUserEdit(getUserId(true), {avatar: this._response.getAvatar()}));
   }
 }

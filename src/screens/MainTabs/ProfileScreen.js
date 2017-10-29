@@ -15,7 +15,7 @@ class ProfileScreen extends Component {
   async componentDidMount() {
     const userContactGetList = new UserContactsGetList();
     await Api.invoke(USER_CONTACTS_GET_LIST, userContactGetList);
-    await putState(getUserId().toString());
+    await putState(getUserId(true));
   }
 
   render() {

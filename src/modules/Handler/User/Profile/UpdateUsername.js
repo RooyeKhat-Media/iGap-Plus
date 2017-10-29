@@ -8,6 +8,6 @@ import {getUserId} from '../../../../utils/app';
  */
 export default class UpdateUsername extends Base {
   handle() {
-    this.dispatch(entitiesRegisteredUserEdit(getUserId(true), {username: this._response.getUsername()}, true));
+    this.dispatch(entitiesRegisteredUserEdit(getUserId(true), {username: this._response.getUsername()}));
   }
 }
