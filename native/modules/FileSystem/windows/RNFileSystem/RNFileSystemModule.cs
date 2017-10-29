@@ -33,7 +33,7 @@ namespace iGapPlus.RNFileSystem
         public RNFileSystemModule(ReactContext reactContext)
             : base(reactContext)
         {
-            StorageApplicationPermissions.FutureAccessList.Clear();
+
         }
 
         public override string Name
@@ -58,14 +58,13 @@ namespace iGapPlus.RNFileSystem
 
         private async Task<JObject> getFileInfo(StorageFile file)
         {
-            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
             var basicProperties = await file.GetBasicPropertiesAsync();
             var length = basicProperties.Size;
 
             var jObject = new JObject();
-            jObject.Add(Fields.FILE_SIZE, length);
+            jObject.Add(Fields.FILE_SIZE, length.ToString());
             jObject.Add(Fields.FILE_NAME, file.Name);
-            jObject.Add(Fields.FILE_URI, token);
+            jObject.Add(Fields.FILE_URI, file.Path);
 
             return jObject;
         }
@@ -86,7 +85,9 @@ namespace iGapPlus.RNFileSystem
                 StorageFile file = await openPicker.PickSingleFileAsync();
                 if (file != null)
                 {
-                    var jObject = await getFileInfo(file);
+                    StorageFile localFile = await getStorageFolder().CreateFileAsync(file.FolderRelativeId, CreationCollisionOption.ReplaceExisting);
+                    await file.CopyAndReplaceAsync(localFile);
+                    var jObject = await getFileInfo(localFile);
                     promise.Resolve(jObject);
                 }
                 else
@@ -115,7 +116,9 @@ namespace iGapPlus.RNFileSystem
                     var jArray = new JArray();
                     foreach (StorageFile file in files)
                     {
-                        var jObject = await getFileInfo(file);
+                        StorageFile localFile = await getStorageFolder().CreateFileAsync(file.FolderRelativeId, CreationCollisionOption.ReplaceExisting);
+                        await file.CopyAndReplaceAsync(localFile);
+                        var jObject = await getFileInfo(localFile);
                         jArray.Add(jObject);
                     }
                     promise.Resolve(jArray);
@@ -134,17 +137,8 @@ namespace iGapPlus.RNFileSystem
                 Task.Run(async () => {
                     try
                     {
-                        StorageFile file;
-
-                        if (StorageApplicationPermissions.FutureAccessList.ContainsItem(fileUri))
-                        {
-                            file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(fileUri);
-                        }
-                        else
-                        {
-                            file = await StorageFile.GetFileFromPathAsync(@fileUri);
-                        }
-
+                        StorageFile file = await StorageFile.GetFileFromPathAsync(fileUri);
+                        
                         var jObject = await getFileInfo(file);
 
                         promise.Resolve(jObject);
@@ -161,47 +155,26 @@ namespace iGapPlus.RNFileSystem
         public void fOpen(string fileUri, int mode, IPromise promise)
         {
             DispatcherHelpers.RunOnDispatcher(() => {
-                Task.Run(async () => {
+                Task.Run(() => {
                     try
                     {
                         FileWrapper fileWrapper;
-                        Stream fileStream;
-
-                        if (StorageApplicationPermissions.FutureAccessList.ContainsItem(fileUri))
+                        FileStream fileStream;
+                   
+                        switch (mode)
                         {
-                            StorageFile file = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(fileUri);
-
-                            switch (mode)
-                            {
-                                case FILE_OPEN_MODE_READ:
-                                    fileStream = await file.OpenStreamForReadAsync();
-                                    fileWrapper = new FileWrapper(fileStream, fileUri);
-                                    break;
-                                case FILE_OPEN_MODE_WRITE:
-                                    fileStream = await file.OpenStreamForWriteAsync();
-                                    fileStream.Seek(0, SeekOrigin.End);
-                                    fileWrapper = new FileWrapper(fileStream, fileUri);
-                                    break;
-                                default:
-                                    throw new ArgumentException("Invalid open mode " + mode);
-                            }
+                            case FILE_OPEN_MODE_READ:
+                                fileStream = new FileStream(fileUri, FileMode.Open, FileAccess.Read);
+                                fileWrapper = new FileWrapper(fileStream);
+                                break;
+                            case FILE_OPEN_MODE_WRITE:
+                                fileStream = new FileStream(fileUri, FileMode.Append, FileAccess.Write);
+                                fileWrapper = new FileWrapper(fileStream);
+                                break;
+                            default:
+                                throw new ArgumentException("Invalid open mode " + mode);
                         }
-                        else
-                        {
-                            switch (mode)
-                            {
-                                case FILE_OPEN_MODE_READ:
-                                    fileStream = new FileStream(@fileUri, FileMode.Open, FileAccess.Read);
-                                    fileWrapper = new FileWrapper(fileStream);
-                                    break;
-                                case FILE_OPEN_MODE_WRITE:
-                                    fileStream = new FileStream(@fileUri, FileMode.Append, FileAccess.Write);
-                                    fileWrapper = new FileWrapper(fileStream);
-                                    break;
-                                default:
-                                    throw new ArgumentException("Invalid open mode " + mode);
-                            }
-                        }
+                        
 
                         files.Add(fileWrapper.refId, fileWrapper);
                         promise.Resolve(fileWrapper.refId);
@@ -215,7 +188,7 @@ namespace iGapPlus.RNFileSystem
         }
 
         [ReactMethod]
-        public void fRead(int refId, double offset, int limit, IPromise promise)
+        public void fRead(int refId, string offset, int limit, IPromise promise)
         {
             DispatcherHelpers.RunOnDispatcher(() => {
                 Task.Run(() => {
@@ -226,13 +199,13 @@ namespace iGapPlus.RNFileSystem
                         if (!files.TryGetValue(refId, out fileWrapper))
                             throw new Exception("Invalid refId");
 
-                        Stream fileStream = fileWrapper.fileStream;
+                        FileStream fileStream = fileWrapper.fileStream;
 
                         if (!fileStream.CanRead)
                             throw new Exception("File is not readable");
 
                         byte[] buffer = new byte[limit];
-                        fileStream.Seek((long)offset, SeekOrigin.Begin);
+                        fileStream.Seek(Convert.ToInt64(offset), SeekOrigin.Begin);
                         fileStream.Read(buffer, 0, limit);
                         promise.Resolve(Convert.ToBase64String(buffer));
                     }
@@ -256,7 +229,7 @@ namespace iGapPlus.RNFileSystem
                         if (!files.TryGetValue(refId, out fileWrapper))
                             throw new Exception("Invalid refId");
 
-                        Stream fileStream = fileWrapper.fileStream;
+                        FileStream fileStream = fileWrapper.fileStream;
 
                         if (!fileStream.CanRead)
                             throw new Exception("File is not readable");
@@ -300,7 +273,7 @@ namespace iGapPlus.RNFileSystem
                         if (!files.TryGetValue(refId, out fileWrapper))
                             throw new Exception("Invalid refId");
 
-                        Stream fileStream = fileWrapper.fileStream;
+                        FileStream fileStream = fileWrapper.fileStream;
 
                         if (!fileStream.CanWrite)
                             throw new Exception("File is not writable");
@@ -325,17 +298,12 @@ namespace iGapPlus.RNFileSystem
                 Task.Run(() => {
                     FileWrapper fileWrapper;
 
-                    if (!files.TryGetValue(refId, out fileWrapper))
+                    if (files.TryGetValue(refId, out fileWrapper))
                     {
                         files.Remove(refId);
 
-                        Stream fileStream = fileWrapper.fileStream;
+                        FileStream fileStream = fileWrapper.fileStream;
                         fileStream.Dispose();
-
-                        if (fileWrapper.futureAccessListToken!=null && StorageApplicationPermissions.FutureAccessList.ContainsItem(fileWrapper.futureAccessListToken))
-                        {
-                            StorageApplicationPermissions.FutureAccessList.Remove(fileWrapper.futureAccessListToken);
-                        }
                     }
                     promise.Resolve(null);
                 });
@@ -343,11 +311,15 @@ namespace iGapPlus.RNFileSystem
         }
 
 
+        public StorageFolder getStorageFolder()
+        {
+            return ApplicationData.Current.LocalCacheFolder;
+        }
 
         [ReactMethod]
         public void getFilesDir(IPromise promise)
         {
-            promise.Resolve(ApplicationData.Current.LocalCacheFolder.Path);
+            promise.Resolve(getStorageFolder().Path);
         }
     }
 }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{4A0D0504-5EBE-4499-8E76-B0600864DBB2}</ProjectGuid>
+    <ProjectGuid>{ADF1E92C-4725-4DA7-A67B-9AE081E358EC}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iGapPlus</RootNamespace>
@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>iGapPlus_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>62D4D9E2B6634550778C8A16B7C9D38208B29034</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>4FCAB8CAEDF9C280945FB915ABB6AB278F26BEC1</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -171,96 +171,92 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Entypo.ttf">
-      <Link>Assets\Entypo.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans.ttf">
+      <Link>Assets\IRANSans.ttf</Link>
     </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\EvilIcons.ttf">
-      <Link>Assets\EvilIcons.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Black.ttf">
+      <Link>Assets\IRANSans_Black.ttf</Link>
     </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\FontAwesome.ttf">
-      <Link>Assets\FontAwesome.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Bold.ttf">
+      <Link>Assets\IRANSans_Bold.ttf</Link>
     </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Foundation.ttf">
-      <Link>Assets\Foundation.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Light.ttf">
+      <Link>Assets\IRANSans_Light.ttf</Link>
     </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Ionicons.ttf">
-      <Link>Assets\Ionicons.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Medium.ttf">
+      <Link>Assets\IRANSans_Medium.ttf</Link>
     </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialCommunityIcons.ttf">
-      <Link>Assets\MaterialCommunityIcons.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_UltraLight.ttf">
+      <Link>Assets\IRANSans_UltraLight.ttf</Link>
     </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialIcons.ttf">
-      <Link>Assets\MaterialIcons.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Octicons.ttf">
-      <Link>Assets\Octicons.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\SimpleLineIcons.ttf">
-      <Link>Assets\SimpleLineIcons.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Zocial.ttf">
-      <Link>Assets\Zocial.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\assets\fonts\neuropolitical\neuropolitical.ttf">
+      <Link>Assets\neuropolitical.ttf</Link>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Black.ttf">
       <Link>Assets\Roboto-Black.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-BlackItalic.ttf">
       <Link>Assets\Roboto-BlackItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Bold.ttf">
       <Link>Assets\Roboto-Bold.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-BoldItalic.ttf">
       <Link>Assets\Roboto-BoldItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Italic.ttf">
       <Link>Assets\Roboto-Italic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Light.ttf">
       <Link>Assets\Roboto-Light.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-LightItalic.ttf">
       <Link>Assets\Roboto-LightItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Medium.ttf">
       <Link>Assets\Roboto-Medium.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-MediumItalic.ttf">
       <Link>Assets\Roboto-MediumItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Regular.ttf">
       <Link>Assets\Roboto-Regular.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Thin.ttf">
       <Link>Assets\Roboto-Thin.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\assets\fonts\Roboto\Roboto-ThinItalic.ttf">
       <Link>Assets\Roboto-ThinItalic.ttf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\neuropolitical.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Entypo.ttf">
+      <Link>Assets\Entypo.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\EvilIcons.ttf">
+      <Link>Assets\EvilIcons.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\FontAwesome.ttf">
+      <Link>Assets\FontAwesome.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Foundation.ttf">
+      <Link>Assets\Foundation.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Ionicons.ttf">
+      <Link>Assets\Ionicons.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialCommunityIcons.ttf">
+      <Link>Assets\MaterialCommunityIcons.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialIcons.ttf">
+      <Link>Assets\MaterialIcons.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Octicons.ttf">
+      <Link>Assets\Octicons.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\SimpleLineIcons.ttf">
+      <Link>Assets\SimpleLineIcons.ttf</Link>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Zocial.ttf">
+      <Link>Assets\Zocial.ttf</Link>
     </Content>
     <None Include="project.json" />
   </ItemGroup>
@@ -279,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -293,6 +290,14 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\node_modules\react-native-file-system\windows\RNFileSystem\RNFileSystem.csproj">
+      <Project>{128e8920-8592-11e7-be82-13bd81bed55a}</Project>
+      <Name>RNFileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-sqlite-2\windows\RNSqlite2\RNSqlite2.csproj">
+      <Project>{aa4a1906-7230-4cfb-a193-3602011c768c}</Project>
+      <Name>RNSqlite2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\node_modules\react-native-windows\ReactWindows\ReactNative\ReactNative.csproj">
       <Project>{c7673ad5-e3aa-468c-a5fd-fa38154e205c}</Project>
       <Name>ReactNative</Name>

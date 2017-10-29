@@ -1,7 +1,7 @@
 using ReactNative;
 using ReactNative.Modules.Core;
 using iGapPlus.RNFileSystem;
-using iGapPlus.RNWebSocket;
+using RNSqlite2;
 using ReactNative.Shell;
 using System.Collections.Generic;
 
@@ -14,6 +14,14 @@ namespace iGapPlus
             get
             {
                 return "iGapPlus";
+            }
+        }
+
+        public override string JavaScriptMainModuleName
+        {
+            get
+            {
+                return "index";
             }
         }
 
@@ -35,7 +43,7 @@ namespace iGapPlus
                 {
                     new MainReactPackage(),
                     new RNFileSystemPackage(),
-                    new RNWebSocketPackage(),
+                    new RNSqlite2Package(),
                 };
             }
         }

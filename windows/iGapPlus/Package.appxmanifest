@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="fb461cab-a397-4bfc-a8dd-7dddee1250ec"
+    Name="778b0d7b-0df0-4095-aae8-712c4fc5e1f6"
     Publisher="CN=PC"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="fb461cab-a397-4bfc-a8dd-7dddee1250ec" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="778b0d7b-0df0-4095-aae8-712c4fc5e1f6" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>iGapPlus</DisplayName>

@@ -49,7 +49,7 @@ export function randomString(length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWX
   const charsLen = chars.length;
 
   for (let i = 0; i < length; i++) {
-    str += chars.charAt(Math.floor(Math.random() * charsLen));
+    str += chars.charAt(floor(Math.random() * charsLen));
   }
   return str;
 }
@@ -61,9 +61,9 @@ export function randomString(length, chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWX
  * @return {string}
  */
 export function rtrim(str, charlist) {
-
-  charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
-    .replace(/([[\]().?/*{}+$^:])/g, '\\$1');
+  const whitespaces = ' \\s\u00A0';
+  charlist = !charlist ? whitespaces : (whitespaces + (charlist + '')
+    .replace(/([\\[\]().?/*{}+$^:])/g, '\\$1'));
 
   const re = new RegExp('[' + charlist + ']+$', 'g');
 

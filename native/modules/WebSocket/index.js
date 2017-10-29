@@ -191,4 +191,8 @@ class WebSocket extends EventTarget(...WEBSOCKET_EVENTS) {
   }
 }
 
+export function noMaskSupport() {
+  return true;
+}
+
 export default WebSocket;

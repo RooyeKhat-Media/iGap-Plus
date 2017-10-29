@@ -14,32 +14,18 @@ namespace iGapPlus.RNFileSystem
             get { return _refId; }
         }
 
-        private Stream _fileStream;
+        private FileStream _fileStream;
 
-        public Stream fileStream
+        public FileStream fileStream
         {
             get { return _fileStream; }
         }
 
-        private string _futureAccessListToken;
 
-        public string futureAccessListToken
-        {
-            get { return _futureAccessListToken; }
-        }
-
-
-        public FileWrapper(Stream fileStream)
+        public FileWrapper(FileStream fileStream)
         {
             _refId = Interlocked.Increment(ref atomicRefId);
             _fileStream = fileStream;
-        }
-
-        public FileWrapper(Stream fileStream,string futureAccessListToken)
-        {
-            _refId = Interlocked.Increment(ref atomicRefId);
-            _fileStream = fileStream;
-            _futureAccessListToken = futureAccessListToken;
         }
 
 

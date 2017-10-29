@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import IntroComponent from '../components/Intro';
-import Call from '../assets/images/intro/call';
-import Chat from '../assets/images/intro/chat';
-import Free from '../assets/images/intro/free';
-import Logo from '../assets/images/intro/logo';
-import Security from '../assets/images/intro/security';
-import Transfer from '../assets/images/intro/transfer';
-import Location from '../assets/images/intro/location';
+import IntroComponent from '../../components/Intro';
+import Call from '../../assets/images/intro/call';
+import Chat from '../../assets/images/intro/chat';
+import Free from '../../assets/images/intro/free';
+import Logo from '../../assets/images/intro/logo';
+import Security from '../../assets/images/intro/security';
+import Transfer from '../../assets/images/intro/transfer';
+import Location from '../../assets/images/intro/location';
 import {FormattedMessage} from 'react-intl';
-import {goUserRegisterScreen} from '../navigators/AppNavigator';
-import i18n from '../i18n';
+import {goUserRegisterScreen} from '../../navigators/AppNavigator';
+import i18n from '../../i18n';
 
 const pages = [
   {

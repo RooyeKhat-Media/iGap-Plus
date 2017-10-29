@@ -4,8 +4,18 @@
 
 import Long from 'long';
 import RNFileSystem, {OPEN_MODE_READ} from 'react-native-file-system';
+import {noMaskSupport} from 'react-native-web-socket';
 import Api from '../Api/index';
-import {FileUpload, FileUploadInit, FileUploadOption, FileUploadStatus, FileUploadStatusResponse} from '../Proto';
+import {
+  ErrorResponse,
+  FileUpload,
+  FileUploadResponse,
+  FileUploadInit,
+  FileUploadOption,
+  FileUploadStatus,
+  FileUploadStatusResponse,
+} from '../Proto';
+
 import {FILE_UPLOAD, FILE_UPLOAD_INIT, FILE_UPLOAD_OPTION, FILE_UPLOAD_STATUS} from '../../constants/methods';
 import {msSleep} from '../../utils/core';
 import store from '../../configureStore';
@@ -15,7 +25,8 @@ import {
   fileManagerUploadPostProcessing,
   fileManagerUploadUploading,
 } from '../../actions/fileManager';
-
+import {NON_WEBSOCKET_UPLOAD_ENDPOINT} from '../../constants/configs';
+import ServerError from '../Error/ServerError';
 
 function pauseIfNeeded(id) {
   const storeFile = store.getState().fileManager.upload[id];
@@ -105,9 +116,29 @@ export default async function(id, fileUri, fileName, fileSize) {
         store.dispatch(fileManagerUploadUploading(id, progress));
 
         /**
-           * @type ProtoFileUploadResponse
-           */
-        const fileUploadResponse = await Api.invoke(FILE_UPLOAD, fileUpload);
+         * @type ProtoFileUploadResponse
+         */
+        let fileUploadResponse;
+
+        if (noMaskSupport()) {
+          fileUploadResponse = await Api.invoke(FILE_UPLOAD, fileUpload);
+        } else {
+          const fetchResponse = await fetch(NON_WEBSOCKET_UPLOAD_ENDPOINT, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/octet-stream',
+            },
+            body: fileUpload.serializeBinary(),
+          });
+
+          const fetchResponseBody = await fetchResponse.arrayBuffer();
+
+          if (!fetchResponse.ok) {
+            const fetchErrorResponse = ErrorResponse.deserializeBinary(new Uint8Array(fetchResponseBody));
+            throw new ServerError(fetchErrorResponse, FILE_UPLOAD);
+          }
+          fileUploadResponse = FileUploadResponse.deserializeBinary(new Uint8Array(fetchResponseBody));
+        }
 
         progress = fileUploadResponse.getProgress();
         offset = fileUploadResponse.getNextOffset();
@@ -123,16 +154,16 @@ export default async function(id, fileUri, fileName, fileSize) {
           processing:
           do {
             /**
-                 * @type ProtoFileUploadStatusResponse
-                 */
+             * @type ProtoFileUploadStatusResponse
+             */
             const fileUploadStatusResponse = await Api.invoke(FILE_UPLOAD_STATUS, fileUploadStatus);
             progress = fileUploadStatusResponse.getProgress();
 
             switch (fileUploadStatusResponse.getStatus()) {
               case FileUploadStatusResponse.Status.UPLOADING:
                 /**
-                     * @type ProtoFileUploadInitResponse
-                     */
+                 * @type ProtoFileUploadInitResponse
+                 */
                 const fileUploadReInitResponse = await Api.invoke(FILE_UPLOAD_INIT, fileUploadInit);
                 token = fileUploadReInitResponse.getToken();
                 progress = fileUploadReInitResponse.getProgress();

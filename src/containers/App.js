@@ -72,7 +72,10 @@ class App extends Component {
       <ThemeProvider uiTheme={appTheme}>
         <View style={{flex: 1}}>
           <View style={{flex: 1, zIndex: 2}}>
-            <StatusBar backgroundColor="#e5e5e5" barStyle="dark-content"/>
+            <StatusBar backgroundColor="#e5e5e5" barStyle={Platform.select({
+              android: 'dark-content',
+              default: 'default',
+            })}/>
             <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
           </View>
           <AppModal/>
