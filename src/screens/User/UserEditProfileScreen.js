@@ -108,6 +108,7 @@ class UserEditProfileScreen extends Component {
   }
 
   handleFormData = async (data, setError) => {
+    const {nickName, gender, email, bio, currentUser} = this.props;
 
     const userProfileNickname = new UserProfileSetNickname();
     userProfileNickname.setNickname(data.nickName);
@@ -125,43 +126,48 @@ class UserEditProfileScreen extends Component {
     userProfileEmail.setEmail(data.email);
 
     try {
-      const promiseList = [
-        Api.invokeMapError(
+      const promiseList = [];
+      if (data.nickName !== nickName) {
+        promiseList.push(Api.invokeMapError(
           USER_PROFILE_SET_NICKNAME,
           userProfileNickname,
           setError, {
             [errorId(ERROR_USER_PROFILE_SET_NICKNAME_BAD_PAYLOAD)]: 'nickName',
-          }),
-
-        Api.invokeMapError(
+          }));
+      }
+      if (data.userName !== currentUser.username) {
+        promiseList.push(Api.invokeMapError(
           USER_PROFILE_UPDATE_USERNAME,
           userProfileUsername,
           setError, {
             [errorId(ERROR_USER_PROFILE_UPDATE_USERNAME_BAD_PAYLOAD)]: 'userName',
             [errorId(ERROR_USER_PROFILE_UPDATE_USERNAME_UPDATE_LOCK)]: 'userName',
-          }),
-
-        Api.invokeMapError(
+          }));
+      }
+      if (data.bio !== bio) {
+        promiseList.push(Api.invokeMapError(
           USER_PROFILE_SET_BIO,
           userProfileBio,
           setError, {
             [errorId(ERROR_USER_PROFILE_SET_BIO_BAD_PAYLOAD)]: 'bio',
-          }),
-
-        Api.invokeMapError(
+          }));
+      }
+      if (data.gender !== gender) {
+        promiseList.push(Api.invokeMapError(
           USER_PROFILE_SET_GENDER,
           userProfileGender,
           setError, {
             [errorId(ERROR_USER_PROFILE_SET_GENDER_BAD_PAYLOAD)]: 'gender',
-          }),
-
-        Api.invokeMapError(
+          }));
+      }
+      if (data.email !== email) {
+        promiseList.push(Api.invokeMapError(
           USER_PROFILE_SET_EMAIL,
           userProfileEmail,
           setError, {
             [errorId(ERROR_USER_PROFILE_SET_EMAIL_BAD_PAYLOAD)]: 'email',
-          }),
-      ];
+          }));
+      }
       await Promise.all(promiseList);
     } catch (e) {
       console.warn('handleFormData:Error', e);
