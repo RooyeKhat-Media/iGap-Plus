@@ -1,5 +1,6 @@
 export const primary = '#3298ee';
 export const white = '#ffffff';
+export const white500 = '#faf8f6';
 export const gray100 = '#fafafa';
 export const gray200 = '#f0f0f0';
 export const gray300 = '#eeeeee';
