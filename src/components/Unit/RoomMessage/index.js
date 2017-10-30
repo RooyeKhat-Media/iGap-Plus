@@ -13,14 +13,14 @@ class RoomMessage extends React.Component {
 
     if (message.messageType === Proto.RoomMessageType.LOG) {
       return (<LogBox message={message}/>);
+    } else if (roomType === Proto.Room.Type.CHANNEL) {
+      return (<ChannelBox message={message}/>);
     } else if (message.authorHash === authorHash) {
       return (<OwnerBox message={message}/>);
     } else if (roomType === Proto.Room.Type.CHAT) {
       return (<ChatBox message={message}/>);
     } else if (roomType === Proto.Room.Type.GROUP) {
       return (<GroupBox message={message}/>);
-    } else if (roomType === Proto.Room.Type.CHANNEL) {
-      return (<ChannelBox message={message}/>);
     }
 
     return null;
