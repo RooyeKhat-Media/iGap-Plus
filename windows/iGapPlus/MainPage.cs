@@ -1,5 +1,6 @@
 using ReactNative;
 using ReactNative.Modules.Core;
+using Cl.Json.RNShare;
 using iGapPlus.RNFileSystem;
 using RNSqlite2;
 using ReactNative.Shell;
@@ -42,6 +43,7 @@ namespace iGapPlus
                 return new List<IReactPackage>
                 {
                     new MainReactPackage(),
+                    new RNSharePackage(),
                     new RNFileSystemPackage(),
                     new RNSqlite2Package(),
                 };

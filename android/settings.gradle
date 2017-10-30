@@ -1,4 +1,6 @@
 rootProject.name = 'iGapPlus'
+include ':react-native-share'
+project(':react-native-share').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-share/android')
 include ':react-native-sqlite-2'
 project(':react-native-sqlite-2').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sqlite-2/android')
 include ':react-native-file-system'

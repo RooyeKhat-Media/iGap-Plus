@@ -5098,6 +5098,10 @@ react-native-material-ui@^1.14.0:
     prop-types "^15.5.10"
     react-native-material-design-styles "^0.2.6"
 
+react-native-share@^1.0.23:
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.0.23.tgz#6476f10d34e5274b9e0ef2c93def6c3a282ffe94"
+
 react-native-sqlite-2@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-native-sqlite-2/-/react-native-sqlite-2-1.5.0.tgz#e31230bae4bae520a6cb2fed1f29c20e79765a3a"

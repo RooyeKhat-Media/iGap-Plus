@@ -3,6 +3,7 @@ package com.igapplus;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import com.reactlibrary.RNSqlite2Package;
 import plus.igap.filesystem.RNFileSystemPackage;
 import plus.igap.websocket.RNWebSocketPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSharePackage(),
             new RNSqlite2Package(),
             new RNFileSystemPackage(),
             new RNWebSocketPackage(),

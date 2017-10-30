@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNFileSystem", "..\node_mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNSqlite2", "..\node_modules\react-native-sqlite-2\windows\RNSqlite2\RNSqlite2.csproj", "{AA4A1906-7230-4CFB-A193-3602011C768C}"
 EndProject
+Project("{0A3142E0-07FC-667F-A090-006E6D40682D}") = "C:\projects\iGapPlus\node_modules\react-native-share\windows\RNShare\RNShare", "..\node_modules\react-native-share\windows\RNShare\RNShare.csproj", "{F8DE5BBD-6FEC-1AE3-2E78-1B0587A7B543}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\ReactWindows\ReactNative.Shared\ReactNative.Shared.projitems*{c7673ad5-e3aa-468c-a5fd-fa38154e205c}*SharedItemsImports = 4
