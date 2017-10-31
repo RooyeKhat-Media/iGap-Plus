@@ -27,6 +27,7 @@
     "react-native": "0.49.5",
     "react-native-file-system": "./native/modules/FileSystem",
     "react-native-material-ui": "^1.14.0",
+    "react-native-save-to": "./native/modules/SaveTo",
     "react-native-share": "^1.0.23",
     "react-native-sqlite-2": "^1.5.0",
     "react-native-svg": "^5.4.2",

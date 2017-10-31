@@ -5098,6 +5098,9 @@ react-native-material-ui@^1.14.0:
     prop-types "^15.5.10"
     react-native-material-design-styles "^0.2.6"
 
+react-native-save-to@./native/modules/SaveTo:
+  version "1.0.0"
+
 react-native-share@^1.0.23:
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.0.23.tgz#6476f10d34e5274b9e0ef2c93def6c3a282ffe94"
