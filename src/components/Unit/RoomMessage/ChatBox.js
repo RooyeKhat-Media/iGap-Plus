@@ -4,11 +4,11 @@ import MessageBox from './MessageBox/index';
 import {FormattedRelative} from 'react-intl';
 import {white} from '../../../themes/default/index';
 
-export default ({message}) => (
+export default ({message, showText}) => (
   <View style={styles.container}>
     <View style={styles.triangle}/>
     <View style={styles.messageBox}>
-      <MessageBox message={message}/>
+      <MessageBox message={message} showText={showText}/>
       <View style={styles.footerWrap}>
         <Text style={styles.timeText}>
           <FormattedRelative updateInterval={0} value={message.createTime * 1000}/>

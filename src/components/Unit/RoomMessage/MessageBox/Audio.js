@@ -11,7 +11,7 @@ import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/Pr
 const {width} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
 
-export default ({message, attachment}) => {
+export default ({message, attachment, showText}) => {
   const uri = 'file://' + attachment.smallThumbnailUri;
 
   return (
@@ -41,7 +41,7 @@ export default ({message, attachment}) => {
         </View>
       </View>
 
-      {message ? (<Text message={message}/>) : null}
+      {(message && showText) ? (<Text message={message}/>) : null}
     </View>
   );
 };

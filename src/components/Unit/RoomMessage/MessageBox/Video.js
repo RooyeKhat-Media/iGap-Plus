@@ -12,7 +12,7 @@ const {width, height} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
 const boxHeight = min([500, (0.8 * height)]);
 
-export default ({message, attachment}) => {
+export default ({message, attachment, showText}) => {
 
   const {width, height} = dimensionCalculate(attachment.getWidth(), attachment.getHeight(), boxWidth, boxHeight);
   const uri = 'file://' + (attachment.isCompleted ? attachment.downloadFile.uri : attachment.smallThumbnailUri);
@@ -38,7 +38,7 @@ export default ({message, attachment}) => {
 
     </TouchableOpacity>
 
-    {message ? (<Text message={message}/>) : null}
+    {(message && showText) ? (<Text message={message}/>) : null}
   </View>);
 };
 

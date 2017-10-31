@@ -4,10 +4,10 @@ import MessageBox from './MessageBox/index';
 import AddonTime from './MessageBox/AddonTime';
 import {white500} from '../../../themes/default/index';
 
-export default ({message}) => (
+export default ({message, showText}) => (
   <View style={styles.container}>
     <View style={styles.messageBox}>
-      <MessageBox message={message}/>
+      <MessageBox message={message} showText={showText}/>
       <View style={styles.footerWrap}>
         <AddonTime createTime={message.createTime}/>
       </View>
