@@ -1,0 +1,19 @@
+
+{
+  "name": "react-native-save-to",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "",
+  "license": "",
+  "peerDependencies": {
+    "react-native": "0.49.5",
+    "react-native-windows": "v0.49.0-rc.2"
+  }
+}
