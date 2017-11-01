@@ -56,8 +56,8 @@ export const flatProtoRoom = (room) => {
     flat.groupAvatar = gre.getAvatar();
 
     if (room.getGroupRoomExtra().getPrivateExtra()) {
-      flat.groupProvateInviteLink = gre.getPrivateExtra().getInviteLink();
-      flat.groupProvateInviteToken = gre.getPrivateExtra().getInviteToken();
+      flat.groupPrivateInviteLink = gre.getPrivateExtra().getInviteLink();
+      flat.groupPrivateInviteToken = gre.getPrivateExtra().getInviteToken();
     }
 
     if (room.getGroupRoomExtra().getPublicExtra()) {
@@ -82,8 +82,8 @@ export const flatProtoRoom = (room) => {
     flat.channelSeenId = cre.getSeenId();
 
     if (room.getChannelRoomExtra().getPrivateExtra()) {
-      flat.channelProvateInviteLink = cre.getPrivateExtra().getInviteLink();
-      flat.channelProvateInviteToken = cre.getPrivateExtra().getInviteToken();
+      flat.channelPrivateInviteLink = cre.getPrivateExtra().getInviteLink();
+      flat.channelPrivateInviteToken = cre.getPrivateExtra().getInviteToken();
     }
 
     if (room.getChannelRoomExtra().getPublicExtra()) {
