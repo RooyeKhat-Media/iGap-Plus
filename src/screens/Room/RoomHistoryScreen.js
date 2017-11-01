@@ -20,7 +20,9 @@ class RoomHistoryScreen extends Component {
 
   render() {
     const {room, messageList} = this.props;
-
+    if (!room) {
+      return null;
+    }
     return (
       <RoomHistoryComponent
         room={room}

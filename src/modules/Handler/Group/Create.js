@@ -7,6 +7,6 @@ import putState from '../../Entities/Rooms/index';
  */
 export default class Create extends Base {
   async handle() {
-    await putState(this._response.getRoomId());
+    await putState(this._response.getRoomId().toString());
   }
 }

@@ -16,7 +16,7 @@ class RoomGroupCreateComponent extends Component {
   };
 
   render() {
-    const {intl, handleFormData, formRules, goBack} = this.props;
+    const {intl, handleFormData, selectPhoto, formRules, goBack} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -40,7 +40,7 @@ class RoomGroupCreateComponent extends Component {
           <Form style={styles.form} control={(form) => {
             this.form = form;
           }}>
-            <TouchableOpacity style={styles.avatarWrap} onPress={() => alert('seletct picture ')}>
+            <TouchableOpacity style={styles.avatarWrap} onPress={selectPhoto}>
               <Avatar icon="camera-alt" size={120} style={styles.avatar}/>
             </TouchableOpacity>
 
@@ -71,6 +71,7 @@ RoomGroupCreateComponent.propTypes = {
   intl: intlShape.isRequired,
   goBack: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
+  selectPhoto: PropTypes.func.isRequired,
   formRules: PropTypes.object.isRequired,
 };
 

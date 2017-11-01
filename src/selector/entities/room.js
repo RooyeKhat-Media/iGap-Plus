@@ -13,7 +13,7 @@ export const getRoom = createSelector(
     const room = entities.rooms[roomId];
     return {
       ...room,
-      chatPeer: room.chatPeer ? entities.registeredUsers[room.chatPeer] : null,
+      chatPeer: room && room.chatPeer ? entities.registeredUsers[room.chatPeer] : null,
     };
   }
 );
@@ -68,8 +68,8 @@ export const getRoomAvatarUri = createSelector(
   (roomAvatar, downloads) => {
     if (
       roomAvatar.avatar &&
-            downloads[roomAvatar.avatar.cacheId] &&
-            downloads[roomAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
+      downloads[roomAvatar.avatar.cacheId] &&
+      downloads[roomAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
     ) {
       return downloads[roomAvatar.avatar.cacheId].uri;
     }

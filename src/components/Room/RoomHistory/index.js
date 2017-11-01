@@ -18,7 +18,6 @@ class RoomHistoryComponent extends React.Component {
             <ListItem
               centerElement={{
                 primaryText: room.title,
-                secondaryText: 'Online',
               }}
               style={styles.toolBarListItem}
             />

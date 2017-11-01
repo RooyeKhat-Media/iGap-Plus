@@ -32,8 +32,6 @@ class RoomGroupCreateScreen extends Component {
   }
 
   handleFormData = async (formData, setError) => {
-    const {dispose, upload} = this.props;
-    const {selectedFile} = this.state;
     const {selectedContact} = this.props.navigation.state.params;
 
     try {
@@ -43,41 +41,48 @@ class RoomGroupCreateScreen extends Component {
       const groupCreate = new GroupCreate();
       groupCreate.setName(formData.groupName);
       groupCreate.setDescription(formData.groupDescription);
+      /**
+       * @type {ProtoGroupCreateResponse}
+       */
       const groupCreateResponse = await Api.invoke(GROUP_CREATE, groupCreate);
-      const roomId = groupCreateResponse.getId().toString();
+      const roomId = groupCreateResponse.getRoomId().toString();
 
       const promiseList = [];
       selectedContact.forEach(function(userId) {
         const member = new GroupAddMember.Member();
         member.setUserId(userId);
         const groupAddMember = new GroupAddMember();
-        groupAddMember.setRoomId(groupCreateResponse.getId());
+        groupAddMember.setRoomId(groupCreateResponse.getRoomId());
         groupAddMember.setMember(member);
         promiseList.push(Api.invoke(GROUP_ADD_MEMBER, groupAddMember));
       });
       await Promise.all(promiseList);
 
-      if (selectedFile) {
-        upload(getRoomAvatarUploadIdPrefix(roomId), selectedFile)
-          .then(function(token) {
-            const groupAddAvatar = new GroupAvatarAdd();
-            groupAddAvatar.setRoomId(roomId);
-            groupAddAvatar.setAttachment(token);
-            Api.invoke(GROUP_AVATAR_ADD, groupAddAvatar);
-            dispose(getRoomAvatarUploadIdPrefix(roomId));
-          }, function() {
-            dispose(getRoomAvatarUploadIdPrefix(roomId));
-          });
-      }
-
+      this.addGroupAvatar(groupCreateResponse.getRoomId());
+      this.props.navigation.goBack();
       goRoomHistory(roomId);
-
     } catch (e) {
       // TODO COMPLETE ERRORS
-      setError('create group', e.name + ': ' + e.message);
+      console.log('create group', e.name + ': ' + e.message);
     }
   };
 
+  addGroupAvatar = async (roomId) => {
+    const {selectedFile} = this.state;
+    const {dispose, upload} = this.props;
+    const id = roomId.toString();
+    if (selectedFile) {
+      try {
+        const token = await upload(getRoomAvatarUploadIdPrefix(id), selectedFile);
+        const groupAddAvatar = new GroupAvatarAdd();
+        groupAddAvatar.setRoomId(id);
+        groupAddAvatar.setAttachment(token);
+        await Api.invoke(GROUP_AVATAR_ADD, groupAddAvatar);
+      } finally {
+        dispose(getRoomAvatarUploadIdPrefix(id));
+      }
+    }
+  }
 
   selectPhoto = async () => {
     try {
@@ -92,6 +97,7 @@ class RoomGroupCreateScreen extends Component {
       <RoomGroupCreateComponent
         goBack={this.props.navigation.goBack}
         formRules={formRules}
+        selectPhoto={this.selectPhoto}
         handleFormData={this.handleFormData}
       />
     );
