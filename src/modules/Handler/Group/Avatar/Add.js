@@ -1,5 +1,5 @@
 import Base from '../../Base';
-import {entitiesRomEdit} from '../../../../actions/entities/rooms';
+import {entitiesRoomEdit} from '../../../../actions/entities/rooms';
 
 /**
  * @property {ProtoGroupAvatarAdd} _request
@@ -7,6 +7,6 @@ import {entitiesRomEdit} from '../../../../actions/entities/rooms';
  */
 export default class Add extends Base {
   handle() {
-    this.dispatch(entitiesRomEdit(this._request.getRoomId(), {groupAvatar: this._response.getAvatar()}));
+    this.dispatch(entitiesRoomEdit(this._request.getRoomId(), {groupAvatar: this._response.getAvatar()}));
   }
 }

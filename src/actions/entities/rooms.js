@@ -65,7 +65,7 @@ export function entitiesRoomsAddFull(data) {
  * @param {boolean} updateDb
  * @returns {{type: string, payload: object, fromServer: boolean}}
  */
-export function entitiesRomEdit(id, payload, updateDb = true) {
+export function entitiesRoomEdit(id, payload, updateDb = true) {
   return {
     type: ENTITIES_ROOM_EDIT,
     id,
