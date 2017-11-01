@@ -15,6 +15,7 @@ import {
   ROOM_CHANNEL_CREATE_SCREEN,
   ROOM_GROUP_CREATE_SCREEN,
   ROOM_LIST_SCREEN,
+  ROOM_UPDATE_USERNAME_SCREEN,
   SEARCH_SCREEN,
 } from '../constants/navigators';
 import ProfileScreen from '../screens/MainTabs/ProfileScreen';
@@ -28,6 +29,7 @@ import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 import RoomGroupCreateScreen from '../screens/Room/RoomGroupCreateScreen';
 import RoomChannelCreateScreen from '../screens/Room/RoomChannelCreateScreen';
 import ContactPickerScreen from '../screens/Contact/ContactPickerScreen';
+import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -73,6 +75,10 @@ export function goChannelCreate() {
   navigate(ROOM_CHANNEL_CREATE_SCREEN);
 }
 
+export function goRoomUpdateUsername(roomId) {
+  navigate(ROOM_UPDATE_USERNAME_SCREEN, {roomId});
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [SEARCH_SCREEN]: {screen: SearchScreen},
@@ -99,6 +105,7 @@ const PrimaryNavigator = StackNavigator({
   [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
   [ROOM_GROUP_CREATE_SCREEN]: {screen: RoomGroupCreateScreen},
   [ROOM_CHANNEL_CREATE_SCREEN]: {screen: RoomChannelCreateScreen},
+  [ROOM_UPDATE_USERNAME_SCREEN]: {screen: RoomUpdateUsernameScreen},
 });
 
 export default PrimaryNavigator;

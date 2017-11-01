@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {entitiesRoomEdit} from '../../../actions/entities/rooms';
+import {Proto} from '../../Proto/index';
 
 /**
  * @property {ProtoChannelRemoveUsername} _request
@@ -6,6 +8,11 @@ import Base from '../Base';
  */
 export default class RemoveUsername extends Base {
   handle() {
-    console.error('RemoveUsername', 'Not implemented yet', this);
+    this.dispatch(entitiesRoomEdit(this._response.getRoomId().toString(), {
+      channelPublicUsername: null,
+      channelType: Proto.ChannelRoom.Type.PRIVATE_ROOM,
+      channelPrivateInviteToken: '', //todo set invite Token
+      channelPrivateInviteLink: '', //todo set invite Link
+    }));
   }
 }

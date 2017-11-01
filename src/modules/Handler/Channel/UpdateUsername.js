@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {entitiesRoomEdit} from '../../../actions/entities/rooms';
+import {Proto} from '../../Proto/index';
 
 /**
  * @property {ProtoChannelUpdateUsername} _request
@@ -6,6 +8,11 @@ import Base from '../Base';
  */
 export default class UpdateUsername extends Base {
   handle() {
-    console.error('UpdateUsername', 'Not implemented yet', this);
+    this.dispatch(entitiesRoomEdit(this._response.getRoomId().toString(), {
+      channelPublicUsername: this._response.getUsername(),
+      channelType: Proto.ChannelRoom.Type.PUBLIC_ROOM,
+      channelPrivateInviteToken: null,
+      channelPrivateInviteLink: null,
+    }));
   }
 }

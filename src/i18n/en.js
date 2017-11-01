@@ -717,4 +717,49 @@ export default {
     defaultMessage: 'New Group with...',
     description: 'contact picker screen',
   },
+  groupCheckUsernameInvalid: {
+    id: 'group.checkUsernameInvalid',
+    defaultMessage: 'Invalid Username',
+    description: 'Room Update Username Screen',
+  },
+  groupCheckUsernameTaken: {
+    id: 'group.checkUsernameTaken',
+    defaultMessage: 'Username Taken',
+    description: 'Room Update Username Screen',
+  },
+  channelCheckUsernameInvalid: {
+    id: 'channel.checkUsernameInvalid',
+    defaultMessage: 'Invalid Username',
+    description: 'Room Update Username Screen',
+  },
+  channelCheckUsernameTaken: {
+    id: 'channel.checkUsernameTaken',
+    defaultMessage: 'Username Taken',
+    description: 'Room Update Username Screen',
+  },
+  roomUpdateUsernameRadioBtnPublic: {
+    id: 'roomUpdateUsername.radioBtnPublic',
+    defaultMessage: 'Public',
+    description: 'Room Update Username Screen',
+  },
+  roomUpdateUsernameRadioBtnPrivate: {
+    id: 'roomUpdateUsername.radioBtnPrivate',
+    defaultMessage: 'Private',
+    description: 'Room Update Username Screen',
+  },
+  roomUpdateUsernameToolbarTitle: {
+    id: 'roomUpdateUsername.toolbarTitle',
+    defaultMessage: 'Change Room Type',
+    description: 'Room Update Username Screen',
+  },
+  roomUpdateUsernameTitle: {
+    id: 'roomUpdateUsername.title',
+    defaultMessage: 'Username',
+    description: 'Room Update Username Screen',
+  },
+  roomUpdateUsernameDescription: {
+    id: 'roomUpdateUsername.description',
+    defaultMessage: 'People can join your channel by searching this username. You can use a-z, 0-9 and underscores. The minimum length of username should be 5 characters.',
+    description: 'Room Update Username Screen',
+  },
 };

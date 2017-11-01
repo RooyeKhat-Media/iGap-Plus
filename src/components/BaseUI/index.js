@@ -1,7 +1,4 @@
-import {ActivityIndicator,
-  Switch,
-  Picker as BasePicker,
-} from 'react-native';
+import {ActivityIndicator, Picker as BasePicker, Switch} from 'react-native';
 import {
   Avatar,
   Badge,
@@ -12,6 +9,7 @@ import {
   Drawer,
   Icon,
   ListItem,
+  RadioButton,
   Toolbar,
 } from 'react-native-material-ui';
 import FlatList from './FlatList';
@@ -54,4 +52,5 @@ export {
   Form,
   TextInputField,
   PickerField,
+  RadioButton,
 };

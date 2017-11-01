@@ -9,6 +9,7 @@ import {GROUP_ADD_MEMBER, GROUP_AVATAR_ADD, GROUP_CREATE} from '../../constants/
 import {fileManagerUpload, fileManagerUploadDisposed} from '../../actions/fileManager';
 import {getRoomAvatarUploadIdPrefix} from '../../utils/app';
 import {goRoomHistory} from '../../navigators/SecondaryNavigator';
+import {goRoomUpdateUsername} from '../../navigators/PrimaryNavigator';
 
 const formRules = {
   groupName: [
@@ -60,7 +61,11 @@ class RoomGroupCreateScreen extends Component {
 
       this.addGroupAvatar(groupCreateResponse.getRoomId());
       this.props.navigation.goBack();
-      goRoomHistory(roomId);
+      goRoomUpdateUsername(roomId, {
+        goBack: () => {
+          goRoomHistory(roomId);
+        },
+      });
     } catch (e) {
       // TODO COMPLETE ERRORS
       console.log('create group', e.name + ': ' + e.message);
