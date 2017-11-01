@@ -1,17 +1,19 @@
 import React from 'react';
 import {StackNavigator, TabNavigator} from 'react-navigation';
-import {navigate} from './index';
+import {navigate, resetPrimaryNavigation} from './index';
 import MainBottom from '../containers/MainBottom';
 
 import {
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
+  CONTACT_PICKER_SCREEN,
   EDIT_PROFILE_SCREEN,
   NEW_SCREEN,
+  PRIMARY_NAV_TAB,
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
-  ROOM_GROUP_CREATE_SCREEN,
   ROOM_CHANNEL_CREATE_SCREEN,
+  ROOM_GROUP_CREATE_SCREEN,
   ROOM_LIST_SCREEN,
   SEARCH_SCREEN,
 } from '../constants/navigators';
@@ -25,6 +27,7 @@ import EditProfileScreen from '../screens/User/UserEditProfileScreen';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 import RoomGroupCreateScreen from '../screens/Room/RoomGroupCreateScreen';
 import RoomChannelCreateScreen from '../screens/Room/RoomChannelCreateScreen';
+import ContactPickerScreen from '../screens/Contact/ContactPickerScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -50,6 +53,10 @@ export function goContactList() {
   navigate(CONTACT_LIST_SCREEN);
 }
 
+export function goContactPicker(title, onSubmit, multiple) {
+  navigate(CONTACT_PICKER_SCREEN, {title, onSubmit, multiple});
+}
+
 export function goContactNew() {
   navigate(CONTACT_NEW_SCREEN);
 }
@@ -58,8 +65,8 @@ export function goEditProfile() {
   navigate(EDIT_PROFILE_SCREEN);
 }
 
-export function goGroupCreate() {
-  navigate(ROOM_GROUP_CREATE_SCREEN);
+export function goGroupCreate(selectedContact) {
+  resetPrimaryNavigation(ROOM_GROUP_CREATE_SCREEN, {selectedContact});
 }
 
 export function goChannelCreate() {
@@ -80,13 +87,14 @@ const tabNav = TabNavigator({
 });
 
 const PrimaryNavigator = StackNavigator({
-  tabNav: {
+  [PRIMARY_NAV_TAB]: {
     screen: tabNav,
     navigationOptions: {
       header: null,
     },
   },
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
+  [CONTACT_PICKER_SCREEN]: {screen: ContactPickerScreen},
   [EDIT_PROFILE_SCREEN]: {screen: EditProfileScreen},
   [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
   [ROOM_GROUP_CREATE_SCREEN]: {screen: RoomGroupCreateScreen},

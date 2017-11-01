@@ -711,4 +711,10 @@ export default {
     defaultMessage: 'iGap Call',
     description: 'call screen',
   },
+
+  groupCreateSelectContactTitle: {
+    id: 'groupCreate.selectContactTitle',
+    defaultMessage: 'New Group with...',
+    description: 'contact picker screen',
+  },
 };

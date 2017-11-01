@@ -7,6 +7,7 @@ import {entitiesRegisteredUserAdd} from './registeredUser';
 // import {messengerRoomMessagePush, messengerRoomMessageUnshift} from '../messenger/roomMessages';
 
 export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
+export const ENTITIES_ROOM_EDIT = 'ENTITIES_ROOM_EDIT';
 
 /**
  * @param {NormalizedRoomEntities} rooms
@@ -58,3 +59,17 @@ export function entitiesRoomsAddFull(data) {
   };
 }
 
+/**
+ * @param {string} id
+ * @param {object} payload
+ * @param {boolean} updateDb
+ * @returns {{type: string, payload: object, fromServer: boolean}}
+ */
+export function entitiesRomEdit(id, payload, updateDb = true) {
+  return {
+    type: ENTITIES_ROOM_EDIT,
+    id,
+    payload,
+    updateDb,
+  };
+}

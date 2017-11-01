@@ -11,60 +11,60 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class RoomGroupCreateComponent extends Component {
 
-    getStyles = () => {
-      return MemoizeResponsiveStyleSheet(styleSheet);
-    };
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
-    render() {
-      const {intl, handleFormData, formRules, goBack} = this.props;
-      const styles = this.getStyles();
+  render() {
+    const {intl, handleFormData, formRules, goBack} = this.props;
+    const styles = this.getStyles();
 
-      return (
-        <View>
-          <Toolbar
-            leftElement="arrow-back"
-            rightElement="check"
-            onLeftElementPress={goBack}
-            onRightElementPress={async () => {
-              try {
-                this.form.loadingOn();
-                const data = await this.form.submit();
-                await handleFormData(data, this.form.setError);
-              } finally {
-                this.form.loadingOff();
-              }
-            }}
-            centerElement={intl.formatMessage(i18n.roomGroupCreateNewGroup)}/>
+    return (
+      <View>
+        <Toolbar
+          leftElement="arrow-back"
+          rightElement="check"
+          onLeftElementPress={goBack}
+          onRightElementPress={async () => {
+            try {
+              this.form.loadingOn();
+              const data = await this.form.submit();
+              await handleFormData(data, this.form.setError);
+            } finally {
+              this.form.loadingOff();
+            }
+          }}
+          centerElement={intl.formatMessage(i18n.roomGroupCreateNewGroup)}/>
 
-          <ScrollView   style={styles.scroll}>
-            <Form style={styles.form} control={(form) => {
-              this.form = form;
-            }}>
-              <TouchableOpacity style={styles.avatarWrap} onPress={ () => alert('seletct picture ')}>
-                <Avatar text="+" size={120} style={styles.avatar}   />
-              </TouchableOpacity>
+        <ScrollView style={styles.scroll}>
+          <Form style={styles.form} control={(form) => {
+            this.form = form;
+          }}>
+            <TouchableOpacity style={styles.avatarWrap} onPress={() => alert('seletct picture ')}>
+              <Avatar icon="camera-alt" size={120} style={styles.avatar}/>
+            </TouchableOpacity>
 
-              <TextInputField
-                isField={true}
-                rules={formRules.groupName}
-                name="groupName"
-                label={intl.formatMessage(i18n.roomGroupCreateGroupName)}
-                placeholder={intl.formatMessage(i18n.roomGroupCreateGroupName)}
-              />
+            <TextInputField
+              isField={true}
+              rules={formRules.groupName}
+              name="groupName"
+              label={intl.formatMessage(i18n.roomGroupCreateGroupName)}
+              placeholder={intl.formatMessage(i18n.roomGroupCreateGroupName)}
+            />
 
-              <TextInputField
-                isField={true}
-                rules={formRules.groupDescription}
-                name="groupDescription"
-                label={intl.formatMessage(i18n.roomGroupCreateGroupDescription)}
-                placeholder={intl.formatMessage(i18n.roomGroupCreateGroupDescription)}
-              />
-              <View style={{height:100}}/>
-            </Form>
-          </ScrollView>
-        </View>
-      );
-    }
+            <TextInputField
+              isField={true}
+              rules={formRules.groupDescription}
+              name="groupDescription"
+              label={intl.formatMessage(i18n.roomGroupCreateGroupDescription)}
+              placeholder={intl.formatMessage(i18n.roomGroupCreateGroupDescription)}
+            />
+            <View style={{height: 100}}/>
+          </Form>
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 RoomGroupCreateComponent.propTypes = {

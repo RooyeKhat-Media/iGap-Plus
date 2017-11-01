@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {entitiesRomEdit} from '../../../../actions/entities/rooms';
 
 /**
  * @property {ProtoGroupAvatarAdd} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class Add extends Base {
   handle() {
-    console.error('Add', 'Not implemented yet', this);
+    this.dispatch(entitiesRomEdit(this._request.getRoomId(), {groupAvatar: this._response.getAvatar()}));
   }
 }

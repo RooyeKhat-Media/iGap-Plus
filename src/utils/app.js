@@ -7,6 +7,7 @@ import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
 import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
+import {FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX} from '../constants/app';
 
 let _userId;
 let _userIdString;
@@ -80,4 +81,8 @@ export async function login() {
   // TODO [Amerehie] - 8/30/2017 2:05 PM - setPlatform , setPlatformVersion ...
 
   return Api.invoke(USER_LOGIN, userLogin);
+}
+
+export function getRoomAvatarUploadIdPrefix(id) {
+  return FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX + id;
 }
