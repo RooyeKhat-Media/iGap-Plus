@@ -5,18 +5,21 @@ import {getUser} from '../../selector/entities/registeredUser';
 import UserListItemComponent from '../../components/Unit/UserListItem';
 
 class UserListItem extends Component {
+
   render() {
-    const {divider, user, onPress} = this.props;
+    const {divider, user, selected, onPress} = this.props;
     if (!user) {
       return null;
     }
-
     return (<UserListItemComponent
+      selected={selected}
       userId={user.id}
       divider={divider}
       displayName={user.displayName}
       phoneNumber={user.phone.toString()}
-      onPress={onPress}
+      onPress={() => {
+        onPress(user.longId);
+      }}
     />);
   }
 }
@@ -24,6 +27,8 @@ class UserListItem extends Component {
 UserListItem.propTypes = {
   userId: PropTypes.string.isRequired,
   divider: PropTypes.string,
+  onPress: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
 };
 
 const makeMapStateToProps = () => {

@@ -8,4 +8,12 @@ export default {
     borderBottomColor: '#bababa',
     borderBottomWidth: 1,
   },
+  listItem: {
+    container: {},
+  },
+  selectedItem: {
+    container: {
+      backgroundColor: '#bababa',
+    },
+  },
 };

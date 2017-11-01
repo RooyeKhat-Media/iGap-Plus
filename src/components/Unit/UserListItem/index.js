@@ -8,17 +8,18 @@ import styles from './index.styles';
 
 class UserListItem extends React.Component {
   render() {
-    const {userId, divider, displayName, phoneNumber, onPress} = this.props;
+    const {userId, divider, displayName, phoneNumber, selected, onPress} = this.props;
     return (<View>
       {divider ?
         (<Text style={styles.divider}>{divider}</Text>) : null}
       <BaseListItem
         onPress={onPress}
-        leftElement={<Avatar userId={userId} size={52} style={styles.avatar}/>}
+        leftElement={<Avatar userId={userId} size={52}/>}
         centerElement={{
           primaryText: displayName,
           secondaryText: phoneNumber,
         }}
+        style={(selected ? styles.selectedItem : {})}
       />
     </View>);
   }
@@ -30,6 +31,7 @@ UserListItem.propTypes = {
   userId: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string,
-  onPress: PropTypes.func,
+  onPress: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
 };
 export default injectIntl(UserListItem);
