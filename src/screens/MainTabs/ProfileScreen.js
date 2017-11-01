@@ -18,6 +18,10 @@ class ProfileScreen extends Component {
     await putState(getUserId(true));
   }
 
+  onContactPress = (userId) => {
+    console.log('onContactPress', userId);
+  }
+
   render() {
     const {currentUser, contactList} = this.props;
     return (
@@ -25,6 +29,7 @@ class ProfileScreen extends Component {
         currentUser={currentUser}
         contactList={contactList}
         editProfileBtn={goEditProfile}
+        onContactPress={this.onContactPress}
       />
     );
   }

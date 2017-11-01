@@ -39,7 +39,7 @@ class ProfileComponent extends Component {
   };
 
   render() {
-    const {intl, editProfileBtn, currentUser, contactList} = this.props;
+    const {intl, onContactPress, editProfileBtn, currentUser, contactList} = this.props;
     const styles = this.getStyles();
 
 
@@ -107,7 +107,7 @@ class ProfileComponent extends Component {
             <FlatList
               data={contactList}
               keyExtractor={(item, index) => ('contact-' + item.id)}
-              renderItem={({item}) => <UserListItem userId={item.id} divider={item.divider}/>}
+              renderItem={({item}) => <UserListItem userId={item.id} onPress={onContactPress} divider={item.divider}/>}
             />}
 
         </ScrollView>
@@ -119,6 +119,8 @@ class ProfileComponent extends Component {
 ProfileComponent.propTypes = {
   intl: intlShape.isRequired,
   currentUser: PropTypes.object,
+  onContactPress: PropTypes.func,
+  editProfileBtn: PropTypes.func,
 };
 
 export default injectIntl(ProfileComponent);
