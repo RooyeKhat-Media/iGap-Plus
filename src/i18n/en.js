@@ -656,20 +656,20 @@ export default {
     defaultMessage: 'Add Contacts',
     description: 'new Screen',
   },
-  roomGroupCreateNewGroup: {
-    id: 'roomGroupCreate.newGroup',
-    defaultMessage: 'New Group',
-    description: 'room Group Create screen',
+  roomCreateToolbarTitle: {
+    id: 'roomCreate.toolbarTitle',
+    defaultMessage: 'New Room',
+    description: 'room Create screen',
   },
-  roomGroupCreateGroupName: {
-    id: 'roomGroupCreate.groupName',
-    defaultMessage: 'Group Name',
-    description: 'room Group Create screen',
+  roomCreateFieldName: {
+    id: 'roomGroupCreate.fieldName',
+    defaultMessage: 'Name',
+    description: 'room Create screen',
   },
-  roomGroupCreateGroupDescription: {
-    id: 'roomGroupCreate.groupDescription',
-    defaultMessage: 'Group Description',
-    description: 'room Group Create screen',
+  roomCreateFieldDescription: {
+    id: 'roomCreate.fieldDescription',
+    defaultMessage: 'Description',
+    description: 'room Create screen',
   },
   roomChannelCreateNewChannel: {
     id: 'roomChannelCreate.newChannel',
@@ -761,5 +761,11 @@ export default {
     id: 'roomUpdateUsername.description',
     defaultMessage: 'People can join your channel by searching this username. You can use a-z, 0-9 and underscores. The minimum length of username should be 5 characters.',
     description: 'Room Update Username Screen',
+  },
+
+  channelCreateSelectContactTitle: {
+    id: 'channelCreate.selectContactTitle',
+    defaultMessage: 'New Channel with...',
+    description: 'contact picker screen',
   },
 };

@@ -11,15 +11,15 @@ export default [
           flex: 1,
         },
         scroll: {
-          paddingBottom:100,
+          paddingBottom: 100,
         },
         form: {
           padding: 15,
         },
         avatarWrap: {
-          margin:10,
-          alignSelf:'center',
-          height:150,
+          margin: 10,
+          alignSelf: 'center',
+          height: 150,
         },
       },
     },

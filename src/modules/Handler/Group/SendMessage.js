@@ -11,7 +11,7 @@ export default class SendMessage extends Base {
     const id = this._response.getRoomId().toString();
     await putState(id);
     this.dispatch(messengerRoomAddList({
-      id: {
+      [id]: {
         id,
         sort: this._response.getRoomMessage().getMessageId().toString(),
       },

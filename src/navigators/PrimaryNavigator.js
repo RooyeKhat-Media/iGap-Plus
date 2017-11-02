@@ -12,8 +12,7 @@ import {
   PRIMARY_NAV_TAB,
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
-  ROOM_CHANNEL_CREATE_SCREEN,
-  ROOM_GROUP_CREATE_SCREEN,
+  ROOM_CREATE_SCREEN,
   ROOM_LIST_SCREEN,
   ROOM_UPDATE_USERNAME_SCREEN,
   SEARCH_SCREEN,
@@ -26,8 +25,7 @@ import PublicScreen from '../screens/MainTabs/PublicScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
 import EditProfileScreen from '../screens/User/UserEditProfileScreen';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
-import RoomGroupCreateScreen from '../screens/Room/RoomGroupCreateScreen';
-import RoomChannelCreateScreen from '../screens/Room/RoomChannelCreateScreen';
+import RoomCreateScreen from '../screens/Room/RoomCreateScreen';
 import ContactPickerScreen from '../screens/Contact/ContactPickerScreen';
 import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
 
@@ -67,12 +65,8 @@ export function goEditProfile() {
   navigate(EDIT_PROFILE_SCREEN);
 }
 
-export function goGroupCreate(selectedContact) {
-  resetPrimaryNavigation(ROOM_GROUP_CREATE_SCREEN, {selectedContact});
-}
-
-export function goChannelCreate() {
-  navigate(ROOM_CHANNEL_CREATE_SCREEN);
+export function goRoomCreate(type, selectedContact) {
+  resetPrimaryNavigation(ROOM_CREATE_SCREEN, {type, selectedContact});
 }
 
 export function goRoomUpdateUsername(roomId) {
@@ -103,8 +97,7 @@ const PrimaryNavigator = StackNavigator({
   [CONTACT_PICKER_SCREEN]: {screen: ContactPickerScreen},
   [EDIT_PROFILE_SCREEN]: {screen: EditProfileScreen},
   [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
-  [ROOM_GROUP_CREATE_SCREEN]: {screen: RoomGroupCreateScreen},
-  [ROOM_CHANNEL_CREATE_SCREEN]: {screen: RoomChannelCreateScreen},
+  [ROOM_CREATE_SCREEN]: {screen: RoomCreateScreen},
   [ROOM_UPDATE_USERNAME_SCREEN]: {screen: RoomUpdateUsernameScreen},
 });
 

@@ -9,7 +9,7 @@ import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
-class RoomGroupCreateComponent extends Component {
+class RoomCreateComponent extends Component {
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
@@ -34,7 +34,7 @@ class RoomGroupCreateComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={intl.formatMessage(i18n.roomGroupCreateNewGroup)}/>
+          centerElement={intl.formatMessage(i18n.roomCreateToolbarTitle)}/>
 
         <ScrollView style={styles.scroll}>
           <Form style={styles.form} control={(form) => {
@@ -46,18 +46,18 @@ class RoomGroupCreateComponent extends Component {
 
             <TextInputField
               isField={true}
-              rules={formRules.groupName}
-              name="groupName"
-              label={intl.formatMessage(i18n.roomGroupCreateGroupName)}
-              placeholder={intl.formatMessage(i18n.roomGroupCreateGroupName)}
+              rules={formRules.name}
+              name="name"
+              label={intl.formatMessage(i18n.roomCreateFieldName)}
+              placeholder={intl.formatMessage(i18n.roomCreateFieldName)}
             />
 
             <TextInputField
               isField={true}
-              rules={formRules.groupDescription}
-              name="groupDescription"
-              label={intl.formatMessage(i18n.roomGroupCreateGroupDescription)}
-              placeholder={intl.formatMessage(i18n.roomGroupCreateGroupDescription)}
+              rules={formRules.description}
+              name="description"
+              label={intl.formatMessage(i18n.roomCreateFieldDescription)}
+              placeholder={intl.formatMessage(i18n.roomCreateFieldDescription)}
             />
             <View style={{height: 100}}/>
           </Form>
@@ -67,7 +67,7 @@ class RoomGroupCreateComponent extends Component {
   }
 }
 
-RoomGroupCreateComponent.propTypes = {
+RoomCreateComponent.propTypes = {
   intl: intlShape.isRequired,
   goBack: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
@@ -75,4 +75,4 @@ RoomGroupCreateComponent.propTypes = {
   formRules: PropTypes.object.isRequired,
 };
 
-export default injectIntl(RoomGroupCreateComponent);
+export default injectIntl(RoomCreateComponent);
