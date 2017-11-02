@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {entitiesRoomEdit} from '../../../actions/entities/rooms';
 
 /**
  * @property {ProtoGroupEdit} _request
@@ -6,6 +7,9 @@ import Base from '../Base';
  */
 export default class Edit extends Base {
   handle() {
-    console.error('Edit', 'Not implemented yet', this);
+    this.dispatch(entitiesRoomEdit(this._response.getRoomId().toString(), {
+      title: this._response.getName(),
+      groupDescription: this._response.getDescription(),
+    }));
   }
 }

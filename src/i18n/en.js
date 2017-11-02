@@ -555,6 +555,11 @@ export default {
     defaultMessage: 'Leave',
     description: 'RoomInfo screen',
   },
+  roomEditBtnTitle: {
+    id: 'roomEdit.btnTitle',
+    defaultMessage: 'Edit',
+    description: 'RoomInfo screen',
+  },
 
   roomInfoJoin: {
     id: 'roomInfo.join',
@@ -767,5 +772,10 @@ export default {
     id: 'channelCreate.selectContactTitle',
     defaultMessage: 'New Channel with...',
     description: 'contact picker screen',
+  },
+  roomEditToolbarTitle: {
+    id: 'roomEdit.toolbarTitle',
+    defaultMessage: 'Edit Room',
+    description: 'room Edit screen',
   },
 };

@@ -13,6 +13,7 @@ import {
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
   ROOM_CREATE_SCREEN,
+  ROOM_EDIT_SCREEN,
   ROOM_LIST_SCREEN,
   ROOM_UPDATE_USERNAME_SCREEN,
   SEARCH_SCREEN,
@@ -28,6 +29,7 @@ import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 import RoomCreateScreen from '../screens/Room/RoomCreateScreen';
 import ContactPickerScreen from '../screens/Contact/ContactPickerScreen';
 import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
+import RoomEditScreen from '../screens/Room/RoomEditScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -73,6 +75,10 @@ export function goRoomUpdateUsername(roomId) {
   navigate(ROOM_UPDATE_USERNAME_SCREEN, {roomId});
 }
 
+export function goRoomEdit(roomId) {
+  navigate(ROOM_EDIT_SCREEN, {roomId});
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [SEARCH_SCREEN]: {screen: SearchScreen},
@@ -98,6 +104,7 @@ const PrimaryNavigator = StackNavigator({
   [EDIT_PROFILE_SCREEN]: {screen: EditProfileScreen},
   [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
   [ROOM_CREATE_SCREEN]: {screen: RoomCreateScreen},
+  [ROOM_EDIT_SCREEN]: {screen: RoomEditScreen},
   [ROOM_UPDATE_USERNAME_SCREEN]: {screen: RoomUpdateUsernameScreen},
 });
 
