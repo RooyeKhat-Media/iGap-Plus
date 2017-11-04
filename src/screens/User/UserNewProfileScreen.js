@@ -10,6 +10,11 @@ import {UserProfileSetNickname} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {USER_PROFILE_SET_NICKNAME} from '../../constants/methods/index';
 import {goMainScreen} from '../../navigators/AppNavigator';
+import {
+  ERROR_USER_PROFILE_SET_NICKNAME_BAD_PAYLOAD,
+  ERROR_USER_PROFILE_SET_NICKNAME_INTERNAL_SERVER_ERROR,
+} from '../../modules/Api/errors/index';
+import {errorId} from '../../modules/Error/index';
 
 const rules = {
   nickName: [
@@ -20,36 +25,30 @@ const rules = {
 
 class UserNewProfileScreen extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      nickNameError: '',
-    };
-  }
-
-
-  handleFormData = async (formData) => {
+  handleFormData = async (formData, setError) => {
 
     const userProfile = new UserProfileSetNickname();
     userProfile.setNickname(formData.nickName);
 
-    try {
-      await Api.invoke(USER_PROFILE_SET_NICKNAME, userProfile);
-      this.setState({nickName: ''});
-      goMainScreen();
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      this.setState({nickName: e.name + ': ' + e.message});
-    }
+
+    await Api.invokeMapError(
+      USER_PROFILE_SET_NICKNAME,
+      userProfile,
+      setError,
+      {
+        [errorId(ERROR_USER_PROFILE_SET_NICKNAME_BAD_PAYLOAD, 1)]: 'nickName',
+        [errorId(ERROR_USER_PROFILE_SET_NICKNAME_INTERNAL_SERVER_ERROR)]: 'nickName',
+      }
+    );
+    goMainScreen();
+
   };
 
   render() {
-    const {nickNameError} = this.state;
     return (
       <UserNewProfileComponent
         formRules={rules}
         handleFormData={this.handleFormData}
-        nickNameError={nickNameError}
       />
     );
   }

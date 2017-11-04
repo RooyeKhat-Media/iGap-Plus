@@ -26,7 +26,7 @@ class UserVerifyComponent extends Component {
   };
 
   render() {
-    const {intl, resendDelay, codeError, phoneNumber, method, formRules, handleFormData, resendCode} = this.props;
+    const {intl, resendDelay, phoneNumber, method, formRules, handleFormData, resendCode} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -51,7 +51,6 @@ class UserVerifyComponent extends Component {
                 rules={formRules.code}
                 name="verifyCode"
                 defaultValue=""
-                defaultError={codeError}
                 keyboardType="numeric"
                 underlineColorAndroid="#eee"
                 label={intl.formatMessage(i18n.verifyCodeTitle)}
@@ -67,14 +66,14 @@ class UserVerifyComponent extends Component {
                   try {
                     this.form.loadingOn();
                     const data = await this.form.submit();
-                    await handleFormData(data);
+                    await handleFormData(data, this.form.setError);
                   } finally {
                     this.form.loadingOff();
                   }
                 }} style={styles.verifyBtn}/>
               {!resendDelay ?
                 (<Button upperCase={false} primary style={styles.resendBtn} onPress={() => {
-                  resendCode();
+                  resendCode(this.form.setError);
                 }} text={intl.formatMessage(i18n.verifyResendCodeBtnTitle)}/>) : null}
             </View>
 
@@ -92,6 +91,5 @@ UserVerifyComponent.propTypes = {
   resendCode: PropTypes.func.isRequired,
   resendDelay: PropTypes.number.isRequired,
   method: PropTypes.number.isRequired,
-  codeError: PropTypes.string,
 };
 export default injectIntl(responsive(UserVerifyComponent));

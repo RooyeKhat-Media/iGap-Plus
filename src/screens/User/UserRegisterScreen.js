@@ -17,6 +17,14 @@ import {InfoCountry, InfoLocation, UserRegister} from '../../modules/Proto/index
 import {goUserVerifyScreen} from '../../navigators/AppNavigator';
 import {setAuthorHash, setUserId} from '../../utils/app';
 import {changeLocale, getUserLocale} from '../../utils/locale';
+import {errorId} from '../../modules/Error/index';
+import {
+  ERROR_USER_REGISTER_BAD_PAYLOAD,
+  ERROR_USER_REGISTER_BLOCKED_USER,
+  ERROR_USER_REGISTER_INTERNAL_SERVER_ERROR,
+  ERROR_USER_REGISTER_MAX_SEND_LOCK,
+  ERROR_USER_REGISTER_MAX_TRY_LOCK,
+} from '../../modules/Api/errors/index';
 
 const rules = {
   phoneNumber: [
@@ -25,6 +33,7 @@ const rules = {
   ],
 };
 let phoneNumberRegexValidate;
+
 class UserRegisterScreen extends Component {
 
   constructor(props) {
@@ -67,7 +76,7 @@ class UserRegisterScreen extends Component {
         callingCode: country[1],
       }, this._onCountryCodeChange);
     }
-  }
+  };
 
   onChangeCallingCode = (code) => {
     this.setState({callingCode: code}, function() {
@@ -80,7 +89,7 @@ class UserRegisterScreen extends Component {
         }, this._onCountryCodeChange);
       }
     });
-  }
+  };
 
   _onCountryCodeChange = async () => {
     const {countryCode} = this.state;
@@ -98,7 +107,7 @@ class UserRegisterScreen extends Component {
     } catch (e) {
 
     }
-  }
+  };
 
   handleFormData = async (formData, setError) => {
     const {countryCode, callingCode} = this.state;
@@ -107,40 +116,52 @@ class UserRegisterScreen extends Component {
       countryCode,
     };
 
-    try {
-      if (phoneNumberRegexValidate) {
+    if (phoneNumberRegexValidate) {
+      try {
         await phoneNumberRegexValidate.validate(formData.phoneNumber, phoneNumberRegexValidate.options);
+      } catch (e) {
+        setError('phoneNumber', e);
+        return;
       }
-
-      const userRegister = new UserRegister();
-      userRegister.setPhoneNumber(parseInt(data.phoneNumber, 10));
-      userRegister.setCountryCode(data.countryCode);
-      const response = await Api.invoke(USER_REGISTER, userRegister);
-
-      await setUserId(response.getUserId());
-      await setAuthorHash(response.getAuthorHash());
-      goUserVerifyScreen(
-        callingCode + ' ' + data.phoneNumber,
-        response.getUsername(),
-        response.getMethod(),
-        response.getResendDelay(),
-        [],
-        response.getVerifyCodeRegex(),
-        response.getVerifyCodeDigitCount(),
-        data);
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      setError('phoneNumber', e.name + ': ' + e.message);
     }
-  }
+
+    const userRegister = new UserRegister();
+    userRegister.setPhoneNumber(parseInt(data.phoneNumber, 10));
+    userRegister.setCountryCode(data.countryCode);
+    const response = await Api.invokeMapError(
+      USER_REGISTER,
+      userRegister,
+      setError,
+      {
+        [errorId(ERROR_USER_REGISTER_BAD_PAYLOAD, 1)]: 'phoneNumber',
+        [errorId(ERROR_USER_REGISTER_BAD_PAYLOAD, 2)]: 'phoneNumber',
+        [errorId(ERROR_USER_REGISTER_INTERNAL_SERVER_ERROR)]: 'phoneNumber',
+        [errorId(ERROR_USER_REGISTER_BLOCKED_USER)]: 'phoneNumber',
+        [errorId(ERROR_USER_REGISTER_MAX_TRY_LOCK)]: 'phoneNumber',
+        [errorId(ERROR_USER_REGISTER_MAX_SEND_LOCK)]: 'phoneNumber',
+      }
+    );
+
+    await setUserId(response.getUserId());
+    await setAuthorHash(response.getAuthorHash());
+    goUserVerifyScreen(
+      callingCode + ' ' + data.phoneNumber,
+      response.getUsername(),
+      response.getMethod(),
+      response.getResendDelay(),
+      [],
+      response.getVerifyCodeRegex(),
+      response.getVerifyCodeDigitCount(),
+      data);
+  };
 
   selectNewLocale = (locale) => {
     changeLocale(locale);
-  }
+  };
 
   render() {
     const {intl} = this.props;
-    const {phoneNumber, callingCode, countryCode, phoneNumberError} = this.state;
+    const {phoneNumber, callingCode, countryCode} = this.state;
     const formData = {phoneNumber, callingCode, countryCode};
     const countryList = [];
     const localesList = [];
@@ -149,7 +170,8 @@ class UserRegisterScreen extends Component {
       localesList.push({
         key: locale,
         value: LOCALES[locale].en,
-        element: (<ListItem centerElement={{primaryText: LOCALES[locale].en}} rightElement={<Text>{LOCALES[locale].native}</Text>}
+        element: (<ListItem centerElement={{primaryText: LOCALES[locale].en}}
+          rightElement={<Text>{LOCALES[locale].native}</Text>}
           style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
         filter: locale,
       });
@@ -176,7 +198,6 @@ class UserRegisterScreen extends Component {
         handleFormData={this.handleFormData}
         onSelectCountry={this.onSelectCountry}
         onChangeCallingCode={this.onChangeCallingCode}
-        phoneNumberError={phoneNumberError}
         localesList={localesList}
         selectNewLocale={this.selectNewLocale}
         defaultLocale={defaultLocale}

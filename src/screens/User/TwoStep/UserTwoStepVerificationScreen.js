@@ -17,6 +17,15 @@ import {
 import Api from '../../../modules/Api/index';
 import {login, setUserToken} from '../../../utils/app';
 import {goMainScreen, goUserTwoStepForgetScreen} from '../../../navigators/AppNavigator';
+import {
+  ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_BAD_PAYLOAD,
+  ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_FORBIDDEN,
+  ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_INTERNAL_SERVER_ERROR,
+  ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_INVALID_PASSWORD,
+  ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_MAX_TRY_LOCK,
+  ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_NO_PASSWORD,
+} from '../../../modules/Api/errors/index';
+import {errorId} from '../../../modules/Error/index';
 
 const rules = {
   password: [
@@ -29,7 +38,6 @@ class UserTwoStepVerificationScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      passwordError: '',
       hint: '',
     };
   }
@@ -44,35 +52,40 @@ class UserTwoStepVerificationScreen extends Component {
       });
   }
 
-  handleFormData = async (formData) => {
-    try {
-      this.setState({passwordError: ''});
-      const verifyPassword = new UserTwoStepVerificationVerifyPassword();
-      verifyPassword.setPassword(formData.password);
+  handleFormData = async (formData, setError) => {
+    const verifyPassword = new UserTwoStepVerificationVerifyPassword();
+    verifyPassword.setPassword(formData.password);
 
-      const response = await Api.invoke(USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD, verifyPassword);
-      await setUserToken(response.getToken());
-      await login();
-      goMainScreen();
-      this.setState({passwordError: ''});
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      this.setState({passwordError: e.name + ': ' + e.message});
-    }
-  }
+    const response = await Api.invokeMapError(
+      USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD,
+      verifyPassword,
+      setError,
+      {
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_BAD_PAYLOAD, 1)]: 'password',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_INTERNAL_SERVER_ERROR)]: 'password',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_MAX_TRY_LOCK)]: 'password',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_FORBIDDEN)]: 'password',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_NO_PASSWORD)]: 'password',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_VERIFY_PASSWORD_INVALID_PASSWORD)]: 'password',
+      }
+    );
+    await setUserToken(response.getToken());
+    await login();
+    goMainScreen();
+
+  };
   forgetPassword = async () => {
     goUserTwoStepForgetScreen();
-  }
+  };
 
   render() {
-    const {hint, passwordError} = this.state;
+    const {hint} = this.state;
     return (
       <UserTwoStepVerificationComponent
         formRules={rules}
         handleFormData={this.handleFormData}
         forgetPassword={this.forgetPassword}
         hint={hint}
-        passwordError={passwordError}
       />
     );
   }

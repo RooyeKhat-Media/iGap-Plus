@@ -11,6 +11,22 @@ import Api from '../../modules/Api/index';
 import {USER_REGISTER, USER_VERIFY} from '../../constants/methods/index';
 import {login, setUserToken} from '../../utils/app';
 import {goMainScreen, goUserNewProfileScreen} from '../../navigators/AppNavigator';
+import {
+  ERROR_USER_REGISTER_BAD_PAYLOAD,
+  ERROR_USER_REGISTER_BLOCKED_USER,
+  ERROR_USER_REGISTER_INTERNAL_SERVER_ERROR,
+  ERROR_USER_REGISTER_MAX_SEND_LOCK,
+  ERROR_USER_REGISTER_MAX_TRY_LOCK,
+  ERROR_USER_VERIFY_BAD_PAYLOAD,
+  ERROR_USER_VERIFY_BLOCKED_USER,
+  ERROR_USER_VERIFY_EXPIRED_CODE,
+  ERROR_USER_VERIFY_INTERNAL_SERVER_ERROR,
+  ERROR_USER_VERIFY_INVALID_CODE,
+  ERROR_USER_VERIFY_MAX_TRY_LOCK,
+  ERROR_USER_VERIFY_TWO_STEP_VERIFICATION_ENABLED,
+  ERROR_USER_VERIFY_USER_NOT_FOUND,
+} from '../../modules/Api/errors/index';
+import {errorId} from '../../modules/Error/index';
 
 const rules = {
   code: [
@@ -25,7 +41,6 @@ class UserVerifyScreen extends Component {
     super(props);
     const {resendDelay} = props.navigation.state.params;
     this.state = {
-      codeError: '',
       resendDelay: resendDelay,
     };
   }
@@ -51,7 +66,7 @@ class UserVerifyScreen extends Component {
     clearInterval(this.interval);
   }
 
-  handleFormData = async (formData) => {
+  handleFormData = async (formData, setError) => {
     const {username} = this.props.navigation.state.params;
     const {verifyCode} = formData;
 
@@ -59,41 +74,63 @@ class UserVerifyScreen extends Component {
     userVerify.setUsername(username);
     userVerify.setCode(parseInt(verifyCode, 10));
 
-    try {
-      const response = await Api.invoke(USER_VERIFY, userVerify);
-      await setUserToken(response.getToken());
-      await login();
-      this.setState({codeError: ''});
-      if (response.getNewUser()) {
-        goUserNewProfileScreen();
-      } else {
-        goMainScreen();
+
+    const response = await Api.invokeMapError(
+      USER_VERIFY,
+      userVerify,
+      setError,
+      {
+        [errorId(ERROR_USER_VERIFY_BAD_PAYLOAD, 1)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_BAD_PAYLOAD, 2)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_INTERNAL_SERVER_ERROR)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_USER_NOT_FOUND)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_BLOCKED_USER)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_INVALID_CODE)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_EXPIRED_CODE)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_MAX_TRY_LOCK)]: 'verifyCode',
+        [errorId(ERROR_USER_VERIFY_TWO_STEP_VERIFICATION_ENABLED)]: 'verifyCode',
       }
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      this.setState({codeError: e.name + ': ' + e.message});
+    );
+    await setUserToken(response.getToken());
+    await login();
+
+    if (response.getNewUser()) {
+      goUserNewProfileScreen();
+    } else {
+      goMainScreen();
     }
+
   };
 
-  resendCode = async () => {
+  resendCode = async (setError) => {
     const {resendParams} = this.props.navigation.state.params;
-    try {
-      const userRegister = new UserRegister();
-      userRegister.setPhoneNumber(parseInt(resendParams.phoneNumber, 10));
-      userRegister.setCountryCode(resendParams.countryCode);
-      const response = await Api.invoke(USER_REGISTER, userRegister);
-      this.setState({
-        resendDelay: response.getResendDelay(),
-      });
-      this.interval = setInterval(() => this.tick(), 1000);
-    } catch (e) {
-      this.setState({codeError: e.name + ': ' + e.message});
-    }
+
+    const userRegister = new UserRegister();
+    userRegister.setPhoneNumber(parseInt(resendParams.phoneNumber, 10));
+    userRegister.setCountryCode(resendParams.countryCode);
+    const response = await Api.invokeMapError(
+      USER_REGISTER,
+      userRegister,
+      setError,
+      {
+        [errorId(ERROR_USER_REGISTER_BAD_PAYLOAD, 1)]: 'verifyCode',
+        [errorId(ERROR_USER_REGISTER_BAD_PAYLOAD, 2)]: 'verifyCode',
+        [errorId(ERROR_USER_REGISTER_INTERNAL_SERVER_ERROR)]: 'verifyCode',
+        [errorId(ERROR_USER_REGISTER_BLOCKED_USER)]: 'verifyCode',
+        [errorId(ERROR_USER_REGISTER_MAX_TRY_LOCK)]: 'verifyCode',
+        [errorId(ERROR_USER_REGISTER_MAX_SEND_LOCK)]: 'verifyCode',
+      }
+    );
+    this.setState({
+      resendDelay: response.getResendDelay(),
+    });
+    this.interval = setInterval(() => this.tick(), 1000);
+
   };
 
   render() {
     const {phoneNumber, method} = this.props.navigation.state.params;
-    const {resendDelay, codeError} = this.state;
+    const {resendDelay} = this.state;
     return (
       <UserVerifyComponent
         formRules={rules}
@@ -101,7 +138,6 @@ class UserVerifyScreen extends Component {
         phoneNumber={phoneNumber}
         method={method}
         resendDelay={resendDelay}
-        codeError={codeError}
         resendCode={this.resendCode}
       />
     );

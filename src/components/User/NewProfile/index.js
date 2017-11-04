@@ -25,7 +25,7 @@ class UserNewProfileComponent extends Component {
   };
 
   render() {
-    const {intl, handleFormData, formRules, nickNameError} = this.props;
+    const {intl, handleFormData, formRules} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -51,7 +51,6 @@ class UserNewProfileComponent extends Component {
               rules={formRules.nickName}
               name="nickName"
               defaultValue=""
-              defaultError={nickNameError}
               underlineColorAndroid="#eee"
               label={intl.formatMessage(i18n.newProfileNicknameLabel)}
               placeholder={intl.formatMessage(i18n.newProfileNicknameLabel)}
@@ -64,7 +63,7 @@ class UserNewProfileComponent extends Component {
                 try {
                   this.form.loadingOn();
                   const data = await this.form.submit();
-                  await handleFormData(data);
+                  await handleFormData(data, this.form.setError);
                 } finally {
                   this.form.loadingOff();
                 }
@@ -88,6 +87,5 @@ class UserNewProfileComponent extends Component {
 UserNewProfileComponent.propTypes = {
   intl: intlShape.isRequired,
   handleFormData: PropTypes.func.isRequired,
-  nickNameError: PropTypes.string,
 };
 export default injectIntl(responsive(UserNewProfileComponent));

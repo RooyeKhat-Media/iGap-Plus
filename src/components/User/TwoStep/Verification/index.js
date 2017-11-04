@@ -25,7 +25,7 @@ class TwoStepVerificationComponent extends Component {
   };
 
   render() {
-    const {intl, handleFormData, formRules, hint, passwordError, forgetPassword} = this.props;
+    const {intl, handleFormData, formRules, hint, forgetPassword} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -51,7 +51,6 @@ class TwoStepVerificationComponent extends Component {
                 name="password"
                 underlineColorAndroid="#eee"
                 defaultValue=""
-                defaultError={passwordError}
                 secureTextEntry={true}
                 label={intl.formatMessage(i18n.twoStepVerificationPasswordLabel)}
                 placeholder={intl.formatMessage(i18n.twoStepVerificationPasswordLabel)}
@@ -65,7 +64,7 @@ class TwoStepVerificationComponent extends Component {
                   try {
                     this.form.loadingOn();
                     const data = await this.form.submit();
-                    await handleFormData(data);
+                    await handleFormData(data, this.form.setError);
                   } finally {
                     this.form.loadingOff();
                   }
@@ -87,7 +86,6 @@ TwoStepVerificationComponent.propTypes = {
   intl: intlShape.isRequired,
   handleFormData: PropTypes.func.isRequired,
   forgetPassword: PropTypes.func.isRequired,
-  passwordError: PropTypes.string,
   hint: PropTypes.string,
 };
 export default injectIntl(responsive(TwoStepVerificationComponent));

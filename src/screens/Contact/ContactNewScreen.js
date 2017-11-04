@@ -9,6 +9,11 @@ import {Text} from 'react-native';
 import i18n from '../../i18n/index';
 import {InfoLocation, UserContactsImport} from '../../modules/Proto/index';
 import {INFO_LOCATION, USER_CONTACTS_IMPORT} from '../../constants/methods/index';
+import {
+  ERROR_USER_CONTACTS_IMPORT_BAD_PAYLOAD,
+  ERROR_USER_CONTACTS_IMPORT_INTERNAL_SERVER_ERROR,
+} from '../../modules/Api/errors/index';
+import {errorId} from '../../modules/Error/index';
 
 const formRules = {
   firstName: [
@@ -66,7 +71,7 @@ class ContactNewScreen extends Component {
         callingCode: country[1],
       });
     }
-  }
+  };
 
   onChangeCallingCode = (code) => {
     this.setState({callingCode: code}, function() {
@@ -79,31 +84,39 @@ class ContactNewScreen extends Component {
         });
       }
     });
-  }
+  };
 
 
   handleFormData = async (formData, setError) => {
     const {callingCode} = this.state;
-    try {
-      /**
-       * @type ProtoUserContactsImport_Contact
-       */
-      const contact = new UserContactsImport.Contact();
-      contact.setFirstName(formData.firstName);
-      contact.setLastName(formData.lastName);
-      contact.setPhone(callingCode + formData.phone);
 
-      const userContactImport = new UserContactsImport();
-      userContactImport.setContactsList([contact]);
-      userContactImport.setForce(true);
+    /**
+     * @type ProtoUserContactsImport_Contact
+     */
+    const contact = new UserContactsImport.Contact();
+    contact.setFirstName(formData.firstName);
+    contact.setLastName(formData.lastName);
+    contact.setPhone(callingCode + formData.phone);
 
-      await Api.invoke(USER_CONTACTS_IMPORT, userContactImport);
-      this.props.navigation.goBack();
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      setError('phone', e.name + ': ' + e.message);
-    }
-  }
+    const userContactImport = new UserContactsImport();
+    userContactImport.setContactsList([contact]);
+    userContactImport.setForce(true);
+
+    await Api.invokeMapError(
+      USER_CONTACTS_IMPORT,
+      userContactImport,
+      setError,
+      {
+        [errorId(ERROR_USER_CONTACTS_IMPORT_BAD_PAYLOAD, 1)]: 'phone',
+        [errorId(ERROR_USER_CONTACTS_IMPORT_BAD_PAYLOAD, 2)]: 'firstName',
+        [errorId(ERROR_USER_CONTACTS_IMPORT_BAD_PAYLOAD, 3)]: 'lastName',
+        [errorId(ERROR_USER_CONTACTS_IMPORT_BAD_PAYLOAD, 4)]: 'phone',
+        [errorId(ERROR_USER_CONTACTS_IMPORT_INTERNAL_SERVER_ERROR)]: 'phone',
+      }
+    );
+    this.props.navigation.goBack();
+
+  };
 
   render() {
     const {intl} = this.props;
