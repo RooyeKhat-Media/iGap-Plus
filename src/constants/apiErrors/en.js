@@ -48,7 +48,7 @@ export default {
   },
   [errorI18nKey(errorCode.ERROR_INTERNAL_SERVER_ERROR)]: {
     id: errorI18nId(errorCode.ERROR_INTERNAL_SERVER_ERROR),
-    defaultMessage: 'Internal server error is ocuured',
+    defaultMessage: 'Internal server error is occurred',
     description,
   },
   [errorI18nKey(errorCode.ERROR_SESSION_IS_TERMINATED)]: {
@@ -76,7 +76,7 @@ export default {
   },
   [errorI18nKey(errorCode.ERROR_USER_REGISTER_BAD_PAYLOAD, 2)]: {
     id: errorI18nId(errorCode.ERROR_USER_REGISTER_BAD_PAYLOAD, 2),
-    defaultMessage: 'Username is invalid',
+    defaultMessage: 'Phone number is invalid',
     description,
   },
   [errorI18nKey(errorCode.ERROR_USER_REGISTER_INTERNAL_SERVER_ERROR)]: {
