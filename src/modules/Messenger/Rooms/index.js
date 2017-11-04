@@ -1,6 +1,6 @@
 import {normalize} from 'normalizr';
 import Long from 'long';
-import {difference, isEmpty, keys} from 'lodash';
+import {difference, isEmpty, keys, padStart} from 'lodash';
 import Api from '../../Api/index';
 import store from '../../../configureStore';
 import {ClientGetRoomList, Proto} from '../../Proto/index';
@@ -59,7 +59,6 @@ export async function serverRoomsState() {
       if (!clientGetRoomListResponse.getRoomsList().length) {
         break;
       }
-
       const normalizedData = normalize(clientGetRoomListResponse.getRoomsList(), [room]);
       store.dispatch(entitiesRoomsAddFull(normalizedData));
 
@@ -68,7 +67,7 @@ export async function serverRoomsState() {
         const roomId = roomProto.getId().toString();
         payload[roomId] = {
           id: roomId,
-          sort: sort.toString(),
+          sort: padStart(sort.toString(), 17),
         };
         newRoomList.push(roomId);
       });

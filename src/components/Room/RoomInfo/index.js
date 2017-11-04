@@ -7,7 +7,7 @@ import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
-import {goRoomEdit} from '../../../navigators/PrimaryNavigator';
+import {goRoomEdit} from '../../../navigators/SecondaryNavigator';
 
 
 class RoomInfoComponent extends React.Component {
