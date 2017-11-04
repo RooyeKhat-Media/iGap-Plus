@@ -49,10 +49,10 @@ export function errorId(majorCode, minorCode = null) {
  */
 export function getI18nMessage(majorCode, minorCode = null) {
   let i18nMessage;
-  if (i18n.hasOwnProperty(errorI18nId(majorCode, minorCode))) {
-    i18nMessage = i18n[errorI18nId(majorCode, minorCode)];
-  } else if (minorCode && i18n.hasOwnProperty(errorI18nId(majorCode))) {
-    i18nMessage = i18n[errorI18nId(majorCode)];
+  if (i18n.hasOwnProperty(errorI18nKey(majorCode, minorCode))) {
+    i18nMessage = i18n[errorI18nKey(majorCode, minorCode)];
+  } else if (minorCode && i18n.hasOwnProperty(errorI18nKey(majorCode))) {
+    i18nMessage = i18n[errorI18nKey(majorCode)];
   } else {
     i18nMessage = i18n.eDefault;
   }
