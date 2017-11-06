@@ -544,38 +544,6 @@ export default {
     description: 'EditProfile Page',
   },
 
-  roomInfoDetails: {
-    id: 'roomInfo.details',
-    defaultMessage: 'Details',
-    description: 'RoomInfo screen',
-  },
-
-  roomInfoLeave: {
-    id: 'roomInfo.leave',
-    defaultMessage: 'Leave',
-    description: 'RoomInfo screen',
-  },
-  roomEditBtnTitle: {
-    id: 'roomEdit.btnTitle',
-    defaultMessage: 'Edit',
-    description: 'RoomInfo screen',
-  },
-
-  roomInfoJoin: {
-    id: 'roomInfo.join',
-    defaultMessage: 'Join',
-    description: 'RoomInfo screen',
-  },
-  roomInfoMessage: {
-    id: 'roomInfo.message',
-    defaultMessage: 'Message',
-    description: 'RoomInfo screen',
-  },
-  roomInfoCall: {
-    id: 'roomInfo.call',
-    defaultMessage: 'Call',
-    description: 'RoomInfo screen',
-  },
   roomInfoMember: {
     id: 'roomInfo.member',
     defaultMessage: 'Member',
@@ -777,5 +745,70 @@ export default {
     id: 'roomEdit.toolbarTitle',
     defaultMessage: 'Edit Room',
     description: 'room Edit screen',
+  },
+  roomInfoChatSendMessageBtn: {
+    id: 'roomInfo.chatSendMessageBtn',
+    defaultMessage: 'Message',
+    description: 'room Info screen',
+  },
+  roomInfoChatCallBtn: {
+    id: 'roomInfo.chatCallBtn',
+    defaultMessage: 'Call',
+    description: 'room Info screen',
+  },
+  roomInfoLeaveRoomBtn: {
+    id: 'roomInfo.leaveRoomBtn',
+    defaultMessage: 'Leave',
+    description: 'room Info screen',
+  },
+  roomInfoJoinRoomBtn: {
+    id: 'roomInfo.joinRoomBtn',
+    defaultMessage: 'Join',
+    description: 'room Info screen',
+  },
+  roomInfoEditRoomBtn: {
+    id: 'roomInfo.editRoomBtn',
+    defaultMessage: 'Edit',
+    description: 'room Info screen',
+  },
+  roomInfoAddMember: {
+    id: 'roomInfo.addMember',
+    defaultMessage: 'Add Member',
+    description: 'room Info screen',
+  },
+  roomInfoMemberList: {
+    id: 'roomInfo.memberList',
+    defaultMessage: 'Member List',
+    description: 'room Info screen',
+  },
+  roomInfoInviteLink: {
+    id: 'roomInfo.InviteLink',
+    defaultMessage: 'Invite Link',
+    description: 'room Info screen',
+  },
+  roomInfoConvertType: {
+    id: 'roomInfo.convertToPrivate',
+    defaultMessage: 'Convert Room Type',
+    description: 'room Info screen',
+  },
+  roomInfoClearHistory: {
+    id: 'roomInfo.clearHistory',
+    defaultMessage: 'Clear History',
+    description: 'room Info screen',
+  },
+  roomInfoDeleteRoom: {
+    id: 'roomInfo.deleteRoom',
+    defaultMessage: 'Delete Room',
+    description: 'room Info screen',
+  },
+  roomInfoAddMemberToolbarTitle: {
+    id: 'roomInfo.addMemberToolbartTitle',
+    defaultMessage: 'Add Member',
+    description: 'room Info screen',
+  },
+  roomMemberListToolbarTitle: {
+    id: 'roomMemberList.toolbarTitle',
+    defaultMessage: 'Member List',
+    description: 'room Info screen',
   },
 };

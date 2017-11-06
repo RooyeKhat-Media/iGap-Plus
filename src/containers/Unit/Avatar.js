@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native';
+import {Image, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {Avatar as BaseAvatar} from '../../components/BaseUI/index';
 import {connect} from 'react-redux';
@@ -27,32 +27,38 @@ class Avatar extends Component {
   }
 
   render() {
-    const {avatarProps, avatarUri, size} = this.props;
-    const style = {...this.props.style};
-
-    if (avatarProps.color) {
-      if (!style.container) {
-        style.container = {};
-      }
-      style.container.backgroundColor = avatarProps.color;
-    }
-
     let imageContent = null;
     let initials = null;
+    const {avatarProps, avatarUri, size, circle} = this.props;
+    const style = {
+      width: size,
+      height: size,
+      borderRadius: circle ? size / 2 : null,
+      backgroundColor: avatarProps.color,
+    };
+    const avatarStyle = {
+      ...this.props.style,
+      container: {
+        ...(this.props.style && this.props.style.container) ? this.props.style.container : {},
+        backgroundColor: avatarProps.color,
+      },
+    };
+
     if (avatarUri) {
-      imageContent = (<Image source={{uri: 'file://' + avatarUri}}
-        style={{width: size, height: size, borderRadius: (size / 2)}}/>);
+      imageContent = (<Image source={{uri: 'file://' + avatarUri}} style={[style, {backgroundColor: null}]}/>);
     } else {
       initials = avatarProps.initials;
     }
 
     return (
-      <BaseAvatar
-        {...this.props}
-        text={initials}
-        image={imageContent}
-        style={style}
-      />
+      <View style={style}>
+        <BaseAvatar
+          text={initials}
+          image={imageContent}
+          style={avatarStyle}
+          size={size}
+        />
+      </View>
     );
   }
 }
@@ -61,6 +67,7 @@ Avatar.propTypes = {
   roomId: PropTypes.string,
   userId: PropTypes.string,
   size: PropTypes.number.isRequired,
+  circle: PropTypes.bool,
   //Connect
   avatarProps: PropTypes.shape({
     color: PropTypes.string.isRequired,
@@ -74,6 +81,10 @@ Avatar.propTypes = {
   }).isRequired,
   avatarUri: PropTypes.string,
   download: PropTypes.func.isRequired,
+};
+
+Avatar.defaultProps = {
+  circle: true,
 };
 
 const makeMapStateToProps = () => {

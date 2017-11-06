@@ -5,6 +5,8 @@ import {
   ROOM_EDIT_SCREEN,
   ROOM_HISTORY_SCREEN,
   ROOM_INFO_SCREEN,
+  ROOM_MEMBER_LIST_SCREEN,
+  SECONDARY_CONTACT_PICKER_SCREEN,
   SECONDARY_INITIAL_SCREEN,
 } from '../constants/navigators';
 import {navigate} from './index';
@@ -13,6 +15,8 @@ import SecondaryInitialScreen from '../screens/SecondaryInitialScreen';
 import RoomInfoScreen from '../screens/Room/RoomInfoScreen';
 import CallScreen from '../screens/CallScreen';
 import RoomEditScreen from '../screens/Room/RoomEditScreen';
+import ContactPickerScreen from '../screens/Contact/ContactPickerScreen';
+import RoomMemberListScreen from '../screens/Room/RoomMemberListScreen';
 
 export function goRoomHistory(roomId) {
   navigate(ROOM_HISTORY_SCREEN, {roomId});
@@ -30,12 +34,22 @@ export function goRoomEdit(roomId) {
   navigate(ROOM_EDIT_SCREEN, {roomId});
 }
 
+export function goContactPicker(title, onSubmit, multiple) {
+  navigate(SECONDARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple});
+}
+
+export function goRoomMemberList(roomId) {
+  navigate(ROOM_MEMBER_LIST_SCREEN, {roomId});
+}
+
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},
   [CALL_SCREEN]: {screen: CallScreen},
   [ROOM_HISTORY_SCREEN]: {screen: RoomHistoryScreen},
   [ROOM_INFO_SCREEN]: {screen: RoomInfoScreen},
   [ROOM_EDIT_SCREEN]: {screen: RoomEditScreen},
+  [SECONDARY_CONTACT_PICKER_SCREEN]: {screen: ContactPickerScreen},
+  [ROOM_MEMBER_LIST_SCREEN]: {screen: RoomMemberListScreen},
 }, {
   navigationOptions: {
     header: null,

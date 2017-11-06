@@ -1,43 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
-import {Button, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
+import {injectIntl, intlShape} from 'react-intl';
+import {Button, ListItem, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
-import {goRoomEdit} from '../../../navigators/SecondaryNavigator';
-
 
 class RoomInfoComponent extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isMute: false,
-      canChangeMute: true,
-    };
-  }
-
-  getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet);
-  };
-
-  changeMute = () => {
-    const {actionClick, actions} = this.props;
-    actionClick(actions.mute);
-    this.setState({isMute: !this.state.isMute, canChangeMute: false});
-  };
-
   render() {
-    const {intl, goBack, room, countRoomHistory, actionClick, actions} = this.props;
+    const {
+      intl, room, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
+      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goBack,
+    } = this.props;
     const styles = this.getStyles();
-    const isUser = !!room.chatPeer;
-    const isGroup = room.type === 1;
-    if (this.state.canChangeMute) {
-      this.state.isMute = room.chatPeer ? room.chatPeer.mutual : false;
-    }
 
     return (
       <View style={styles.container}>
@@ -45,109 +22,244 @@ class RoomInfoComponent extends React.Component {
           leftElement="arrow-back"
           rightElement="more-vert"
           onLeftElementPress={goBack}
-          onRightElementPress={() => alert('menu')}
-          centerElement={intl.formatMessage(i18n.roomInfoDetails)}/>
+          centerElement={room.title}/>
 
-        {room && <ScrollView style={styles.scroll}>
-          <View style={styles.sectionTop}>
-            <View style={styles.avatar}>
-              <Avatar roomId={!room.chatPeer ? room.id : null} userId={room.chatPeer ? room.chatPeer.id : null}
-                size={200}/>
-            </View>
+        <ScrollView style={styles.scroll}>
 
+          <View style={styles.avatarWrap}>
+            <Avatar
+              roomId={room.id}
+              circle={false}
+              size={360}/>
             <View style={styles.containerJoinLeav}>
-
-              <Button style={styles.buttonLeave}
+              {/*Can Send Message to chatPeer Room ?*/}
+              {access.canSendMessage &&
+              (<Button style={styles.buttonBlue}
                 upperCase={false} primary raised accent={false}
-                onPress={() => goRoomEdit(room.id)}
-                text={intl.formatMessage(i18n.roomEditBtnTitle)}/>
+                onPress={sendMessage}
+                text={intl.formatMessage(i18n.roomInfoChatSendMessageBtn)}/>)}
 
-              {!isUser && room.isParticipant && <Button style={styles.buttonLeave}
+              {/*Can Call chatPeer Room ?*/}
+              {access.canCall &&
+              (<Button style={styles.buttonwhite}
                 upperCase={false} primary raised accent={false}
-                onPress={() => actionClick(actions.leave)}
-                text={intl.formatMessage(i18n.roomInfoLeave)}/>}
+                onPress={callUser}
+                text={intl.formatMessage(i18n.roomInfoChatCallBtn)}/>)}
 
-              {!isUser && !room.isParticipant && <Button style={styles.buttonjoin}
+              {/*Can Leave Room ?*/}
+              {access.canLeaveRoom &&
+              (<Button style={styles.buttonLeave}
                 upperCase={false} primary raised accent={false}
-                onPress={() => actionClick(actions.join)}
-                text={intl.formatMessage(i18n.roomInfoJoin)}/>}
+                onPress={leaveRoom}
+                text={intl.formatMessage(i18n.roomInfoLeaveRoomBtn)}/>)}
 
-              {isUser && <Button style={styles.buttonBlue}
+              {/*Can Join Room ?*/}
+              {access.canJoinRoom &&
+              (<Button style={styles.buttonjoin}
                 upperCase={false} primary raised accent={false}
-                onPress={() => actionClick(actions.message)}
-                text={intl.formatMessage(i18n.roomInfoMessage)}/>}
+                onPress={joinRoom}
+                text={intl.formatMessage(i18n.roomInfoJoinRoomBtn)}/>)}
 
-              {isUser && <Button style={styles.buttonwhite}
+              {/*Can Edit Room ?*/}
+              {access.canEditRoom &&
+              (<Button style={styles.buttonwhite}
                 upperCase={false} primary raised accent={false}
-                onPress={() => actionClick(actions.call)}
-                text={intl.formatMessage(i18n.roomInfoCall)}/>}
-
-            </View>
-
-          </View>
-          <View style={styles.sectionMiddle}>
-            <Text style={styles.textTitle}>{room.title}</Text>
-            <Text style={styles.textSub}>{isUser ? <FormattedRelative value={room.chatPeer.lastSeen * 1000}/> :
-              (isGroup ? room.groupParticipantsCount : room.channelParticipantsCount) + ' ' + intl.formatMessage(i18n.roomInfoMember)}</Text>
-            <Text
-              style={styles.textInfo}>{isUser ? room.chatPeer.phone.toString() : (isGroup ? room.groupDescription : room.channelDescription)}</Text>
-            <Text
-              style={[styles.textInfo, {marginTop: 7}]}>{isUser ? room.chatPeer.username : (isGroup ? room.groupProvateInviteLink : room.channelPublicUsername)}</Text>
-            <Text style={styles.textSub}>{intl.formatMessage(i18n.roomInfoUsername)}</Text>
-            <View style={styles.layoutMuteNotificaion}>
-              <Text style={[styles.textInfo, {flex: 1}]}>{intl.formatMessage(i18n.roomInfoMuteNotifications)}</Text>
-              <Switch value={this.state.isMute} onValueChange={this.changeMute}/>
+                onPress={editRoom}
+                text={intl.formatMessage(i18n.roomInfoEditRoomBtn)}/>)}
             </View>
           </View>
-          {countRoomHistory && <View style={styles.sectionShearedMedia}>
-            <View style={styles.layoutMuteNotificaion}>
-              <Text style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedMedia)}</Text>
-              <View style={styles.divider}/>
+
+          <View style={styles.sectionWrap}>
+
+            <View style={styles.section}>
+              <ListItem
+                centerElement={{
+                  primaryText: room.title,
+                  secondaryText: '2 days ago - (Not Implemented)',
+                }}
+              />
+              {(room.groupPublicUsername || room.channelPublicUsername || (room.chatPeer && room.chatPeer.username)) && (
+                <ListItem
+                  centerElement={{
+                    primaryText: '@' + (room.groupPublicUsername || room.channelPublicUsername || (room.chatPeer && room.chatPeer.username)),
+                    secondaryText: intl.formatMessage(i18n.roomInfoUsername),
+                  }}
+                />
+              )}
             </View>
-            <View style={styles.rowField}>
-              <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.image)}>
-                <MCIcon name="image" style={styles.sharedIcon} size={24}/>
-                <Text
-                  style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedImages) + ' ' + (countRoomHistory.image + countRoomHistory.gif)}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.video)}>
-                <MCIcon name="camcorder" style={styles.sharedIcon} size={24}/>
-                <Text
-                  style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedVideos) + ' ' + countRoomHistory.video}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.audio)}>
-                <MCIcon name="itunes" style={styles.sharedIcon} size={24}/>
-                <Text
-                  style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedAudios) + ' ' + countRoomHistory.audio}</Text>
-              </TouchableOpacity>
+
+            <View style={styles.section}>
+              {access.canAddMember && (
+                <ListItem
+                  leftElement="person-add"
+                  centerElement={{
+                    primaryText: intl.formatMessage(i18n.roomInfoAddMember),
+                  }}
+                  onPress={addMember}
+                  style={styles.listItem}
+                />
+              )}
+
+              {access.canViewMemberList && (
+                <ListItem
+                  leftElement="list"
+                  centerElement={{
+                    primaryText: intl.formatMessage(i18n.roomInfoMemberList),
+                  }}
+                  onPress={memberList}
+                  style={styles.listItem}
+                />
+              )}
+
+              <ListItem
+                leftElement="notifications"
+                centerElement={{
+                  primaryText: intl.formatMessage(i18n.roomInfoMuteNotifications),
+                }}
+                rightElement={<Switch/>}
+                onPress={notification}
+                style={styles.listItem}
+              />
+
+              {access.canChangeUsername && (
+                <ListItem
+                  leftElement="settings-input-component"
+                  centerElement={{
+                    primaryText: intl.formatMessage(i18n.roomInfoConvertType),
+                  }}
+                  onPress={updateUsername}
+                  style={styles.listItem}
+                />
+              )}
+
+              {access.canRevokeInviteLink && (
+                <ListItem
+                  leftElement="link"
+                  centerElement={{
+                    primaryText: intl.formatMessage(i18n.roomInfoInviteLink),
+                  }}
+                  onPress={revokeLink}
+                  style={styles.listItem}
+                />
+              )}
+
+              {access.canClearHistory && (
+                <ListItem
+                  leftElement="clear-all"
+                  centerElement={{
+                    primaryText: intl.formatMessage(i18n.roomInfoClearHistory),
+                  }}
+                  onPress={clearHistory}
+                  style={styles.listItem}
+                />
+              )}
+
+              {access.canDeleteRoom && (
+                <ListItem
+                  leftElement="delete-forever"
+                  centerElement={{
+                    primaryText: intl.formatMessage(i18n.roomInfoDeleteRoom),
+                  }}
+                  onPress={deleteRoom}
+                  style={styles.listItem}
+                />
+              )}
             </View>
-            <View style={styles.rowField}>
-              <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.voice)}>
-                <MCIcon name="microphone-outline" style={styles.sharedIcon} size={24}/>
-                <Text
-                  style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedVoices) + ' ' + countRoomHistory.voice}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.file)}>
-                <MCIcon name="file" style={styles.sharedIcon} size={24}/>
-                <Text
-                  style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedFiles) + ' ' + countRoomHistory.file}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.link)}>
-                <MCIcon name="link-variant" style={styles.sharedIcon} size={24}/>
-                <Text
-                  style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedLinks) + ' ' + countRoomHistory.url}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>}
-        </ScrollView>}
+
+            {countRoomHistory && <View style={styles.sectionShearedMedia}>
+              <View style={styles.layoutMuteNotificaion}>
+                <Text style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedMedia)}</Text>
+                <View style={styles.divider}/>
+              </View>
+              <View style={styles.rowField}>
+
+                <TouchableOpacity
+                  style={styles.sharedItem}
+                  onPress={() => actionClick(actions.image)}>
+                  <MCIcon
+                    name="image"
+                    style={styles.sharedIcon}
+                    size={24}/>
+                  <Text
+                    style={styles.textSharedMedia}>
+                    {intl.formatMessage(i18n.roomInfoSharedImages) + ' ' + (countRoomHistory.image + countRoomHistory.gif)}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.sharedItem}
+                  onPress={() => actionClick(actions.video)}>
+                  <MCIcon
+                    name="camcorder"
+                    style={styles.sharedIcon}
+                    size={24}/>
+                  <Text
+                    style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedVideos) + ' ' + countRoomHistory.video}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.sharedItem} onPress={() => actionClick(actions.audio)}>
+                  <MCIcon
+                    name="itunes"
+                    style={styles.sharedIcon}
+                    size={24}/>
+                  <Text
+                    style={styles.textSharedMedia}>
+                    {intl.formatMessage(i18n.roomInfoSharedAudios) + ' ' + countRoomHistory.audio}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.rowField}>
+                <TouchableOpacity
+                  style={styles.sharedItem}
+                  onPress={() => actionClick(actions.voice)}>
+                  <MCIcon
+                    name="microphone-outline"
+                    style={styles.sharedIcon}
+                    size={24}/>
+                  <Text
+                    style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedVoices) + ' ' + countRoomHistory.voice}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.sharedItem} onPress={() => actionClick(actions.file)}>
+                  <MCIcon name="file" style={styles.sharedIcon} size={24}/>
+                  <Text
+                    style={styles.textSharedMedia}>
+                    {intl.formatMessage(i18n.roomInfoSharedFiles) + ' ' + countRoomHistory.file}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.sharedItem}
+                  onPress={() => actionClick(actions.link)}>
+                  <MCIcon
+                    name="link-variant"
+                    style={styles.sharedIcon}
+                    size={24}/>
+                  <Text
+                    style={styles.textSharedMedia}>{intl.formatMessage(i18n.roomInfoSharedLinks) + ' ' + countRoomHistory.url}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>}
+          </View>
+
+
+        </ScrollView>
       </View>
     );
   }
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 }
 
 RoomInfoComponent.propTypes = {
   intl: intlShape.isRequired,
   room: PropTypes.object,
+  access: PropTypes.object,
   countRoomHistory: PropTypes.shape({
     media: PropTypes.number.isRequired,
     image: PropTypes.number.isRequired,

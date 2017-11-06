@@ -6,9 +6,9 @@ import MainBottom from '../containers/MainBottom';
 import {
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
-  CONTACT_PICKER_SCREEN,
   EDIT_PROFILE_SCREEN,
   NEW_SCREEN,
+  PRIMARY_CONTACT_PICKER_SCREEN,
   PRIMARY_NAV_TAB,
   PROFILE_SCREEN,
   PUBLIC_SCREEN,
@@ -54,7 +54,7 @@ export function goContactList() {
 }
 
 export function goContactPicker(title, onSubmit, multiple) {
-  navigate(CONTACT_PICKER_SCREEN, {title, onSubmit, multiple});
+  navigate(PRIMARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple});
 }
 
 export function goContactNew() {
@@ -94,7 +94,7 @@ const PrimaryNavigator = StackNavigator({
     },
   },
   [CONTACT_LIST_SCREEN]: {screen: ContactListScreen},
-  [CONTACT_PICKER_SCREEN]: {screen: ContactPickerScreen},
+  [PRIMARY_CONTACT_PICKER_SCREEN]: {screen: ContactPickerScreen},
   [EDIT_PROFILE_SCREEN]: {screen: EditProfileScreen},
   [CONTACT_NEW_SCREEN]: {screen: ContactNewScreen},
   [ROOM_CREATE_SCREEN]: {screen: RoomCreateScreen},

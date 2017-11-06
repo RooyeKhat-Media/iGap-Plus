@@ -7,9 +7,12 @@ import UserListItemComponent from '../../components/Unit/UserListItem';
 class UserListItem extends Component {
 
   render() {
-    const {divider, user, selected, onPress} = this.props;
+    const {divider, user, selected, onPress, render} = this.props;
     if (!user) {
       return null;
+    }
+    if (render) {
+      return render(user);
     }
     return (<UserListItemComponent
       selected={selected}
@@ -27,8 +30,9 @@ class UserListItem extends Component {
 UserListItem.propTypes = {
   userId: PropTypes.string.isRequired,
   divider: PropTypes.string,
-  onPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func,
   selected: PropTypes.bool,
+  render: PropTypes.func,
 };
 
 const makeMapStateToProps = () => {
