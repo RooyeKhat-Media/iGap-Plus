@@ -841,4 +841,45 @@ export default {
     defaultMessage: 'Kick Member',
     description: 'room Member List screen',
   },
+  roomHistorySendBoxCamera: {
+    id: 'roomHistory.sendBox.camera',
+    defaultMessage: 'Camera',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistorySendBoxImage: {
+    id: 'roomHistory.sendBox.image',
+    defaultMessage: 'Image',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistorySendBoxVideo: {
+    id: 'roomHistory.sendBox.video',
+    defaultMessage: 'Video',
+    description: 'roomHistory sendBox  screen',
+  },
+
+  roomHistorySendBoxMusic: {
+    id: 'roomHistory.sendBox.music',
+    defaultMessage: 'Music',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistorySendBoxFile: {
+    id: 'roomHistory.sendBox.file',
+    defaultMessage: 'File',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistorySendBoxContact: {
+    id: 'roomHistory.sendBox.contact',
+    defaultMessage: 'Contact',
+    description: 'roomHistory SendBox screen',
+  },
+  roomHistorySendBoxLocation: {
+    id: 'roomHistory.sendBox.location',
+    defaultMessage: 'Location',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistorySendBoxClose: {
+    id: 'roomHistory.sendBox.close',
+    defaultMessage: 'Close',
+    description: 'roomHistory sendBox screen',
+  },
 };

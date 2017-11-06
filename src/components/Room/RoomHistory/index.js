@@ -4,6 +4,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import {FlatList, ListItem, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
+import SendBox from './SendBox';
 
 class RoomHistoryComponent extends React.Component {
   render() {
@@ -42,9 +43,7 @@ class RoomHistoryComponent extends React.Component {
               renderItem={({item}) => (<RoomMessage roomType={room.type} roomId={room.id} messageId={item}/>)}/>
 
           </View>
-          <View style={styles.editorWrap}>
-
-          </View>
+          <SendBox/>
         </View>
       </View>
     );

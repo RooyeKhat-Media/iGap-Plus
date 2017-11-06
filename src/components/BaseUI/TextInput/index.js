@@ -12,11 +12,11 @@ export default class TextInput extends React.Component {
 
   focuse = () => {
     this.setState({focused: true});
-  }
+  };
 
   blur = () => {
     this.setState({focused: false});
-  }
+  };
 
   render() {
     const props = this.props;
@@ -26,15 +26,13 @@ export default class TextInput extends React.Component {
       ...props,
       underlineColorAndroid: 'transparent',
       placeholderTextColor: '#adadad',
-      style: {
-        ...(styles.textInput ? styles.textInput : {}),
-        ...(focused ? styles.focused : {}),
-        ...(props.style || {}),
-      },
     };
 
     return (<BaseTextInput
       onFocus={this.focuse}
-      onBlur={this.blur} {...defaultProps} />);
+      onBlur={this.blur}
+      {...defaultProps}
+      style={[styles.textInput, props.style, (focused ? styles.focused : {})]}
+    />);
   }
 }

@@ -31,6 +31,6 @@ export default {
   },
   messageListWrap: {
     flex: 1,
+    marginBottom: 65,
   },
-  editorWrap: {},
 };
