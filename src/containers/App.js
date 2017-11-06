@@ -17,6 +17,7 @@ import {changeLocale, getUserLocale, loadUserLocale} from '../utils/locale';
 import {getAppTheme} from '../themes';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
+import {APP_MODAL_ID_MAIN} from '../constants/app';
 
 class App extends Component {
 
@@ -78,7 +79,7 @@ class App extends Component {
             })}/>
             <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
           </View>
-          <AppModal/>
+          <AppModal id={APP_MODAL_ID_MAIN}/>
         </View>
       </ThemeProvider>
     );

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {BackHandler, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
@@ -14,11 +15,11 @@ class Modal extends Component {
   }
 
   onBackPress = () => {
-    const {modals, dispatch} = this.props;
-    if (modals.length) {
+    const {modals, dispatch, id} = this.props;
+    if (modals && modals.length) {
       const lastModal = modals[modals.length - 1];
       if (lastModal.closeable) {
-        dispatch(closeModal());
+        dispatch(closeModal(id));
       }
       return true;
     }
@@ -27,7 +28,7 @@ class Modal extends Component {
 
   render() {
     const {modals} = this.props;
-    if (!modals.length) {
+    if (!modals || !modals.length) {
       return null;
     }
     return (
@@ -42,9 +43,13 @@ class Modal extends Component {
   }
 }
 
-const mapStateToProps = state => {
+Modal.propTypes = {
+  id: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state, props) => {
   return {
-    modals: state.modal,
+    modals: state.modal[props.id],
   };
 };
 

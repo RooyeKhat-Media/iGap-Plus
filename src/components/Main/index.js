@@ -3,6 +3,8 @@ import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../modules/Responsive';
+import {APP_MODAL_ID_PRIMARY, APP_MODAL_ID_SECONDARY} from '../../constants/app';
+import {AppModal} from '../../components/BaseUI';
 
 
 class MainComponent extends React.Component {
@@ -22,8 +24,13 @@ class MainComponent extends React.Component {
       <View style={styles.container}>
         <View style={styles.primary}>
           {PrimaryNavigator}
+          <AppModal id={APP_MODAL_ID_PRIMARY}/>
         </View>
-        {isSecondaryActive ? (<View style={styles.secondary}>{SecondaryNavigator}</View>) : null}
+        {isSecondaryActive ?
+          (<View style={styles.secondary}>
+            {SecondaryNavigator}
+            <AppModal id={APP_MODAL_ID_SECONDARY}/>
+          </View>) : null}
       </View>
     );
   }
