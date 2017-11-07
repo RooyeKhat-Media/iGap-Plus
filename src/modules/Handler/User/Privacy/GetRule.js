@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {setRule} from '../../../../actions/methods/user/privacy/rule';
 
 /**
  * @property {ProtoUserPrivacyGetRule} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class GetRule extends Base {
   handle() {
-    console.error('GetRule', 'Not implemented yet', this);
+    this.dispatch(setRule(this._request.getType(), this._response.getLevel()));
   }
 }

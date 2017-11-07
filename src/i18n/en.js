@@ -15,6 +15,12 @@ export default {
   ...country,
   ...apiErrors,
 
+  loading: {
+    id: 'loading',
+    defaultMessage: 'Loading ....',
+    description: 'loading',
+  },
+
   ok: {
     id: 'ok',
     defaultMessage: 'Ok',
@@ -856,7 +862,6 @@ export default {
     defaultMessage: 'Video',
     description: 'roomHistory sendBox  screen',
   },
-
   roomHistorySendBoxMusic: {
     id: 'roomHistory.sendBox.music',
     defaultMessage: 'Music',
@@ -881,5 +886,70 @@ export default {
     id: 'roomHistory.sendBox.close',
     defaultMessage: 'Close',
     description: 'roomHistory sendBox screen',
+  },
+  settingSetting: {
+    id: 'setting.setting',
+    defaultMessage: 'Setting',
+    description: 'setting screen',
+  },
+  settingLogout: {
+    id: 'setting.logout',
+    defaultMessage: 'Logout',
+    description: 'setting screen',
+  },
+  settingDeleteAccount: {
+    id: 'setting.deleteAccount',
+    defaultMessage: 'Delete Account',
+    description: 'setting screen',
+  },
+  settingGeneralSettings: {
+    id: 'setting.generalSettings',
+    defaultMessage: 'General Settings',
+    description: 'setting screen',
+  },
+  privacyPrivacy: {
+    id: 'privacy.privacy',
+    defaultMessage: 'Privacy',
+    description: 'Privacy screen',
+  },
+  privacyWhoCanSeeMyAvatar: {
+    id: 'privacy.whoCanSeeMyAvatar',
+    defaultMessage: 'Who can see my Avatar',
+    description: 'Privacy screen',
+  },
+  privacyWhoCanInviteMeToChannels: {
+    id: 'privacy.whoCanInviteMeToChannels',
+    defaultMessage: 'Who can invite me to Channels',
+    description: 'Privacy screen',
+  },
+  privacyWhoCanInviteMeToGroups: {
+    id: 'privacy.whoCanInviteMeToGroups',
+    defaultMessage: 'Who can invite me to Groups',
+    description: 'Privacy screen',
+  },
+  privacyWhoCanCallMe: {
+    id: 'privacy.whoCanCallMe',
+    defaultMessage: 'Who can call me',
+    description: 'Privacy screen',
+  },
+  privacyLastSeen: {
+    id: 'privacy.lastSeen',
+    defaultMessage: 'Last seen',
+    description: 'Privacy screen',
+  },
+  privacyEveryBody: {
+    id: 'privacy.everyBody',
+    defaultMessage: 'EveryBody',
+    description: 'Privacy screen',
+  },
+  privacyMyContacts: {
+    id: 'privacy.myContacts',
+    defaultMessage: 'My Contacts',
+    description: 'Privacy screen',
+  },
+  privacyNobody: {
+    id: 'privacy.nobody',
+    defaultMessage: 'Nobody',
+    description: 'Privacy screen',
   },
 };

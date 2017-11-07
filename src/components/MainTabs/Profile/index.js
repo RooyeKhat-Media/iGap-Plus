@@ -8,6 +8,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import UserListItem from '../../../containers/Unit/UserListItem';
+import {goSetting} from '../../../navigators/PrimaryNavigator';
 
 class ProfileComponent extends Component {
 
@@ -31,7 +32,7 @@ class ProfileComponent extends Component {
   };
 
   menuClick = () => {
-    alert('menuClick');
+    goSetting();
   };
 
   downClick = () => {

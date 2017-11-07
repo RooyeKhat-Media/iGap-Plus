@@ -6,6 +6,7 @@ import {gender} from './user/profile/gender';
 import {email} from './user/profile/email';
 import {bio} from './user/profile/bio';
 import {getMemberList} from './rooms/getMemberList';
+import {rule} from './user/privacy/rule';
 
 const methodsReducer = combineReducers({
   nickName,
@@ -15,5 +16,6 @@ const methodsReducer = combineReducers({
   bio,
   countRoomHistory,
   getMemberList,
+  rule,
 });
 export default methodsReducer;
