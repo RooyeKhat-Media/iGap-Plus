@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 import {Proto} from '../../../modules/Proto/index';
 import LogBox from './LoxBox';
@@ -29,5 +30,12 @@ class RoomMessage extends React.Component {
 
 RoomMessage.propTypes = {
   intl: intlShape.isRequired,
+  message: PropTypes.object.isRequired,
+  authorHash: PropTypes.string.isRequired,
+  roomType: PropTypes.oneOf([
+    Proto.Room.Type.CHAT,
+    Proto.Room.Type.GROUP,
+    Proto.Room.Type.CHANNEL,
+  ]).isRequired,
 };
 export default injectIntl(RoomMessage);

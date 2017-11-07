@@ -37,18 +37,19 @@ export const flatProtoRoomMessage = (roomMessage) => {
     createTime: roomMessage.getCreateTime(),
     updateTime: roomMessage.getUpdateTime(),
     deleted: roomMessage.getDeleted(),
-    forwardFrom: roomMessage.getForwardFrom(),
-    replyTo: roomMessage.getReplyTo(),
+    forwardFrom: flatProtoRoomMessage(roomMessage.getForwardFrom()),
+    replyTo: flatProtoRoomMessage(roomMessage.getReplyTo()),
     previousMessageId: roomMessage.getPreviousMessageId(),
   };
 
   if (author) {
     if (author.getUser()) {
-      flat.authorUser = roomMessage.getAuthor().getUser().getUserId();
+      flat.authorUser = author.getUser().getUserId();
+      flat.authorUserCacheId = author.getUser().getCacheId();
     }
 
     if (author.getRoom()) {
-      flat.authorUser = roomMessage.getAuthor().getRoom().getRoomId();
+      flat.authorRoom = author.getRoom().getRoomId();
     }
   }
 
@@ -77,7 +78,7 @@ export const normalizedRoomMessageToSerializableRoomMessage = (normalizedRoomMes
     location: normalizedRoomMessage.location ? normalizedRoomMessage.location.serializeBinary() : null,
     log: normalizedRoomMessage.log ? normalizedRoomMessage.log.serializeBinary() : null,
     contact: normalizedRoomMessage.contact ? normalizedRoomMessage.contact.serializeBinary() : null,
-    forwardFrom: normalizedRoomMessage.forwardFrom ? normalizedRoomMessage.forwardFrom.serializeBinary() : null,
+    forwardFrom: normalizedRoomMessage.forwardFrom ? normalizedRoomMessageToSerializableRoomMessage(normalizedRoomMessage.forwardFrom) : null,
   };
 };
 
@@ -97,7 +98,7 @@ export const serializableRoomMessageToNormalizedRoomMessage = (serializableRoomM
     location: serializableRoomMessage.location ? Proto.RoomMessageLocation.deserializeBinary(objectToUint8Array(serializableRoomMessage.location)) : null,
     log: serializableRoomMessage.log ? Proto.RoomMessageLog.deserializeBinary(objectToUint8Array(serializableRoomMessage.log)) : null,
     contact: serializableRoomMessage.contact ? Proto.RoomMessageContact.deserializeBinary(objectToUint8Array(serializableRoomMessage.contact)) : null,
-    forwardFrom: serializableRoomMessage.forwardFrom ? Proto.RoomMessage.deserializeBinary(objectToUint8Array(serializableRoomMessage.forwardFrom)) : null,
+    forwardFrom: serializableRoomMessage.forwardFrom ? serializableRoomMessageToNormalizedRoomMessage(serializableRoomMessage.forwardFrom) : null,
   };
 };
 

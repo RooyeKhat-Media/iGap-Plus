@@ -11,6 +11,9 @@ export const getRoom = createSelector(
   getRoomId,
   (entities, roomId) => {
     const room = entities.rooms[roomId];
+    if (!room) {
+      return null;
+    }
     return {
       ...room,
       chatPeer: room && room.chatPeer ? entities.registeredUsers[room.chatPeer] : null,
@@ -22,6 +25,9 @@ export const getRoomWithMessages = createSelector(
   getRoom,
   (state) => state.entities.roomMessages,
   (room, roomMessages) => {
+    if (!room) {
+      return null;
+    }
     return {
       ...room,
       lastMessage: room ? roomMessages[room.lastMessage] : null,
@@ -34,6 +40,9 @@ export const getRoomAvatar = createSelector(
   getRoom,
   (state, props) => props.size,
   (room, size) => {
+    if (!room) {
+      return null;
+    }
     const avatar = room.groupAvatar || room.channelAvatar || (room.chatPeer ? room.chatPeer.avatar : null);
     let selector = null;
     let fileSelector = null;
@@ -67,6 +76,7 @@ export const getRoomAvatarUri = createSelector(
   (state) => state.fileManager.download,
   (roomAvatar, downloads) => {
     if (
+      roomAvatar &&
       roomAvatar.avatar &&
       downloads[roomAvatar.avatar.cacheId] &&
       downloads[roomAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED

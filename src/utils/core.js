@@ -2,7 +2,7 @@
  * @flow
  */
 import Long from 'long';
-import {ceil, floor, max, min, values} from 'lodash';
+import {ceil, floor, max, min, startsWith, values} from 'lodash';
 
 /**
  * Mili-seconds sleep
@@ -112,3 +112,15 @@ export function dimensionCalculate(originalWidth, originalHeight, limiterWidth, 
 export function objectToUint8Array(object) {
   return new Uint8Array(values(object));
 }
+
+/**
+ * Prepend file protocol if needed
+ * @param {string|null|undefined} uri
+ * @return {string|null|undefined}
+ */
+export function prependFileProtocol(uri) {
+  if (uri && !startsWith(uri, 'file://')) {
+    uri = 'file://' + uri;
+  }
+  return uri;
+} 

@@ -8,7 +8,7 @@ import store from '../../configureStore';
 import {messengerRoomMessageConcat} from '../../actions/messenger/roomMessages';
 import {entitiesRoomMessagesAdd} from '../../actions/entities/roomMessages';
 import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from '../../constants/configs';
-import putState from '../Entities/RegisteredUsers';
+import {prepareRoomMessage} from '../../utils/app';
 
 export default async function loadRoomHistory(roomId) {
 
@@ -21,18 +21,11 @@ export default async function loadRoomHistory(roomId) {
    */
   const clientRoomHistoryResponse = await Api.invoke(CLIENT_GET_ROOM_HISTORY, clientRoomHistory);
 
-  clientRoomHistoryResponse.getMessageList().forEach(function(protoRoomMessage) {
-    if (protoRoomMessage.getAuthor().getUser()) {
-      const authorUser = protoRoomMessage.getAuthor().getUser();
-      putState(authorUser.getUserId().toString(), authorUser.getCacheId());
-    }
-  });
-
   const normalizedData = normalize(clientRoomHistoryResponse.getMessageList(), [roomMessage]);
 
   for (const messageId in normalizedData.entities.roomMessages) {
     if (normalizedData.entities.roomMessages.hasOwnProperty(messageId)) {
-      normalizedData.entities.roomMessages[messageId].roomId = roomId;
+      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId);
     }
   }
   store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));

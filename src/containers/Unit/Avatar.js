@@ -78,13 +78,16 @@ Avatar.propTypes = {
 
 const makeMapStateToProps = () => {
   return (state, props) => {
-    let avatarProps = null;
+    let avatarProps = {
+      color: '#FFFFFF',
+      initials: '',
+    };
     let avatarUri = null;
     if (props.roomId) {
-      avatarProps = getRoomAvatar(state, props);
+      avatarProps = getRoomAvatar(state, props) || avatarProps;
       avatarUri = getRoomAvatarUri(state, props);
     } else if (props.userId) {
-      avatarProps = getUserAvatar(state, props);
+      avatarProps = getUserAvatar(state, props) || avatarProps;
       avatarUri = getUserAvatarUri(state, props);
     }
     return {

@@ -26,6 +26,10 @@ export const getUserAvatar = createSelector(
   getUser,
   (state, props) => props.size,
   (user, size) => {
+    if (!user) {
+      return null;
+    }
+
     let selector = null;
     let fileSelector = null;
 
@@ -59,9 +63,11 @@ export const getUserAvatarUri = createSelector(
   (state) => state.fileManager.download,
   (userAvatar, downloads) => {
     if (
+      userAvatar
+      &&
       userAvatar.avatar &&
-            downloads[userAvatar.avatar.cacheId] &&
-            downloads[userAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
+      downloads[userAvatar.avatar.cacheId] &&
+      downloads[userAvatar.avatar.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED
     ) {
       return downloads[userAvatar.avatar.cacheId].uri;
     }

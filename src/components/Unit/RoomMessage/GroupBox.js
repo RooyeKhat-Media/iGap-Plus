@@ -8,7 +8,7 @@ import {white} from '../../../themes/default/index';
 export default ({message, showText}) => (
   <View style={styles.container}>
     <View style={styles.avatarWrap}>
-      {message.authorUserObject ? (<Avatar userId={message.authorUserObject.id} size={40}/>) : null}
+      <Avatar userId={message.authorUserObject && message.authorUserObject.id} size={40}/>
     </View>
     <View style={styles.triangle}/>
     <View style={styles.messageBox}>

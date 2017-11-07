@@ -17,14 +17,8 @@ export const getFullMessage = createSelector(
   }
 );
 
-export const getAttachment = createSelector(
-  getFullMessage,
-  (message) => message.attachment
-);
-
-
-export const getDownloadFile = createSelector(
-  getAttachment,
+export const getDownloadedFile = createSelector(
+  (state, attachment) => attachment,
   (state) => state.fileManager.download,
   (attachment, downloads) => {
     return attachment ? downloads[attachment.getCacheId()] : null;
@@ -32,7 +26,7 @@ export const getDownloadFile = createSelector(
 );
 
 export const getSmallThumbnailUri = createSelector(
-  getAttachment,
+  (state, attachment) => attachment,
   (state) => state.fileManager.download,
   (attachment, downloads) => {
     if (attachment) {
@@ -46,7 +40,7 @@ export const getSmallThumbnailUri = createSelector(
 );
 
 export const getWaveformThumbnailUri = createSelector(
-  getAttachment,
+  (state, attachment) => attachment,
   (state) => state.fileManager.download,
   (attachment, downloads) => {
     if (attachment) {

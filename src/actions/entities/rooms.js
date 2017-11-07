@@ -4,7 +4,7 @@
 
 import {entitiesRoomMessagesAdd} from './roomMessages';
 import {entitiesRegisteredUserAdd} from './registeredUser';
-// import {messengerRoomMessagePush, messengerRoomMessageUnshift} from '../messenger/roomMessages';
+import {prepareRoomMessage} from '../../utils/app';
 
 export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
 export const ENTITIES_ROOM_EDIT = 'ENTITIES_ROOM_EDIT';
@@ -35,11 +35,11 @@ export function entitiesRoomsAddFull(data) {
       if (data.entities.rooms.hasOwnProperty(roomId)) {
         if (data.entities.rooms[roomId].lastMessage) {
           const lastMessage = data.entities.rooms[roomId].lastMessage;
-          data.entities.roomMessages[lastMessage].roomId = roomId;
+          prepareRoomMessage(data.entities.roomMessages[lastMessage], roomId);
         }
         if (data.entities.rooms[roomId].firstUnreadMessage) {
           const firstUnreadMessage = data.entities.rooms[roomId].firstUnreadMessage;
-          data.entities.roomMessages[firstUnreadMessage].roomId = roomId;
+          prepareRoomMessage(data.entities.roomMessages[firstUnreadMessage], roomId);
         }
       }
     }

@@ -9,6 +9,9 @@ import {objectToLong} from './core';
 import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
 import {FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX} from '../constants/app';
 
+import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
+import putStateRoom from '../modules/Entities/Rooms';
+
 let _userId;
 let _userIdString;
 let _authorHash;
@@ -85,4 +88,35 @@ export async function login() {
 
 export function getRoomAvatarUploadIdPrefix(id) {
   return FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX + id;
+}
+
+/**
+ * Fix and add missing property to room message
+ * @param {FlatRoomMessage} normalizedRoomMessage
+ * @param {string} roomId
+ */
+export function prepareRoomMessage(normalizedRoomMessage, roomId) {
+  normalizedRoomMessage.roomId = roomId;
+
+  putStateRoom(roomId);
+
+  if (normalizedRoomMessage.authorUser) {
+    putStateRegisteredUser(
+      normalizedRoomMessage.authorUser.toString(),
+      normalizedRoomMessage.authorUserCacheId
+    );
+  }
+
+  if (normalizedRoomMessage.forwardFrom) {
+    if (normalizedRoomMessage.forwardFrom.authorUser) {
+      putStateRegisteredUser(
+        normalizedRoomMessage.forwardFrom.authorUser.toString(),
+        normalizedRoomMessage.forwardFrom.authorUserCacheId
+      );
+    } else if (normalizedRoomMessage.forwardFrom.authorRoom) {
+      normalizedRoomMessage.forwardFrom.roomId = normalizedRoomMessage.forwardFrom.authorRoom.toString();
+      putStateRoom(normalizedRoomMessage.forwardFrom.roomId);
+    }
+  }
+
 }

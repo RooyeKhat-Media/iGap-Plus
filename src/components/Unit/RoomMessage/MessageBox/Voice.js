@@ -1,47 +1,56 @@
 import React from 'react';
-import {Image, StyleSheet, Text as BaseText, TouchableOpacity, View} from 'react-native';
-import {Icon, ProgressBar} from '../../../BaseUI';
+import PropTypes from 'prop-types';
+import {Image, StyleSheet, Text as BaseText, View} from 'react-native';
 import {min} from 'lodash';
 import Device from '../../../../modules/Responsive/Device';
-import {gray700, primary} from '../../../../themes/default/index';
+import {gray700} from '../../../../themes/default/index';
 import {convertSecendToTime} from '../../../../utils/filters';
-import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/ProgressBar/index';
+import MessageElement from './MessageElement';
+import {prependFileProtocol} from '../../../../utils/core';
 
 const {width} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
 
-export default ({attachment}) => {
-  const uri = 'file://' + attachment.waveformThumbnailUri;
+export default class Voice extends MessageElement {
 
-  return (
-    <View style={styles.fileWrap}>
-      <TouchableOpacity style={styles.tochableWrap} activeOpacity={1} onPress={attachment.togglePress}>
-        {attachment.isProcessing && (
-          <View style={styles.btnWrap}><Icon color="#fffaf7" name="close" size={25}/></View>)}
-        {attachment.isCompleted && <Icon color={primary} name="play-circle-outline" size={50}/>}
-        {attachment.isPaused && (
-          <View style={styles.btnWrap}><Icon color="#fffaf7" name="file-download" size={25}/></View>)}
-      </TouchableOpacity>
+  render() {
+    const {attachment, waveformThumbnailUri} = this.props;
+    const uri = prependFileProtocol(waveformThumbnailUri);
 
-      <View style={styles.fileInfoWrap}>
-        <Image source={{uri: uri}} style={[styles.imageWrap]}/>
+    const controlBar = this.renderControlBar(
+      boxWidth,
+      <View style={styles.thumbnail}/>,
+      {
+        renderProgressBar: false,
+      }
+    );
 
-        <BaseText
-          style={styles.fileSize}>{convertSecendToTime(attachment.getDuration())}</BaseText>
-        <View style={[styles.progressStyle]}>
-          {attachment.isPending && (<ProgressBar width={boxWidth - 100} status={PROGRESS_BAR_PENDING}/>)}
-          {attachment.isProcessing && ((<ProgressBar status={PROGRESS_BAR_PROGRESSING} width={boxWidth - 100}
-            initialProgress={attachment.downloadFile.progress}
-            progress={attachment.downloadFile.progress}/>))}
+    return (
+      <View style={styles.fileWrap}>
+        {controlBar}
+
+        <View style={styles.fileInfoWrap}>
+          {uri && (<Image source={{uri: uri}} style={[styles.imageWrap]}/>)}
+
+          <BaseText style={styles.fileDuration}>
+            {convertSecendToTime(attachment.getDuration())}
+          </BaseText>
+          {this.renderProgressBar(boxWidth - 100, styles.progressStyle)}
         </View>
       </View>
-    </View>
 
-  );
+    );
+  }
+}
+
+Voice.propTypes = {
+  attachment: PropTypes.object.isRequired,
+  downloadedFile: PropTypes.object,
+  waveformThumbnailUri: PropTypes.string,
+  onPress: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
-
   fileWrap: {
     width: 250,
     flexDirection: 'row',
@@ -50,30 +59,16 @@ const styles = StyleSheet.create({
   imageWrap: {
     flex: 1,
   },
-  tochableWrap: {
-    width: 60,
-    height: 65,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 3,
-  },
-  btnWrap: {
-    backgroundColor: 'rgba(162, 184, 198, 0.6)',
-    borderRadius: 25,
-    padding: 10,
+  thumbnail: {
+    width: 80,
+    height: 70,
   },
   fileInfoWrap: {
     flex: 1,
     paddingLeft: 10,
     paddingRight: 5,
   },
-  fileName: {
-    fontWeight: 'bold',
-    fontSize: 14,
-    color: primary,
-  },
-  fileSize: {
+  fileDuration: {
     fontSize: 12,
     color: gray700,
   },
