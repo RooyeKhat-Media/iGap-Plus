@@ -16,7 +16,7 @@ export default [
           backgroundColor: '#f6f6f6',
         },
         itemText: {
-          fontSize: 14,
+          fontSize: 15,
           color: black200,
           paddingLeft: 3,
           paddingTop: 14,
@@ -30,15 +30,14 @@ export default [
           marginBottom: 2,
         },
         textLoading: {
-          fontSize: 14,
-          color: '#14edaa',
-          paddingRight: 12,
+          fontSize: 15,
+          paddingTop: 14,
+          color: '#1ac293',
+          paddingRight: 8,
+          fontWeight: 'bold',
           alignSelf: 'center',
         },
-        piker: {
-          width: 130,
-          marginRight: -10,
-        },
+
       },
     },
   ],

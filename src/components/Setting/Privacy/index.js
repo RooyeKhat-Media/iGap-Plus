@@ -4,9 +4,10 @@ import {ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
-import {BasePicker, Toolbar} from '../../BaseUI/index';
+import {Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import {Proto} from '../../../modules/Proto/index';
+import PopupMenu from '../../BaseUI/PopupMenu/index';
 
 class SettingPrivacyComponent extends Component {
 
@@ -19,11 +20,42 @@ class SettingPrivacyComponent extends Component {
     return rules[privacyType] != null;
   }
 
+  getStringFromValue(value) {
+    const {intl} = this.props;
+    let result = intl.formatMessage(i18n.loading);
+    switch (value) {
+      case Proto.PrivacyLevel.ALLOW_ALL:
+        result = intl.formatMessage(i18n.privacyEveryBody);
+        break;
+      case Proto.PrivacyLevel.DENY_ALL:
+        result = intl.formatMessage(i18n.privacyNobody);
+        break;
+      case Proto.PrivacyLevel.ALLOW_CONTACTS:
+        result = intl.formatMessage(i18n.privacyMyContacts);
+        break;
+    }
+    return result;
+  }
+
+  callBackMenu(privacyType, value) {
+    const {privacySetRule} = this.props;
+    switch (value) {
+      case 0:
+        privacySetRule(privacyType, Proto.PrivacyLevel.ALLOW_ALL);
+        break;
+      case 1:
+        privacySetRule(privacyType, Proto.PrivacyLevel.DENY_ALL);
+        break;
+      case 2:
+        privacySetRule(privacyType, Proto.PrivacyLevel.ALLOW_CONTACTS);
+        break;
+    }
+  }
+
   render() {
     const styles = this.getStyles();
-    const {intl, goBack, privacySetRule, rules} = this.props;
-    const privacyType = Proto.PrivacyType;
-    const privacyLevel = Proto.PrivacyLevel;
+    const {intl, goBack, rules} = this.props;
+    const itemList = [intl.formatMessage(i18n.privacyEveryBody), intl.formatMessage(i18n.privacyNobody), intl.formatMessage(i18n.privacyMyContacts)];
 
     return (
       <View style={styles.root}>
@@ -32,69 +64,55 @@ class SettingPrivacyComponent extends Component {
           onLeftElementPress={goBack}
           centerElement={intl.formatMessage(i18n.privacyPrivacy)}/>
         <ScrollView style={styles.scrollView}>
+
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyWhoCanSeeMyAvatar)}</Text>
-            {this.hasRuleLevel(Proto.PrivacyType.AVATAR) ? <BasePicker
-              style={styles.piker}
-              mode="dropdown"
-              selectedValue={rules[Proto.PrivacyType.AVATAR]}
-              onValueChange={(itemValue) => privacySetRule(privacyType.AVATAR, itemValue)}>
-              <BasePicker.Item label={intl.formatMessage(i18n.privacyEveryBody)} value={privacyLevel.ALLOW_ALL}/>
-              <BasePicker.Item label={intl.formatMessage(i18n.privacyMyContacts)} value={privacyLevel.ALLOW_CONTACTS}/>
-              <BasePicker.Item label={intl.formatMessage(i18n.privacyNobody)} value={privacyLevel.DENY_ALL}/>
-            </BasePicker> : <Text style={styles.textLoading}>{intl.formatMessage(i18n.loading)} </Text>}
+            <PopupMenu
+              actionList={itemList}
+              onPress={(action) => this.callBackMenu(Proto.PrivacyType.AVATAR, action)}
+              button={<Text
+                style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.AVATAR])} </Text>}
+            />
           </View>
 
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyWhoCanInviteMeToChannels)}</Text>
-            {this.hasRuleLevel(Proto.PrivacyType.CHANNEL_INVITE) ? <BasePicker
-              style={styles.piker}
-              mode="dropdown"
-              selectedValue={rules[Proto.PrivacyType.CHANNEL_INVITE]}
-              onValueChange={(itemValue) => privacySetRule(privacyType.CHANNEL_INVITE, itemValue)}>
-              <BasePicker.Item label="EveryBody" value={privacyLevel.ALLOW_ALL}/>
-              <BasePicker.Item label="My Contacts" value={privacyLevel.ALLOW_CONTACTS}/>
-              <BasePicker.Item label="Nobody" value={privacyLevel.DENY_ALL}/>
-            </BasePicker> : <Text style={styles.textLoading}>{intl.formatMessage(i18n.loading)} </Text>}
+            <PopupMenu
+              actionList={itemList}
+              onPress={(action) => this.callBackMenu(Proto.PrivacyType.CHANNEL_INVITE, action)}
+              button={<Text
+                style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.CHANNEL_INVITE])} </Text>}
+            />
           </View>
 
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyWhoCanInviteMeToGroups)}</Text>
-            {this.hasRuleLevel(Proto.PrivacyType.GROUP_INVITE) ? <BasePicker
-              style={styles.piker}
-              mode="dropdown"
-              selectedValue={rules[Proto.PrivacyType.GROUP_INVITE]}
-              onValueChange={(itemValue) => privacySetRule(privacyType.GROUP_INVITE, itemValue)}>
-              <BasePicker.Item label="EveryBody" value={privacyLevel.ALLOW_ALL}/>
-              <BasePicker.Item label="My Contacts" value={privacyLevel.ALLOW_CONTACTS}/>
-              <BasePicker.Item label="Nobody" value={privacyLevel.DENY_ALL}/>
-            </BasePicker> : <Text style={styles.textLoading}>{intl.formatMessage(i18n.loading)} </Text>}
+            <PopupMenu
+              actionList={itemList}
+              onPress={(action) => this.callBackMenu(Proto.PrivacyType.GROUP_INVITE, action)}
+              button={<Text
+                style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.GROUP_INVITE])} </Text>}
+            />
           </View>
 
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyWhoCanCallMe)}</Text>
-            {this.hasRuleLevel(Proto.PrivacyType.VOICE_CALLING) ? <BasePicker
-              style={styles.piker}
-              mode="dropdown"
-              selectedValue={rules[Proto.PrivacyType.VOICE_CALLING]}
-              onValueChange={(itemValue) => privacySetRule(privacyType.VOICE_CALLING, itemValue)}>
-              <BasePicker.Item label="EveryBody" value={privacyLevel.ALLOW_ALL}/>
-              <BasePicker.Item label="My Contacts" value={privacyLevel.ALLOW_CONTACTS}/>
-              <BasePicker.Item label="Nobody" value={privacyLevel.DENY_ALL}/>
-            </BasePicker> : <Text style={styles.textLoading}>{intl.formatMessage(i18n.loading)} </Text>}
+            <PopupMenu
+              actionList={itemList}
+              onPress={(action) => this.callBackMenu(Proto.PrivacyType.VOICE_CALLING, action)}
+              button={<Text
+                style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.VOICE_CALLING])} </Text>}
+            />
           </View>
 
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyLastSeen)}</Text>
-            {this.hasRuleLevel(Proto.PrivacyType.USER_STATUS) ? <BasePicker
-              style={styles.piker}
-              mode="dropdown"
-              selectedValue={rules[Proto.PrivacyType.USER_STATUS]}
-              onValueChange={(itemValue) => privacySetRule(privacyType.USER_STATUS, itemValue)}>
-              <BasePicker.Item label="EveryBody" value={privacyLevel.ALLOW_ALL}/>
-              <BasePicker.Item label="My Contacts" value={privacyLevel.ALLOW_CONTACTS}/>
-              <BasePicker.Item label="Nobody" value={privacyLevel.DENY_ALL}/>
-            </BasePicker> : <Text style={styles.textLoading}>{intl.formatMessage(i18n.loading)} </Text>}
+            <PopupMenu
+              actionList={itemList}
+              onPress={(action) => this.callBackMenu(Proto.PrivacyType.USER_STATUS, action)}
+              button={<Text
+                style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.USER_STATUS])} </Text>}
+            />
           </View>
         </ScrollView>
       </View>
