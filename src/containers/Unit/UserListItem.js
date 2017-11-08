@@ -6,13 +6,18 @@ import UserListItemComponent from '../../components/Unit/UserListItem';
 
 class UserListItem extends Component {
 
+  _onPress = () => {
+    const {user, onPress} = this.props;
+    onPress(user.longId);
+  };
+
   render() {
-    const {divider, user, selected, onPress, render} = this.props;
+    const {divider, user, selected, render} = this.props;
     if (!user) {
       return null;
     }
     if (render) {
-      return render(user);
+      return render(this.props);
     }
     return (<UserListItemComponent
       selected={selected}
@@ -20,9 +25,7 @@ class UserListItem extends Component {
       divider={divider}
       displayName={user.displayName}
       phoneNumber={user.phone.toString()}
-      onPress={() => {
-        onPress(user.longId);
-      }}
+      onPress={this._onPress}
     />);
   }
 }

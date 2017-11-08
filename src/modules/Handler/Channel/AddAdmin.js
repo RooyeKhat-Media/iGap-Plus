@@ -1,11 +1,8 @@
-import Base from '../Base';
+import GroupAddAdmin from '../Group/AddAdmin';
 
 /**
  * @property {ProtoChannelAddAdmin} _request
  * @property {ProtoChannelAddAdminResponse} _response
  */
-export default class AddAdmin extends Base {
-  handle() {
-    console.error('AddAdmin', 'Not implemented yet', this);
-  }
+export default class AddAdmin extends GroupAddAdmin {
 }

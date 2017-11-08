@@ -1,5 +1,5 @@
 import Base from '../Base';
-import {getMemberList} from '../../../actions/methods/group/getMemberList';
+import {getMemberList} from '../../../actions/methods/rooms/getMemberList';
 
 /**
  * @property {ProtoGroupGetMemberList} _request
@@ -7,6 +7,15 @@ import {getMemberList} from '../../../actions/methods/group/getMemberList';
  */
 export default class GetMemberList extends Base {
   handle() {
-    this.dispatch(getMemberList(this._response.getMemberList()));
+    const members = {};
+    let sort = this._request.getPagination() && this._request.getPagination().getOffset() ? this._request.getPagination().getOffset() : 0;
+    this._response.getMemberList().forEach(function(member) {
+      members[member.getUserId().toString()] = {
+        userId: member.getUserId(),
+        role: member.getRole(),
+        sort: ++sort,
+      };
+    });
+    this.dispatch(getMemberList(this._request.getRoomId().toString(), members));
   }
 }

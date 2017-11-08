@@ -2,7 +2,7 @@ import {uniqueId} from 'lodash';
 
 const id = uniqueId();
 
-export default [
+export default (MemberList) => ([
   id, [
     {
       query: {},
@@ -10,7 +10,10 @@ export default [
         container: {
           flex: 1,
         },
+        rightElementWrap: {
+          flexDirection: 'row',
+        },
       },
     },
   ],
-];
+]);

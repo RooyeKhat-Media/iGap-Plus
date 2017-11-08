@@ -1,11 +1,8 @@
-import Base from '../Base';
+import GroupKickAdmin from '../Group/KickAdmin';
 
 /**
  * @property {ProtoChannelKickAdmin} _request
  * @property {ProtoChannelKickAdminResponse} _response
  */
-export default class KickAdmin extends Base {
-  handle() {
-    console.error('KickAdmin', 'Not implemented yet', this);
-  }
+export default class KickAdmin extends GroupKickAdmin {
 }

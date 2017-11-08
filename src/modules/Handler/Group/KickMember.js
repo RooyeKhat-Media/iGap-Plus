@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {kickMember} from '../../../actions/methods/rooms/getMemberList';
 
 /**
  * @property {ProtoGroupKickMember} _request
@@ -6,6 +7,6 @@ import Base from '../Base';
  */
 export default class KickMember extends Base {
   handle() {
-    console.error('KickMember', 'Not implemented yet', this);
+    this.dispatch(kickMember(this._response.getRoomId().toString(), this._response.getMemberId().toString()));
   }
 }

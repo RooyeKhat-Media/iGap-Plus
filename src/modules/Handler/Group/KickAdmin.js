@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {setMemberRole} from '../../../actions/methods/rooms/getMemberList';
+import {Proto} from '../../Proto/index';
 
 /**
  * @property {ProtoGroupKickAdmin} _request
@@ -6,6 +8,6 @@ import Base from '../Base';
  */
 export default class KickAdmin extends Base {
   handle() {
-    console.error('KickAdmin', 'Not implemented yet', this);
+    this.dispatch(setMemberRole(this._response.getRoomId().toString(), this._response.getMemberId().toString(), Proto.GroupRoom.Role.MEMBER));
   }
 }

@@ -809,6 +809,31 @@ export default {
   roomMemberListToolbarTitle: {
     id: 'roomMemberList.toolbarTitle',
     defaultMessage: 'Member List',
-    description: 'room Info screen',
+    description: 'room Member List screen',
+  },
+  roomMemberListKickAdmin: {
+    id: 'roomMemberList.kickAdmin',
+    defaultMessage: 'Kick Admin',
+    description: 'room Member List screen',
+  },
+  roomMemberListAddAdmin: {
+    id: 'roomMemberList.addAdmin',
+    defaultMessage: 'Set as Admin',
+    description: 'room Member List screen',
+  },
+  roomMemberListKickModerator: {
+    id: 'roomMemberList.kickModerator',
+    defaultMessage: 'Kick Moderator',
+    description: 'room Member List screen',
+  },
+  roomMemberListAddtModerator: {
+    id: 'roomMemberList.addModerator',
+    defaultMessage: 'Set Moderator',
+    description: 'room Member List screen',
+  },
+  roomMemberListKickMember: {
+    id: 'roomMemberList.kickMember',
+    defaultMessage: 'Kick Member',
+    description: 'room Member List screen',
   },
 };

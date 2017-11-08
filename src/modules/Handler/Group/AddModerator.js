@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {setMemberRole} from '../../../actions/methods/rooms/getMemberList';
+import {Proto} from '../../Proto/index';
 
 /**
  * @property {ProtoGroupAddModerator} _request
@@ -6,6 +8,6 @@ import Base from '../Base';
  */
 export default class AddModerator extends Base {
   handle() {
-    console.error('AddModerator', 'Not implemented yet', this);
+    this.dispatch(setMemberRole(this._response.getRoomId().toString(), this._response.getMemberId().toString(), Proto.GroupRoom.Role.MODERATOR));
   }
 }

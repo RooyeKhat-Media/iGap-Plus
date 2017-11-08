@@ -5,8 +5,7 @@ import {combineReducers} from 'redux';
 import {gender} from './user/profile/gender';
 import {email} from './user/profile/email';
 import {bio} from './user/profile/bio';
-import {getMemberList as groupMemberList} from './group/getMemberList';
-import {getMemberList as channelMemberList} from './channel/getMemberList';
+import {getMemberList} from './rooms/getMemberList';
 
 const methodsReducer = combineReducers({
   nickName,
@@ -15,7 +14,6 @@ const methodsReducer = combineReducers({
   email,
   bio,
   countRoomHistory,
-  groupMemberList,
-  channelMemberList,
+  getMemberList,
 });
 export default methodsReducer;

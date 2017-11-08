@@ -1,4 +1,5 @@
 export const primary = '#3298ee';
+export const golden = '#eecd00';
 export const white = '#ffffff';
 export const white500 = '#faf8f6';
 export const gray100 = '#fafafa';
@@ -158,6 +159,11 @@ export default {
     },
     UserTwoStepRecoveryByQuestion: {
       layoutBackgroundColor: white,
+    },
+    MemberList: {
+      roleOwnerStarColor: golden,
+      roleAdminStarColor: primary,
+      roleModeratorStarColor: gray700,
     },
   },
 };

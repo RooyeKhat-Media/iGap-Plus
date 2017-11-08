@@ -1,11 +1,8 @@
-import Base from '../Base';
+import GroupKickMember from '../Group/KickMember';
 
 /**
  * @property {ProtoChannelKickMember} _request
  * @property {ProtoChannelKickMemberResponse} _response
  */
-export default class KickMember extends Base {
-  handle() {
-    console.error('KickMember', 'Not implemented yet', this);
-  }
+export default class KickMember extends GroupKickMember {
 }

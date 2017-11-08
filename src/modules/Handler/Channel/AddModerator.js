@@ -1,11 +1,8 @@
-import Base from '../Base';
+import GroupAddModerator from '../Group/AddModerator';
 
 /**
  * @property {ProtoChannelAddModerator} _request
  * @property {ProtoChannelAddModeratorResponse} _response
  */
-export default class AddModerator extends Base {
-  handle() {
-    console.error('AddModerator', 'Not implemented yet', this);
-  }
+export default class AddModerator extends GroupAddModerator {
 }
