@@ -6,19 +6,27 @@ import {connect} from 'react-redux';
 import putState from '../../modules/Entities/Rooms/index';
 import {
   ChannelAddMember,
+  ChannelDelete,
   ChannelLeft,
+  ChatDelete,
   ClientCountRoomHistory,
   ClientJoinByUsername,
   GroupAddMember,
+  GroupDelete,
   GroupLeft,
   Proto,
 } from '../../modules/Proto/index';
 import {
   CHANNEL_ADD_MEMBER,
+  CHANNEL_DELETE,
   CHANNEL_LEFT,
+  CHAT_CLEAR_MESSAGE,
+  CHAT_DELETE,
   CLIENT_COUNT_ROOM_HISTORY,
   CLIENT_JOIN_BY_USERNAME,
   GROUP_ADD_MEMBER,
+  GROUP_CLEAR_MESSAGE,
+  GROUP_DELETE,
   GROUP_LEFT,
 } from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
@@ -26,6 +34,8 @@ import {getCountRoomHistory} from '../../selector/methods/client/index';
 import {goContactPicker, goRoomEdit, goRoomHistory, goRoomMemberList} from '../../navigators/SecondaryNavigator';
 import i18n from '../../i18n/en';
 import {secondaryNavigatorBack} from '../../actions/navigator';
+import {resetSecondaryNavigation} from '../../navigators/index';
+import {goRoomUpdateUsername} from '../../navigators/PrimaryNavigator';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -99,7 +109,7 @@ class RoomInfoScreen extends Component {
         canRevokeInviteLink: isOwner && isPrivate,
         canChangeUsername: isOwner,
         canClearHistory: room.isParticipant && (isChat || (isGroup && isPrivate)),
-        canDeleteRoom: isOwner,
+        canDeleteRoom: isOwner || isChat,
       },
     });
   }
@@ -149,12 +159,55 @@ class RoomInfoScreen extends Component {
   notification = () => {
   };
   updateUsername = () => {
+    const {room} = this.props;
+    goRoomUpdateUsername(room.id);
   };
   revokeLink = () => {
+
   };
-  clearHistory = () => {
+  clearHistory = async () => {
+    const {room} = this.props;
+    let actionId, proto;
+    switch (room.type) {
+      case Proto.Room.Type.CHAT:
+        actionId = CHAT_CLEAR_MESSAGE;
+        proto = ChatDelete;
+        break;
+      case Proto.Room.Type.GROUP:
+        actionId = GROUP_CLEAR_MESSAGE;
+        proto = GroupDelete;
+        break;
+    }
+    if (actionId && proto) {
+      proto = new proto();
+      proto.setRoomId(room.longId);
+      await Api.invoke(actionId, proto);
+      this.props.navigation.goBack();
+    }
   };
-  deleteRoom = () => {
+  deleteRoom = async () => {
+    const {room} = this.props;
+    let actionId, proto;
+    switch (room.type) {
+      case Proto.Room.Type.CHAT:
+        actionId = CHAT_DELETE;
+        proto = ChatDelete;
+        break;
+      case Proto.Room.Type.GROUP:
+        actionId = GROUP_DELETE;
+        proto = GroupDelete;
+        break;
+      case Proto.Room.Type.CHANNEL:
+        actionId = CHANNEL_DELETE;
+        proto = ChannelDelete;
+        break;
+    }
+    if (actionId && proto) {
+      proto = new proto();
+      proto.setRoomId(room.longId);
+      await Api.invoke(actionId, proto);
+      resetSecondaryNavigation();
+    }
   };
 
   render() {

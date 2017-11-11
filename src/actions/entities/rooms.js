@@ -8,6 +8,7 @@ import {prepareRoomMessage} from '../../utils/app';
 
 export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
 export const ENTITIES_ROOM_EDIT = 'ENTITIES_ROOM_EDIT';
+export const ENTITIES_ROOM_REMOVE = 'ENTITIES_ROOM_REMOVE';
 
 /**
  * @param {NormalizedRoomEntities} rooms
@@ -71,5 +72,16 @@ export function entitiesRoomEdit(id, payload, updateDb = true) {
     id,
     payload,
     updateDb,
+  };
+}
+
+/**
+ * @param {string} id
+ * @returns {{type: string, id: string}}
+ */
+export function entitiesRoomRemove(id) {
+  return {
+    type: ENTITIES_ROOM_REMOVE,
+    id,
   };
 }

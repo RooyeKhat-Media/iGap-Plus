@@ -29,7 +29,12 @@ export default {
   ok: {
     id: 'ok',
     defaultMessage: 'Ok',
-    description: 'Intro Page',
+    description: 'All Pages',
+  },
+  dismiss: {
+    id: 'dismiss',
+    defaultMessage: 'Dismiss',
+    description: 'All Pages',
   },
   introLogoTitle: {
     id: 'Intro.logoTitle',
@@ -821,6 +826,26 @@ export default {
     id: 'roomInfo.addMemberToolbartTitle',
     defaultMessage: 'Add Member',
     description: 'room Info screen',
+  },
+  roomInfoDeleteRoomConfirmTitle: {
+    id: 'roomInfo.deleteRoomConfirmTitle',
+    defaultMessage: 'Delete Room',
+    description: 'room info screen',
+  },
+  roomInfoDeleteRoomConfirmDescription: {
+    id: 'roomInfo.deleteRoomConfirmDescription',
+    defaultMessage: 'Are you sure you want to Delete {roomTitle}?',
+    description: 'room info screen',
+  },
+  roomInfoClearHistoryConfirmTitle: {
+    id: 'roomInfo.clearHistoryConfirmTitle',
+    defaultMessage: 'Clear History',
+    description: 'room info screen',
+  },
+  roomInfoClearHistoryConfirmDescription: {
+    id: 'roomInfo.clearHistoryConfirmDescription',
+    defaultMessage: 'Are you sure you want to Clear {roomTitle} history?',
+    description: 'room info screen',
   },
   roomMemberListToolbarTitle: {
     id: 'roomMemberList.toolbarTitle',

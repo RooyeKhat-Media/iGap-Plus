@@ -2,7 +2,7 @@
  * @flow
  */
 
-import {ENTITIES_ROOM_ADD, ENTITIES_ROOM_EDIT} from '../../actions/entities/rooms';
+import {ENTITIES_ROOM_ADD, ENTITIES_ROOM_EDIT, ENTITIES_ROOM_REMOVE} from '../../actions/entities/rooms';
 
 const initialState = {};
 
@@ -21,6 +21,10 @@ export function rooms(state = initialState, action) {
           ...action.payload,
         },
       };
+    case ENTITIES_ROOM_REMOVE:
+      const newState = {...state};
+      delete newState[action.id];
+      return newState;
     default:
       return state;
   }

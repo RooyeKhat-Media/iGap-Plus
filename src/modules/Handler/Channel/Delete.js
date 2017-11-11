@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {messengerRoomRemove} from '../../../actions/messenger/rooms';
+import {entitiesRoomRemove} from '../../../actions/entities/rooms';
 
 /**
  * @property {ProtoChannelDelete} _request
@@ -6,6 +8,8 @@ import Base from '../Base';
  */
 export default class Delete extends Base {
   handle() {
-    console.error('Delete', 'Not implemented yet', this);
+    const roomId = this._response.getRoomId().toString();
+    this.dispatch(messengerRoomRemove(roomId));
+    this.dispatch(entitiesRoomRemove(roomId));
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {injectIntl, intlShape} from 'react-intl';
-import {Button, ListItem, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {Button, DialogModal, ListItem, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
@@ -149,7 +149,9 @@ class RoomInfoComponent extends React.Component {
                   centerElement={{
                     primaryText: intl.formatMessage(i18n.roomInfoClearHistory),
                   }}
-                  onPress={clearHistory}
+                  onPress={() => {
+                    this.clearHistoryDialog.open();
+                  }}
                   style={styles.listItem}
                 />
               )}
@@ -160,7 +162,9 @@ class RoomInfoComponent extends React.Component {
                   centerElement={{
                     primaryText: intl.formatMessage(i18n.roomInfoDeleteRoom),
                   }}
-                  onPress={deleteRoom}
+                  onPress={() => {
+                    this.dialog.open();
+                  }}
                   style={styles.listItem}
                 />
               )}
@@ -245,8 +249,46 @@ class RoomInfoComponent extends React.Component {
             </View>}
           </View>
 
-
         </ScrollView>
+
+        <DialogModal
+          control={(dialog) => {
+            this.dialog = dialog;
+          }}
+          actions={[
+            {
+              label: intl.formatMessage(i18n.ok),
+              onPress: () => {
+                deleteRoom();
+              },
+            },
+            {
+              label: intl.formatMessage(i18n.dismiss),
+            },
+          ]}
+          title={(<FormattedMessage {...i18n.roomInfoDeleteRoomConfirmTitle} />)}
+          content={(
+            <FormattedMessage {...i18n.roomInfoDeleteRoomConfirmDescription} values={{roomTitle: room.title}}/>)}
+        />
+        <DialogModal
+          control={(dialog) => {
+            this.clearHistoryDialog = dialog;
+          }}
+          actions={[
+            {
+              label: intl.formatMessage(i18n.ok),
+              onPress: () => {
+                clearHistory();
+              },
+            },
+            {
+              label: intl.formatMessage(i18n.dismiss),
+            },
+          ]}
+          title={(<FormattedMessage {...i18n.roomInfoClearHistoryConfirmTitle} />)}
+          content={(
+            <FormattedMessage {...i18n.roomInfoClearHistoryConfirmDescription} values={{roomTitle: room.title}}/>)}
+        />
       </View>
     );
   }

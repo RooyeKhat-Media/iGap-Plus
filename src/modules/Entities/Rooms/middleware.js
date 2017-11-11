@@ -1,4 +1,4 @@
-import {ENTITIES_ROOM_ADD} from '../../../actions/entities/rooms';
+import {ENTITIES_ROOM_ADD, ENTITIES_ROOM_REMOVE} from '../../../actions/entities/rooms';
 import Rooms from '../../../models/entities/Rooms';
 
 const middleware = ({dispatch, getState}) => next => action => {
@@ -11,6 +11,9 @@ const middleware = ({dispatch, getState}) => next => action => {
           }
         }
       }
+      break;
+    case ENTITIES_ROOM_REMOVE:
+      Rooms.removeFromQueue(action.roomId);
       break;
   }
   return next(action);

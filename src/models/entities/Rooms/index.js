@@ -5,7 +5,7 @@
 import QueueDb from '../../../modules/QueueDb';
 import {persistCallback, retrieveCallback} from './backend';
 
-const {save, load} = QueueDb(
+const {save, load, remove} = QueueDb(
   persistCallback,
   retrieveCallback,
 );
@@ -25,5 +25,9 @@ export default class Rooms {
    */
   static loadFromQueue(roomId) {
     return load(roomId);
+  }
+
+  static removeFromQueue(roomId) {
+    return remove(roomId);
   }
 }
