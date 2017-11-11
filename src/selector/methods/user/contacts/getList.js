@@ -2,7 +2,7 @@
  * @flow
  */
 import {createSelector} from 'reselect';
-import {groupBy} from 'lodash';
+import {groupBy, sortBy} from 'lodash';
 
 export const getContacts = (state) => state.methods.contactsList;
 
@@ -12,7 +12,9 @@ export const makeGetContactList = () => {
     (state) => state.entities.registeredUsers,
     (contacts, registeredUsers) => {
 
-      const groupedContactList = groupBy(contacts, function(item) {
+      const groupedContactList = groupBy(sortBy(contacts, [
+        item => registeredUsers[item] ? registeredUsers[item].displayName : '',
+      ]), function(item) {
         const displayName = registeredUsers[item] ? registeredUsers[item].displayName : '';
         return displayName.charAt(0).toUpperCase();
       });
