@@ -15,6 +15,11 @@ export default {
   ...country,
   ...apiErrors,
 
+  ok: {
+    id: 'ok',
+    defaultMessage: 'Ok',
+    description: 'Intro Page',
+  },
   introLogoTitle: {
     id: 'Intro.logoTitle',
     defaultMessage: 'iGap Messenger',
