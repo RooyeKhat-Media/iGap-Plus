@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import CallComponent from '../components/Call/index';
 
 class CallScreen extends Component {
