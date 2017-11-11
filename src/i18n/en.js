@@ -20,6 +20,11 @@ export default {
     defaultMessage: 'Loading ....',
     description: 'loading',
   },
+  cancel: {
+    id: 'cancel',
+    defaultMessage: 'Cancel',
+    description: 'public',
+  },
 
   ok: {
     id: 'ok',
@@ -907,6 +912,11 @@ export default {
     defaultMessage: 'General Settings',
     description: 'setting screen',
   },
+  settingBlockList: {
+    id: 'setting.blockList',
+    defaultMessage: 'Block List',
+    description: 'setting screen',
+  },
   privacyPrivacy: {
     id: 'privacy.privacy',
     defaultMessage: 'Privacy',
@@ -952,4 +962,15 @@ export default {
     defaultMessage: 'Nobody',
     description: 'Privacy screen',
   },
+  blockContentDialog: {
+    id: 'block.contentDialog',
+    defaultMessage: 'Unblock this user',
+    description: 'block screen',
+  },
+  blockTitleDialog: {
+    id: 'block.titleDialog',
+    defaultMessage: 'Are You Sure',
+    description: 'block screen',
+  },
+
 };

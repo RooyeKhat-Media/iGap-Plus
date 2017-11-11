@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {unSetBlock} from '../../../../actions/methods/user/contacts/block';
 
 /**
  * @property {ProtoUserContactsUnblock} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class Unblock extends Base {
   handle() {
-    console.error('Unblock', 'Not implemented yet', this);
+    this.dispatch(unSetBlock(this._response.getUserId()));
   }
 }

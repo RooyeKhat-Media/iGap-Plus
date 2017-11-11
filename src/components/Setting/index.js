@@ -5,7 +5,7 @@ import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
 import {Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
-import {goSettingPrivacy} from '../../navigators/PrimaryNavigator';
+import {goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 
 class SettingComponent extends Component {
 
@@ -38,6 +38,7 @@ class SettingComponent extends Component {
           <Text style={styles.itemText}>Notification and Sound</Text>
           <Text style={styles.itemText}
             onPress={() => goSettingPrivacy()}>{intl.formatMessage(i18n.privacyPrivacy)}</Text>
+          <Text style={styles.itemText} onPress={() => goBlockList()}>{intl.formatMessage(i18n.settingBlockList)}</Text>
           <Text style={styles.itemText}>Language</Text>
 
           <Text style={styles.TitleText}> iGap Support </Text>

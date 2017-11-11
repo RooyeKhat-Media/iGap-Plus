@@ -1,4 +1,6 @@
 import Base from '../../Base';
+import {overrideList} from '../../../../actions/methods/user/contacts/block';
+import putState from '../../../Entities/RegisteredUsers/index';
 
 /**
  * @property {ProtoUserContactsGetBlockedList} _request
@@ -6,6 +8,16 @@ import Base from '../../Base';
  */
 export default class GetBlockedList extends Base {
   handle() {
-    console.error('GetBlockedList', 'Not implemented yet', this);
+    let sort = 0;
+    let blockList = {};
+    this._response.getUserList().forEach((element) => {
+      putState(element.getUserId(), element.getCacheId());
+      blockList[element.getUserId()] = {
+        userId: element.getUserId(),
+        sort,
+      };
+      sort++;
+    });
+    this.dispatch(overrideList(blockList));
   }
 }
