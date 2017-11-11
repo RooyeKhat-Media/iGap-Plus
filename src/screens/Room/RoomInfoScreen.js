@@ -132,6 +132,24 @@ class RoomInfoScreen extends Component {
     await Api.invoke(actionId, proto);
   };
 
+  editRoom = () => {
+    const {room} = this.props;
+    goRoomEdit(room.id);
+  }
+
+  sendMessage = () => {
+    const {room} = this.props;
+    goRoomHistory(room.id);
+  }
+
+  callUser = () => {
+  }
+
+  memberList = () => {
+    const {room} = this.props;
+    goRoomMemberList(room.id);
+  }
+
   addMember = () => {
     const {room} = this.props;
     const {access} = this.state;
@@ -226,18 +244,11 @@ class RoomInfoScreen extends Component {
         countRoomHistory={countRoomHistory}
         joinRoom={this.joinRoom}
         leaveRoom={this.leaveRoom}
-        editRoom={() => {
-          goRoomEdit(room.id);
-        }}
-        sendMessage={() => {
-          goRoomHistory(room.id);
-        }}
-        callUser={() => {
-        }}
+        editRoom={this.editRoom}
+        sendMessage={this.sendMessage}
+        callUser={this.callUser}
         addMember={this.addMember}
-        memberList={() => {
-          goRoomMemberList(room.id);
-        }}
+        memberList={this.memberList}
         notification={this.notification}
         updateUsername={this.updateUsername}
         revokeLink={this.revokeLink}

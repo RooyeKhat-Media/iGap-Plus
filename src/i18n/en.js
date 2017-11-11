@@ -847,6 +847,16 @@ export default {
     defaultMessage: 'Are you sure you want to Clear {roomTitle} history?',
     description: 'room info screen',
   },
+  roomInfoLeaveRomConfirmTitle: {
+    id: 'roomInfo.leaveRoomConfirmTitle',
+    defaultMessage: 'Leave Room',
+    description: 'room info screen',
+  },
+  roomInfoLeaveRomConfirmDescription: {
+    id: 'roomInfo.leaveRoomConfirmDescription',
+    defaultMessage: 'Are you sure you want to Leave From {roomTitle}?',
+    description: 'room info screen',
+  },
   roomMemberListToolbarTitle: {
     id: 'roomMemberList.toolbarTitle',
     defaultMessage: 'Member List',

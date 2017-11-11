@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {Button, DialogModal, ListItem, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
+import {injectIntl, intlShape} from 'react-intl';
+import {Button, Confirm, ListItem, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
@@ -50,7 +50,12 @@ class RoomInfoComponent extends React.Component {
               {access.canLeaveRoom &&
               (<Button style={styles.buttonLeave}
                 upperCase={false} primary raised accent={false}
-                onPress={leaveRoom}
+                onPress={() => {
+                  this.confirm.open(
+                    i18n.roomInfoLeaveRomConfirmTitle,
+                    {...i18n.roomInfoLeaveRomConfirmDescription, values: {roomTitle: room.title}},
+                    leaveRoom);
+                }}
                 text={intl.formatMessage(i18n.roomInfoLeaveRoomBtn)}/>)}
 
               {/*Can Join Room ?*/}
@@ -150,7 +155,10 @@ class RoomInfoComponent extends React.Component {
                     primaryText: intl.formatMessage(i18n.roomInfoClearHistory),
                   }}
                   onPress={() => {
-                    this.clearHistoryDialog.open();
+                    this.confirm.open(
+                      i18n.roomInfoClearHistoryConfirmTitle,
+                      {...i18n.roomInfoClearHistoryConfirmDescription, values: {rooTitle: room.title}},
+                      clearHistory);
                   }}
                   style={styles.listItem}
                 />
@@ -163,7 +171,10 @@ class RoomInfoComponent extends React.Component {
                     primaryText: intl.formatMessage(i18n.roomInfoDeleteRoom),
                   }}
                   onPress={() => {
-                    this.dialog.open();
+                    this.confirm.open(
+                      i18n.roomInfoDeleteRoomConfirmTitle,
+                      {...i18n.roomInfoDeleteRoomConfirmDescription, values: {rooTitle: room.title}},
+                      deleteRoom);
                   }}
                   style={styles.listItem}
                 />
@@ -251,44 +262,9 @@ class RoomInfoComponent extends React.Component {
 
         </ScrollView>
 
-        <DialogModal
-          control={(dialog) => {
-            this.dialog = dialog;
-          }}
-          actions={[
-            {
-              label: intl.formatMessage(i18n.ok),
-              onPress: () => {
-                deleteRoom();
-              },
-            },
-            {
-              label: intl.formatMessage(i18n.dismiss),
-            },
-          ]}
-          title={(<FormattedMessage {...i18n.roomInfoDeleteRoomConfirmTitle} />)}
-          content={(
-            <FormattedMessage {...i18n.roomInfoDeleteRoomConfirmDescription} values={{roomTitle: room.title}}/>)}
-        />
-        <DialogModal
-          control={(dialog) => {
-            this.clearHistoryDialog = dialog;
-          }}
-          actions={[
-            {
-              label: intl.formatMessage(i18n.ok),
-              onPress: () => {
-                clearHistory();
-              },
-            },
-            {
-              label: intl.formatMessage(i18n.dismiss),
-            },
-          ]}
-          title={(<FormattedMessage {...i18n.roomInfoClearHistoryConfirmTitle} />)}
-          content={(
-            <FormattedMessage {...i18n.roomInfoClearHistoryConfirmDescription} values={{roomTitle: room.title}}/>)}
-        />
+        <Confirm control={(confirm) => {
+          this.confirm = confirm;
+        }}/>
       </View>
     );
   }
