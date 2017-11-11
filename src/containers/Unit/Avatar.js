@@ -48,6 +48,10 @@ class Avatar extends Component {
       imageContent = (<Image source={{uri: 'file://' + avatarUri}} style={[style, {backgroundColor: null}]}/>);
     } else {
       initials = avatarProps.initials;
+      avatarStyle.content = {
+        ...avatarStyle.content,
+        fontSize: avatarStyle.content && avatarStyle.content.fontSize || size / 2.3,
+      };
     }
 
     return (
