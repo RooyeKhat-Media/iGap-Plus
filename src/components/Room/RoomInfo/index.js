@@ -157,7 +157,7 @@ class RoomInfoComponent extends React.Component {
                   onPress={() => {
                     this.confirm.open(
                       i18n.roomInfoClearHistoryConfirmTitle,
-                      {...i18n.roomInfoClearHistoryConfirmDescription, values: {rooTitle: room.title}},
+                      {...i18n.roomInfoClearHistoryConfirmDescription, values: {roomTitle: room.title}},
                       clearHistory);
                   }}
                   style={styles.listItem}
@@ -173,7 +173,7 @@ class RoomInfoComponent extends React.Component {
                   onPress={() => {
                     this.confirm.open(
                       i18n.roomInfoDeleteRoomConfirmTitle,
-                      {...i18n.roomInfoDeleteRoomConfirmDescription, values: {rooTitle: room.title}},
+                      {...i18n.roomInfoDeleteRoomConfirmDescription, values: {roomTitle: room.title}},
                       deleteRoom);
                   }}
                   style={styles.listItem}

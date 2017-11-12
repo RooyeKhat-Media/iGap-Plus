@@ -28,7 +28,8 @@ import {ROOM_CREATE_SCREEN_TYPE_GROUP} from '../../constants/app';
 import {errorId} from '../../modules/Error/index';
 import {
   ERROR_CHANNEL_CREATE_BAD_PAYLOAD,
-  ERROR_CHANNEL_CREATE_LIMIT_REACHED, ERROR_GROUP_CREATE_BAD_PAYLOAD,
+  ERROR_CHANNEL_CREATE_LIMIT_REACHED,
+  ERROR_GROUP_CREATE_BAD_PAYLOAD,
   ERROR_GROUP_CREATE_LIMIT_REACHED,
 } from '../../modules/Api/errors/index';
 
@@ -69,7 +70,6 @@ class RoomCreateScreen extends Component {
       });
       const roomId = roomCreateResponse.getRoomId().toString();
 
-      const promiseList = [];
       selectedContact.forEach(function(userId) {
 
         const addMemberActionId = type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GROUP_ADD_MEMBER : CHANNEL_ADD_MEMBER;
@@ -81,10 +81,8 @@ class RoomCreateScreen extends Component {
         const roomAddMember = new addMemberProto();
         roomAddMember.setRoomId(roomCreateResponse.getRoomId());
         roomAddMember.setMember(member);
-        promiseList.push(Api.invoke(addMemberActionId, roomAddMember));
+        Api.invoke(addMemberActionId, roomAddMember);
       });
-      await Promise.all(promiseList);
-
       this.addAvatar(roomCreateResponse.getRoomId());
 
       this.props.navigation.goBack();

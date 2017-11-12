@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Text} from 'react-native';
 import PropTypes from 'prop-types';
 import {DialogModal} from '../index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
@@ -41,8 +42,8 @@ class Confirm extends Component {
             label: intl.formatMessage(i18n.dismiss),
           },
         ]}
-        title={(<FormattedMessage {...title} />)}
-        content={(<FormattedMessage {...description}/>)}
+        title={(<Text>{title && (<FormattedMessage {...title} />)}</Text>)}
+        content={(<Text>{title && (<FormattedMessage {...description} />)}</Text>)}
       />
     );
   }
