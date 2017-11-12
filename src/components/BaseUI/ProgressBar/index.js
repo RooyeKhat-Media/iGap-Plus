@@ -9,10 +9,7 @@ export const PROGRESS_BAR_PROGRESSING = 1;
 
 const styles = StyleSheet.create({
   root: {
-    position: 'absolute',
-    top: 2,
-    left: 2,
-    right: 2,
+
   },
 });
 

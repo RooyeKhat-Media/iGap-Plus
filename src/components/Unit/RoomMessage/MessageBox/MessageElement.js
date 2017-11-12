@@ -74,20 +74,20 @@ class MessageElement extends React.Component {
           </View>)}
       </View>
 
-      {options.renderProgressBar && this.isPending && (<ProgressBar width={width} status={PROGRESS_BAR_PENDING}/>)}
-      {options.renderProgressBar && this.isProcessing && ((<ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+      {options.renderProgressBar && this.isPending && (<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
+      {options.renderProgressBar && this.isProcessing && ((<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
         initialProgress={downloadedFile.progress}
-        progress={downloadedFile.progress}/>))}
+        progress={downloadedFile.progress}/></View>))}
     </TouchableOpacity>);
   }
 
   renderProgressBar(width, wrapperStyle = {}) {
     const {downloadedFile} = this.props;
     return (<View style={wrapperStyle}>
-      {this.isPending && (<ProgressBar width={width} status={PROGRESS_BAR_PENDING}/>)}
-      {this.isProcessing && ((<ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+      {this.isPending && (<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
+      {this.isProcessing && ((<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
         initialProgress={downloadedFile.progress}
-        progress={downloadedFile.progress}/>))}
+        progress={downloadedFile.progress}/></View>))}
     </View>);
   }
 }
@@ -113,5 +113,11 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  progressWrap: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    right: 2,
   },
 });
