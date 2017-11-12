@@ -124,15 +124,3 @@ export function prependFileProtocol(uri) {
   }
   return uri;
 }
-
-/**
- * Calculate placeholder width
- * @param {number} index
- * @param {number} row
- * @param {number} minWidth
- * @param {number} maxWidth
- * @return {number}
- */
-export function getPlaceholderWidth(index, row, minWidth, maxWidth) {
-  return max(minWidth, floor(Math.abs(Math.sin(index * row) * maxWidth)));
-}

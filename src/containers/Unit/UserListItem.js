@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getUser} from '../../selector/entities/registeredUser';
 import UserListItemComponent from '../../components/Unit/UserListItem';
+import PlaceHolderItemComponent from '../../components/Unit/PlaceHolderItem/index';
 
 class UserListItem extends Component {
 
@@ -14,7 +15,7 @@ class UserListItem extends Component {
   render() {
     const {divider, user, selected, render} = this.props;
     if (!user) {
-      return null;
+      return <PlaceHolderItemComponent/>;
     }
     if (render) {
       return render(this.props);
