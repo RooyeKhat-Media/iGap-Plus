@@ -756,6 +756,16 @@ export default {
     defaultMessage: 'People can join your channel by searching this username. You can use a-z, 0-9 and underscores. The minimum length of username should be 5 characters.',
     description: 'Room Update Username Screen',
   },
+  roomUpdateUsernameInviteLinkLabel: {
+    id: 'roomUpdateUsername.inviteLinkLabel',
+    defaultMessage: 'Invite Link',
+    description: 'Room Update Username Screen',
+  },
+  roomUpdateUsernameRevokeLinkBtn: {
+    id: 'roomUpdateUsername.revokeLinkBtn',
+    defaultMessage: 'Revoke Link',
+    description: 'Room Update Username Screen',
+  },
 
   channelCreateSelectContactTitle: {
     id: 'channelCreate.selectContactTitle',
@@ -886,6 +896,21 @@ export default {
     id: 'roomMemberList.kickMember',
     defaultMessage: 'Kick Member',
     description: 'room Member List screen',
+  },
+  roomInviteLinkToolbarTitle: {
+    id: 'roomInviteLink.toolbarTitle',
+    defaultMessage: 'Invite Link',
+    description: 'Room Revoke Invite Link Screen',
+  },
+  roomInviteLinkInviteLinkLabel: {
+    id: 'roomInviteLink.inviteLinkLabel',
+    defaultMessage: 'Invite Link',
+    description: 'Room Revoke Invite Link Screen',
+  },
+  roomInviteLinkRevokeLinkBtn: {
+    id: 'roomInviteLink.revokeLinkBtn',
+    defaultMessage: 'Revoke Link',
+    description: 'Room Revoke Invite Link Screen',
   },
   roomHistorySendBoxCamera: {
     id: 'roomHistory.sendBox.camera',
@@ -1067,5 +1092,4 @@ export default {
     defaultMessage: 'Are you sure',
     description: 'Active Session page',
   },
-
 };

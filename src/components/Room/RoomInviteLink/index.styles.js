@@ -14,24 +14,6 @@ export default [
         scroll: {
           paddingBottom: 100,
         },
-        form: {
-          padding: 15,
-        },
-        avatarWrap: {
-          margin: 10,
-          alignSelf: 'center',
-          height: 150,
-        },
-        radioWrap: {
-          flexDirection: 'row',
-          flex: 1,
-          height: 50,
-        },
-        radioLabel: {
-          fontWeight: 'bold',
-          fontSize: 15,
-        },
-        usernameWrap: {},
         LinkWrap: {
           backgroundColor: '#fff',
           borderBottomWidth: 1,
@@ -42,6 +24,11 @@ export default [
         },
         inviteLinkWrap: {
           flex: 1,
+        },
+        revokeWrap: {
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
         },
         inviteLinkLabel: {
           fontWeight: 'bold',

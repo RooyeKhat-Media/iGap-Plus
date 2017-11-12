@@ -31,11 +31,17 @@ import {
 } from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
-import {goContactPicker, goRoomEdit, goRoomHistory, goRoomMemberList} from '../../navigators/SecondaryNavigator';
+import {
+  goContactPicker,
+  goRoomEdit,
+  goRoomHistory,
+  goRoomInviteLink,
+  goRoomMemberList,
+  goRoomUpdateUsername,
+} from '../../navigators/SecondaryNavigator';
 import i18n from '../../i18n/en';
 import {secondaryNavigatorBack} from '../../actions/navigator';
 import {resetSecondaryNavigation} from '../../navigators/index';
-import {goRoomUpdateUsername} from '../../navigators/PrimaryNavigator';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -112,7 +118,7 @@ class RoomInfoScreen extends Component {
         canDeleteRoom: isOwner || isChat,
       },
     });
-  }
+  };
 
   actionClick = () => {
   };
@@ -135,20 +141,20 @@ class RoomInfoScreen extends Component {
   editRoom = () => {
     const {room} = this.props;
     goRoomEdit(room.id);
-  }
+  };
 
   sendMessage = () => {
     const {room} = this.props;
     goRoomHistory(room.id);
-  }
+  };
 
   callUser = () => {
-  }
+  };
 
   memberList = () => {
     const {room} = this.props;
     goRoomMemberList(room.id);
-  }
+  };
 
   addMember = () => {
     const {room} = this.props;
@@ -181,7 +187,8 @@ class RoomInfoScreen extends Component {
     goRoomUpdateUsername(room.id);
   };
   revokeLink = () => {
-
+    const {room} = this.props;
+    goRoomInviteLink(room.id);
   };
   clearHistory = async () => {
     const {room} = this.props;

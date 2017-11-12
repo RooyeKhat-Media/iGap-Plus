@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {entitiesRoomEdit} from '../../../actions/entities/rooms';
 
 /**
  * @property {ProtoGroupRevokeLink} _request
@@ -6,6 +7,9 @@ import Base from '../Base';
  */
 export default class RevokeLink extends Base {
   handle() {
-    console.error('RevokeLink', 'Not implemented yet', this);
+    this.dispatch(entitiesRoomEdit(this._response.getRoomId().toString(), {
+      groupPrivateInviteLink: this._response.getInviteLink(),
+      groupPrivateInviteToken: this._response.getInviteToken(),
+    }));
   }
 }
