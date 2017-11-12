@@ -50,9 +50,11 @@ class App extends Component {
         }),
       ]);
     });
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
 
+  componentWillMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
