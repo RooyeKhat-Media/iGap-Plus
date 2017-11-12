@@ -4,6 +4,7 @@ import {navigate, resetPrimaryNavigation} from './index';
 import MainBottom from '../containers/MainBottom';
 
 import {
+  ACTIVE_SESSION_SCREEN,
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
   EDIT_PROFILE_SCREEN,
@@ -34,6 +35,7 @@ import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
 import SettingScreen from '../screens/Setting/SettingScreen';
 import SettingPrivacyScreen from '../screens/Setting/Privacy/SettingPrivacyScreen';
 import BlockScreen from '../screens/Setting/Block/BlockScreen';
+import ActiveSessionScreen from '../screens/User/ActiveSessionScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -92,6 +94,10 @@ export function goBlockList() {
   navigate(SETTING_BLOCK_SCREEN);
 }
 
+export function goActiveSession() {
+  navigate(ACTIVE_SESSION_SCREEN);
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [SEARCH_SCREEN]: {screen: SearchScreen},
@@ -121,6 +127,7 @@ const PrimaryNavigator = StackNavigator({
   [SETTING_SCREEN]: {screen: SettingScreen},
   [SETTING_PRIVACY_SCREEN]: {screen: SettingPrivacyScreen},
   [SETTING_BLOCK_SCREEN]: {screen: BlockScreen},
+  [ACTIVE_SESSION_SCREEN]: {screen: ActiveSessionScreen},
 });
 
 export default PrimaryNavigator;

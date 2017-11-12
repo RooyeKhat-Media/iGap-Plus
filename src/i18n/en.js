@@ -972,5 +972,65 @@ export default {
     defaultMessage: 'Are You Sure',
     description: 'block screen',
   },
+  activeSessionActiveSession: {
+    id: 'activeSession.activeSession',
+    defaultMessage: 'Active Session',
+    description: 'Active Session page',
+  },
+  activeSessionCurrentSession: {
+    id: 'activeSession.currentSession',
+    defaultMessage: 'Current Session',
+    description: 'Active Session page',
+  },
+  activeSessionVersion: {
+    id: 'activeSession.version',
+    defaultMessage: 'Version',
+    description: 'Active Session page',
+  },
+  activeSessionTerminateAllOtherActiveSession: {
+    id: 'activeSession.terminateAllOtherActiveSession',
+    defaultMessage: 'Terminate All Other Active Session',
+    description: 'Active Session page',
+  },
+  activeSessionTerminate: {
+    id: 'activeSession.terminate',
+    defaultMessage: 'Terminate',
+    description: 'Active Session page',
+  },
+  activeSessionPlatform: {
+    id: 'activeSession.platform',
+    defaultMessage: '{ platform, select, 1{ANDROID} 2{IOS} 3{MAC_OS} 4{WINDOWS} 5{LINUX} 6{BLACK_BERRY} other{UNKNOWN_PLATFORM}}',
+    description: 'activeSession Page',
+  },
+  activeSessionLogsOutAllDevice: {
+    id: 'activeSession.logsOutAllDevice',
+    defaultMessage: 'Logs out all device except for this one',
+    description: 'Active Session page',
+  },
+  activeSessionTapOnSessionToTerminate: {
+    id: 'activeSession.tapOnSessionToTerminate',
+    defaultMessage: 'Tap on session to terminate',
+    description: 'Active Session page',
+  },
+  activeSessionCloseAllSession: {
+    id: 'activeSession.closeAllSession',
+    defaultMessage: 'Close all session',
+    description: 'Active Session page',
+  },
+  activeSessionCloseThisSession: {
+    id: 'activeSession.closeThisSession',
+    defaultMessage: 'Close this session',
+    description: 'Active Session page',
+  },
+  activeSessionOnline: {
+    id: 'activeSession.online',
+    defaultMessage: 'Online',
+    description: 'Active Session page',
+  },
+  activeSessionAreYouSure: {
+    id: 'activeSession.areYouSure',
+    defaultMessage: 'Are you sure',
+    description: 'Active Session page',
+  },
 
 };

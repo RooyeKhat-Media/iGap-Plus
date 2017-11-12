@@ -1,4 +1,13 @@
 import Base from '../../Base';
+import {terminate} from '../../../../actions/methods/user/session';
+import store from '../../../../configureStore';
+import Collector from '../../../Collector';
+
+const {collect} = Collector(
+  (collected) => {
+    store.dispatch(terminate(collected.values()));
+  }
+);
 
 /**
  * @property {ProtoUserSessionTerminate} _request
@@ -6,6 +15,8 @@ import Base from '../../Base';
  */
 export default class Terminate extends Base {
   handle() {
-    console.error('Terminate', 'Not implemented yet', this);
+    if (this._request) {
+      collect(this._request.getSessionId(), this._request.getSessionId());
+    }
   }
 }
