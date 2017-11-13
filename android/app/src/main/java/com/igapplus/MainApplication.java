@@ -3,6 +3,7 @@ package com.igapplus;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.centaurwarchief.smslistener.SmsListenerPackage;
 import plus.igap.saveto.RNSaveToPackage;
 import cl.json.RNSharePackage;
 import com.reactlibrary.RNSqlite2Package;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SmsListenerPackage(),
             new RNSaveToPackage(),
             new RNSharePackage(),
             new RNSqlite2Package(),
