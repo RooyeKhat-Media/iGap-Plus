@@ -1,4 +1,6 @@
 import {uniqueId} from 'lodash';
+import {primary} from '../../../themes/default/index';
+
 const id = uniqueId();
 
 export default [
@@ -19,6 +21,22 @@ export default [
           margin: 10,
           alignSelf: 'center',
           height: 150,
+        },
+        text_changePhoto: {
+          padding: 5,
+          margin: 5,
+          fontSize: 18,
+          color: primary,
+          alignSelf: 'center',
+        },
+        loaderStyle: {
+          width: 120,
+          height: 120,
+          borderRadius: 60,
+          backgroundColor: '#619ec6',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
         },
       },
     },

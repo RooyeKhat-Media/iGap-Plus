@@ -73,6 +73,15 @@ export default [
         disable: {
           borderTopColor: '#c6c6c6',
         },
+        loaderStyle: {
+          width: 110,
+          height: 110,
+          borderRadius: 55,
+          backgroundColor: '#619ec6',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
       },
     },
   ],

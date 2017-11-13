@@ -71,7 +71,7 @@ class RoomEditScreen extends Component {
   };
 
   render() {
-    const {room} = this.props;
+    const {room, uploading} = this.props;
     if (!room) {
       return null;
     }
@@ -81,6 +81,7 @@ class RoomEditScreen extends Component {
         roomId={room.id}
         name={room.title}
         description={room.type === Proto.Room.Type.GROUP ? room.groupDescription : room.channelDescription}
+        uploading={uploading}
         formRules={formRules}
         selectPhoto={this.selectPhoto}
         handleFormData={this.handleFormData}
@@ -95,8 +96,10 @@ RoomEditScreen.propTypes = {
 
 const mapStateToProps = () => {
   return (state, props) => {
+    const room = getRoom(state, props);
     return {
-      room: getRoom(state, props),
+      room,
+      uploading: state.fileManager.upload[getRoomAvatarUploadIdPrefix(room.id)],
     };
   };
 };

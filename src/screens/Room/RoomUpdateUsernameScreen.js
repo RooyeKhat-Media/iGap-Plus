@@ -6,22 +6,18 @@ import Api from '../../modules/Api/index';
 import {
   ChannelCheckUsername,
   ChannelRemoveUsername,
-  ChannelRevokeLink,
   ChannelUpdateUsername,
   GroupCheckUsername,
   GroupRemoveUsername,
-  GroupRevokeLink,
   GroupUpdateUsername,
   Proto,
 } from '../../modules/Proto/index';
 import {
   CHANNEL_CHECK_USERNAME,
   CHANNEL_REMOVE_USERNAME,
-  CHANNEL_REVOKE_LINK,
   CHANNEL_UPDATE_USERNAME,
   GROUP_CHECK_USERNAME,
   GROUP_REMOVE_USERNAME,
-  GROUP_REVOKE_LINK,
   GROUP_UPDATE_USERNAME,
 } from '../../constants/methods/index';
 import i18n from '../../i18n/en';
@@ -147,18 +143,6 @@ class RoomUpdateUsername extends Component {
     });
   };
 
-  revokeInviteLink = () => {
-    const {room} = this.props;
-
-    const actionId = room.type === Proto.Room.Type.GROUP ? GROUP_REVOKE_LINK : CHANNEL_REVOKE_LINK;
-    const proto = room.type === Proto.Room.Type.GROUP ? GroupRevokeLink : ChannelRevokeLink;
-
-    const revokeLink = new proto();
-    revokeLink.setRoomId(room.longId);
-
-    return Api.invoke(actionId, revokeLink);
-  }
-
   render() {
     const {room} = this.props;
     const {isPublic, username} = this.state;
@@ -169,7 +153,6 @@ class RoomUpdateUsername extends Component {
         formRules={formRules}
         username={username}
         inviteLink={inviteLink}
-        revokeInviteLink={this.revokeInviteLink}
         onSelectRadioBtn={this.onSelectRadioBtn}
         handleFormData={this.handleFormData}
         goBack={this.props.navigation.goBack}
@@ -188,8 +171,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RoomUpdateUsername);
+export default connect(mapStateToProps)(RoomUpdateUsername);

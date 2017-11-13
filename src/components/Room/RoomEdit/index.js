@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, TouchableOpacity, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
-import {Toolbar} from '../../BaseUI';
+import {Toolbar, LoadingDots} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import Form from '../../BaseUI/Form/index';
@@ -17,7 +17,7 @@ class RoomEditComponent extends Component {
   };
 
   render() {
-    const {intl, roomId, name, description, handleFormData, selectPhoto, formRules, goBack} = this.props;
+    const {intl, roomId, name, description, uploading, handleFormData, selectPhoto, formRules, goBack} = this.props;
     const styles = this.getStyles();
     return (
       <View>
@@ -40,9 +40,16 @@ class RoomEditComponent extends Component {
           <Form style={styles.form} control={(form) => {
             this.form = form;
           }}>
-            <TouchableOpacity style={styles.avatarWrap} onPress={selectPhoto}>
-              <Avatar roomId={roomId} size={120} style={styles.avatar}/>
-            </TouchableOpacity>
+
+            <View style={styles.avatarWrap}>
+              {!uploading && (<Avatar roomId={roomId} size={120} style={styles.avatar}/>)}
+              {uploading && <LoadingDots style={styles.loaderStyle}/>}
+
+              {!uploading && (<Text style={styles.text_changePhoto} onPress={selectPhoto}>
+                {intl.formatMessage(i18n.roomEditChangePhoto)}
+              </Text>)}
+
+            </View>
 
             <TextInputField
               isField={true}

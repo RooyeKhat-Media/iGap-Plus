@@ -4,7 +4,7 @@ import {ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
-import {Form, PickerField, TextInputField, Toolbar} from '../../BaseUI/index';
+import {Form, PickerField, TextInputField, Toolbar, LoadingDots} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 
@@ -23,11 +23,11 @@ class UserEditProfile extends Component {
     } finally {
       this.form.loadingOff();
     }
-  }
+  };
 
   render() {
     const styles = this.getStyles();
-    const {intl, currentUser, formRules, nickName, email, gender, bio, selectPhoto, goBack} = this.props;
+    const {intl, uploading, currentUser, formRules, nickName, email, gender, bio, selectPhoto, goBack} = this.props;
 
     if (!currentUser) {
       return null;
@@ -44,12 +44,14 @@ class UserEditProfile extends Component {
         <ScrollView style={styles.scroll}>
 
           <View style={styles.avatar}>
-            {currentUser && <Avatar userId={currentUser.id} size={110}/>}
+            {(currentUser && !uploading) && <Avatar userId={currentUser.id} size={110}/>}
+            {(uploading) && <LoadingDots style={styles.loaderStyle}/>}
           </View>
 
-          <Text style={styles.text_changePhoto} onPress={selectPhoto}>
+          {!uploading && (<Text style={styles.text_changePhoto} onPress={selectPhoto}>
             {intl.formatMessage(i18n.editProfileChangePhoto)}
-          </Text>
+          </Text>)}
+
 
           <Form style={styles.form} control={(form) => {
             this.form = form;

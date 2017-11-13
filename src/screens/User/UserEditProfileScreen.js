@@ -105,7 +105,7 @@ class UserEditProfileScreen extends Component {
           reject();
         });
     });
-  }
+  };
 
   handleFormData = async (data, setError) => {
     const {nickName, gender, email, bio, currentUser} = this.props;
@@ -172,7 +172,7 @@ class UserEditProfileScreen extends Component {
     } catch (e) {
       console.warn('handleFormData:Error', e);
     }
-  }
+  };
 
   selectPhoto = async () => {
     const {upload, dispose} = this.props;
@@ -186,10 +186,10 @@ class UserEditProfileScreen extends Component {
     } finally {
       dispose();
     }
-  }
+  };
 
   render() {
-    const {nickName, gender, email, bio, currentUser} = this.props;
+    const {nickName, gender, email, bio, currentUser, uploading} = this.props;
     return (
       <UserEditProfileComponent
         currentUser={currentUser}
@@ -198,6 +198,7 @@ class UserEditProfileScreen extends Component {
         gender={gender}
         email={email}
         bio={bio}
+        uploading={uploading}
         selectPhoto={this.selectPhoto}
         handleFormData={this.handleFormData}
         goBack={this.props.navigation.goBack}
@@ -213,6 +214,7 @@ const mapStateToProps = state => {
     gender: state.methods.gender,
     bio: state.methods.bio,
     currentUser: getCurrentUser(state),
+    uploading: state.fileManager.upload[FILE_UPLOAD_ID_EDIT_PROFILE],
   };
 };
 

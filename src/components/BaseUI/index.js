@@ -27,6 +27,7 @@ import TextInputField from './Form/fields/TextInputField';
 import PickerField from './Form/fields/PickerField';
 import PopupMenu from './PopupMenu';
 import Confirm from './Confirm';
+import LoadingDots from './LoadingDots';
 
 
 export {
@@ -59,4 +60,5 @@ export {
   RadioButton,
   PopupMenu,
   Confirm,
+  LoadingDots,
 };

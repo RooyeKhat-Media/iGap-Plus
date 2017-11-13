@@ -777,6 +777,11 @@ export default {
     defaultMessage: 'Edit Room',
     description: 'room Edit screen',
   },
+  roomEditChangePhoto: {
+    id: 'roomEdit.changePhoto',
+    defaultMessage: 'Change Avatar',
+    description: 'room Edit screen',
+  },
   roomInfoChatSendMessageBtn: {
     id: 'roomInfo.chatSendMessageBtn',
     defaultMessage: 'Message',
