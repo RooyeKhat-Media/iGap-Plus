@@ -3,6 +3,7 @@ package com.igapplus;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.centaurwarchief.smslistener.SmsListenerPackage;
 import plus.igap.saveto.RNSaveToPackage;
 import cl.json.RNSharePackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTCameraPackage(),
             new SmsListenerPackage(),
             new RNSaveToPackage(),
             new RNSharePackage(),
