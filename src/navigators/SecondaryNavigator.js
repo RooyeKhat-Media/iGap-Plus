@@ -38,8 +38,8 @@ export function goRoomEdit(roomId) {
   navigate(ROOM_EDIT_SCREEN, {roomId});
 }
 
-export function goContactPicker(title, onSubmit, multiple) {
-  navigate(SECONDARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple});
+export function goContactPicker(title, onSubmit, multiple, afterSubmit = null) {
+  navigate(SECONDARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple, afterSubmit});
 }
 
 export function goRoomMemberList(roomId) {

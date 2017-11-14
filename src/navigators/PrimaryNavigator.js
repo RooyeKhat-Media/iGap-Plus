@@ -61,8 +61,8 @@ export function goContactList() {
   navigate(CONTACT_LIST_SCREEN);
 }
 
-export function goContactPicker(title, onSubmit, multiple) {
-  navigate(PRIMARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple});
+export function goContactPicker(title, onSubmit, multiple, afterSubmit = null) {
+  navigate(PRIMARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple, afterSubmit});
 }
 
 export function goContactNew() {

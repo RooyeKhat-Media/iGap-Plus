@@ -25,15 +25,27 @@ class ContactPickerScreen extends Component {
     await Api.invoke(USER_CONTACTS_GET_LIST, userContactGetList);
   }
 
+  onSubmit = async (data) => {
+    const {onSubmit, afterSubmit} = this.props.navigation.state.params;
+    this.loader.on();
+    try {
+      await onSubmit(data);
+    } finally {
+      this.loader.off();
+      if (afterSubmit) {
+        afterSubmit();
+      }
+    }
+  }
+
   onSubmitBtnPress = () => {
-    const {onSubmit} = this.props.navigation.state.params;
     if (!isEmpty(this.state.selectedList)) {
-      onSubmit(values(this.state.selectedList));
+      this.onSubmit(values(this.state.selectedList));
     }
   };
 
   onSelectItem = (longId) => {
-    const {onSubmit, multiple} = this.props.navigation.state.params;
+    const {multiple} = this.props.navigation.state.params;
     const id = longId.toString();
     if (multiple) {
       this.setState((prevState) => {
@@ -50,9 +62,13 @@ class ContactPickerScreen extends Component {
         };
       });
     } else {
-      onSubmit(longId);
+      this.onSubmit(longId);
     }
   };
+
+  loaderControl = (loader) => {
+    this.loader = loader;
+  }
 
   render() {
     const {contactList} = this.props;
@@ -61,6 +77,7 @@ class ContactPickerScreen extends Component {
     return (
       <ContactPickerComponent
         goBack={this.props.navigation.goBack}
+        loaderControl={this.loaderControl}
         onSubmit={this.onSubmitBtnPress}
         onSelectItem={this.onSelectItem}
         activeSubmitBtn={!isEmpty(selectedList)}

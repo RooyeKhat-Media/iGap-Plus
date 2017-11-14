@@ -159,6 +159,7 @@ class RoomInfoScreen extends Component {
   addMember = () => {
     const {room} = this.props;
     const {access} = this.state;
+
     goContactPicker(i18n.roomInfoAddMemberToolbarTitle, async (contacts) => {
       const promiseList = [];
       contacts.forEach(function(userId) {
@@ -173,12 +174,11 @@ class RoomInfoScreen extends Component {
         roomAddMember.setMember(member);
         promiseList.push(Api.invoke(addMemberActionId, roomAddMember));
       });
-      try {
-        await Promise.all(promiseList);
-      } finally {
-        this.props.navigation.dispatch(secondaryNavigatorBack());
-      }
-    }, true);
+      return Promise.all(promiseList);
+    }, true, () => {
+      this.props.navigation.dispatch(secondaryNavigatorBack());
+    });
+
   };
   notification = () => {
   };

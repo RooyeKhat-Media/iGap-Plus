@@ -21,13 +21,16 @@ class BlockScreen extends Component {
 
   blockAction = () => {
     goContactPicker(i18n.contactListTitleToolbar, (selectedBlockList) => {
+      const promiseList = [];
       selectedBlockList.forEach((userId) => {
         const userContactsBlock = new UserContactsBlock();
         userContactsBlock.setUserId(userId.toString());
-        Api.invoke(USER_CONTACTS_BLOCK, userContactsBlock);
+        promiseList.push(Api.invoke(USER_CONTACTS_BLOCK, userContactsBlock));
       });
+      return Promise.all(promiseList);
+    }, true, () => {
       this.props.dispatch(primaryNavigatorBack());
-    }, true);
+    });
   };
 
   unBlockAction = (userId) => {

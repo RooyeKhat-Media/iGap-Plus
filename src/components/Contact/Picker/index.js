@@ -4,10 +4,11 @@ import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {FlatList, Toolbar} from '../../BaseUI';
 import UserListItem from '../../../containers/Unit/UserListItem';
+import Spinner from '../../BaseUI/Spinner/index';
 
 class ContactPickerComponent extends React.Component {
   render() {
-    const {intl, onSubmit, goBack, title, activeSubmitBtn, selectedList, onSelectItem, contactList} = this.props;
+    const {intl, onSubmit, loaderControl, goBack, title, activeSubmitBtn, selectedList, onSelectItem, contactList} = this.props;
     return (
       <View style={{flex: 1}}>
         <Toolbar
@@ -24,6 +25,7 @@ class ContactPickerComponent extends React.Component {
             renderItem={({item}) => <UserListItem userId={item.id} onPress={onSelectItem}
               selected={!!selectedList[item.id]} divider={item.divider}/>}
           />
+          <Spinner control={loaderControl}/>
         </View>
       </View>
     );
