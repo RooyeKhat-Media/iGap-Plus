@@ -14,11 +14,13 @@ import MainScreen from '../screens/MainScreen';
 import InitialScreen from '../screens/InitialScreen';
 import UserTwoStepRecoveryByEmailScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByEmailScreen';
 import UserTwoStepRecoveryByQuestionScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByQuestionScreen';
+import TestScreen from '../screens/TestScreen';
 
 import {
   INITIAL_SCREEN,
   INTRO_SCREEN,
   MAIN_SCREEN,
+  TEST_SCREEN,
   USER_NEW_PROFILE_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_FORGET_SCREEN,
@@ -34,8 +36,10 @@ export function goInitialScreen() {
 
 export function goMainScreen(reset = true) {
   if (reset) {
+    // resetNavigation(TEST_SCREEN); //Navigate to Screen Test
     resetNavigation(MAIN_SCREEN);
   } else {
+    // navigate(TEST_SCREEN); //Navigate to Screen Test
     navigate(MAIN_SCREEN);
   }
 }
@@ -84,6 +88,7 @@ export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {
 const AppNavigator = StackNavigator({
 
   [MAIN_SCREEN]: {screen: MainScreen},
+  [TEST_SCREEN]: {screen: TestScreen},
 
   [INTRO_SCREEN]: {screen: IntroScreen},
   [USER_REGISTER_SCREEN]: {screen: UserRegister},
