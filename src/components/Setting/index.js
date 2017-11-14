@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
-import {injectIntl, intlShape} from 'react-intl';
-import {Toolbar} from '../BaseUI/index';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {DialogModal, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 
@@ -13,10 +14,22 @@ class SettingComponent extends Component {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
+  menuClick = (index) => {
+
+    switch (index) {
+      case 0:
+        this.dialogLogOut.open();
+        break;
+      case 1:
+        this.dialogDeleteAcount.open();
+        break;
+    }
+  };
+
   render() {
     const styles = this.getStyles();
-    const {intl, goBack} = this.props;
 
+    const {intl, goBack, logOut, deleteAccount} = this.props;
     return (
       <View style={styles.root}>
         <Toolbar
@@ -31,6 +44,7 @@ class SettingComponent extends Component {
               ],
             },
           }}
+          onRightElementPress={(result) => this.menuClick(result.index)}
           centerElement={intl.formatMessage(i18n.settingSetting)}/>
 
         <ScrollView style={styles.scrollView}>
@@ -49,6 +63,47 @@ class SettingComponent extends Component {
           <Text style={styles.itemText}>Support Request</Text>
           <Text style={styles.subItemText}>igap plus android client v 0.3.3</Text>
         </ScrollView>
+
+
+        <DialogModal control={(dialog) => {
+          this.dialogLogOut = dialog;
+        }}
+        title={<FormattedMessage {...i18n.settingLogout}/>}
+        content={<FormattedMessage {...i18n.settingLogOutSubTitle} />}
+        actions={[
+          {
+            label: intl.formatMessage(i18n.ok),
+            onPress: () => {
+              logOut();
+            },
+          },
+          {
+            label: intl.formatMessage(i18n.cancel),
+            onPress: () => {
+            },
+          },
+        ]}/>
+
+        <DialogModal control={(dialog) => {
+          this.dialogDeleteAcount = dialog;
+        }}
+        title={<FormattedMessage {...i18n.settingDeleteAccount}/>}
+        content={<FormattedMessage {...i18n.settingDeleteAccountSubTitle} />}
+        actions={[
+          {
+            label: intl.formatMessage(i18n.ok),
+            onPress: () => {
+              deleteAccount();
+            },
+          },
+          {
+            label: intl.formatMessage(i18n.cancel),
+            onPress: () => {
+            },
+          },
+        ]}/>
+
+
       </View>
     );
   }
@@ -56,6 +111,9 @@ class SettingComponent extends Component {
 
 SettingComponent.propTypes = {
   intl: intlShape.isRequired,
+  goBack: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
 };
 
 export default injectIntl(SettingComponent);

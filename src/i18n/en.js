@@ -982,6 +982,17 @@ export default {
     defaultMessage: 'Block List',
     description: 'setting screen',
   },
+  settingLogOutSubTitle: {
+    id: 'setting.logOuSubTitlet',
+    defaultMessage: 'Do you want to LogOut this device ?',
+    description: 'setting screen',
+  },
+  settingDeleteAccountSubTitle: {
+    id: 'setting.deleteAccountSubTitle',
+    defaultMessage: 'Do you want to Delete your account ?',
+    description: 'setting screen',
+  },
+
   privacyPrivacy: {
     id: 'privacy.privacy',
     defaultMessage: 'Privacy',
@@ -1096,5 +1107,25 @@ export default {
     id: 'activeSession.areYouSure',
     defaultMessage: 'Are you sure',
     description: 'Active Session page',
+  },
+  userVerifyDeleteVerifyDeleteAccount: {
+    id: 'userVerifyDelete.verifyDeleteAccount',
+    defaultMessage: 'Verify delete account',
+    description: 'userVerifyDelete Page',
+  },
+  userVerifyDeleteSubTitle: {
+    id: 'userVerifyDelete.subTitle',
+    defaultMessage: 'We\'ve sent Sms with an activation code to your phone.',
+    description: 'userVerifyDelete Page',
+  },
+  userVerifyDeleteEnterCode: {
+    id: 'userVerifyDelete.enterCode',
+    defaultMessage: 'EnterCode',
+    description: 'userVerifyDelete Page',
+  },
+  userVerifyDeleteCode: {
+    id: 'userVerifyDelete.code',
+    defaultMessage: 'Code',
+    description: 'userVerifyDelete Page',
   },
 };

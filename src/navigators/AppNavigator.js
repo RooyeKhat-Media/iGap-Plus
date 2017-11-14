@@ -14,6 +14,8 @@ import MainScreen from '../screens/MainScreen';
 import InitialScreen from '../screens/InitialScreen';
 import UserTwoStepRecoveryByEmailScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByEmailScreen';
 import UserTwoStepRecoveryByQuestionScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByQuestionScreen';
+import UserVerifyDeleteScreen from '../screens/User/UserVerifyDeleteScreen';
+
 import TestScreen from '../screens/TestScreen';
 
 import {
@@ -27,6 +29,7 @@ import {
   USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN,
   USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN,
   USER_TWO_STEP_VERIFICATION_SCREEN,
+  USER_VERIFY_DELETE_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
 
@@ -49,7 +52,7 @@ export function goIntroScreen() {
 }
 
 export function goUserRegisterScreen() {
-  navigate(USER_REGISTER_SCREEN);
+  resetNavigation(USER_REGISTER_SCREEN);
 }
 
 export function goUserVerifyScreen(phoneNumber, username, method, resendDelay, smsNumber, verifyCodeRegex, verifyCodeDigitCount, resendParams) {
@@ -85,8 +88,11 @@ export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {
   navigate(USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN, {needLogin});
 }
 
-const AppNavigator = StackNavigator({
+export function goUserVerifyDeleteScreen(token) {
+  navigate(USER_VERIFY_DELETE_SCREEN, {token});
+}
 
+const AppNavigator = StackNavigator({
   [MAIN_SCREEN]: {screen: MainScreen},
   [TEST_SCREEN]: {screen: TestScreen},
 
@@ -99,6 +105,7 @@ const AppNavigator = StackNavigator({
   [INITIAL_SCREEN]: {screen: InitialScreen},
   [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},
   [USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN]: {screen: UserTwoStepRecoveryByQuestionScreen},
+  [USER_VERIFY_DELETE_SCREEN]: {screen: UserVerifyDeleteScreen},
 });
 
 export default AppNavigator;
