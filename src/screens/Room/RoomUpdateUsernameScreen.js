@@ -71,10 +71,11 @@ class RoomUpdateUsername extends Component {
     const {goBack} = this.props.navigation.state.params;
     const {room} = this.props;
     const {isPublic} = this.state;
+    const isGroup = room.type === Proto.Room.Type.GROUP;
     try {
       if (isPublic) {
-        const actionId = room.type === Proto.Room.Type.GROUP ? GROUP_UPDATE_USERNAME : CHANNEL_UPDATE_USERNAME;
-        const proto = new (room.type === Proto.Room.Type.GROUP ? GroupUpdateUsername : ChannelUpdateUsername)();
+        const actionId = isGroup ? GROUP_UPDATE_USERNAME : CHANNEL_UPDATE_USERNAME;
+        const proto = new (isGroup ? GroupUpdateUsername : ChannelUpdateUsername)();
         proto.setRoomId(room.longId);
         proto.setUsername(formData.username);
         await Api.invokeMapError(actionId, proto, setError, {
@@ -85,9 +86,11 @@ class RoomUpdateUsername extends Component {
           [errorId(ERROR_CHANNEL_UPDATE_USERNAME_UPDATE_LOCK)]: 'username',
           [errorId(ERROR_CHANNEL_UPDATE_USERNAME_FORBIDDEN)]: 'username',
         });
-      } else {
-        const actionId = room.type === Proto.Room.Type.GROUP ? GROUP_REMOVE_USERNAME : CHANNEL_REMOVE_USERNAME;
-        const proto = new (room.type === Proto.Room.Type.GROUP ? GroupRemoveUsername : ChannelRemoveUsername)();
+      } else if (
+        (room.type === Proto.Room.Type.GROUP && room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM) ||
+        (room.type === Proto.Room.Type.CHANNEL && room.channelType === Proto.ChannelRoom.Type.PUBLIC_ROOM)) {
+        const actionId = isGroup ? GROUP_REMOVE_USERNAME : CHANNEL_REMOVE_USERNAME;
+        const proto = new (isGroup ? GroupRemoveUsername : ChannelRemoveUsername)();
         proto.setRoomId(room.longId);
         await Api.invoke(actionId, proto);
       }

@@ -28,7 +28,10 @@ class RoomUpdateUsernameComponent extends Component {
           onRightElementPress={async () => {
             try {
               this.form.loadingOn();
-              const data = await this.form.submit();
+              let data;
+              if (isPublic) {
+                data = await this.form.submit();
+              }
               await handleFormData(data, this.form.setError);
             } finally {
               this.form.loadingOff();
