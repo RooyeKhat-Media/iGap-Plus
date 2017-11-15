@@ -124,3 +124,12 @@ export function prependFileProtocol(uri) {
   }
   return uri;
 }
+
+/**
+ * @param {boolean} seconds
+ * @returns {number}
+ */
+export function tNow(seconds = true) {
+  const t = new Date().getTime();
+  return seconds ? Math.floor(t / 1000) : t;
+}

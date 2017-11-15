@@ -8,7 +8,7 @@ import SendBox from './SendBox';
 
 class RoomHistoryComponent extends React.Component {
   render() {
-    const {room, messageList, goRoomInfoBtn, goBack} = this.props;
+    const {room, Form, messageList, goRoomInfoBtn, goBack} = this.props;
     return (
       <View style={styles.container}>
         <Toolbar
@@ -43,7 +43,8 @@ class RoomHistoryComponent extends React.Component {
               renderItem={({item}) => (<RoomMessage roomType={room.type} roomId={room.id} messageId={item}/>)}/>
 
           </View>
-          <SendBox/>
+          <SendBox
+            Form={Form}/>
         </View>
       </View>
     );

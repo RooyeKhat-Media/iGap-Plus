@@ -41,8 +41,10 @@ export default ({message, showText}) => (
       </View>
 
       <Text style={styles.textCountView}>{message.channelViewsLabel + ' View'}</Text>
-      {message.channelSignature.length > 0 &&
-      <Text style={styles.textSigniture}>{message.channelSignature}</Text>}
+
+      {(message.channelSignature) ?
+        (<Text style={styles.textSigniture}>{message.channelSignature}</Text>) : null}
+
       <Text style={styles.textMessage}>{message.message}</Text>
 
       <AddonTime createTime={message.createTime}/>

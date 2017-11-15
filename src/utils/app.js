@@ -7,14 +7,32 @@ import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
 import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
-import {FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX} from '../constants/app';
+import {FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX, FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX} from '../constants/app';
 
 import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
 import putStateRoom from '../modules/Entities/Rooms';
+import {normalize} from 'normalizr';
+import roomMessageSchema from '../schemas/roomMessage';
+import {entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
+import {messengerRoomMessageConcat} from '../actions/messenger/roomMessages';
+import store from '../configureStore';
+import Long from 'long';
 
 let _userId;
 let _userIdString;
 let _authorHash;
+let _fakeMessageId = Long.ZERO;
+
+export function getFakeMessageId() {
+  _fakeMessageId = _fakeMessageId.add(1);
+  return _fakeMessageId;
+}
+
+function setFakeMessageId(id) {
+  if (_fakeMessageId.compare(id) === -1) {
+    _fakeMessageId = id;
+  }
+}
 
 export function getUserId(asString = false) {
   if (asString) {
@@ -86,8 +104,20 @@ export async function login() {
   return Api.invoke(USER_LOGIN, userLogin);
 }
 
+/**
+ * @param {string} id
+ * @returns {string}
+ */
 export function getRoomAvatarUploadIdPrefix(id) {
   return FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX + id;
+}
+
+/**
+ * @param {string} id
+ * @returns {string}
+ */
+export function getRoomHistoryUploadIdPrefix(id) {
+  return FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX + id;
 }
 
 /**
@@ -119,4 +149,25 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId) {
     }
   }
 
+  setFakeMessageId(normalizedRoomMessage.longId);
+}
+
+/**
+ * @param roomMessage
+ * @param roomId
+ * @param concat
+ */
+export function dispatchNewRoomMessage(roomMessage, roomId, concat = true) {
+  const normalizedData = normalize(roomMessage, roomMessageSchema);
+
+  for (const messageId in normalizedData.entities.roomMessages) {
+    if (normalizedData.entities.roomMessages.hasOwnProperty(messageId)) {
+      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId);
+    }
+  }
+
+  store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
+  if (concat) {
+    store.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result]));
+  }
 }

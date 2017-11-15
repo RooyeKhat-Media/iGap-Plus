@@ -78,6 +78,7 @@ export async function serverRoomsState() {
 
     } catch (e) {
       console.error('clientGetRoomListResponse', e);
+      break;
     }
   } while (true);
 
