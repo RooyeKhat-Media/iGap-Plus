@@ -27,6 +27,7 @@ import {
   ERROR_USER_VERIFY_USER_NOT_FOUND,
 } from '../../modules/Api/errors/index';
 import {errorId} from '../../modules/Error/index';
+import SmsListener from '../../modules/SmsListener';
 
 const rules = {
   code: [
@@ -42,6 +43,7 @@ class UserVerifyScreen extends Component {
     const {resendDelay} = props.navigation.state.params;
     this.state = {
       resendDelay: resendDelay,
+      defaultValue: '',
     };
   }
 
@@ -60,15 +62,31 @@ class UserVerifyScreen extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
+    const {smsNumber, verifyCodeRegex} = this.props.navigation.state.params;
+
+    this.smsListener = SmsListener.addListener((message, originatingAddress) => {
+      if (originatingAddress) {
+        smsNumber.forEach((number) => {
+          const no = number.toString();
+          if (originatingAddress.endsWith(no)) {
+            let matches = message.match(verifyCodeRegex);
+            if (matches) {
+              this.setState({defaultValue: matches[1] || matches[0]});
+            }
+          }
+        });
+      }
+    });
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    SmsListener.removeListener(this.smsListener);
   }
 
-  handleFormData = async (formData, setError) => {
+  handleFormData = async (verifyCode, setError) => {
     const {username} = this.props.navigation.state.params;
-    const {verifyCode} = formData;
+
 
     const userVerify = new UserVerify();
     userVerify.setUsername(username);
@@ -130,7 +148,7 @@ class UserVerifyScreen extends Component {
 
   render() {
     const {phoneNumber, method} = this.props.navigation.state.params;
-    const {resendDelay} = this.state;
+    const {resendDelay, defaultValue} = this.state;
     return (
       <UserVerifyComponent
         formRules={rules}
@@ -139,6 +157,7 @@ class UserVerifyScreen extends Component {
         method={method}
         resendDelay={resendDelay}
         resendCode={this.resendCode}
+        defaultValue={defaultValue}
       />
     );
   }

@@ -25,8 +25,17 @@ class UserVerifyComponent extends Component {
     return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserVerify));
   };
 
+  componentWillReceiveProps(nextProps) {
+    const {handleFormData, defaultValue} = this.props;
+    if (nextProps.defaultValue !== defaultValue) {
+      if (nextProps.defaultValue.length > 0 && this.form) {
+        handleFormData(nextProps.defaultValue, this.form.setError);
+      }
+    }
+  }
+
   render() {
-    const {intl, resendDelay, phoneNumber, method, formRules, handleFormData, resendCode} = this.props;
+    const {intl, resendDelay, phoneNumber, method, formRules, handleFormData, resendCode, defaultValue} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -50,7 +59,7 @@ class UserVerifyComponent extends Component {
                 isField={true}
                 rules={formRules.code}
                 name="verifyCode"
-                defaultValue=""
+                defaultValue={defaultValue.length > 0 ? defaultValue : ''}
                 keyboardType="numeric"
                 underlineColorAndroid="#eee"
                 label={intl.formatMessage(i18n.verifyCodeTitle)}
@@ -66,7 +75,7 @@ class UserVerifyComponent extends Component {
                   try {
                     this.form.loadingOn();
                     const data = await this.form.submit();
-                    await handleFormData(data, this.form.setError);
+                    await handleFormData(data.verifyCode, this.form.setError);
                   } finally {
                     this.form.loadingOff();
                   }

@@ -13,6 +13,7 @@ import {
   ERROR_USER_DELETE_MAX_TRY_LOCK,
 } from '../../modules/Api/errors/index';
 import {goUserRegisterScreen} from '../../navigators/AppNavigator';
+import SmsListener from '../../modules/SmsListener';
 
 
 class UserVerifyDeleteScreen extends Component {
@@ -22,6 +23,7 @@ class UserVerifyDeleteScreen extends Component {
     const {token} = this.props.navigation.state.params;
     this.state = {
       resendDelay: token.getResendDelay(),
+      defaultValue: '',
     };
   }
 
@@ -40,16 +42,31 @@ class UserVerifyDeleteScreen extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
+    const {token} = this.props.navigation.state.params;
+    this.smsListener = SmsListener.addListener((message, originatingAddress) => {
+      if (originatingAddress) {
+        token.getSmsNumberList().forEach((number) => {
+          const no = number.toString();
+          if (originatingAddress.endsWith(no)) {
+            let matches = message.match(token.getTokenRegex());
+            if (matches) {
+              this.setState({defaultValue: matches[1] || matches[0]});
+            }
+          }
+        });
+      }
+    });
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    SmsListener.removeListener(this.smsListener);
   }
 
-  handleFormData = async (formData, setError) => {
+  handleFormData = async (verifyCode, setError) => {
 
     const userDelete = new UserDelete();
-    userDelete.setToken(formData.verifyCode);
+    userDelete.setToken(verifyCode);
     userDelete.setReason(Proto.UserDelete.prototype.Reason.OTHER);
 
     await Api.invokeMapError(
@@ -91,6 +108,7 @@ class UserVerifyDeleteScreen extends Component {
         handleFormData={this.handleFormData}
         resendDelay={this.state.resendDelay}
         resendCode={this.resendCode}
+        defaultValue={this.state.defaultValue}
       />
     );
   }

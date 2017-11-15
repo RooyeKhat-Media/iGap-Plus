@@ -149,7 +149,7 @@ class UserRegisterScreen extends Component {
       response.getUsername(),
       response.getMethod(),
       response.getResendDelay(),
-      [],
+      response.getSmsNumberList(),
       response.getVerifyCodeRegex(),
       response.getVerifyCodeDigitCount(),
       data);

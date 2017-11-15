@@ -25,7 +25,7 @@ class UserVerifyDeleteComponent extends Component {
   };
 
   render() {
-    const {intl, resendDelay, formRules, handleFormData, resendCode} = this.props;
+    const {intl, resendDelay, formRules, handleFormData, resendCode, defaultValue} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -41,7 +41,7 @@ class UserVerifyDeleteComponent extends Component {
                 isField={true}
                 rules={formRules.verifyToken}
                 name="verifyCode"
-                defaultValue=""
+                defaultValue={defaultValue.length > 0 ? defaultValue : ''}
                 underlineColorAndroid="#eee"
                 label={intl.formatMessage(i18n.userVerifyDeleteCode)}
                 placeholder={intl.formatMessage(i18n.userVerifyDeleteEnterCode)}
@@ -57,7 +57,7 @@ class UserVerifyDeleteComponent extends Component {
                   try {
                     this.form.loadingOn();
                     const data = await this.form.submit();
-                    await handleFormData(data, this.form.setError);
+                    await handleFormData(data.verifyCode, this.form.setError);
                   } finally {
                     this.form.loadingOff();
                   }
@@ -83,5 +83,6 @@ UserVerifyDeleteComponent.propTypes = {
   formRules: PropTypes.object.isRequired,
   resendCode: PropTypes.func.isRequired,
   resendDelay: PropTypes.number.isRequired,
+  defaultValue: PropTypes.string.optional,
 };
 export default injectIntl(responsive(UserVerifyDeleteComponent));
