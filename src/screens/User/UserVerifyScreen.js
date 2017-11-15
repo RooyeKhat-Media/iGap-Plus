@@ -23,7 +23,6 @@ import {
   ERROR_USER_VERIFY_INTERNAL_SERVER_ERROR,
   ERROR_USER_VERIFY_INVALID_CODE,
   ERROR_USER_VERIFY_MAX_TRY_LOCK,
-  ERROR_USER_VERIFY_TWO_STEP_VERIFICATION_ENABLED,
   ERROR_USER_VERIFY_USER_NOT_FOUND,
 } from '../../modules/Api/errors/index';
 import {errorId} from '../../modules/Error/index';
@@ -106,7 +105,6 @@ class UserVerifyScreen extends Component {
         [errorId(ERROR_USER_VERIFY_INVALID_CODE)]: 'verifyCode',
         [errorId(ERROR_USER_VERIFY_EXPIRED_CODE)]: 'verifyCode',
         [errorId(ERROR_USER_VERIFY_MAX_TRY_LOCK)]: 'verifyCode',
-        [errorId(ERROR_USER_VERIFY_TWO_STEP_VERIFICATION_ENABLED)]: 'verifyCode',
       }
     );
     await setUserToken(response.getToken());
