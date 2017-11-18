@@ -1,5 +1,5 @@
 import {uniqueId} from 'lodash';
-import {black200} from '../../../themes/default/index';
+import {black200, primary, white} from '../../../themes/default/index';
 
 const id = uniqueId();
 
@@ -37,7 +37,25 @@ export default [
           fontWeight: 'bold',
           alignSelf: 'center',
         },
-
+        textSelfRemove: {
+          fontSize: 18,
+          color: primary,
+          alignSelf: 'center',
+          margin: 8,
+        },
+        rowFieldSelfRemove: {
+          flexDirection: 'row',
+          backgroundColor: '#fff',
+        },
+        textSelfRemoveComment: {
+          fontSize: 12,
+          color: black200,
+          paddingRight: 5,
+          paddingLeft: 5,
+          paddingBottom: 10,
+          backgroundColor: white,
+          marginBottom: 2,
+        },
       },
     },
   ],

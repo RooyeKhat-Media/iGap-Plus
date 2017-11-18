@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {selfRemove} from '../../../../actions/methods/user/profile/selfRemove';
 
 /**
  * @property {ProtoUserProfileGetSelfRemove} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class GetSelfRemove extends Base {
   handle() {
-    console.error('GetSelfRemove', 'Not implemented yet', this);
+    this.dispatch(selfRemove(this._response.getSelfRemove()));
   }
 }

@@ -1038,6 +1038,31 @@ export default {
     defaultMessage: 'Nobody',
     description: 'Privacy screen',
   },
+  privacyAccountSelfDestruct: {
+    id: 'privacy.accountSelfDestruct',
+    defaultMessage: 'Account Self Destruct',
+    description: 'Privacy screen',
+  },
+  privacyAwayFor: {
+    id: 'privacy.awayFor',
+    defaultMessage: 'Away for',
+    description: 'Privacy screen',
+  },
+  privacyMonth: {
+    id: 'privacy.month',
+    defaultMessage: '{value, number} {value, plural,one {Month}other {Months}}',
+    description: 'Privacy screen',
+  },
+  privacySelfRemoveComment: {
+    id: 'privacy.selfRemoveComment',
+    defaultMessage: 'If you choose one of the period in the following and never use your iGap account during the certain time your account will be destructed and deleted spontaneously ',
+    description: 'Privacy screen',
+  },
+  privacyYear: {
+    id: 'privacy.year',
+    defaultMessage: '{value, number} {value, plural,one {Year}other {Years}}',
+    description: 'Privacy screen',
+  },
   blockContentDialog: {
     id: 'block.contentDialog',
     defaultMessage: 'Unblock this user',

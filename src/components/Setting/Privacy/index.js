@@ -52,10 +52,54 @@ class SettingPrivacyComponent extends Component {
     }
   }
 
+  callBackSelfRemove(value) {
+    const {setSelfRemove} = this.props;
+    let result = 12;
+    switch (value) {
+      case 0:
+        result = 1;
+        break;
+      case 1:
+        result = 3;
+        break;
+      case 2:
+        result = 6;
+        break;
+      case 3:
+        result = 12;
+        break;
+    }
+    setSelfRemove(result);
+  }
+
+  getStringFromSelfRemoveValue(value) {
+    const {intl} = this.props;
+    let result = intl.formatMessage(i18n.loading);
+    switch (value) {
+      case 1:
+      case 3:
+      case 6:
+        result = intl.formatMessage(i18n.privacyMonth, {value});
+        break;
+      case 12:
+        result = intl.formatMessage(i18n.privacyYear, {value: 1});
+        break;
+    }
+    return result;
+  }
+
   render() {
     const styles = this.getStyles();
-    const {intl, goBack, rules} = this.props;
-    const itemList = [intl.formatMessage(i18n.privacyEveryBody), intl.formatMessage(i18n.privacyNobody), intl.formatMessage(i18n.privacyMyContacts)];
+    const {intl, goBack, rules, selfRemove} = this.props;
+    const itemList = [
+      intl.formatMessage(i18n.privacyEveryBody),
+      intl.formatMessage(i18n.privacyNobody),
+      intl.formatMessage(i18n.privacyMyContacts)];
+    const itemListSelfRemove = [
+      intl.formatMessage(i18n.privacyMonth, {value: 1}),
+      intl.formatMessage(i18n.privacyMonth, {value: 3}),
+      intl.formatMessage(i18n.privacyMonth, {value: 6}),
+      intl.formatMessage(i18n.privacyYear, {value: 1})];
 
     return (
       <View style={styles.root}>
@@ -108,12 +152,23 @@ class SettingPrivacyComponent extends Component {
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyLastSeen)}</Text>
             <PopupMenu
-              actionList={itemList}
+              actionList={itemListSelfRemove}
               onPress={(action) => this.callBackMenu(Proto.PrivacyType.USER_STATUS, action)}
               button={<Text
                 style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.USER_STATUS])} </Text>}
             />
           </View>
+
+          <Text style={styles.textSelfRemove}> {intl.formatMessage(i18n.privacyAccountSelfDestruct)}</Text>
+          <View style={styles.rowFieldSelfRemove}>
+            <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyAwayFor)}</Text>
+            <PopupMenu
+              actionList={itemListSelfRemove}
+              onPress={(action) => this.callBackSelfRemove(action)}
+              button={<Text style={styles.textLoading}>{this.getStringFromSelfRemoveValue(selfRemove)} </Text>}
+            />
+          </View>
+          <Text style={styles.textSelfRemoveComment}> {intl.formatMessage(i18n.privacySelfRemoveComment)}</Text>
         </ScrollView>
       </View>
     );
@@ -125,6 +180,8 @@ SettingPrivacyComponent.propTypes = {
   goBack: PropTypes.func.isRequired,
   privacySetRule: PropTypes.func.isRequired,
   rules: PropTypes.object.isRequired,
+  setSelfRemove: PropTypes.func.isRequired,
+  selfRemove: PropTypes.number.isRequired,
 };
 
 export default injectIntl(SettingPrivacyComponent);
