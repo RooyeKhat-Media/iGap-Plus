@@ -1,8 +1,13 @@
 import Base from '../Base';
 import putState from '../../Entities/Rooms/index';
 import {messengerRoomAddList} from '../../../actions/messenger/rooms';
-import {dispatchNewRoomMessage} from '../../../utils/app';
+import {prepareRoomMessage} from '../../../utils/app';
 import {entitiesRoomEdit} from '../../../actions/entities/rooms';
+
+import {normalize} from 'normalizr';
+import roomMessage from '../../../schemas/roomMessage';
+import {entitiesRoomMessagesAdd} from '../../../actions/entities/roomMessages';
+import {messengerRoomMessageConcat} from '../../../actions/messenger/roomMessages';
 
 /**
  * @property {ProtoChatSendMessage} _request
@@ -21,6 +26,14 @@ export default class SendMessage extends Base {
     this.dispatch(entitiesRoomEdit(roomId, {
       lastMessage: this._response.getRoomMessage().getMessageId().toString(),
     }));
-    dispatchNewRoomMessage(this._response.getRoomMessage(), roomId, !!this._request);
+
+    const normalizedData = normalize(this._response.getRoomMessage(), roomMessage);
+    const messageId = normalizedData.result;
+    prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId);
+
+    if (!this._request) {
+      this.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
+      this.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result]));
+    }
   }
 }

@@ -16,17 +16,27 @@ import {
 } from '../../constants/app';
 import {ChannelSendMessage, ChatSendMessage, GroupSendMessage, Proto} from '../../modules/Proto/index';
 import {CHANNEL_SEND_MESSAGE, CHAT_SEND_MESSAGE, GROUP_SEND_MESSAGE} from '../../constants/methods/index';
-import {dispatchNewRoomMessage, getAuthorHash, getFakeMessageId, getUserId} from '../../utils/app';
+import {
+  getAuthorHash,
+  getFakeMessageId,
+  getRoomHistoryUploadIdPrefix,
+  getUserId,
+  prepareRoomMessage,
+} from '../../utils/app';
 import {tNow} from '../../utils/core';
-import {messengerRoomMessageReplace} from '../../actions/messenger/roomMessages';
+import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../../actions/messenger/roomMessages';
+
+import {normalize} from 'normalizr';
+import roomMessageSchema from '../../schemas/roomMessage';
+import {entitiesRoomMessagesAdd} from '../../actions/entities/roomMessages';
 
 class RoomHistoryScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      text: 'sakalm',
-      attachment: null,
+      text: '',
+      pickedFile: null,
       attachmentType: null,
     };
   }
@@ -37,7 +47,14 @@ class RoomHistoryScreen extends Component {
   }
 
   submitForm = async (text) => {
-    const {room, replaceFakeMessage} = this.props;
+    const {pickedFile, attachmentType} = this.state;
+    const {room, upload, dispose} = this.props;
+
+    this.setState({
+      text: '',
+      pickedFile: null,
+      attachmentType: null,
+    });
 
     /**
      * @type {ProtoChatSendMessage || ProtoGroupSendMessage || ProtoChannelSendMessage} proto
@@ -60,24 +77,44 @@ class RoomHistoryScreen extends Component {
     }
 
     if (actionId && proto) {
-      const fakeId = getFakeMessageId();
-      this.__sendFakeMessage(fakeId, text);
+      const fakeRoomMessage = this.__getFakeMessage(text);
+      const normalizeFakeMessage = this.__normalizeMessage(fakeRoomMessage, room.id, pickedFile);
+      this.props.dispatch(messengerRoomMessageConcat(room.id, [normalizeFakeMessage.id]));
 
       proto.setRoomId(room.longId);
       proto.setMessage(text);
+      if (pickedFile) {
+        try {
+          const token = await upload(getRoomHistoryUploadIdPrefix(room.id, normalizeFakeMessage.id), pickedFile);
+          proto.setAttachment(token);
+          switch (attachmentType) {
+            case ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE:
+              proto.setMessageType(text ? Proto.RoomMessageType.IMAGE_TEXT : Proto.RoomMessageType.IMAGE);
+              break;
+            case ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO:
+              proto.setMessageType(text ? Proto.RoomMessageType.VIDEO_TEXT : Proto.RoomMessageType.VIDEO);
+              break;
+            case ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO:
+              proto.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
+              break;
+            case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
+              proto.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);
+              break;
+          }
+        } finally {
+          dispose(getRoomHistoryUploadIdPrefix(room.id, normalizeFakeMessage.id));
+        }
+      }
       const sendMessageResponse = await Api.invoke(actionId, proto);
-      replaceFakeMessage(room.id, sendMessageResponse.getRoomMessage().getMessageId().toString(), fakeId.toString());
+      const normalizedRoomMessage = this.__normalizeMessage(sendMessageResponse.getRoomMessage(), room.id, pickedFile);
+      this.props.dispatch(messengerRoomMessageReplace(room.id, normalizedRoomMessage.id, normalizeFakeMessage.id));
     }
-
-    this.setState({
-      text: '',
-      attachment: null,
-      attachmentType: null,
-    });
   };
 
-  __sendFakeMessage = (fakeId, text) => {
+  __getFakeMessage = (text) => {
     const {room} = this.props;
+    const {attachmentType} = this.state;
+    const fakeId = getFakeMessageId();
     /**
      * @type {proto.RoomMessage.Author}
      */
@@ -98,8 +135,35 @@ class RoomHistoryScreen extends Component {
     roomMessage.setCreateTime(tNow());
     roomMessage.setUpdateTime(tNow());
 
-    dispatchNewRoomMessage(roomMessage, room.id);
+    switch (attachmentType) {
+      case ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE:
+        roomMessage.setMessageType(text ? Proto.RoomMessageType.IMAGE_TEXT : Proto.RoomMessageType.IMAGE);
+        break;
+      case ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO:
+        roomMessage.setMessageType(text ? Proto.RoomMessageType.VIDEO_TEXT : Proto.RoomMessageType.VIDEO);
+        break;
+      case ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO:
+        roomMessage.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
+        break;
+      case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
+        roomMessage.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);
+        break;
+    }
+
+    return roomMessage;
   };
+
+  __normalizeMessage = (roomMessage, roomId, pickedFile) => {
+    const normalizedData = normalize(roomMessage, roomMessageSchema);
+    const normalizedRoomMessage = normalizedData.entities.roomMessages[normalizedData.result];
+    normalizedRoomMessage.pickedFile = pickedFile;
+    prepareRoomMessage(normalizedRoomMessage, roomId);
+    this.props.dispatch(entitiesRoomMessagesAdd({
+      [normalizedRoomMessage.id]: normalizedRoomMessage,
+    }));
+    return normalizedRoomMessage;
+  };
+
 
   goRoomInfoBtn = () => {
     const {roomId} = this.props.navigation.state.params;
@@ -108,45 +172,45 @@ class RoomHistoryScreen extends Component {
   selectImages = async () => {
     const file = await RNFileSystem.filePicker(FileUtil.images());
     this.setState({
-      attachment: file,
+      pickedFile: file,
       attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
     });
   };
   selectFile = async () => {
     const file = await RNFileSystem.filePicker(FileUtil.allFiles());
     this.setState({
-      attachment: file,
+      pickedFile: file,
       attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
     });
   };
   selectAudio = async () => {
     const file = await RNFileSystem.filePicker(FileUtil.audios());
     this.setState({
-      attachment: file,
+      pickedFile: file,
       attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
     });
   };
   selectVideos = async () => {
     const file = await RNFileSystem.filePicker(FileUtil.videos());
     this.setState({
-      attachment: file,
+      pickedFile: file,
       attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
     });
   };
 
   cancelAttach = () => {
     this.setState({
-      attachment: null,
+      pickedFile: null,
       attachmentType: null,
     });
   };
 
   render() {
     const {room, messageList} = this.props;
-    const {text, attachment} = this.state;
+    const {text, pickedFile} = this.state;
     const Form = {
       text,
-      attachment,
+      pickedFile,
       selectImages: this.selectImages,
       selectFile: this.selectFile,
       selectAudio: this.selectAudio,
@@ -186,9 +250,7 @@ const mapDispatchToProps = (dispatch) => {
     dispose: (id) => {
       return dispatch(fileManagerUploadDisposed(id));
     },
-    replaceFakeMessage: (roomId, newMessageId, oldMessageId) => {
-      return dispatch(messengerRoomMessageReplace(roomId, newMessageId, oldMessageId));
-    },
+    dispatch,
   };
 };
 

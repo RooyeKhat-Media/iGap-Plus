@@ -11,11 +11,6 @@ import {FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX, FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX} f
 
 import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
 import putStateRoom from '../modules/Entities/Rooms';
-import {normalize} from 'normalizr';
-import roomMessageSchema from '../schemas/roomMessage';
-import {entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
-import {messengerRoomMessageConcat} from '../actions/messenger/roomMessages';
-import store from '../configureStore';
 import Long from 'long';
 
 let _userId;
@@ -113,11 +108,12 @@ export function getRoomAvatarUploadIdPrefix(id) {
 }
 
 /**
- * @param {string} id
- * @returns {string}
+ * @param {string} roomId
+ * @param {string} messageId
+ * @returns {string} id
  */
-export function getRoomHistoryUploadIdPrefix(id) {
-  return FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX + id;
+export function getRoomHistoryUploadIdPrefix(roomId, messageId) {
+  return FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX + roomId + '_' + messageId;
 }
 
 /**
@@ -150,24 +146,4 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId) {
   }
 
   setFakeMessageId(normalizedRoomMessage.longId);
-}
-
-/**
- * @param roomMessage
- * @param roomId
- * @param concat
- */
-export function dispatchNewRoomMessage(roomMessage, roomId, concat = true) {
-  const normalizedData = normalize(roomMessage, roomMessageSchema);
-
-  for (const messageId in normalizedData.entities.roomMessages) {
-    if (normalizedData.entities.roomMessages.hasOwnProperty(messageId)) {
-      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId);
-    }
-  }
-
-  store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
-  if (concat) {
-    store.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result]));
-  }
 }

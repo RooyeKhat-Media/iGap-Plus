@@ -222,9 +222,9 @@ class SendBox extends Component {
 
         <View style={styles.inputWrap}>
 
-          {Form.attachment && (<View style={styles.addonWrap}>
+          {Form.pickedFile && (<View style={styles.addonWrap}>
             <Text style={styles.addonText}>
-              {Form.attachment.fileName}
+              {Form.pickedFile.fileName}
             </Text>
             <IconToggle onPress={Form.cancelAttach} name="close"/>
           </View>)}
