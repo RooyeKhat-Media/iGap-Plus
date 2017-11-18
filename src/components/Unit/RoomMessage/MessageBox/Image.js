@@ -14,12 +14,14 @@ const boxHeight = min([500, (0.8 * height)]);
 export default class Image extends MessageElement {
 
   render() {
-    const {message, attachment, showText, downloadedFile, smallThumbnailUri} = this.props;
-
-    const {width, height} = dimensionCalculate(attachment.getWidth(), attachment.getHeight(), boxWidth, boxHeight);
+    const {message, showText, downloadedFile, smallThumbnailUri} = this.props;
+    const {imageWidth, imageHeight} = this.state;
+    const hasImageDimension = imageWidth && imageHeight;
     const uri = this.isCompleted ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
 
-    const content = this.renderControlBar(
+    const {width, height} = dimensionCalculate(imageWidth, imageHeight, boxWidth, boxHeight);
+
+    const content = (hasImageDimension) ? this.renderControlBar(
       width,
       <View style={{width, height}}>
         {uri && (<NativeImage source={{uri: uri}} style={{width, height}}/>)}
@@ -28,19 +30,19 @@ export default class Image extends MessageElement {
       {
         completedIcon: null,
       }
-    );
+    ) : null;
 
-    return (<View style={{width}}>
+    return (<View style={{width: hasImageDimension ? width : null}}>
       {content}
 
-      {(message && showText) ? (<Text message={message}/>) : null}
+      {(message && showText) ? (<Text message={message} showText={showText}/>) : null}
     </View>);
   }
 }
 
 Image.propTypes = {
   message: PropTypes.string.isRequired,
-  attachment: PropTypes.object.isRequired,
+  attachment: PropTypes.object,
   showText: PropTypes.bool.isRequired,
   downloadedFile: PropTypes.object,
   smallThumbnailUri: PropTypes.string,

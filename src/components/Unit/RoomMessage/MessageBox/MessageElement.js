@@ -1,11 +1,37 @@
 import React from 'react';
-import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../../../constants/fileManager';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {FILE_MANAGER_DOWNLOAD_STATUS, FILE_MANAGER_UPLOAD_STATUS} from '../../../../constants/fileManager';
+import {Image as BaseImage, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Icon} from '../../../BaseUI';
 import ProgressBar from '../../../BaseUI/ProgressBar';
 import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/ProgressBar/index';
+import {prependFileProtocol} from '../../../../utils/core';
 
 class MessageElement extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageWidth: 0,
+      imageHeight: 0,
+    };
+  }
+
+  async componentWillMount() {
+    const {attachment, pickedFile} = this.props;
+    if (attachment) {
+      this.setState({
+        imageWidth: attachment.getWidth(),
+        imageHeight: attachment.getHeight(),
+      });
+    } else if (pickedFile) {
+      BaseImage.getSize(prependFileProtocol(pickedFile.fileUri), (width, height) => {
+        this.setState({
+          imageWidth: width,
+          imageHeight: height,
+        });
+      });
+    }
+  }
 
   get isPending() {
     const {downloadedFile} = this.props;
@@ -44,6 +70,14 @@ class MessageElement extends React.Component {
     );
   }
 
+  get isUploading() {
+    const {uploading} = this.props;
+    if (!uploading) {
+      return false;
+    }
+    return uploading.status === FILE_MANAGER_UPLOAD_STATUS.UPLOADING;
+  }
+
   renderControlBar(width, siblingElement, options) {
     options = {
       completedIcon: 'play-circle-outline',
@@ -51,13 +85,13 @@ class MessageElement extends React.Component {
       renderProgressBar: true,
       ...options,
     };
-    const {downloadedFile, onPress} = this.props;
+    const {downloadedFile, uploading, onPress} = this.props;
     return (<TouchableOpacity onPress={onPress} activeOpacity={0.9}>
 
       <View>
         {siblingElement}
 
-        {(this.isPending || this.isProcessing) && (
+        {(this.isPending || this.isProcessing || this.isUploading) && (
           <View style={styles.controlBtnWrap}>
             <View style={styles.controlBtn}><Icon name="close" size={30} color="#fafafa"/></View>
           </View>)}
@@ -74,20 +108,37 @@ class MessageElement extends React.Component {
           </View>)}
       </View>
 
-      {options.renderProgressBar && this.isPending && (<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
-      {options.renderProgressBar && this.isProcessing && ((<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
-        initialProgress={downloadedFile.progress}
-        progress={downloadedFile.progress}/></View>))}
+      {options.renderProgressBar && this.isPending && (
+        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
+
+      {options.renderProgressBar && this.isProcessing && ((
+        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+          initialProgress={downloadedFile.progress}
+          progress={downloadedFile.progress}/></View>))}
+
+      {options.renderProgressBar && this.isUploading && ((
+        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+          initialProgress={uploading.progress}
+          progress={uploading.progress}/></View>))}
+
     </TouchableOpacity>);
   }
 
   renderProgressBar(width, wrapperStyle = {}) {
-    const {downloadedFile} = this.props;
+    const {downloadedFile, uploading} = this.props;
     return (<View style={wrapperStyle}>
-      {this.isPending && (<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
-      {this.isProcessing && ((<View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
-        initialProgress={downloadedFile.progress}
-        progress={downloadedFile.progress}/></View>))}
+      {this.isPending && (
+        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
+
+      {this.isProcessing && ((
+        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+          initialProgress={downloadedFile.progress}
+          progress={downloadedFile.progress}/></View>))}
+
+      {this.isUploading && ((
+        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+          initialProgress={uploading.uploading}
+          progress={uploading.uploading}/></View>))}
     </View>);
   }
 }

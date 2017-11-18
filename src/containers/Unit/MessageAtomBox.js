@@ -15,6 +15,7 @@ import {info} from '../../modules/FileManager';
 import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 import {Proto} from '../../modules/Proto/index';
 import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '../../selector/entities/roomMessage';
+import {getRoomHistoryUploadIdPrefix} from '../../utils/app';
 
 class MessageAtomBox extends Component {
 
@@ -99,6 +100,7 @@ class MessageAtomBox extends Component {
   renderContent() {
 
     const {
+      uploading,
       downloadedFile,
       smallThumbnailUri,
       waveformThumbnailUri,
@@ -118,6 +120,8 @@ class MessageAtomBox extends Component {
         return (<Image
           message={message.message}
           attachment={message.attachment}
+          pickedFile={message.pickedFile}
+          uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
@@ -128,6 +132,7 @@ class MessageAtomBox extends Component {
         return (<Video
           message={message.message}
           attachment={message.attachment}
+          uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
@@ -138,6 +143,7 @@ class MessageAtomBox extends Component {
         return (<Audio
           message={message.message}
           attachment={message.attachment}
+          uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
@@ -147,6 +153,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VOICE:
         return (<Voice
           attachment={message.attachment}
+          uploading={uploading}
           downloadedFile={downloadedFile}
           waveformThumbnailUri={waveformThumbnailUri}
           onPress={this.togglePress}/>);
@@ -156,6 +163,7 @@ class MessageAtomBox extends Component {
         return (<Gif
           message={message.message}
           attachment={message.attachment}
+          uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
@@ -166,6 +174,7 @@ class MessageAtomBox extends Component {
         return (<File
           message={message.message}
           attachment={message.attachment}
+          uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
@@ -199,9 +208,13 @@ MessageAtomBox.propTypes = {
 const makeMapStateToProps = () => {
   return (state, props) => {
     return {
-      downloadedFile: getDownloadedFile(state, props.message.attachment),
+      downloadedFile: props.message.pickedFile ? {
+        uri: props.message.pickedFile.fileUri,
+        status: FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED,
+      } : getDownloadedFile(state, props.message.attachment),
       smallThumbnailUri: getSmallThumbnailUri(state, props.message.attachment),
       waveformThumbnailUri: getWaveformThumbnailUri(state, props.message.attachment),
+      uploading: state.fileManager.upload[getRoomHistoryUploadIdPrefix(props.message.roomId, props.message.id)],
     };
   };
 };
