@@ -5115,6 +5115,10 @@ react-native-share@^1.0.23:
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.0.23.tgz#6476f10d34e5274b9e0ef2c93def6c3a282ffe94"
 
+react-native-sound-recorder@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-sound-recorder/-/react-native-sound-recorder-1.1.1.tgz#32d6052a70690361ad97ae7edce551a816248cb7"
+
 react-native-sqlite-2@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-native-sqlite-2/-/react-native-sqlite-2-1.5.0.tgz#e31230bae4bae520a6cb2fed1f29c20e79765a3a"

@@ -31,6 +31,7 @@
     "react-native-material-ui": "^1.14.0",
     "react-native-save-to": "./native/modules/SaveTo",
     "react-native-share": "^1.0.23",
+    "react-native-sound-recorder": "^1.1.1",
     "react-native-sqlite-2": "^1.5.0",
     "react-native-svg": "^5.4.2",
     "react-native-swiper": "^1.5.13",
