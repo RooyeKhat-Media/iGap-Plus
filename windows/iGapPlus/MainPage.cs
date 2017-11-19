@@ -1,5 +1,6 @@
 using ReactNative;
 using ReactNative.Modules.Core;
+using ReactNativeVideo;
 using iGapPlus.RNSaveTo;
 using Cl.Json.RNShare;
 using iGapPlus.RNFileSystem;
@@ -44,6 +45,7 @@ namespace iGapPlus
                 return new List<IReactPackage>
                 {
                     new MainReactPackage(),
+                    new ReactVideoPackage(),
                     new RNSaveToPackage(),
                     new RNSharePackage(),
                     new RNFileSystemPackage(),
