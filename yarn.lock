@@ -5119,6 +5119,10 @@ react-native-sound-recorder@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-sound-recorder/-/react-native-sound-recorder-1.1.1.tgz#32d6052a70690361ad97ae7edce551a816248cb7"
 
+react-native-sound@^0.10.4:
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.4.tgz#242286558f457e023dbed42e8c6cbe52cfd313d4"
+
 react-native-sqlite-2@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-native-sqlite-2/-/react-native-sqlite-2-1.5.0.tgz#e31230bae4bae520a6cb2fed1f29c20e79765a3a"
