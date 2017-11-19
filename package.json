@@ -38,6 +38,7 @@
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^4.4.2",
     "react-native-web-socket": "file:./native/modules/WebSocket",
+    "react-native-webrtc": "^1.58.3",
     "react-native-windows": "0.49.0-rc.2",
     "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^5.0.6",

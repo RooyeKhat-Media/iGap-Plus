@@ -3,6 +3,7 @@ package com.igapplus;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oney.WebRTCModule.WebRTCModulePackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.reactlibrary.RNSoundRecorderPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new WebRTCModulePackage(),
             new RNSoundPackage(),
             new RNSoundRecorderPackage(),
             new RCTCameraPackage(),
