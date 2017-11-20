@@ -8,7 +8,7 @@ import MessageAtomBox from '../../../../containers/Unit/MessageAtomBox';
 
 class MessageBox extends React.Component {
   render() {
-    const {message, showText} = this.props;
+    const {message, showText, onMessagePress, onMessageLongPress} = this.props;
     const forwardFrom = message.forwardFrom;
 
     let forward = null;
@@ -16,14 +16,28 @@ class MessageBox extends React.Component {
 
     if (forwardFrom) {
       if (forwardFrom.channelViewsLabel) {
-        forward = (<ChannelBox message={forwardFrom} showText={true}/>);
+        forward = (
+          <ChannelBox
+            onMessagePress={onMessagePress}
+            onMessageLongPress={onMessageLongPress}
+            message={forwardFrom}
+            showText={true}/>);
       } else {
-        forward = (<MessageAtomBox message={forwardFrom} showText={true}/>);
+        forward = (
+          <MessageAtomBox
+            onMessagePress={onMessagePress}
+            onMessageLongPress={onMessageLongPress}
+            message={forwardFrom}
+            showText={true}/>);
       }
     }
 
     if (!forwardFrom || (forwardFrom && (forwardFrom.messageType !== Proto.RoomMessageType.TEXT || forwardFrom.message))) {
-      main = (<MessageAtomBox message={message} showText={showText}/>);
+      main = (<MessageAtomBox
+        onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress}
+        message={message}
+        showText={showText}/>);
     }
 
     return (

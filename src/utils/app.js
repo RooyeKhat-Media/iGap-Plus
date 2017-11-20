@@ -17,6 +17,7 @@ let _userId;
 let _userIdString;
 let _authorHash;
 let _fakeMessageId = Long.ZERO;
+let _roomHistorySelectedMode = false;
 
 export function getFakeMessageId() {
   _fakeMessageId = _fakeMessageId.add(1);
@@ -146,4 +147,15 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId) {
   }
 
   setFakeMessageId(normalizedRoomMessage.longId);
+}
+
+/**
+ * @param mode
+ */
+export function setRoomHistorySelectedMode(mode) {
+  _roomHistorySelectedMode = mode;
+}
+
+export function getRoomHistorySelectedMode() {
+  return _roomHistorySelectedMode;
 }

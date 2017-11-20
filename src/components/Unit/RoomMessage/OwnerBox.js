@@ -4,10 +4,10 @@ import MessageBox from './MessageBox/index';
 import AddonTime from './MessageBox/AddonTime';
 import {white500} from '../../../themes/default/index';
 
-export default ({message, showText}) => (
+export default ({message, showText, onMessagePress, onMessageLongPress}) => (
   <View style={styles.container}>
     <View style={styles.messageBox}>
-      <MessageBox message={message} showText={showText}/>
+      <MessageBox message={message} showText={showText} onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress}/>
       <View style={styles.footerWrap}>
         <AddonTime createTime={message.createTime}/>
       </View>

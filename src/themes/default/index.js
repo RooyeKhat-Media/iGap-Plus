@@ -1,4 +1,5 @@
 export const primary = '#3298ee';
+export const selectedBlue = '#b1d6ee';
 export const golden = '#eecd00';
 export const white = '#ffffff';
 export const white500 = '#faf8f6';

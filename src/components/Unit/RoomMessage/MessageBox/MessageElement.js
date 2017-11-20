@@ -59,43 +59,44 @@ class MessageElement extends React.Component {
       renderProgressBar: true,
       ...options,
     };
-    const {downloadedFile, uploading, onPress} = this.props;
-    return (<TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+    const {downloadedFile, uploading, onPress, onMessageLongPress} = this.props;
+    return (
+      <TouchableOpacity onPress={onPress} delayLongPress={700} onLongPress={onMessageLongPress} activeOpacity={0.9}>
 
-      <View>
-        {siblingElement}
+        <View>
+          {siblingElement}
 
-        {(this.isPending || this.isProcessing || this.isUploading) && (
-          <View style={styles.controlBtnWrap}>
-            <View style={styles.controlBtn}><Icon name="close" size={30} color="#fafafa"/></View>
-          </View>)}
+          {(this.isPending || this.isProcessing || this.isUploading) && (
+            <View style={styles.controlBtnWrap}>
+              <View style={styles.controlBtn}><Icon name="close" size={30} color="#fafafa"/></View>
+            </View>)}
 
-        {options.completedIcon && this.isCompleted && (
-          <View style={styles.controlBtnWrap}>
-            <View style={styles.controlBtn}><Icon name={options.completedIcon} size={options.completedIconSize}
-              color="#fafafa"/></View>
-          </View>)}
+          {options.completedIcon && this.isCompleted && (
+            <View style={styles.controlBtnWrap}>
+              <View style={styles.controlBtn}><Icon name={options.completedIcon} size={options.completedIconSize}
+                color="#fafafa"/></View>
+            </View>)}
 
-        {this.isPaused && (
-          <View style={styles.controlBtnWrap}>
-            <View style={styles.controlBtn}><Icon name="file-download" size={30} color="#fafafa"/></View>
-          </View>)}
-      </View>
+          {this.isPaused && (
+            <View style={styles.controlBtnWrap}>
+              <View style={styles.controlBtn}><Icon name="file-download" size={30} color="#fafafa"/></View>
+            </View>)}
+        </View>
 
-      {options.renderProgressBar && this.isPending && (
-        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
+        {options.renderProgressBar && this.isPending && (
+          <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
 
-      {options.renderProgressBar && this.isProcessing && ((
-        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
-          initialProgress={downloadedFile.progress}
-          progress={downloadedFile.progress}/></View>))}
+        {options.renderProgressBar && this.isProcessing && ((
+          <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+            initialProgress={downloadedFile.progress}
+            progress={downloadedFile.progress}/></View>))}
 
-      {options.renderProgressBar && this.isUploading && ((
-        <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
-          initialProgress={uploading.progress}
-          progress={uploading.progress}/></View>))}
+        {options.renderProgressBar && this.isUploading && ((
+          <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
+            initialProgress={uploading.progress}
+            progress={uploading.progress}/></View>))}
 
-    </TouchableOpacity>);
+      </TouchableOpacity>);
   }
 
   renderProgressBar(width, wrapperStyle = {}) {

@@ -6,7 +6,7 @@ import {black200} from '../../../themes/default/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import AddonTime from './MessageBox/AddonTime';
 
-export default ({message, showText}) => (
+export default ({message, showText, onMessagePress, onMessageLongPress}) => (
   <View style={styles.container}>
     <View style={styles.layoutheader}>
       <View style={styles.avatarWrap}>
@@ -18,7 +18,9 @@ export default ({message, showText}) => (
       </TouchableOpacity>
     </View>
 
-    <MessageBox message={message} showText={showText}/>
+    <MessageBox message={message} showText={showText}
+      onMessagePress={onMessagePress}
+      onMessageLongPress={onMessageLongPress}/>
 
     <View style={styles.layoutChannelInfo}>
 

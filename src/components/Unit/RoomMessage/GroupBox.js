@@ -5,7 +5,7 @@ import Avatar from '../../../containers/Unit/Avatar';
 import AddonTime from './MessageBox/AddonTime';
 import {white} from '../../../themes/default/index';
 
-export default ({message, showText}) => (
+export default ({message, showText, onMessagePress, onMessageLongPress}) => (
   <View style={styles.container}>
     <View style={styles.avatarWrap}>
       <Avatar userId={message.authorUserObject && message.authorUserObject.id} size={40}/>
@@ -14,7 +14,8 @@ export default ({message, showText}) => (
     <View style={styles.messageBox}>
       {message.authorUserObject ? (<Text
         style={[styles.author, {color: message.authorUserObject.color}]}>{message.authorUserObject.displayName}</Text>) : null}
-      <MessageBox message={message} showText={showText}/>
+      <MessageBox message={message} showText={showText} onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress}/>
       <View style={styles.footerWrap}>
         <AddonTime createTime={message.createTime}/>
       </View>

@@ -13,6 +13,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../constants/app';
+import {setRoomHistorySelectedMode} from '../../utils/app';
 
 class RoomHistoryScreen extends Component {
 
@@ -22,6 +23,8 @@ class RoomHistoryScreen extends Component {
       text: '',
       pickedFile: null,
       attachmentType: null,
+      selectedList: {},
+      selectedCount: 0,
     };
   }
 
@@ -105,9 +108,45 @@ class RoomHistoryScreen extends Component {
     });
   };
 
+  selectMessage = (messageId) => {
+    this.setState(prevState => {
+      const selectedCount = prevState.selectedList[messageId] ? prevState.selectedCount - 1 : prevState.selectedCount + 1;
+      setRoomHistorySelectedMode(!!selectedCount);
+      return {
+        ...prevState,
+        selectedCount: prevState.selectedList[messageId] ? prevState.selectedCount - 1 : prevState.selectedCount + 1,
+        selectedList: {
+          ...prevState.selectedList,
+          [messageId]: !prevState.selectedList[messageId],
+        },
+      };
+    });
+  };
+
+  onMessagePress = (messageId) => {
+    const {selectedCount} = this.state;
+    if (selectedCount) {
+      this.selectMessage(messageId);
+    }
+  };
+  onMessageLongPress = (messageId) => {
+    const {selectedCount} = this.state;
+    if (!selectedCount) {
+      this.selectMessage(messageId);
+    }
+  };
+
+  cancelSelected = () => {
+    setRoomHistorySelectedMode(false);
+    this.setState({
+      selectedCount: 0,
+      selectedList: {},
+    });
+  }
+
   render() {
     const {room, messageList} = this.props;
-    const {text, pickedFile} = this.state;
+    const {text, pickedFile, selectedCount, selectedList} = this.state;
     const Form = {
       text,
       pickedFile,
@@ -126,7 +165,13 @@ class RoomHistoryScreen extends Component {
         room={room}
         Form={Form}
         messageList={messageList}
+        selectedList={selectedList}
+        selectedCount={selectedCount}
+        cancelSelected={this.cancelSelected}
         goRoomInfoBtn={this.goRoomInfoBtn}
+        selectImages={this.selectImages}
+        onMessagePress={this.onMessagePress}
+        onMessageLongPress={this.onMessageLongPress}
         goBack={this.props.navigation.goBack}
       />
     );

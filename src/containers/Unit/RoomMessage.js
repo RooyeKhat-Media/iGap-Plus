@@ -6,9 +6,18 @@ import {getFullMessage} from '../../selector/entities/roomMessage';
 
 class RoomMessage extends Component {
 
+  onMessagePress = () => {
+    const {message, onMessagePress} = this.props;
+    onMessagePress(message.id);
+  };
+  onMessageLongPress = () => {
+    const {message, onMessageLongPress} = this.props;
+    onMessageLongPress(message.id);
+  };
+
   render() {
     const authorHash = getAuthorHash();
-    const {message, roomType} = this.props;
+    const {message, roomType, selected} = this.props;
 
     if (!message || message.deleted) {
       return null;
@@ -18,6 +27,9 @@ class RoomMessage extends Component {
       <RoomMessageComponent
         authorHash={authorHash}
         roomType={roomType}
+        selected={selected}
+        onMessagePress={this.onMessagePress}
+        onMessageLongPress={this.onMessageLongPress}
         message={message}/>
     );
   }

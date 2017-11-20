@@ -24,7 +24,7 @@ import {
 } from '../../constants/fileManager';
 import {Proto} from '../../modules/Proto/index';
 import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '../../selector/entities/roomMessage';
-import {getRoomHistoryUploadIdPrefix} from '../../utils/app';
+import {getRoomHistorySelectedMode, getRoomHistoryUploadIdPrefix} from '../../utils/app';
 
 class MessageAtomBox extends Component {
 
@@ -82,22 +82,26 @@ class MessageAtomBox extends Component {
   };
 
   togglePress = () => {
-    const {message, downloadedFile, uploading, stopUpload} = this.props;
-    if (uploading) {
-      switch (uploading.status) {
-        case FILE_MANAGER_UPLOAD_STATUS.UPLOADING:
-          return stopUpload(getRoomHistoryUploadIdPrefix(message.roomId, message.id));
+    const {message, downloadedFile, uploading, stopUpload, onMessagePress} = this.props;
+    if (!getRoomHistorySelectedMode()) {
+      if (uploading) {
+        switch (uploading.status) {
+          case FILE_MANAGER_UPLOAD_STATUS.UPLOADING:
+            return stopUpload(getRoomHistoryUploadIdPrefix(message.roomId, message.id));
+        }
+      } else if (downloadedFile) {
+        switch (downloadedFile.status) {
+          case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
+            return this.openFile();
+          case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
+          case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
+            return this.pauseDownload();
+        }
       }
-    } else if (downloadedFile) {
-      switch (downloadedFile.status) {
-        case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
-          return this.openFile();
-        case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
-        case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
-          return this.pauseDownload();
-      }
+      return this.startDownload();
+    } else {
+      onMessagePress(message.id);
     }
-    return this.startDownload();
   };
 
   render() {
@@ -149,6 +153,7 @@ class MessageAtomBox extends Component {
       smallThumbnailUri,
       waveformThumbnailUri,
       message,
+      onMessageLongPress,
       showText,
     } = this.props;
 
@@ -169,6 +174,7 @@ class MessageAtomBox extends Component {
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
+          onMessageLongPress={onMessageLongPress}
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.VIDEO:
@@ -181,6 +187,7 @@ class MessageAtomBox extends Component {
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
+          onMessageLongPress={onMessageLongPress}
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.AUDIO:
@@ -194,6 +201,7 @@ class MessageAtomBox extends Component {
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
           waveformThumbnailUri={waveformThumbnailUri}
+          onMessageLongPress={onMessageLongPress}
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.VOICE:
@@ -203,6 +211,7 @@ class MessageAtomBox extends Component {
           uploading={uploading}
           downloadedFile={downloadedFile}
           waveformThumbnailUri={waveformThumbnailUri}
+          onMessageLongPress={onMessageLongPress}
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.GIF:
@@ -215,6 +224,7 @@ class MessageAtomBox extends Component {
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
+          onMessageLongPress={onMessageLongPress}
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.FILE:
@@ -227,6 +237,7 @@ class MessageAtomBox extends Component {
           showText={showText}
           downloadedFile={downloadedFile}
           smallThumbnailUri={smallThumbnailUri}
+          onMessageLongPress={onMessageLongPress}
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.LOCATION:
