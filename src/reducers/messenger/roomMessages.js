@@ -4,12 +4,15 @@
 import {concat, uniq} from 'lodash';
 import {
   MESSENGER_ROOM_MESSAGE_CONCAT,
+  MESSENGER_ROOM_MESSAGE_REMOVE,
   MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE,
 } from '../../actions/messenger/roomMessages';
 
 const initialState = {};
 
 export function roomMessages(state = initialState, action) {
+  let newList = [];
+  let index;
   switch (action.type) {
     case MESSENGER_ROOM_MESSAGE_CONCAT:
       return {
@@ -18,12 +21,23 @@ export function roomMessages(state = initialState, action) {
       };
 
     case MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE:
-      const newList = [...state[action.roomId]] || [];
-      const index = newList.indexOf(action.oldMessageId);
+      newList = [...state[action.roomId]] || [];
+      index = newList.indexOf(action.oldMessageId);
       if (index >= 0) {
         newList[index] = action.newMessageId;
       } else {
         newList.push(action.newMessageId);
+      }
+      return {
+        ...state,
+        [action.roomId]: uniq(newList),
+      };
+
+    case MESSENGER_ROOM_MESSAGE_REMOVE:
+      newList = [...state[action.roomId]] || [];
+      index = newList.indexOf(action.messageId);
+      if (index >= 0) {
+        newList.splice(index, 1);
       }
       return {
         ...state,

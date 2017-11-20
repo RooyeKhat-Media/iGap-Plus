@@ -15,7 +15,7 @@ const boxWidth = min([250, (0.7 * width)]);
 export default class Audio extends MessageElement {
 
   render() {
-    const {message, attachment, showText, smallThumbnailUri} = this.props;
+    const {message, attachment, pickedFile, showText, smallThumbnailUri} = this.props;
     const uri = prependFileProtocol(smallThumbnailUri);
 
     const controlBar = this.renderControlBar(
@@ -36,16 +36,16 @@ export default class Audio extends MessageElement {
 
           <View style={styles.fileInfoWrap}>
             <BaseText numberOfLines={1} style={styles.fileName}>
-              {attachment.getName()}
+              {attachment && attachment.getName() || pickedFile && pickedFile.fileName}
             </BaseText>
             <BaseText style={styles.fileSize}>
-              {convertSecendToTime(attachment.getDuration())} {convertBytes(attachment.getSize().toNumber())}
+              {attachment && convertSecendToTime(attachment.getDuration())} {attachment && convertBytes(attachment.getSize().toNumber())}
             </BaseText>
             {this.renderProgressBar(boxWidth - 100, styles.progressStyle)}
           </View>
         </View>
 
-        {(message && showText) ? (<Text message={message}/>) : null}
+        {(message && showText) ? (<Text showText={showText} message={message}/>) : null}
       </View>
     );
   }

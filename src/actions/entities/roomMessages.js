@@ -3,6 +3,7 @@
  */
 
 export const ENTITIES_ROOM_MESSAGE_ADD = 'ENTITIES_ROOM_MESSAGE_ADD';
+export const ENTITIES_ROOM_MESSAGE_REMOVE = 'ENTITIES_ROOM_MESSAGE_REMOVE';
 
 /**
  * @param {NormalizedRoomMessageEntities} roomMessages
@@ -17,4 +18,13 @@ export function entitiesRoomMessagesAdd(roomMessages, fromServer = true) {
   };
 }
 
-
+/**
+ * @param {string} messageId
+ * @returns {{type: string, messageId: string}}
+ */
+export function entitiesRoomMessageRemove(messageId) {
+  return {
+    type: ENTITIES_ROOM_MESSAGE_REMOVE,
+    messageId,
+  };
+}

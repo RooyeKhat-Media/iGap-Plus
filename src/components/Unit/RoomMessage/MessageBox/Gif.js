@@ -13,12 +13,40 @@ const boxHeight = min([500, (0.8 * height)]);
 
 export default class Gif extends MessageElement {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageWidth: 0,
+      imageHeight: 0,
+    };
+  }
+
+  async componentWillMount() {
+    const {attachment, pickedFile} = this.props;
+    if (attachment) {
+      this.setState({
+        imageWidth: attachment.getWidth(),
+        imageHeight: attachment.getHeight(),
+      });
+    } else if (pickedFile) {
+      Image.getSize(prependFileProtocol(pickedFile.fileUri), (width, height) => {
+        this.setState({
+          imageWidth: width,
+          imageHeight: height,
+        });
+      });
+    }
+  }
+
   render() {
-    const {message, attachment, showText, downloadedFile, smallThumbnailUri} = this.props;
-    const {width, height} = dimensionCalculate(attachment.getWidth(), attachment.getHeight(), boxWidth, boxHeight);
+    const {message, showText, downloadedFile, smallThumbnailUri} = this.props;
+    const {imageWidth, imageHeight} = this.state;
+    const hasImageDimension = imageWidth && imageHeight;
     const uri = this.isCompleted ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
 
-    const content = this.renderControlBar(
+    const {width, height} = dimensionCalculate(imageWidth, imageHeight, boxWidth, boxHeight);
+
+    const content = (hasImageDimension) ? this.renderControlBar(
       width,
       <View style={{width, height}}>
         {uri && (<Image source={{uri: uri}} style={{width, height}}/>)}
@@ -27,18 +55,18 @@ export default class Gif extends MessageElement {
       {
         completedIcon: 'gif',
       }
-    );
+    ) : null;
 
-    return (<View style={{width}}>
+    return (<View style={{width: hasImageDimension ? width : null}}>
       {content}
 
-      {(message && showText) ? (<Text message={message}/>) : null}
+      {(message && showText) ? (<Text message={message} showText={showText}/>) : null}
     </View>);
   }
 }
 Gif.propTypes = {
   message: PropTypes.string.isRequired,
-  attachment: PropTypes.object.isRequired,
+  attachment: PropTypes.object,
   showText: PropTypes.bool.isRequired,
   downloadedFile: PropTypes.object,
   smallThumbnailUri: PropTypes.string,

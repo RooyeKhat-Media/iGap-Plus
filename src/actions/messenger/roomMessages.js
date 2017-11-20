@@ -4,6 +4,7 @@
 
 export const MESSENGER_ROOM_MESSAGE_CONCAT = 'MESSENGER_ROOM_MESSAGE_CONCAT';
 export const MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE = 'MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE';
+export const MESSENGER_ROOM_MESSAGE_REMOVE = 'MESSENGER_ROOM_MESSAGE_REMOVE';
 
 /**
  * @param {string} roomId
@@ -30,5 +31,18 @@ export function messengerRoomMessageReplace(roomId, newMessageId, oldMessageId) 
     roomId,
     newMessageId,
     oldMessageId,
+  };
+}
+
+/**
+ * @param {string} roomId
+ * @param {string} messageId
+ * @returns {{type: string, roomId: string, messageId: string}}
+ */
+export function messengerRoomMessageRemove(roomId, messageId) {
+  return {
+    type: MESSENGER_ROOM_MESSAGE_REMOVE,
+    roomId,
+    messageId,
   };
 }

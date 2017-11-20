@@ -1,37 +1,11 @@
 import React from 'react';
 import {FILE_MANAGER_DOWNLOAD_STATUS, FILE_MANAGER_UPLOAD_STATUS} from '../../../../constants/fileManager';
-import {Image as BaseImage, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Icon} from '../../../BaseUI';
 import ProgressBar from '../../../BaseUI/ProgressBar';
 import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/ProgressBar/index';
-import {prependFileProtocol} from '../../../../utils/core';
 
 class MessageElement extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      imageWidth: 0,
-      imageHeight: 0,
-    };
-  }
-
-  async componentWillMount() {
-    const {attachment, pickedFile} = this.props;
-    if (attachment) {
-      this.setState({
-        imageWidth: attachment.getWidth(),
-        imageHeight: attachment.getHeight(),
-      });
-    } else if (pickedFile) {
-      BaseImage.getSize(prependFileProtocol(pickedFile.fileUri), (width, height) => {
-        this.setState({
-          imageWidth: width,
-          imageHeight: height,
-        });
-      });
-    }
-  }
 
   get isPending() {
     const {downloadedFile} = this.props;
@@ -137,8 +111,8 @@ class MessageElement extends React.Component {
 
       {this.isUploading && ((
         <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PROGRESSING}
-          initialProgress={uploading.uploading}
-          progress={uploading.uploading}/></View>))}
+          initialProgress={uploading.progress}
+          progress={uploading.progress}/></View>))}
     </View>);
   }
 }

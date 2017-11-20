@@ -1,30 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Image, StyleSheet, Text as BaseText, View} from 'react-native';
+import {StyleSheet, Text as BaseText, View} from 'react-native';
 import Text from './Text';
 import {min} from 'lodash';
 import Device from '../../../../modules/Responsive/Device';
-import {gray700, primary} from '../../../../themes/default/index';
+import {gray950, primary} from '../../../../themes/default/index';
 import {convertBytes} from '../../../../utils/filters';
-import {prependFileProtocol} from '../../../../utils/core';
 import MessageElement from './MessageElement';
 
 const {width} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
 
-export default class File extends MessageElement {
+export default class Sending extends MessageElement {
 
   render() {
-
-    const {message, attachment, pickedFile, showText, smallThumbnailUri} = this.props;
-    const uri = prependFileProtocol(smallThumbnailUri);
-
+    const {message, pickedFile} = this.props;
     const controlBar = this.renderControlBar(
       boxWidth,
-      <View style={styles.thumbnail}>
-        {uri && (<Image source={{uri: uri}} style={styles.thumbnail}/>)}
-      </View>
-      ,
+      <View style={styles.thumbnail}/>,
       {
         completedIcon: 'save',
         completedIconSize: 30,
@@ -39,28 +32,25 @@ export default class File extends MessageElement {
 
           <View style={styles.fileInfoWrap}>
             <BaseText numberOfLines={1} style={styles.fileName}>
-              {attachment && attachment.getName() || pickedFile && pickedFile.fileName}
+              {pickedFile && pickedFile.fileName}
             </BaseText>
             <BaseText style={styles.fileSize}>
-              {attachment && convertBytes(attachment.getSize().toNumber())}
+              {pickedFile && convertBytes(pickedFile.fileSize)}
             </BaseText>
             {this.renderProgressBar(boxWidth - 100, styles.progressStyle)}
           </View>
         </View>
-        {(message && showText) ? (<Text showText={showText} message={message}/>) : null}
+        {message && (<Text showText={true} message={message}/>)}
       </View>
     );
   }
 
 }
 
-File.propTypes = {
+Sending.propTypes = {
   message: PropTypes.string.isRequired,
-  attachment: PropTypes.object.isRequired,
-  showText: PropTypes.bool.isRequired,
-  downloadedFile: PropTypes.object,
-  smallThumbnailUri: PropTypes.string,
-  waveformThumbnailUri: PropTypes.string,
+  pickedFile: PropTypes.object.isRequired,
+  uploading: PropTypes.object,
   onPress: PropTypes.func.isRequired,
 };
 
@@ -87,8 +77,8 @@ const styles = StyleSheet.create({
     color: primary,
   },
   fileSize: {
-    fontSize: 12,
-    color: gray700,
+    fontSize: 13,
+    color: gray950,
   },
   progressStyle: {
     marginTop: 10,

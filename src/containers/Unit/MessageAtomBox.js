@@ -10,9 +10,18 @@ import Gif from '../../components/Unit/RoomMessage/MessageBox/Gif';
 import File from '../../components/Unit/RoomMessage/MessageBox/File';
 import Location from '../../components/Unit/RoomMessage/MessageBox/Location';
 import Contact from '../../components/Unit/RoomMessage/MessageBox/Contact';
-import {fileManagerDownload, fileManagerDownloadManuallyPaused} from '../../actions/fileManager';
+import Sending from '../../components/Unit/RoomMessage/MessageBox/Sending';
+import {
+  fileManagerDownload,
+  fileManagerDownloadManuallyPaused,
+  fileManagerUploadManuallyPaused,
+} from '../../actions/fileManager';
 import {info} from '../../modules/FileManager';
-import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
+import {
+  FILE_MANAGER_DOWNLOAD_MANNER,
+  FILE_MANAGER_DOWNLOAD_STATUS,
+  FILE_MANAGER_UPLOAD_STATUS,
+} from '../../constants/fileManager';
 import {Proto} from '../../modules/Proto/index';
 import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '../../selector/entities/roomMessage';
 import {getRoomHistoryUploadIdPrefix} from '../../utils/app';
@@ -25,7 +34,7 @@ class MessageAtomBox extends Component {
       info(message.attachment.getSize(), message.attachment.getCacheId(), message.attachment.getName());
       if (!smallThumbnailUri && message.attachment.getSmallThumbnail()) {
         download(
-          FILE_MANAGER_DOWNLOAD_MANNER.AUTO,
+          FILE_MANAGER_DOWNLOAD_MANNER.FORCE,
           message.attachment.getToken(),
           Proto.FileDownload.Selector.SMALL_THUMBNAIL,
           message.attachment.getSmallThumbnail().getSize(),
@@ -35,14 +44,13 @@ class MessageAtomBox extends Component {
 
       if (!waveformThumbnailUri && message.attachment.getWaveformThumbnail()) {
         download(
-          FILE_MANAGER_DOWNLOAD_MANNER.AUTO,
+          FILE_MANAGER_DOWNLOAD_MANNER.FORCE,
           message.attachment.getToken(),
           Proto.FileDownload.Selector.WAVEFORM_THUMBNAIL,
           message.attachment.getWaveformThumbnail().getSize(),
           message.attachment.getWaveformThumbnail().getCacheId(),
           message.attachment.getWaveformThumbnail().getName());
       }
-
     }
   }
 
@@ -74,8 +82,13 @@ class MessageAtomBox extends Component {
   };
 
   togglePress = () => {
-    const {downloadedFile} = this.props;
-    if (downloadedFile) {
+    const {message, downloadedFile, uploading, stopUpload} = this.props;
+    if (uploading) {
+      switch (uploading.status) {
+        case FILE_MANAGER_UPLOAD_STATUS.UPLOADING:
+          return stopUpload(getRoomHistoryUploadIdPrefix(message.roomId, message.id));
+      }
+    } else if (downloadedFile) {
       switch (downloadedFile.status) {
         case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
           return this.openFile();
@@ -94,11 +107,42 @@ class MessageAtomBox extends Component {
       return null;
     }
 
-    return this.renderContent();
+    if (message.status !== Proto.RoomMessageStatus.SENDING) {
+      return this.renderContent();
+    } else {
+      return this.renderSending();
+    }
+  }
+
+  renderSending() {
+    const {
+      uploading,
+      message,
+      showText,
+    } = this.props;
+
+    switch (message.messageType) {
+      case Proto.RoomMessageType.VIDEO:
+      case Proto.RoomMessageType.VIDEO_TEXT:
+      case Proto.RoomMessageType.AUDIO:
+      case Proto.RoomMessageType.AUDIO_TEXT:
+      case Proto.RoomMessageType.VOICE:
+      case Proto.RoomMessageType.FILE:
+      case Proto.RoomMessageType.FILE_TEXT:
+      case Proto.RoomMessageType.LOCATION:
+      case Proto.RoomMessageType.CONTACT:
+        return (<Sending
+          showText={showText}
+          message={message.message}
+          pickedFile={message.pickedFile}
+          uploading={uploading}
+          onPress={this.togglePress}/>);
+      default:
+        return this.renderContent();
+    }
   }
 
   renderContent() {
-
     const {
       uploading,
       downloadedFile,
@@ -131,6 +175,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VIDEO_TEXT:
         return (<Video
           message={message.message}
+          pickedFile={message.pickedFile}
           attachment={message.attachment}
           uploading={uploading}
           showText={showText}
@@ -142,6 +187,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.AUDIO_TEXT:
         return (<Audio
           message={message.message}
+          pickedFile={message.pickedFile}
           attachment={message.attachment}
           uploading={uploading}
           showText={showText}
@@ -152,6 +198,7 @@ class MessageAtomBox extends Component {
 
       case Proto.RoomMessageType.VOICE:
         return (<Voice
+          pickedFile={message.pickedFile}
           attachment={message.attachment}
           uploading={uploading}
           downloadedFile={downloadedFile}
@@ -162,6 +209,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.GIF_TEXT:
         return (<Gif
           message={message.message}
+          pickedFile={message.pickedFile}
           attachment={message.attachment}
           uploading={uploading}
           showText={showText}
@@ -173,6 +221,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.FILE_TEXT:
         return (<File
           message={message.message}
+          pickedFile={message.pickedFile}
           attachment={message.attachment}
           uploading={uploading}
           showText={showText}
@@ -226,6 +275,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     pauseDownload: (cacheId) => {
       dispatch(fileManagerDownloadManuallyPaused(cacheId));
+    },
+    stopUpload: (id) => {
+      dispatch(fileManagerUploadManuallyPaused(id));
     },
   };
 };

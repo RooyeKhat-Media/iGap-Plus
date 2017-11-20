@@ -13,6 +13,31 @@ const boxHeight = min([500, (0.8 * height)]);
 
 export default class Image extends MessageElement {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageWidth: 0,
+      imageHeight: 0,
+    };
+  }
+
+  async componentWillMount() {
+    const {attachment, pickedFile} = this.props;
+    if (attachment) {
+      this.setState({
+        imageWidth: attachment.getWidth(),
+        imageHeight: attachment.getHeight(),
+      });
+    } else if (pickedFile) {
+      NativeImage.getSize(prependFileProtocol(pickedFile.fileUri), (width, height) => {
+        this.setState({
+          imageWidth: width,
+          imageHeight: height,
+        });
+      });
+    }
+  }
+
   render() {
     const {message, showText, downloadedFile, smallThumbnailUri} = this.props;
     const {imageWidth, imageHeight} = this.state;

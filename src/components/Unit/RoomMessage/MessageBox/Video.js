@@ -28,7 +28,7 @@ export default class Video extends MessageElement {
 
     return (<View style={{width}}>
       {content}
-      {(message && showText) ? (<Text message={message}/>) : null}
+      {(message && showText) ? (<Text showText={showText} message={message}/>) : null}
     </View>);
   }
 }
