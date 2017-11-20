@@ -6,7 +6,7 @@ import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
 import {goRoomInfo} from '../../navigators/SecondaryNavigator';
-import {sendMessage} from '../../utils/messenger';
+import {sendMessage, sendMultiAttachMessages} from '../../utils/messenger';
 import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
@@ -50,32 +50,52 @@ class RoomHistoryScreen extends Component {
     goRoomInfo(roomId);
   };
   selectImages = async () => {
-    const file = await RNFileSystem.filePicker(FileUtil.images());
-    this.setState({
-      pickedFile: file,
-      attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
-    });
+    const {room} = this.props;
+    const files = await RNFileSystem.filesPicker(FileUtil.images());
+    if (files.length === 1) {
+      this.setState({
+        pickedFile: files[0],
+        attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
+      });
+    } else {
+      sendMultiAttachMessages(room.id, files, ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE);
+    }
   };
   selectFile = async () => {
-    const file = await RNFileSystem.filePicker(FileUtil.allFiles());
-    this.setState({
-      pickedFile: file,
-      attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
-    });
+    const {room} = this.props;
+    const files = await RNFileSystem.filesPicker(FileUtil.allFiles());
+    if (files.length === 1) {
+      this.setState({
+        pickedFile: files[0],
+        attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
+      });
+    } else {
+      sendMultiAttachMessages(room.id, files, ROOM_MESSAGE_ATTACHMENT_TYPE_FILE);
+    }
   };
   selectAudio = async () => {
-    const file = await RNFileSystem.filePicker(FileUtil.audios());
-    this.setState({
-      pickedFile: file,
-      attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
-    });
+    const {room} = this.props;
+    const files = await RNFileSystem.filesPicker(FileUtil.audios());
+    if (files.length === 1) {
+      this.setState({
+        pickedFile: files[0],
+        attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
+      });
+    } else {
+      sendMultiAttachMessages(room.id, files, ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO);
+    }
   };
   selectVideos = async () => {
-    const file = await RNFileSystem.filePicker(FileUtil.videos());
-    this.setState({
-      pickedFile: file,
-      attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
-    });
+    const {room} = this.props;
+    const files = await RNFileSystem.filesPicker(FileUtil.videos());
+    if (files.length === 1) {
+      this.setState({
+        pickedFile: files[0],
+        attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
+      });
+    } else {
+      sendMultiAttachMessages(room.id, files, ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO);
+    }
   };
 
   cancelAttach = () => {

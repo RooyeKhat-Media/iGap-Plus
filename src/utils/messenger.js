@@ -195,3 +195,16 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType) {
     store.dispatch(messengerRoomMessageConcat(room.id, [normalizedRoomMessage.id]));
   }
 }
+
+/**
+ * send Multi Picker File Messages
+ * @param roomId
+ * @param {object[]} files
+ * @param attachmentType
+ * @returns {Promise.<void>}
+ */
+export async function sendMultiAttachMessages(roomId, files, attachmentType) {
+  files.forEach(async (file) => {
+    sendMessage(roomId, null, file, attachmentType);
+  });
+}
