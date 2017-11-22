@@ -84,6 +84,7 @@
 		F59CAA8E174B4FD88FAEFDBF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45283F4755454A9F9C93AB8B /* Octicons.ttf */; };
 		4CF314E0E7CE457DB76BF633 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1763C3223A46FDA931F99D /* libRCTVideo.a */; };
 		2FF497D186A740349676C349 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD9F0A9D13B34EFC82F2BE8C /* libAirMaps.a */; };
+		79DE32D31006434BA407A956 /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C699609D0745E5B8C4B11D /* libRCTContacts.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +516,8 @@
 		BA1763C3223A46FDA931F99D /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		8165F9BB739748DAA37D417E /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		AD9F0A9D13B34EFC82F2BE8C /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		175C79D9C6CD45F096725DC4 /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; name = "RCTContacts.xcodeproj"; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		82C699609D0745E5B8C4B11D /* libRCTContacts.a */ = {isa = PBXFileReference; name = "libRCTContacts.a"; path = "libRCTContacts.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +563,7 @@
 				A0B39CDF647A47C3ABE4666C /* libRCTWebRTC.a in Frameworks */,
 				4CF314E0E7CE457DB76BF633 /* libRCTVideo.a in Frameworks */,
 				2FF497D186A740349676C349 /* libAirMaps.a in Frameworks */,
+				79DE32D31006434BA407A956 /* libRCTContacts.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +865,7 @@
 				250C79A49E244F8CAA64CFA5 /* RCTWebRTC.xcodeproj */,
 				5659B545EC264550BEC960B3 /* RCTVideo.xcodeproj */,
 				8165F9BB739748DAA37D417E /* AirMaps.xcodeproj */,
+				175C79D9C6CD45F096725DC4 /* RCTContacts.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1650,12 +1655,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-webrtciosRCTWebRTC/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-contacts\ios\RCTContacts",
 				);
 				INFOPLIST_FILE = iGapPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1697,12 +1704,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-webrtciosRCTWebRTC/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-contacts\ios\RCTContacts",
 				);
 				INFOPLIST_FILE = iGapPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1748,6 +1757,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-webrtciosRCTWebRTC/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-contacts\ios\RCTContacts",
 				);
 				INFOPLIST_FILE = iGapPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1787,6 +1797,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-webrtciosRCTWebRTC/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-contacts\ios\RCTContacts",
 				);
 				INFOPLIST_FILE = iGapPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1829,11 +1840,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-webrtciosRCTWebRTC/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-contacts\ios\RCTContacts",
 				);
 				INFOPLIST_FILE = "iGapPlus-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1885,11 +1898,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-webrtciosRCTWebRTC/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-contacts\ios\RCTContacts",
 				);
 				INFOPLIST_FILE = "iGapPlus-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1942,6 +1957,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iGapPlus-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1966,6 +1982,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

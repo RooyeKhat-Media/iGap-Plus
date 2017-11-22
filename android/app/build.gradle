@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-contacts')
     compile project(':react-native-maps')
     compile project(':react-native-video')
     compile project(':react-native-webrtc')

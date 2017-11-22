@@ -89,6 +89,8 @@
 	<string>We need to access Camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need to access Microphone</string>
+	<key>NSContactsUsageDescription</key>
+	<string>We need to access your contacts</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

@@ -5077,6 +5077,10 @@ react-native-camera@^0.12.0:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-contacts@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-contacts/-/react-native-contacts-1.0.4.tgz#188d182e992c6c1c16996f2237c0f5dc938f6ac7"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
