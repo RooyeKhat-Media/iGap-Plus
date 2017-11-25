@@ -14,3 +14,9 @@ export const ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE = 'IMAGE';
 export const ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO = 'VIDEO';
 export const ROOM_MESSAGE_ATTACHMENT_TYPE_FILE = 'FILE';
 export const ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO = 'AUDIO';
+
+export const ROOM_MESSAGE_ACTION_REPLY = 'reply';
+export const ROOM_MESSAGE_ACTION_FORWARD = 'forward';
+export const ROOM_MESSAGE_ACTION_DELETE = 'delete';
+export const ROOM_MESSAGE_ACTION_REPORT = 'report';
+export const ROOM_MESSAGE_ACTION_EDIT = 'edit';

@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 
+export const getEntitiesRoomMessage = (state, messageId) => state.entities.roomMessages[messageId];
 export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
 export const getFullMessage = createSelector(
@@ -52,4 +53,3 @@ export const getWaveformThumbnailUri = createSelector(
     return null;
   }
 );
-

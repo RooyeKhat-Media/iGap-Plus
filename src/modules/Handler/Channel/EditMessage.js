@@ -1,11 +1,8 @@
-import Base from '../Base';
+import ChatEditMessage from '../Chat/EditMessage';
 
 /**
  * @property {ProtoChannelEditMessage} _request
  * @property {ProtoChannelEditMessageResponse} _response
  */
-export default class EditMessage extends Base {
-  handle() {
-    console.error('EditMessage', 'Not implemented yet', this);
-  }
+export default class EditMessage extends ChatEditMessage {
 }

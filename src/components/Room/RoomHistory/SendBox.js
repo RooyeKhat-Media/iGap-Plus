@@ -4,6 +4,12 @@ import {black200, gray800, primary} from '../../../themes/default/index';
 import {Icon, IconToggle, MCIcon, TextInput} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
 import {injectIntl, intlShape} from 'react-intl';
+import {
+  ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
+} from '../../../constants/app';
 
 class SendBox extends Component {
 
@@ -21,6 +27,13 @@ class SendBox extends Component {
   componentDidMount() {
     const {Form} = this.props;
     this.onChangeText(Form.text);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {Form} = nextProps;
+    if (Form.text || (Form.editMessageId || this.props.Form.editMessageId)) {
+      this.onChangeText(Form.text);
+    }
   }
 
   animatePop() {
@@ -47,7 +60,7 @@ class SendBox extends Component {
     if (text.length > 0) {
       this.setState({isActive: true, text: text, showAttachment: false});
     } else {
-      this.setState({isActive: false, text: text});
+      this.setState({isActive: false, text: ''});
     }
   };
 
@@ -64,22 +77,22 @@ class SendBox extends Component {
   selectImages = async () => {
     const {Form} = this.props;
     this.toggleAttach();
-    await Form.selectImages();
-  };
-  selectVideos = async () => {
-    const {Form} = this.props;
-    this.toggleAttach();
-    await Form.selectVideos();
+    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE);
   };
   selectAudio = async () => {
     const {Form} = this.props;
     this.toggleAttach();
-    await Form.selectAudio();
+    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO);
+  };
+  selectVideos = async () => {
+    const {Form} = this.props;
+    this.toggleAttach();
+    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO);
   };
   selectFile = async () => {
     const {Form} = this.props;
     this.toggleAttach();
-    await Form.selectFile();
+    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_FILE);
   };
 
   selectCamera = () => {
@@ -243,6 +256,10 @@ class SendBox extends Component {
               onContentSizeChange={this.onContentSizeChange}
               style={[styles.textInputStyle, {height: this.state.height}]}/>
 
+            {Form.editMessageId && <TouchableOpacity onPress={Form.cancelEdit}>
+              <MCIcon name="close" style={styles.iconClose} size={28}/>
+            </TouchableOpacity>}
+
             {this.state.isActive && <TouchableOpacity onPress={this.onSubmit}>
               <MCIcon name="send" style={styles.iconSend} size={28}/>
             </TouchableOpacity>}
@@ -301,14 +318,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   iconMic: {
-    color: '#000',
+    color: '#848484',
   },
   iconSend: {
-    color: '#23fffa',
+    color: '#848484',
   },
   iconAttachment: {
-    color: '#000',
+    color: '#848484',
     transform: [{rotate: '45deg'}],
+  },
+  iconClose: {
+    color: '#4b4b4b',
   },
   rowField: {
     flexDirection: 'row',

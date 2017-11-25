@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {entitiesRoomMessageEdit} from '../../../actions/entities/roomMessages';
 
 /**
  * @property {ProtoChatEditMessage} _request
@@ -6,6 +7,8 @@ import Base from '../Base';
  */
 export default class EditMessage extends Base {
   handle() {
-    console.error('EditMessage', 'Not implemented yet', this);
+    this.dispatch(entitiesRoomMessageEdit(this._response.messageId.toString(), {
+      message: this._response.message,
+    }));
   }
 }

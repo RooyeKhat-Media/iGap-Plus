@@ -1,5 +1,22 @@
-import {CHANNEL_SEND_MESSAGE, CHAT_GET_ROOM, CHAT_SEND_MESSAGE, GROUP_SEND_MESSAGE} from '../constants/methods/index';
-import {ChannelSendMessage, ChatGetRoom, ChatSendMessage, GroupSendMessage, Proto} from '../modules/Proto/index';
+import {
+  CHANNEL_EDIT_MESSAGE,
+  CHANNEL_SEND_MESSAGE,
+  CHAT_EDIT_MESSAGE,
+  CHAT_GET_ROOM,
+  CHAT_SEND_MESSAGE,
+  GROUP_EDIT_MESSAGE,
+  GROUP_SEND_MESSAGE,
+} from '../constants/methods/index';
+import {
+  ChannelEditMessage,
+  ChannelSendMessage,
+  ChatEditMessage,
+  ChatGetRoom,
+  ChatSendMessage,
+  GroupEditMessage,
+  GroupSendMessage,
+  Proto,
+} from '../modules/Proto/index';
 import putState from '../modules/Entities/RegisteredUsers';
 import store from '../configureStore';
 import Api from '../modules/Api/index';
@@ -207,4 +224,39 @@ export async function sendMultiAttachMessages(roomId, files, attachmentType) {
   files.forEach(async (file) => {
     sendMessage(roomId, null, file, attachmentType);
   });
+}
+
+/**
+ * @param roomId
+ * @param longMessageId
+ * @param text
+ * @returns {Promise.<*>}
+ */
+export async function editRoomMessage(roomId, longMessageId, text) {
+  let actionId, proto;
+  const room = store.getState().entities.rooms[roomId];
+  switch (room.type) {
+    case Proto.Room.Type.CHAT:
+      actionId = CHAT_EDIT_MESSAGE;
+      proto = new ChatEditMessage();
+      break;
+
+    case Proto.Room.Type.GROUP:
+      actionId = GROUP_EDIT_MESSAGE;
+      proto = new GroupEditMessage();
+      break;
+
+    case Proto.Room.Type.CHANNEL:
+      actionId = CHANNEL_EDIT_MESSAGE;
+      proto = new ChannelEditMessage();
+      break;
+    default:
+      throw new Error('Invalid room type');
+  }
+
+  proto.setRoomId(room.longId);
+  proto.setMessageId(longMessageId);
+  proto.setMessage(text);
+
+  return await Api.invoke(actionId, proto);
 }

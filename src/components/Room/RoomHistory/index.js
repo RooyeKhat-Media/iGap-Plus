@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {FlatList, ListItem, Toolbar} from '../../BaseUI/index';
@@ -62,26 +63,31 @@ class RoomHistoryComponent extends React.Component {
   }
 
   renderMessagePropToolbar() {
-    const {selectedCount, goRoomInfoBtn, cancelSelected} = this.props;
+    const {selectedCount, cancelSelected, selectedMessageAction, toolbarActions} = this.props;
     return (<Toolbar
       style={styles.toolBar}
       leftElement="close"
       onLeftElementPress={cancelSelected}
-      centerElement={
-        <ListItem
-          centerElement={{
-            primaryText: selectedCount,
-          }}
-          style={styles.toolBarListItem}
-        />
-      }
-      rightElement={['reply', 'forward', 'delete']}
-      onPress={goRoomInfoBtn}
+      centerElement={selectedCount.toString()}
+      rightElement={toolbarActions}
+      onRightElementPress={selectedMessageAction}
     />);
   }
 }
 
 RoomHistoryComponent.propTypes = {
   intl: intlShape.isRequired,
+  room: PropTypes.object.isRequired,
+  Form: PropTypes.object.isRequired,
+  messageList: PropTypes.arrayOf(PropTypes.string),
+  selectedList: PropTypes.object.isRequired,
+  selectedCount: PropTypes.number,
+  cancelSelected: PropTypes.func.isRequired,
+  goRoomInfoBtn: PropTypes.func.isRequired,
+  onMessagePress: PropTypes.func.isRequired,
+  onMessageLongPress: PropTypes.func.isRequired,
+  selectedMessageAction: PropTypes.func.isRequired,
+  toolbarActions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  goBack: PropTypes.func.isRequired,
 };
 export default injectIntl(RoomHistoryComponent);
