@@ -5,7 +5,7 @@ import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
-import {goRoomInfo} from '../../navigators/SecondaryNavigator';
+import {goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
 import {editRoomMessage, sendMessage, sendMultiAttachMessages} from '../../utils/messenger';
 import {
   ROOM_MESSAGE_ACTION_DELETE,
@@ -183,8 +183,9 @@ class RoomHistoryScreen extends Component {
   };
 
   selectedMessageAction = (selected) => {
-    const {getEntitiesRoomMessage} = this.props;
+    const {room, getEntitiesRoomMessage} = this.props;
     const {selectedList} = this.state;
+    const roomMessage = getEntitiesRoomMessage(Object.keys(selectedList)[0]);
     switch (selected.action) {
       case ROOM_MESSAGE_ACTION_REPLY:
         alert('reply');
@@ -196,10 +197,11 @@ class RoomHistoryScreen extends Component {
         alert('delete');
         break;
       case ROOM_MESSAGE_ACTION_REPORT:
-        alert('report');
+        if (roomMessage) {
+          goRoomReport(room.id, roomMessage.longId);
+        }
         break;
       case ROOM_MESSAGE_ACTION_EDIT:
-        const roomMessage = getEntitiesRoomMessage(Object.keys(selectedList)[0]);
         if (roomMessage) {
           this.setState({
             text: roomMessage.message,

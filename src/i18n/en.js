@@ -1153,4 +1153,49 @@ export default {
     defaultMessage: 'Code',
     description: 'userVerifyDelete Page',
   },
+  roomReportTitle: {
+    id: 'roomReport.title',
+    defaultMessage: 'Report',
+    description: 'Room Report Page',
+  },
+  roomReportReason: {
+    id: 'roomReport.reason',
+    defaultMessage: 'Reason',
+    description: 'Room Report Page',
+  },
+  roomReportReasonSpam: {
+    id: 'roomReport.reasonSpam',
+    defaultMessage: 'Spam',
+    description: 'Room Report Page',
+  },
+  roomReportReasonPornography: {
+    id: 'roomReport.reasonPornography',
+    defaultMessage: 'Pornography',
+    description: 'Room Report Page',
+  },
+  roomReportReasonViolence: {
+    id: 'roomReport.reasonViolence',
+    defaultMessage: 'Violence',
+    description: 'Room Report Page',
+  },
+  roomReportReasonAbuse: {
+    id: 'roomReport.reasonAbuse',
+    defaultMessage: 'Abuse',
+    description: 'Room Report Page',
+  },
+  roomReportReasonOther: {
+    id: 'roomReport.reasonOther',
+    defaultMessage: 'Other',
+    description: 'Room Report Page',
+  },
+  roomReportReasonDescription: {
+    id: 'roomReport.reasonDescription',
+    defaultMessage: 'Description',
+    description: 'Room Report Page',
+  },
+  roomReportReasonDescriptionRequired: {
+    id: 'roomReport.reasonDescriptionRequired',
+    defaultMessage: 'Description is Required',
+    description: 'Room Report Page',
+  },
 };

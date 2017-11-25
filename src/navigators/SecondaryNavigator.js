@@ -7,6 +7,7 @@ import {
   ROOM_INFO_SCREEN,
   ROOM_INVITE_LINK_SCREEN,
   ROOM_MEMBER_LIST_SCREEN,
+  ROOM_REPORT_SCREEN,
   SECONDARY_CONTACT_PICKER_SCREEN,
   SECONDARY_INITIAL_SCREEN,
   SECONDARY_ROOM_UPDATE_USERNAME_SCREEN,
@@ -21,6 +22,7 @@ import ContactPickerScreen from '../screens/Contact/ContactPickerScreen';
 import RoomMemberListScreen from '../screens/Room/RoomMemberListScreen';
 import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
 import RoomInviteLinkScreen from '../screens/Room/RoomInviteLinkScreen';
+import RoomReportScreen from '../screens/Room/RoomReportScreen';
 
 export function goRoomHistory(roomId) {
   navigate(ROOM_HISTORY_SCREEN, {roomId});
@@ -54,6 +56,10 @@ export function goRoomInviteLink(roomId) {
   navigate(ROOM_INVITE_LINK_SCREEN, {roomId});
 }
 
+export function goRoomReport(roomId, messageId = null) {
+  navigate(ROOM_REPORT_SCREEN, {roomId, messageId});
+}
+
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},
   [CALL_SCREEN]: {screen: CallScreen},
@@ -64,6 +70,7 @@ const SecondaryNavigator = StackNavigator({
   [ROOM_MEMBER_LIST_SCREEN]: {screen: RoomMemberListScreen},
   [SECONDARY_ROOM_UPDATE_USERNAME_SCREEN]: {screen: RoomUpdateUsernameScreen},
   [ROOM_INVITE_LINK_SCREEN]: {screen: RoomInviteLinkScreen},
+  [ROOM_REPORT_SCREEN]: {screen: RoomReportScreen},
 }, {
   navigationOptions: {
     header: null,
