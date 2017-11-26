@@ -957,6 +957,16 @@ export default {
     defaultMessage: 'Close',
     description: 'roomHistory sendBox screen',
   },
+  roomHistoryDeleteMessagesTitle: {
+    id: 'roomHistory.deleteMessagesTitle',
+    defaultMessage: 'Delete Messages',
+    description: 'roomHistory screen',
+  },
+  roomHistoryDeleteMessagesDescription: {
+    id: 'roomHistory.deleteMessagesDescription',
+    defaultMessage: 'Are You Sure you Want to Delete {count} message from {roomTitle} ?',
+    description: 'roomHistory screen',
+  },
   settingSetting: {
     id: 'setting.setting',
     defaultMessage: 'Setting',

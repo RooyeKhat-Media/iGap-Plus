@@ -4,9 +4,10 @@ import {getRoom} from '../../selector/entities/room';
 import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
+import i18n from '../../i18n';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
 import {goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
-import {editRoomMessage, sendMessage, sendMultiAttachMessages} from '../../utils/messenger';
+import {deleteMessages, editRoomMessage, sendMessage, sendMultiAttachMessages} from '../../utils/messenger';
 import {
   ROOM_MESSAGE_ACTION_DELETE,
   ROOM_MESSAGE_ACTION_EDIT,
@@ -70,6 +71,7 @@ class RoomHistoryScreen extends Component {
       editRoomMessage(room.id, roomMessage.longId, text);
     }
     this.setState({
+      editMessageId: null,
       text: '',
       pickedFile: null,
       attachmentType: null,
@@ -187,6 +189,7 @@ class RoomHistoryScreen extends Component {
     const {selectedList} = this.state;
     const roomMessage = getEntitiesRoomMessage(Object.keys(selectedList)[0]);
     switch (selected.action) {
+
       case ROOM_MESSAGE_ACTION_REPLY:
         alert('reply');
         break;
@@ -194,7 +197,14 @@ class RoomHistoryScreen extends Component {
         alert('forward');
         break;
       case ROOM_MESSAGE_ACTION_DELETE:
-        alert('delete');
+        this.confirm.open(i18n.roomHistoryDeleteMessagesTitle, {
+          ...i18n.roomHistoryDeleteMessagesDescription, values: {
+            roomTitle: room.title,
+            count: Object.keys(selectedList).length,
+          },
+        }, () => {
+          deleteMessages(room.id, Object.keys(selectedList));
+        });
         break;
       case ROOM_MESSAGE_ACTION_REPORT:
         if (roomMessage) {
@@ -218,6 +228,10 @@ class RoomHistoryScreen extends Component {
       editMessageId: null,
       text: '',
     });
+  };
+
+  conformControl = (confirm) => {
+    this.confirm = confirm;
   };
 
   render() {
@@ -248,6 +262,7 @@ class RoomHistoryScreen extends Component {
         onMessagePress={this.onMessagePress}
         onMessageLongPress={this.onMessageLongPress}
         selectedMessageAction={this.selectedMessageAction}
+        conformControl={this.conformControl}
         toolbarActions={toolbarActions}
         goBack={this.props.navigation.goBack}
       />

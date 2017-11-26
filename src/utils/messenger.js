@@ -1,18 +1,24 @@
 import {
+  CHANNEL_DELETE_MESSAGE,
   CHANNEL_EDIT_MESSAGE,
   CHANNEL_SEND_MESSAGE,
+  CHAT_DELETE_MESSAGE,
   CHAT_EDIT_MESSAGE,
   CHAT_GET_ROOM,
   CHAT_SEND_MESSAGE,
+  GROUP_DELETE_MESSAGE,
   GROUP_EDIT_MESSAGE,
   GROUP_SEND_MESSAGE,
 } from '../constants/methods/index';
 import {
+  ChannelDeleteMessage,
   ChannelEditMessage,
   ChannelSendMessage,
+  ChatDeleteMessage,
   ChatEditMessage,
   ChatGetRoom,
   ChatSendMessage,
+  GroupDeleteMessage,
   GroupEditMessage,
   GroupSendMessage,
   Proto,
@@ -35,6 +41,7 @@ import {
 } from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
+import Long from 'long';
 import roomMessageSchema from '../schemas/roomMessage';
 import {entitiesRoomMessageRemove, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManager';
@@ -259,4 +266,41 @@ export async function editRoomMessage(roomId, longMessageId, text) {
   proto.setMessage(text);
 
   return await Api.invoke(actionId, proto);
+}
+
+/**
+ * delete Message List
+ * @param roomId
+ * @param {string[]} messages
+ * @returns {Promise.<void>}
+ */
+export async function deleteMessages(roomId, messages) {
+  const promiseList = [];
+  let actionId, proto;
+  const room = store.getState().entities.rooms[roomId];
+  switch (room.type) {
+    case Proto.Room.Type.CHAT:
+      actionId = CHAT_DELETE_MESSAGE;
+      proto = ChatDeleteMessage;
+      break;
+
+    case Proto.Room.Type.GROUP:
+      actionId = GROUP_DELETE_MESSAGE;
+      proto = GroupDeleteMessage;
+      break;
+
+    case Proto.Room.Type.CHANNEL:
+      actionId = CHANNEL_DELETE_MESSAGE;
+      proto = ChannelDeleteMessage;
+      break;
+    default:
+      throw new Error('Invalid room type');
+  }
+  messages.forEach(function(messageId) {
+    const deleteMessage = new proto();
+    deleteMessage.setRoomId(room.longId);
+    deleteMessage.setMessageId(Long.fromString(messageId));
+    promiseList.push(Api.invoke(actionId, deleteMessage));
+  });
+  await Promise.all(promiseList);
 }

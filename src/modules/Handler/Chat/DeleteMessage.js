@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {entitiesRoomMessageRemove} from '../../../actions/entities/roomMessages';
+import {messengerRoomMessageRemove} from '../../../actions/messenger/roomMessages';
 
 /**
  * @property {ProtoChatDeleteMessage} _request
@@ -6,6 +8,9 @@ import Base from '../Base';
  */
 export default class DeleteMessage extends Base {
   handle() {
-    console.error('DeleteMessage', 'Not implemented yet', this);
+    const roomId = this._response.getRoomId().toString();
+    const messageId = this._response.getMessageId().toString();
+    this.dispatch(entitiesRoomMessageRemove(messageId));
+    this.dispatch(messengerRoomMessageRemove(roomId, messageId));
   }
 }

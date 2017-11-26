@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {FlatList, ListItem, Toolbar} from '../../BaseUI/index';
+import {Confirm, FlatList, ListItem, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
 import SendBox from './SendBox';
 
 class RoomHistoryComponent extends React.Component {
   render() {
-    const {room, Form, messageList, selectedList, selectedCount, onMessagePress, onMessageLongPress} = this.props;
+    const {room, Form, messageList, selectedList, selectedCount, onMessagePress, onMessageLongPress, conformControl} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
@@ -27,8 +27,8 @@ class RoomHistoryComponent extends React.Component {
                   roomType={room.type}
                   roomId={room.id}
                   messageId={item}/>)}/>
-
           </View>
+          <Confirm control={conformControl}/>
           <SendBox Form={Form}/>
         </View>
       </View>

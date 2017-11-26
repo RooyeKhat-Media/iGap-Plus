@@ -1,11 +1,8 @@
-import Base from '../Base';
+import ChatDeleteMessage from '../Chat/DeleteMessage';
 
 /**
  * @property {ProtoChannelDeleteMessage} _request
  * @property {ProtoChannelDeleteMessageResponse} _response
  */
-export default class DeleteMessage extends Base {
-  handle() {
-    console.error('DeleteMessage', 'Not implemented yet', this);
-  }
+export default class DeleteMessage extends ChatDeleteMessage {
 }
