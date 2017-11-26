@@ -49,6 +49,9 @@ export default function(state = initialState, action) {
       };
     case FILE_MANAGER_UPLOAD_MANUALLY_PAUSED:
       assertDisposing(action.id, `Upload id "${action.id}" is not disposed after file upload is manually paused!`);
+      if (state[action.id] && state[action.id].status === FILE_MANAGER_UPLOAD_STATUS.COMPLETED) {
+        return state;
+      }
       return {
         ...state,
         [action.id]: {

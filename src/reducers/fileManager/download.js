@@ -43,6 +43,9 @@ export default function(state = initialState, action) {
         },
       };
     case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
+      if (state[action.cacheId] && state[action.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
+        return state;
+      }
       return {
         ...state,
         [action.cacheId]: {
@@ -50,6 +53,9 @@ export default function(state = initialState, action) {
         },
       };
     case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
+      if (state[action.cacheId] && state[action.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
+        return state;
+      }
       return {
         ...state,
         [action.cacheId]: {
