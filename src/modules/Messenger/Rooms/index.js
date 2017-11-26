@@ -12,6 +12,7 @@ import {entitiesRoomsAddFull} from '../../../actions/entities/rooms';
 import room from '../../../schemas/room';
 import Rooms from '../../../models/messenger/Rooms';
 import putState from '../../Entities/Rooms/index';
+import {sleep} from '../../../utils/core';
 
 
 /**
@@ -19,12 +20,16 @@ import putState from '../../Entities/Rooms/index';
  */
 export async function initialRoomsState() {
   if (isEmpty(store.getState().messenger.rooms)) {
+    const promises = [];
     const rooms = await Rooms.loadAllFromDb();
     for (const roomId in rooms) {
       if (rooms.hasOwnProperty(roomId)) {
-        await putState(roomId);
+        promises.push(putState(roomId));
       }
     }
+
+    await Promise.all(promises);
+
     if (isEmpty(store.getState().messenger.rooms)) {
       store.dispatch(messengerRoomAddList(rooms, false));
     }
@@ -35,7 +40,7 @@ export async function initialRoomsState() {
  * @return {Promise.<void>}
  */
 export async function serverRoomsState() {
-
+  let tries = 0;
   let offset = 0;
   let sort = Long.fromInt(10000000);
 
@@ -75,8 +80,13 @@ export async function serverRoomsState() {
       store.dispatch(messengerRoomAddList(payload));
 
       offset += clientGetRoomListResponse.getRoomsList().length;
-
+      tries = 0;
     } catch (e) {
+      await sleep(2);
+      tries++;
+      if (tries > 3) {
+        break;
+      }
       console.error('clientGetRoomListResponse', e);
       break;
     }

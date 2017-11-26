@@ -20,7 +20,7 @@ export function messengerRoomRemove(roomId) {
 /**
  * @param {MessengerRoomsPayload} payload
  * @param {boolean} fromServer
- * @return {{type: string, payload: object}}
+ * @return {{type: string, payload: {id:string,sort:string}}}
  */
 export function messengerRoomAddList(payload, fromServer = true) {
   return {

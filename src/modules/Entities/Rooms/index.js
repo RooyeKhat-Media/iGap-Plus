@@ -7,6 +7,24 @@ import {ClientGetRoom} from '../../Proto/index';
 import Rooms from '../../../models/entities/Rooms';
 import {entitiesRoomsAdd} from '../../../actions/entities/rooms';
 import putRegisteredUserState from '../RegisteredUsers';
+import {isEmpty} from 'lodash';
+import Collector from '../../Collector';
+
+const {collect} = Collector(
+  (collected) => {
+    const roomEntities = {};
+    for (const normalizedRoom of collected.values()) {
+      if (!store.getState().entities.rooms[normalizedRoom.id]) {
+        roomEntities[normalizedRoom.id] = normalizedRoom;
+      }
+    }
+
+    if (!isEmpty(roomEntities)) {
+      store.dispatch(entitiesRoomsAdd(roomEntities, false));
+    }
+  },
+  250
+);
 
 /**
  * @param {string} id
@@ -24,11 +42,7 @@ export default async function putState(id, offlineInvokeApi = false) {
         if (normalizedRoom.chatPeer) {
           putRegisteredUserState(normalizedRoom.chatPeer);
         }
-        if (!store.getState().entities.rooms[id]) {
-          store.dispatch(entitiesRoomsAdd({
-            [normalizedRoom.id]: normalizedRoom,
-          }, false));
-        }
+        collect(normalizedRoom, normalizedRoom.id);
       } finally {
         if (offlineInvokeApi) {
           await apiInvoke(id);

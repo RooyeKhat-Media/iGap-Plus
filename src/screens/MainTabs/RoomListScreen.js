@@ -11,12 +11,14 @@ class RoomListScreen extends Component {
     await initialRoomsState();
   }
 
+  onPressRoomListComponent = (room) => {
+    goRoomHistory(room.id);
+  };
+
   render() {
     const {roomList} = this.props;
     return (
-      <RoomListComponent onPress={(id) => {
-        goRoomHistory(id);
-      }} roomList={roomList}/>
+      <RoomListComponent onPress={this.onPressRoomListComponent} roomList={roomList}/>
     );
   }
 }

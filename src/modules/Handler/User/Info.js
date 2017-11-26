@@ -2,6 +2,17 @@ import {normalize} from 'normalizr';
 import Base from '../Base';
 import {entitiesRegisteredUserAdd} from '../../../actions/entities/registeredUser';
 import registeredUser from '../../../schemas/registeredUser';
+import store from '../../../configureStore';
+import Collector from '../../Collector';
+
+const {collect} = Collector(
+  (collected) => {
+    for (const registeredUser of collected.values()) {
+      store.dispatch(entitiesRegisteredUserAdd(registeredUser));
+    }
+  },
+  250
+);
 
 /**
  * @property {ProtoUserInfo} _request
@@ -9,7 +20,7 @@ import registeredUser from '../../../schemas/registeredUser';
  */
 export default class Info extends Base {
   handle() {
-    const normalizedData = normalize(this._response.user, registeredUser);
-    this.dispatch(entitiesRegisteredUserAdd(normalizedData.entities.registeredUsers));
+    const normalizedData = normalize(this._response.getUser(), registeredUser);
+    collect(normalizedData.entities.registeredUsers, this._response.getUser().getId().toString());
   }
 }
