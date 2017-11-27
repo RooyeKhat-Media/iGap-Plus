@@ -7,6 +7,7 @@ import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
+import {goAvatarList} from '../../../navigators/SecondaryNavigator';
 
 class RoomInfoComponent extends React.Component {
   render() {
@@ -26,7 +27,8 @@ class RoomInfoComponent extends React.Component {
 
         <ScrollView style={styles.scroll}>
 
-          <View style={styles.avatarWrap}>
+          <TouchableOpacity style={styles.avatarWrap}
+            onPress={() => goAvatarList(room.id, access.isChat ? room.chatPeer.id : null)}>
             <Avatar
               roomId={room.id}
               circle={false}
@@ -72,7 +74,7 @@ class RoomInfoComponent extends React.Component {
                 onPress={editRoom}
                 text={intl.formatMessage(i18n.roomInfoEditRoomBtn)}/>)}
             </View>
-          </View>
+          </TouchableOpacity>
 
           <View style={styles.sectionWrap}>
 

@@ -1,11 +1,8 @@
-import Base from '../../Base';
+import GroupDeleteAvatar from '../../Group/Avatar/Delete';
 
 /**
  * @property {ProtoChannelAvatarDelete} _request
  * @property {ProtoChannelAvatarDeleteResponse} _response
  */
-export default class Delete extends Base {
-  handle() {
-    console.error('Delete', 'Not implemented yet', this);
-  }
+export default class Delete extends GroupDeleteAvatar {
 }

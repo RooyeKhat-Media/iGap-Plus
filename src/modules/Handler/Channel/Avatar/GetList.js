@@ -1,11 +1,8 @@
-import Base from '../../Base';
+import GroupGetList from '../../Group/Avatar/GetList';
 
 /**
  * @property {ProtoChannelAvatarGetList} _request
  * @property {ProtoChannelAvatarGetListResponse} _response
  */
-export default class GetList extends Base {
-  handle() {
-    console.error('GetList', 'Not implemented yet', this);
-  }
+export default class GetList extends GroupGetList {
 }

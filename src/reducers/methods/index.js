@@ -10,6 +10,8 @@ import {rule} from './user/privacy/rule';
 import {blockUser} from './user/contacts/block';
 import {userSession} from './user/session';
 import {selfRemove} from './user/profile/selfRemove';
+import {getAvatarList} from './rooms/getAvatarList';
+
 
 const methodsReducer = combineReducers({
   nickName,
@@ -23,5 +25,6 @@ const methodsReducer = combineReducers({
   blockUser,
   userSession,
   selfRemove,
+  getAvatarList,
 });
 export default methodsReducer;

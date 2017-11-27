@@ -1208,4 +1208,19 @@ export default {
     defaultMessage: 'Description is Required',
     description: 'Room Report Page',
   },
+  avatarListSaveToGallery: {
+    id: 'avatarList.saveToGallery',
+    defaultMessage: 'Save To Gallery',
+    description: 'avatarListSave Page',
+  },
+  avatarListShare: {
+    id: 'avatarList.share',
+    defaultMessage: 'Share',
+    description: 'avatarListSave Page',
+  },
+  avatarListDeletePhoto: {
+    id: 'avatarList.deletePhoto',
+    defaultMessage: 'Delete Photo',
+    description: 'avatarListSave Page',
+  },
 };

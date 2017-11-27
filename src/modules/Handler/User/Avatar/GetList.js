@@ -1,4 +1,6 @@
 import Base from '../../Base';
+import {getAvatarList} from '../../../../actions/methods/rooms/getAvatarList';
+
 
 /**
  * @property {ProtoUserAvatarGetList} _request
@@ -6,6 +8,8 @@ import Base from '../../Base';
  */
 export default class GetList extends Base {
   handle() {
-    console.error('GetList', 'Not implemented yet', this);
+    if (this._request) {
+      this.dispatch(getAvatarList('U' + this._request.getUserId().toString(), this._response.getAvatarList()));
+    }
   }
 }

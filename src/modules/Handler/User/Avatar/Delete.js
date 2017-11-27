@@ -1,4 +1,6 @@
 import Base from '../../Base';
+import {deleteAvatar} from '../../../../actions/methods/rooms/getAvatarList';
+import {getUserId} from '../../../../utils/app';
 
 /**
  * @property {ProtoUserAvatarDelete} _request
@@ -6,6 +8,6 @@ import Base from '../../Base';
  */
 export default class Delete extends Base {
   handle() {
-    console.error('Delete', 'Not implemented yet', this);
+    this.dispatch(deleteAvatar(getUserId(false), null, this._response.getId()));
   }
 }
