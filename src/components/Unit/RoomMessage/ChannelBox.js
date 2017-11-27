@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import MessageBox from './MessageBox/index';
 import {MCIcon} from '../../BaseUI';
 import {black200} from '../../../themes/default/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import AddonTime from './MessageBox/AddonTime';
+import {channelStyle as styles} from './index.styles';
 
 export default ({message, showText, onMessagePress, onMessageLongPress}) => (
   <View style={styles.container}>
@@ -54,71 +55,3 @@ export default ({message, showText, onMessagePress, onMessageLongPress}) => (
     </View>
   </View>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-  },
-  avatarWrap: {
-    width: 50,
-    padding: 7,
-  },
-  layoutheader: {
-    marginTop: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  textTitle: {
-    marginLeft: 10,
-    flex: 1,
-    color: black200,
-    fontSize: 18,
-  },
-  layoutChannelInfo: {
-    marginTop: 5,
-    marginBottom: 5,
-    flex: 1,
-  },
-  sub1: {
-    flexDirection: 'row',
-  },
-  sub2: {
-    flexDirection: 'row',
-    marginTop: -4,
-    marginBottom: 12,
-  },
-  textCount: {
-    margin: 4,
-    color: black200,
-  },
-  rowField: {
-    flexDirection: 'row',
-  },
-  textCountView: {
-    color: black200,
-    fontSize: 14,
-    marginLeft: 4,
-    marginRight: 4,
-    marginTop: -4,
-  },
-  textSigniture: {
-    color: black200,
-    fontSize: 14,
-    marginTop: -4,
-  },
-  moreIcon: {
-    marginRight: 10,
-    flex: 1,
-    alignItems: 'flex-end',
-  },
-  textMessage: {
-    color: black200,
-    fontSize: 16,
-    marginTop: 4,
-    marginBottom: 4,
-  },
-  sendIcon: {
-    marginLeft: 30,
-    flex: 1,
-  },
-});

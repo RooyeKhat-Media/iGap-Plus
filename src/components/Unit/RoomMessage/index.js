@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 import {Proto} from '../../../modules/Proto/index';
-import LogBox from './LoxBox';
+import LogBox from './LogBox';
 import OwnerBox from './OwnerBox';
 import ChatBox from './ChatBox';
 import GroupBox from './GroupBox';
@@ -15,13 +15,17 @@ class RoomMessage extends React.Component {
     const {message, authorHash, roomType, onMessagePress, onMessageLongPress} = this.props;
 
     if (roomType === Proto.Room.Type.CHANNEL) {
-      return (<ChannelBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message} showText={false}/>);
+      return (<ChannelBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
+        showText={false}/>);
     } else if (message.authorHash === authorHash) {
-      return (<OwnerBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message} showText={true}/>);
+      return (<OwnerBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
+        showText={true}/>);
     } else if (roomType === Proto.Room.Type.CHAT) {
-      return (<ChatBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message} showText={true}/>);
+      return (<ChatBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
+        showText={true}/>);
     } else if (roomType === Proto.Room.Type.GROUP) {
-      return (<GroupBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message} showText={true}/>);
+      return (<GroupBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
+        showText={true}/>);
     }
 
     return null;

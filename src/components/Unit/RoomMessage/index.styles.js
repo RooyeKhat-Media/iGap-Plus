@@ -1,20 +1,15 @@
-import {primary} from '../../../themes/default/index';
+import {black200, white, white500} from '../../../themes/default/index';
+import {StyleSheet} from 'react-native';
 
-export default {
+export const chatStyle = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    padding: 5,
-    paddingBottom: 0,
-    paddingTop: 0,
-  },
-  avatarWrap: {
-    width: 40,
+    marginLeft: 5,
   },
   messageBox: {
-    backgroundColor: '#fff',
-    borderRadius: 5,
+    backgroundColor: white,
+    borderRadius: 15,
     padding: 5,
     minWidth: 30,
     margin: 5,
@@ -22,90 +17,176 @@ export default {
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  userTitle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: primary,
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'rgba(0,0,0,0)',
+    alignSelf: 'flex-end',
+    marginRight: -14,
+    borderLeftWidth: 0,
+    borderRightWidth: 16,
+    borderTopWidth: 6,
+    borderBottomWidth: 5,
+    borderLeftColor: 'rgba(0,0,0,0)',
+    borderRightColor: white,
+    borderTopColor: 'rgba(0,0,0,0)',
+    borderBottomColor: 'rgba(0,0,0,0)',
+    transform: [{rotate: '-45deg'}],
   },
-  message: {
-    flex: 1,
-  },
-  footerWrap: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  timeText: {
-    fontSize: 10,
-    color: '#aaa',
-  },
-  viewsWrap: {
-    flexDirection: 'row',
-    marginRight: 10,
-  },
-  viewText: {
-    fontSize: 10,
-    color: '#aaa',
-    marginLeft: 2,
-  },
-  channelThumbsWrap: {
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-  },
-  channelThumb: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: 'rgba(70, 10, 10, 0.2)',
-
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  channelThumbUp: {
-    marginBottom: 5,
-  },
-  channelThumbUpActive: {
-    backgroundColor: 'rgba(0, 151, 13, 0.3)',
-  },
-  channelThumbDownActive: {
-    backgroundColor: 'rgba(233, 36, 141, 0.5)',
-  },
-};
-
-export const defaultStyle = {
+});
+export const logStyle = StyleSheet.create({
   container: {
     flex: 1,
     margin: 5,
     flexDirection: 'row',
-  },
-  messageBox: {
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 5,
-    minWidth: 30,
-  },
-  dateWrap: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  dateText: {
-    fontSize: 10,
-  },
-};
-export const logStyle = {
-  container: {
     justifyContent: 'center',
   },
-};
-export const ownerStyle = {
+  message: {
+    color: '#202020',
+  },
+});
+export const ownerStyle = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginRight: 5,
   },
   messageBox: {
-    backgroundColor: '#ccc',
+    backgroundColor: white500,
+    borderRadius: 15,
+    padding: 5,
+    minWidth: 30,
+    margin: 5,
+    maxWidth: 260,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
-};
-export const groupStyle = {};
-export const chatStyle = {};
-export const channelStyle = {};
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'rgba(0,0,0,0)',
+    alignSelf: 'flex-end',
+    marginLeft: -13,
+    borderLeftWidth: 15,
+    borderRightWidth: 0,
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderLeftColor: white500,
+    borderRightColor: 'rgba(0,0,0,0)',
+    borderTopColor: 'rgba(0,0,0,0)',
+    borderBottomColor: 'rgba(0,0,0,0)',
+    transform: [{rotate: '45deg'}],
+  },
+});
+export const groupStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 5,
+    justifyContent: 'flex-start',
+  },
+  avatarWrap: {
+    width: 40,
+    height: 40,
+    alignSelf: 'flex-end',
+    marginRight: -3,
+  },
+  messageBox: {
+    backgroundColor: white,
+    borderRadius: 15,
+    padding: 5,
+    minWidth: 30,
+    margin: 5,
+    maxWidth: 260,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'rgba(0,0,0,0)',
+    alignSelf: 'flex-end',
+    marginRight: -14,
+    borderLeftWidth: 0,
+    borderRightWidth: 16,
+    borderTopWidth: 6,
+    borderBottomWidth: 5,
+    borderLeftColor: 'rgba(0,0,0,0)',
+    borderRightColor: white,
+    borderTopColor: 'rgba(0,0,0,0)',
+    borderBottomColor: 'rgba(0,0,0,0)',
+    transform: [{rotate: '-45deg'}],
+  },
+  author: {
+    fontSize: 11,
+    fontWeight: 'bold',
+  },
+});
+export const channelStyle = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+  },
+  avatarWrap: {
+    width: 50,
+    padding: 7,
+  },
+  layoutheader: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textTitle: {
+    marginLeft: 10,
+    flex: 1,
+    color: black200,
+    fontSize: 18,
+  },
+  layoutChannelInfo: {
+    marginTop: 5,
+    marginBottom: 5,
+    flex: 1,
+  },
+  sub1: {
+    flexDirection: 'row',
+  },
+  sub2: {
+    flexDirection: 'row',
+    marginTop: -4,
+    marginBottom: 12,
+  },
+  textCount: {
+    margin: 4,
+    color: black200,
+  },
+  rowField: {
+    flexDirection: 'row',
+  },
+  textCountView: {
+    color: black200,
+    fontSize: 14,
+    marginLeft: 4,
+    marginRight: 4,
+    marginTop: -4,
+  },
+  textSigniture: {
+    color: black200,
+    fontSize: 14,
+    marginTop: -4,
+  },
+  moreIcon: {
+    marginRight: 10,
+    flex: 1,
+    alignItems: 'flex-end',
+  },
+  textMessage: {
+    color: black200,
+    fontSize: 16,
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  sendIcon: {
+    marginLeft: 30,
+    flex: 1,
+  },
+});
