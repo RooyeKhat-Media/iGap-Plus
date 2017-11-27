@@ -4,20 +4,6 @@ import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 export const getEntitiesRoomMessage = (state, messageId) => state.entities.roomMessages[messageId];
 export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
-export const getFullMessage = createSelector(
-  getRoomMessage,
-  (state) => state.entities.registeredUsers,
-  (roomMessage, registeredUsers) => {
-    if (!roomMessage) {
-      return null;
-    }
-    return {
-      ...roomMessage,
-      authorUserObject: roomMessage.authorUser ? registeredUsers[roomMessage.authorUser] : null,
-    };
-  }
-);
-
 export const getDownloadedFile = createSelector(
   (state, attachment) => attachment,
   (state) => state.fileManager.download,

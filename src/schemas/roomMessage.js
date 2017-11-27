@@ -38,18 +38,18 @@ export const flatProtoRoomMessage = (roomMessage) => {
     updateTime: roomMessage.getUpdateTime(),
     deleted: roomMessage.getDeleted(),
     forwardFrom: flatProtoRoomMessage(roomMessage.getForwardFrom()),
-    replyTo: flatProtoRoomMessage(roomMessage.getReplyTo()),
+    replyTo: roomMessage.getReplyTo(),
     previousMessageId: roomMessage.getPreviousMessageId(),
   };
 
   if (author) {
     if (author.getUser()) {
-      flat.authorUser = author.getUser().getUserId();
+      flat.authorUser = author.getUser().getUserId().toString();
       flat.authorUserCacheId = author.getUser().getCacheId();
     }
 
     if (author.getRoom()) {
-      flat.authorRoom = author.getRoom().getRoomId();
+      flat.authorRoom = author.getRoom().getRoomId().toString();
     }
   }
 

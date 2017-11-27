@@ -10,40 +10,35 @@ export const getRoom = createSelector(
   (state) => state.entities,
   getRoomId,
   (entities, roomId) => {
-    const room = entities.rooms[roomId];
-    if (!room) {
-      return null;
-    }
-    return {
-      ...room,
-      chatPeer: room && room.chatPeer ? entities.registeredUsers[room.chatPeer] : null,
-    };
+    return entities.rooms[roomId];
   }
 );
 
-export const getRoomWithMessages = createSelector(
+export const getRoomPeer = createSelector(
+  getRoom,
+  (state) => state.entities.registeredUsers,
+  (room, registeredUsers) => {
+    return room ? registeredUsers[room.chatPeer] : null;
+  }
+);
+
+export const getRoomLastMessage = createSelector(
   getRoom,
   (state) => state.entities.roomMessages,
   (room, roomMessages) => {
-    if (!room) {
-      return null;
-    }
-    return {
-      ...room,
-      lastMessage: room ? roomMessages[room.lastMessage] : null,
-      firstUnreadMessage: room ? roomMessages[room.firstUnreadMessage] : null,
-    };
+    return room ? roomMessages[room.lastMessage] : null;
   }
 );
 
 export const getRoomAvatar = createSelector(
   getRoom,
+  getRoomPeer,
   (state, props) => props.size,
-  (room, size) => {
+  (room, chatPeer, size) => {
     if (!room) {
       return null;
     }
-    const avatar = room.groupAvatar || room.channelAvatar || (room.chatPeer ? room.chatPeer.avatar : null);
+    const avatar = room.groupAvatar || room.channelAvatar || (chatPeer ? chatPeer.avatar : null);
     let selector = null;
     let fileSelector = null;
 
@@ -84,5 +79,15 @@ export const getRoomAvatarUri = createSelector(
       return downloads[roomAvatar.avatar.cacheId].uri;
     }
     return null;
+  }
+);
+
+export const getRoomTitle = createSelector(
+  getRoom,
+  (room) => {
+    return room ? {
+      title: room.title,
+      color: room.color,
+    } : null;
   }
 );

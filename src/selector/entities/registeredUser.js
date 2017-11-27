@@ -57,7 +57,6 @@ export const getUserAvatar = createSelector(
   }
 );
 
-
 export const getUserAvatarUri = createSelector(
   getUserAvatar,
   (state) => state.fileManager.download,
@@ -72,5 +71,15 @@ export const getUserAvatarUri = createSelector(
       return downloads[userAvatar.avatar.cacheId].uri;
     }
     return null;
+  }
+);
+
+export const getUserTitle = createSelector(
+  getUser,
+  (user) => {
+    return user ? {
+      title: user.displayName,
+      color: user.color,
+    } : null;
   }
 );

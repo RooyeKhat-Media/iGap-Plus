@@ -123,13 +123,16 @@ export function getRoomHistoryUploadIdPrefix(roomId, messageId) {
  * @param {string} roomId
  */
 export function prepareRoomMessage(normalizedRoomMessage, roomId) {
+  if (!normalizedRoomMessage) {
+    return;
+  }
   normalizedRoomMessage.roomId = roomId;
 
   putStateRoom(roomId);
 
   if (normalizedRoomMessage.authorUser) {
     putStateRegisteredUser(
-      normalizedRoomMessage.authorUser.toString(),
+      normalizedRoomMessage.authorUser,
       normalizedRoomMessage.authorUserCacheId
     );
   }
@@ -137,11 +140,11 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId) {
   if (normalizedRoomMessage.forwardFrom) {
     if (normalizedRoomMessage.forwardFrom.authorUser) {
       putStateRegisteredUser(
-        normalizedRoomMessage.forwardFrom.authorUser.toString(),
+        normalizedRoomMessage.forwardFrom.authorUser,
         normalizedRoomMessage.forwardFrom.authorUserCacheId
       );
     } else if (normalizedRoomMessage.forwardFrom.authorRoom) {
-      normalizedRoomMessage.forwardFrom.roomId = normalizedRoomMessage.forwardFrom.authorRoom.toString();
+      normalizedRoomMessage.forwardFrom.roomId = normalizedRoomMessage.forwardFrom.authorRoom;
       putStateRoom(normalizedRoomMessage.forwardFrom.roomId);
     }
   }

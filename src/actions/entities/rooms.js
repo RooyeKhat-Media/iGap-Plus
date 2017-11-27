@@ -5,6 +5,7 @@
 import {entitiesRoomMessagesAdd} from './roomMessages';
 import {entitiesRegisteredUserAdd} from './registeredUser';
 import {prepareRoomMessage} from '../../utils/app';
+import {toPairs} from 'lodash';
 
 export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
 export const ENTITIES_ROOM_EDIT = 'ENTITIES_ROOM_EDIT';
@@ -32,18 +33,18 @@ export function entitiesRoomsAddFull(data) {
     if (data.entities.registeredUsers) {
       dispatch(entitiesRegisteredUserAdd(data.entities.registeredUsers));
     }
-    for (const roomId in data.entities.rooms) {
-      if (data.entities.rooms.hasOwnProperty(roomId)) {
-        if (data.entities.rooms[roomId].lastMessage) {
-          const lastMessage = data.entities.rooms[roomId].lastMessage;
-          prepareRoomMessage(data.entities.roomMessages[lastMessage], roomId);
-        }
-        if (data.entities.rooms[roomId].firstUnreadMessage) {
-          const firstUnreadMessage = data.entities.rooms[roomId].firstUnreadMessage;
-          prepareRoomMessage(data.entities.roomMessages[firstUnreadMessage], roomId);
-        }
+    toPairs(data.entities.rooms).forEach(([roomId, room]) => {
+      if (room.lastMessage) {
+        const replyTo = data.entities.roomMessages[room.lastMessage] ? data.entities.roomMessages[room.lastMessage].replyTo : null;
+        prepareRoomMessage(data.entities.roomMessages[room.lastMessage], roomId);
+        prepareRoomMessage(data.entities.roomMessages[replyTo], roomId);
       }
-    }
+      if (room.firstUnreadMessage) {
+        const replyTo = data.entities.roomMessages[room.firstUnreadMessage] ? data.entities.roomMessages[room.firstUnreadMessage].replyTo : null;
+        prepareRoomMessage(data.entities.roomMessages[room.firstUnreadMessage], roomId);
+        prepareRoomMessage(data.entities.roomMessages[replyTo], roomId);
+      }
+    });
     dispatch(entitiesRoomMessagesAdd(data.entities.roomMessages));
     dispatch(entitiesRoomsAdd(data.entities.rooms));
 

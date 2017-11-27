@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getAuthorHash} from '../../utils/app';
 import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
-import {getFullMessage} from '../../selector/entities/roomMessage';
+import {getRoomMessage} from '../../selector/entities/roomMessage';
 
 class RoomMessage extends Component {
 
@@ -39,7 +39,7 @@ class RoomMessage extends Component {
 const makeMapStateToProps = () => {
   return (state, props) => {
     return {
-      message: getFullMessage(state, props),
+      message: getRoomMessage(state, props),
     };
   };
 };

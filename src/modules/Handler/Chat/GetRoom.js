@@ -9,7 +9,7 @@ import {entitiesRoomsAddFull} from '../../../actions/entities/rooms';
  */
 export default class GetRoom extends Base {
   handle() {
-    const normalizedData = normalize(this.getRoom(), room);
+    const normalizedData = normalize(this._response.getRoom(), room);
     this.dispatch(entitiesRoomsAddFull(normalizedData));
   }
 }
