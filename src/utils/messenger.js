@@ -158,7 +158,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType) {
     const sendMessageResponse = await Api.invoke(actionId, proto);
 
     const normalizedRoomMessage = normalizeRoomMessage(sendMessageResponse.getRoomMessage());
-    prepareRoomMessage(normalizedRoomMessage, room.id);
+    prepareRoomMessage(normalizedRoomMessage, room.id, false);
     normalizedRoomMessage.pickedFile = pickedFile;
 
     store.dispatch(entitiesRoomMessagesAdd({[normalizedRoomMessage.id]: normalizedRoomMessage}));
@@ -212,7 +212,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType) {
     }
 
     const normalizedRoomMessage = normalizeRoomMessage(roomMessage);
-    prepareRoomMessage(normalizedRoomMessage, roomId);
+    prepareRoomMessage(normalizedRoomMessage, roomId, false);
     normalizedRoomMessage.pickedFile = pickedFile;
 
     store.dispatch(entitiesRoomMessagesAdd({[normalizedRoomMessage.id]: normalizedRoomMessage}));

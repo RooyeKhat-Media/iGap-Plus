@@ -36,13 +36,13 @@ export function entitiesRoomsAddFull(data) {
     toPairs(data.entities.rooms).forEach(([roomId, room]) => {
       if (room.lastMessage) {
         const replyTo = data.entities.roomMessages[room.lastMessage] ? data.entities.roomMessages[room.lastMessage].replyTo : null;
-        prepareRoomMessage(data.entities.roomMessages[room.lastMessage], roomId);
-        prepareRoomMessage(data.entities.roomMessages[replyTo], roomId);
+        prepareRoomMessage(data.entities.roomMessages[room.lastMessage], roomId, false);
+        prepareRoomMessage(data.entities.roomMessages[replyTo], roomId, false);
       }
       if (room.firstUnreadMessage) {
         const replyTo = data.entities.roomMessages[room.firstUnreadMessage] ? data.entities.roomMessages[room.firstUnreadMessage].replyTo : null;
-        prepareRoomMessage(data.entities.roomMessages[room.firstUnreadMessage], roomId);
-        prepareRoomMessage(data.entities.roomMessages[replyTo], roomId);
+        prepareRoomMessage(data.entities.roomMessages[room.firstUnreadMessage], roomId, false);
+        prepareRoomMessage(data.entities.roomMessages[replyTo], roomId, false);
       }
     });
     dispatch(entitiesRoomMessagesAdd(data.entities.roomMessages));

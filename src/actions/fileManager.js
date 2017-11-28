@@ -4,8 +4,9 @@
 
 import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../constants/fileManager';
 
-import {download, upload} from '../modules/FileManager';
+import {download, downloadingPromise, upload} from '../modules/FileManager';
 import {randomString} from '../utils/core';
+import {Proto} from '../modules/Proto/index';
 
 export const FILE_MANAGER_DOWNLOAD_PENDING = 'FILE_MANAGER_DOWNLOAD_PENDING';
 export const FILE_MANAGER_DOWNLOAD_PROGRESS = 'FILE_MANAGER_DOWNLOAD_PROGRESS';
@@ -20,28 +21,33 @@ export const FILE_MANAGER_UPLOAD_COMPLETED = 'FILE_MANAGER_UPLOAD_COMPLETED';
 export const FILE_MANAGER_UPLOAD_MANUALLY_PAUSED = 'FILE_MANAGER_UPLOAD_MANUALLY_PAUSED';
 export const FILE_MANAGER_UPLOAD_DISPOSED = 'FILE_MANAGER_UPLOAD_DISPOSED';
 
-export function fileManagerDownloadPending(cacheId, promise, uid) {
+export function fileManagerDownloadPending(cacheId, uid) {
   return {
     type: FILE_MANAGER_DOWNLOAD_PENDING,
     cacheId,
-    promise,
     uid,
   };
 }
 
-export function fileManagerDownloadProgress(cacheId, progress) {
+/**
+ * @param payload
+ * @returns {{type: string, payload: [{cacheId: progress}]}}
+ */
+export function fileManagerDownloadProgress(payload) {
   return {
     type: FILE_MANAGER_DOWNLOAD_PROGRESS,
-    cacheId,
-    progress,
+    payload,
   };
 }
 
-export function fileManagerDownloadCompleted(cacheId, uri) {
+/**
+ * @param payload
+ * @returns {{type: string, payload: [{cacheId: uri}]}}
+ */
+export function fileManagerDownloadCompleted(payload) {
   return {
     type: FILE_MANAGER_DOWNLOAD_COMPLETED,
-    cacheId,
-    uri,
+    payload,
   };
 }
 
@@ -72,13 +78,14 @@ export function fileManagerDownloadAutoPaused(cacheId) {
  */
 export function fileManagerDownload(manner, token, selector, size, cacheId, fileName, priority) {
   return (dispatch, getState) => {
-    const file = getState().fileManager.download[cacheId];
 
+    if (downloadingPromise.has(cacheId)) {
+      return downloadingPromise.get(cacheId);
+    }
+
+    const file = getState().fileManager.download[cacheId];
     if (file) {
       switch (file.status) {
-        case FILE_MANAGER_DOWNLOAD_STATUS.PENDING:
-        case FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING:
-          return file.promise;
         case FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED:
           return Promise.resolve();
         case FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED:
@@ -91,7 +98,11 @@ export function fileManagerDownload(manner, token, selector, size, cacheId, file
 
     const uid = randomString(8);
     const promise = download(uid, token, selector, size, cacheId, fileName, priority);
-    dispatch(fileManagerDownloadPending(cacheId, promise, uid));
+    if (selector === Proto.FileDownload.Selector.FILE) {
+      dispatch(fileManagerDownloadPending(cacheId, uid));
+    }
+    downloadingPromise.set(cacheId, promise);
+
     return promise;
   };
 }

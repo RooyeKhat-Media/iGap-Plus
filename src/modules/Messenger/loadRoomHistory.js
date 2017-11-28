@@ -25,7 +25,7 @@ export default async function loadRoomHistory(roomId) {
 
   for (const messageId in normalizedData.entities.roomMessages) {
     if (normalizedData.entities.roomMessages.hasOwnProperty(messageId)) {
-      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId);
+      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, false);
     }
   }
   store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));

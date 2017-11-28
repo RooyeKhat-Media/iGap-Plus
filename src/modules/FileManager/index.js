@@ -16,10 +16,18 @@ import {CLIENT_STATUS_CHANGED} from '../../actions/api';
 import _download from './download';
 import _upload from './upload';
 import _info from './info';
+import {
+  FILE_MANAGER_DOWNLOAD_AUTO_PAUSED, FILE_MANAGER_DOWNLOAD_COMPLETED,
+  FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED, fileManagerDownloadCompleted, fileManagerDownloadProgress,
+} from '../../actions/fileManager';
+import Collector from '../Collector';
+import store from '../../configureStore';
 
 let getRootDirCache;
 
 let downloadChunkSize = FILE_MANAGER_DOWNLOAD_MAX_CHUNK_SIZE;
+
+export const downloadingPromise = new Map();
 
 export function getDownloadChunkSize() {
   return Math.min(
@@ -40,6 +48,11 @@ export const middleware = ({dispatch, getState}) => next => action => {
     switch (action.status) {
       case CLIENT_STATUS.CONNECTED:
         downloadChunkSize = FILE_MANAGER_DOWNLOAD_MAX_CHUNK_SIZE;
+        break;
+      case FILE_MANAGER_DOWNLOAD_COMPLETED:
+      case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
+      case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
+        downloadingPromise.delete(action.cacheId);
         break;
     }
   }
@@ -116,3 +129,26 @@ export function info(size, cacheId, fileName) {
     return _info(size, cacheId, fileName);
   }, --infoPriority);
 }
+
+
+export const {collect} = Collector(
+  (collected) => {
+    const completedDownloadList = [];
+    const processDownloadList = [];
+    for (const [cacheId, data] of collected) {
+      if (data.uri) {
+        completedDownloadList.push({cacheId, uri: data.uri});
+      } else if (data.progress) {
+        processDownloadList.push({cacheId, progress: data.progress});
+      }
+    }
+
+    if (completedDownloadList.length) {
+      store.dispatch(fileManagerDownloadCompleted(completedDownloadList));
+    }
+    if (processDownloadList.length) {
+      store.dispatch(fileManagerDownloadProgress(processDownloadList));
+    }
+  },
+  250
+);

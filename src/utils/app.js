@@ -121,16 +121,19 @@ export function getRoomHistoryUploadIdPrefix(roomId, messageId) {
  * Fix and add missing property to room message
  * @param {FlatRoomMessage} normalizedRoomMessage
  * @param {string} roomId
+ * @param {boolean} checkState
  */
-export function prepareRoomMessage(normalizedRoomMessage, roomId) {
+export function prepareRoomMessage(normalizedRoomMessage, roomId, checkState) {
   if (!normalizedRoomMessage) {
     return;
   }
   normalizedRoomMessage.roomId = roomId;
 
-  putStateRoom(roomId);
+  if (checkState) {
+    putStateRoom(roomId);
+  }
 
-  if (normalizedRoomMessage.authorUser) {
+  if (normalizedRoomMessage.authorUser && checkState) {
     putStateRegisteredUser(
       normalizedRoomMessage.authorUser,
       normalizedRoomMessage.authorUserCacheId

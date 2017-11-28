@@ -29,7 +29,7 @@ export default class SendMessage extends Base {
 
     const normalizedData = normalize(this._response.getRoomMessage(), roomMessage);
     const messageId = normalizedData.result;
-    prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId);
+    prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, true);
 
     if (!this._request) {
       this.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));

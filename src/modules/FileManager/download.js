@@ -7,16 +7,14 @@ import RNFileSystem, {FileUtil, OPEN_MODE_WRITE} from 'react-native-file-system'
 import Api from '../Api/index';
 import store from '../../configureStore';
 import {FILE_DOWNLOAD} from '../../constants/methods/index';
-import {FileDownload} from '../Proto/index';
+import {FileDownload, Proto} from '../Proto/index';
 import {ERROR_TIMEOUT} from '../Api/errors/index';
 import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 import {
   fileManagerDownloadAutoPaused,
-  fileManagerDownloadCompleted,
-  fileManagerDownloadProgress,
 } from '../../actions/fileManager';
 
-import {getDownloadChunkSize, getRootDir, setDownloadChunkSize} from './index';
+import {getDownloadChunkSize, getRootDir, setDownloadChunkSize, collect} from './index';
 import ServerError from '../Error/ServerError';
 import {getExtension} from '../../utils/core';
 import ClientError from '../Error/ClientError';
@@ -69,7 +67,9 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
         }
       }
 
-      store.dispatch(fileManagerDownloadProgress(cacheId, fileInfo.fileSize.multiply(100).divide(size).toInt()));
+      if (selector === Proto.FileDownload.Selector.FILE) {
+        collect({progress: fileInfo.fileSize.multiply(100).divide(size).toInt()}, cacheId);
+      }
 
       const fileDownload = new FileDownload();
       fileDownload.setToken(token);
@@ -96,7 +96,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
         throw e;
       }
     }
-    store.dispatch(fileManagerDownloadCompleted(cacheId, fileInfo.fileUri));
+    collect({uri: fileInfo.fileUri}, cacheId);
   } catch (e) {
     if (!(e instanceof ClientError)) {
       store.dispatch(fileManagerDownloadAutoPaused(cacheId));

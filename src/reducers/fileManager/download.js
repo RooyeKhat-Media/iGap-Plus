@@ -14,33 +14,41 @@ import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 const initialState = {};
 
 export default function(state = initialState, action) {
+  let newList = {};
   switch (action.type) {
     case FILE_MANAGER_DOWNLOAD_PENDING:
       return {
         ...state,
         [action.cacheId]: {
           status: FILE_MANAGER_DOWNLOAD_STATUS.PENDING,
-          promise: action.promise,
           uid: action.uid,
         },
       };
     case FILE_MANAGER_DOWNLOAD_PROGRESS:
-      const file = state[action.cacheId];
+      if (action.payload && action.payload.length) {
+        action.payload.forEach(function(data) {
+          newList[data.cacheId] = {
+            status: FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING,
+            progress: data.progress,
+          };
+        });
+      }
       return {
         ...state,
-        [action.cacheId]: {
-          ...file,
-          status: FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING,
-          progress: action.progress,
-        },
+        ...newList,
       };
     case FILE_MANAGER_DOWNLOAD_COMPLETED:
+      if (action.payload && action.payload.length) {
+        action.payload.forEach(function(data) {
+          newList[data.cacheId] = {
+            status: FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED,
+            uri: data.uri,
+          };
+        });
+      }
       return {
         ...state,
-        [action.cacheId]: {
-          status: FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED,
-          uri: action.uri,
-        },
+        ...newList,
       };
     case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
       if (state[action.cacheId] && state[action.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
