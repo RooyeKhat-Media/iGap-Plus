@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getRoomAvatar, getRoomAvatarUri} from '../../selector/entities/room';
@@ -29,18 +28,15 @@ class Avatar extends React.PureComponent {
 
   render() {
     const {circle, size, avatarProps, avatarUri} = this.props;
-    const style = this.style;
 
     return (
-      <View style={style}>
-        <AvatarComponent
-          circle={circle}
-          size={size}
-          color={avatarProps.color}
-          text={avatarProps.initials}
-          uri={prependFileProtocol(avatarUri)}
-        />
-      </View>
+      <AvatarComponent
+        circle={circle}
+        size={size}
+        color={avatarProps.color}
+        text={avatarProps.initials}
+        uri={prependFileProtocol(avatarUri)}
+      />
     );
   }
 }
