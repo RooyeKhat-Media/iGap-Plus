@@ -16,5 +16,10 @@ export default {
       fontSize: 20,
     },
   },
-
+  hide: {
+    container: {
+      display: 'none',
+      opacity: 0,
+    },
+  },
 };

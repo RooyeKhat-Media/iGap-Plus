@@ -14,8 +14,8 @@ class RoomListItem extends React.Component {
       onPress={onPress}
       leftElement={<Avatar roomId={roomId} size={52} style={styles.avatar}/>}
       centerElement={{
-        primaryText: roomTitle,
-        secondaryText: lastMessageTitle,
+        primaryText: roomTitle || ' ',
+        secondaryText: lastMessageTitle || ' ',
       }}
       rightElement={
         <View style={styles.rightElementWrap}>
@@ -26,7 +26,7 @@ class RoomListItem extends React.Component {
             </Text>
           </View>
           <View style={styles.row}>
-            {unreadCount ? (<Badge style={styles.badge} text={unreadCount.toString()}/>) : null}
+            <Badge style={unreadCount ? styles.badge : styles.hide} text={unreadCount ? unreadCount.toString() : null}/>
           </View>
         </View>}
     />);
