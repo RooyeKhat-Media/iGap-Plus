@@ -133,7 +133,7 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId, checkState) {
     putStateRoom(roomId);
   }
 
-  if (normalizedRoomMessage.authorUser && checkState) {
+  if (normalizedRoomMessage.authorUser) {
     putStateRegisteredUser(
       normalizedRoomMessage.authorUser,
       normalizedRoomMessage.authorUserCacheId

@@ -42,7 +42,8 @@ export function persistCallback(persist) {
 
   storage.transaction((transaction) => {
     if (createDocs.length) {
-      transaction.executeSql(Squel.insert().into('entities_room_messages').setFieldsRows(createDocs).toString());
+      const params = Squel.insert().into('entities_room_messages').setFieldsRows(createDocs).toParam();
+      transaction.executeSql(params.text, params.values);
     }
 
     if (deleteDocs.length) {
