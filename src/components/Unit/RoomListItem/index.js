@@ -7,7 +7,7 @@ import Avatar from '../../../containers/Unit/Avatar';
 import MessageStatus from '../../../containers/Unit/MessageStatus';
 import styles from './index.styles';
 
-class RoomListItem extends React.Component {
+class RoomListItem extends React.PureComponent {
   render() {
     const {roomId, roomTitle, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress} = this.props;
     return (<BaseListItem

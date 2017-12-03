@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RoomListItemComponent from '../../components/Unit/RoomListItem';
 import {connect} from 'react-redux';
@@ -6,7 +6,7 @@ import {Proto} from '../../modules/Proto/index';
 import {getAuthorHash} from '../../utils/app';
 import {getRoom, getRoomLastMessage} from '../../selector/entities/room';
 
-class RoomListItem extends Component {
+class RoomListItem extends React.PureComponent {
 
   onRoomPress = () => {
     const {room, onPress} = this.props;
