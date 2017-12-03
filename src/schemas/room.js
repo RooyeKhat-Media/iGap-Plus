@@ -31,6 +31,8 @@ export const flatProtoRoom = (room) => {
     isParticipant: room.getIsParticipant(),
     draft: room.getDraft(),
     firstUnreadMessage: room.getFirstUnreadMessage(),
+    pinId: room.getPinId().toString(),
+    roomMute: room.getRoomMute(),
   };
 
   /**

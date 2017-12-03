@@ -13,25 +13,28 @@ import room from '../../../schemas/room';
 import Rooms from '../../../models/messenger/Rooms';
 import putState from '../../Entities/Rooms/index';
 import {sleep} from '../../../utils/core';
+import Client from '../../Api/Client';
 
 
 /**
  * @return {Promise.<void>}
  */
 export async function initialRoomsState() {
-  if (isEmpty(store.getState().messenger.rooms)) {
+  if (!Client.instance.isLoggedIn && isEmpty(store.getState().messenger.rooms)) {
     const promises = [];
     const rooms = await Rooms.loadAllFromDb();
-    for (const roomId in rooms) {
-      if (rooms.hasOwnProperty(roomId)) {
-        promises.push(putState(roomId));
+    if (!Client.instance.isLoggedIn) {
+      for (const roomId in rooms) {
+        if (rooms.hasOwnProperty(roomId)) {
+          promises.push(putState(roomId));
+        }
       }
-    }
 
-    await Promise.all(promises);
+      await Promise.all(promises);
 
-    if (isEmpty(store.getState().messenger.rooms)) {
-      store.dispatch(messengerRoomAddList(rooms, false));
+      if (isEmpty(store.getState().messenger.rooms)) {
+        store.dispatch(messengerRoomAddList(rooms, false));
+      }
     }
   }
 }
