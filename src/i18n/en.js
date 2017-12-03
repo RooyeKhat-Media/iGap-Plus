@@ -1223,4 +1223,45 @@ export default {
     defaultMessage: 'Delete Photo',
     description: 'avatarListSave Page',
   },
+
+  roomListActionTitle: {
+    id: 'roomList.actionTitle',
+    defaultMessage: 'Actions',
+    description: 'Room List Screen',
+  },
+  roomListActionUnpinRoom: {
+    id: 'roomList.actionUnpinRoom',
+    defaultMessage: 'Unpin',
+    description: 'Room List Screen',
+  },
+  roomListActionPinRoom: {
+    id: 'roomList.actionPinRoom',
+    defaultMessage: 'Pin',
+    description: 'Room List Screen',
+  },
+  roomListActionMuteNotification: {
+    id: 'roomList.actionMuteNotification',
+    defaultMessage: 'Mute Notification',
+    description: 'Room List Screen',
+  },
+  roomListActionUnMuteNotification: {
+    id: 'roomList.actionUnMuteNotification',
+    defaultMessage: 'Un Mute Notification',
+    description: 'Room List Screen',
+  },
+  roomListActionClearHistory: {
+    id: 'roomList.actionClearHistory',
+    defaultMessage: 'Clear History',
+    description: 'Room List Screen',
+  },
+  roomListActionDeleteRoom: {
+    id: 'roomList.actionDeleteRoom',
+    defaultMessage: 'Delete Room',
+    description: 'Room List Screen',
+  },
+  roomListActionLeaveRoom: {
+    id: 'roomList.actionLeaveRoom',
+    defaultMessage: 'Leave Room',
+    description: 'Room List Screen',
+  },
 };

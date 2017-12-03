@@ -9,9 +9,10 @@ import styles from './index.styles';
 
 class RoomListItem extends React.PureComponent {
   render() {
-    const {roomId, roomTitle, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress} = this.props;
+    const {roomId, roomTitle, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
     return (<BaseListItem
       onPress={onPress}
+      onLongPress={onLongPress}
       leftElement={<Avatar roomId={roomId} size={52} style={styles.avatar}/>}
       centerElement={{
         primaryText: roomTitle || ' ',

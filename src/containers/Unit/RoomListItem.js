@@ -13,6 +13,11 @@ class RoomListItem extends React.PureComponent {
     onPress(room);
   };
 
+  onLongPress = () => {
+    const {room, onLongPress} = this.props;
+    onLongPress(room);
+  };
+
   render() {
     const {room, lastMessage} = this.props;
     if (!room) {
@@ -34,6 +39,7 @@ class RoomListItem extends React.PureComponent {
       ownerLastMessage={ownerLastMessage}
       lastMessageStatue={lastMessageStatus}
       onPress={this.onRoomPress}
+      onLongPress={this.onLongPress}
     />);
   }
 

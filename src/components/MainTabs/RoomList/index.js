@@ -5,6 +5,7 @@ import styles from './index.styles';
 import {ActionSheet, Toolbar} from '../../BaseUI/index';
 import RoomListItem from '../../../containers/Unit/RoomListItem';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
+import i18n from '../../../i18n';
 
 class RoomListComponent extends React.PureComponent {
 
@@ -27,6 +28,7 @@ class RoomListComponent extends React.PureComponent {
     );
     this.state = {
       dataProvider: this.dataProvider.cloneWithRows(roomList),
+      actions: [],
     };
   }
 
@@ -36,12 +38,14 @@ class RoomListComponent extends React.PureComponent {
       dataProvider: this.dataProvider.cloneWithRows(roomList),
     });
   }
+
   _rowRenderer = (type, item) => {
-    const {onPress} = this.props;
-    return (<RoomListItem onPress={onPress} roomId={item.id}/>);
+    const {onPress, onLongPress} = this.props;
+    return (<RoomListItem onLongPress={onLongPress} onPress={onPress} roomId={item.id}/>);
   };
 
   render() {
+    const {intl, actionSheetControl, actions} = this.props;
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>
@@ -53,9 +57,10 @@ class RoomListComponent extends React.PureComponent {
             dataProvider={this.state.dataProvider}
             rowRenderer={this._rowRenderer}/>
         </View>
-        <ActionSheet control={(action) => {
-          this.action = action;
-        }}/>
+        <ActionSheet
+          title={intl.formatMessage(i18n.roomListActionTitle)}
+          actions={actions}
+          control={actionSheetControl}/>
       </View>
     );
   }
