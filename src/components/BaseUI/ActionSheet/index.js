@@ -2,32 +2,33 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import styles from './index.styles';
 import {Text, View} from 'react-native';
-import {Modal} from '../index';
+import {ListItem, Modal} from '../index';
 
 class ActionSheet extends Component {
-  constructor(props) {
-    super(props);
-    const {control} = props;
-    control({
-      show: this.show,
-      off: this.off,
-    });
-  }
-
-  show = () => {
-    this.modal.open();
-  };
-  off = () => {
-    this.modal.close();
-  };
 
   render() {
+    const {control, title, actions} = this.props;
     return (
-      <Modal control={(modal) => {
-        this.modal = modal;
-      }}>
+      <Modal control={control}>
         <View style={styles.container}>
-          <Text>Action Sheet</Text>
+          <View style={styles.wrap}>
+            <View style={styles.headerWrap}>
+              <Text style={styles.header}>{title}</Text>
+            </View>
+            <View>
+              {actions.map(function(action, index) {
+                return (<ListItem
+                  key={'action-' + index}
+                  divider={index === action.length - 1}
+                  leftElement={action.icon}
+                  centerElement={{
+                    primaryText: (action.title),
+                  }}
+                  onPress={action.onPress}
+                />);
+              })}
+            </View>
+          </View>
         </View>
       </Modal>
     );
@@ -40,7 +41,10 @@ ActionSheet.propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]),
-  type: PropTypes.string,
+  actions: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.string,
+    title: PropTypes.string,
+    onPress: PropTypes.func,
+  })),
 };
-
 export default ActionSheet;
