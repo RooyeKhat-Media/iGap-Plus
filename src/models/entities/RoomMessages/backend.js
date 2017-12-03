@@ -47,7 +47,8 @@ export function persistCallback(persist) {
     }
 
     if (deleteDocs.length) {
-      transaction.executeSql(Squel.delete().from('entities_room_messages').where('id IN ?', deleteDocs).toString());
+      const params = Squel.delete().from('entities_room_messages').where('id IN ?', deleteDocs).toParam();
+      transaction.executeSql(params.text, params.values);
     }
   }, (error) => {
     console.warn(error);

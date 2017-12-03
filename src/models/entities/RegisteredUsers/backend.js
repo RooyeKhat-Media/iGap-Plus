@@ -39,7 +39,8 @@ export function persistCallback(persist) {
     }
 
     if (deleteDocs.length) {
-      transaction.executeSql(Squel.delete().from('entities_registered_users').where('id IN ?', deleteDocs).toString());
+      const params = Squel.delete().from('entities_registered_users').where('id IN ?', deleteDocs).toParam();
+      transaction.executeSql(params.text, params.values);
     }
   }, (error) => {
     console.warn(error);
@@ -51,11 +52,11 @@ export function persistCallback(persist) {
  */
 export function retrieveCallback(retrieve) {
   storage.readTransaction((transaction) => {
-    const query = Squel.select().from('entities_registered_users')
+    const params = Squel.select().from('entities_registered_users')
       .field('CAST(id AS TEXT) AS id')
       .field('data')
-      .where('id IN ?', [...retrieve.keys()]).toString();
-    transaction.executeSql(query, [], (transaction, results) => {
+      .where('id IN ?', [...retrieve.keys()]).toParam();
+    transaction.executeSql(params.text, params.values, (transaction, results) => {
       for (let i = 0; i < results.rows.length; i++) {
         const row = results.rows.item(i);
 

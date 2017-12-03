@@ -23,7 +23,8 @@ export function persistCallback(persist) {
     }
 
     if (deleteDocs.length) {
-      transaction.executeSql(Squel.delete().from('messenger_rooms').where('id IN ?', deleteDocs).toString());
+      const params = Squel.delete().from('messenger_rooms').where('id IN ?', deleteDocs).toParam();
+      transaction.executeSql(params.text, params.values);
     }
   }, (error) => {
     console.warn(error);
@@ -38,11 +39,11 @@ export function retrieveAllCallback() {
   return new Promise((resolve, reject) => {
     storage.readTransaction((transaction) => {
       const payload = {};
-      const query = Squel.select().from('messenger_rooms')
+      const params = Squel.select().from('messenger_rooms')
         .field('CAST(id AS TEXT) AS id')
         .field('CAST(sort AS TEXT) AS sort')
-        .toString();
-      transaction.executeSql(query, [], (transaction, results) => {
+        .toParam();
+      transaction.executeSql(params.text, params.values, (transaction, results) => {
         for (let i = 0; i < results.rows.length; i++) {
           const row = results.rows.item(i);
           payload[row.id] = row;

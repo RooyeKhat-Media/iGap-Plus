@@ -29,7 +29,8 @@ export function persistCallback(persist) {
     }
 
     if (deleteDocs.length) {
-      transaction.executeSql(Squel.delete().from('cacheable_method').where('id IN ?', deleteDocs).toString());
+      const params = Squel.delete().from('cacheable_method').where('id IN ?', deleteDocs).toParam();
+      transaction.executeSql(params.text, params.values);
     }
   }, (error) => {
     console.warn(error);
@@ -41,8 +42,8 @@ export function persistCallback(persist) {
  */
 export function retrieveCallback(retrieve) {
   storage.readTransaction((transaction) => {
-    const query = Squel.select().from('cacheable_method').field('id').field('data').where('id IN ?', [...retrieve.keys()]).toString();
-    transaction.executeSql(query, [], (transaction, results) => {
+    const params = Squel.select().from('cacheable_method').field('id').field('data').where('id IN ?', [...retrieve.keys()]).toParam();
+    transaction.executeSql(params.text, params.values, (transaction, results) => {
       for (let i = 0; i < results.rows.length; i++) {
         const row = results.rows.item(i);
         const dbDoc = JSON.parse(row.data);
