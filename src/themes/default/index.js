@@ -12,10 +12,12 @@ export const gray600 = '#afafaf';
 export const gray700 = '#aaaaaa';
 export const gray800 = '#a2a2a2';
 export const gray950 = '#7d7d7d';
+export const gray1000 = '#606060';
 
 export const black200 = '#444444';
 export const black500 = '#222222';
 export const black600 = '#202020';
+export const blackTransparent = 'rgba(0,0,0,0.4)';
 
 export default {
   palette: {

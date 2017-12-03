@@ -3,6 +3,7 @@ import {StackNavigator} from 'react-navigation';
 import {
   AVATAR_LIST_SCREEN,
   CALL_SCREEN,
+  CAMERA_SCREEN,
   ROOM_EDIT_SCREEN,
   ROOM_HISTORY_SCREEN,
   ROOM_INFO_SCREEN,
@@ -25,6 +26,7 @@ import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
 import RoomInviteLinkScreen from '../screens/Room/RoomInviteLinkScreen';
 import RoomReportScreen from '../screens/Room/RoomReportScreen';
 import AvatarListScreen from '../screens/Room/AvatarListScreen';
+import CameraScreen from '../screens/General/CameraScreen';
 
 export function goRoomHistory(roomId) {
   navigate(ROOM_HISTORY_SCREEN, {roomId});
@@ -66,6 +68,10 @@ export function goAvatarList(roomId, userId) {
   navigate(AVATAR_LIST_SCREEN, {roomId, userId});
 }
 
+export function goCamera(resolve, reject, CameraMode) {
+  navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
+}
+
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},
   [CALL_SCREEN]: {screen: CallScreen},
@@ -78,6 +84,7 @@ const SecondaryNavigator = StackNavigator({
   [ROOM_INVITE_LINK_SCREEN]: {screen: RoomInviteLinkScreen},
   [ROOM_REPORT_SCREEN]: {screen: RoomReportScreen},
   [AVATAR_LIST_SCREEN]: {screen: AvatarListScreen},
+  [CAMERA_SCREEN]: {screen: CameraScreen},
 }, {
   navigationOptions: {
     header: null,
