@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
-
-class SearchScreen extends Component {
+class CallListScreen extends Component {
 
   onMenuPressed = () => {
     this.props.navigation.navigate('DrawerOpen');
@@ -10,9 +9,9 @@ class SearchScreen extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: 'blue'}}><Text>Drawer Test</Text></View>
+      <View style={{backgroundColor: 'blue'}}><Text>CallList Screen</Text></View>
     );
   }
 }
 
-export default SearchScreen;
+export default CallListScreen;

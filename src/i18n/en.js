@@ -1264,4 +1264,15 @@ export default {
     defaultMessage: 'Leave Room',
     description: 'Room List Screen',
   },
+
+  nearbyScreenListTitle: {
+    id: 'nearbyScreen.listTitle',
+    defaultMessage: 'Nearby List',
+    description: 'Nearby Screen',
+  },
+  nearbyScreenMapTitle: {
+    id: 'nearbyScreen.mapTitle',
+    defaultMessage: 'Nearby Map',
+    description: 'Nearby Screen',
+  },
 };

@@ -5,27 +5,27 @@ import MainBottom from '../containers/MainBottom';
 
 import {
   ACTIVE_SESSION_SCREEN,
+  CALL_LIST_SCREEN,
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
   EDIT_PROFILE_SCREEN,
+  NEARBY_SCREEN,
   NEW_SCREEN,
   PRIMARY_CONTACT_PICKER_SCREEN,
   PRIMARY_NAV_TAB,
   PROFILE_SCREEN,
-  PUBLIC_SCREEN,
   ROOM_CREATE_SCREEN,
   ROOM_LIST_SCREEN,
   ROOM_UPDATE_USERNAME_SCREEN,
-  SEARCH_SCREEN,
   SETTING_BLOCK_SCREEN,
   SETTING_PRIVACY_SCREEN,
   SETTING_SCREEN,
 } from '../constants/navigators';
 import ProfileScreen from '../screens/MainTabs/ProfileScreen';
-import SearchScreen from '../screens/MainTabs/SearchScreen';
+import NearbyScreen from '../screens/MainTabs/NearbyScreen';
 import RoomsScreen from '../screens/MainTabs/RoomListScreen';
 import NewScreen from '../screens/MainTabs/NewScreen';
-import PublicScreen from '../screens/MainTabs/PublicScreen';
+import CallListScreen from '../screens/MainTabs/CallListScreen';
 import ContactListScreen from '../screens/Contact/ContactListScreen';
 import EditProfileScreen from '../screens/User/UserEditProfileScreen';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
@@ -41,12 +41,12 @@ export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
 }
 
-export function goSearch() {
-  navigate(SEARCH_SCREEN);
+export function goNearby() {
+  navigate(NEARBY_SCREEN);
 }
 
-export function goPublic() {
-  navigate(PUBLIC_SCREEN);
+export function goCallList() {
+  navigate(CALL_LIST_SCREEN);
 }
 
 export function goNew() {
@@ -100,9 +100,9 @@ export function goActiveSession() {
 
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
-  [SEARCH_SCREEN]: {screen: SearchScreen},
+  [NEARBY_SCREEN]: {screen: NearbyScreen},
   [NEW_SCREEN]: {screen: NewScreen},
-  [PUBLIC_SCREEN]: {screen: PublicScreen},
+  [CALL_LIST_SCREEN]: {screen: CallListScreen},
   [PROFILE_SCREEN]: {screen: ProfileScreen},
 }, {
   tabBarComponent: props => (<MainBottom {...props}/>),

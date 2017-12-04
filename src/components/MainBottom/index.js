@@ -1,13 +1,12 @@
 import React from 'react';
 import {injectIntl, intlShape} from 'react-intl';
 import {BottomNavigation} from '../BaseUI/index';
-import i18n from '../../i18n/index';
 
-const States = ['home', 'search', 'new', 'public', 'profile'];
+const States = ['home', 'location', 'new', 'call', 'profile'];
 
 class MainBottomNavigationComponent extends React.Component {
   render() {
-    const {index, goRooms, goSearch, goNew, goPublic, goProfile} = this.props;
+    const {index, goRooms, goNearby, goNew, goCallList, goProfile} = this.props;
     return (
       <BottomNavigation active={States[index]}>
         <BottomNavigation.Action
@@ -17,10 +16,10 @@ class MainBottomNavigationComponent extends React.Component {
           onPress={goRooms}
         />
         <BottomNavigation.Action
-          key="search"
-          icon="search"
+          key="location"
+          icon="location-on"
           label=" "
-          onPress={goSearch}
+          onPress={goNearby}
         />
         <BottomNavigation.Action
           key="new"
@@ -29,10 +28,10 @@ class MainBottomNavigationComponent extends React.Component {
           onPress={goNew}
         />
         <BottomNavigation.Action
-          key="public"
-          icon="public"
+          key="call"
+          icon="call"
           label=" "
-          onPress={goPublic}
+          onPress={goCallList}
         />
         <BottomNavigation.Action
           key="profile"
