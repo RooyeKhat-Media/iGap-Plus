@@ -8,10 +8,12 @@ import {
   ChannelAddMember,
   ChannelDelete,
   ChannelLeft,
+  ChatClearMessage,
   ChatDelete,
   ClientCountRoomHistory,
   ClientJoinByUsername,
   GroupAddMember,
+  GroupClearMessage,
   GroupDelete,
   GroupLeft,
   Proto,
@@ -42,6 +44,7 @@ import {
 import i18n from '../../i18n/en';
 import {secondaryNavigatorBack} from '../../actions/navigator';
 import {resetSecondaryNavigation} from '../../navigators/index';
+import Long from 'long';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -196,15 +199,16 @@ class RoomInfoScreen extends Component {
     switch (room.type) {
       case Proto.Room.Type.CHAT:
         actionId = CHAT_CLEAR_MESSAGE;
-        proto = ChatDelete;
+        proto = ChatClearMessage;
         break;
       case Proto.Room.Type.GROUP:
         actionId = GROUP_CLEAR_MESSAGE;
-        proto = GroupDelete;
+        proto = GroupClearMessage;
         break;
     }
     if (actionId && proto) {
       proto = new proto();
+      proto.setClearId(Long.fromString(room.lastMessage));
       proto.setRoomId(room.longId);
       await Api.invoke(actionId, proto);
       this.props.navigation.goBack();
