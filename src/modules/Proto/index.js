@@ -1985,6 +1985,7 @@ export default {
   [methods.CLIENT_MUTE_ROOM]: ClientMuteRoom,
   [methods.CLIENT_MUTE_ROOM_RESPONSE]: ClientMuteRoomResponse,
   [methods.CLIENT_PIN_ROOM]: ClientPinRoom,
+  [methods.CLIENT_PIN_ROOM_RESPONSE]: ClientPinRoomResponse,
   [methods.CLIENT_ROOM_REPORT]: ClientRoomReport,
   [methods.CLIENT_ROOM_REPORT_RESPONSE]: ClientRoomReportResponse,
 

@@ -3,13 +3,11 @@
  */
 
 import * as methods from '../../constants/methods';
-
 //System xx
 import Error from './Error';
 import ConnectionSecuring from './Connection/Securing';
 import ConnectionSymmetricKey from './Connection/SymmetricKey';
 import Heartbeat from './Heartbeat';
-
 //User 1xx
 import UserRegister from './User/Register';
 import UserVerify from './User/Verify';
@@ -57,7 +55,6 @@ import UserTwoStepVerificationResendVerifyEmail from './User/TwoStepVerification
 import UserPrivacyGetRule from './User/Privacy/GetRule';
 import UserPrivacySetRule from './User/Privacy/SetRule';
 import UserVerifyNewDevice from './User/VerifyNewDevice';
-
 //Chat 2xx
 import ChatGetRoom from './Chat/GetRoom';
 import ChatSendMessage from './Chat/SendMessage';
@@ -70,7 +67,6 @@ import ChatUpdateDraft from './Chat/UpdateDraft';
 import ChatGetDraft from './Chat/GetDraft';
 import ChatConvertToGroup from './Chat/ConvertToGroup';
 import ChatSetAction from './Chat/SetAction';
-
 //Group chat 3xx
 import GroupCreate from './Group/Create';
 import GroupAddMember from './Group/AddMember';
@@ -98,7 +94,6 @@ import GroupUpdateUsername from './Group/UpdateUsername';
 import GroupRemoveUsername from './Group/RemoveUsername';
 import GroupRevokeLink from './Group/RevokeLink';
 import GroupEditMessage from './Group/EditMessage';
-
 //Channel 4xx
 import ChannelCreate from './Channel/Create';
 import ChannelAddMember from './Channel/AddMember';
@@ -126,14 +121,12 @@ import ChannelUpdateSignature from './Channel/UpdateSignature';
 import ChannelGetMessagesStats from './Channel/GetMessagesStats';
 import ChannelAddMessageReaction from './Channel/AddMessageReaction';
 import ChannelEditMessage from './Channel/EditMessage';
-
 //Info 5xx
 import InfoLocation from './Info/Location';
 import InfoCountry from './Info/Country';
 import InfoTime from './Info/Time';
 import InfoPage from './Info/Page';
 import InfoWallpaper from './Info/Wallpaper';
-
 //Client 6xx
 import ClientCondition from './Client/Condition';
 import ClientGetRoomList from './Client/GetRoomList';
@@ -149,7 +142,6 @@ import ClientSubscribeToRoom from './Client/SubscribeToRoom';
 import ClientUnsubscribeFromRoom from './Client/UnsubscribeFromRoom';
 import ClientSearchUsername from './Client/SearchUsername';
 import ClientCountRoomHistory from './Client/CountRoomHistory';
-
 //File 7xx
 import FileUploadOption from './File/Upload/Option';
 import FileUploadInit from './File/Upload/Init';
@@ -157,14 +149,12 @@ import FileUpload from './File/Upload';
 import FileUploadStatus from './File/Upload/Status';
 import FileInfo from './File/Info';
 import FileDownload from './File/Download';
-
 //QrCode 8xx
 import QrCodeJoin from './QrCode/Join';
 import QrCodeResolve from './QrCode/Resolve';
 import QrCodeNewDevice from './QrCode/NewDevice';
 import QrCodeAddContact from './QrCode/AddContact';
 import QrCodeAddMe from './QrCode/AddMe';
-
 //Signaling 9xx
 import SignalingGetConfiguration from './Signaling/GetConfiguration';
 import SignalingOffer from './Signaling/Offer';
@@ -176,7 +166,6 @@ import SignalingSessionHold from './Signaling/SessionHold';
 import SignalingGetLog from './Signaling/GetLog';
 import SignalingClearLog from './Signaling/ClearLog';
 import SignalingRate from './Signaling/Rate';
-
 //Geo 10xx
 import GeoGetRegisterStatus from './Geo/GetRegisterStatus';
 import GeoRegister from './Geo/Register';
@@ -185,12 +174,14 @@ import GeoGetComment from './Geo/GetComment';
 import GeoUpdateComment from './Geo/UpdateComment';
 import GeoGetNearbyDistance from './Geo/GetNearbyDistance';
 import GeoGetNearbyCoordinate from './Geo/GetNearbyCoordinate';
-
 //Push 600xx
 import PushLoginToken from './Push/LoginToken';
 import PushTwoStepVerification from './Push/TwoStepVerification';
 import PushUserInfoExpired from './Push/UserInfoExpired';
 import PushRateSignaling from './Push/RateSignaling';
+import ClientMuteRoom from './Client/ClientMuteRoom';
+import ClientPinRoom from './Client/ClientPinRoom';
+import ClientRoomReport from './Client/ClientRoomReport';
 
 
 export default {
@@ -339,6 +330,9 @@ export default {
   [methods.CLIENT_UNSUBSCRIBE_FROM_ROOM_RESPONSE]: ClientUnsubscribeFromRoom,
   [methods.CLIENT_SEARCH_USERNAME_RESPONSE]: ClientSearchUsername,
   [methods.CLIENT_COUNT_ROOM_HISTORY_RESPONSE]: ClientCountRoomHistory,
+  [methods.CLIENT_MUTE_ROOM_RESPONSE]: ClientMuteRoom,
+  [methods.CLIENT_PIN_ROOM_RESPONSE]: ClientPinRoom,
+  [methods.CLIENT_ROOM_REPORT_RESPONSE]: ClientRoomReport,
 
   //File 7xx
   [methods.FILE_UPLOAD_OPTION_RESPONSE]: FileUploadOption,
