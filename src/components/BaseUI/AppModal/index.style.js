@@ -13,7 +13,16 @@ export default {
     left: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: 'rgba(80,80,80,0.9)',
     zIndex: 500,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backModal: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    backgroundColor: 'rgba(80,80,80,0.9)',
   },
 };

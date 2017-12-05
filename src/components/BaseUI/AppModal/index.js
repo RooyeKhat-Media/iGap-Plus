@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {BackHandler, View} from 'react-native';
+import {BackHandler, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {closeModal} from '../../../actions/modal';
@@ -35,6 +35,7 @@ class Modal extends Component {
       <View style={styles.container}>
         {modals.map(({content}, idex) => (
           <View key={idex} style={styles.modal}>
+            <TouchableOpacity style={styles.backModal} activeOpacity={1} onPress={this.onBackPress}/>
             {content}
           </View>
         ))}

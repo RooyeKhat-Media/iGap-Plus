@@ -6,17 +6,23 @@ import {ListItem, Modal} from '../index';
 
 class ActionSheet extends Component {
 
+  control = (actions) => {
+    const {control} = this.props;
+    this.actions = actions;
+    control(actions);
+  };
+
   render() {
-    const {control, title, actions} = this.props;
+    const {title, actions} = this.props;
     return (
-      <Modal control={control}>
+      <Modal control={this.control}>
         <View style={styles.container}>
           <View style={styles.wrap}>
             <View style={styles.headerWrap}>
               <Text style={styles.header}>{title}</Text>
             </View>
             <View>
-              {actions.map(function(action, index) {
+              {actions.map((action, index) => {
                 return (<ListItem
                   key={'action-' + index}
                   divider={index === action.length - 1}
@@ -24,7 +30,10 @@ class ActionSheet extends Component {
                   centerElement={{
                     primaryText: (action.title),
                   }}
-                  onPress={action.onPress}
+                  onPress={() => {
+                    action.onPress();
+                    this.actions.back();
+                  }}
                 />);
               })}
             </View>

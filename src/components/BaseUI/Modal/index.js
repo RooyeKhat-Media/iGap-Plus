@@ -9,19 +9,23 @@ class Modal extends Component {
   constructor(props) {
     super(props);
     const {control} = props;
-    control({
+    this.actions = {
       open: this.open,
       close: this.close,
       openPrimary: this.openPrimary,
       closePrimary: this.closePrimary,
       openSecondary: this.openSecondary,
       closeSecondary: this.closeSecondary,
-    });
+      back: null,
+    };
+    control(this.actions);
   }
 
   open = (closeable = true) => {
-    const {openModal, children} = this.props;
+    const {control, openModal, children} = this.props;
     openModal(APP_MODAL_ID_MAIN, <View style={{flex: 1}}>{children}</View>, closeable);
+    this.actions.back = this.close;
+    control(this.actions);
   };
 
   close = () => {
@@ -30,8 +34,10 @@ class Modal extends Component {
   };
 
   openPrimary = (closeable = true) => {
-    const {openModal, children} = this.props;
+    const {control, openModal, children} = this.props;
     openModal(APP_MODAL_ID_PRIMARY, <View style={{flex: 1}}>{children}</View>, closeable);
+    this.actions.back = this.closePrimary;
+    control(this.actions);
   };
 
   closePrimary = () => {
@@ -40,8 +46,10 @@ class Modal extends Component {
   };
 
   openSecondary = (closeable = true) => {
-    const {openModal, children} = this.props;
+    const {control, openModal, children} = this.props;
     openModal(APP_MODAL_ID_SECONDARY, <View style={{flex: 1}}>{children}</View>, closeable);
+    this.actions.back = this.closeSecondary;
+    control(this.actions);
   };
 
   closeSecondary = () => {
