@@ -14,9 +14,6 @@ export default (UserNewProfile) => ([
           flex: 1,
           padding: 15,
         },
-        inputRow: {
-          flexDirection: 'row',
-        },
         btnRow: {
           marginTop: 10,
           marginBottom: 10,

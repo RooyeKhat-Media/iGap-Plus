@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, TouchableOpacity, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
-import {Avatar, Toolbar} from '../../BaseUI';
+import {Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import AvatarPicker from '../../../containers/Unit/AvatarPicker';
 
 class RoomCreateComponent extends Component {
 
@@ -40,9 +41,7 @@ class RoomCreateComponent extends Component {
           <Form style={styles.form} control={(form) => {
             this.form = form;
           }}>
-            <TouchableOpacity style={styles.avatarWrap} onPress={selectPhoto}>
-              <Avatar icon="camera-alt" size={120} style={styles.avatar}/>
-            </TouchableOpacity>
+            <AvatarPicker selectPhoto={selectPhoto}/>
 
             <TextInputField
               isField={true}

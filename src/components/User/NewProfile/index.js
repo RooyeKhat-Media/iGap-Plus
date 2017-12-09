@@ -11,6 +11,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+import AvatarPicker from '../../../containers/Unit/AvatarPicker';
 
 const uniqueId = _.uniqueId();
 
@@ -25,7 +26,7 @@ class UserNewProfileComponent extends Component {
   };
 
   render() {
-    const {intl, handleFormData, formRules} = this.props;
+    const {intl, handleFormData, formRules, selectPhoto} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -41,21 +42,17 @@ class UserNewProfileComponent extends Component {
           this.form = form;
         }}>
 
-          <View style={styles.avatarWrap}>
-            <View style={styles.selectAvatar}></View>
-          </View>
+          <AvatarPicker selectPhoto={selectPhoto}/>
 
-          <View style={styles.inputRow}>
-            <TextInputField
-              isField={true}
-              rules={formRules.nickName}
-              name="nickName"
-              defaultValue=""
-              underlineColorAndroid="#eee"
-              label={intl.formatMessage(i18n.newProfileNicknameLabel)}
-              placeholder={intl.formatMessage(i18n.newProfileNicknameLabel)}
-            />
-          </View>
+          <TextInputField
+            isField={true}
+            rules={formRules.nickName}
+            name="nickName"
+            defaultValue=""
+            underlineColorAndroid="#eee"
+            label={intl.formatMessage(i18n.newProfileNicknameLabel)}
+            placeholder={intl.formatMessage(i18n.newProfileNicknameLabel)}
+          />
 
           <View style={styles.btnRow}>
             <Button accent={false} raised primary text={intl.formatMessage(i18n.newProfileBtnTitle)}
@@ -69,8 +66,6 @@ class UserNewProfileComponent extends Component {
                 }
               }}/>
           </View>
-
-
         </Form>
 
         <DialogModal control={(dialog) => {

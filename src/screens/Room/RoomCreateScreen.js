@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import RoomCreateComponent from '../../components/Room/RoomCreate/index';
 import {requiredValidator, stringValidator} from '../../utils/validator';
 import {
@@ -118,12 +117,8 @@ class RoomCreateScreen extends Component {
     }
   };
 
-  selectPhoto = async () => {
-    try {
-      const selectedFile = await RNFileSystem.filePicker(FileUtil.images());
-      this.setState({selectedFile});
-    } finally {
-    }
+  selectPhoto = (file) => {
+    this.setState({selectedFile: file});
   };
 
   render() {
