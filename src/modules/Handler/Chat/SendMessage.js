@@ -7,6 +7,7 @@ import {normalize} from 'normalizr';
 import roomMessage from '../../../schemas/roomMessage';
 import {entitiesRoomMessagesAdd} from '../../../actions/entities/roomMessages';
 import {messengerRoomMessageConcat} from '../../../actions/messenger/roomMessages';
+import {toPairs} from 'lodash';
 
 /**
  * @property {ProtoChatSendMessage} _request
@@ -21,8 +22,10 @@ export default class SendMessage extends Base {
     }));
 
     const normalizedData = normalize(this._response.getRoomMessage(), roomMessage);
-    const messageId = normalizedData.result;
-    prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, true);
+
+    toPairs(normalizedData.entities.roomMessages).forEach(([messageId, roomMessage]) => {
+      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, true);
+    });
 
     if (!this._request) {
       this.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));

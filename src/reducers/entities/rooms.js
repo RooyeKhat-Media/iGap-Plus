@@ -14,6 +14,9 @@ export function rooms(state = initialState, action) {
         ...action.rooms,
       };
     case ENTITIES_ROOM_EDIT:
+      if (!state[action.id]) {
+        return state;
+      }
       return {
         ...state,
         [action.id]: {

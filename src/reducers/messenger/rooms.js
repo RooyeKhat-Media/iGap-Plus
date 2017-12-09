@@ -22,7 +22,7 @@ export function rooms(state = initialState, action) {
       delete newStateList[action.roomId];
       return newStateList;
     case ENTITIES_ROOM_EDIT:
-      if (action.payload.lastMessage || action.payload.pinId) {
+      if (state[action.id] && (action.payload.lastMessage || action.payload.pinId)) {
         newStateList = {...state};
         if (action.payload.lastMessage) {
           newStateList[action.id] = {
