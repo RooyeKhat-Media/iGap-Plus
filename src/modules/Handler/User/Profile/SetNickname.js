@@ -1,6 +1,7 @@
 import Base from '../../Base';
-import store from '../../../../configureStore';
 import {setNickname} from '../../../../actions/methods/user/profile/nickname';
+import {entitiesRegisteredUserEdit} from '../../../../actions/entities/registeredUser';
+import {getUserId} from '../../../../utils/app';
 
 /**
  * @property {ProtoUserProfileSetNickname} _request
@@ -8,6 +9,9 @@ import {setNickname} from '../../../../actions/methods/user/profile/nickname';
  */
 export default class SetNickname extends Base {
   handle() {
-    store.dispatch(setNickname(this._response.getNickname()));
+    this.dispatch(setNickname(this._response.getNickname()));
+    this.dispatch(entitiesRegisteredUserEdit(getUserId(true), {
+      initials: this._response.getInitials(),
+    }));
   }
 }
