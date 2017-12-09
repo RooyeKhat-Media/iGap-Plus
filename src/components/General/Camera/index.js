@@ -59,7 +59,7 @@ class CameraComponent extends Component {
         />
 
         <View style={styles.timer}>
-          {this.state.isRecording && <BlinkRecorder/>}
+          {this.state.isRecording && <BlinkRecorder textColor="white"/>}
         </View>
 
         {!this.state.isRecording && <View style={styles.topOverlay}>

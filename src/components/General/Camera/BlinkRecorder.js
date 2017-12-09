@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {blackTransparent} from '../../../themes/default/index';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    backgroundColor: blackTransparent,
-    borderRadius: 5,
   },
   textTimer: {
     alignSelf: 'center',
     minWidth: 40,
     marginRight: 5,
-    color: 'white',
+    fontSize: 16,
   },
   circle: {
     width: 10,
@@ -64,10 +62,14 @@ class BlinkRecorder extends Component {
       <View style={styles.row}>
         <View
           style={[styles.circle, this.state.showRedCircle ? {backgroundColor: 'red'} : {backgroundColor: 'white'}]}/>
-        <Text style={styles.textTimer}>{this.toHHMMSS(this.state.timeValue)}</Text>
+        <Text style={[styles.textTimer, {color: this.props.textColor}]}>{this.toHHMMSS(this.state.timeValue)}</Text>
       </View>
     );
   }
 }
+
+BlinkRecorder.propTypes = {
+  textColor: PropTypes.string,
+};
 
 export default BlinkRecorder;

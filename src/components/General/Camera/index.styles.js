@@ -48,6 +48,7 @@ export default [
           left: 20,
           top: 20,
           borderRadius: 5,
+          backgroundColor: blackTransparent,
         },
         close: {
           position: 'absolute',
