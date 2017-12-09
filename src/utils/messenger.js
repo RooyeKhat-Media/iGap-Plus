@@ -57,9 +57,13 @@ export async function chatGetRoom(userId) {
   chatGetRoom.setPeerId(user.longId);
 
   const chatGetRoomResponse = await Api.invoke(CHAT_GET_ROOM, chatGetRoom);
-  return chatGetRoomResponse.getRoom().getRoomId().toString();
+  return chatGetRoomResponse.getRoom().getId().toString();
 }
 
+/**
+ * @param {string} userId
+ * @returns {Promise.<*>}
+ */
 export async function getPeerRoomId(userId) {
   const state = store.getState();
   let peerRoomId = null;

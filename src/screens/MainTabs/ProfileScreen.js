@@ -9,6 +9,8 @@ import {getCurrentUser} from '../../selector/entities/registeredUser';
 import {goEditProfile} from '../../navigators/PrimaryNavigator';
 import putState from '../../modules/Entities/RegisteredUsers/index';
 import {getUserId} from '../../utils/app';
+import {goRoomHistory} from '../../navigators/SecondaryNavigator';
+import {getPeerRoomId} from '../../utils/messenger';
 
 class ProfileScreen extends Component {
 
@@ -18,9 +20,10 @@ class ProfileScreen extends Component {
     await putState(getUserId(true));
   }
 
-  onContactPress = (userId) => {
-    console.log('onContactPress', userId);
-  }
+  onContactPress = async (userId) => {
+    const chatId = await getPeerRoomId(userId.toString());
+    goRoomHistory(chatId);
+  };
 
   render() {
     const {currentUser, contactList} = this.props;
