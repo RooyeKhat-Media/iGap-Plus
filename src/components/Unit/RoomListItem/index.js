@@ -5,7 +5,7 @@ import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
 import {Badge, ListItem as BaseListItem} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import MessageStatus from '../../../containers/Unit/MessageStatus';
-import styles from './index.styles';
+import styles, {badgeStyle, hideStyle} from './index.styles';
 
 class RoomListItem extends React.PureComponent {
   render() {
@@ -13,7 +13,7 @@ class RoomListItem extends React.PureComponent {
     return (<BaseListItem
       onPress={onPress}
       onLongPress={onLongPress}
-      leftElement={<Avatar roomId={roomId} size={52} style={styles.avatar}/>}
+      leftElement={<Avatar roomId={roomId} size={52}/>}
       centerElement={{
         primaryText: roomTitle || ' ',
         secondaryText: lastMessageTitle || ' ',
@@ -27,7 +27,7 @@ class RoomListItem extends React.PureComponent {
             </Text>
           </View>
           <View style={styles.row}>
-            <Badge style={unreadCount ? styles.badge : styles.hide} text={unreadCount ? unreadCount.toString() : null}/>
+            <Badge style={unreadCount ? badgeStyle : hideStyle} text={unreadCount ? unreadCount.toString() : null}/>
           </View>
         </View>}
     />);

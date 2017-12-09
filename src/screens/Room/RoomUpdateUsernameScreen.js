@@ -149,7 +149,7 @@ class RoomUpdateUsername extends Component {
   render() {
     const {room} = this.props;
     const {isPublic, username} = this.state;
-    const inviteLink = (room.type === Proto.Room.Type.GROUP ? room.groupPrivateInviteLink : room.channelPrivateInviteLink) || false;
+    const inviteLink = (room.type === Proto.Room.Type.GROUP ? room.groupPrivateInviteLink : room.channelPrivateInviteLink) || null;
     return (
       <RoomUpdateUsernameComponent
         isPublic={!!isPublic}

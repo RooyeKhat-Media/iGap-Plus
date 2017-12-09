@@ -23,6 +23,6 @@ export default {
     left: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: 'rgba(80,80,80,0.9)',
+    backgroundColor: 'rgba(80,80,80,0.3)',
   },
 };

@@ -2,32 +2,32 @@ import React from 'react';
 import {Dimensions, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
-import {ActionSheet, Toolbar} from '../../BaseUI/index';
+import {ActionSheet, Confirm, Toolbar} from '../../BaseUI/index';
 import RoomListItem from '../../../containers/Unit/RoomListItem';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import i18n from '../../../i18n';
 
 class RoomListComponent extends React.PureComponent {
 
+  getDataProvider = (roomList) => {
+    return new DataProvider((r1, r2) => {
+      return r1.id !== r2.id;
+    }).cloneWithRows(roomList);
+  };
+
   constructor(args) {
     super(args);
     const {roomList} = this.props;
     let {width} = Dimensions.get('window');
-    this.dataProvider = new DataProvider((r1, r2) => {
-      return r1.id !== r2.id;
-    });
 
-    this._layoutProvider = new LayoutProvider(
-      index => {
-        return 0;
-      },
-      (type, dim) => {
-        dim.width = width;
-        dim.height = 72;
-      }
-    );
+    this._layoutProvider = new LayoutProvider(() => {
+      return 'DEFAULT';
+    }, (type, dim) => {
+      dim.width = width;
+      dim.height = 72;
+    });
     this.state = {
-      dataProvider: this.dataProvider.cloneWithRows(roomList),
+      dataProvider: this.getDataProvider(roomList),
       actions: [],
     };
   }
@@ -35,7 +35,7 @@ class RoomListComponent extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const {roomList} = nextProps;
     this.setState({
-      dataProvider: this.dataProvider.cloneWithRows(roomList),
+      dataProvider: this.getDataProvider(roomList),
     });
   }
 
@@ -45,7 +45,8 @@ class RoomListComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, actionSheetControl, actions} = this.props;
+    const {intl, actionSheetControl, actions, confirmControl} = this.props;
+    const {dataProvider} = this.state;
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>
@@ -53,14 +54,16 @@ class RoomListComponent extends React.PureComponent {
             style={{titleText: {fontFamily: 'neuropolitical', fontWeight: '100'}}}
             centerElement="iGap+"/>
           <RecyclerListView
+            renderAheadOffset={640}
             layoutProvider={this._layoutProvider}
-            dataProvider={this.state.dataProvider}
+            dataProvider={dataProvider}
             rowRenderer={this._rowRenderer}/>
         </View>
         <ActionSheet
           title={intl.formatMessage(i18n.roomListActionTitle)}
           actions={actions}
           control={actionSheetControl}/>
+        <Confirm control={confirmControl}/>
       </View>
     );
   }

@@ -1246,7 +1246,7 @@ export default {
   },
   roomListActionUnMuteNotification: {
     id: 'roomList.actionUnMuteNotification',
-    defaultMessage: 'Un Mute Notification',
+    defaultMessage: 'UnMute Notification',
     description: 'Room List Screen',
   },
   roomListActionClearHistory: {

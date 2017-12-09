@@ -102,7 +102,7 @@ RoomUpdateUsernameComponent.propTypes = {
   isPublic: PropTypes.bool.isRequired,
   handleFormData: PropTypes.func.isRequired,
   formRules: PropTypes.object.isRequired,
-  inviteLink: PropTypes.string.isRequired,
+  inviteLink: PropTypes.string,
 };
 
 export default injectIntl(RoomUpdateUsernameComponent);

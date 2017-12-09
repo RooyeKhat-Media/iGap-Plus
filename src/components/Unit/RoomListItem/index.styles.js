@@ -1,4 +1,6 @@
-export default {
+import {StyleSheet} from 'react-native';
+
+export default StyleSheet.create({
   rightElementWrap: {
     width: 60, height: 45, flexDirection: 'column', alignItems: 'center',
   },
@@ -8,18 +10,20 @@ export default {
   timeTitle: {
     color: '#aaa', fontSize: 11, marginLeft: 3,
   },
-  badge: {container: {width: 20, height: 20, borderRadius: 10, marginTop: 3, position: null}},
+});
 
-  avatar: {
-    content: {
-      fontWeight: 'bold',
-      fontSize: 20,
-    },
+export const badgeStyle = StyleSheet.create({
+  container: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    marginTop: 3,
+    position: null,
   },
-  hide: {
-    container: {
-      display: 'none',
-      opacity: 0,
-    },
+});
+export const hideStyle = StyleSheet.create({
+  container: {
+    display: 'none',
+    opacity: 0,
   },
-};
+});
