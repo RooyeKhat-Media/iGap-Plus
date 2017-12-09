@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Animated, Easing, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Animated, Easing, PanResponder, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {black200, gray800, primary} from '../../../themes/default/index';
 import {Icon, IconToggle, MCIcon, TextInput} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
@@ -10,6 +10,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../../constants/app';
+import VoiceRecorder from './VoiceRecorder';
 
 class SendBox extends Component {
 
@@ -20,6 +21,7 @@ class SendBox extends Component {
       showAttachment: false,
       isActive: false,
       height: 0,
+      isSoundRecord: false,
     };
     this.animatedValue = new Animated.Value(0);
   }
@@ -27,6 +29,45 @@ class SendBox extends Component {
   componentDidMount() {
     const {Form} = this.props;
     this.onChangeText(Form.text);
+  }
+
+  componentWillMount() {
+    this.onEnd = (evt, gestureState) => {
+      this.micClick = false;
+      if (this.voiceRecorder) {
+        this.voiceRecorder.onTouch(gestureState, 'end');
+      }
+    };
+    this._panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: (evt, gestureState) => true,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onMoveShouldSetPanResponder: (evt, gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onShouldBlockNativeResponder: (evt, gestureState) => {
+        return true;
+      },
+      onPanResponderTerminationRequest: (evt, gestureState) => true,
+      onPanResponderRelease: this.onEnd,
+      onPanResponderTerminate: this.onEnd,
+      onPanResponderEnd: this.onEnd,
+      onPanResponderReject: this.onEnd,
+      onPanResponderGrant: (evt, gestureState) => {
+        this.micClick = true;
+        setTimeout(() => {
+          if (!this.state.isSoundRecord && this.micClick) {
+            this.setState({
+              isSoundRecord: true,
+              showAttachment: false,
+            });
+          }
+        }, 600);
+      },
+      onPanResponderMove: (evt, gestureState) => {
+        if (this.voiceRecorder) {
+          this.voiceRecorder.onTouch(gestureState, 'move');
+        }
+      },
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -104,6 +145,13 @@ class SendBox extends Component {
   selectEmoji = () => {
   };
   selectMic = () => {
+  };
+
+  onEndRecordSound = (path) => {
+    this.setState({isSoundRecord: false});
+    if (path) {
+      // send to chatBox  with this path
+    }
   };
 
   render() {
@@ -268,12 +316,22 @@ class SendBox extends Component {
               <MCIcon name="paperclip" style={styles.iconAttachment} size={28}/>
             </TouchableOpacity>}
 
-            {!this.state.isActive && <TouchableOpacity onPress={this.selectMic}>
+            {!this.state.isActive &&
+            <View  {...this._panResponder.panHandlers} >
               <MCIcon name="microphone" style={styles.iconMic} size={28}/>
-            </TouchableOpacity>}
+            </View>
+            }
 
           </View>
         </View>
+        {this.state.isSoundRecord &&
+        <View style={styles.soundRecorder}>
+          <VoiceRecorder
+            onEndRecordSound={this.onEndRecordSound}
+            onRef={ref => (this.voiceRecorder = ref)}
+          />
+        </View>
+        }
       </View>
     );
   }

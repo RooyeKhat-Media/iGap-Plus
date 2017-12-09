@@ -33,4 +33,10 @@ export default {
     flex: 1,
     marginBottom: 65,
   },
+  soundRecorder: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 };

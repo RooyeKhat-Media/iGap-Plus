@@ -1223,6 +1223,11 @@ export default {
     defaultMessage: 'Delete Photo',
     description: 'avatarListSave Page',
   },
+  voiceRecorderSlideToCancel: {
+    id: 'voiceRecorder.slideToCancel',
+    defaultMessage: '< Slide To Cancel',
+    description: 'voice Recorder',
+  },
 
   roomListActionTitle: {
     id: 'roomList.actionTitle',
