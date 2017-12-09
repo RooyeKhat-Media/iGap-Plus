@@ -1,5 +1,5 @@
 /**
- * @typedef {{id:string, sort: string}} MessengerRoomPayload
+ * @typedef {{id:string, sort: string, pinId: string}} MessengerRoomPayload
  * @typedef {Object.<string,MessengerRoomPayload>} MessengerRoomsPayload
  */
 
@@ -20,7 +20,7 @@ export function messengerRoomRemove(roomId) {
 /**
  * @param {MessengerRoomsPayload} payload
  * @param {boolean} fromServer
- * @return {{type: string, payload: {id:string,sort:string}}}
+ * @return {{type: string, payload: {id:string,sort:string,pinId:string}}}
  */
 export function messengerRoomAddList(payload, fromServer = true) {
   return {

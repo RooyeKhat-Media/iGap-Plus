@@ -1,5 +1,6 @@
 import Squel from '../../../modules/Squel';
 import {storage} from '../../MetaData/storage';
+import {padStart} from 'lodash';
 
 /**
  * @param {DbSaveQueueMap} persist
@@ -42,10 +43,12 @@ export function retrieveAllCallback() {
       const params = Squel.select().from('messenger_rooms')
         .field('CAST(id AS TEXT) AS id')
         .field('CAST(sort AS TEXT) AS sort')
+        .field('CAST(pinId AS TEXT) AS pinId')
         .toParam();
       transaction.executeSql(params.text, params.values, (transaction, results) => {
         for (let i = 0; i < results.rows.length; i++) {
           const row = results.rows.item(i);
+          row.sort = padStart(row.sort, 17, '0');
           payload[row.id] = row;
         }
         resolve(payload);

@@ -75,7 +75,8 @@ export async function serverRoomsState() {
         const roomId = roomProto.getId().toString();
         payload[roomId] = {
           id: roomId,
-          sort: padStart(sort.toString(), 17),
+          sort: padStart(sort.toString(), 17, '0'),
+          pinId: roomProto.getPinId().toString(),
         };
         newRoomList.push(roomId);
       });

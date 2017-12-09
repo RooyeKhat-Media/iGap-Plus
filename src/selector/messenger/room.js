@@ -11,6 +11,6 @@ const getRooms = (state) =>
 export const getRoomList = createSelector(
   getRooms,
   (roomListObject) => {
-    return orderBy(values(roomListObject), ['sort'], ['desc']);
+    return orderBy(values(roomListObject), ['pinId', 'sort'], ['desc', 'desc']);
   }
 );

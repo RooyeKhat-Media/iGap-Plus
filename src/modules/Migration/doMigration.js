@@ -50,8 +50,9 @@ function init() {
        * Messenger
        */
       transaction.executeSql(`CREATE TABLE IF NOT EXISTS messenger_rooms (
-        id   INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE,
-        sort INTEGER NOT NULL
+        id    INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE,
+        sort  INTEGER NOT NULL,
+        pinId INTEGER NOT NULL
       )`);
 
     }, (error) => {
