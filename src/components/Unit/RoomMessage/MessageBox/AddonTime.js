@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     height: 180,
   },
   timeText: {
-    fontSize: 10,
+    fontSize: 14,
   },
 });

@@ -16,7 +16,7 @@ class RoomMessage extends React.Component {
 
     if (roomType === Proto.Room.Type.CHANNEL) {
       return (<ChannelBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
-        showText={false}/>);
+        showText={false} roomId={message.roomId}/>);
     } else if (message.authorHash === authorHash) {
       return (<OwnerBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
         showText={true}/>);

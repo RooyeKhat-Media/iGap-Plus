@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import styles from './index.styles';
 
 import {Proto} from '../../../../modules/Proto/index';
-import ChannelBox from '../ChannelBox';
+import ChannelBox from '../ChannelBox/index';
 import MessageAtomBox from '../../../../containers/Unit/MessageAtomBox';
 
 class MessageBox extends React.Component {
@@ -21,7 +21,8 @@ class MessageBox extends React.Component {
             onMessagePress={onMessagePress}
             onMessageLongPress={onMessageLongPress}
             message={forwardFrom}
-            showText={true}/>);
+            showText={true}
+            roomId={forwardFrom.roomId}/>);
       } else {
         forward = (
           <MessageAtomBox
