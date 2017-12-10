@@ -19,6 +19,9 @@ let _authorHash;
 let _fakeMessageId = Long.ZERO;
 let _roomHistorySelectedMode = false;
 
+/**
+ * @returns {Long}
+ */
 export function getFakeMessageId() {
   _fakeMessageId = _fakeMessageId.add(1);
   return _fakeMessageId;

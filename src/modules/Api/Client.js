@@ -227,7 +227,7 @@ export default class Client {
           });
       }
 
-      if (isFromServer) {
+      if (isFromServer && responseActionId !== 0) {
         const cacheId = getCacheId(wrapper);
         if (cacheId) {
           CacheableMethod.saveToQueue(cacheId, payload);

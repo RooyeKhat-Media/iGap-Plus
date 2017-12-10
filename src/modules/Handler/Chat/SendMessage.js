@@ -8,6 +8,8 @@ import roomMessage from '../../../schemas/roomMessage';
 import {entitiesRoomMessagesAdd} from '../../../actions/entities/roomMessages';
 import {messengerRoomMessageConcat} from '../../../actions/messenger/roomMessages';
 import {toPairs} from 'lodash';
+import store from '../../../configureStore';
+import {sleep} from '../../../utils/core';
 
 /**
  * @property {ProtoChatSendMessage} _request
@@ -17,19 +19,28 @@ export default class SendMessage extends Base {
   async handle() {
     const roomId = this._response.getRoomId().toString();
     await putState(roomId);
-    this.dispatch(entitiesRoomEdit(roomId, {
-      lastMessage: this._response.getRoomMessage().getMessageId().toString(),
-    }));
+    let tries = 10;
+    do {
+      if (!store.getState().entities.rooms[roomId]) {
+        await sleep(1);
+      } else {
 
-    const normalizedData = normalize(this._response.getRoomMessage(), roomMessage);
+        this.dispatch(entitiesRoomEdit(roomId, {
+          lastMessage: this._response.getRoomMessage().getMessageId().toString(),
+        }));
 
-    toPairs(normalizedData.entities.roomMessages).forEach(([messageId, roomMessage]) => {
-      prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, true);
-    });
+        const normalizedData = normalize(this._response.getRoomMessage(), roomMessage);
 
-    if (!this._request) {
-      this.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
-      this.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result]));
-    }
+        toPairs(normalizedData.entities.roomMessages).forEach(([messageId, roomMessage]) => {
+          prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, true);
+        });
+
+        if (!this._request) {
+          this.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
+          this.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result]));
+        }
+        break;
+      }
+    } while (--tries);
   }
 }

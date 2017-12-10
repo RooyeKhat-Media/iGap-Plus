@@ -1,12 +1,8 @@
-import Base from '../../Base';
-import {entitiesRoomEdit} from '../../../../actions/entities/rooms';
+import GroupAddAvatar from '../../Group/Avatar/Add';
 
 /**
  * @property {ProtoChannelAvatarAdd} _request
  * @property {ProtoChannelAvatarAddResponse} _response
  */
-export default class Add extends Base {
-  handle() {
-    this.dispatch(entitiesRoomEdit(this._request.getRoomId(), {groupAvatar: this._response.getAvatar()}));
-  }
+export default class Add extends GroupAddAvatar {
 }

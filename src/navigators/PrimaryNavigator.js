@@ -61,8 +61,8 @@ export function goContactList() {
   navigate(CONTACT_LIST_SCREEN);
 }
 
-export function goContactPicker(title, onSubmit, multiple, afterSubmit = null) {
-  navigate(PRIMARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple, afterSubmit});
+export function goContactPicker(title, onSubmit, multiple, afterSubmit = null, required = true) {
+  navigate(PRIMARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple, afterSubmit, required});
 }
 
 export function goContactNew() {
@@ -73,7 +73,7 @@ export function goEditProfile() {
   navigate(EDIT_PROFILE_SCREEN);
 }
 
-export function goRoomCreate(type, selectedContact) {
+export function goRoomCreate(type, selectedContact = {}) {
   resetPrimaryNavigation(ROOM_CREATE_SCREEN, {type, selectedContact});
 }
 

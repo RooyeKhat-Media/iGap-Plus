@@ -21,12 +21,12 @@ class NewScreen extends Component {
   newGroupBtn = () => {
     goContactPicker(i18n.groupCreateSelectContactTitle, (contactList) => {
       goRoomCreate(ROOM_CREATE_SCREEN_TYPE_GROUP, contactList);
-    }, true);
+    }, true, null, false);
   };
   newChannelBtn = () => {
     goContactPicker(i18n.channelCreateSelectContactTitle, (contactList) => {
       goRoomCreate(ROOM_CREATE_SCREEN_TYPE_CHANNEL, contactList);
-    }, true);
+    }, true, null, false);
   };
 
   onUserPress = async (userId) => {

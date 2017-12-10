@@ -45,9 +45,10 @@ class RoomUpdateUsername extends Component {
     header: null,
   };
 
-  constructor(props) {
-    super(props);
-    const {room} = this.props;
+  prepareRoom = (room) => {
+    if (!room) {
+      return;
+    }
     let isPublic = false;
     let username = '';
     if (room.type === Proto.Room.Type.GROUP && room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM) {
@@ -58,13 +59,28 @@ class RoomUpdateUsername extends Component {
       isPublic = true;
       username = room.channelPublicUsername;
     }
-    this.state = {
+    this.setState({
       isPublic,
       username,
-    };
+    });
     formRules.username.push({
       validate: this.checkUsername,
     });
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPublic: false,
+      username: '',
+    };
+    const {room} = this.props;
+    this.prepareRoom(room);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {room} = nextProps;
+    this.prepareRoom(room);
   }
 
   handleFormData = async (formData, setError) => {
@@ -149,7 +165,7 @@ class RoomUpdateUsername extends Component {
   render() {
     const {room} = this.props;
     const {isPublic, username} = this.state;
-    const inviteLink = (room.type === Proto.Room.Type.GROUP ? room.groupPrivateInviteLink : room.channelPrivateInviteLink) || null;
+    const inviteLink = room ? (room.type === Proto.Room.Type.GROUP ? room.groupPrivateInviteLink : room.channelPrivateInviteLink) : null;
     return (
       <RoomUpdateUsernameComponent
         isPublic={!!isPublic}
@@ -163,10 +179,6 @@ class RoomUpdateUsername extends Component {
     );
   }
 }
-
-RoomUpdateUsername.propTypes = {
-  // myProp: PropTypes.string.isRequired
-};
 
 const mapStateToProps = (state, props) => {
   return {

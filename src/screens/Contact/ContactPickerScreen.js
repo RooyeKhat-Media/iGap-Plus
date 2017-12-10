@@ -39,7 +39,8 @@ class ContactPickerScreen extends Component {
   }
 
   onSubmitBtnPress = () => {
-    if (!isEmpty(this.state.selectedList)) {
+    const {required} = this.props.navigation.state.params;
+    if (!required || !isEmpty(this.state.selectedList)) {
       this.onSubmit(values(this.state.selectedList));
     }
   };
@@ -72,7 +73,7 @@ class ContactPickerScreen extends Component {
 
   render() {
     const {contactList} = this.props;
-    const {title} = this.props.navigation.state.params;
+    const {title, required} = this.props.navigation.state.params;
     const {selectedList} = this.state;
     return (
       <ContactPickerComponent
@@ -80,7 +81,7 @@ class ContactPickerScreen extends Component {
         loaderControl={this.loaderControl}
         onSubmit={this.onSubmitBtnPress}
         onSelectItem={this.onSelectItem}
-        activeSubmitBtn={!isEmpty(selectedList)}
+        activeSubmitBtn={!required || !isEmpty(selectedList)}
         selectedList={selectedList}
         title={title}
         contactList={contactList}/>
