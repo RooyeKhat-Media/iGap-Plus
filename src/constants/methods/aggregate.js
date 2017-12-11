@@ -32,6 +32,13 @@ const aggregateTable = {
   },
 
   //Chat 2xx
+  [methods.CHAT_GET_ROOM]: function(requestWrapper) {
+    /**
+     * @type ProtoChatGetRoom
+     */
+    const request = requestWrapper.request;
+    return createAggregateId(methods.CHAT_GET_ROOM, request.getPeerId());
+  },
 
   //Group chat 3xx
 
