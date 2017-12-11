@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
-import {Badge, ListItem as BaseListItem} from '../../BaseUI/index';
+import {Badge, ListItem as BaseListItem, MCIcon} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import MessageStatus from '../../../containers/Unit/MessageStatus';
-import styles, {badgeStyle, hideStyle} from './index.styles';
+import styles, {badgeStyle, hideStyle, muteBadgeStyle, pinedListItemStyle} from './index.styles';
 
 class RoomListItem extends React.PureComponent {
   render() {
-    const {roomId, roomTitle, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
+    const {roomId, roomTitle, roomPined, roomMute, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
     return (<BaseListItem
+      style={roomPined ? pinedListItemStyle : {}}
       onPress={onPress}
       onLongPress={onLongPress}
       leftElement={<Avatar roomId={roomId} size={52}/>}
@@ -27,7 +28,9 @@ class RoomListItem extends React.PureComponent {
             </Text>
           </View>
           <View style={styles.row}>
-            <Badge style={unreadCount ? badgeStyle : hideStyle} text={unreadCount ? unreadCount.toString() : null}/>
+            <Badge style={unreadCount ? (roomMute ? muteBadgeStyle : badgeStyle) : hideStyle}
+              text={unreadCount ? unreadCount.toString() : null}/>
+            <Text style={roomPined ? styles.pinStyle : hideStyle.container}><MCIcon name="pin" size={22}/></Text>
           </View>
         </View>}
     />);

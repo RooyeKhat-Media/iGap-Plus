@@ -33,6 +33,8 @@ class RoomListItem extends React.PureComponent {
     return (<RoomListItemComponent roomId={room.id}
       roomTitle={room.title}
       roomType={room.type}
+      roomPined={room.pinId !== '0'}
+      roomMute={room.roomMute === Proto.RoomMute.MUTE}
       unreadCount={room.unreadCount}
       lastMessageTitle={lastMessageTitle}
       lastMessageTime={lastMessage ? lastMessage.createTime : null}

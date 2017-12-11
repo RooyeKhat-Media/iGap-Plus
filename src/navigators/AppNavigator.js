@@ -69,7 +69,7 @@ export function goUserVerifyScreen(phoneNumber, username, method, resendDelay, s
 }
 
 export function goUserNewProfileScreen() {
-  navigate(USER_NEW_PROFILE_SCREEN);
+  resetNavigation(USER_NEW_PROFILE_SCREEN);
 }
 
 export function goUserTwoStepVerificationScreen() {

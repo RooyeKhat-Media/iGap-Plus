@@ -85,8 +85,8 @@ class RoomListScreen extends Component {
       onPress: this.togglePin,
     });
     actions.push({
-      icon: room.roomMute === Proto.RoomMute.UNMUTE ? 'notifications-active' : 'notifications',
-      title: intl.formatMessage(room.roomMute === Proto.RoomMute.UNMUTE ? i18n.roomListActionUnMuteNotification : i18n.roomListActionMuteNotification),
+      icon: room.roomMute === Proto.RoomMute.MUTE ? 'notifications-active' : 'notifications',
+      title: intl.formatMessage(room.roomMute === Proto.RoomMute.MUTE ? i18n.roomListActionUnMuteNotification : i18n.roomListActionMuteNotification),
       onPress: this.toggleMute,
     });
 
