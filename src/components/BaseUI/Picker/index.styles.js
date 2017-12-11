@@ -1,10 +1,10 @@
+import Device from '../../../modules/Responsive/Device';
+import {min, max} from 'lodash';
+
+const {width} = Device.dimensions.window;
+const boxWidth = min([360, max([width, 280])]);
+
 export default {
-  dWrapper: {
-    backgroundColor: 'transparent',
-  },
-  dLayout: {
-    backgroundColor: 'transparent',
-  },
   wrapper: {
     height: 45,
   },
@@ -32,14 +32,14 @@ export default {
   selectIcon: {
     width: 20,
   },
-  scrollView: {
-    flex: 1,
-  },
   container: {
     backgroundColor: '#fff',
     flex: 1,
     margin: 20,
     borderRadius: 2,
+    width: boxWidth,
+    minWidth: 280,
+    maxWidth: 420,
   },
   headerWrap: {
     padding: 5,

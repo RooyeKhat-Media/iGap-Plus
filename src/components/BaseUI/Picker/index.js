@@ -3,11 +3,6 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {FlatList, Icon, Modal, TextInput} from '../index';
 import styles from './index.styles';
 import PropTypes from 'prop-types';
-import * as _ from 'lodash';
-import DimensionLimiter from '../DimensionLimiter';
-import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
-
-const uniqueId = _.uniqueId();
 
 class Picker extends React.Component {
   state = {
@@ -17,7 +12,7 @@ class Picker extends React.Component {
     this.props.onItemSelect(key);
     this.setState({selectedKey: key});
     this.modal.close();
-  }
+  };
 
   render() {
     let {selectedKey} = this.state;
@@ -64,7 +59,7 @@ class Picker extends React.Component {
 class SelectListModal extends React.Component {
   state = {
     searchText: '',
-  }
+  };
 
   render() {
     const {onSelectItem, searchable, headerTitle} = this.props;
@@ -73,39 +68,35 @@ class SelectListModal extends React.Component {
       return searchText === '' || option.filter.search(searchText.toLowerCase()) >= 0;
     });
     return (
-      <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.dWrapper}
-        layoutStyle={styles.dLayout}>
-        <View style={styles.container}>
-          <View style={styles.headerWrap}>
+      <View style={styles.container}>
+        <View style={styles.headerWrap}>
 
-            {headerTitle ? (<Text style={styles.headerTitle}>{headerTitle}</Text>) : null}
+          {headerTitle ? (<Text style={styles.headerTitle}>{headerTitle}</Text>) : null}
 
-            {searchable ? (
-              <View style={styles.searchWrap}>
-                <View style={styles.searchIcon}>
-                  <Icon name="search" size={26} color="#aaaaaa"/>
-                </View>
-                <TextInput style={styles.searchInput} autoFocus={true} underlineColorAndroid="transparent"
-                  onChangeText={(text) => {
-                    this.setState({searchText: text});
-                  }}/>
+          {searchable ? (
+            <View style={styles.searchWrap}>
+              <View style={styles.searchIcon}>
+                <Icon name="search" size={26} color="#aaaaaa"/>
               </View>
-            ) : null}
+              <TextInput style={styles.searchInput} autoFocus={true} underlineColorAndroid="transparent"
+                onChangeText={(text) => {
+                  this.setState({searchText: text});
+                }}/>
+            </View>
+          ) : null}
 
-
-          </View>
-          <View style={styles.bodyWrap}>
-            <FlatList
-              data={options}
-              renderItem={({item}) =>
-                (<TouchableOpacity key={item.key} onPress={() => {
-                  onSelectItem(item.key);
-                }}>
-                  {item.element}
-                </TouchableOpacity>)}/>
-          </View>
         </View>
-      </DimensionLimiter>
+        <View style={styles.bodyWrap}>
+          <FlatList
+            data={options}
+            renderItem={({item}) =>
+              (<TouchableOpacity key={item.key} onPress={() => {
+                onSelectItem(item.key);
+              }}>
+                {item.element}
+              </TouchableOpacity>)}/>
+        </View>
+      </View>
 
     );
   }
