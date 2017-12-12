@@ -9,13 +9,15 @@ export const MESSENGER_ROOM_MESSAGE_REMOVE = 'MESSENGER_ROOM_MESSAGE_REMOVE';
 /**
  * @param {string} roomId
  * @param {[string]} messageIds
- * @return {{type: string, roomId: string}}
+ * @param {boolean} before
+ * @return {{type: string, roomId: string, messageIds:[string], before: boolean}}
  */
-export function messengerRoomMessageConcat(roomId, messageIds) {
+export function messengerRoomMessageConcat(roomId, messageIds, before = true) {
   return {
     type: MESSENGER_ROOM_MESSAGE_CONCAT,
     roomId,
     messageIds,
+    before,
   };
 }
 

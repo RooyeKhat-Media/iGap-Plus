@@ -25,6 +25,27 @@ import {getEntitiesRoomMessage} from '../../selector/entities/roomMessage';
 
 class RoomHistoryScreen extends Component {
 
+  onScroll = async ({nativeEvent}) => {
+    const {room} = this.props;
+    if (nativeEvent.contentOffset.y <= 300 && !this.loading) {
+      try {
+        this.loading = true;
+        await loadRoomHistory(room.id);
+      } finally {
+        this.loading = false;
+      }
+    }
+  };
+
+  async componentDidMount() {
+    const {room} = this.props;
+    await loadRoomHistory(room.id);
+  }
+
+  flatListRef = (ref) => {
+    this.flatList = ref;
+  };
+
   constructor(props) {
     super(props);
     const {room} = this.props;
@@ -37,6 +58,7 @@ class RoomHistoryScreen extends Component {
     const isAdmin = ((isGroup && room.groupRole === Proto.GroupRoom.Role.ADMIN) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.ADMIN));
     const isModerator = ((isGroup && room.groupRole === Proto.GroupRoom.Role.MODERATOR) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.MODERATOR));
 
+    this.loading = false;
     this.state = {
       editMessageId: null,
       text: '',
@@ -50,11 +72,6 @@ class RoomHistoryScreen extends Component {
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
     };
-  }
-
-  async componentDidMount() {
-    const {room} = this.props;
-    await loadRoomHistory(room.id);
   }
 
   /**
@@ -252,8 +269,11 @@ class RoomHistoryScreen extends Component {
     const toolbarActions = this.getToolbarAction();
     return (
       <RoomHistoryComponent
-        room={room}
         Form={Form}
+        roomId={room.id}
+        roomType={room.type}
+        roomTitle={room.title}
+        lastMessageId={room.lastMessage}
         messageList={messageList}
         selectedList={selectedList}
         selectedCount={selectedCount}
@@ -263,7 +283,9 @@ class RoomHistoryScreen extends Component {
         onMessageLongPress={this.onMessageLongPress}
         selectedMessageAction={this.selectedMessageAction}
         conformControl={this.conformControl}
+        flatListRef={this.flatListRef}
         toolbarActions={toolbarActions}
+        onScroll={this.onScroll}
         goBack={this.props.navigation.goBack}
       />
     );

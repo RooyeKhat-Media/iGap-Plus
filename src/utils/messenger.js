@@ -220,7 +220,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType) {
     normalizedRoomMessage.pickedFile = pickedFile;
 
     store.dispatch(entitiesRoomMessagesAdd({[normalizedRoomMessage.id]: normalizedRoomMessage}));
-    store.dispatch(messengerRoomMessageConcat(room.id, [normalizedRoomMessage.id]));
+    store.dispatch(messengerRoomMessageConcat(room.id, [normalizedRoomMessage.id], false));
   }
 }
 

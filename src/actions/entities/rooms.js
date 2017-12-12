@@ -6,6 +6,7 @@ import {entitiesRoomMessagesAdd} from './roomMessages';
 import {entitiesRegisteredUserAdd} from './registeredUser';
 import {prepareRoomMessage} from '../../utils/app';
 import {toPairs} from 'lodash';
+import {setFractionIfNotExist} from '../../modules/Messenger/loadRoomHistory';
 
 export const ENTITIES_ROOM_ADD = 'ENTITIES_ROOM_ADD';
 export const ENTITIES_ROOM_EDIT = 'ENTITIES_ROOM_EDIT';
@@ -33,31 +34,25 @@ export function entitiesRoomsAddFull(data) {
     if (data.entities.registeredUsers) {
       dispatch(entitiesRegisteredUserAdd(data.entities.registeredUsers));
     }
+    const allFractionPromise = [];
     toPairs(data.entities.rooms).forEach(([roomId, room]) => {
       if (room.lastMessage) {
         const replyTo = data.entities.roomMessages[room.lastMessage] ? data.entities.roomMessages[room.lastMessage].replyTo : null;
         prepareRoomMessage(data.entities.roomMessages[room.lastMessage], roomId, false);
         prepareRoomMessage(data.entities.roomMessages[replyTo], roomId, false);
+        allFractionPromise.push(setFractionIfNotExist(data.entities.roomMessages[room.lastMessage]));
       }
       if (room.firstUnreadMessage) {
         const replyTo = data.entities.roomMessages[room.firstUnreadMessage] ? data.entities.roomMessages[room.firstUnreadMessage].replyTo : null;
+        allFractionPromise.push(setFractionIfNotExist(data.entities.roomMessages[room.firstUnreadMessage]));
         prepareRoomMessage(data.entities.roomMessages[room.firstUnreadMessage], roomId, false);
         prepareRoomMessage(data.entities.roomMessages[replyTo], roomId, false);
       }
     });
-    dispatch(entitiesRoomMessagesAdd(data.entities.roomMessages));
-    dispatch(entitiesRoomsAdd(data.entities.rooms));
-
-    // Object.keys(data.entities.rooms).forEach(function(key) {
-    //   if (data.entities.rooms[key].firstUnreadMessage) {
-    //     dispatch(messengerRoomMessagePush(key, data.entities.rooms[key].firstUnreadMessage));
-    //   }
-    //   if (data.entities.rooms[key].lastMessage) {
-    //     dispatch(messengerRoomMessageUnshift(key, data.entities.rooms[key].lastMessage));
-    //   }
-    // });
-
-    // TODO [Amerehie] - 9/27/2017 4:13 PM - Dispatch for data.entities.registeredUsers  data.entities.roomMessages
+    return Promise.all(allFractionPromise).then(() => {
+      dispatch(entitiesRoomMessagesAdd(data.entities.roomMessages));
+      dispatch(entitiesRoomsAdd(data.entities.rooms));
+    });
   };
 }
 

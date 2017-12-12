@@ -3,13 +3,13 @@
  */
 
 import QueueDb from '../../../modules/QueueDb';
-import {persistCallback} from './backend';
+import {persistCallback, retrieveCallback, retrieveHistoryCallback} from './backend';
 
-const {save} = QueueDb(
+const {save, load} = QueueDb(
   persistCallback,
-  () => {
-  }
+  retrieveCallback
 );
+
 
 export default class RoomMessages {
 
@@ -21,15 +21,20 @@ export default class RoomMessages {
   }
 
   /**
-   * @param {string} fromMessageId
-   * @param {string} roomId
-   * @param {string} direction
-   * @param {boolean} searchHistory
-   * @return {Promise.<FlatRoomMessage>}
+   * @returns {Promise.<void>}
    */
-  static async loadFromDb(roomId, fromMessageId, direction = 'up', searchHistory = false) {
-    const roomMessages = {};
+  static async loadFromQueue(roomMessageId) {
+    return load(roomMessageId); // todo create LoadFractionFromDb
+  }
 
-    return roomMessages;
+  /**
+   * @param {string} roomId
+   * @param {string} firstMessageId
+   * @param {boolean} upward
+   * @param {number} limit
+   * @return {Promise.<FlatRoomMessage[]>}
+   */
+  static async loadHistoryFromDb(roomId, firstMessageId, upward, limit) {
+    return retrieveHistoryCallback(roomId, firstMessageId, upward, limit);
   }
 }

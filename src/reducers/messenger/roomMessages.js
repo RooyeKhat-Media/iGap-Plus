@@ -15,9 +15,13 @@ export function roomMessages(state = initialState, action) {
   let index;
   switch (action.type) {
     case MESSENGER_ROOM_MESSAGE_CONCAT:
+      newList = !state[action.roomId] ? action.messageIds :
+        (action.before ?
+          concat(action.messageIds, state[action.roomId]) :
+          concat(state[action.roomId], action.messageIds));
       return {
         ...state,
-        [action.roomId]: state[action.roomId] ? uniq(concat(state[action.roomId], action.messageIds)) : uniq(action.messageIds),
+        [action.roomId]: uniq(newList),
       };
 
     case MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE:

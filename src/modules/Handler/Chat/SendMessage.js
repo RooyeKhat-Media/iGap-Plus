@@ -37,7 +37,7 @@ export default class SendMessage extends Base {
 
         if (!this._request) {
           this.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
-          this.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result]));
+          this.dispatch(messengerRoomMessageConcat(roomId, [normalizedData.result], false));
         }
         break;
       }

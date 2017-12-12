@@ -4,29 +4,54 @@ import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {Confirm, FlatList, ListItem, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
-import RoomMessage from '../../../containers/Unit/RoomMessage';
 import SendBox from './SendBox';
+import RoomMessage from '../../../containers/Unit/RoomMessage';
 
-class RoomHistoryComponent extends React.Component {
+class RoomHistoryComponent extends React.PureComponent {
+
+  setRef = (ref) => {
+    const {flatListRef} = this.props;
+    this.flatList = ref;
+    flatListRef(ref);
+  };
+
+  keyExtractor = (item, index) => {
+    return item;
+  };
+
+  renderItem = ({item, index}) => {
+    const {onMessagePress, onMessageLongPress, selectedList, roomType, roomId} = this.props;
+    return (<RoomMessage
+      onMessagePress={onMessagePress}
+      onMessageLongPress={onMessageLongPress}
+      selected={!!selectedList[item]}
+      roomType={roomType}
+      roomId={roomId}
+      messageId={item}/>);
+  };
+
+  getItemLayout = (data, index) => {
+    return {length: 80, offset: 80 * index, index};
+  };
+
   render() {
-    const {room, Form, messageList, selectedList, selectedCount, onMessagePress, onMessageLongPress, conformControl} = this.props;
+    const {Form, messageList, selectedList, selectedCount, conformControl, onScroll} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
           <View style={styles.messageListWrap}>
             {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
-            <FlatList
+            {messageList && messageList.length ? (<FlatList
+              ref={this.setRef}
               data={messageList}
-              keyExtractor={(item, index) => ('history-' + item)}
               extraData={selectedList}
-              renderItem={({item}) =>
-                (<RoomMessage
-                  onMessagePress={onMessagePress}
-                  onMessageLongPress={onMessageLongPress}
-                  selected={!!selectedList[item]}
-                  roomType={room.type}
-                  roomId={room.id}
-                  messageId={item}/>)}/>
+              renderItem={this.renderItem}
+              keyExtractor={this.keyExtractor}
+              getItemLayout={this.getItemLayout}
+              waitForInteractions={false}
+              onScroll={onScroll}
+              initialNumToRender={10}
+              initialScrollIndex={messageList.length - 1}/>) : null}
           </View>
           <Confirm control={conformControl}/>
           <SendBox Form={Form}/>
@@ -36,7 +61,7 @@ class RoomHistoryComponent extends React.Component {
   }
 
   renderBaseToolbar() {
-    const {room, goRoomInfoBtn, goBack} = this.props;
+    const {roomTitle, goRoomInfoBtn, goBack} = this.props;
     return (<Toolbar
       style={styles.toolBar}
       leftElement="arrow-back"
@@ -44,7 +69,7 @@ class RoomHistoryComponent extends React.Component {
       centerElement={
         <ListItem
           centerElement={{
-            primaryText: room.title,
+            primaryText: roomTitle,
           }}
           style={styles.toolBarListItem}
         />
@@ -77,7 +102,9 @@ class RoomHistoryComponent extends React.Component {
 
 RoomHistoryComponent.propTypes = {
   intl: intlShape.isRequired,
-  room: PropTypes.object.isRequired,
+  roomId: PropTypes.string.isRequired,
+  roomType: PropTypes.number.isRequired,
+  roomTitle: PropTypes.string.isRequired,
   Form: PropTypes.object.isRequired,
   messageList: PropTypes.arrayOf(PropTypes.string),
   selectedList: PropTypes.object.isRequired,

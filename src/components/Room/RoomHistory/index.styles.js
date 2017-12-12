@@ -33,6 +33,16 @@ export default {
     flex: 1,
     marginBottom: 65,
   },
+
+  messageBox: {
+    height: 80,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    backgroundColor: '#fff',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   soundRecorder: {
     position: 'absolute',
     left: 0,

@@ -40,6 +40,7 @@ export const flatProtoRoomMessage = (roomMessage) => {
     forwardFrom: flatProtoRoomMessage(roomMessage.getForwardFrom()),
     replyTo: roomMessage.getReplyTo(),
     previousMessageId: roomMessage.getPreviousMessageId(),
+    fraction: roomMessage.getPreviousMessageId().toString() !== '0',
   };
 
   if (author) {
