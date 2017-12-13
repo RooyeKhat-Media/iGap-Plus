@@ -967,6 +967,21 @@ export default {
     defaultMessage: 'Are You Sure you Want to Delete {count} message from {roomTitle} ?',
     description: 'roomHistory screen',
   },
+  roomHistoryJoinBoxJoin: {
+    id: 'roomHistory.joinBox.join',
+    defaultMessage: 'Join',
+    description: 'roomHistory joinBox screen',
+  },
+  roomHistoryJoinBoxMute: {
+    id: 'roomHistory.joinBox.mute',
+    defaultMessage: 'Mute',
+    description: 'roomHistory joinBox screen',
+  },
+  roomHistoryJoinBoxUnMute: {
+    id: 'roomHistory.joinBox.unMute',
+    defaultMessage: 'UnMute',
+    description: 'roomHistory joinBox screen',
+  },
   settingSetting: {
     id: 'setting.setting',
     defaultMessage: 'Setting',

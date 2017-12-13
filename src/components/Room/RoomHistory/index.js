@@ -6,6 +6,7 @@ import {Confirm, FlatList, ListItem, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import SendBox from './SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
+import JoinBox from './JoinBox';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -35,7 +36,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {Form, messageList, selectedList, selectedCount, conformControl, onScroll} = this.props;
+    const {Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedList, selectedCount, conformControl, onScroll} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
@@ -54,7 +55,9 @@ class RoomHistoryComponent extends React.PureComponent {
               initialScrollIndex={messageList.length - 1}/>) : null}
           </View>
           <Confirm control={conformControl}/>
-          <SendBox Form={Form}/>
+          {!readOnly ? (<SendBox Form={Form}/>) : (
+            <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}
+              isParticipant={isParticipant}/>)}
         </View>
       </View>
     );

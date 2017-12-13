@@ -20,8 +20,10 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../constants/app';
 import {getAuthorHash, setRoomHistorySelectedMode} from '../../utils/app';
-import {Proto} from '../../modules/Proto/index';
+import {ClientJoinByUsername, ClientMuteRoom, Proto} from '../../modules/Proto/index';
 import {getEntitiesRoomMessage} from '../../selector/entities/roomMessage';
+import {CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM} from '../../constants/methods/index';
+import Api from '../../modules/Api/index';
 
 class RoomHistoryScreen extends Component {
 
@@ -251,6 +253,29 @@ class RoomHistoryScreen extends Component {
     this.confirm = confirm;
   };
 
+  joinBoxToggle = async () => {
+    const {room} = this.props;
+    const isParticipant = room.isParticipant;
+    const isPublic = room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM || room.channelType === Proto.ChannelRoom.Type.PUBLIC_ROOM;
+    const roomMute = room.roomMute === Proto.RoomMute.MUTE;
+    try {
+      if (!isParticipant) {
+        if (isPublic) {
+          const clientJoinByUsername = new ClientJoinByUsername();
+          clientJoinByUsername.setUsername(room.groupPublicUsername || room.channelPublicUsername);
+          await Api.invoke(CLIENT_JOIN_BY_USERNAME, clientJoinByUsername);
+        }
+      } else {
+        const clientMuteRoom = new ClientMuteRoom();
+        clientMuteRoom.setRoomId(room.longId);
+        clientMuteRoom.setRoomMute(roomMute ? Proto.RoomMute.UNMUTE : Proto.RoomMute.MUTE);
+        await Api.invoke(CLIENT_MUTE_ROOM, clientMuteRoom);
+      }
+    } catch (e) {
+      console.error('joinBoxToggle Error');
+    }
+  }
+
   render() {
     const {room, messageList} = this.props;
     const {text, editMessageId, pickedFile, selectedCount, selectedList} = this.state;
@@ -273,6 +298,11 @@ class RoomHistoryScreen extends Component {
         roomId={room.id}
         roomType={room.type}
         roomTitle={room.title}
+        readOnly={room.readOnly}
+        isParticipant={room.isParticipant}
+        isPublic={room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM || room.channelType === Proto.ChannelRoom.Type.PUBLIC_ROOM}
+        roomMute={room.roomMute === Proto.RoomMute.MUTE}
+        joinBoxToggle={this.joinBoxToggle}
         lastMessageId={room.lastMessage}
         messageList={messageList}
         selectedList={selectedList}
