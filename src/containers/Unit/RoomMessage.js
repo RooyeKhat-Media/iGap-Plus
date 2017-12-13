@@ -8,11 +8,11 @@ class RoomMessage extends PureComponent {
 
   onMessagePress = () => {
     const {message, onMessagePress} = this.props;
-    onMessagePress(message.id);
+    onMessagePress(message);
   };
   onMessageLongPress = () => {
     const {message, onMessageLongPress} = this.props;
-    onMessageLongPress(message.id);
+    onMessageLongPress(message);
   };
 
   render() {

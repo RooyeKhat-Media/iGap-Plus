@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {indexOf} from 'lodash';
+import {injectIntl, intlShape} from 'react-intl';
+import SaveTo from '../../../native/modules/SaveTo';
+import Share from '../../modules/Share/index';
 import {getRoom} from '../../selector/entities/room';
 import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
-import i18n from '../../i18n';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
 import {goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
 import {deleteMessages, editRoomMessage, sendMessage, sendMultiAttachMessages} from '../../utils/messenger';
@@ -24,6 +27,7 @@ import {ClientJoinByUsername, ClientMuteRoom, Proto} from '../../modules/Proto/i
 import {getEntitiesRoomMessage} from '../../selector/entities/roomMessage';
 import {CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
+import i18n from '../../i18n';
 
 class RoomHistoryScreen extends Component {
 
@@ -73,6 +77,7 @@ class RoomHistoryScreen extends Component {
         editMessage: false,
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
+      actionSheetActions: [],
     };
   }
 
@@ -137,16 +142,25 @@ class RoomHistoryScreen extends Component {
     });
   };
 
-  onMessagePress = (messageId) => {
+  onMessagePress = (message) => {
     const {selectedCount} = this.state;
     if (selectedCount) {
-      this.selectMessage(messageId);
+      this.selectMessage(message.id);
+    } else {
+      this.setState({
+        actionSheetActions: this.getActionList(message),
+      }, () => {
+        const {actionSheetActions} = this.state;
+        if (actionSheetActions.length) {
+          this.actionSheet.open();
+        }
+      });
     }
   };
-  onMessageLongPress = (messageId) => {
+  onMessageLongPress = (message) => {
     const {selectedCount} = this.state;
     if (!selectedCount) {
-      this.selectMessage(messageId);
+      this.selectMessage(message.id);
     }
   };
 
@@ -210,20 +224,13 @@ class RoomHistoryScreen extends Component {
     switch (selected.action) {
 
       case ROOM_MESSAGE_ACTION_REPLY:
-        alert('reply');
+        this.actionReply(roomMessage);
         break;
       case ROOM_MESSAGE_ACTION_FORWARD:
-        alert('forward');
+        this.actionForward([]);
         break;
       case ROOM_MESSAGE_ACTION_DELETE:
-        this.confirm.open(i18n.roomHistoryDeleteMessagesTitle, {
-          ...i18n.roomHistoryDeleteMessagesDescription, values: {
-            roomTitle: room.title,
-            count: Object.keys(selectedList).length,
-          },
-        }, () => {
-          deleteMessages(room.id, Object.keys(selectedList));
-        });
+        this.actionDeleteMessages(selectedList);
         break;
       case ROOM_MESSAGE_ACTION_REPORT:
         if (roomMessage) {
@@ -242,6 +249,26 @@ class RoomHistoryScreen extends Component {
     this.cancelSelected();
   };
 
+  actionReply = (message) => {
+    alert('reply To');
+  };
+
+  actionForward = (messageId) => {
+    alert('Forward');
+  };
+
+  actionDeleteMessages = (selectedList) => {
+    const {room} = this.props;
+    this.confirm.open(i18n.roomHistoryDeleteMessagesTitle, {
+      ...i18n.roomHistoryDeleteMessagesDescription, values: {
+        roomTitle: room.title,
+        count: Object.keys(selectedList).length,
+      },
+    }, () => {
+      deleteMessages(room.id, Object.keys(selectedList));
+    });
+  };
+
   cancelEdit = () => {
     this.setState({
       editMessageId: null,
@@ -249,7 +276,7 @@ class RoomHistoryScreen extends Component {
     });
   };
 
-  conformControl = (confirm) => {
+  confirmControl = (confirm) => {
     this.confirm = confirm;
   };
 
@@ -276,9 +303,99 @@ class RoomHistoryScreen extends Component {
     }
   }
 
+  actionSheetControl = (action) => {
+    this.actionSheet = action;
+  };
+  /**
+   * @param {FlatRoomMessage} roomMessage
+   * @return {Array}
+   */
+  getActionList = (roomMessage) => {
+    const actions = [];
+    const {intl, getMessageDownloadFileUri} = this.props;
+    const {access} = this.state;
+    const uri = getMessageDownloadFileUri(roomMessage.attachment ? roomMessage.attachment.getCacheId() : null);
+
+    if (roomMessage.authorHash === getAuthorHash()) {
+      actions.push({
+        icon: 'edit',
+        title: intl.formatMessage(i18n.roomHistoryActionEdit),
+        onPress: () => {
+          this.setState({
+            text: roomMessage.message,
+            editMessageId: roomMessage.id,
+          });
+        },
+      });
+    }
+    actions.push({
+      icon: 'forward',
+      title: intl.formatMessage(i18n.roomHistoryActionForward),
+      onPress: () => {
+        this.actionForward(roomMessage.id);
+      },
+    });
+    if (access.sendMessage) {
+      actions.push({
+        icon: 'reply',
+        title: intl.formatMessage(i18n.roomHistoryActionReply),
+        onPress: () => {
+          this.actionReply(roomMessage);
+        },
+      });
+    }
+    if (uri && SaveTo.downloadsSupport() && roomMessage.attachment) {
+      actions.push({
+        icon: 'cloud-download',
+        title: intl.formatMessage(i18n.roomHistoryActionSaveToDownload),
+        onPress: () => {
+          SaveTo.downloads(uri);
+        },
+      });
+    }
+    if (uri && SaveTo.gallerySupport('image') && indexOf([
+      Proto.RoomMessageType.IMAGE,
+      Proto.RoomMessageType.IMAGE_TEXT,
+      Proto.RoomMessageType.GIF,
+      Proto.RoomMessageType.GIF_TEXT,
+      Proto.RoomMessageType.VIDEO,
+      Proto.RoomMessageType.VIDEO_TEXT,
+    ], roomMessage.messageType) >= 0) {
+      actions.push({
+        icon: 'collections',
+        title: intl.formatMessage(i18n.roomHistoryActionSaveToGallery),
+        onPress: () => {
+          SaveTo.gallery(uri, roomMessage.attachment.getMime());
+        },
+      });
+    }
+    if (uri && SaveTo.musicSupport('audio') && indexOf([
+      Proto.RoomMessageType.AUDIO,
+      Proto.RoomMessageType.AUDIO_TEXT,
+      Proto.RoomMessageType.VOICE], roomMessage.messageType) >= 0) {
+      actions.push({
+        icon: 'audiotrack',
+        title: intl.formatMessage(i18n.roomHistoryActionSaveToMusic),
+        onPress: () => {
+          SaveTo.music(uri, roomMessage.attachment.getMime());
+        },
+      });
+    }
+    if (uri && Share.isSupported) {
+      actions.push({
+        icon: 'share',
+        title: intl.formatMessage(i18n.roomHistoryActionShare),
+        onPress: () => {
+          Share.open(uri, roomMessage.attachment.getMime());
+        },
+      });
+    }
+    return actions;
+  };
+
   render() {
     const {room, messageList} = this.props;
-    const {text, editMessageId, pickedFile, selectedCount, selectedList} = this.state;
+    const {text, editMessageId, pickedFile, selectedCount, selectedList, actionSheetActions} = this.state;
     const Form = {
       text,
       pickedFile,
@@ -312,9 +429,11 @@ class RoomHistoryScreen extends Component {
         onMessagePress={this.onMessagePress}
         onMessageLongPress={this.onMessageLongPress}
         selectedMessageAction={this.selectedMessageAction}
-        conformControl={this.conformControl}
+        conformControl={this.confirmControl}
         flatListRef={this.flatListRef}
         toolbarActions={toolbarActions}
+        actionSheetControl={this.actionSheetControl}
+        actionSheetActions={actionSheetActions}
         onScroll={this.onScroll}
         goBack={this.props.navigation.goBack}
       />
@@ -330,10 +449,17 @@ const makeMapStateToProps = () => {
       getEntitiesRoomMessage: (messageId) => {
         return getEntitiesRoomMessage(state, messageId);
       },
+      getMessageDownloadFileUri: (cacheId) => {
+        const downloadFile = state.fileManager.download[cacheId];
+        return downloadFile ? downloadFile.uri : null;
+      },
     };
   };
 };
 
+RoomHistoryScreen.propTypes = {
+  intl: intlShape.isRequired,
+};
 export default connect(
   makeMapStateToProps
-)(RoomHistoryScreen);
+)(injectIntl(RoomHistoryScreen));

@@ -7,6 +7,8 @@ import styles from './index.styles';
 import SendBox from './SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
 import JoinBox from './JoinBox';
+import ActionSheet from '../../BaseUI/ActionSheet/index';
+import i18n from '../../../i18n/en';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -36,7 +38,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedList, selectedCount, conformControl, onScroll} = this.props;
+    const {intl, Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedList, selectedCount, actionSheetActions, actionSheetControl, conformControl, onScroll} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
@@ -54,6 +56,10 @@ class RoomHistoryComponent extends React.PureComponent {
               initialNumToRender={10}
               initialScrollIndex={messageList.length - 1}/>) : null}
           </View>
+          <ActionSheet
+            title={intl.formatMessage(i18n.roomHistoryActionTitle)}
+            actions={actionSheetActions}
+            control={actionSheetControl}/>
           <Confirm control={conformControl}/>
           {!readOnly ? (<SendBox Form={Form}/>) : (
             <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}

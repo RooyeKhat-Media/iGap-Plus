@@ -982,6 +982,46 @@ export default {
     defaultMessage: 'UnMute',
     description: 'roomHistory joinBox screen',
   },
+  roomHistoryActionTitle: {
+    id: 'roomHistory.actionTitle',
+    defaultMessage: 'Messages',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionEdit: {
+    id: 'roomHistory.actionEdit',
+    defaultMessage: 'Edit',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionForward: {
+    id: 'roomHistory.actionForward',
+    defaultMessage: 'Forward',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionReply: {
+    id: 'roomHistory.actionReply',
+    defaultMessage: 'Reply',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionSaveToDownload: {
+    id: 'roomHistory.actionSaveToDownload',
+    defaultMessage: 'Save To Download',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionSaveToGallery: {
+    id: 'roomHistory.actionSaveToGallery',
+    defaultMessage: 'Save To Gallery',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionSaveToMusic: {
+    id: 'roomHistory.actionSaveToMusic',
+    defaultMessage: 'Save To Music',
+    description: 'roomHistory screen',
+  },
+  roomHistoryActionShare: {
+    id: 'roomHistory.actionShare',
+    defaultMessage: 'Share',
+    description: 'roomHistory screen',
+  },
   settingSetting: {
     id: 'setting.setting',
     defaultMessage: 'Setting',
