@@ -27,12 +27,13 @@ class Avatar extends React.PureComponent {
   }
 
   render() {
-    const {circle, size, avatarProps, avatarUri} = this.props;
+    const {circle, size, avatarProps, avatarUri, onPress} = this.props;
 
     return (
       <AvatarComponent
         circle={circle}
         size={size}
+        onPress={onPress}
         color={avatarProps.color}
         text={avatarProps.initials}
         uri={prependFileProtocol(avatarUri)}

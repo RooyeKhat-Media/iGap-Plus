@@ -6,14 +6,14 @@ import AddonTime from './MessageBox/AddonTime';
 import Title from '../../../containers/Unit/Title';
 import {groupStyle as styles} from './index.styles';
 
-export default ({message, showText, onMessagePress, onMessageLongPress}) => (
+export default ({message, showText, goUserInfo, onMessagePress, onMessageLongPress}) => (
   <View style={styles.container}>
     <View style={styles.avatarWrap}>
-      <Avatar userId={message.authorUser} roomId={message.authorRoom} size={40}/>
+      <Avatar onPress={goUserInfo} userId={message.authorUser} roomId={message.authorRoom} size={40}/>
     </View>
     <View style={styles.triangle}/>
     <View style={styles.messageBox}>
-      <Title userId={message.authorUser} roomId={message.authorRoom}/>
+      <Title userId={message.authorUser} roomId={message.authorRoom} onPress={goUserInfo}/>
       <MessageBox message={message} showText={showText} onMessagePress={onMessagePress}
         onMessageLongPress={onMessageLongPress}/>
       <View style={styles.footerWrap}>

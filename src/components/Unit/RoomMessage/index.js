@@ -12,7 +12,7 @@ import ChannelBox from './ChannelBox';
 class RoomMessage extends React.Component {
 
   renderContent = () => {
-    const {message, authorHash, roomType, onMessagePress, onMessageLongPress} = this.props;
+    const {message, authorHash, roomType, goUserInfo, onMessagePress, onMessageLongPress} = this.props;
 
     if (roomType === Proto.Room.Type.CHANNEL) {
       return (<ChannelBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
@@ -24,7 +24,8 @@ class RoomMessage extends React.Component {
       return (<ChatBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
         showText={true}/>);
     } else if (roomType === Proto.Room.Type.GROUP) {
-      return (<GroupBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
+      return (<GroupBox goUserInfo={goUserInfo} onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress}
+        message={message}
         showText={true}/>);
     }
 

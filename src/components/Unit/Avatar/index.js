@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, {PureComponent} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {memoize} from 'lodash';
 
@@ -8,19 +8,19 @@ import {memoize} from 'lodash';
 class AvatarComponent extends PureComponent {
 
   render() {
-    const {text, uri, size, circle, color} = this.props;
+    const {text, uri, size, circle, color, onPress} = this.props;
     const styles = getAvatarStyle({color, size, hasUri: uri ? 1 : 0, circle: circle ? 1 : 0});
     let source = {};
     if (uri) {
       source.uri = uri;
     }
     return (
-      <View style={styles.container}>
+      <TouchableOpacity onPress={onPress} style={styles.container}>
         <View style={styles.wrapStyles}>
           <Image source={source} style={styles.imageStyles}/>
           <Text style={styles.contentStyle}>{text}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

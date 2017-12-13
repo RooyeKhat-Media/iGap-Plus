@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {getAuthorHash} from '../../utils/app';
 import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
 import {getRoomMessage} from '../../selector/entities/roomMessage';
+import {getPeerRoomId} from '../../utils/messenger';
+import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 
 class RoomMessage extends PureComponent {
 
@@ -13,6 +15,12 @@ class RoomMessage extends PureComponent {
   onMessageLongPress = () => {
     const {message, onMessageLongPress} = this.props;
     onMessageLongPress(message);
+  };
+
+  goUserInfo = async () => {
+    const {message} = this.props;
+    const roomId = await getPeerRoomId(message.authorUser);
+    goRoomInfo(roomId);
   };
 
   render() {
@@ -28,6 +36,7 @@ class RoomMessage extends PureComponent {
         authorHash={authorHash}
         roomType={roomType}
         selected={selected}
+        goUserInfo={this.goUserInfo}
         onMessagePress={this.onMessagePress}
         onMessageLongPress={this.onMessageLongPress}
         message={message}/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {merge} from 'lodash';
@@ -9,10 +9,12 @@ import {getRoomTitle} from '../../selector/entities/room';
 class Title extends React.PureComponent {
 
   render() {
-    const {author} = this.props;
+    const {author, onPress} = this.props;
     const style = this.style;
     return (
-      <Text style={style}>{author ? author.title : ''}</Text>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={style}>{author ? author.title : ''}</Text>
+      </TouchableOpacity>
     );
   }
 
