@@ -66,6 +66,7 @@ class RoomHistoryScreen extends Component {
 
     this.loading = false;
     this.state = {
+      replyTo: null,
       editMessageId: null,
       text: '',
       pickedFile: null,
@@ -81,15 +82,20 @@ class RoomHistoryScreen extends Component {
     };
   }
 
+
+  goRoomInfoBtn = () => {
+    const {room} = this.props;
+    goRoomInfo(room.id);
+  };
   /**
    * @param text
    * @returns {Promise.<void>}
    */
   submitForm = (text) => {
     const {room, getEntitiesRoomMessage} = this.props;
-    const {editMessageId, pickedFile, attachmentType} = this.state;
+    const {editMessageId, pickedFile, attachmentType, replyTo} = this.state;
     if (!editMessageId) {
-      sendMessage(room.id, text, pickedFile, attachmentType);
+      sendMessage(room.id, text, pickedFile, attachmentType, replyTo ? replyTo.longId : null);
     } else {
       const roomMessage = getEntitiesRoomMessage(editMessageId);
       editRoomMessage(room.id, roomMessage.longId, text);
@@ -99,12 +105,8 @@ class RoomHistoryScreen extends Component {
       text: '',
       pickedFile: null,
       attachmentType: null,
+      replyTo: null,
     });
-  };
-
-  goRoomInfoBtn = () => {
-    const {room} = this.props;
-    goRoomInfo(room.id);
   };
   selectAttachment = async (type) => {
     let fileType;
@@ -250,7 +252,14 @@ class RoomHistoryScreen extends Component {
   };
 
   actionReply = (message) => {
-    alert('reply To');
+    this.setState({
+      replyTo: message,
+    });
+  };
+  cancelReply = () => {
+    this.setState({
+      replyTo: null,
+    });
   };
 
   actionForward = (messageId) => {
@@ -395,15 +404,17 @@ class RoomHistoryScreen extends Component {
 
   render() {
     const {room, messageList} = this.props;
-    const {text, editMessageId, pickedFile, selectedCount, selectedList, actionSheetActions} = this.state;
+    const {text, replyTo, editMessageId, pickedFile, selectedCount, selectedList, actionSheetActions} = this.state;
     const Form = {
       text,
+      replyTo,
       pickedFile,
       editMessageId,
       selectAttachment: this.selectAttachment,
       cancelAttach: this.cancelAttach,
       submitForm: this.submitForm,
       cancelEdit: this.cancelEdit,
+      cancelReply: this.cancelReply,
     };
     if (!room) {
       return null;

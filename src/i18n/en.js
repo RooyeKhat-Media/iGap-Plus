@@ -957,6 +957,11 @@ export default {
     defaultMessage: 'Close',
     description: 'roomHistory sendBox screen',
   },
+  roomHistorySendBoxReplyTo: {
+    id: 'roomHistory.sendBox.replyTo',
+    defaultMessage: 'Reply To',
+    description: 'roomHistory sendBox screen',
+  },
   roomHistoryDeleteMessagesTitle: {
     id: 'roomHistory.deleteMessagesTitle',
     defaultMessage: 'Delete Messages',

@@ -97,9 +97,10 @@ export function normalizeRoomMessage(roomMessage) {
  * @param text
  * @param pickedFile
  * @param attachmentType
+ * @param {Long} replyTo
  * @returns {Promise.<void>}
  */
-export async function sendMessage(roomId, text, pickedFile, attachmentType) {
+export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo) {
   /**
    * @type {ProtoChatSendMessage || ProtoGroupSendMessage || ProtoChannelSendMessage} proto
    */
@@ -130,6 +131,10 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType) {
   __sendFakeMessage();
   proto.setRoomId(room.longId);
   proto.setMessage(text);
+
+  if (replyTo) {
+    proto.setReplyTo(replyTo);
+  }
 
   try {
     if (pickedFile) {

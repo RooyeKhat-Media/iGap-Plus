@@ -3,7 +3,7 @@ import {Animated, Easing, PanResponder, StyleSheet, Text, TouchableOpacity, View
 import {black200, gray800, primary} from '../../../themes/default/index';
 import {Icon, IconToggle, MCIcon, TextInput} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
-import {injectIntl, intlShape} from 'react-intl';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
@@ -11,6 +11,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../../constants/app';
 import VoiceRecorder from './VoiceRecorder';
+import ShortMessage from '../../Unit/RoomMessage/MessageBox/ShortMessage';
 
 class SendBox extends Component {
 
@@ -290,6 +291,16 @@ class SendBox extends Component {
             <IconToggle onPress={Form.cancelAttach} name="close"/>
           </View>)}
 
+          {Form.replyTo && (<View style={styles.addonWrap}>
+            <Text style={styles.addonText} numberOfLines={1}>
+              <FormattedMessage {...i18n.roomHistorySendBoxReplyTo}/> :
+              <ShortMessage message={Form.replyTo}/>
+            </Text>
+            <View style={styles.replyClose}>
+              <IconToggle onPress={Form.cancelReply} name="close"/>
+            </View>
+          </View>)}
+
           <View style={styles.inputBox}>
 
             <TouchableOpacity onPress={this.selectEmoji}>
@@ -330,8 +341,7 @@ class SendBox extends Component {
             onEndRecordSound={this.onEndRecordSound}
             onRef={ref => (this.voiceRecorder = ref)}
           />
-        </View>
-        }
+        </View>}
       </View>
     );
   }
@@ -445,7 +455,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
 
+    flex: 1,
     borderLeftColor: primary,
     borderLeftWidth: 3,
+  },
+  replyClose: {
+    width: 50,
+    height: 50,
   },
 });
