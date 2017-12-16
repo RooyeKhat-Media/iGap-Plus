@@ -1,7 +1,18 @@
 import React, {Component} from 'react';
-import {Animated, Easing, PanResponder, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Animated,
+  BackHandler,
+  Easing,
+  Keyboard,
+  PanResponder,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {black200, gray800, primary} from '../../../themes/default/index';
-import {Icon, IconToggle, MCIcon, TextInput} from '../../BaseUI/index';
+import {Icon, IconToggle, MCIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {
@@ -11,6 +22,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../../constants/app';
 import VoiceRecorder from './VoiceRecorder';
+import EmojiPiker from './EmojiPiker';
 import ShortMessage from '../../Unit/RoomMessage/MessageBox/ShortMessage';
 
 class SendBox extends Component {
@@ -23,16 +35,35 @@ class SendBox extends Component {
       isActive: false,
       height: 0,
       isSoundRecord: false,
+      showEmojiPiker: false,
+      canLoadEmojiPiker: false,
     };
     this.animatedValue = new Animated.Value(0);
+    this.selectionStart = 0;
+    this.selectionEnd = 0;
   }
 
   componentDidMount() {
     const {Form} = this.props;
     this.onChangeText(Form.text);
+    setTimeout(() => {
+      this.setState({
+        canLoadEmojiPiker: true,
+      });
+    }, 1000);
   }
 
+  onBackPress = () => {
+    if (this.state.showEmojiPiker) {
+      this.setState({showEmojiPiker: false});
+      return true;
+    }
+    return false;
+  };
+
   componentWillMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+
     this.onEnd = (evt, gestureState) => {
       this.micClick = false;
       if (this.voiceRecorder) {
@@ -59,6 +90,7 @@ class SendBox extends Component {
             this.setState({
               isSoundRecord: true,
               showAttachment: false,
+              showEmojiPiker: false,
             });
           }
         }, 600);
@@ -69,6 +101,10 @@ class SendBox extends Component {
         }
       },
     });
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -113,7 +149,13 @@ class SendBox extends Component {
   onSubmit = () => {
     const {Form} = this.props;
     Form.submitForm(this.state.text);
-    this.setState({isActive: false, text: '', height: 0});
+    this.setState({
+      isActive: false,
+      text: '',
+      height: 0,
+      showEmojiPiker: false,
+    });
+    Keyboard.dismiss();
   };
 
   selectImages = async () => {
@@ -143,15 +185,37 @@ class SendBox extends Component {
   };
   selectLocation = () => {
   };
-  selectEmoji = () => {
+
+  emojiButtonClick = () => {
+    if (this.state.showEmojiPiker) {
+      this.chatTextInput.focus();
+      this.setState({
+        showEmojiPiker: false,
+        showAttachment: false,
+      });
+    } else {
+      Keyboard.dismiss();
+      this.setState({
+        showEmojiPiker: true,
+        showAttachment: false,
+      });
+    }
   };
-  selectMic = () => {
+
+  onEmojiSelected = (emoji) => {
+    let _text = this.state.text;
+    _text = _text.substring(0, this.selectionStart) + emoji + _text.substring(this.selectionEnd);
+    this.selectionEnd = this.selectionStart = this.selectionStart + emoji.length;
+    this.setState({
+      text: _text,
+      isActive: true,
+    });
   };
 
   onEndRecordSound = (path) => {
     this.setState({isSoundRecord: false});
     if (path) {
-      // send to chatBox  with this path
+      // todo nejati      send audio to chatBox  with this path
     }
   };
 
@@ -313,17 +377,28 @@ class SendBox extends Component {
 
           <View style={styles.inputBox}>
 
-            <TouchableOpacity onPress={this.selectEmoji}>
-              <MCIcon name="emoticon" style={styles.iconFeild} size={28}/>
+            <TouchableOpacity onPress={() => this.emojiButtonClick()}>
+              <MCIcon name={this.state.showEmojiPiker ? 'keyboard' : 'emoticon'} style={styles.iconFeild} size={28}/>
             </TouchableOpacity>
 
             <TextInput
               maxHeight={120}
               multiline={true}
               value={this.state.text}
+              autoCorrect={false}
               onChangeText={this.onChangeText}
               onContentSizeChange={this.onContentSizeChange}
-              style={[styles.textInputStyle, {height: this.state.height}]}/>
+              onFocus={() => this.setState({showEmojiPiker: false, showAttachment: false})}
+              underlineColorAndroid={'transparent'}
+              style={[styles.textInputStyle, {height: this.state.height}]}
+              ref={(ref) => {
+                this.chatTextInput = ref;
+              }}
+              onSelectionChange={(event) => {
+                this.selectionStart = event.nativeEvent.selection.start;
+                this.selectionEnd = event.nativeEvent.selection.end;
+              }}
+            />
 
             {Form.editMessageId && <TouchableOpacity onPress={Form.cancelEdit}>
               <MCIcon name="close" style={styles.iconClose} size={28}/>
@@ -342,8 +417,12 @@ class SendBox extends Component {
               <MCIcon name="microphone" style={styles.iconMic} size={28}/>
             </View>
             }
-
           </View>
+
+          <View style={this.state.showEmojiPiker ? styles.activeEmojiPiker : styles.inActiveEmojiPiker}>
+            {this.state.canLoadEmojiPiker && <EmojiPiker onEmojiSelected={this.onEmojiSelected}/>}
+          </View>
+
         </View>
         {this.state.isSoundRecord &&
         <View style={styles.soundRecorder}>
@@ -464,10 +543,21 @@ const styles = StyleSheet.create({
     margin: 5,
     marginLeft: 10,
     marginRight: 10,
-
     flex: 1,
     borderLeftColor: primary,
     borderLeftWidth: 3,
+  },
+  soundRecorder: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  activeEmojiPiker: {
+    height: 250,
+  },
+  inActiveEmojiPiker: {
+    height: 0,
   },
   replyClose: {
     width: 50,

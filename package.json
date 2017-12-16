@@ -33,6 +33,7 @@
     "react-native-maps": "^0.17.1",
     "react-native-material-ui": "^1.15.0",
     "react-native-save-to": "./native/modules/SaveTo",
+    "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-share": "^1.0.23",
     "react-native-sound": "^0.10.4",
     "react-native-sound-recorder": "^1.1.1",
