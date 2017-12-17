@@ -6,6 +6,18 @@ import {Avatar, FlatList, ListItem, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 
 class ContactListComponent extends React.Component {
+  keyExtractor = (item) => {
+    return 'contact-' + item.getId();
+  };
+  renderItem = ({item}) => {
+    return (<ListItem key={item.getId()}
+      centerElement={{primaryText: item.getDisplayName(), secondaryText: item.getPhone().toString()}}
+      leftElement={<Avatar style={{container: {backgroundColor: item.getColor()}}}
+        text={item.getInitials()}/>}
+      style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>
+    );
+  };
+
   render() {
     const {intl, goBack, goContactNew, loading, contactList} = this.props;
     return (
@@ -20,14 +32,8 @@ class ContactListComponent extends React.Component {
           {loading && !contactList.length ? (<Text>Please Wait ...</Text>) :
             (<FlatList
               data={contactList}
-              keyExtractor={(item, index) => ('contact-' + item.getId())}
-              renderItem={({item}) =>
-                (<ListItem key={item.getId()}
-                  centerElement={{primaryText: item.getDisplayName(), secondaryText: item.getPhone().toString()}}
-                  leftElement={<Avatar style={{container: {backgroundColor: item.getColor()}}}
-                    text={item.getInitials()}/>}
-                  style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>
-                )}/>)}
+              keyExtractor={this.keyExtractor}
+              renderItem={this.renderItem}/>)}
         </View>
       </View>
     );

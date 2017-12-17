@@ -9,9 +9,9 @@ import styles, {badgeStyle, hideStyle, muteBadgeStyle, pinedListItemStyle} from 
 
 class RoomListItem extends React.PureComponent {
   render() {
-    const {roomId, roomTitle, roomPined, roomMute, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
+    const {roomId, roomTitle, roomPined, roomMute, selected, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
     return (<BaseListItem
-      style={roomPined ? pinedListItemStyle : {}}
+      style={(selected || roomPined) ? pinedListItemStyle : {}}
       onPress={onPress}
       onLongPress={onLongPress}
       leftElement={<Avatar roomId={roomId} size={52}/>}
@@ -41,6 +41,9 @@ RoomListItem.propTypes = {
   intl: intlShape.isRequired,
   roomId: PropTypes.string.isRequired,
   roomTitle: PropTypes.string.isRequired,
+  roomPined: PropTypes.bool,
+  roomMute: PropTypes.bool,
+  selected: PropTypes.bool,
   lastMessageTitle: PropTypes.string,
   lastMessageStatue: PropTypes.oneOfType([
     PropTypes.number,
@@ -49,6 +52,5 @@ RoomListItem.propTypes = {
   lastMessageTime: PropTypes.number,
   unreadCount: PropTypes.number,
   onPress: PropTypes.func,
-
 };
 export default injectIntl(RoomListItem);

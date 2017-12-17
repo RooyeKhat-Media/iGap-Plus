@@ -15,11 +15,13 @@ class RoomListItem extends React.PureComponent {
 
   onLongPress = () => {
     const {room, onLongPress} = this.props;
-    onLongPress(room);
+    if (onLongPress) {
+      onLongPress(room);
+    }
   };
 
   render() {
-    const {room, lastMessage} = this.props;
+    const {room, lastMessage, selected, disablePin} = this.props;
     if (!room) {
       return null;
     }
@@ -33,7 +35,8 @@ class RoomListItem extends React.PureComponent {
     return (<RoomListItemComponent roomId={room.id}
       roomTitle={room.title}
       roomType={room.type}
-      roomPined={room.pinId !== '0'}
+      roomPined={!disablePin && room.pinId !== '0'}
+      selected={selected}
       roomMute={room.roomMute === Proto.RoomMute.MUTE}
       unreadCount={room.unreadCount}
       lastMessageTitle={lastMessageTitle}
@@ -73,6 +76,10 @@ class RoomListItem extends React.PureComponent {
 
 RoomListItem.propTypes = {
   roomId: PropTypes.string.isRequired,
+  disablePin: PropTypes.bool,
+  selected: PropTypes.bool,
+  onPress: PropTypes.func.isRequired,
+  onLongPress: PropTypes.func,
 };
 
 const mapStateToProps = (state, props) => {

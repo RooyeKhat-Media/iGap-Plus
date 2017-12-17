@@ -28,8 +28,8 @@ import RoomReportScreen from '../screens/Room/RoomReportScreen';
 import AvatarListScreen from '../screens/Room/AvatarListScreen';
 import CameraScreen from '../screens/General/CameraScreen';
 
-export function goRoomHistory(roomId) {
-  navigate(ROOM_HISTORY_SCREEN, {roomId});
+export function goRoomHistory(roomId, forwardedMessage) {
+  navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
 }
 
 export function goRoomInfo(roomId) {

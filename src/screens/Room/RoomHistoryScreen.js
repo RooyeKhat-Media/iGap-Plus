@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {indexOf} from 'lodash';
 import {injectIntl, intlShape} from 'react-intl';
 import SaveTo from '../../../native/modules/SaveTo';
 import Share from '../../modules/Share/index';
@@ -9,8 +8,14 @@ import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
-import {goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
-import {deleteMessages, editRoomMessage, sendMessage, sendMultiAttachMessages} from '../../utils/messenger';
+import {goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
+import {
+  deleteMessages,
+  editRoomMessage,
+  forwardToList,
+  sendMessage,
+  sendMultiAttachMessages,
+} from '../../utils/messenger';
 import {
   ROOM_MESSAGE_ACTION_DELETE,
   ROOM_MESSAGE_ACTION_EDIT,
@@ -66,11 +71,12 @@ class RoomHistoryScreen extends Component {
 
     this.loading = false;
     this.state = {
-      replyTo: null,
-      editMessageId: null,
       text: '',
       pickedFile: null,
       attachmentType: null,
+      replyTo: null,
+      forwardedMessage: this.props.navigation.state.params.forwardedMessage,
+      editMessageId: null,
       selectedList: {},
       selectedCount: 0,
       access: {
@@ -93,9 +99,9 @@ class RoomHistoryScreen extends Component {
    */
   submitForm = (text) => {
     const {room, getEntitiesRoomMessage} = this.props;
-    const {editMessageId, pickedFile, attachmentType, replyTo} = this.state;
+    const {editMessageId, pickedFile, attachmentType, replyTo, forwardedMessage} = this.state;
     if (!editMessageId) {
-      sendMessage(room.id, text, pickedFile, attachmentType, replyTo ? replyTo.longId : null);
+      sendMessage(room.id, text, pickedFile, attachmentType, replyTo ? replyTo.longId : null, forwardedMessage);
     } else {
       const roomMessage = getEntitiesRoomMessage(editMessageId);
       editRoomMessage(room.id, roomMessage.longId, text);
@@ -106,6 +112,7 @@ class RoomHistoryScreen extends Component {
       pickedFile: null,
       attachmentType: null,
       replyTo: null,
+      forwardedMessage: null,
     });
   };
   selectAttachment = async (type) => {
@@ -262,8 +269,24 @@ class RoomHistoryScreen extends Component {
     });
   };
 
-  actionForward = (messageId) => {
-    alert('Forward');
+  forwardModalControl = (ref) => {
+    this.forwardModal = ref;
+  };
+
+  actionForward = (message) => {
+    this.forwardModal.open(selectList => {
+      if (selectList.length === 1 && selectList[0].roomId) {
+        goRoomHistory(selectList[0].roomId, message);
+      } else {
+        forwardToList(selectList, message);
+      }
+    });
+  };
+
+  cancelForward = () => {
+    this.setState({
+      forwardedMessage: null,
+    });
   };
 
   actionDeleteMessages = (selectedList) => {
@@ -310,7 +333,7 @@ class RoomHistoryScreen extends Component {
     } catch (e) {
       console.error('joinBoxToggle Error');
     }
-  }
+  };
 
   actionSheetControl = (action) => {
     this.actionSheet = action;
@@ -341,7 +364,7 @@ class RoomHistoryScreen extends Component {
       icon: 'forward',
       title: intl.formatMessage(i18n.roomHistoryActionForward),
       onPress: () => {
-        this.actionForward(roomMessage.id);
+        this.actionForward(roomMessage);
       },
     });
     if (access.sendMessage) {
@@ -362,14 +385,7 @@ class RoomHistoryScreen extends Component {
         },
       });
     }
-    if (uri && SaveTo.gallerySupport('image') && indexOf([
-      Proto.RoomMessageType.IMAGE,
-      Proto.RoomMessageType.IMAGE_TEXT,
-      Proto.RoomMessageType.GIF,
-      Proto.RoomMessageType.GIF_TEXT,
-      Proto.RoomMessageType.VIDEO,
-      Proto.RoomMessageType.VIDEO_TEXT,
-    ], roomMessage.messageType) >= 0) {
+    if (uri && SaveTo.gallerySupport(roomMessage.attachment.getMime())) {
       actions.push({
         icon: 'collections',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToGallery),
@@ -378,10 +394,7 @@ class RoomHistoryScreen extends Component {
         },
       });
     }
-    if (uri && SaveTo.musicSupport('audio') && indexOf([
-      Proto.RoomMessageType.AUDIO,
-      Proto.RoomMessageType.AUDIO_TEXT,
-      Proto.RoomMessageType.VOICE], roomMessage.messageType) >= 0) {
+    if (uri && SaveTo.musicSupport(roomMessage.attachment.getMime())) {
       actions.push({
         icon: 'audiotrack',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToMusic),
@@ -390,12 +403,12 @@ class RoomHistoryScreen extends Component {
         },
       });
     }
-    if (uri && Share.isSupported) {
+    if (Share.isSupported) {
       actions.push({
         icon: 'share',
         title: intl.formatMessage(i18n.roomHistoryActionShare),
         onPress: () => {
-          Share.open(uri, roomMessage.attachment.getMime());
+          Share.open(uri, uri ? roomMessage.attachment.getMime() : null, roomMessage.message);
         },
       });
     }
@@ -404,17 +417,19 @@ class RoomHistoryScreen extends Component {
 
   render() {
     const {room, messageList} = this.props;
-    const {text, replyTo, editMessageId, pickedFile, selectedCount, selectedList, actionSheetActions} = this.state;
+    const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList, actionSheetActions} = this.state;
     const Form = {
       text,
       replyTo,
       pickedFile,
       editMessageId,
+      forwardedMessage,
       selectAttachment: this.selectAttachment,
       cancelAttach: this.cancelAttach,
       submitForm: this.submitForm,
       cancelEdit: this.cancelEdit,
       cancelReply: this.cancelReply,
+      cancelForward: this.cancelForward,
     };
     if (!room) {
       return null;
@@ -431,7 +446,6 @@ class RoomHistoryScreen extends Component {
         isPublic={room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM || room.channelType === Proto.ChannelRoom.Type.PUBLIC_ROOM}
         roomMute={room.roomMute === Proto.RoomMute.MUTE}
         joinBoxToggle={this.joinBoxToggle}
-        lastMessageId={room.lastMessage}
         messageList={messageList}
         selectedList={selectedList}
         selectedCount={selectedCount}
@@ -446,6 +460,7 @@ class RoomHistoryScreen extends Component {
         actionSheetControl={this.actionSheetControl}
         actionSheetActions={actionSheetActions}
         onScroll={this.onScroll}
+        forwardModalControl={this.forwardModalControl}
         goBack={this.props.navigation.goBack}
       />
     );

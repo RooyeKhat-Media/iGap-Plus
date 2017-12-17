@@ -962,6 +962,11 @@ export default {
     defaultMessage: 'Reply To',
     description: 'roomHistory sendBox screen',
   },
+  roomHistorySendBoxForward: {
+    id: 'roomHistory.sendBox.forward',
+    defaultMessage: 'Forward',
+    description: 'roomHistory sendBox screen',
+  },
   roomHistoryDeleteMessagesTitle: {
     id: 'roomHistory.deleteMessagesTitle',
     defaultMessage: 'Delete Messages',
@@ -1025,6 +1030,11 @@ export default {
   roomHistoryActionShare: {
     id: 'roomHistory.actionShare',
     defaultMessage: 'Share',
+    description: 'roomHistory screen',
+  },
+  roomHistoryForwardTo: {
+    id: 'roomHistory.forwardTo',
+    defaultMessage: 'Forward To: ',
     description: 'roomHistory screen',
   },
   settingSetting: {

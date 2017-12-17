@@ -9,6 +9,7 @@ import RoomMessage from '../../../containers/Unit/RoomMessage';
 import JoinBox from './JoinBox';
 import ActionSheet from '../../BaseUI/ActionSheet/index';
 import i18n from '../../../i18n/en';
+import ForwardList from '../../../containers/Unit/ForwardList';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -18,11 +19,11 @@ class RoomHistoryComponent extends React.PureComponent {
     flatListRef(ref);
   };
 
-  keyExtractor = (item, index) => {
+  keyExtractor = (item) => {
     return item;
   };
 
-  renderItem = ({item, index}) => {
+  renderItem = ({item}) => {
     const {onMessagePress, onMessageLongPress, selectedList, roomType, roomId} = this.props;
     return (<RoomMessage
       onMessagePress={onMessagePress}
@@ -38,7 +39,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedList, selectedCount, actionSheetActions, actionSheetControl, conformControl, onScroll} = this.props;
+    const {intl, Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedList, selectedCount, actionSheetActions, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
@@ -64,6 +65,9 @@ class RoomHistoryComponent extends React.PureComponent {
           {!readOnly ? (<SendBox Form={Form}/>) : (
             <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}
               isParticipant={isParticipant}/>)}
+
+          <ForwardList control={forwardModalControl}/>
+
         </View>
       </View>
     );
@@ -111,10 +115,15 @@ class RoomHistoryComponent extends React.PureComponent {
 
 RoomHistoryComponent.propTypes = {
   intl: intlShape.isRequired,
+  Form: PropTypes.object.isRequired,
   roomId: PropTypes.string.isRequired,
   roomType: PropTypes.number.isRequired,
   roomTitle: PropTypes.string.isRequired,
-  Form: PropTypes.object.isRequired,
+  readOnly: PropTypes.bool.isRequired,
+  isParticipant: PropTypes.bool.isRequired,
+  isPublic: PropTypes.bool.isRequired,
+  roomMute: PropTypes.bool.isRequired,
+  joinBoxToggle: PropTypes.func.isRequired,
   messageList: PropTypes.arrayOf(PropTypes.string),
   selectedList: PropTypes.object.isRequired,
   selectedCount: PropTypes.number,
@@ -123,7 +132,13 @@ RoomHistoryComponent.propTypes = {
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
   selectedMessageAction: PropTypes.func.isRequired,
+  conformControl: PropTypes.func.isRequired,
+  flatListRef: PropTypes.func.isRequired,
+  actionSheetActions: PropTypes.array.isRequired,
+  actionSheetControl: PropTypes.func.isRequired,
   toolbarActions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onScroll: PropTypes.func.isRequired,
+  forwardModalControl: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
 };
 export default injectIntl(RoomHistoryComponent);

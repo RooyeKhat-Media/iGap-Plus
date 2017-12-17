@@ -93,14 +93,15 @@ export function normalizeRoomMessage(roomMessage) {
 }
 
 /**
- * @param roomId
- * @param text
- * @param pickedFile
- * @param attachmentType
+ * @param {string} roomId
+ * @param {string} text
+ * @param {object} pickedFile
+ * @param {string} attachmentType
  * @param {Long} replyTo
+ * @param {FlatRoomMessage} forwardMessage
  * @returns {Promise.<void>}
  */
-export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo) {
+export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo, forwardMessage) {
   /**
    * @type {ProtoChatSendMessage || ProtoGroupSendMessage || ProtoChannelSendMessage} proto
    */
@@ -134,6 +135,12 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
 
   if (replyTo) {
     proto.setReplyTo(replyTo);
+  }
+  if (forwardMessage) {
+    const forwardFrom = new Proto.RoomMessageForwardFrom();
+    forwardFrom.setRoomId(Long.fromString(forwardMessage.roomId));
+    forwardFrom.setMessageId(forwardMessage.longId);
+    proto.setForwardFrom(forwardFrom);
   }
 
   try {
@@ -221,6 +228,9 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
     }
 
     const normalizedRoomMessage = normalizeRoomMessage(roomMessage);
+    if (forwardMessage) {
+      normalizedRoomMessage.forwardFrom = forwardMessage;
+    }
     prepareRoomMessage(normalizedRoomMessage, roomId, false);
     normalizedRoomMessage.pickedFile = pickedFile;
 
@@ -240,6 +250,29 @@ export async function sendMultiAttachMessages(roomId, files, attachmentType) {
   files.forEach(async (file) => {
     sendMessage(roomId, null, file, attachmentType);
   });
+}
+
+/**
+ *
+ * @param {object[]} forwardList
+ * @param {FlatRoomMessage} message
+ * @return {Promise.<void>}
+ */
+export async function forwardToList(forwardList, message) {
+  const promiseList = [];
+  forwardList.forEach((item) => {
+    if (item.roomId) {
+      promiseList.push(sendMessage(item.roomId, null, null, null, null, message));
+    } else if (item.userId) {
+      promiseList.push(
+        getPeerRoomId(item.userId)
+          .then((roomId) => {
+            return promiseList.push(sendMessage(roomId, null, null, null, null, message));
+          })
+      );
+    }
+  });
+  return Promise.all(promiseList);
 }
 
 /**

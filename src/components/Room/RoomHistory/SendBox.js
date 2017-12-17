@@ -291,6 +291,16 @@ class SendBox extends Component {
             <IconToggle onPress={Form.cancelAttach} name="close"/>
           </View>)}
 
+          {Form.forwardedMessage && (<View style={styles.addonWrap}>
+            <Text style={styles.addonText} numberOfLines={1}>
+              <FormattedMessage {...i18n.roomHistorySendBoxForward}/> :
+              <ShortMessage message={Form.forwardedMessage}/>
+            </Text>
+            <View style={styles.replyClose}>
+              <IconToggle onPress={Form.cancelForward} name="close"/>
+            </View>
+          </View>)}
+
           {Form.replyTo && (<View style={styles.addonWrap}>
             <Text style={styles.addonText} numberOfLines={1}>
               <FormattedMessage {...i18n.roomHistorySendBoxReplyTo}/> :

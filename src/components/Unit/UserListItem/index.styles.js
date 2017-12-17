@@ -13,7 +13,7 @@ export default {
   },
   selectedItem: {
     container: {
-      backgroundColor: '#bababa',
+      backgroundColor: '#eee',
     },
   },
 };
