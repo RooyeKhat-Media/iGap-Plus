@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {primary} from '../../../../themes/default/index';
 
 /**
  *
@@ -60,14 +61,14 @@ export default ({message}) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
-    paddingRight: 10,
-    paddingLeft: 10,
-    backgroundColor: '#ccc',
-    borderRadius: 5,
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingRight: 15,
+    paddingLeft: 15,
+    backgroundColor: primary,
+    borderRadius: 15,
   },
   text: {
-    fontSize: 11,
-
+    color: 'white',
   },
 });

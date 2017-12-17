@@ -6,6 +6,7 @@ export const white500 = '#faf8f6';
 export const gray100 = '#fafafa';
 export const gray200 = '#f0f0f0';
 export const gray300 = '#eeeeee';
+export const gray350 = '#e9eaed';
 export const gray400 = '#e6e6e6';
 export const gray500 = '#c7c7c7';
 export const gray600 = '#afafaf';

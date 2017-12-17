@@ -3,6 +3,7 @@ import {gray100, gray500} from '../../../themes/default/index';
 export default {
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   toolBar: {
     centerElementContainer: {

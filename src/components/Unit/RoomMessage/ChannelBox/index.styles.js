@@ -11,7 +11,6 @@ export default [
       query: {},
       style: {
         container: {
-          backgroundColor: '#fff',
           paddingRight: 15,
           paddingLeft: 20,
           paddingBottom: 5,
@@ -23,7 +22,7 @@ export default [
           paddingBottom: 2,
         },
         avatarWrap: {
-          width: 40,
+          width: 45,
         },
         textTitle: {
           marginLeft: 10,
@@ -35,7 +34,6 @@ export default [
         },
         layoutChannelInfo: {
           marginTop: 8,
-          flex: 1,
           flexDirection: 'row',
         },
         textUPDown: {
@@ -60,9 +58,6 @@ export default [
         },
         bookmark: {
           marginLeft: 18,
-        },
-        messageWrapper: {
-          flex: 1,
         },
       },
     },

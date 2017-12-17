@@ -8,13 +8,13 @@ import MessageBox from '../MessageBox/index';
 import {MCIcon} from '../../../BaseUI/index';
 import AddonTime from '../MessageBox/AddonTime';
 import Avatar from '../../../../containers/Unit/Avatar';
-import styleSheet from './index.styles';
+import style from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class ChannelBox extends Component {
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet);
+    return MemoizeResponsiveStyleSheet(style);
   };
 
   render() {
@@ -26,7 +26,7 @@ class ChannelBox extends Component {
 
         <View style={styles.layoutHeader}>
           <View style={styles.avatarWrap}>
-            <Avatar roomId={message.roomId} size={40}/>
+            <Avatar roomId={message.roomId} size={45}/>
           </View>
           {room && <Text style={styles.textTitle}>{room.title}</Text>}
           <MCIcon color={black600} name="share-variant" size={20} onPress={() => alert('share')}/>
