@@ -7,6 +7,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {DialogModal, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
+import Linking from '../../modules/Linking/index';
 
 class SettingComponent extends Component {
 
@@ -57,10 +58,13 @@ class SettingComponent extends Component {
             onPress={() => goActiveSession()}>{intl.formatMessage(i18n.activeSessionActiveSession)}</Text>
           <Text style={styles.itemText}>Language</Text>
 
-          <Text style={styles.TitleText}> iGap Support </Text>
-          <Text style={styles.itemText}>iGap Official Home</Text>
-          <Text style={styles.itemText}>iGap Official Blog</Text>
-          <Text style={styles.itemText}>Support Request</Text>
+          <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>
+          <Text style={styles.itemText}
+            onPress={() => Linking.openURL('https://www.igap.net')}>{intl.formatMessage(i18n.settingIgapOfficialHome)}</Text>
+          <Text style={styles.itemText}
+            onPress={() => Linking.openURL('https://blog.igap.net')}>{intl.formatMessage(i18n.settingIgapOfficialBlog)}</Text>
+          <Text style={styles.itemText}
+            onPress={() => Linking.openURL('https://support.igap.net')}>{intl.formatMessage(i18n.settingSupportRequest)}</Text>
           <Text style={styles.subItemText}>igap plus android client v 0.3.3</Text>
         </ScrollView>
 

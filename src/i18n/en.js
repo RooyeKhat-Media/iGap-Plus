@@ -1057,6 +1057,26 @@ export default {
     defaultMessage: 'General Settings',
     description: 'setting screen',
   },
+  settingIgapSupport: {
+    id: 'setting.igapSupport',
+    defaultMessage: 'iGap Support',
+    description: 'setting screen',
+  },
+  settingIgapOfficialHome: {
+    id: 'setting.igapOfficialHome',
+    defaultMessage: 'iGap Official Home',
+    description: 'setting screen',
+  },
+  settingIgapOfficialBlog: {
+    id: 'setting.igapOfficialBlog',
+    defaultMessage: 'iGap Official Blog',
+    description: 'setting screen',
+  },
+  settingSupportRequest: {
+    id: 'setting.supportRequest',
+    defaultMessage: 'Support Request',
+    description: 'setting screen',
+  },
   settingBlockList: {
     id: 'setting.blockList',
     defaultMessage: 'Block List',
