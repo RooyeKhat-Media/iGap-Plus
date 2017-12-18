@@ -14,13 +14,13 @@ class ChatBox extends Component {
   };
 
   render() {
-    const {message, showText, onMessagePress, onMessageLongPress} = this.props;
+    const {message, showText, onMessagePress, onMessageLongPress, goUserInfo} = this.props;
     const styles = this.getStyles();
 
     return (
       <View style={styles.container}>
         <View style={styles.avatarWrap}>
-          <Avatar userId={message.authorUser} roomId={message.authorRoom} size={45}/>
+          <Avatar userId={message.authorUser} roomId={message.authorRoom} size={45} onPress={goUserInfo}/>
         </View>
         <View>
           <View style={styles.messageBox}>

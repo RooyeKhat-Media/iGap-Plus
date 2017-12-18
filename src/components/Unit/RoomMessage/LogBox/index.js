@@ -16,8 +16,10 @@ class LogBox extends Component {
     const styles = this.getStyles();
 
     return (
-      <View style={styles.container}>
-        <Log message={message}/>
+      <View style={styles.parent}>
+        <View style={styles.container}>
+          <Log message={message}/>
+        </View>
       </View>
     );
   }

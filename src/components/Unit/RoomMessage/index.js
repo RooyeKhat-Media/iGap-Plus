@@ -27,12 +27,13 @@ class RoomMessage extends React.PureComponent {
         message={message}
         showText={true}
         onMessagePress={onMessagePress}
-        onMessageLongPress={onMessageLongPress} />);
+        onMessageLongPress={onMessageLongPress}/>);
 
     } else if (roomType === Proto.Room.Type.CHAT) {
       return (<ChatBox
         message={message}
         showText={true}
+        goUserInfo={goUserInfo}
         onMessagePress={onMessagePress}
         onMessageLongPress={onMessageLongPress}/>);
 

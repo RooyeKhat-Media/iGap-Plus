@@ -8,6 +8,9 @@ export default [
     {
       query: {},
       style: {
+        parent: {
+          flex: 1,
+        },
         container: {
           alignSelf: 'center',
           marginTop: 5,

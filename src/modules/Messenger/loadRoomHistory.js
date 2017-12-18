@@ -81,7 +81,7 @@ async function loadFromDb(roomId, firstMessageId, upward) {
 /**
  * Load messages from server
  * @param {string} roomId
- * @param {string} firsMessageId
+ * @param {string|null} firsMessageId
  * @param {boolean} upward
  * @param {boolean} fraction
  * @returns {Promise.<void>}
@@ -89,7 +89,9 @@ async function loadFromDb(roomId, firstMessageId, upward) {
 async function loadFromServer(roomId, firsMessageId, upward, fraction) {
   const clientRoomHistory = new ClientGetRoomHistory();
   clientRoomHistory.setRoomId(Long.fromString(roomId));
-  clientRoomHistory.setFirstMessageId(Long.fromString(firsMessageId));
+  if (firsMessageId) {
+    clientRoomHistory.setFirstMessageId(Long.fromString(firsMessageId));
+  }
   clientRoomHistory.setLimit(CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT);
   clientRoomHistory.setDirection(upward ? ClientGetRoomHistory.Direction.UP : ClientGetRoomHistory.Direction.DOWN);
 
