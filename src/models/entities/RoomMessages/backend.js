@@ -102,10 +102,10 @@ export function retrieveCallback(retrieve) {
 
 /**
  * retrieve History
- * @param roomId
- * @param firstMessageId
- * @param upward
- * @param limit
+ * @param {string} roomId
+ * @param {string} firstMessageId
+ * @param {boolean} upward
+ * @param {number} limit
  * @returns {Promise}
  */
 export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
@@ -115,7 +115,7 @@ export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
       let selectQuery = Squel.select().from('entities_room_messages')
         .field('CAST(id AS TEXT) AS id')
         .field('data')
-        .field('roomId')
+        .field('CAST(roomId AS TEXT) AS roomId')
         .field('message')
         .field('fraction')
         .field('messageType')

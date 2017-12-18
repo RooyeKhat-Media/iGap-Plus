@@ -42,7 +42,7 @@ export default async function loadRoomHistory(roomId, upward = true) {
 
 /**
  * @param roomId
- * @param {string} firstMessageId
+ * @param {string|null} firstMessageId
  * @param {boolean} upward
  * @returns {Promise.<void>}
  */
@@ -129,7 +129,7 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
 
 /**
  * @param {string} roomId
- * @returns {*}
+ * @returns {string|null}
  */
 function getRoomFirstMessageId(roomId) {
   const index = 0;

@@ -29,7 +29,7 @@ export default class RoomMessages {
 
   /**
    * @param {string} roomId
-   * @param {string} firstMessageId
+   * @param {string|null} firstMessageId
    * @param {boolean} upward
    * @param {number} limit
    * @return {Promise.<FlatRoomMessage[]>}
