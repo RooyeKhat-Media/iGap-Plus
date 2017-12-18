@@ -5163,6 +5163,10 @@ react-native-material-ui@^1.15.0:
     prop-types "^15.5.10"
     react-native-material-design-styles "^0.2.6"
 
+react-native-permissions@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.0.6.tgz#504f01728191431ad4b82895c4a349981fb5802b"
+
 react-native-save-to@./native/modules/SaveTo:
   version "1.0.0"
 
