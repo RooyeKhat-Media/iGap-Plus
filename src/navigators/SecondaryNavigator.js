@@ -13,6 +13,7 @@ import {
   SECONDARY_CONTACT_PICKER_SCREEN,
   SECONDARY_INITIAL_SCREEN,
   SECONDARY_ROOM_UPDATE_USERNAME_SCREEN,
+  VIDEO_PLAYER,
 } from '../constants/navigators';
 import {navigate} from './index';
 import RoomHistoryScreen from '../screens/Room/RoomHistoryScreen';
@@ -27,6 +28,7 @@ import RoomInviteLinkScreen from '../screens/Room/RoomInviteLinkScreen';
 import RoomReportScreen from '../screens/Room/RoomReportScreen';
 import AvatarListScreen from '../screens/Room/AvatarListScreen';
 import CameraScreen from '../screens/General/CameraScreen';
+import VideoPlayerScreen from '../screens/General/VideoPlayerScreen';
 
 export function goRoomHistory(roomId, forwardedMessage) {
   navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
@@ -72,6 +74,10 @@ export function goCamera(resolve, reject, CameraMode) {
   navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
 }
 
+export function goVideoPlayer(uri, fileName) {
+  navigate(VIDEO_PLAYER, {uri, fileName});
+}
+
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},
   [CALL_SCREEN]: {screen: CallScreen},
@@ -85,6 +91,7 @@ const SecondaryNavigator = StackNavigator({
   [ROOM_REPORT_SCREEN]: {screen: RoomReportScreen},
   [AVATAR_LIST_SCREEN]: {screen: AvatarListScreen},
   [CAMERA_SCREEN]: {screen: CameraScreen},
+  [VIDEO_PLAYER]: {screen: VideoPlayerScreen},
 }, {
   navigationOptions: {
     header: null,

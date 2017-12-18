@@ -25,6 +25,8 @@ import {
 import {Proto} from '../../modules/Proto/index';
 import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '../../selector/entities/roomMessage';
 import {getRoomHistorySelectedMode, getRoomHistoryUploadIdPrefix} from '../../utils/app';
+import {goVideoPlayer} from '../../navigators/SecondaryNavigator';
+import {prependFileProtocol} from '../../utils/core';
 
 class MessageAtomBox extends Component {
 
@@ -78,7 +80,13 @@ class MessageAtomBox extends Component {
   };
 
   openFile = () => {
-
+    const {downloadedFile, message} = this.props;
+    switch (this.props.message.messageType) {
+      case Proto.RoomMessageType.VIDEO:
+      case Proto.RoomMessageType.VIDEO_TEXT:
+        goVideoPlayer(prependFileProtocol(downloadedFile.uri), message.attachment.getName());
+        break;
+    }
   };
 
   togglePress = () => {

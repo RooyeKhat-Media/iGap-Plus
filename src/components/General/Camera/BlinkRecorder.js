@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
+import {toHHMMSS} from '../../../utils/core';
 
 const styles = StyleSheet.create({
   row: {
@@ -46,23 +47,12 @@ class BlinkRecorder extends Component {
     clearInterval(this.interval);
   }
 
-  toHHMMSS = (secs) => {
-    let sec_num = parseInt(secs, 10);
-    let hours = Math.floor(sec_num / 3600) % 24;
-    let minutes = Math.floor(sec_num / 60) % 60;
-    let seconds = sec_num % 60;
-    return [hours, minutes, seconds]
-      .map(v => v < 10 ? '0' + v : v)
-      .filter((v, i) => v !== '00' || i > 0)
-      .join(':');
-  };
-
   render() {
     return (
       <View style={styles.row}>
         <View
           style={[styles.circle, this.state.showRedCircle ? {backgroundColor: 'red'} : {backgroundColor: 'white'}]}/>
-        <Text style={[styles.textTimer, {color: this.props.textColor}]}>{this.toHHMMSS(this.state.timeValue)}</Text>
+        <Text style={[styles.textTimer, {color: this.props.textColor}]}>{toHHMMSS(this.state.timeValue)}</Text>
       </View>
     );
   }
