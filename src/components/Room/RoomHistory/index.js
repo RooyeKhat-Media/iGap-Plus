@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {Confirm, FlatList, ListItem, Toolbar} from '../../BaseUI/index';
+import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
+import {Confirm, ListItem, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import SendBox from './SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
@@ -10,52 +11,74 @@ import JoinBox from './JoinBox';
 import ActionSheet from '../../BaseUI/ActionSheet/index';
 import i18n from '../../../i18n/en';
 import ForwardList from '../../../containers/Unit/ForwardList';
+import {Proto} from '../../../modules/Proto/index';
 
 class RoomHistoryComponent extends React.PureComponent {
 
-  setRef = (ref) => {
-    const {flatListRef} = this.props;
-    this.flatList = ref;
-    flatListRef(ref);
+  getDataProvider = (messageList) => {
+    return new DataProvider((r1, r2) => {
+      return r1 !== r2 || this.prevSelectedList[r1] !== this.props.selectedList[r1];
+    }).cloneWithRows(messageList);
   };
 
-  keyExtractor = (item) => {
-    return item;
+  constructor(args) {
+    super(args);
+    this.prevSelectedList = {};
+    const {messageList} = this.props;
+    let {width} = Dimensions.get('window');
+    this._layoutProvider = new LayoutProvider(this.layoutProviderType, (type, dim) => {
+      dim.width = width;
+      dim.height = 59;
+    });
+
+    this.state = {
+      dataProvider: messageList ? this.getDataProvider(messageList) : null,
+      actions: [],
+    };
+  }
+
+  layoutProviderType = (index) => {
+    const {getRoomMessageType, messageList} = this.props;
+    return getRoomMessageType(messageList[index]);
   };
 
-  renderItem = ({item}) => {
+  componentWillReceiveProps(nextProps) {
+    const {messageList} = nextProps;
+    this.setState({
+      dataProvider: messageList ? this.getDataProvider(messageList) : null,
+    }, () => {
+      this.prevSelectedList = nextProps.selectedList;
+    });
+  }
+
+  renderItem = (type, item) => {
     const {onMessagePress, onMessageLongPress, selectedList, roomType, roomId} = this.props;
     return (<RoomMessage
-      onMessagePress={onMessagePress}
-      onMessageLongPress={onMessageLongPress}
-      selected={!!selectedList[item]}
-      roomType={roomType}
       roomId={roomId}
-      messageId={item}/>);
-  };
-
-  getItemLayout = (data, index) => {
-    return {length: 80, offset: 80 * index, index};
+      messageId={item}
+      roomType={roomType}
+      selected={!!selectedList[item]}
+      onMessagePress={onMessagePress}
+      onMessageLongPress={onMessageLongPress}/>);
   };
 
   render() {
-    const {intl, Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedList, selectedCount, actionSheetActions, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
+    const {intl, Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedCount, actionSheetActions, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
+    const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
           <View style={styles.messageListWrap}>
             {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
-            {messageList && messageList.length ? (<FlatList
-              ref={this.setRef}
-              data={messageList}
-              extraData={selectedList}
-              renderItem={this.renderItem}
-              keyExtractor={this.keyExtractor}
-              getItemLayout={this.getItemLayout}
-              waitForInteractions={false}
-              onScroll={onScroll}
-              initialNumToRender={10}
-              initialScrollIndex={messageList.length - 1}/>) : null}
+            {dataProvider ?
+              (<RecyclerListView
+                renderAheadOffset={640}
+                dataProvider={dataProvider}
+                layoutProvider={this._layoutProvider}
+                rowRenderer={this.renderItem}
+                onScroll={onScroll}
+                initialRenderIndex={messageList.length - 1}
+                forceNonDeterministicRendering={true}/>) : null}
           </View>
           <ActionSheet
             title={intl.formatMessage(i18n.roomHistoryActionTitle)}
@@ -117,7 +140,11 @@ RoomHistoryComponent.propTypes = {
   intl: intlShape.isRequired,
   Form: PropTypes.object.isRequired,
   roomId: PropTypes.string.isRequired,
-  roomType: PropTypes.number.isRequired,
+  roomType: PropTypes.oneOf([
+    Proto.Room.Type.CHAT,
+    Proto.Room.Type.GROUP,
+    Proto.Room.Type.CHANNEL,
+  ]).isRequired,
   roomTitle: PropTypes.string.isRequired,
   readOnly: PropTypes.bool.isRequired,
   isParticipant: PropTypes.bool.isRequired,
@@ -126,6 +153,7 @@ RoomHistoryComponent.propTypes = {
   joinBoxToggle: PropTypes.func.isRequired,
   messageList: PropTypes.arrayOf(PropTypes.string),
   selectedList: PropTypes.object.isRequired,
+  getRoomMessageType: PropTypes.func.isRequired,
   selectedCount: PropTypes.number,
   cancelSelected: PropTypes.func.isRequired,
   goRoomInfoBtn: PropTypes.func.isRequired,

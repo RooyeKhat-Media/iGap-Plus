@@ -7,7 +7,10 @@ import roomMessage from '../../schemas/roomMessage';
 import store from '../../configureStore';
 import {messengerRoomMessageConcat} from '../../actions/messenger/roomMessages';
 import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../../actions/entities/roomMessages';
-import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from '../../constants/configs';
+import {
+  CLIENT_GET_ROOM_HISTORY_PAGINATION__DB_LIMIT,
+  CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT,
+} from '../../constants/configs';
 import {prepareRoomMessage} from '../../utils/app';
 import RoomMessages from '../../models/entities/RoomMessages/index';
 import {ERROR_CLIENT_GET_ROOM_HISTORY_NOT_FOUND} from '../Api/errors/index';
@@ -47,7 +50,7 @@ async function loadFromDb(roomId, firstMessageId, upward) {
   let fractionId = null;
   const entitiesRoomMessages = {};
   const messengerRoomMessages = [];
-  const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT);
+  const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION__DB_LIMIT);
 
   for (const [index, message] of roomMessages.entries()) {
     entitiesRoomMessages[message.id] = message;

@@ -9,26 +9,41 @@ import ChatBox from './ChatBox';
 import GroupBox from './GroupBox';
 import ChannelBox from './ChannelBox';
 
-class RoomMessage extends React.Component {
+class RoomMessage extends React.PureComponent {
 
   renderContent = () => {
     const {message, authorHash, roomType, goUserInfo, onMessagePress, onMessageLongPress} = this.props;
 
     if (roomType === Proto.Room.Type.CHANNEL) {
-      return (<ChannelBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
-        showText={false} roomId={message.roomId}/>);
-    } else if (message.authorHash === authorHash) {
-      return (<OwnerBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
-        showText={true}/>);
-    } else if (roomType === Proto.Room.Type.CHAT) {
-      return (<ChatBox onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress} message={message}
-        showText={true}/>);
-    } else if (roomType === Proto.Room.Type.GROUP) {
-      return (<GroupBox goUserInfo={goUserInfo} onMessagePress={onMessagePress} onMessageLongPress={onMessageLongPress}
+      return (<ChannelBox
+        roomId={message.roomId}
         message={message}
-        showText={true}/>);
-    }
+        showText={false}
+        onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress}/>);
 
+    } else if (message.authorHash === authorHash) {
+      return (<OwnerBox
+        message={message}
+        showText={true}
+        onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress} />);
+
+    } else if (roomType === Proto.Room.Type.CHAT) {
+      return (<ChatBox
+        message={message}
+        showText={true}
+        onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress}/>);
+
+    } else if (roomType === Proto.Room.Type.GROUP) {
+      return (<GroupBox
+        message={message}
+        showText={true}
+        goUserInfo={goUserInfo}
+        onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress}/>);
+    }
     return null;
   };
 
@@ -39,7 +54,7 @@ class RoomMessage extends React.Component {
       return (<LogBox message={message}/>);
     }
 
-    return (<TouchableOpacity activeOpacity={selected ? 1 : 0.8} style={selected ? styles.selected : {}}
+    return (<TouchableOpacity activeOpacity={selected ? 1 : 0.8} style={selected ? styles.selected : styles.baseStyle}
       delayLongPress={700}
       onPress={onMessagePress}
       onLongPress={onMessageLongPress}>
@@ -51,18 +66,25 @@ class RoomMessage extends React.Component {
 RoomMessage.propTypes = {
   intl: intlShape.isRequired,
   message: PropTypes.object.isRequired,
-  authorHash: PropTypes.string.isRequired,
   roomType: PropTypes.oneOf([
     Proto.Room.Type.CHAT,
     Proto.Room.Type.GROUP,
     Proto.Room.Type.CHANNEL,
   ]).isRequired,
+  selected: PropTypes.bool,
+  authorHash: PropTypes.string.isRequired,
+  goUserInfo: PropTypes.func,
+  onMessagePress: PropTypes.func,
+  onMessageLongPress: PropTypes.func,
 };
 export default injectIntl(RoomMessage);
 
-
 const styles = StyleSheet.create({
+  baseStyle: {
+    flex: 1,
+  },
   selected: {
+    flex: 1,
     backgroundColor: '#d2dbff',
   },
 });

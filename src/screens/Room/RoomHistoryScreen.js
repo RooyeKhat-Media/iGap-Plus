@@ -36,9 +36,9 @@ import i18n from '../../i18n';
 
 class RoomHistoryScreen extends Component {
 
-  onScroll = async ({nativeEvent}) => {
+  onScroll = async (event, offsetX, offsetY) => {
     const {room} = this.props;
-    if (nativeEvent.contentOffset.y <= 300 && !this.loading) {
+    if (offsetY <= 300 && !this.loading) {
       try {
         this.loading = true;
         await loadRoomHistory(room.id);
@@ -416,7 +416,7 @@ class RoomHistoryScreen extends Component {
   };
 
   render() {
-    const {room, messageList} = this.props;
+    const {room, messageList, getRoomMessageType} = this.props;
     const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList, actionSheetActions} = this.state;
     const Form = {
       text,
@@ -449,6 +449,7 @@ class RoomHistoryScreen extends Component {
         messageList={messageList}
         selectedList={selectedList}
         selectedCount={selectedCount}
+        getRoomMessageType={getRoomMessageType}
         cancelSelected={this.cancelSelected}
         goRoomInfoBtn={this.goRoomInfoBtn}
         onMessagePress={this.onMessagePress}
@@ -478,6 +479,24 @@ const makeMapStateToProps = () => {
       getMessageDownloadFileUri: (cacheId) => {
         const downloadFile = state.fileManager.download[cacheId];
         return downloadFile ? downloadFile.uri : null;
+      },
+      getRoomMessageType: (messageId) => {
+        const roomMessage = state.entities.roomMessages[messageId];
+        if (!roomMessage) {
+          //todo Error Report
+          console.warn('getRoomMessageType: Invalid MessageId', messageId);
+          return -1;
+        }
+        let type = roomMessage.messageType;
+
+        if (roomMessage.replyTo) {
+          type += 100;
+        }
+        if (roomMessage.forwardFrom) {
+          const offset = roomMessage.forwardFrom.channelViewsLabel ? 100000 : 1000;
+          type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
+        }
+        return type;
       },
     };
   };
