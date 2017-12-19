@@ -13,7 +13,7 @@ import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.centaurwarchief.smslistener.SmsListenerPackage;
 import plus.igap.saveto.RNSaveToPackage;
 import cl.json.RNSharePackage;
-import com.reactlibrary.RNSqlite2Package;
+import dog.craftz.sqlite_2.RNSqlite2Package;
 import plus.igap.filesystem.RNFileSystemPackage;
 import plus.igap.websocket.RNWebSocketPackage;
 import com.horcrux.svg.SvgPackage;
