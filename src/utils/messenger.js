@@ -23,9 +23,10 @@ import {
   GroupSendMessage,
   Proto,
 } from '../modules/Proto/index';
-import putState from '../modules/Entities/RegisteredUsers';
+import putUserState from '../modules/Entities/RegisteredUsers';
 import store from '../configureStore';
 import Api from '../modules/Api/index';
+import i18n from '../i18n';
 import {getAuthorHash, getFakeMessageId, getRoomHistoryUploadIdPrefix, getUserId, prepareRoomMessage} from './app';
 import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
@@ -51,7 +52,7 @@ import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManag
  * @returns {Promise.<string>}
  */
 export async function chatGetRoom(userId) {
-  await putState(userId);
+  await putUserState(userId);
   const user = store.getState().entities.registeredUsers[userId];
   const chatGetRoom = new ChatGetRoom();
   chatGetRoom.setPeerId(user.longId);
@@ -345,4 +346,160 @@ export async function deleteMessages(roomId, messages) {
     promiseList.push(Api.invoke(actionId, deleteMessage));
   });
   await Promise.all(promiseList);
+}
+
+/**
+ * @param {FlatRoomMessage} message
+ * @param {{roomType, roomTitle, author, targetUser}} details
+ * @return {Promise.<void>}
+ */
+export function getLogMessageParams(message, details) {
+
+  let params = {};
+  const targetUserId = message.log.getTargetUser() ? message.log.getTargetUser().getId().toString() : null;
+
+  const roomType = details.roomType;
+  const roomTitle = details.roomTitle;
+  const author = details.author;
+  const ownerMessage = message.authorHash === getAuthorHash() ? 1 : 0;
+
+  switch (message.log.getType()) {
+    case message.log.Type.USER_JOINED:
+      params = {
+        ...i18n.logMessageTypeUserJoined,
+        values: {
+          author,
+        },
+      };
+      break;
+    case message.log.Type.USER_DELETED:
+      params = {
+        ...i18n.logMessageTypeUserDeleted,
+        values: {
+          author,
+        },
+      };
+      break;
+    case message.log.Type.ROOM_CREATED:
+      params = {
+        ...i18n.logMessageTypeRoomCreated,
+        values: {
+          roomType,
+          roomTitle,
+        },
+      };
+      break;
+    case message.log.Type.MEMBER_ADDED:
+      params = {
+        ...i18n.logMessageTypeMemberAdded,
+        values: {
+          author,
+          ownerMessage,
+          roomType,
+          roomTitle,
+          targetUser: details.targetUser,
+          targetUserOwner: targetUserId === getUserId(true) ? 1 : 0,
+        },
+      };
+      break;
+    case message.log.Type.MEMBER_KICKED:
+      params = {
+        ...i18n.logMessageTypeMemberKicked,
+        values: {
+          author,
+          ownerMessage,
+          roomType,
+          roomTitle,
+          targetUser: entities.registeredUsers[targetUserId] ? entities.registeredUsers[targetUserId].displayName : null,
+          targetUserOwner: targetUserId === getUserId(true) ? 1 : 0,
+        },
+      };
+      break;
+    case message.log.Type.MEMBER_LEFT:
+      params = {
+        ...i18n.logMessageTypeMemberLeft,
+        values: {
+          author,
+          ownerMessage,
+          roomType,
+          roomTitle,
+        },
+      };
+      break;
+    case message.log.Type.ROOM_CONVERTED_TO_PUBLIC:
+      params = {
+        ...i18n.logMessageTypeRoomConvertedToPublic,
+        values: {
+          author,
+          ownerMessage,
+          roomType,
+          roomTitle,
+        },
+      };
+      break;
+    case message.log.Type.ROOM_CONVERTED_TO_PRIVATE:
+      params = {
+        ...i18n.logMessageTypeRoomConvertedToPrivate,
+        values: {
+          author,
+          ownerMessage,
+          roomType,
+          roomTitle,
+        },
+      };
+      break;
+    case message.log.Type.MEMBER_JOINED_BY_INVITE_LINK:
+      params = {
+        ...i18n.logMessageTypeMemberJoinedByInviteLink,
+        values: {
+          author,
+          ownerMessage,
+          roomType,
+          roomTitle,
+        },
+      };
+      break;
+    case message.log.Type.ROOM_DELETED:
+      params = {
+        ...i18n.logMessageTypeRoomDeleted,
+        values: {
+          roomType,
+          roomTitle,
+        },
+      };
+      break;
+    case message.log.Type.MISSED_VOICE_CALL:
+      params = {
+        ...i18n.logMessageTypeMissedVoiceCall,
+        values: {
+          ownerMessage,
+        },
+      };
+      break;
+    case message.log.Type.MISSED_VIDEO_CALL:
+      params = {
+        ...i18n.logMessageTypeMissedVideoCall,
+        values: {
+          ownerMessage,
+        },
+      };
+      break;
+    case message.log.Type.MISSED_SCREEN_SHARE:
+      params = {
+        ...i18n.logMessageTypeMissedScreenShare,
+        values: {
+          ownerMessage,
+        },
+      };
+      break;
+    case message.log.Type.MISSED_SECRET_CHAT:
+      params = {
+        ...i18n.logMessageTypeMissedSecretChat,
+        values: {
+          ownerMessage,
+        },
+      };
+      break;
+  }
+  return params;
 }

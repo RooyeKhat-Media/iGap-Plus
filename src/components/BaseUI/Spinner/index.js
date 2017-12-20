@@ -5,6 +5,7 @@ import {Text, View} from 'react-native';
 import {ActivityIndicator, Dialog, Modal} from '../index';
 import i18n from '../../../i18n';
 import {FormattedMessage} from 'react-intl';
+import {APP_MODAL_ID_MAIN, APP_MODAL_ID_PRIMARY, APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 
 class Spinner extends Component {
   constructor(props) {
@@ -16,11 +17,35 @@ class Spinner extends Component {
     });
   }
 
-  on = () => {
-    this.modal.open();
+  on = (modalId = APP_MODAL_ID_MAIN) => {
+    switch (modalId) {
+      case APP_MODAL_ID_MAIN:
+        this.modal.open();
+        break;
+      case APP_MODAL_ID_PRIMARY:
+        this.modal.openPrimary();
+        break;
+      case APP_MODAL_ID_SECONDARY:
+        this.modal.openSecondary();
+        break;
+    }
   };
-  off = () => {
-    this.modal.close();
+  off = (modalId = APP_MODAL_ID_MAIN) => {
+    switch (modalId) {
+      case APP_MODAL_ID_MAIN:
+        this.modal.close();
+        break;
+      case APP_MODAL_ID_PRIMARY:
+        this.modal.closePrimary();
+        break;
+      case APP_MODAL_ID_SECONDARY:
+        this.modal.closeSecondary();
+        break;
+    }
+  };
+
+  controlFunc = (modal) => {
+    this.modal = modal;
   };
 
   render() {
@@ -29,9 +54,7 @@ class Spinner extends Component {
       title = <FormattedMessage {...i18n.spinnerDefaultTitle} />;
     }
     return (
-      <Modal control={(modal) => {
-        this.modal = modal;
-      }}>
+      <Modal control={this.controlFunc}>
         <View style={styles.dialogWrap}>
           <View style={styles.container}>
             <Dialog style={styles.dialog}>

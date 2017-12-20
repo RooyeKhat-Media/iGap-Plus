@@ -60,8 +60,11 @@ class MessageElement extends React.Component {
       ...options,
     };
     const {downloadedFile, uploading, onPress, onMessageLongPress} = this.props;
+    const overrideOnPress = options.onPress || onPress;
+
     return (
-      <TouchableOpacity onPress={onPress} delayLongPress={700} onLongPress={onMessageLongPress} activeOpacity={0.9}>
+      <TouchableOpacity onPress={overrideOnPress} delayLongPress={700} onLongPress={onMessageLongPress}
+        activeOpacity={0.9}>
 
         <View>
           {siblingElement}

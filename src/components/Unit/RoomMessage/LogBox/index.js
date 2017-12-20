@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import Log from '../MessageBox/Log';
+import Log from '../../../../containers/Unit/MessageLog';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import style from './index.styles';

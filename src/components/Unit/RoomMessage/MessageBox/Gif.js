@@ -18,6 +18,7 @@ export default class Gif extends MessageElement {
     this.state = {
       imageWidth: 0,
       imageHeight: 0,
+      playGif: false,
     };
   }
 
@@ -38,11 +39,24 @@ export default class Gif extends MessageElement {
     }
   }
 
+  onPress = () => {
+    const {onPress} = this.props;
+    if (!this.isCompleted) {
+      onPress();
+    } else {
+      this.setState(prevState => {
+        return {
+          playGif: !prevState.playGif,
+        };
+      });
+    }
+  };
+
   render() {
     const {message, showText, downloadedFile, smallThumbnailUri} = this.props;
-    const {imageWidth, imageHeight} = this.state;
+    const {imageWidth, imageHeight, playGif} = this.state;
     const hasImageDimension = imageWidth && imageHeight;
-    const uri = this.isCompleted ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
+    const uri = this.isCompleted && playGif ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
 
     const {width, height} = dimensionCalculate(imageWidth, imageHeight, boxWidth, boxHeight);
 
@@ -53,7 +67,8 @@ export default class Gif extends MessageElement {
       </View>
       ,
       {
-        completedIcon: 'gif',
+        completedIcon: !playGif ? 'gif' : null,
+        onPress: this.onPress,
       }
     ) : null;
 

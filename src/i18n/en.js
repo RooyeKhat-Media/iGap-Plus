@@ -1067,6 +1067,81 @@ export default {
     defaultMessage: 'Forward To: ',
     description: 'roomHistory screen',
   },
+  roomMessageReplyTo: {
+    id: 'roomMessage.replyTo',
+    defaultMessage: 'Reply To: ',
+    description: 'roomMessage Box',
+  },
+  logMessageTypeUserJoined: {
+    id: 'logMessageType.userJoined',
+    defaultMessage: '`{author}` joined iGap',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeUserDeleted: {
+    id: 'logMessageType.userDeleted',
+    defaultMessage: '`{author}` deleted iGap account',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeRoomCreated: {
+    id: 'logMessageType.roomCreated',
+    defaultMessage: '`{roomTitle}` {roomType, select, 1{Group} 2{Channel}} created',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMemberAdded: {
+    id: 'logMessageType.memberAdded',
+    defaultMessage: '{ownerMessage, select, 0{{author}} 1{You}} added {targetUserOwner, select, 0{{targetUser}} 1{You}} to the {roomType, select, 1{Group} 2{Channel}}',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMemberKicked: {
+    id: 'logMessageType.memberKicked',
+    defaultMessage: '{ownerMessage, select, 0{{author}} 1{You}} kicked {targetUserOwner, select, 0{{targetUser}} 1{You}} out of the {roomType, select, 1{Group} 2{Channel}}',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMemberLeft: {
+    id: 'logMessageType.memberLeft',
+    defaultMessage: '{ownerMessage, select, 0{{author}} 1{You}} left {roomType, select, 1{Group} 2{Channel}}',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeRoomConvertedToPublic: {
+    id: 'logMessageType.roomConvertedToPublic',
+    defaultMessage: '{roomType, select, 1{Group} 2{Channel}} has been converted to public',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeRoomConvertedToPrivate: {
+    id: 'logMessageType.roomConvertedToPrivate',
+    defaultMessage: '{roomType, select, 1{Group} 2{Channel}} has been converted to private',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMemberJoinedByInviteLink: {
+    id: 'logMessageType.memberJoinedByInviteLink',
+    defaultMessage: '{ownerMessage, select, 0{{author}} 1{You}} joined the {roomType, select, 1{Group} 2{Channel}} through the invitation link',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeRoomDeleted: {
+    id: 'logMessageType.roomDeleted',
+    defaultMessage: '{roomType, select, 1{Group} 2{Channel}} `{roomTitle}` deleted',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMissedVoiceCall: {
+    id: 'logMessageType.missedVoiceCall',
+    defaultMessage: 'Voice Call {ownerMessage, select, 0{missed} 1{cancelled}}',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMissedVideoCall: {
+    id: 'logMessageType.missedVideoCall',
+    defaultMessage: 'Video Call {ownerMessage, select, 0{missed} 1{cancelled}}',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMissedScreenShare: {
+    id: 'logMessageType.missedScreenShare',
+    defaultMessage: 'Screen {ownerMessage, select, 0{missed} 1{cancelled}}',
+    description: 'roomMessage Log',
+  },
+  logMessageTypeMissedSecretChat: {
+    id: 'logMessageType.missedSecretChat',
+    defaultMessage: 'Secret {ownerMessage, select, 0{missed} 1{cancelled}}',
+    description: 'roomMessage Log',
+  },
   settingSetting: {
     id: 'setting.setting',
     defaultMessage: 'Setting',

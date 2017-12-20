@@ -39,3 +39,17 @@ export const getWaveformThumbnailUri = createSelector(
     return null;
   }
 );
+
+export const getLogMessageDetails = createSelector(
+  (state, param) => state.entities.rooms[param.message.roomId],
+  (state, param) => state.entities.registeredUsers[param.message.authorUser],
+  (state, param) => state.entities.registeredUsers[param.message.log.getTargetUser() ? param.message.log.getTargetUser().getId().toString() : null],
+  function(room, authorUser, targetUser) {
+    return {
+      roomType: room ? room.type : null,
+      roomTitle: room ? room.title : null,
+      author: authorUser ? authorUser.displayName : null,
+      targetUser: targetUser ? targetUser.displayName : null,
+    };
+  }
+);

@@ -1,14 +1,17 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import styles from './index.styles';
+import {connect} from 'react-redux';
 
-import {Proto} from '../../../../modules/Proto/index';
 import ChannelBox from '../ChannelBox/index';
 import MessageAtomBox from '../../../../containers/Unit/MessageAtomBox';
+import {Proto} from '../../../../modules/Proto/index';
+import {getEntitiesRoomMessage} from '../../../../selector/entities/roomMessage';
+import ReplyTo from './ReplyTo';
 
 class MessageBox extends React.Component {
   render() {
-    const {message, showText, onMessagePress, onMessageLongPress} = this.props;
+    const {message, replyToMessage, showText, onMessagePress, onMessageLongPress} = this.props;
     const forwardFrom = message.forwardFrom;
 
     let forward = null;
@@ -47,10 +50,21 @@ class MessageBox extends React.Component {
           <Text>Forward from ...</Text>
           {forward}
         </View>)}
+        {replyToMessage ? (<ReplyTo message={replyToMessage}/>) : null}
         {main}
       </View>
     );
   }
 }
 
-export default MessageBox;
+const makeMapStateToProps = () => {
+  return (state, props) => {
+    return {
+      replyToMessage: getEntitiesRoomMessage(state, props.message.replyTo),
+    };
+  };
+};
+
+export default connect(
+  makeMapStateToProps
+)(MessageBox);
