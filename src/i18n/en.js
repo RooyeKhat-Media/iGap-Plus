@@ -967,6 +967,36 @@ export default {
     defaultMessage: 'Forward',
     description: 'roomHistory sendBox screen',
   },
+  roomHistoryMicrophonePermission: {
+    id: 'roomHistory.microphone.permission',
+    defaultMessage: 'Microphone permission',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistoryRecordSound: {
+    id: 'roomHistory.record.sound ',
+    defaultMessage: 'Record sound need microphone permission',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistoryCameraPermission: {
+    id: 'roomHistory.camera.permission',
+    defaultMessage: 'Camera permission',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistoryCameraPermissionMessage: {
+    id: 'roomHistory.camera.permission.message',
+    defaultMessage: 'Capture image need camera permission',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistoryStoragePermission: {
+    id: 'roomHistory.storage.permission',
+    defaultMessage: 'Storage permission',
+    description: 'roomHistory sendBox screen',
+  },
+  roomHistoryStoragePermissionMessage: {
+    id: 'roomHistory.Storage.permission.message',
+    defaultMessage: 'Camera need Storage permission',
+    description: 'roomHistory sendBox screen',
+  },
   roomHistoryDeleteMessagesTitle: {
     id: 'roomHistory.deleteMessagesTitle',
     defaultMessage: 'Delete Messages',

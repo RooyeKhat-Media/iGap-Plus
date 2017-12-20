@@ -29,6 +29,8 @@ import RoomReportScreen from '../screens/Room/RoomReportScreen';
 import AvatarListScreen from '../screens/Room/AvatarListScreen';
 import CameraScreen from '../screens/General/CameraScreen';
 import VideoPlayerScreen from '../screens/General/VideoPlayerScreen';
+import Permission, {PERMISSION_CAMERA, PERMISSION_STORAGE} from '../modules/Permission/index';
+import {Platform} from 'react-native';
 
 export function goRoomHistory(roomId, forwardedMessage) {
   navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
@@ -70,8 +72,16 @@ export function goAvatarList(roomId, userId) {
   navigate(AVATAR_LIST_SCREEN, {roomId, userId});
 }
 
-export function goCamera(resolve, reject, CameraMode) {
-  navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
+export async function goCamera(resolve, reject, CameraMode, denialMessage) {
+  try {
+    await  Permission.grant(PERMISSION_CAMERA, denialMessage[0], denialMessage[1]);
+    if (Platform.OS === 'android') {
+      await  Permission.grant(PERMISSION_STORAGE, denialMessage[2], denialMessage[3]);
+    }
+    navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
+  } catch (e) {
+    reject(e);
+  }
 }
 
 export function goVideoPlayer(uri, fileName) {

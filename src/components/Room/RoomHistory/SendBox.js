@@ -24,6 +24,9 @@ import {
 import VoiceRecorder from './VoiceRecorder';
 import EmojiPiker from './EmojiPiker';
 import ShortMessage from '../../Unit/RoomMessage/MessageBox/ShortMessage';
+import Permission, {PERMISSION_MICROPHONE} from '../../../modules/Permission/index';
+import {goCamera} from '../../../navigators/SecondaryNavigator';
+import {cameraMode} from '../../../screens/General/CameraScreen';
 
 class SendBox extends Component {
 
@@ -85,13 +88,20 @@ class SendBox extends Component {
       onPanResponderReject: this.onEnd,
       onPanResponderGrant: (evt, gestureState) => {
         this.micClick = true;
-        setTimeout(() => {
+        setTimeout(async () => {
           if (!this.state.isSoundRecord && this.micClick) {
-            this.setState({
-              isSoundRecord: true,
-              showAttachment: false,
-              showEmojiPiker: false,
-            });
+            const check = await  Permission.check(PERMISSION_MICROPHONE);
+            if (check) {
+              this.setState({
+                isSoundRecord: true,
+                showAttachment: false,
+                showEmojiPiker: false,
+              });
+            } else {
+              await  Permission.grant(PERMISSION_MICROPHONE,
+                this.props.intl.formatMessage(i18n.roomHistoryMicrophonePermission),
+                this.props.intl.formatMessage(i18n.roomHistoryRecordSound));
+            }
           }
         }, 600);
       },
@@ -179,7 +189,25 @@ class SendBox extends Component {
     await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_FILE);
   };
 
-  selectCamera = () => {
+  selectCamera = async () => {
+    this.toggleAttach();
+    const {intl} = this.props;
+    const denialMessage = [
+      intl.formatMessage(i18n.roomHistoryCameraPermission),
+      intl.formatMessage(i18n.roomHistoryCameraPermissionMessage),
+      intl.formatMessage(i18n.roomHistoryStoragePermission),
+      intl.formatMessage(i18n.roomHistoryStoragePermissionMessage),
+    ];
+    goCamera(
+      (path) => {
+        //todo nejati     send this image to chatBox with this path
+      },
+      (error) => {
+        // can not open camera or save image file in storage
+      },
+      cameraMode.CAMERA,
+      denialMessage
+    );
   };
   selectContact = () => {
   };
