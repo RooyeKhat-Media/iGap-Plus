@@ -12,7 +12,8 @@ export const DATABASE_SCHEMA_VERSION = 1;
 export const WEBSOCKET_ENDPOINT = 'wss://secure.igap.net/test/';
 export const WEBSOCKET_RECONNECT_INTERVAL_SEC = 10;
 
-export const NON_WEBSOCKET_UPLOAD_ENDPOINT = 'https://secure.igap.net/api/upload/';
+export const NON_WEBSOCKET_UPLOAD_ENDPOINT = 'https://secure.igap.net/api/hybrid/';
+export const GOOGLE_API_KEY = 'AIzaSyAhMmHvy9fL7-Rdz4D25QTFIKgiB5pe-TE';
 
 export const API_CONCURRENCY = 40;
 export const API_AGGREGATE_DELAY_MS = 2000;

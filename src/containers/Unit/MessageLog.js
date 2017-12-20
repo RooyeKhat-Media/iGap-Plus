@@ -34,7 +34,6 @@ class MessageLog extends React.PureComponent {
 
   render() {
     const {message, messageDetail} = this.props;
-    console.log('messageDetail', messageDetail);
     const logParams = getLogMessageParams(message, messageDetail);
     return (
       <View style={styles.container}>

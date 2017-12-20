@@ -1,7 +1,7 @@
 import MetaData from '../models/MetaData';
 import {UserLogin} from '../modules/Proto/index';
 import {Proto} from '../modules/Proto';
-import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION} from '../constants/configs';
+import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
 import {USER_LOGIN} from '../constants/methods/index';
 import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
@@ -167,4 +167,12 @@ export function setRoomHistorySelectedMode(mode) {
 
 export function getRoomHistorySelectedMode() {
   return _roomHistorySelectedMode;
+}
+
+export function getGoogleStaticMap(lat, lan, width = 300, height = 400) {
+  return 'https://maps.googleapis.com/maps/api/staticmap?' +
+    'zoom=15&' +
+    'size=' + width + 'x' + height + '&' +
+    'markers=color:red|label:G|' + lat + ',' + lan + '&' +
+    'key=' + GOOGLE_API_KEY;
 }
