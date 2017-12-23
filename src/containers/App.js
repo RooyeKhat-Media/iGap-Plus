@@ -6,18 +6,18 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
-import {BackHandler, Platform, StatusBar, View} from 'react-native';
+import {AppState, BackHandler, Platform, StatusBar, View} from 'react-native';
 
 import {AppModal} from '../components/BaseUI';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
-import {loadAuthorHash, loadUserId, loadUserToken} from '../utils/app';
+import {appStateChange, loadAuthorHash, loadUserId, loadUserToken, setAppState} from '../utils/app';
 import {changeLocale, getUserLocale, loadUserLocale} from '../utils/locale';
 import {getAppTheme} from '../themes';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
-import {APP_MODAL_ID_MAIN} from '../constants/app';
+import {APP_MODAL_ID_MAIN, APP_STATE_ACTIVE, APP_STATE_BACKGROUND, APP_STATE_INACTIVE} from '../constants/app';
 
 class App extends Component {
 
@@ -42,6 +42,7 @@ class App extends Component {
         loadUserToken().then((token) => {
           if (token) {
             goMainScreen();
+            AppState.addEventListener('change', this._handleAppStateChange);
           } else if (Platform.OS === 'ios' || Platform.OS === 'android') {
             goIntroScreen();
           } else {
@@ -55,9 +56,22 @@ class App extends Component {
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
+
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    AppState.removeEventListener('change', this._handleAppStateChange);
   }
+
+  _handleAppStateChange = (nextAppState) => {
+    if (nextAppState === 'active') {
+      setAppState(APP_STATE_ACTIVE);
+    } else if (nextAppState === 'background') {
+      setAppState(APP_STATE_BACKGROUND);
+    } else {
+      setAppState(APP_STATE_INACTIVE);
+    }
+    appStateChange();
+  };
 
   onBackPress = () => {
     const {dispatch, nav} = this.props;

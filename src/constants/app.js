@@ -8,6 +8,10 @@ export const FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX = 'RH_';
 export const ROOM_CREATE_SCREEN_TYPE_GROUP = 'CREATE_GROUP';
 export const ROOM_CREATE_SCREEN_TYPE_CHANNEL = 'CREATE_CHANNEL';
 
+export const APP_STATE_ACTIVE = 'active';
+export const APP_STATE_BACKGROUND = 'background';
+export const APP_STATE_INACTIVE = 'inactive';
+
 export const APP_MODAL_ID_MAIN = 'APP_MODAL_ID_MAIN';
 export const APP_MODAL_ID_PRIMARY = 'APP_MODAL_ID_PRIMARY';
 export const APP_MODAL_ID_SECONDARY = 'APP_MODAL_ID_SECONDARY';

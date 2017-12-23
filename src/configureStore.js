@@ -7,13 +7,13 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
-import reduxLogger from 'redux-logger';
 //Entities
 import entitiesRoomsMiddleware from './modules/Entities/Rooms/middleware';
 import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUsers/middleware';
 import entitiesRoomMessagesMiddleware from './modules/Entities/RoomMessages/middleware';
 //Messenger
 import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
+import {userUpdateStatusMiddleware} from './utils/app';
 
 function configureStore(preloadedState) {
   const middlewares = [
@@ -26,6 +26,7 @@ function configureStore(preloadedState) {
     entitiesRoomMessagesMiddleware,
     //Messenger
     messengerRoomsMiddleware,
+    userUpdateStatusMiddleware,
   ];
 
   if (process.env.NODE_ENV === `development`) {

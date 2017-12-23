@@ -1,23 +1,30 @@
 import MetaData from '../models/MetaData';
-import {UserLogin} from '../modules/Proto/index';
+import {UserLogin, UserUpdateStatus} from '../modules/Proto/index';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
-import {USER_LOGIN} from '../constants/methods/index';
-import Api from '../modules/Api/index';
+import {USER_LOGIN, USER_UPDATE_STATUS} from '../constants/methods/index';
+import Api, {CLIENT_STATUS} from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
 import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
-import {FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX, FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX} from '../constants/app';
+import {
+  APP_STATE_ACTIVE,
+  FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX,
+  FILE_UPLOAD_ID_ROOM_HISTORY_PREFIX,
+} from '../constants/app';
 
 import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
 import putStateRoom from '../modules/Entities/Rooms';
 import Long from 'long';
+import {CLIENT_STATUS_CHANGED} from '../actions/api';
 
 let _userId;
 let _userIdString;
+let _isUserOnline = false;
 let _authorHash;
 let _fakeMessageId = Long.ZERO;
 let _roomHistorySelectedMode = false;
+let _appState;
 
 /**
  * @returns {Long}
@@ -176,3 +183,63 @@ export function getGoogleStaticMap(lat, lan, width = 300, height = 400) {
     'markers=color:red|label:G|' + lat + ',' + lan + '&' +
     'key=' + GOOGLE_API_KEY;
 }
+
+export function setAppState(nextState) {
+  _appState = nextState;
+}
+
+export function getAppState() {
+  return _appState;
+}
+
+/**
+ * @return {Promise.<*>}
+ */
+export function appStateChange() {
+  if (getAppState() === APP_STATE_ACTIVE) {
+    setUserOnline();
+  } else {
+    setUserOffline();
+  }
+}
+
+async function setUserOnline(force = false) {
+  clearTimeout(_userOfflineTimeout);
+  if (!force && _isUserOnline) {
+    return;
+  }
+  _isUserOnline = true;
+  await invokeUserStatus(UserUpdateStatus.Status.ONLINE);
+}
+
+let _userOfflineTimeout;
+
+async function setUserOffline(updateServer = true) {
+  clearTimeout(_userOfflineTimeout);
+  _userOfflineTimeout = setTimeout(async () => {
+    _isUserOnline = false;
+    if (updateServer) {
+      await invokeUserStatus(UserUpdateStatus.Status.OFFLINE);
+    }
+  }, 30000);
+}
+
+async function invokeUserStatus(status) {
+  const userUpdateStatus = new UserUpdateStatus();
+  userUpdateStatus.setStatus(status);
+  return await Api.invoke(USER_UPDATE_STATUS, userUpdateStatus);
+}
+
+export const userUpdateStatusMiddleware = ({dispatch, getState}) => next => action => {
+  if (action.type === CLIENT_STATUS_CHANGED) {
+    switch (action.status) {
+      case CLIENT_STATUS.DISCONNECTED:
+        setUserOffline(false);
+        break;
+      case CLIENT_STATUS.LOGGED_IN:
+        setUserOnline(true);
+        break;
+    }
+  }
+  return next(action);
+};
