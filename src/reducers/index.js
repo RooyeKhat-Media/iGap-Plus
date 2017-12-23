@@ -13,8 +13,9 @@ import {theme} from './theme';
 import methodsReducer from './methods';
 import entities from './entities';
 import messenger from './messenger';
+import {METHOD_USER_LOGOUT} from '../actions/methods/user/logout';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   api,
   nav,
   navSecondary,
@@ -27,5 +28,13 @@ const rootReducer = combineReducers({
   entities,
   messenger,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === METHOD_USER_LOGOUT) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
 
 export default rootReducer;

@@ -1,8 +1,8 @@
 import MetaData from '../models/MetaData';
-import {UserLogin, UserUpdateStatus} from '../modules/Proto/index';
+import {UserLogin, UserSessionLogout, UserUpdateStatus} from '../modules/Proto/index';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
-import {USER_LOGIN, USER_UPDATE_STATUS} from '../constants/methods/index';
+import {USER_LOGIN, USER_SESSION_LOGOUT, USER_UPDATE_STATUS} from '../constants/methods/index';
 import Api, {CLIENT_STATUS} from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
@@ -49,7 +49,7 @@ export function getUserId(asString = false) {
 
 export function setUserId(userId) {
   _userId = userId;
-  _userIdString = _userId.toString();
+  _userIdString = _userId ? _userId.toString() : '0';
   return MetaData.save(METADATA_USER_ID, userId);
 }
 
@@ -108,6 +108,11 @@ export async function login() {
   // TODO [Amerehie] - 8/30/2017 2:05 PM - setPlatform , setPlatformVersion ...
 
   return Api.invoke(USER_LOGIN, userLogin);
+}
+
+export async function logout() {
+  const userLogout = new UserSessionLogout();
+  return await Api.invoke(USER_SESSION_LOGOUT, userLogout);
 }
 
 /**

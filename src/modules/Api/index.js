@@ -39,7 +39,7 @@ const running = new Map();
 /**
  * @type {Map.<string,Promise>}
  */
-const aggregate = new Map();
+let aggregate = new Map();
 
 
 export const HANDLER_PRECEDENCE = {
@@ -392,5 +392,19 @@ export default class Api {
     } finally {
       pollPendingIsRunning = false;
     }
+  }
+
+  static cleanUp() {
+    this.__rejectRunning();
+    aggregate = new Map();
+
+    const wrappers = pending.array;
+    pending = new FastPriorityQueue(pendingComparator);
+    wrappers.forEach(function(wrapper) {
+      const errorResponse = new ErrorResponse();
+      errorResponse.setMajorCode(ERROR_TIMEOUT);
+      errorResponse.setMinorCode(4);
+      wrapper.reject(new ServerError(errorResponse, wrapper.actionId));
+    });
   }
 }

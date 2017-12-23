@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
+import reduxLogger from 'redux-logger';
 //Entities
 import entitiesRoomsMiddleware from './modules/Entities/Rooms/middleware';
 import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUsers/middleware';

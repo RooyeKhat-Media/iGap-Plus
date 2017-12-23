@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import SettingComponent from '../../components/Setting/index';
-import {USER_GET_DELETE_TOKEN, USER_SESSION_LOGOUT} from '../../constants/methods/index';
+import {USER_GET_DELETE_TOKEN} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
-import {UserGetDeleteToken, UserSessionLogout} from '../../modules/Proto/index';
-import {goUserRegisterScreen, goUserVerifyDeleteScreen} from '../../navigators/AppNavigator';
+import {UserGetDeleteToken} from '../../modules/Proto/index';
+import {goUserVerifyDeleteScreen} from '../../navigators/AppNavigator';
+import {logout} from '../../utils/app';
 
 class SettingScreen extends Component {
 
@@ -12,9 +13,7 @@ class SettingScreen extends Component {
   };
 
   logOut = async () => {
-    await  Api.invoke(USER_SESSION_LOGOUT, new UserSessionLogout());
-    goUserRegisterScreen();
-    // TODO [NEJATI] - 11/13/2017 9:46 AM -  clean db , state , cached variable like author hash , usrId , token and ...
+    await logout();
   };
 
   deleteAccount = async () => {

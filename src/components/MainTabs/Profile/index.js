@@ -50,7 +50,7 @@ class ProfileComponent extends Component {
         <Toolbar
           leftElement={<MCIcon name="chevron-down" color="#000" size={30} onPress={this.downClick}/>}
           rightElement={<MCIcon name="dots-vertical" color="#000" size={30} onPress={this.menuClick}/>}
-          centerElement={(currentUser && currentUser.phone.toString())}/>
+          centerElement={(currentUser && currentUser.phone && currentUser.phone.toString())}/>
 
         <ScrollView style={styles.scroll}>
 

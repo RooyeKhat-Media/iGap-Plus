@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import cleanup from '../../../Cleanup';
 
 /**
  * @property {ProtoUserSessionLogout} _request
@@ -6,5 +7,6 @@ import Base from '../../Base';
  */
 export default class Logout extends Base {
   handle() {
+    cleanup();
   }
 }

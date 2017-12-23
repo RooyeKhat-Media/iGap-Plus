@@ -6,6 +6,7 @@ import i18n from '../../i18n/index';
 import * as apiErrors from '../Api/errors/index';
 import {login} from '../../utils/app';
 import {goUserTwoStepVerificationScreen} from '../../navigators/AppNavigator';
+import cleanup from '../Cleanup/index';
 
 /**
  * Get i18n key for error
@@ -144,6 +145,12 @@ export function mapReact(errorMapTable, errorMapReactionCallback) {
 const reactionTable = {
   [errorId(apiErrors.ERROR_LOGIN_REQUIRED)]: () => {
     login();
+  },
+  [errorId(apiErrors.ERROR_SESSION_IS_TERMINATED)]: () => {
+    cleanup();
+  },
+  [errorId(apiErrors.ERROR_USER_LOGIN_FAILED)]: () => {
+    cleanup();
   },
   [errorId(apiErrors.ERROR_USER_VERIFY_TWO_STEP_VERIFICATION_ENABLED)]: () => {
     goUserTwoStepVerificationScreen();
