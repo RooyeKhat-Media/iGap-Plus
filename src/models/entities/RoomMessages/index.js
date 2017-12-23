@@ -5,7 +5,7 @@
 import QueueDb from '../../../modules/QueueDb';
 import {persistCallback, retrieveCallback, retrieveHistoryCallback} from './backend';
 
-const {save, load} = QueueDb(
+const {save, load, remove} = QueueDb(
   persistCallback,
   retrieveCallback
 );
@@ -25,6 +25,10 @@ export default class RoomMessages {
    */
   static async loadFromQueue(roomMessageId) {
     return load(roomMessageId); // todo create LoadFractionFromDb
+  }
+
+  static removeFromQueue(messageId) {
+    return remove(messageId);
   }
 
   /**

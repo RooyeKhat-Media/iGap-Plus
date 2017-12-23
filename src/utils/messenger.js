@@ -410,7 +410,7 @@ export function getLogMessageParams(message, details) {
           ownerMessage,
           roomType,
           roomTitle,
-          targetUser: entities.registeredUsers[targetUserId] ? entities.registeredUsers[targetUserId].displayName : null,
+          targetUser: details.targetUser,
           targetUserOwner: targetUserId === getUserId(true) ? 1 : 0,
         },
       };

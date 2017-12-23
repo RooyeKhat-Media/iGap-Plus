@@ -1,4 +1,4 @@
-import {ENTITIES_REGISTERED_USER_ADD} from '../../../actions/entities/registeredUser';
+import {ENTITIES_REGISTERED_USER_ADD, ENTITIES_REGISTERED_USER_EDIT} from '../../../actions/entities/registeredUser';
 import RegisteredUsers from '../../../models/entities/RegisteredUsers';
 
 const middleware = ({dispatch, getState}) => next => action => {
@@ -10,6 +10,15 @@ const middleware = ({dispatch, getState}) => next => action => {
             RegisteredUsers.saveToQueue(action.registeredUsers[userId]);
           }
         }
+      }
+      break;
+    case ENTITIES_REGISTERED_USER_EDIT:
+      const user = getState().entities.registeredUsers[action.id];
+      if (user && action.updateDb) {
+        RegisteredUsers.saveToQueue({
+          ...user,
+          ...action.payload,
+        });
       }
       break;
   }
