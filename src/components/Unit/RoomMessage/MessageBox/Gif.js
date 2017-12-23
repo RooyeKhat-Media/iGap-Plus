@@ -4,8 +4,9 @@ import {Image, View} from 'react-native';
 import Text from './Text';
 import {min} from 'lodash';
 import Device from '../../../../modules/Responsive/Device';
-import {dimensionCalculate, prependFileProtocol} from '../../../../utils/core';
+import {prependFileProtocol} from '../../../../utils/core';
 import MessageElement from './MessageElement';
+import {dimensionCalculate} from '../../../../modules/DimensionCalculator/util';
 
 const {width, height} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);

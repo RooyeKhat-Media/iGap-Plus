@@ -24,7 +24,7 @@ class MessageBox extends React.Component {
             onMessagePress={onMessagePress}
             onMessageLongPress={onMessageLongPress}
             message={forwardFrom}
-            showText={true}
+            showText={false}
             roomId={forwardFrom.roomId}/>);
       } else {
         forward = (
@@ -36,7 +36,7 @@ class MessageBox extends React.Component {
       }
     }
 
-    if (!forwardFrom || (forwardFrom && (forwardFrom.messageType !== Proto.RoomMessageType.TEXT || forwardFrom.message))) {
+    if (!forwardFrom || (forwardFrom && (message.messageType !== Proto.RoomMessageType.TEXT || message.message))) {
       main = (<MessageAtomBox
         onMessagePress={onMessagePress}
         onMessageLongPress={onMessageLongPress}

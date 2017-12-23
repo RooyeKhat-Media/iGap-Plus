@@ -18,7 +18,7 @@ class ChannelBox extends Component {
   };
 
   render() {
-    const {room, message, onMessagePress, onMessageLongPress} = this.props;
+    const {room, message, onMessagePress, onMessageLongPress, showText} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -37,7 +37,7 @@ class ChannelBox extends Component {
         <View style={styles.messageWrapper}>
           <MessageBox
             message={message}
-            showText={false}
+            showText={showText}
             onMessagePress={onMessagePress}
             onMessageLongPress={onMessageLongPress}/>
           <Text style={styles.textMessage}>{message.message}</Text>
