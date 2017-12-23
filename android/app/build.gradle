@@ -107,6 +107,11 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+
+    dexOptions {
+        jumboMode true
+    }
+
     splits {
         abi {
             reset()
@@ -137,6 +142,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-video-processing')
     compile project(':react-native-contacts')
     compile project(':react-native-maps')
     compile project(':react-native-video')
