@@ -112,7 +112,7 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
     }
     store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
     store.dispatch(messengerRoomMessageConcat(roomId, normalizedData.result));
-    if (upward) {
+    if (firsMessageId && upward) {
       store.dispatch(entitiesRoomMessageEdit(firsMessageId, {
         fraction: false,
       }));
