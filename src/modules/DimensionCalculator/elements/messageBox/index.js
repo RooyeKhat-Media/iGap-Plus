@@ -1,3 +1,26 @@
+
+/*
+
++-+------------------------------+
+| |             5                |
+| |   +-----------------------+  |
+|3|10 |reply to :short message 5 |               reply to
+| |   |       h=21            |  |
+| |   +-----------------------+  |
+| |              5               |
++-+------------------------------+
+                 5
+
++------------------------------------------+
+|                                          |
+|                                          |
+|  forward from   h=21                     |
+|                                          |
++------------------------------------------+
+
+* */
+
+
 import {Proto} from '../../../../modules/Proto/index';
 import messageAtomBoxCalculator from './messageAtomBox';
 import channelBoxCalculator from '../channelBox';

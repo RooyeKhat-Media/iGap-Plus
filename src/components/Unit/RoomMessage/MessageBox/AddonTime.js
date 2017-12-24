@@ -15,11 +15,6 @@ AddonTime.propTypes = {
 export default AddonTime;
 
 const styles = StyleSheet.create({
-  container: {},
-  imageWrap: {
-    width: 200,
-    height: 180,
-  },
   timeText: {
     fontSize: 13,
   },
