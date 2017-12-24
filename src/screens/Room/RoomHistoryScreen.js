@@ -13,6 +13,7 @@ import {
   deleteMessages,
   editRoomMessage,
   forwardToList,
+  resendMessage,
   sendMessage,
   sendMultiAttachMessages,
 } from '../../utils/messenger';
@@ -159,17 +160,21 @@ class RoomHistoryScreen extends Component {
 
   onMessagePress = (message) => {
     const {selectedCount} = this.state;
-    if (selectedCount) {
-      this.selectMessage(message.id);
+    if (message.status === Proto.RoomMessageStatus.FAILED) {
+      resendMessage(message);
     } else {
-      this.setState({
-        actionSheetActions: this.getActionList(message),
-      }, () => {
-        const {actionSheetActions} = this.state;
-        if (actionSheetActions.length) {
-          this.actionSheet.open();
-        }
-      });
+      if (selectedCount) {
+        this.selectMessage(message.id);
+      } else {
+        this.setState({
+          actionSheetActions: this.getActionList(message),
+        }, () => {
+          const {actionSheetActions} = this.state;
+          if (actionSheetActions.length) {
+            this.actionSheet.open();
+          }
+        });
+      }
     }
   };
   onMessageLongPress = (message) => {

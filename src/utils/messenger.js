@@ -35,16 +35,12 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../constants/app';
 import {tNow} from './core';
-import {
-  messengerRoomMessageConcat,
-  messengerRoomMessageRemove,
-  messengerRoomMessageReplace,
-} from '../actions/messenger/roomMessages';
+import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
 import Long from 'long';
 import roomMessageSchema from '../schemas/roomMessage';
-import {entitiesRoomMessageRemove, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
+import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManager';
 
 /**
@@ -182,9 +178,9 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
     store.dispatch(messengerRoomMessageReplace(room.id, normalizedRoomMessage.id, fakeIdToString));
 
   } catch (e) {
-    store.dispatch(messengerRoomMessageRemove(room.id, fakeIdToString));
-    store.dispatch(entitiesRoomMessageRemove(fakeIdToString));
-    // todo if upload is auto_paused set message to failed
+    store.dispatch(entitiesRoomMessageEdit(fakeIdToString, {
+      status: Proto.RoomMessageStatus.FAILED,
+    }));
   } finally {
     store.dispatch(fileManagerUploadDisposed(getRoomHistoryUploadIdPrefix(room.id, fakeIdToString)));
   }
@@ -251,6 +247,84 @@ export async function sendMultiAttachMessages(roomId, files, attachmentType) {
   files.forEach(async (file) => {
     sendMessage(roomId, null, file, attachmentType);
   });
+}
+
+/**
+ * @param {FlatRoomMessage} message
+ * @return {Promise.<void>}
+ */
+export async function resendMessage(message) {
+  /**
+   * @type {ProtoChatSendMessage || ProtoGroupSendMessage || ProtoChannelSendMessage} proto
+   */
+
+  let actionId, proto;
+  const room = store.getState().entities.rooms[message.roomId];
+
+  switch (room.type) {
+    case Proto.Room.Type.CHAT:
+      actionId = CHAT_SEND_MESSAGE;
+      proto = new ChatSendMessage();
+      break;
+
+    case Proto.Room.Type.GROUP:
+      actionId = GROUP_SEND_MESSAGE;
+      proto = new GroupSendMessage();
+      break;
+
+    case Proto.Room.Type.CHANNEL:
+      actionId = CHANNEL_SEND_MESSAGE;
+      proto = new ChannelSendMessage();
+      break;
+    default:
+      throw new Error('Invalid room type');
+  }
+
+
+  proto.setRoomId(room.longId);
+  proto.setMessage(message.message);
+  proto.setReplyTo(message.replyTo);
+  if (message.forwardFrom) {
+    const forwardFrom = new Proto.RoomMessageForwardFrom();
+    forwardFrom.setRoomId(Long.fromString(message.forwardFrom.roomId));
+    forwardFrom.setMessageId(message.forwardFrom.longId);
+    proto.setForwardFrom(forwardFrom);
+  }
+  try {
+
+    if (message.pickedFile) {
+      const token =
+        await store.dispatch(
+          fileManagerUpload(
+            getRoomHistoryUploadIdPrefix(room.id, message.id),
+            message.pickedFile.fileUri,
+            message.pickedFile.fileName,
+            Long.fromBits(message.pickedFile.fileSize.low, message.pickedFile.fileSize.high, message.pickedFile.fileSize.unsigned)));
+      proto.setAttachment(token);
+    }
+    proto.setMessageType(message.messageType);
+
+    store.dispatch(entitiesRoomMessageEdit(message.id, {
+      status: Proto.RoomMessageStatus.SENDING,
+    }));
+
+    const sendMessageResponse = await Api.invoke(actionId, proto);
+
+    const normalizedRoomMessage = normalizeRoomMessage(sendMessageResponse.getRoomMessage());
+    prepareRoomMessage(normalizedRoomMessage, room.id, false);
+    normalizedRoomMessage.pickedFile = message.pickedFile;
+
+    store.dispatch(entitiesRoomMessagesAdd({[normalizedRoomMessage.id]: normalizedRoomMessage}));
+    store.dispatch(messengerRoomMessageReplace(room.id, normalizedRoomMessage.id, message.id));
+
+  } catch (e) {
+    console.error('resendError', e);
+    store.dispatch(entitiesRoomMessageEdit(message.id, {
+      status: Proto.RoomMessageStatus.FAILED,
+    }));
+  } finally {
+    store.dispatch(fileManagerUploadDisposed(getRoomHistoryUploadIdPrefix(room.id, message.id)));
+  }
 }
 
 /**

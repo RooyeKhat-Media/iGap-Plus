@@ -9,6 +9,7 @@ import {entitiesRoomsAdd} from '../../../actions/entities/rooms';
 import putRegisteredUserState from '../RegisteredUsers';
 import {isEmpty} from 'lodash';
 import Collector from '../../Collector';
+import putRoomMessageState from '../RoomMessages';
 
 const {collect} = Collector(
   (collected) => {
@@ -41,6 +42,9 @@ export default async function putState(id, offlineInvokeApi = false) {
         const normalizedRoom = await Rooms.loadFromQueue(id);
         if (normalizedRoom.chatPeer) {
           putRegisteredUserState(normalizedRoom.chatPeer);
+        }
+        if (normalizedRoom.lastMessage) {
+          putRoomMessageState(normalizedRoom.lastMessage);
         }
         collect(normalizedRoom, normalizedRoom.id);
       } finally {

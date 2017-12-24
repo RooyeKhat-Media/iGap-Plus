@@ -4,6 +4,7 @@
 
 import QueueDb from '../../../modules/QueueDb';
 import {persistCallback, retrieveCallback, retrieveHistoryCallback} from './backend';
+import {Proto} from '../../../modules/Proto';
 
 const {save, load, remove} = QueueDb(
   persistCallback,
@@ -24,7 +25,11 @@ export default class RoomMessages {
    * @returns {Promise.<void>}
    */
   static async loadFromQueue(roomMessageId) {
-    return load(roomMessageId); // todo create LoadFractionFromDb
+    const message = await load(roomMessageId); // todo create LoadFractionFromDb
+    if (message.status === Proto.RoomMessageStatus.SENDING) {
+      message.status = Proto.RoomMessageStatus.FAILED;
+    }
+    return message;
   }
 
   static removeFromQueue(messageId) {
@@ -39,6 +44,13 @@ export default class RoomMessages {
    * @return {Promise.<FlatRoomMessage[]>}
    */
   static async loadHistoryFromDb(roomId, firstMessageId, upward, limit) {
-    return retrieveHistoryCallback(roomId, firstMessageId, upward, limit);
+    const roomMessages = await retrieveHistoryCallback(roomId, firstMessageId, upward, limit);
+    roomMessages.map(function(message) {
+      if (message.status === Proto.RoomMessageStatus.SENDING) {
+        message.status = Proto.RoomMessageStatus.FAILED;
+      }
+      return message;
+    });
+    return roomMessages;
   }
 }
