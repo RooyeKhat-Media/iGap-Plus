@@ -17,27 +17,8 @@ export default class Gif extends MessageElement {
   constructor(props) {
     super(props);
     this.state = {
-      imageWidth: 0,
-      imageHeight: 0,
       playGif: false,
     };
-  }
-
-  async componentWillMount() {
-    const {attachment, pickedFile} = this.props;
-    if (attachment) {
-      this.setState({
-        imageWidth: attachment.getWidth(),
-        imageHeight: attachment.getHeight(),
-      });
-    } else if (pickedFile) {
-      Image.getSize(prependFileProtocol(pickedFile.fileUri), (width, height) => {
-        this.setState({
-          imageWidth: width,
-          imageHeight: height,
-        });
-      });
-    }
   }
 
   onPress = () => {
@@ -54,10 +35,14 @@ export default class Gif extends MessageElement {
   };
 
   render() {
-    const {message, showText, downloadedFile, smallThumbnailUri} = this.props;
-    const {imageWidth, imageHeight, playGif} = this.state;
+    const {message, showText, downloadedFile, smallThumbnailUri, pickedFile, attachment} = this.props;
+    const {playGif} = this.state;
+
+    const imageWidth = pickedFile ? pickedFile.width : attachment.getWidth();
+    const imageHeight = pickedFile ? pickedFile.height : attachment.getHeight();
     const hasImageDimension = imageWidth && imageHeight;
-    const uri = this.isCompleted && playGif ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
+
+    const uri = (this.isCompleted && playGif) ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
 
     const {width, height} = dimensionCalculate(imageWidth, imageHeight, boxWidth, boxHeight);
 

@@ -5,7 +5,6 @@ import {
 } from '../../../actions/entities/roomMessages';
 import RoomMessages from '../../../models/entities/RoomMessages';
 import {MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE} from '../../../actions/messenger/roomMessages';
-import Long from 'long';
 
 const middleware = ({dispatch, getState}) => next => action => {
   let message;
@@ -23,13 +22,7 @@ const middleware = ({dispatch, getState}) => next => action => {
       RoomMessages.removeFromQueue(action.messageId);
       break;
     case MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE:
-      message = getState().entities.roomMessages[action.oldMessageId];
-      if (message) {
-        message.id = action.newMessageId;
-        message.longId = Long.fromString(action.newMessageId);
-        RoomMessages.saveToQueue(message);
-        RoomMessages.removeFromQueue(action.oldMessageId);
-      }
+      RoomMessages.removeFromQueue(action.oldMessageId);
       break;
     case ENTITIES_ROOM_MESSAGE_EDIT:
       message = getState().entities.roomMessages[action.messageId];

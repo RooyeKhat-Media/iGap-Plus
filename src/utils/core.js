@@ -2,6 +2,7 @@
  * @flow
  */
 import Long from 'long';
+import {Image} from 'react-native';
 import {floor, startsWith, values} from 'lodash';
 
 /**
@@ -106,6 +107,21 @@ export function prependFileProtocol(uri) {
     uri = 'file://' + uri;
   }
   return uri;
+}
+
+/**
+ * return {width, height} image size
+ * @param {string} uri
+ * @return {Promise}
+ */
+export async function getImageSize(uri) {
+  return new Promise((resolve, reject) => {
+    Image.getSize(uri, (width, height) => {
+      resolve({width, height});
+    }, () => {
+      reject();
+    });
+  });
 }
 
 /**

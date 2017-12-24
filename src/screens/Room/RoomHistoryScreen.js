@@ -33,6 +33,7 @@ import {getEntitiesRoomMessage} from '../../selector/entities/roomMessage';
 import {CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import i18n from '../../i18n';
+import {getImageSize, prependFileProtocol} from '../../utils/core';
 
 class RoomHistoryScreen extends Component {
 
@@ -135,6 +136,11 @@ class RoomHistoryScreen extends Component {
         throw new Error('Invalid File Picker Format');
     }
     const files = await RNFileSystem.filesPicker(fileType);
+    files.map(async function(file) {
+      const size = await getImageSize(prependFileProtocol(file.fileUri));
+      file.width = size.width;
+      file.height = size.height;
+    });
     if (files.length === 1) {
       this.setState({
         pickedFile: files[0],

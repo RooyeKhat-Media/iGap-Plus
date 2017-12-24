@@ -28,7 +28,7 @@ class MessageElement extends React.Component {
     if (!downloadedFile) {
       return false;
     }
-    return (downloadedFile.status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED);
+    return (downloadedFile.status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) || downloadedFile.uri;
   }
 
   get isPaused() {
