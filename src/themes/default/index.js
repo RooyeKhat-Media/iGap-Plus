@@ -101,7 +101,8 @@ export default {
 
   listItem: {
     primaryText: {
-      fontFamily: 'IRANSans_Medium',
+      fontFamily: 'IRANSans',
+      fontWeight:'500',
       textAlign: 'left',
       fontSize: 15,
       lineHeight: 20,
