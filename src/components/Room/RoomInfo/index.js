@@ -27,11 +27,11 @@ class RoomInfoComponent extends React.Component {
 
         <ScrollView style={styles.scroll}>
 
-          <TouchableOpacity style={styles.avatarWrap}
-            onPress={() => goAvatarList(room.id, access.isChat ? room.chatPeer.id : null)}>
+          <TouchableOpacity style={styles.avatarWrap}>
             <Avatar
               roomId={room.id}
               circle={false}
+              onPress={() => goAvatarList(room.id, access.isChat ? room.chatPeer.id : null)}
               size={360}/>
             <View style={styles.containerJoinLeav}>
               {/*Can Send Message to chatPeer Room ?*/}
