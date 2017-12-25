@@ -4,6 +4,7 @@ import {CLIENT_STATUS} from '../../Api/index';
 import {clientStatusChanged} from '../../../actions/api';
 import Client from '../../Api/Client';
 import {serverRoomsState} from '../../Messenger/Rooms';
+import {importContact} from '../../../utils/app';
 
 /**
  * @property {ProtoUserLogin} _request
@@ -18,5 +19,6 @@ export default class Login extends Base {
     store.dispatch(clientStatusChanged(CLIENT_STATUS.LOGGED_IN));
 
     await serverRoomsState();
+    await importContact();
   }
 }

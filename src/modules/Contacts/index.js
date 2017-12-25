@@ -1,20 +1,11 @@
 import RNContacts from 'react-native-contacts';
+import Permission, {PERMISSION_CONTACTS} from '../Permission/index';
 
 export default class Contacts {
 
-  static requestPermissionIfNeeded() {
-    return new Promise((resolve, reject) => {
-      RNContacts.requestPermission((error, permission) => {
-        if (error) {
-          reject(error);
-        } else if (permission === 'authorized') {
-          resolve();
-        } else {
-          reject('Contact read permission is ' + permission);
-          // TODO [Amerehie] - 11/22/2017 11:23 AM - iOS : Prompt the user with instructions for how to enable contacts
-        }
-      });
-    });
+  static async requestPermissionIfNeeded() {
+    //todo nejati get this string message from en  int1
+    return Permission.grant(PERMISSION_CONTACTS, 'Contact Permission', 'iGap need Contact Permission');
   }
 
   static getAll() {

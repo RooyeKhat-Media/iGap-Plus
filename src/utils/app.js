@@ -1,12 +1,27 @@
 import MetaData from '../models/MetaData';
-import {UserLogin, UserSessionLogout, UserUpdateStatus} from '../modules/Proto/index';
+import {
+  UserContactsImport,
+  UserLogin,
+  UserSessionLogout,
+  UserUpdateStatus,
+} from '../modules/Proto/index';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
-import {USER_LOGIN, USER_SESSION_LOGOUT, USER_UPDATE_STATUS} from '../constants/methods/index';
+import {
+  USER_CONTACTS_IMPORT,
+  USER_LOGIN,
+  USER_SESSION_LOGOUT,
+  USER_UPDATE_STATUS,
+} from '../constants/methods/index';
 import Api, {CLIENT_STATUS} from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
-import {METADATA_AUTHOR_HASH, METADATA_USER_ID, METADATA_USER_TOKEN} from '../models/MetaData/constant';
+import {
+  METADATA_AUTHOR_HASH,
+  METADATA_USER_CONTACTS,
+  METADATA_USER_ID,
+  METADATA_USER_TOKEN,
+} from '../models/MetaData/constant';
 import {
   APP_STATE_ACTIVE,
   FILE_UPLOAD_ID_ROOM_AVATAR_PREFIX,
@@ -17,6 +32,7 @@ import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
 import putStateRoom from '../modules/Entities/Rooms';
 import Long from 'long';
 import {CLIENT_STATUS_CHANGED} from '../actions/api';
+import Contacts from '../modules/Contacts/index';
 
 let _userId;
 let _userIdString;
@@ -49,7 +65,7 @@ export function getUserId(asString = false) {
 
 export function setUserId(userId) {
   _userId = userId;
-  _userIdString = _userId ? _userId.toString() : '0';
+  _userIdString = _userId ? _userId.toString() : null;
   return MetaData.save(METADATA_USER_ID, userId);
 }
 
@@ -187,6 +203,75 @@ export function getGoogleStaticMap(lat, lan, width = 300, height = 400) {
     'size=' + width + 'x' + height + '&' +
     'markers=color:red|label:G|' + lat + ',' + lan + '&' +
     'key=' + GOOGLE_API_KEY;
+}
+
+export async function importContact() {
+
+  const contactListExport = [];
+  let clientId = 0;
+
+  function addToExportList(firstName = '', lastName = '', phone) {
+    /**
+     * @type ProtoUserContactsImport_Contact
+     */
+    const contact = new UserContactsImport.Contact();
+    contact.setFirstName(firstName);
+    contact.setLastName(lastName);
+    contact.setPhone(phone);
+    contact.setClientId(++clientId);
+    contactListExport.push(contact);
+  }
+
+  const list = await Contacts.getAll();
+  const contactList = {};
+
+  list.map((item) => {
+    if (item.phoneNumbers.length > 0) {
+      contactList[item.recordID] = {
+        firstName: item.givenName,
+        lastName: item.familyName,
+        phone: item.phoneNumbers,
+        email: item.emailAddresses,
+      };
+    }
+  });
+
+  const internalList = (await MetaData.load(METADATA_USER_CONTACTS)) || {};
+
+  for (const recordID  in contactList) {
+    if (!internalList[recordID]) {
+      contactList[recordID].phone.map((ph) => {
+        addToExportList(contactList[recordID].firstName, contactList[recordID].lastName, ph.number);
+      });
+    } else {
+      if (internalList[recordID].firstName !== contactList[recordID].firstName || internalList[recordID].lastName !== contactList[recordID].lastName) {
+        contactList[recordID].phone.map((ph) => {
+          addToExportList(contactList[recordID].firstName, contactList[recordID].lastName, ph.number);
+        });
+      } else {
+        contactList[recordID].phone.map((ph) => {
+          let canAdd = true;
+          internalList[recordID].phone.map((iPh) => {
+            if (iPh.number === ph.number) {
+              canAdd = false;
+            }
+          });
+          if (canAdd) {
+            addToExportList(contactList[recordID].firstName, contactList[recordID].lastName, ph.number);
+          }
+        });
+      }
+    }
+  }
+
+  if (contactListExport.length > 0) {
+    const userContactImport = new UserContactsImport();
+    userContactImport.setContactsList(contactListExport);
+    userContactImport.setForce(false);
+    await  Api.invoke(USER_CONTACTS_IMPORT, userContactImport);
+
+    await MetaData.save(METADATA_USER_CONTACTS, contactList);
+  }
 }
 
 export function setAppState(nextState) {
