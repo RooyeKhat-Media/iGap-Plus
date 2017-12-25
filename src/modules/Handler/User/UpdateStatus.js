@@ -12,12 +12,12 @@ export default class UpdateStatus extends Base {
     if (this._response.getStatus() === Proto.UserUpdateStatus.Status.ONLINE) {
       this.dispatch(entitiesRegisteredUserEdit(userId, {
         status: Proto.RegisteredUser.Status.ONLINE,
-      }), false);
+      }, false));
     } else {
       this.dispatch(entitiesRegisteredUserEdit(userId, {
         status: Proto.RegisteredUser.Status.EXACTLY,
         lastSeen: this._response.getResponse().getTimestamp(),
-      }), false);
+      }, false));
     }
   }
 }
