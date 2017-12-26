@@ -36,6 +36,7 @@ import {CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM} from '../../constants/methods
 import Api from '../../modules/Api/index';
 import i18n from '../../i18n';
 import {getImageSize, prependFileProtocol} from '../../utils/core';
+import Clipboard from '../../modules/Clipboard/index';
 
 class RoomHistoryScreen extends Component {
 
@@ -383,10 +384,40 @@ class RoomHistoryScreen extends Component {
    */
   getActionList = (roomMessage) => {
     const actions = [];
-    const {intl, getMessageDownloadFileUri} = this.props;
     const {access} = this.state;
-    const uri = prependFileProtocol(getMessageDownloadFileUri(roomMessage.attachment ? roomMessage.attachment.getCacheId() : null));
+    const {intl, getMessageDownloadFileUri} = this.props;
 
+    let uri = null;
+    let message = null;
+    let mimType = null;
+    const forwardMessage = roomMessage.forwardFrom;
+
+    if (forwardMessage) {
+      message = forwardMessage.message;
+      if (forwardMessage.attachment) {
+        uri = getMessageDownloadFileUri(forwardMessage.attachment.getCacheId());
+        mimType = forwardMessage.attachment.getMime();
+      }
+    }
+    if (roomMessage.message) {
+      message = roomMessage.message;
+    }
+    if (roomMessage.attachment) {
+      uri = getMessageDownloadFileUri(roomMessage.attachment.getCacheId());
+      mimType = roomMessage.attachment.getMime();
+    }
+
+    uri = prependFileProtocol(uri);
+
+    if (message && Clipboard.isSetSupported) {
+      actions.push({
+        icon: 'content-copy',
+        title: intl.formatMessage(i18n.roomHistoryActionContentCopy),
+        onPress: () => {
+          Clipboard.setString(message);
+        },
+      });
+    }
     if (roomMessage.authorHash === getAuthorHash()) {
       actions.push({
         icon: 'edit',
@@ -415,7 +446,7 @@ class RoomHistoryScreen extends Component {
         },
       });
     }
-    if (uri && SaveTo.downloadsSupport() && roomMessage.attachment) {
+    if (uri && SaveTo.downloadsSupport()) {
       actions.push({
         icon: 'cloud-download',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToDownload),
@@ -424,30 +455,30 @@ class RoomHistoryScreen extends Component {
         },
       });
     }
-    if (uri && SaveTo.gallerySupport(roomMessage.attachment.getMime())) {
+    if (uri && SaveTo.gallerySupport(mimType)) {
       actions.push({
         icon: 'collections',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToGallery),
         onPress: () => {
-          SaveTo.gallery(uri, roomMessage.attachment.getMime());
+          SaveTo.gallery(uri, mimType);
         },
       });
     }
-    if (uri && SaveTo.musicSupport(roomMessage.attachment.getMime())) {
+    if (uri && SaveTo.musicSupport(mimType)) {
       actions.push({
         icon: 'audiotrack',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToMusic),
         onPress: () => {
-          SaveTo.music(uri, roomMessage.attachment.getMime());
+          SaveTo.music(uri, mimType);
         },
       });
     }
-    if (Share.isSupported) {
+    if (Share.isSupported && !(mimType && !uri)) {
       actions.push({
         icon: 'share',
         title: intl.formatMessage(i18n.roomHistoryActionShare),
         onPress: () => {
-          Share.open(uri, uri ? roomMessage.attachment.getMime() : null, roomMessage.message);
+          Share.open(uri, uri ? mimType : null, message);
         },
       });
     }

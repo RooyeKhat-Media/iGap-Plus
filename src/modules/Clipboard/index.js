@@ -12,7 +12,7 @@ export default class Clipboard {
    * @param {string} content
    */
   static setString(content) {
-    if (this.isSetSupported()) {
+    if (this.isSetSupported) {
       RNClipboard.setString(content);
     }
   }

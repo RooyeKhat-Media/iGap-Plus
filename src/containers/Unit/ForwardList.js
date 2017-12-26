@@ -103,6 +103,7 @@ class ForwardList extends React.Component {
           renderItem={this.renderItem}
           onSubmit={this.oSubmit}
           data={this.getForwardList()}
+          autoFocus={false}
           headerTitle={(<FormattedMessage {...i18n.roomHistoryForwardTo}/>)}/>
       </Modal>
     );

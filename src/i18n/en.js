@@ -1032,6 +1032,11 @@ export default {
     defaultMessage: 'Edit',
     description: 'roomHistory screen',
   },
+  roomHistoryActionContentCopy: {
+    id: 'roomHistory.actionContentCopy',
+    defaultMessage: 'Copy Content',
+    description: 'roomHistory screen',
+  },
   roomHistoryActionForward: {
     id: 'roomHistory.actionForward',
     defaultMessage: 'Forward',

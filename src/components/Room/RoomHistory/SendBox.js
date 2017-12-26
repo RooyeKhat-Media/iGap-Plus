@@ -434,15 +434,15 @@ class SendBox extends Component {
               <MCIcon name="close" style={styles.iconClose} size={30}/>
             </TouchableOpacity>}
 
-            {this.state.isActive && <TouchableOpacity onPress={this.onSubmit}>
+            {(this.state.isActive || Form.pickedFile) && <TouchableOpacity onPress={this.onSubmit}>
               <MCIcon name="send" style={styles.iconSend} size={30}/>
             </TouchableOpacity>}
 
-            {!this.state.isActive && <TouchableOpacity onPress={this.toggleAttach}>
+            {!(this.state.isActive || Form.pickedFile) && <TouchableOpacity onPress={this.toggleAttach}>
               <MCIcon name="paperclip" style={styles.iconAttachment} size={30}/>
             </TouchableOpacity>}
 
-            {!this.state.isActive &&
+            {!(this.state.isActive || Form.pickedFile) &&
             <View  {...this._panResponder.panHandlers} >
               <MCIcon name="microphone" style={styles.iconMic} size={30}/>
             </View>

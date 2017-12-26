@@ -40,7 +40,7 @@ class SelectListModal extends React.Component {
   };
 
   render() {
-    const {multi, searchable, data, headerTitle} = this.props;
+    const {multi, searchable, data, headerTitle, autoFocus} = this.props;
     const {searchText, selected} = this.state;
     const options = data.filter(function(option) {
       return searchText === '' || option.filter.search(searchText.toLowerCase()) >= 0;
@@ -57,7 +57,7 @@ class SelectListModal extends React.Component {
             <View style={styles.searchIcon}>
               <Icon name="search" size={26} color="#aaaaaa"/>
             </View>
-            <TextInput style={styles.searchInput} autoFocus={true} underlineColorAndroid="transparent"
+            <TextInput style={styles.searchInput} autoFocus={autoFocus} underlineColorAndroid="transparent"
               onChangeText={(text) => {
                 this.setState({searchText: text});
               }}/>
@@ -89,6 +89,9 @@ class SelectListModal extends React.Component {
   };
 }
 
+SelectListModal.defaultProps = {
+  autoFocus: true,
+};
 SelectListModal.propTypes = {
   multi: PropTypes.bool,
   searchable: PropTypes.bool,
@@ -104,6 +107,7 @@ SelectListModal.propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]),
+  autoFocus: PropTypes.bool,
 };
 
 export default SelectListModal;
