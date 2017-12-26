@@ -11,6 +11,7 @@ import {blockUser} from './user/contacts/block';
 import {userSession} from './user/session';
 import {selfRemove} from './user/profile/selfRemove';
 import {getAvatarList} from './rooms/getAvatarList';
+import {getActionList} from './rooms/getActionList';
 
 
 const methodsReducer = combineReducers({
@@ -26,5 +27,6 @@ const methodsReducer = combineReducers({
   userSession,
   selfRemove,
   getAvatarList,
+  getActionList,
 });
 export default methodsReducer;

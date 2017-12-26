@@ -1,11 +1,8 @@
-import Base from '../Base';
+import BaseSetAction from '../Chat/SetAction';
 
 /**
  * @property {ProtoGroupSetAction} _request
  * @property {ProtoGroupSetActionResponse} _response
  */
-export default class SetAction extends Base {
-  handle() {
-    console.error('SetAction', 'Not implemented yet', this);
-  }
+export default class SetAction extends BaseSetAction {
 }

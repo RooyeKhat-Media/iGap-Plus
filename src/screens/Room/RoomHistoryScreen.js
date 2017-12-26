@@ -14,6 +14,7 @@ import {
   editRoomMessage,
   forwardToList,
   resendMessage,
+  sendActionRequest,
   sendMessage,
   sendMultiAttachMessages,
 } from '../../utils/messenger';
@@ -72,6 +73,8 @@ class RoomHistoryScreen extends Component {
     const isModerator = ((isGroup && room.groupRole === Proto.GroupRoom.Role.MODERATOR) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.MODERATOR));
 
     this.loading = false;
+    this.typingId = null;
+    this.typingTimeout = null;
     this.state = {
       text: '',
       pickedFile: null,
@@ -95,6 +98,24 @@ class RoomHistoryScreen extends Component {
     const {room} = this.props;
     goRoomInfo(room.id);
   };
+
+  onChangeText = (text) => {
+    const {room} = this.props;
+    if (!text) {
+      return;
+    }
+    if (!this.typingId) {
+      this.typingId = sendActionRequest(room.id, Proto.ClientAction.TYPING);
+    }
+    clearTimeout(this.typingTimeout);
+    this.typingTimeout = setTimeout(() => {
+      if (this.typingId) {
+        sendActionRequest(room.id, Proto.ClientAction.CANCEL, this.typingId);
+        this.typingId = null;
+      }
+    }, 3000);
+  };
+
   /**
    * @param text
    * @returns {Promise.<void>}
@@ -102,20 +123,27 @@ class RoomHistoryScreen extends Component {
   submitForm = (text) => {
     const {room, getEntitiesRoomMessage} = this.props;
     const {editMessageId, pickedFile, attachmentType, replyTo, forwardedMessage} = this.state;
-    if (!editMessageId) {
-      sendMessage(room.id, text, pickedFile, attachmentType, replyTo ? replyTo.longId : null, forwardedMessage);
-    } else {
-      const roomMessage = getEntitiesRoomMessage(editMessageId);
-      editRoomMessage(room.id, roomMessage.longId, text);
+    try {
+      if (!editMessageId) {
+        sendMessage(room.id, text, pickedFile, attachmentType, replyTo ? replyTo.longId : null, forwardedMessage);
+      } else {
+        const roomMessage = getEntitiesRoomMessage(editMessageId);
+        editRoomMessage(room.id, roomMessage.longId, text);
+      }
+    } finally {
+      this.setState({
+        editMessageId: null,
+        text: '',
+        pickedFile: null,
+        attachmentType: null,
+        replyTo: null,
+        forwardedMessage: null,
+      });
+      if (this.typingId) {
+        sendActionRequest(room.id, Proto.ClientAction.CANCEL, this.typingId);
+        this.typingId = null;
+      }
     }
-    this.setState({
-      editMessageId: null,
-      text: '',
-      pickedFile: null,
-      attachmentType: null,
-      replyTo: null,
-      forwardedMessage: null,
-    });
   };
   selectAttachment = async (type) => {
     let fileType;
@@ -137,7 +165,7 @@ class RoomHistoryScreen extends Component {
         throw new Error('Invalid File Picker Format');
     }
     const files = await RNFileSystem.filesPicker(fileType);
-    files.map(async function(file) {
+    files.map(async function (file) {
       const size = await getImageSize(prependFileProtocol(file.fileUri));
       file.width = size.width;
       file.height = size.height;
@@ -437,6 +465,7 @@ class RoomHistoryScreen extends Component {
       forwardedMessage,
       selectAttachment: this.selectAttachment,
       cancelAttach: this.cancelAttach,
+      onChangeText: this.onChangeText,
       submitForm: this.submitForm,
       cancelEdit: this.cancelEdit,
       cancelReply: this.cancelReply,

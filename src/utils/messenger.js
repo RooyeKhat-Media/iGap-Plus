@@ -6,9 +6,11 @@ import {
   CHAT_EDIT_MESSAGE,
   CHAT_GET_ROOM,
   CHAT_SEND_MESSAGE,
+  CHAT_SET_ACTION,
   GROUP_DELETE_MESSAGE,
   GROUP_EDIT_MESSAGE,
   GROUP_SEND_MESSAGE,
+  GROUP_SET_ACTION,
 } from '../constants/methods/index';
 import {
   ChannelDeleteMessage,
@@ -18,9 +20,11 @@ import {
   ChatEditMessage,
   ChatGetRoom,
   ChatSendMessage,
+  ChatSetAction,
   GroupDeleteMessage,
   GroupEditMessage,
   GroupSendMessage,
+  GroupSetAction,
   Proto,
 } from '../modules/Proto/index';
 import putUserState from '../modules/Entities/RegisteredUsers';
@@ -38,6 +42,7 @@ import {tNow} from './core';
 import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
+import {random} from 'lodash';
 import Long from 'long';
 import roomMessageSchema from '../schemas/roomMessage';
 import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
@@ -106,6 +111,8 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
   const room = store.getState().entities.rooms[roomId];
   const fakeId = getFakeMessageId();
   const fakeIdToString = fakeId.toString();
+  let sendingAction = null;
+  let sendingActionId = null;
 
   switch (room.type) {
     case Proto.Room.Type.CHAT:
@@ -141,34 +148,44 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
   }
 
   try {
-    if (pickedFile) {
 
-      const token =
-        await store.dispatch(
-          fileManagerUpload(
-            getRoomHistoryUploadIdPrefix(room.id, fakeIdToString),
-            pickedFile.fileUri,
-            pickedFile.fileName,
-            pickedFile.fileSize));
-      proto.setAttachment(token);
-
-      switch (attachmentType) {
-        case ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE:
-          proto.setMessageType(text ? Proto.RoomMessageType.IMAGE_TEXT : Proto.RoomMessageType.IMAGE);
-          break;
-        case ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO:
-          proto.setMessageType(text ? Proto.RoomMessageType.VIDEO_TEXT : Proto.RoomMessageType.VIDEO);
-          break;
-        case ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO:
-          proto.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
-          break;
-        case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
-          proto.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);
-          break;
+    let sendMessageResponse;
+    try {
+      if (pickedFile) {
+        switch (attachmentType) {
+          case ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE:
+            proto.setMessageType(text ? Proto.RoomMessageType.IMAGE_TEXT : Proto.RoomMessageType.IMAGE);
+            sendingAction = Proto.ClientAction.SENDING_IMAGE;
+            break;
+          case ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO:
+            proto.setMessageType(text ? Proto.RoomMessageType.VIDEO_TEXT : Proto.RoomMessageType.VIDEO);
+            sendingAction = Proto.ClientAction.SENDING_VIDEO;
+            break;
+          case ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO:
+            proto.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
+            sendingAction = Proto.ClientAction.SENDING_AUDIO;
+            break;
+          case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
+            proto.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);
+            sendingAction = Proto.ClientAction.SENDING_FILE;
+            break;
+        }
+        sendingActionId = sendActionRequest(room.id, sendingAction);
+        const token =
+          await store.dispatch(
+            fileManagerUpload(
+              getRoomHistoryUploadIdPrefix(room.id, fakeIdToString),
+              pickedFile.fileUri,
+              pickedFile.fileName,
+              pickedFile.fileSize));
+        proto.setAttachment(token);
+      }
+      sendMessageResponse = await Api.invoke(actionId, proto);
+    } finally {
+      if (sendingActionId) {
+        sendActionRequest(room.id, Proto.ClientAction.CANCEL, sendingActionId);
       }
     }
-
-    const sendMessageResponse = await Api.invoke(actionId, proto);
 
     const normalizedRoomMessage = normalizeRoomMessage(sendMessageResponse.getRoomMessage());
     prepareRoomMessage(normalizedRoomMessage, room.id, false);
@@ -421,6 +438,47 @@ export async function deleteMessages(roomId, messages) {
   });
   await Promise.all(promiseList);
 }
+
+/**
+ * @param {string} roomId
+ * @param {ProtoClientAction} action
+ * @param {number|null} actionId
+ * @return {number}
+ */
+export function sendActionRequest(roomId, action, actionId = null) {
+
+  let protoActionId, proto;
+  const room = store.getState().entities.rooms[roomId];
+
+  if (action === Proto.ClientAction.CANCEL && !actionId) {
+    throw new Error('ActionId is Null for Cancel');
+  }
+  if (action !== Proto.ClientAction.CANCEL) {
+    actionId = random(10000000, 99999999);
+  }
+
+  switch (room.type) {
+    case Proto.Room.Type.CHAT:
+      protoActionId = CHAT_SET_ACTION;
+      proto = new ChatSetAction();
+      break;
+
+    case Proto.Room.Type.GROUP:
+      protoActionId = GROUP_SET_ACTION;
+      proto = new GroupSetAction();
+      break;
+
+    default:
+      throw new Error('Invalid room type');
+  }
+  proto.setRoomId(room.longId);
+  proto.setAction(action);
+  proto.setActionId(actionId);
+
+  Api.invoke(protoActionId, proto);
+  return actionId;
+}
+
 
 /**
  * @param {FlatRoomMessage} message

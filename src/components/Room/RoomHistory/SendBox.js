@@ -145,11 +145,13 @@ class SendBox extends Component {
   };
 
   onChangeText = (text) => {
+    const {Form} = this.props;
     if (text.length > 0) {
       this.setState({isActive: true, text: text, showAttachment: false});
     } else {
       this.setState({isActive: false, text: ''});
     }
+    Form.onChangeText(text);
   };
 
   onContentSizeChange = (event) => {
@@ -472,10 +474,6 @@ export default injectIntl(SendBox);
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   animatedWrap: {
     backgroundColor: '#fff',

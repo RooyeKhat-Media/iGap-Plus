@@ -12,6 +12,7 @@ import ActionSheet from '../../BaseUI/ActionSheet/index';
 import i18n from '../../../i18n/en';
 import ForwardList from '../../../containers/Unit/ForwardList';
 import {Proto} from '../../../modules/Proto/index';
+import RoomActions from '../../../containers/Unit/RoomActions';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -63,7 +64,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedCount, actionSheetActions, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
+    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedCount, actionSheetActions, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -80,15 +81,19 @@ class RoomHistoryComponent extends React.PureComponent {
                 initialRenderIndex={messageList.length - 1}
                 forceNonDeterministicRendering={true}/>) : null}
           </View>
+
+          <View style={styles.bottomWrap}>
+            <RoomActions roomId={roomId} roomType={roomType} />
+            {!readOnly ? (<SendBox Form={Form}/>) : (
+              <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}
+                isParticipant={isParticipant}/>)}
+          </View>
+
           <ActionSheet
             title={intl.formatMessage(i18n.roomHistoryActionTitle)}
             actions={actionSheetActions}
             control={actionSheetControl}/>
           <Confirm control={conformControl}/>
-          {!readOnly ? (<SendBox Form={Form}/>) : (
-            <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}
-              isParticipant={isParticipant}/>)}
-
           <ForwardList control={forwardModalControl}/>
 
         </View>

@@ -1,4 +1,4 @@
-import {orderBy, values} from 'lodash';
+import {forEach, orderBy, values} from 'lodash';
 import {createSelector} from 'reselect';
 
 export const getMemberList = createSelector(
@@ -35,3 +35,25 @@ export const getAvatarList = createSelector(
     }
     return null;
   });
+
+export const getActionList = createSelector(
+  (state, props) => state.methods.getActionList[props.roomId],
+  (state) => state.entities.registeredUsers,
+  (actionList, users) => {
+    let newActionList = {};
+    forEach(actionList, function(value, key) {
+      if (!newActionList[value]) {
+        newActionList[value] = {
+          action: value,
+          users: [],
+        };
+      }
+      if (users[key] && users[key].displayName) {
+        newActionList[value].users.push(users[key].displayName);
+      }
+    });
+    return orderBy(newActionList, function(item) {
+      return item.users.length;
+    }, ['desc']).slice(0, 2);
+  }
+);
