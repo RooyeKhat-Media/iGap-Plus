@@ -385,7 +385,7 @@ class RoomHistoryScreen extends Component {
     const actions = [];
     const {intl, getMessageDownloadFileUri} = this.props;
     const {access} = this.state;
-    const uri = getMessageDownloadFileUri(roomMessage.attachment ? roomMessage.attachment.getCacheId() : null);
+    const uri = prependFileProtocol(getMessageDownloadFileUri(roomMessage.attachment ? roomMessage.attachment.getCacheId() : null));
 
     if (roomMessage.authorHash === getAuthorHash()) {
       actions.push({

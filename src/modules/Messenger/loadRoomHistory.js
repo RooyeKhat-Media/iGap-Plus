@@ -14,6 +14,7 @@ import {
 import {prepareRoomMessage} from '../../utils/app';
 import RoomMessages from '../../models/entities/RoomMessages/index';
 import {ERROR_CLIENT_GET_ROOM_HISTORY_NOT_FOUND} from '../Api/errors/index';
+import ServerError from '../Error/ServerError';
 
 const endOfScroll = {};
 /**
@@ -121,9 +122,11 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
     /**
      * @type {ServerError} e
      */
-    if (e.errorResponse.getMajorCode() === ERROR_CLIENT_GET_ROOM_HISTORY_NOT_FOUND) {
+    if (e instanceof ServerError && e.errorResponse.getMajorCode() === ERROR_CLIENT_GET_ROOM_HISTORY_NOT_FOUND) {
       endOfScroll[roomId] = true;
+      return;
     }
+    throw e;
   }
 }
 
