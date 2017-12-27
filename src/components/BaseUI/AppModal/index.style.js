@@ -8,14 +8,14 @@ export default {
     zIndex: 100,
   },
   modal: {
+    zIndex: 500,
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
-    zIndex: 500,
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
   },
   backModal: {
     position: 'absolute',

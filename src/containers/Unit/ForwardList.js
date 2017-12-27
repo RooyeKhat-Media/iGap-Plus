@@ -10,6 +10,7 @@ import {FormattedMessage} from 'react-intl';
 import {makeGetForwardList} from '../../selector/app/app';
 import {UserContactsGetList} from '../../modules/Proto/index';
 import {USER_CONTACTS_GET_LIST} from '../../constants/methods/index';
+import {APP_MODAL_ID_SECONDARY} from '../../constants/app';
 
 class ForwardListItem extends React.Component {
 
@@ -39,30 +40,24 @@ class ForwardListItem extends React.Component {
 
 class ForwardList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    const {control} = props;
-    control({
-      open: this.open,
-    });
-  }
-
   componentDidMount() {
     const userContactGetList = new UserContactsGetList();
     Api.invoke(USER_CONTACTS_GET_LIST, userContactGetList);
   }
 
-  controlModal = (control) => {
-    this.modal = control;
+  controlModal = (ref) => {
+    if (ref) {
+      this.modal = ref.getWrappedInstance();
+    }
   };
 
   open = (submit) => {
-    this.modal.openSecondary();
+    this.modal.open();
     this.submit = submit;
   };
 
   close = () => {
-    this.modal.closeSecondary();
+    this.modal.close();
   };
 
   oSubmit = (selectedList) => {
@@ -96,7 +91,7 @@ class ForwardList extends React.Component {
 
   render() {
     return (
-      <Modal control={this.controlModal}>
+      <Modal ref={this.controlModal} type={APP_MODAL_ID_SECONDARY}>
         <SelectListModal
           multi={true}
           searchable={true}
@@ -126,5 +121,8 @@ const makeMapStateToProps = () => {
 };
 
 export default connect(
-  makeMapStateToProps
+  makeMapStateToProps,
+  null,
+  null,
+  {withRef: true}
 )(ForwardList);

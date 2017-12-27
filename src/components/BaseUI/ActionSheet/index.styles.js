@@ -3,15 +3,15 @@ import {IRANSans_Medium} from '../../../constants/fonts/index';
 export default {
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    paddingTop: 0,
+    alignSelf: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   wrap: {
     backgroundColor: '#fff',
     borderRadius: 15,
-    minWidth: 360,
+    maxWidth: 360,
+    flex: 1,
   },
   headerWrap: {
     padding: 15,

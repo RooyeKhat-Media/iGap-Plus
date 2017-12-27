@@ -6,6 +6,7 @@ import {ActionSheet, Confirm, Toolbar} from '../../BaseUI/index';
 import RoomListItem from '../../../containers/Unit/RoomListItem';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import i18n from '../../../i18n';
+import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
 
 class RoomListComponent extends React.PureComponent {
 
@@ -45,7 +46,7 @@ class RoomListComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, actionSheetControl, actions, confirmControl} = this.props;
+    const {intl, actionSheetControl, confirmControl} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={{flex: 1}}>
@@ -60,9 +61,9 @@ class RoomListComponent extends React.PureComponent {
             rowRenderer={this._rowRenderer}/>
         </View>
         <ActionSheet
+          type={APP_MODAL_ID_PRIMARY}
           title={intl.formatMessage(i18n.roomListActionTitle)}
-          actions={actions}
-          control={actionSheetControl}/>
+          ref={actionSheetControl}/>
         <Confirm control={confirmControl}/>
       </View>
     );

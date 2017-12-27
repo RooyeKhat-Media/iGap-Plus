@@ -43,7 +43,6 @@ class RoomListScreen extends Component {
         canClearHistory: false,
         canDeleteRoom: false,
       },
-      actions: [],
     };
   }
 
@@ -70,9 +69,8 @@ class RoomListScreen extends Component {
     this.setState({
       room,
       access,
-      actions: this.getActionList(room, access),
     }, () => {
-      this.actionSheet.open();
+      this.actionSheet.open(this.getActionList(room, access));
     });
   };
 
@@ -211,11 +209,9 @@ class RoomListScreen extends Component {
 
   render() {
     const {roomList} = this.props;
-    const {actions} = this.state;
     return (
       <RoomListComponent
         roomList={roomList}
-        actions={actions}
         onLongPress={this.onLongPress}
         confirmControl={this.confirmControl}
         actionSheetControl={this.actionSheetControl}

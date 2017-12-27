@@ -10,6 +10,7 @@ import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/P
 import Linking from '../../modules/Linking/index';
 import {textTitleStyle} from '../../themes/default/index';
 import {APP_VERSION} from '../../constants/configs';
+import {APP_MODAL_ID_PRIMARY} from '../../constants/app';
 
 class SettingComponent extends Component {
 
@@ -101,7 +102,7 @@ class SettingComponent extends Component {
         </ScrollView>
 
 
-        <DialogModal control={(dialog) => {
+        <DialogModal type={APP_MODAL_ID_PRIMARY} control={(dialog) => {
           this.dialogLogOut = dialog;
         }}
         title={<FormattedMessage {...i18n.settingLogout}/>}
@@ -120,7 +121,7 @@ class SettingComponent extends Component {
           },
         ]}/>
 
-        <DialogModal control={(dialog) => {
+        <DialogModal type={APP_MODAL_ID_PRIMARY} control={(dialog) => {
           this.dialogDeleteAcount = dialog;
         }}
         title={<FormattedMessage {...i18n.settingDeleteAccount}/>}

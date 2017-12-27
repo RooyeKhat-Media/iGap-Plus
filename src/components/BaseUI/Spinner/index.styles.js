@@ -5,6 +5,7 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 0,
+    alignSelf: 'center',
   },
   loadingContainer: {
     flexDirection: 'row',

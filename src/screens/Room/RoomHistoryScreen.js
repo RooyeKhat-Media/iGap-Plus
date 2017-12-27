@@ -90,7 +90,6 @@ class RoomHistoryScreen extends Component {
         editMessage: false,
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
-      actionSheetActions: [],
     };
   }
 
@@ -166,7 +165,7 @@ class RoomHistoryScreen extends Component {
         throw new Error('Invalid File Picker Format');
     }
     const files = await RNFileSystem.filesPicker(fileType);
-    files.map(async function (file) {
+    files.map(async function(file) {
       const size = await getImageSize(prependFileProtocol(file.fileUri));
       file.width = size.width;
       file.height = size.height;
@@ -195,14 +194,7 @@ class RoomHistoryScreen extends Component {
       if (selectedCount) {
         this.selectMessage(message.id);
       } else {
-        this.setState({
-          actionSheetActions: this.getActionList(message),
-        }, () => {
-          const {actionSheetActions} = this.state;
-          if (actionSheetActions.length) {
-            this.actionSheet.open();
-          }
-        });
+        this.actionSheet.open(this.getActionList(message));
       }
     }
   };
@@ -310,7 +302,9 @@ class RoomHistoryScreen extends Component {
   };
 
   forwardModalControl = (ref) => {
-    this.forwardModal = ref;
+    if (ref) {
+      this.forwardModal = ref.getWrappedInstance();
+    }
   };
 
   actionForward = (message) => {
@@ -487,7 +481,7 @@ class RoomHistoryScreen extends Component {
 
   render() {
     const {room, messageList, getRoomMessageType} = this.props;
-    const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList, actionSheetActions} = this.state;
+    const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList} = this.state;
     const Form = {
       text,
       replyTo,
@@ -530,7 +524,6 @@ class RoomHistoryScreen extends Component {
         flatListRef={this.flatListRef}
         toolbarActions={toolbarActions}
         actionSheetControl={this.actionSheetControl}
-        actionSheetActions={actionSheetActions}
         onScroll={this.onScroll}
         forwardModalControl={this.forwardModalControl}
         goBack={this.props.navigation.goBack}

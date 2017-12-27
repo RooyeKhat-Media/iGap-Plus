@@ -21,8 +21,10 @@ class PopupMenu extends Component {
     return (
       <View>
         {element}
-        <Modal control={(modal) => {
-          this.modal = modal;
+        <Modal control={(ref) => {
+          if (ref) {
+            this.modal = ref.getWrappedInstance();
+          }
         }}>
           <View style={styles.dialogWrap}>
             <View style={styles.dialog}>

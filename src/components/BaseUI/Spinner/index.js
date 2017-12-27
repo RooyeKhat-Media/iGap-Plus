@@ -5,7 +5,7 @@ import {Text, View} from 'react-native';
 import {ActivityIndicator, Dialog, Modal} from '../index';
 import i18n from '../../../i18n';
 import {FormattedMessage} from 'react-intl';
-import {APP_MODAL_ID_MAIN, APP_MODAL_ID_PRIMARY, APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import {APP_MODAL_ID_MAIN} from '../../../constants/app';
 
 class Spinner extends Component {
   constructor(props) {
@@ -15,57 +15,45 @@ class Spinner extends Component {
       on: this.on,
       off: this.off,
     });
+    this.state = {
+      type: APP_MODAL_ID_MAIN,
+    };
   }
 
   on = (modalId = APP_MODAL_ID_MAIN) => {
-    switch (modalId) {
-      case APP_MODAL_ID_MAIN:
-        this.modal.open();
-        break;
-      case APP_MODAL_ID_PRIMARY:
-        this.modal.openPrimary();
-        break;
-      case APP_MODAL_ID_SECONDARY:
-        this.modal.openSecondary();
-        break;
-    }
+    this.setState({
+      type: modalId,
+    }, this.modal.open);
   };
   off = (modalId = APP_MODAL_ID_MAIN) => {
-    switch (modalId) {
-      case APP_MODAL_ID_MAIN:
-        this.modal.close();
-        break;
-      case APP_MODAL_ID_PRIMARY:
-        this.modal.closePrimary();
-        break;
-      case APP_MODAL_ID_SECONDARY:
-        this.modal.closeSecondary();
-        break;
-    }
+    this.setState({
+      type: modalId,
+    }, this.modal.close);
   };
 
-  controlFunc = (modal) => {
-    this.modal = modal;
+  controlFunc = (ref) => {
+    if (ref) {
+      this.modal = ref.getWrappedInstance();
+    }
   };
 
   render() {
+    const {type} = this.state;
     let {title} = this.props;
     if (!title) {
       title = <FormattedMessage {...i18n.spinnerDefaultTitle} />;
     }
     return (
-      <Modal control={this.controlFunc}>
-        <View style={styles.dialogWrap}>
-          <View style={styles.container}>
-            <Dialog style={styles.dialog}>
-              <View style={styles.loadingContainer}>
-                <View style={styles.loadingIndicator}>
-                  <ActivityIndicator size="large"/>
-                </View>
-                <View style={styles.loadingTxt}><Text>{title}</Text></View>
+      <Modal ref={this.controlFunc} type={type} style={styles.dialogWrap}>
+        <View style={styles.container}>
+          <Dialog style={styles.dialog}>
+            <View style={styles.loadingContainer}>
+              <View style={styles.loadingIndicator}>
+                <ActivityIndicator size="large"/>
               </View>
-            </Dialog>
-          </View>
+              <View style={styles.loadingTxt}><Text>{title}</Text></View>
+            </View>
+          </Dialog>
         </View>
       </Modal>
     );

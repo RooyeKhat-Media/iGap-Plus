@@ -3,6 +3,7 @@ import {black1} from '../../../themes/default/index';
 
 export default {
   dialogWrap: {
+    alignSelf: 'center',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

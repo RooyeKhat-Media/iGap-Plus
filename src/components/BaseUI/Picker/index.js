@@ -46,8 +46,10 @@ class Picker extends React.Component {
             </View>
           </View>
         </TouchableOpacity>
-        <Modal control={(modal) => {
-          this.modal = modal;
+        <Modal ref={(ref) => {
+          if (ref) {
+            this.modal = ref.getWrappedInstance();
+          }
         }}>
           <SelectListModal
             searchable={searchable}

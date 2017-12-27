@@ -13,6 +13,7 @@ import i18n from '../../../i18n/en';
 import ForwardList from '../../../containers/Unit/ForwardList';
 import {Proto} from '../../../modules/Proto/index';
 import RoomActions from '../../../containers/Unit/RoomActions';
+import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomHistoryComponent extends React.PureComponent {
@@ -65,7 +66,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedCount, actionSheetActions, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
+    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedCount, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -84,18 +85,18 @@ class RoomHistoryComponent extends React.PureComponent {
           </View>
 
           <View style={styles.bottomWrap}>
-            <RoomActions roomId={roomId} roomType={roomType} />
+            <RoomActions roomId={roomId} roomType={roomType}/>
             {!readOnly ? (<SendBox Form={Form}/>) : (
               <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}
                 isParticipant={isParticipant}/>)}
           </View>
 
           <ActionSheet
+            type={APP_MODAL_ID_SECONDARY}
             title={intl.formatMessage(i18n.roomHistoryActionTitle)}
-            actions={actionSheetActions}
-            control={actionSheetControl}/>
+            ref={actionSheetControl}/>
           <Confirm control={conformControl}/>
-          <ForwardList control={forwardModalControl}/>
+          <ForwardList ref={forwardModalControl}/>
 
         </View>
       </View>
@@ -159,7 +160,6 @@ RoomHistoryComponent.propTypes = {
   selectedMessageAction: PropTypes.func.isRequired,
   conformControl: PropTypes.func.isRequired,
   flatListRef: PropTypes.func.isRequired,
-  actionSheetActions: PropTypes.array.isRequired,
   actionSheetControl: PropTypes.func.isRequired,
   toolbarActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   onScroll: PropTypes.func.isRequired,
