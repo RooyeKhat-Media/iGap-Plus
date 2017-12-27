@@ -7,6 +7,7 @@ import {BasePicker, Form, TextInputField, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {Proto} from '../../../modules/Proto/index';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomReportComponent extends Component {
 
@@ -41,7 +42,8 @@ class RoomReportComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={intl.formatMessage(i18n.roomReportTitle)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomReportTitle)}</Text>}
+        />
         <ScrollView style={styles.scroll}>
           <Form style={styles.form} control={(form) => {
             this.form = form;

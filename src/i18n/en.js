@@ -1207,7 +1207,21 @@ export default {
     defaultMessage: 'Do you want to Delete your account ?',
     description: 'setting screen',
   },
-
+  settingNotificationAndSound: {
+    id: 'setting.notificationAndSound',
+    defaultMessage: 'Notification and Sound',
+    description: 'setting screen',
+  },
+  settingLanguage: {
+    id: 'setting.language',
+    defaultMessage: 'Language',
+    description: 'setting screen',
+  },
+  settingIgapVersion: {
+    id: 'setting.igapVersion',
+    defaultMessage: 'iGap plus client {platform} version {appVersion} ',
+    description: 'setting screen',
+  },
   privacyPrivacy: {
     id: 'privacy.privacy',
     defaultMessage: 'Privacy',
@@ -1330,12 +1344,12 @@ export default {
   },
   activeSessionCloseAllSession: {
     id: 'activeSession.closeAllSession',
-    defaultMessage: 'Close all session',
+    defaultMessage: 'Are you sure want to terminate all active session',
     description: 'Active Session page',
   },
   activeSessionCloseThisSession: {
     id: 'activeSession.closeThisSession',
-    defaultMessage: 'Close this session',
+    defaultMessage: 'Are you sure want to terminate this active session',
     description: 'Active Session page',
   },
   activeSessionOnline: {
@@ -1343,9 +1357,19 @@ export default {
     defaultMessage: 'Online',
     description: 'Active Session page',
   },
-  activeSessionAreYouSure: {
-    id: 'activeSession.areYouSure',
-    defaultMessage: 'Are you sure',
+  activeSessionCountry: {
+    id: 'activeSession.country',
+    defaultMessage: 'Country',
+    description: 'Active Session page',
+  },
+  activeSessionLastActivity: {
+    id: 'activeSession.lastActivity',
+    defaultMessage: 'Last Activity',
+    description: 'Active Session page',
+  },
+  activeSessionTerminateTitle: {
+    id: 'activeSession.terminateTitle',
+    defaultMessage: 'Terminate the Active Session',
     description: 'Active Session page',
   },
   userVerifyDeleteVerifyDeleteAccount: {

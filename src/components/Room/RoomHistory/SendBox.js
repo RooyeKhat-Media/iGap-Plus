@@ -408,7 +408,7 @@ class SendBox extends Component {
           <View style={styles.inputBox}>
 
             <TouchableOpacity onPress={() => this.emojiButtonClick()}>
-              <MCIcon name={this.state.showEmojiPiker ? 'keyboard' : 'emoticon'} style={styles.iconFeild} size={28}/>
+              <MCIcon name={this.state.showEmojiPiker ? 'keyboard' : 'emoticon'} style={styles.iconEmoji} size={30}/>
             </TouchableOpacity>
 
             <TextInput
@@ -431,20 +431,20 @@ class SendBox extends Component {
             />
 
             {Form.editMessageId && <TouchableOpacity onPress={Form.cancelEdit}>
-              <MCIcon name="close" style={styles.iconClose} size={28}/>
+              <MCIcon name="close" style={styles.iconClose} size={30}/>
             </TouchableOpacity>}
 
             {this.state.isActive && <TouchableOpacity onPress={this.onSubmit}>
-              <MCIcon name="send" style={styles.iconSend} size={28}/>
+              <MCIcon name="send" style={styles.iconSend} size={30}/>
             </TouchableOpacity>}
 
             {!this.state.isActive && <TouchableOpacity onPress={this.toggleAttach}>
-              <MCIcon name="paperclip" style={styles.iconAttachment} size={28}/>
+              <MCIcon name="paperclip" style={styles.iconAttachment} size={30}/>
             </TouchableOpacity>}
 
             {!this.state.isActive &&
             <View  {...this._panResponder.panHandlers} >
-              <MCIcon name="microphone" style={styles.iconMic} size={28}/>
+              <MCIcon name="microphone" style={styles.iconMic} size={30}/>
             </View>
             }
           </View>
@@ -481,10 +481,7 @@ const styles = StyleSheet.create({
   inputBox: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    paddingLeft: 4,
-    paddingRight: 4,
-    paddingBottom: 8,
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: gray800,
     borderRadius: 25,
     minHeight: 50,
@@ -498,20 +495,45 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     paddingLeft: 2,
     paddingRight: 4,
+    marginBottom: 6,
     fontSize: 16,
   },
+  iconEmoji: {
+    color: '#848484',
+    paddingLeft: 4,
+    paddingTop: 4,
+    paddingBottom: 9,
+  },
+
   iconMic: {
     color: '#848484',
+    paddingLeft: 4,
+    paddingRight: 6,
+    paddingTop: 4,
+    paddingBottom: 9,
+
   },
   iconSend: {
     color: '#848484',
+    paddingLeft: 4,
+    paddingRight: 4,
+    paddingTop: 4,
+    paddingBottom: 9,
   },
   iconAttachment: {
     color: '#848484',
     transform: [{rotate: '45deg'}],
+    paddingLeft: 4,
+    paddingRight: 4,
+    paddingTop: 4,
+    paddingBottom: 9,
   },
   iconClose: {
     color: '#4b4b4b',
+    paddingLeft: 4,
+    paddingRight: 4,
+    paddingTop: 4,
+    paddingBottom: 9,
   },
   rowField: {
     flexDirection: 'row',

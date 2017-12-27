@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, Text, View} from 'react-native';
+import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {DialogModal, Toolbar} from '../BaseUI/index';
+import {DialogModal, ListItem, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
+import {textTitleStyle} from '../../themes/default/index';
+import {APP_VERSION} from '../../constants/configs';
 
 class SettingComponent extends Component {
 
@@ -46,26 +48,56 @@ class SettingComponent extends Component {
             },
           }}
           onRightElementPress={(result) => this.menuClick(result.index)}
-          centerElement={intl.formatMessage(i18n.settingSetting)}/>
-
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.settingSetting)}</Text>}
+        />
         <ScrollView style={styles.scrollView}>
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingGeneralSettings)} </Text>
-          <Text style={styles.itemText}>Notification and Sound</Text>
-          <Text style={styles.itemText}
-            onPress={() => goSettingPrivacy()}>{intl.formatMessage(i18n.privacyPrivacy)}</Text>
-          <Text style={styles.itemText} onPress={() => goBlockList()}>{intl.formatMessage(i18n.settingBlockList)}</Text>
-          <Text style={styles.itemText}
-            onPress={() => goActiveSession()}>{intl.formatMessage(i18n.activeSessionActiveSession)}</Text>
-          <Text style={styles.itemText}>Language</Text>
-
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingNotificationAndSound)}}
+            onPress={null}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.privacyPrivacy)}}
+            onPress={() => goSettingPrivacy()}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingBlockList)}}
+            onPress={() => goBlockList()}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.activeSessionActiveSession)}}
+            onPress={() => goActiveSession()}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}
+            onPress={null}
+            style={styles.listItem}
+          />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>
-          <Text style={styles.itemText}
-            onPress={() => Linking.openURL('https://www.igap.net')}>{intl.formatMessage(i18n.settingIgapOfficialHome)}</Text>
-          <Text style={styles.itemText}
-            onPress={() => Linking.openURL('https://blog.igap.net')}>{intl.formatMessage(i18n.settingIgapOfficialBlog)}</Text>
-          <Text style={styles.itemText}
-            onPress={() => Linking.openURL('https://support.igap.net')}>{intl.formatMessage(i18n.settingSupportRequest)}</Text>
-          <Text style={styles.subItemText}>igap plus android client v 0.3.3</Text>
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingIgapOfficialHome)}}
+            onPress={() => Linking.openURL('https://www.igap.net')}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingIgapOfficialBlog)}}
+            onPress={() => Linking.openURL('https://blog.igap.net')}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingSupportRequest)}}
+            onPress={() => Linking.openURL('https://support.igap.net')}
+            style={styles.listItem}
+          />
+          <Text style={styles.subItemText}>{intl.formatMessage(i18n.settingIgapVersion, {
+            platform: Platform.OS,
+            appVersion: APP_VERSION,
+          })}</Text>
+
         </ScrollView>
 
 

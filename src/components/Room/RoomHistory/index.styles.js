@@ -5,11 +5,6 @@ export default {
     flex: 1,
     backgroundColor: 'white',
   },
-  toolBar: {
-    centerElementContainer: {
-      marginLeft: 0,
-    },
-  },
   toolBarListItem: {
     container: {
       borderBottomColor: gray500,
@@ -28,6 +23,10 @@ export default {
   },
   mainWrap: {
     flex: 1,
+    flexDirection: 'column',
+  },
+  title: {
+    fontSize: 16,
     flexDirection: 'column',
   },
   messageListWrap: {

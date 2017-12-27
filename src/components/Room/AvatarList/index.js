@@ -10,6 +10,7 @@ import i18n from '../../../i18n/index';
 import LoadingDots from '../../BaseUI/LoadingDots/index';
 import {menuAction} from '../../../screens/Room/AvatarListScreen';
 import AvatarBox from '../../../containers/Unit/AvatarBox';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class AvatarListComponent extends Component {
 
@@ -74,7 +75,7 @@ class AvatarListComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={styles.countAvatar}>{imageSelectedIndex + 1} / {avatarList.length}</Text>}
+          centerElement={<Text style={textTitleStyle}>{imageSelectedIndex + 1} / {avatarList.length}</Text>}
           rightElement={{
             menu: {
               icon: 'more-vert',

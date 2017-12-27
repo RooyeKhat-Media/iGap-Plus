@@ -1,4 +1,5 @@
 import {uniqueId} from 'lodash';
+import {IRANSans_Medium} from '../../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -20,7 +21,7 @@ export default (Verification) => ([
         },
         TWStepTitle: {
           fontSize: 20,
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           lineHeight: 25,
           textAlign: 'center',
           color: Verification.TWStepTitleColor,
@@ -43,7 +44,6 @@ export default (Verification) => ([
         forgetBtnColor: {
           text: {
             fontSize: 12,
-            fontWeight: '100',
           },
           container: {
             borderWidth: 0,

@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {primary} from '../../../themes/default/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -31,7 +32,7 @@ export default [
           justifyContent: 'flex-end',
         },
         inviteLinkLabel: {
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           color: primary,
         },
         inviteLink: {

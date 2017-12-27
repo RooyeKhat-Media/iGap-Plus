@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {ScrollView, Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
-import {Toolbar, LoadingDots} from '../../BaseUI';
+import {LoadingDots, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomEditComponent extends Component {
 
@@ -34,7 +35,8 @@ class RoomEditComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={intl.formatMessage(i18n.roomEditToolbarTitle)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomEditToolbarTitle)}</Text>}
+        />
 
         <ScrollView style={styles.scroll}>
           <Form style={styles.form} control={(form) => {

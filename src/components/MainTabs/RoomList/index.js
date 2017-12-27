@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, View} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {ActionSheet, Confirm, Toolbar} from '../../BaseUI/index';
@@ -51,8 +51,8 @@ class RoomListComponent extends React.PureComponent {
       <View style={{flex: 1}}>
         <View style={styles.container}>
           <Toolbar
-            style={{titleText: {fontFamily: 'neuropolitical', fontWeight: '100'}}}
-            centerElement="iGap+"/>
+            centerElement={<Text style={styles.textTitle}>{intl.formatMessage(i18n.iGapPlus)}</Text>}
+          />
           <RecyclerListView
             renderAheadOffset={640}
             layoutProvider={this._layoutProvider}

@@ -1,5 +1,6 @@
 import Device from '../../../modules/Responsive/Device';
 import {max, min} from 'lodash';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const {width} = Device.dimensions.window;
 const boxWidth = min([360, max([width, 280])]);
@@ -27,7 +28,7 @@ export default {
   },
   headerTitle: {
     padding: 10,
-    fontWeight: 'bold',
+    ...IRANSans_Medium,
     fontSize: 16,
     color: '#5f5f5f',
   },

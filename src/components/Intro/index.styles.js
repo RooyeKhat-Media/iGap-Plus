@@ -7,6 +7,7 @@ import {
   ORIENTATION_LANDSCAPE,
   ORIENTATION_PORTRAIT,
 } from '../../constants/screenBreakPoints';
+import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const id = uniqueId();
 const {width, height} = Device.dimensions.window;
@@ -43,7 +44,7 @@ export default (Intro) => (
           },
           title: {
             fontSize: 20,
-            fontWeight: 'bold',
+            ...IRANSans_Medium,
             color: Intro.titleColor,
             alignItems: 'center',
           },
@@ -54,7 +55,6 @@ export default (Intro) => (
             paddingRight: 20,
             lineHeight: 25,
             textAlign: 'center',
-            fontWeight: '100',
           },
           btnWrap: {
             height: 50,

@@ -37,6 +37,7 @@ class DialogModal extends Component {
               {actions ? actions.map((action, idex) => (
                 <Button
                   key={'action-' + idex}
+                  upperCase={false}
                   primary
                   text={action.label}
                   onPress={() => {
@@ -65,8 +66,14 @@ class DialogModal extends Component {
 
 DialogModal.propTypes = {
   control: PropTypes.func.isRequired,
-  title: PropTypes.element.isRequired,
-  content: PropTypes.element.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.element.isRequired,
+  ]),
+  content: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.element.isRequired,
+  ]),
   actions: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

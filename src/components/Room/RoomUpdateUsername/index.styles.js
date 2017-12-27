@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {primary} from '../../../themes/default/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -28,7 +29,7 @@ export default [
           height: 50,
         },
         radioLabel: {
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           fontSize: 15,
         },
         usernameWrap: {},
@@ -44,7 +45,7 @@ export default [
           flex: 1,
         },
         inviteLinkLabel: {
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           color: primary,
         },
         inviteLink: {

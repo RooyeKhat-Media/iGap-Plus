@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Dimensions, View} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {Confirm, ListItem, Toolbar} from '../../BaseUI/index';
+import {Confirm, Toolbar} from '../../BaseUI/index';
 import styles from './index.styles';
 import SendBox from './SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
@@ -13,6 +13,7 @@ import i18n from '../../../i18n/en';
 import ForwardList from '../../../containers/Unit/ForwardList';
 import {Proto} from '../../../modules/Proto/index';
 import RoomActions from '../../../containers/Unit/RoomActions';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -104,17 +105,9 @@ class RoomHistoryComponent extends React.PureComponent {
   renderBaseToolbar() {
     const {roomTitle, goRoomInfoBtn, goBack} = this.props;
     return (<Toolbar
-      style={styles.toolBar}
       leftElement="arrow-back"
       onLeftElementPress={goBack}
-      centerElement={
-        <ListItem
-          centerElement={{
-            primaryText: roomTitle,
-          }}
-          style={styles.toolBarListItem}
-        />
-      }
+      centerElement={<Text numberOfLines={1} style={textTitleStyle}>{roomTitle}</Text>}
       rightElement={{
         menu: {
           icon: 'more-vert',
@@ -131,10 +124,9 @@ class RoomHistoryComponent extends React.PureComponent {
   renderMessagePropToolbar() {
     const {selectedCount, cancelSelected, selectedMessageAction, toolbarActions} = this.props;
     return (<Toolbar
-      style={styles.toolBar}
       leftElement="close"
       onLeftElementPress={cancelSelected}
-      centerElement={selectedCount.toString()}
+      centerElement={<Text style={textTitleStyle}>{selectedCount.toString()}</Text>}
       rightElement={toolbarActions}
       onRightElementPress={selectedMessageAction}
     />);

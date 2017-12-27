@@ -1,24 +1,32 @@
+import {IRANSans_Medium} from '../../../constants/fonts/index';
+import {black1} from '../../../themes/default/index';
+
 export default {
   dialogWrap: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   dialog: {
     backgroundColor: '#fff',
-    borderRadius: 2,
-    width: 280,
-    padding: 10,
+    borderRadius: 7,
+    minWidth: 280,
+    maxWidth: 320,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10,
+    paddingBottom: 5,
   },
   dialogHeader: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#606060',
+    ...IRANSans_Medium,
+    fontSize: 18,
+    color: black1,
+    marginBottom: 15,
   },
   dialogContent: {
-    color: '#606060',
-    lineHeight: 30,
+    color: black1,
+    fontSize: 16,
+    marginBottom: 5,
   },
   dialogActions: {
     marginHorizontal: 8,
@@ -31,6 +39,8 @@ export default {
     container: {
       marginLeft: 8,
       paddingHorizontal: 8,
+      borderWidth: 0,
+
     },
   },
 };

@@ -1,4 +1,5 @@
 import {uniqueId} from 'lodash';
+import {IRANSans_Medium} from '../../../../constants/fonts/index';
 
 const id = uniqueId();
 export default (UserTwoStepRecoveryByQuestion) => ([
@@ -23,7 +24,7 @@ export default (UserTwoStepRecoveryByQuestion) => ([
           marginBottom: 15,
         },
         label: {
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           fontSize: 15,
         },
       },

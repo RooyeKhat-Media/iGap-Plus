@@ -7,6 +7,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import SubListComponent from './SubListComponent';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class ActiveSessionComponent extends Component {
 
@@ -36,7 +37,8 @@ class ActiveSessionComponent extends Component {
           <Toolbar
             leftElement="arrow-back"
             onLeftElementPress={goBack}
-            centerElement={intl.formatMessage(i18n.activeSessionActiveSession)}/>
+            centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.activeSessionActiveSession)}</Text>}
+          />
           {Object.keys(currentSession).length > 0 && <View>
             <Text style={styles.status}> {intl.formatMessage(i18n.activeSessionCurrentSession)} </Text>
             <SubListComponent
@@ -46,13 +48,12 @@ class ActiveSessionComponent extends Component {
             />
           </View>}
           {showTerminateAll && <View>
-            <View style={{backgroundColor: '#eee'}}>
+            <View style={styles.contentTerminate}>
               <Text onPress={() => {
                 this.dialog.open();
-              }}
-              style={styles.terminateAll}> {intl.formatMessage(i18n.activeSessionTerminateAllOtherActiveSession)} </Text>
-              <Text
-                style={styles.textLogsOut}> {intl.formatMessage(i18n.activeSessionLogsOutAllDevice)} </Text>
+              }} style={styles.terminateAll}>
+                {intl.formatMessage(i18n.activeSessionTerminateAllOtherActiveSession)} </Text>
+              <Text style={styles.textLogsOut}> {intl.formatMessage(i18n.activeSessionLogsOutAllDevice)} </Text>
             </View>
             <Text style={styles.status}> {intl.formatMessage(i18n.activeSessionActiveSession)} </Text>
             <FlatList
@@ -73,7 +74,7 @@ class ActiveSessionComponent extends Component {
         <DialogModal control={(dialog) => {
           this.dialog = dialog;
         }}
-        title={<FormattedMessage {...i18n.activeSessionAreYouSure}/>}
+        title={<FormattedMessage {...i18n.activeSessionTerminateTitle}/>}
         content={<FormattedMessage {...i18n.activeSessionCloseAllSession} />}
         actions={[
           {
@@ -83,7 +84,7 @@ class ActiveSessionComponent extends Component {
             },
           },
           {
-            label: intl.formatMessage(i18n.cancel),
+            label: intl.formatMessage(i18n.dismiss),
             onPress: () => {
             },
           },

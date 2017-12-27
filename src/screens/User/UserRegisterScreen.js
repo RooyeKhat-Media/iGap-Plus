@@ -25,6 +25,7 @@ import {
   ERROR_USER_REGISTER_MAX_SEND_LOCK,
   ERROR_USER_REGISTER_MAX_TRY_LOCK,
 } from '../../modules/Api/errors/index';
+import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const rules = {
   phoneNumber: [
@@ -170,9 +171,11 @@ class UserRegisterScreen extends Component {
       localesList.push({
         key: locale,
         value: LOCALES[locale].en,
-        element: (<ListItem centerElement={{primaryText: LOCALES[locale].en}}
+        element: (<ListItem
+          centerElement={{primaryText: LOCALES[locale].en}}
           rightElement={<Text>{LOCALES[locale].native}</Text>}
-          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
+          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
+        />),
         filter: locale,
       });
     });
@@ -183,8 +186,11 @@ class UserRegisterScreen extends Component {
       countryList.push({
         key: country[0],
         value: countryName,
-        element: (<ListItem centerElement={{primaryText: countryName}} rightElement={<Text>{countryCode}</Text>}
-          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
+        element: (<ListItem
+          centerElement={{primaryText: countryName}}
+          rightElement={<Text>{countryCode}</Text>}
+          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
+        />),
         filter: countryName.toLowerCase() + ',' + countryCode,
       });
     });

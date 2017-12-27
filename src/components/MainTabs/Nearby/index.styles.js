@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {black200} from '../../../themes/default/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -16,7 +17,7 @@ export default [
           color: black200,
           fontSize: 18,
           alignSelf: 'flex-start',
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
         },
       },
     },

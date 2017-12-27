@@ -30,6 +30,7 @@ class ActionSheet extends Component {
                   centerElement={{
                     primaryText: (action.title),
                   }}
+                  style={styles.listItem}
                   onPress={() => {
                     action.onPress();
                     this.actions.back();

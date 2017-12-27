@@ -10,10 +10,6 @@ export default [
         root: {
           flex: 1,
         },
-        countAvatar: {
-          color: 'black',
-          fontSize: 15,
-        },
         galleryStyle: {
           flex: 1,
           backgroundColor: '#696969',

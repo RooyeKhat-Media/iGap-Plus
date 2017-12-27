@@ -8,6 +8,7 @@ import {gray700, primary} from '../../../../themes/default/index';
 import {convertBytes, convertSecendToTime} from '../../../../utils/filters';
 import MessageElement from './MessageElement';
 import {prependFileProtocol} from '../../../../utils/core';
+import {IRANSans_Medium} from '../../../../constants/fonts/index';
 
 const {width} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
   },
   fileName: {
-    fontWeight: 'bold',
+    ...IRANSans_Medium,
     fontSize: 14,
     color: primary,
   },

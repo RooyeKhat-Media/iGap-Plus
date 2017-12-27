@@ -11,6 +11,7 @@ import {Text, View} from 'react-native';
 import Form from '../../../BaseUI/Form/index';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
+import {textTitleStyle} from '../../../../themes/default/index';
 
 const uniqueId = _.uniqueId();
 
@@ -37,7 +38,8 @@ class UserTwoStepRecoveryByQuestionComponent extends Component {
           onRightElementPress={() => {
             this.dialog.open();
           }}
-          centerElement={intl.formatMessage(i18n.twoStepRecoveryByQuestionTitle)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepRecoveryByQuestionTitle)}</Text>}
+        />
         <Form style={styles.panel} control={(form) => {
           this.form = form;
         }}>

@@ -7,10 +7,11 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import Form from '../../../BaseUI/Form/index';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
+import {textTitleStyle} from '../../../../themes/default/index';
 
 const uniqueId = _.uniqueId();
 
@@ -37,7 +38,8 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
           onRightElementPress={() => {
             this.dialog.open();
           }}
-          centerElement={intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}</Text>}
+        />
         <Form style={styles.panel} control={(form) => {
           this.form = form;
         }}>

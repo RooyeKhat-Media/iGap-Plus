@@ -1,4 +1,5 @@
-import {ActivityIndicator, Picker as BasePicker, Switch} from 'react-native';
+import React from 'react';
+import {ActivityIndicator, Picker as BasePicker, StyleSheet, Switch, Text} from 'react-native';
 import {
   Avatar,
   Badge,
@@ -28,6 +29,20 @@ import PickerField from './Form/fields/PickerField';
 import PopupMenu from './PopupMenu';
 import Confirm from './Confirm';
 import LoadingDots from './LoadingDots';
+import {IRANSans} from '../../constants/fonts/index';
+
+const defaultTextStyle = StyleSheet.create({
+  defaultStyle: {
+    ...IRANSans,
+  },
+});
+let textRender = Text.prototype.render;
+Text.prototype.render = function(...args) {
+  let origin = textRender.call(this, ...args);
+  return React.cloneElement(origin, {
+    style: [defaultTextStyle.defaultStyle, origin.props.style],
+  });
+};
 
 
 export {

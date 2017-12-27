@@ -111,7 +111,7 @@ class VoiceRecorder extends Component {
           }
         </View>
         <TouchableOpacity style={styles.micWrap} onPress={() => this.stopRecord(false)}>
-          <MCIcon name={this.state.isTouchMode ? 'microphone' : 'send'} style={styles.micIcon} size={28}/>
+          <MCIcon name={this.state.isTouchMode ? 'microphone' : 'send'} style={styles.micIcon} size={30}/>
         </TouchableOpacity>
 
         <View style={[styles.lockWrap, this.state.isTouchMode ? {marginBottom: Number(this.state.bottomMove)} : {}]}>
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
   },
   micWrap: {
     position: 'absolute',
-    right: -20,
-    bottom: -5,
+    right: -16,
+    bottom: -6,
     width: 80,
     height: 80,
     justifyContent: 'center',

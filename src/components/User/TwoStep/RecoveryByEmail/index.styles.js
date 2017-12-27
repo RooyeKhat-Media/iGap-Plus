@@ -1,4 +1,5 @@
 import {uniqueId} from 'lodash';
+import {IRANSans_Medium} from '../../../../constants/fonts/index';
 
 const id = uniqueId();
 export default (UserTwoStepForget) => ([
@@ -28,7 +29,6 @@ export default (UserTwoStepForget) => ([
         resendBtn: {
           text: {
             fontSize: 12,
-            fontWeight: '100',
           },
           container: {
             marginTop: 10,
@@ -36,7 +36,7 @@ export default (UserTwoStepForget) => ([
           },
         },
         label: {
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           fontSize: 15,
         },
       },

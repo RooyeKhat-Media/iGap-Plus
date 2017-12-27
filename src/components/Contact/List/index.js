@@ -4,6 +4,8 @@ import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {Avatar, FlatList, ListItem, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
+import {textTitleStyle} from '../../../themes/default/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 class ContactListComponent extends React.Component {
   keyExtractor = (item) => {
@@ -14,7 +16,10 @@ class ContactListComponent extends React.Component {
       centerElement={{primaryText: item.getDisplayName(), secondaryText: item.getPhone().toString()}}
       leftElement={<Avatar style={{container: {backgroundColor: item.getColor()}}}
         text={item.getInitials()}/>}
-      style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>
+      style={{
+        container: {backgroundColor: 'transparent', paddingLeft: 0},
+        primaryText: {...IRANSans_Medium},
+      }}/>
     );
   };
 
@@ -27,7 +32,8 @@ class ContactListComponent extends React.Component {
           rightElement="add"
           onRightElementPress={goContactNew}
           onLeftElementPress={goBack}
-          centerElement={intl.formatMessage(i18n.contactListTitleToolbar)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.contactListTitleToolbar)}</Text>}
+        />
         <View style={styles.container}>
           {loading && !contactList.length ? (<Text>Please Wait ...</Text>) :
             (<FlatList

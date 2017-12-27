@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {FlatList, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import {MCIcon, Toolbar} from '../../BaseUI/index';
+import {ListItem, MCIcon, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import {injectIntl} from 'react-intl';
 import UserListItem from '../../../containers/Unit/UserListItem';
@@ -40,35 +40,55 @@ class NewComponent extends Component {
         <ScrollView>
 
           <View style={styles.sectionTop}>
-            <TouchableOpacity style={styles.rowField} onPress={goGroupCreate}>
-              <MCIcon name="account-multiple" style={styles.iconFeild} size={24}/>
-              <Text style={styles.textitem}>{intl.formatMessage(i18n.newNewGroup)}</Text>
-            </TouchableOpacity>
+            <ListItem
+              leftElement={<MCIcon name="account-multiple" size={24}/>}
+              centerElement={{
+                primaryText: intl.formatMessage(i18n.newNewGroup),
+              }}
+              onPress={goGroupCreate}
+              style={styles.listItem}
+            />
+            <ListItem
+              leftElement={<MCIcon name="bullhorn" size={24}/>}
+              centerElement={{
+                primaryText: intl.formatMessage(i18n.newNewChannel),
+              }}
+              onPress={goChannelCreate}
+              style={styles.listItem}
+            />
+            <ListItem
+              leftElement={<MCIcon name="lock" size={24}/>}
+              centerElement={{
+                primaryText: intl.formatMessage(i18n.newNewSecretP2PChat),
+              }}
+              onPress={this.newSecretP2pChat}
+              style={styles.listItem}
+            />
+            <ListItem
+              leftElement={<MCIcon name="credit-card" size={24}/>}
+              centerElement={{
+                primaryText: intl.formatMessage(i18n.newNewCreateInvoice),
+              }}
+              onPress={this.newCreateInvoice}
+              style={styles.listItem}
+            />
 
-            <TouchableOpacity style={styles.rowField} onPress={goChannelCreate}>
-              <MCIcon name="bullhorn" style={styles.iconFeild} size={24}/>
-              <Text style={styles.textitem}>{intl.formatMessage(i18n.newNewChannel)}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.rowField} onPress={this.newSecretP2pChat}>
-              <MCIcon name="lock" style={styles.iconFeild} size={24}/>
-              <Text style={styles.textitem}>{intl.formatMessage(i18n.newNewSecretP2PChat)}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.rowField} onPress={this.newCreateInvoice}>
-              <MCIcon name="credit-card" style={styles.iconFeild} size={24}/>
-              <Text style={styles.textitem}>{intl.formatMessage(i18n.newNewCreateInvoice)}</Text>
-            </TouchableOpacity>
 
             <View style={[styles.rowField, {marginTop: 15, marginBottom: 7}]}>
               <Text style={styles.titleText}>{intl.formatMessage(i18n.newContacts)}</Text>
               <View style={styles.divider}/>
             </View>
 
-            <TouchableOpacity style={[styles.rowField, {marginLeft: 10}]} onPress={goContactNew}>
-              <MCIcon name="plus" style={styles.iconFeild} size={28}/>
-              <Text style={styles.textitem}>{intl.formatMessage(i18n.newAddContacts)}</Text>
-            </TouchableOpacity>
+
+            <ListItem
+              leftElement={<MCIcon name="plus" size={28}/>}
+              centerElement={{
+                primaryText: intl.formatMessage(i18n.newAddContacts),
+              }}
+              onPress={goContactNew}
+              style={styles.listItem}
+            />
+
           </View>
 
           {contactList.length ? <FlatList

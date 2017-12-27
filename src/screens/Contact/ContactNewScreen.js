@@ -14,6 +14,7 @@ import {
   ERROR_USER_CONTACTS_IMPORT_INTERNAL_SERVER_ERROR,
 } from '../../modules/Api/errors/index';
 import {errorId} from '../../modules/Error/index';
+import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const formRules = {
   firstName: [
@@ -132,8 +133,11 @@ class ContactNewScreen extends Component {
       countryList.push({
         key: country[0],
         value: countryName,
-        element: (<ListItem centerElement={{primaryText: countryName}} rightElement={<Text>{countryCode}</Text>}
-          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}}}/>),
+        element: (<ListItem
+          centerElement={{primaryText: countryName}}
+          rightElement={<Text>{countryCode}</Text>}
+          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
+        />),
         filter: countryName.toLowerCase() + ',' + countryCode,
       });
     });

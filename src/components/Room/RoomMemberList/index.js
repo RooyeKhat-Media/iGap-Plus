@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {FlatList, IconToggle, ListItem, PopupMenu, Toolbar} from '../../BaseUI/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
@@ -8,6 +8,7 @@ import styleSheet from './index.styles';
 import i18n from '../../../i18n/index';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import Avatar from '../../../containers/Unit/Avatar';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomMemberListComponent extends React.Component {
 
@@ -41,21 +42,21 @@ class RoomMemberListComponent extends React.Component {
         primaryText: user.displayName,
         secondaryText: '@' + user.username,
       }}
-      rightElement={
-        (<View style={styles.rightElementWrap}>
-          {item.role !== Role.MEMBER &&
-          (<IconToggle
-            name="star"
-            color={colors[item.role]}
-            style={styles.rightElement}
-          />)}
-          {getActionList(item.role) &&
-          (<PopupMenu actionList={getActionList(item.role)}
-            onPress={(action) => {
-              doAction(item.userId, item.role, action);
-            }}
-          />)}
-        </View>)}
+      rightElement={(<View style={styles.rightElementWrap}>
+        {item.role !== Role.MEMBER &&
+        (<IconToggle
+          name="star"
+          color={colors[item.role]}
+          style={styles.rightElement}
+        />)}
+        {getActionList(item.role) &&
+        (<PopupMenu actionList={getActionList(item.role)}
+          onPress={(action) => {
+            doAction(item.userId, item.role, action);
+          }}
+        />)}
+      </View>)}
+      style={styles.listItem}
     />);
   };
   _renderItem = ({item}) => {
@@ -75,7 +76,8 @@ class RoomMemberListComponent extends React.Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={intl.formatMessage(i18n.roomMemberListToolbarTitle)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomMemberListToolbarTitle)}</Text>}
+        />
         <View style={styles.container}>
 
           <FlatList

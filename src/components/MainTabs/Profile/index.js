@@ -9,6 +9,7 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import {goSetting} from '../../../navigators/PrimaryNavigator';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class ProfileComponent extends Component {
 
@@ -50,7 +51,9 @@ class ProfileComponent extends Component {
         <Toolbar
           leftElement={<MCIcon name="chevron-down" color="#000" size={30} onPress={this.downClick}/>}
           rightElement={<MCIcon name="dots-vertical" color="#000" size={30} onPress={this.menuClick}/>}
-          centerElement={(currentUser && currentUser.phone && currentUser.phone.toString())}/>
+          centerElement={<Text numberOfLines={1}
+            style={textTitleStyle}>{(currentUser && currentUser.phone && currentUser.phone.toString())}</Text>}
+        />
 
         <ScrollView style={styles.scroll}>
 

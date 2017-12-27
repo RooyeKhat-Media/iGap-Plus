@@ -4,9 +4,10 @@ import {ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
-import {Form, PickerField, TextInputField, Toolbar, LoadingDots} from '../../BaseUI';
+import {Form, LoadingDots, PickerField, TextInputField, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class UserEditProfile extends Component {
 
@@ -39,7 +40,8 @@ class UserEditProfile extends Component {
           rightElement="check"
           onLeftElementPress={goBack}
           onRightElementPress={this.handleFormData}
-          centerElement={intl.formatMessage(i18n.editProfileEditProfile)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.editProfileEditProfile)}</Text>}
+        />
 
         <ScrollView style={styles.scroll}>
 

@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   categoryInner: {
     flexWrap: 'wrap',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   emoji: {
     minWidth: 40,

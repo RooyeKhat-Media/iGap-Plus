@@ -1,10 +1,21 @@
 import {StyleSheet} from 'react-native';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 export const pinedListItemStyle = StyleSheet.create({
   container: {
     backgroundColor: '#eee',
   },
+  primaryText: {
+    ...IRANSans_Medium,
+  },
 });
+
+export const boldListItemStyle = StyleSheet.create({
+  primaryText: {
+    ...IRANSans_Medium,
+  },
+});
+
 export default StyleSheet.create({
   rightElementWrap: {
     width: 60, height: 45, flexDirection: 'column', alignItems: 'center',

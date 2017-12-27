@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {ORIENTATION_LANDSCAPE} from '../../../constants/screenBreakPoints';
+import {IRANSans_Medium, Neuropolitical} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -54,7 +55,7 @@ export default (UserRegister) => ([
           justifyContent: 'center',
         },
         headerTitle: {
-          fontFamily: 'neuropolitical',
+          ...Neuropolitical,
           fontSize: 30,
           color: UserRegister.headerTitleColor,
         },
@@ -63,7 +64,8 @@ export default (UserRegister) => ([
           height: 17, padding: 1, borderRadius: 2,
         },
         plusTitle: {
-          fontSize: 25, fontWeight: 'bold',
+          fontSize: 25,
+          ...IRANSans_Medium,
           color: UserRegister.plusTitleColor,
           lineHeight: 15,
         },
@@ -100,7 +102,7 @@ export default (UserRegister) => ([
         },
         picker: {},
         label: {
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           fontSize: 13,
         },
         help: {
@@ -116,7 +118,7 @@ export default (UserRegister) => ([
             elevation: 0,
           },
           text: {
-            fontWeight: 'bold',
+            ...IRANSans_Medium,
             fontSize: 13,
           },
         },
@@ -129,7 +131,6 @@ export default (UserRegister) => ([
           text: {
             fontSize: 10,
             color: UserRegister.privacyBtnColor,
-            fontWeight: '100',
           },
         },
 
@@ -142,7 +143,7 @@ export default (UserRegister) => ([
         dividerTitle: {
           height: 20,
           width: 40,
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           color: UserRegister.dividerTitleColor,
           fontSize: 12,
           textAlign: 'center',

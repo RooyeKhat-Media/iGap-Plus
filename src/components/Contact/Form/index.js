@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {Avatar, TextInput, Toolbar} from '../../BaseUI';
@@ -7,6 +7,7 @@ import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import Picker from '../../BaseUI/Picker/index';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class ContactFormComponent extends React.Component {
   render() {
@@ -26,7 +27,8 @@ class ContactFormComponent extends React.Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={intl.formatMessage(i18n.contactFormTitleToolbar)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.contactFormTitleToolbar)}</Text>}
+        />
         <View style={styles.container}>
 
           <Form style={styles.form} control={(form) => {

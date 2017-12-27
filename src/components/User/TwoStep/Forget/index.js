@@ -8,7 +8,8 @@ import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
+import {textTitleStyle} from '../../../../themes/default/index';
 
 const uniqueId = _.uniqueId();
 
@@ -35,8 +36,8 @@ class UserTwoStepForgetComponent extends Component {
           onRightElementPress={() => {
             this.dialog.open();
           }}
-          centerElement={intl.formatMessage(i18n.twoStepForgetTitle)}/>
-
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepForgetTitle)}</Text>}
+        />
         <View style={styles.recoveryBtnWrap}>
           <View style={styles.recoveryBtn}>
             <Button disabled={!hasConfirmedEmail} raised accent

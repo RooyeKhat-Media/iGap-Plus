@@ -1,7 +1,9 @@
+import {IRANSans_Medium} from '../../../constants/fonts/index';
+
 export default {
   divider: {
     fontSize: 16,
-    fontWeight: 'bold',
+    ...IRANSans_Medium,
     textAlign: 'right',
     paddingRight: 15,
     color: '#202020',
@@ -9,11 +11,16 @@ export default {
     borderBottomWidth: 1,
   },
   listItem: {
-    container: {},
+    primaryText: {
+      ...IRANSans_Medium,
+    },
   },
   selectedItem: {
     container: {
       backgroundColor: '#eee',
+    },
+    primaryText: {
+      ...IRANSans_Medium,
     },
   },
 };

@@ -1,4 +1,5 @@
 import {uniqueId} from 'lodash';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -12,6 +13,11 @@ export default (MemberList) => ([
         },
         rightElementWrap: {
           flexDirection: 'row',
+        },
+        listItem: {
+          primaryText: {
+            ...IRANSans_Medium,
+          },
         },
       },
     },

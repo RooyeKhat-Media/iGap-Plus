@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {IconToggle, ListItem, Modal} from '../../BaseUI/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 class PopupMenu extends Component {
 
@@ -31,6 +32,7 @@ class PopupMenu extends Component {
                   centerElement={{
                     primaryText: action,
                   }}
+                  style={styles.listItem}
                   onPress={() => {
                     onPress(index);
                     this.modal.close();
@@ -70,5 +72,10 @@ const styles = StyleSheet.create({
     width: 280,
     flexDirection: 'column',
     backgroundColor: '#fff',
+  },
+  listItem: {
+    primaryText: {
+      ...IRANSans_Medium,
+    },
   },
 });

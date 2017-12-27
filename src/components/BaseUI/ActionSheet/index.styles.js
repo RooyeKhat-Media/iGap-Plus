@@ -1,3 +1,5 @@
+import {IRANSans_Medium} from '../../../constants/fonts/index';
+
 export default {
   container: {
     flex: 1,
@@ -21,6 +23,11 @@ export default {
   },
   header: {
     fontSize: 18,
-    fontWeight: 'bold',
+    ...IRANSans_Medium,
+  },
+  listItem: {
+    primaryText: {
+      ...IRANSans_Medium,
+    },
   },
 };

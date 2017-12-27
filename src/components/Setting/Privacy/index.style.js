@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {black200, primary, white} from '../../../themes/default/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -34,7 +35,7 @@ export default [
           paddingTop: 14,
           color: '#1ac293',
           paddingRight: 8,
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           alignSelf: 'center',
         },
         textSelfRemove: {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {Button, DialogModal, Toolbar} from '../../BaseUI/index';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import styleSheet from './index.styles';
 import * as _ from 'lodash';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
@@ -12,6 +12,7 @@ import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import AvatarPicker from '../../../containers/Unit/AvatarPicker';
+import {textTitleStyle} from '../../../themes/default/index';
 
 const uniqueId = _.uniqueId();
 
@@ -36,7 +37,8 @@ class UserNewProfileComponent extends Component {
           onRightElementPress={() => {
             this.dialog.open();
           }}
-          centerElement={intl.formatMessage(i18n.newProfileTitle)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.newProfileTitle)}</Text>}
+        />
 
         <Form style={styles.panel} control={(form) => {
           this.form = form;

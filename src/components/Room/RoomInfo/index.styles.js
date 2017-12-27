@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {black200, gray500, gray800, primary} from '../../../themes/default/index';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -38,7 +39,6 @@ export default [
           text: {
             fontSize: 16,
             color: '#000',
-            fontWeight: 'normal',
           },
           container: {
             height: 35,
@@ -53,7 +53,7 @@ export default [
           text: {
             fontSize: 16,
             color: '#fff',
-            fontWeight: 'normal',
+
           },
           container: {
             height: 35,
@@ -66,7 +66,6 @@ export default [
           text: {
             fontSize: 16,
             color: '#fff',
-            fontWeight: 'normal',
           },
           container: {
             height: 35,
@@ -78,7 +77,6 @@ export default [
           text: {
             fontSize: 16,
             color: '#000',
-            fontWeight: 'normal',
           },
           container: {
             height: 35,
@@ -90,7 +88,7 @@ export default [
         },
         textTitle: {
           color: '#000',
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           fontSize: 22,
           alignSelf: 'flex-start',
         },
@@ -107,6 +105,7 @@ export default [
         layoutMuteNotificaion: {
           flexDirection: 'row',
           marginTop: 6,
+          marginLeft: 10,
         },
         sectionShearedMedia: {
           paddingBottom: 20,
@@ -114,8 +113,6 @@ export default [
         textSharedMedia: {
           color: black200,
           fontSize: 16,
-          marginLeft: 10,
-          alignSelf: 'flex-start',
         },
         divider: {
           flex: 1,
@@ -126,11 +123,11 @@ export default [
         },
         rowField: {
           flexDirection: 'row',
-          justifyContent: 'space-around',
           margin: 8,
         },
         sharedItem: {
           alignItems: 'center',
+          flex: 1,
         },
         sharedIcon: {
           width: 35,
@@ -142,6 +139,9 @@ export default [
           paddingLeft: 6,
         },
         listItem: {
+          container: {
+            height: 45,
+          },
           centerElementContainer: {
             marginLeft: 0,
           },

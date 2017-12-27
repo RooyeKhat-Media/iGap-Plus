@@ -1,6 +1,7 @@
 import {uniqueId} from 'lodash';
 import {MAX_WIDTH_NORMAL_HEIGHT, MIN_WIDTH_NORMAL_HEIGHT} from '../../../../constants/screenBreakPoints';
 import {black600} from '../../../../themes/default/index';
+import {IRANSans_Medium} from '../../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -25,11 +26,11 @@ export default [
           width: 45,
         },
         textTitle: {
+          ...IRANSans_Medium,
           marginLeft: 10,
           flex: 1,
           color: black600,
-          fontWeight: 'bold',
-          fontSize: 18,
+          fontSize: 16,
           textAlign: 'left',
         },
         layoutChannelInfo: {
@@ -51,7 +52,6 @@ export default [
         },
         textMessage: {
           color: black600,
-          fontSize: 18,
         },
         flex: {
           flex: 1,

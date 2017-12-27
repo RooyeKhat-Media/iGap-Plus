@@ -1,10 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {FlatList, Toolbar} from '../../BaseUI';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import Spinner from '../../BaseUI/Spinner/index';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class ContactPickerComponent extends React.Component {
   render() {
@@ -16,7 +17,8 @@ class ContactPickerComponent extends React.Component {
           rightElement={activeSubmitBtn ? 'done' : null}
           onRightElementPress={onSubmit}
           onLeftElementPress={goBack}
-          centerElement={intl.formatMessage(title)}/>
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(title)}</Text>}
+        />
         <View style={styles.container}>
           <FlatList
             data={contactList}

@@ -8,6 +8,7 @@ import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
 import {goAvatarList} from '../../../navigators/SecondaryNavigator';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomInfoComponent extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class RoomInfoComponent extends React.Component {
           leftElement="arrow-back"
           rightElement="more-vert"
           onLeftElementPress={goBack}
-          centerElement={room.title}/>
+          centerElement={<Text numberOfLines={1} style={textTitleStyle}>{room.title}</Text>}/>
 
         <ScrollView style={styles.scroll}>
 

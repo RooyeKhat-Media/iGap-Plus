@@ -8,6 +8,7 @@ import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomUpdateUsernameComponent extends Component {
 
@@ -37,7 +38,9 @@ class RoomUpdateUsernameComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={intl.formatMessage(i18n.roomUpdateUsernameToolbarTitle)}/>
+          centerElement={<Text
+            style={textTitleStyle}>{intl.formatMessage(i18n.twoStepForroomUpdateUsernameToolbarTitlegetTitle)}</Text>}
+        />
 
         <ScrollView style={styles.scroll}>
           <Form style={styles.form} control={(form) => {

@@ -1,3 +1,5 @@
+import {IRANSans_Medium} from '../../constants/fonts/index';
+
 export const primary = '#3298ee';
 export const selectedBlue = '#b1d6ee';
 export const golden = '#eecd00';
@@ -20,12 +22,25 @@ export const black500 = '#222222';
 export const black600 = '#202020';
 export const blackTransparent = 'rgba(0,0,0,0.4)';
 
+export const red = '#ff2748';
+export const gray1 = '#dbdbdb';
+export const gray2 = '#7d7d80';
+export const black1 = '#262626';
+
+export const textTitleStyle = {
+  flex: 1,
+  color: black600,
+  ...IRANSans_Medium,
+  fontSize: 18,
+  textAlign: 'left',
+  textAlignVertical: 'center',
+};
+
 export default {
   palette: {
     primaryColor: primary,
     canvasColor: white,
   },
-  fontFamily: 'IRANSans',
   toolbar: {
     container: {
       height: 50,
@@ -101,14 +116,11 @@ export default {
 
   listItem: {
     primaryText: {
-      fontFamily: 'IRANSans',
-      fontWeight:'500',
       textAlign: 'left',
       fontSize: 15,
       lineHeight: 20,
     },
     secondaryText: {
-      fontFamily: 'IRANSans',
       fontSize: 12,
     },
     leftElementContainer: {

@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {ORIENTATION_LANDSCAPE} from '../../../constants/screenBreakPoints';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -22,7 +23,7 @@ export default (UserVerify) => ([
         color: UserVerify.verifyTitleColor,
         fontSize: 20,
         lineHeight: 22,
-        fontWeight: 'bold',
+        ...IRANSans_Medium,
         textAlign: 'center',
         marginBottom: 15,
       },
@@ -51,7 +52,6 @@ export default (UserVerify) => ([
         },
         text: {
           fontSize: 13,
-          fontWeight: '100',
         },
       },
     },

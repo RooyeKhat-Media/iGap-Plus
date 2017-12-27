@@ -19,7 +19,7 @@ class UserListItem extends React.Component {
           primaryText: displayName,
           secondaryText: phoneNumber,
         }}
-        style={(selected ? styles.selectedItem : {})}
+        style={(selected ? styles.selectedItem : styles.listItem)}
       />
     </View>);
   }

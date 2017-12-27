@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
-import {black200, gray800} from '../../themes/default/index';
+import {black200, gray950, primary} from '../../themes/default/index';
+import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -16,28 +17,31 @@ export default [
           backgroundColor: '#f6f6f6',
         },
         TitleText: {
-          fontSize: 20,
-          color: '#2aedea',
+          fontSize: 18,
+          color: primary,
           textAlign: 'center',
           paddingTop: 15,
           paddingBottom: 5,
-          fontWeight: 'bold',
+          ...IRANSans_Medium,
           backgroundColor: '#fff',
           marginTop: 10,
         },
-        itemText: {
-          fontSize: 16,
-          color: black200,
-          padding: 14,
-          backgroundColor: '#fff',
-          marginBottom: 2,
-        },
         subItemText: {
           fontSize: 14,
-          color: gray800,
-          padding: 8,
+          color: gray950,
+          padding: 12,
           textAlign: 'center',
           backgroundColor: '#fff',
+        },
+        listItem: {
+          container: {
+            height: 55,
+            marginBottom: 2,
+          },
+          primaryText: {
+            fontSize: 16,
+            color: black200,
+          },
         },
       },
     },

@@ -5,6 +5,7 @@ import {
   UserSessionLogout,
   UserUpdateStatus,
 } from '../modules/Proto/index';
+import {Platform} from 'react-native';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
 import {
@@ -103,6 +104,19 @@ export async function loadUserToken() {
 
 export async function login() {
 
+  function getPlatform() {
+    switch (Platform.OS) {
+      case 'android':
+        return Proto.Platform.ANDROID;
+      case 'ios':
+        return Proto.Platform.IOS;
+      case 'windows':
+        return Proto.Platform.WINDOWS;
+      default:
+        return Proto.Platform.UNKNOWN_PLATFORM;
+    }
+  }
+
   const token = await loadUserToken();
   if (!token) {
     throw new ClientError('Login token is not found');
@@ -115,7 +129,7 @@ export async function login() {
   userLogin.setAppBuildVersion(APP_BUILD_VERSION);
   userLogin.setAppVersion(APP_VERSION);
 
-  userLogin.setPlatform(Proto.Platform.UNKNOWN_PLATFORM);
+  userLogin.setPlatform(getPlatform());
   userLogin.setPlatformVersion('0');
 
   userLogin.setDevice(Proto.Device.UNKNOWN_DEVICE);

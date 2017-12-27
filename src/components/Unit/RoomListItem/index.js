@@ -5,13 +5,13 @@ import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
 import {Badge, ListItem as BaseListItem, MCIcon} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import MessageStatus from '../../../containers/Unit/MessageStatus';
-import styles, {badgeStyle, hideStyle, muteBadgeStyle, pinedListItemStyle} from './index.styles';
+import styles, {badgeStyle, boldListItemStyle, hideStyle, muteBadgeStyle, pinedListItemStyle} from './index.styles';
 
 class RoomListItem extends React.PureComponent {
   render() {
     const {roomId, roomTitle, roomPined, roomMute, selected, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
     return (<BaseListItem
-      style={(selected || roomPined) ? pinedListItemStyle : {}}
+      style={(selected || roomPined) ? pinedListItemStyle : boldListItemStyle}
       onPress={onPress}
       onLongPress={onLongPress}
       leftElement={<Avatar roomId={roomId} size={52}/>}
