@@ -43,7 +43,7 @@ class SelectListModal extends React.Component {
     const {multi, searchable, data, headerTitle, autoFocus} = this.props;
     const {searchText, selected} = this.state;
     const options = data.filter(function(option) {
-      return searchText === '' || option.filter.search(searchText.toLowerCase()) >= 0;
+      return searchText === '' || (option.filter && option.filter.indexOf(searchText.toLowerCase()) >= 0);
     });
     return (
       <View style={styles.container}>
