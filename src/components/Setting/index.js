@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {DialogModal, ListItem, Toolbar} from '../BaseUI/index';
+import {injectIntl, intlShape} from 'react-intl';
+import {Confirm, ListItem, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
@@ -19,13 +19,13 @@ class SettingComponent extends Component {
   };
 
   menuClick = (index) => {
-
+    const {logOut, deleteAccount} = this.props;
     switch (index) {
       case 0:
-        this.dialogLogOut.open();
+        this.confirm.open(i18n.settingLogout, i18n.settingLogOutSubTitle, logOut);
         break;
       case 1:
-        this.dialogDeleteAcount.open();
+        this.confirm.open(i18n.settingDeleteAccount, i18n.settingDeleteAccountSubTitle, deleteAccount);
         break;
     }
   };
@@ -33,7 +33,7 @@ class SettingComponent extends Component {
   render() {
     const styles = this.getStyles();
 
-    const {intl, goBack, logOut, deleteAccount} = this.props;
+    const {intl, goBack} = this.props;
     return (
       <View style={styles.root}>
         <Toolbar
@@ -101,45 +101,9 @@ class SettingComponent extends Component {
 
         </ScrollView>
 
-
-        <DialogModal type={APP_MODAL_ID_PRIMARY} control={(dialog) => {
-          this.dialogLogOut = dialog;
-        }}
-        title={<FormattedMessage {...i18n.settingLogout}/>}
-        content={<FormattedMessage {...i18n.settingLogOutSubTitle} />}
-        actions={[
-          {
-            label: intl.formatMessage(i18n.ok),
-            onPress: () => {
-              logOut();
-            },
-          },
-          {
-            label: intl.formatMessage(i18n.cancel),
-            onPress: () => {
-            },
-          },
-        ]}/>
-
-        <DialogModal type={APP_MODAL_ID_PRIMARY} control={(dialog) => {
-          this.dialogDeleteAcount = dialog;
-        }}
-        title={<FormattedMessage {...i18n.settingDeleteAccount}/>}
-        content={<FormattedMessage {...i18n.settingDeleteAccountSubTitle} />}
-        actions={[
-          {
-            label: intl.formatMessage(i18n.ok),
-            onPress: () => {
-              deleteAccount();
-            },
-          },
-          {
-            label: intl.formatMessage(i18n.cancel),
-            onPress: () => {
-            },
-          },
-        ]}/>
-
+        <Confirm control={(dialog) => {
+          this.confirm = dialog;
+        }} type={APP_MODAL_ID_PRIMARY}/>
 
       </View>
     );

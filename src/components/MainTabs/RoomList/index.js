@@ -64,7 +64,7 @@ class RoomListComponent extends React.PureComponent {
           type={APP_MODAL_ID_PRIMARY}
           title={intl.formatMessage(i18n.roomListActionTitle)}
           ref={actionSheetControl}/>
-        <Confirm control={confirmControl}/>
+        <Confirm control={confirmControl} type={APP_MODAL_ID_PRIMARY}/>
       </View>
     );
   }

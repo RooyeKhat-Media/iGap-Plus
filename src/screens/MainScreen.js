@@ -13,12 +13,15 @@ import SecondaryNavigator from '../navigators/SecondaryNavigator';
 import Device from '../modules/Responsive/Device';
 import {NORMAL_HEIGHT} from '../constants/screenBreakPoints';
 import {responsive} from '../modules/Responsive';
+import putState from '../modules/Entities/RegisteredUsers/index';
+import {getUserId} from '../utils/app';
 
 
 class MainScreen extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    putState(getUserId(true));
   }
 
   componentWillUnmount() {

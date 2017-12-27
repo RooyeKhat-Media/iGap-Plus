@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {messengerRoomRemove} from '../../../actions/messenger/rooms';
 
 /**
  * @property {ProtoChannelLeft} _request
@@ -6,6 +7,6 @@ import Base from '../Base';
  */
 export default class Left extends Base {
   handle() {
-    console.error('Left', 'Not implemented yet', this);
+    this.dispatch(messengerRoomRemove(this._response.getRoomId().toString()));
   }
 }

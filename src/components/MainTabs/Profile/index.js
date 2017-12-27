@@ -79,10 +79,10 @@ class ProfileComponent extends Component {
                 </Text>
               </View>
 
-              <Button
+              {currentUser && <Button
                 upperCase={false} style={styles.button}
                 onPress={editProfileBtn}
-                text={intl.formatMessage(i18n.editProfileEditProfile)}/>
+                text={intl.formatMessage(i18n.editProfileEditProfile)}/>}
 
             </View>
           </View>

@@ -9,6 +9,7 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
 import {goAvatarList} from '../../../navigators/SecondaryNavigator';
 import {textTitleStyle} from '../../../themes/default/index';
+import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 
 class RoomInfoComponent extends React.Component {
   render() {
@@ -267,7 +268,7 @@ class RoomInfoComponent extends React.Component {
 
         <Confirm control={(confirm) => {
           this.confirm = confirm;
-        }}/>
+        }} type={APP_MODAL_ID_SECONDARY}/>
       </View>
     );
   }

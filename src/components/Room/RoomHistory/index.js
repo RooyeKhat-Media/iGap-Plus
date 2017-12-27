@@ -95,7 +95,7 @@ class RoomHistoryComponent extends React.PureComponent {
             type={APP_MODAL_ID_SECONDARY}
             title={intl.formatMessage(i18n.roomHistoryActionTitle)}
             ref={actionSheetControl}/>
-          <Confirm control={conformControl}/>
+          <Confirm control={conformControl} type={APP_MODAL_ID_SECONDARY}/>
           <ForwardList ref={forwardModalControl}/>
 
         </View>

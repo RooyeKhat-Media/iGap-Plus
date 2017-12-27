@@ -26,13 +26,13 @@ class Confirm extends Component {
   };
 
   render() {
-    const {intl} = this.props;
+    const {intl, type} = this.props;
     const {onConfirm, title, description} = this.state;
     return (
       <DialogModal
         control={(dialog) => {
           this.dialog = dialog;
-        }}
+        }} type={type}
         actions={[
           {
             label: intl.formatMessage(i18n.ok),
@@ -51,6 +51,7 @@ class Confirm extends Component {
 
 Confirm.propTypes = {
   control: PropTypes.func.isRequired,
+  type: PropTypes.string,
   intl: intlShape.isRequired,
 };
 
