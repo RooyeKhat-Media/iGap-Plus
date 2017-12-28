@@ -30,6 +30,7 @@ import PopupMenu from './PopupMenu';
 import Confirm from './Confirm';
 import LoadingDots from './LoadingDots';
 import {IRANSans} from '../../constants/fonts/index';
+import StatusBar from './StatusBar';
 
 const defaultTextStyle = StyleSheet.create({
   defaultStyle: {
@@ -76,4 +77,5 @@ export {
   PopupMenu,
   Confirm,
   LoadingDots,
+  StatusBar,
 };

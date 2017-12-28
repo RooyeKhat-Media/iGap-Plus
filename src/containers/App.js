@@ -6,9 +6,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
-import {AppState, BackHandler, Platform, StatusBar, View} from 'react-native';
+import {AppState, BackHandler, Platform, View} from 'react-native';
 
-import {AppModal} from '../components/BaseUI';
+import {AppModal, StatusBar} from '../components/BaseUI';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
@@ -89,10 +89,7 @@ class App extends Component {
       <ThemeProvider uiTheme={appTheme}>
         <View style={{flex: 1}}>
           <View style={{flex: 1, zIndex: 2}}>
-            <StatusBar backgroundColor="#e5e5e5" barStyle={Platform.select({
-              android: 'dark-content',
-              default: 'default',
-            })}/>
+            <StatusBar />
             <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
           </View>
           <AppModal id={APP_MODAL_ID_MAIN}/>
