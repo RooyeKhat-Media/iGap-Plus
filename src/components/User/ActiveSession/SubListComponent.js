@@ -15,14 +15,15 @@ class SubListComponent extends Component {
     return (
       <View>
         <ListItem
-          style={{container: {height: 100}, primaryText: {...IRANSans_Medium}}}
+          style={{container: {height: 130}, primaryText: {...IRANSans_Medium}}}
           onPress={() => {
             showTerminate && this.dialog.open();
           }}
           centerElement={
             <View style={styles.section1}>
-              <Text
-                style={styles.textStyle}>{item.getDeviceName() + ' , ' + intl.formatMessage(i18n.activeSessionPlatform, {platform: item.getPlatform()})}</Text>
+              <Text style={styles.textStyle} numberOfLines={1}>
+                {item.getDeviceName() + ' , ' + intl.formatMessage(i18n.activeSessionPlatform, {platform: item.getPlatform()})}
+              </Text>
               <Text
                 style={styles.textStyleNormal}>{intl.formatMessage(i18n.activeSessionCountry) + ' : ' + item.getCountry()}</Text>
               <Text style={styles.textStyleNormal}>{intl.formatMessage(i18n.activeSessionLastActivity) + ' : '}
@@ -67,6 +68,7 @@ class SubListComponent extends Component {
 const styles = StyleSheet.create({
   section1: {
     flex: 1,
+    marginTop: 10,
   },
   rowField: {
     flexDirection: 'row',
@@ -75,12 +77,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: gray1,
     marginTop: 10,
-    marginBottom: 15,
   },
   textStyle: {
     color: black1,
     ...IRANSans_Medium,
-    marginBottom: 3,
   },
   textStyleNormal: {
     color: black1,

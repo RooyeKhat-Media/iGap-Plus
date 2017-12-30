@@ -15,12 +15,14 @@ export default [
           borderWidth: 1,
           borderRadius: 5,
           borderColor: gray1,
-          margin: 20,
+          alignSelf: 'center',
+          padding: 5,
+          marginTop: 10,
 
         },
         terminateAll: {
           color: red,
-          fontSize: 18,
+          fontSize: 16,
           alignSelf: 'center',
         },
         dividerLine: {
@@ -32,13 +34,13 @@ export default [
           color: primary,
           ...IRANSans_Medium,
           marginTop: 15,
-          marginBottom: 20,
+          marginBottom: 5,
           alignSelf: 'center',
           fontSize: 18,
         },
         textLogsOut: {
           color: gray2,
-          fontSize: 16,
+          fontSize: 14,
           alignSelf: 'center',
         },
         scroll: {
