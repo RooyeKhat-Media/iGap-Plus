@@ -10,15 +10,20 @@ import AddonTime from '../MessageBox/AddonTime';
 import Avatar from '../../../../containers/Unit/Avatar';
 import style from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {BOX_TYPE_CHANNEL} from '../../../../modules/DimensionCalculator/index';
 
 class ChannelBox extends Component {
+
+  getChildContext() {
+    return {boxType: BOX_TYPE_CHANNEL};
+  }
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(style);
   };
 
   render() {
-    const {room, message, onMessagePress, onMessageLongPress, showText} = this.props;
+    const {room, message, onMessagePress, onMessageLongPress, showText, isForwarded} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -36,6 +41,7 @@ class ChannelBox extends Component {
 
         <View style={styles.messageWrapper}>
           <MessageBox
+            isForwarded={isForwarded}
             message={message}
             showText={showText}
             onMessagePress={onMessagePress}
@@ -64,6 +70,10 @@ ChannelBox.propTypes = {
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
+};
+
+ChannelBox.childContextTypes = {
+  boxType: PropTypes.number,
 };
 
 const mapStateToProps = (state, props) => {

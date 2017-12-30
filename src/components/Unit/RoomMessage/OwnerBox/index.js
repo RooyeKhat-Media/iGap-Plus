@@ -5,8 +5,13 @@ import AddonTime from '../MessageBox/AddonTime';
 import PropTypes from 'prop-types';
 import style from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {BOX_TYPE_OWNER} from '../../../../modules/DimensionCalculator/index';
 
 class OwnerBox extends Component {
+
+  getChildContext() {
+    return {boxType: BOX_TYPE_OWNER};
+  }
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(style);
@@ -36,6 +41,10 @@ OwnerBox.propTypes = {
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
+};
+
+OwnerBox.childContextTypes = {
+  boxType: PropTypes.number,
 };
 
 export default OwnerBox;

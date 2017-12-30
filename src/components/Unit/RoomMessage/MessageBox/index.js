@@ -11,7 +11,7 @@ import ReplyTo from './ReplyTo';
 
 class MessageBox extends React.Component {
   render() {
-    const {message, replyToMessage, showText, onMessagePress, onMessageLongPress} = this.props;
+    const {isForwarded, message, replyToMessage, showText, onMessagePress, onMessageLongPress} = this.props;
     const forwardFrom = message.forwardFrom;
 
     let forward = null;
@@ -21,6 +21,7 @@ class MessageBox extends React.Component {
       if (forwardFrom.channelViewsLabel) {
         forward = (
           <ChannelBox
+            isForwarded={true}
             onMessagePress={onMessagePress}
             onMessageLongPress={onMessageLongPress}
             message={forwardFrom}
@@ -29,6 +30,7 @@ class MessageBox extends React.Component {
       } else {
         forward = (
           <MessageAtomBox
+            isForwarded={true}
             onMessagePress={onMessagePress}
             onMessageLongPress={onMessageLongPress}
             message={forwardFrom}
@@ -38,6 +40,7 @@ class MessageBox extends React.Component {
 
     if (!forwardFrom || (forwardFrom && (message.messageType !== Proto.RoomMessageType.TEXT || message.message))) {
       main = (<MessageAtomBox
+        isForwarded={isForwarded}
         onMessagePress={onMessagePress}
         onMessageLongPress={onMessageLongPress}
         message={message}

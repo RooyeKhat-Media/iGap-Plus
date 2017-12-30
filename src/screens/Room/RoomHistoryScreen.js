@@ -480,7 +480,7 @@ class RoomHistoryScreen extends Component {
   };
 
   render() {
-    const {room, messageList, getRoomMessageType} = this.props;
+    const {room, messageList, getRoomMessage, getRoomMessageType} = this.props;
     const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList} = this.state;
     const Form = {
       text,
@@ -514,6 +514,7 @@ class RoomHistoryScreen extends Component {
         messageList={messageList}
         selectedList={selectedList}
         selectedCount={selectedCount}
+        getRoomMessage={getRoomMessage}
         getRoomMessageType={getRoomMessageType}
         cancelSelected={this.cancelSelected}
         goRoomInfoBtn={this.goRoomInfoBtn}
@@ -543,6 +544,9 @@ const makeMapStateToProps = () => {
       getMessageDownloadFileUri: (cacheId) => {
         const downloadFile = state.fileManager.download[cacheId];
         return downloadFile ? downloadFile.uri : null;
+      },
+      getRoomMessage: (messageId) => {
+        return state.entities.roomMessages[messageId];
       },
       getRoomMessageType: (messageId) => {
         const roomMessage = state.entities.roomMessages[messageId];

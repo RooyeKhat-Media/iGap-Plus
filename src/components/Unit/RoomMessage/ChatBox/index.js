@@ -6,8 +6,13 @@ import AddonTime from '../MessageBox/AddonTime';
 import PropTypes from 'prop-types';
 import style from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {BOX_TYPE_CHAT} from '../../../../modules/DimensionCalculator/index';
 
 class ChatBox extends Component {
+
+  getChildContext() {
+    return {boxType: BOX_TYPE_CHAT};
+  }
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(style);
@@ -44,6 +49,10 @@ ChatBox.propTypes = {
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
+};
+
+ChatBox.childContextTypes = {
+  boxType: PropTypes.number,
 };
 
 export default ChatBox;

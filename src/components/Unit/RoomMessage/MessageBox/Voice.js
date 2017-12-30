@@ -44,7 +44,6 @@ export default class Voice extends MessageElement {
 }
 
 Voice.propTypes = {
-  attachment: PropTypes.object.isRequired,
   downloadedFile: PropTypes.object,
   waveformThumbnailUri: PropTypes.string,
   onPress: PropTypes.func.isRequired,

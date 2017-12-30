@@ -163,21 +163,22 @@ class MessageAtomBox extends Component {
       message,
       onMessageLongPress,
       showText,
+      isForwarded,
     } = this.props;
 
     switch (message.messageType) {
 
       case Proto.RoomMessageType.TEXT:
         return (<Text
+          isForwarded={isForwarded}
           message={message.message}
           showText={showText}/>);
 
       case Proto.RoomMessageType.IMAGE:
       case Proto.RoomMessageType.IMAGE_TEXT:
         return (<Image
-          message={message.message}
-          attachment={message.attachment}
-          pickedFile={message.pickedFile}
+          isForwarded={isForwarded}
+          message={message}
           uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
@@ -188,9 +189,8 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VIDEO:
       case Proto.RoomMessageType.VIDEO_TEXT:
         return (<Video
-          message={message.message}
-          pickedFile={message.pickedFile}
-          attachment={message.attachment}
+          isForwarded={isForwarded}
+          message={message}
           uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
@@ -201,6 +201,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.AUDIO:
       case Proto.RoomMessageType.AUDIO_TEXT:
         return (<Audio
+          isForwarded={isForwarded}
           message={message.message}
           pickedFile={message.pickedFile}
           attachment={message.attachment}
@@ -214,8 +215,7 @@ class MessageAtomBox extends Component {
 
       case Proto.RoomMessageType.VOICE:
         return (<Voice
-          pickedFile={message.pickedFile}
-          attachment={message.attachment}
+          isForwarded={isForwarded}
           uploading={uploading}
           downloadedFile={downloadedFile}
           waveformThumbnailUri={waveformThumbnailUri}
@@ -225,9 +225,8 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.GIF:
       case Proto.RoomMessageType.GIF_TEXT:
         return (<Gif
-          message={message.message}
-          pickedFile={message.pickedFile}
-          attachment={message.attachment}
+          isForwarded={isForwarded}
+          message={message}
           uploading={uploading}
           showText={showText}
           downloadedFile={downloadedFile}
@@ -238,6 +237,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.FILE:
       case Proto.RoomMessageType.FILE_TEXT:
         return (<File
+          isForwarded={isForwarded}
           message={message.message}
           pickedFile={message.pickedFile}
           attachment={message.attachment}
@@ -249,10 +249,14 @@ class MessageAtomBox extends Component {
           onPress={this.togglePress}/>);
 
       case Proto.RoomMessageType.LOCATION:
-        return (<Location location={message.location}/>);
+        return (<Location
+          isForwarded={isForwarded}
+          location={message.location}/>);
 
       case Proto.RoomMessageType.CONTACT:
-        return (<Contact contact={message.contact}/>);
+        return (<Contact
+          isForwarded={isForwarded}
+          contact={message.contact}/>);
 
       default:
         return null;

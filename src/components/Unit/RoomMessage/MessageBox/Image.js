@@ -2,28 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Image as NativeImage, View} from 'react-native';
 import Text from './Text';
-import {min} from 'lodash';
-import Device from '../../../../modules/Responsive/Device';
 import {prependFileProtocol} from '../../../../utils/core';
 import MessageElement from './MessageElement';
-import {dimensionCalculate} from '../../../../modules/DimensionCalculator/util';
-
-const {width, height} = Device.dimensions.window;
-const boxWidth = min([250, (0.7 * width)]);
-const boxHeight = min([500, (0.8 * height)]);
+import {innerDimension} from '../../../../modules/DimensionCalculator/index';
 
 export default class Image extends MessageElement {
 
   render() {
-    const {message, attachment, pickedFile, showText, downloadedFile, smallThumbnailUri} = this.props;
+    const {message, showText, isForwarded, downloadedFile, smallThumbnailUri} = this.props;
 
-    const imageWidth = pickedFile ? pickedFile.width : attachment.getWidth();
-    const imageHeight = pickedFile ? pickedFile.height : attachment.getHeight();
+    const imageWidth = message.pickedFile ? message.pickedFile.width : message.attachment.getWidth();
+    const imageHeight = message.pickedFile ? message.pickedFile.height : message.attachment.getHeight();
 
     const hasImageDimension = imageWidth && imageHeight;
     const uri = this.isCompleted ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
 
-    const {width, height} = dimensionCalculate(imageWidth, imageHeight, boxWidth, boxHeight);
+    const {width, height} = innerDimension(message, this.context.boxType, isForwarded);
 
     const content = (hasImageDimension) ? this.renderControlBar(
       width,
@@ -39,16 +33,19 @@ export default class Image extends MessageElement {
     return (<View style={{width: hasImageDimension ? width : null}}>
       {content}
 
-      {(message && showText) ? (<Text message={message} showText={showText}/>) : null}
+      {(message.message && showText) ? (<Text message={message.message} showText={showText}/>) : null}
     </View>);
   }
 }
 
 Image.propTypes = {
-  message: PropTypes.string.isRequired,
-  attachment: PropTypes.object,
+  message: PropTypes.object.isRequired,
   showText: PropTypes.bool.isRequired,
   downloadedFile: PropTypes.object,
   smallThumbnailUri: PropTypes.string,
   onPress: PropTypes.func.isRequired,
+};
+
+Image.contextTypes = {
+  boxType: PropTypes.number,
 };

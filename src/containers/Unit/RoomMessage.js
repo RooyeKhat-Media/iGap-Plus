@@ -10,6 +10,12 @@ import {Proto} from '../../modules/Proto/index';
 
 class RoomMessage extends PureComponent {
 
+  getChildContext() {
+    return {
+      boxType: null,
+    };
+  }
+
   goUserInfo = async () => {
     const {message} = this.props;
     const roomId = await getPeerRoomId(message.authorUser);
@@ -43,7 +49,7 @@ class RoomMessage extends PureComponent {
   }
 }
 
-getRoomMessage.propTypes = {
+RoomMessage.propTypes = {
   message: PropTypes.object.isRequired,
   roomType: PropTypes.oneOf([
     Proto.Room.Type.CHAT,
@@ -53,6 +59,10 @@ getRoomMessage.propTypes = {
   selected: PropTypes.bool,
   onMessagePress: PropTypes.func,
   onMessageLongPress: PropTypes.func,
+};
+
+RoomMessage.childContextTypes = {
+  boxType: PropTypes.number,
 };
 
 const makeMapStateToProps = () => {

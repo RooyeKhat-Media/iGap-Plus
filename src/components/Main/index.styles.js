@@ -1,13 +1,10 @@
-import {min, uniqueId} from 'lodash';
-import {MAX_WIDTH_NORMAL_HEIGHT, MIN_WIDTH_NORMAL_HEIGHT, NORMAL_WIDTH} from '../../constants/screenBreakPoints';
-import Device from '../../modules/Responsive/Device';
+import {uniqueId} from 'lodash';
+import {MAX_WIDTH_NORMAL_HEIGHT, MIN_WIDTH_NORMAL_HEIGHT} from '../../constants/screenBreakPoints';
+import {getPrimaryWidth} from '../../modules/DimensionCalculator';
 
-const {width} = Device.dimensions.window;
-
-const primaryWidth = min([width * 0.44, NORMAL_WIDTH]);
 
 const id = uniqueId();
-export default [
+export default () => ([
   id, [
     {
       query: {},
@@ -52,7 +49,7 @@ export default [
         },
         primary: {
           flex: null,
-          width: primaryWidth,
+          width: getPrimaryWidth(),
         },
         secondary: {
           flex: 1,
@@ -60,4 +57,4 @@ export default [
       },
     },
   ],
-];
+]);

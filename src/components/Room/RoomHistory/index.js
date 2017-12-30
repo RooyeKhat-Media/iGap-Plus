@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Dimensions, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {Confirm, Toolbar} from '../../BaseUI/index';
@@ -15,6 +15,16 @@ import {Proto} from '../../../modules/Proto/index';
 import RoomActions from '../../../containers/Unit/RoomActions';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import {textTitleStyle} from '../../../themes/default/index';
+import {
+  BOX_TYPE_CHANNEL,
+  BOX_TYPE_CHAT,
+  BOX_TYPE_GROUP,
+  BOX_TYPE_NONE,
+  BOX_TYPE_OWNER,
+  getSecondaryWidth,
+  outerDimension,
+} from '../../../modules/DimensionCalculator/index';
+import {getAuthorHash} from '../../../utils/app';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -28,10 +38,26 @@ class RoomHistoryComponent extends React.PureComponent {
     super(args);
     this.prevSelectedList = {};
     const {messageList} = this.props;
-    let {width} = Dimensions.get('window');
-    this._layoutProvider = new LayoutProvider(this.layoutProviderType, (type, dim) => {
-      dim.width = width;
-      dim.height = 59;
+
+    this._layoutProvider = new LayoutProvider(this.layoutProviderType, (type, dim, index) => {
+      const {getRoomMessage, messageList, roomType} = this.props;
+      const message = getRoomMessage(messageList[index]);
+      let boxType = BOX_TYPE_NONE;
+
+      if (roomType === Proto.Room.Type.CHANNEL) {
+        boxType = BOX_TYPE_CHANNEL;
+      } else if (message.authorHash === getAuthorHash()) {
+        boxType = BOX_TYPE_OWNER;
+      } else if (roomType === Proto.Room.Type.CHAT) {
+        boxType = BOX_TYPE_CHAT;
+      } else if (roomType === Proto.Room.Type.GROUP) {
+        boxType = BOX_TYPE_GROUP;
+      }
+
+      const height = outerDimension(message, boxType).height || 45;
+
+      dim.width = getSecondaryWidth();
+      dim.height = height;
     });
 
     this.state = {

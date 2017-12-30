@@ -1,5 +1,5 @@
 import {ceil, max, min} from 'lodash';
-import {DEFAULT_CHAR_WIDTH} from '../../constants/app';
+import {DEFAULT_CHAR_WIDTH, DEFAULT_LINE_HEIGHT} from '../../constants/app';
 
 /**
  * Calculate dimension of width and height
@@ -25,7 +25,7 @@ export function dimensionCalculate(originalWidth, originalHeight, limiterWidth, 
  * @param {number} lineHeight
  * @param {number} charWidth Average character width
  */
-export function estimateTextHeight(text, limiterWidth, lineHeight = 14, charWidth = DEFAULT_CHAR_WIDTH) {
+export function estimateTextHeight(text, limiterWidth, lineHeight = DEFAULT_LINE_HEIGHT, charWidth = DEFAULT_CHAR_WIDTH) {
   if (!text) {
     return 0;
   }

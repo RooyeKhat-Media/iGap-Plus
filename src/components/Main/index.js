@@ -19,7 +19,6 @@ class MainComponent extends React.Component {
   render() {
     const {isSecondaryActive, PrimaryNavigator, SecondaryNavigator} = this.props;
     const styles = this.getStyles();
-
     return (
       <View style={styles.container}>
         <View style={styles.primary}>
@@ -36,7 +35,7 @@ class MainComponent extends React.Component {
   }
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet);
+    return MemoizeResponsiveStyleSheet(styleSheet());
   }
 }
 

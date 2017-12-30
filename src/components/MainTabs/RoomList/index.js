@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {ActionSheet, Confirm, Toolbar} from '../../BaseUI/index';
@@ -7,6 +7,7 @@ import RoomListItem from '../../../containers/Unit/RoomListItem';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import i18n from '../../../i18n';
 import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
+import {getPrimaryWidth} from '../../../modules/DimensionCalculator';
 
 class RoomListComponent extends React.PureComponent {
 
@@ -19,12 +20,11 @@ class RoomListComponent extends React.PureComponent {
   constructor(args) {
     super(args);
     const {roomList} = this.props;
-    let {width} = Dimensions.get('window');
 
     this._layoutProvider = new LayoutProvider(() => {
       return 'DEFAULT';
     }, (type, dim) => {
-      dim.width = width;
+      dim.width = getPrimaryWidth();
       dim.height = 72;
     });
     this.state = {
@@ -55,6 +55,7 @@ class RoomListComponent extends React.PureComponent {
             centerElement={<Text style={styles.textTitle}>{intl.formatMessage(i18n.iGapPlus)}</Text>}
           />
           <RecyclerListView
+            canChangeSize={true}
             renderAheadOffset={640}
             layoutProvider={this._layoutProvider}
             dataProvider={dataProvider}
