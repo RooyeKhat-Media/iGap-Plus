@@ -28,7 +28,8 @@ export default class SendMessage extends Base {
 
         const messageId = this._response.getRoomMessage().getMessageId().toString();
 
-        if (indexOf(store.getState().messenger.rooms, roomId) === -1) {
+        if (indexOf(store.getState().messenger.rooms, roomId) === -1 && store.getState().entities.rooms[roomId].isParticipant) {
+
           this.dispatch(messengerRoomAddList({
             [roomId]: {
               id: roomId,

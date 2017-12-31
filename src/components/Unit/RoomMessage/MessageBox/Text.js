@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import RichTextView from '../../../../modules/RichTextView/index';
 
 export default ({message, showText}) => (
   showText ?
     <View style={styles.container}>
-      <Text style={styles.message}>{message}</Text>
+      <RichTextView style={styles.message} rawText={message}/>
     </View> : null
 );
 

@@ -5,6 +5,10 @@ import _ from 'lodash';
 import SimpleMarkdown from 'simple-markdown';
 import Linking from '../Linking/index';
 import styles from './index.styles';
+import {resolveUserName} from './util';
+import {ClientResolveUsername} from '../Proto/index';
+import {CLIENT_RESOLVE_USERNAME} from '../../constants/methods/index';
+import Api from '../Api/index';
 
 const TLD = [
   'abogado', 'ac', 'academy', 'accountants', 'active', 'actor', 'ad', 'adult', 'ae', 'aero', 'af', 'ag', 'agency',
@@ -175,7 +179,7 @@ const rules = {
   mention: {
     order: SimpleMarkdown.defaultRules.text.order - 0.5,
     match: SimpleMarkdown.inlineRegex(
-      /^@([a-zA-Z\\d_]{4,32})\s*/
+      /^@([a-zA-Z\d_]{4,32})\s*/
     ),
     parse: function(capture, parse, state) {
       return {
@@ -193,6 +197,9 @@ const rules = {
         style: styles.mention,
         key: state.key,
         onPress: () => {
+          const clientResolveUsername = new ClientResolveUsername();
+          clientResolveUsername.setUsername(node.target);
+          Api.invoke(CLIENT_RESOLVE_USERNAME, clientResolveUsername);
         },
       }, output(node.content, state));
     },

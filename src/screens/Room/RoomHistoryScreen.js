@@ -29,14 +29,27 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../constants/app';
-import {getAuthorHash, setRoomHistorySelectedMode} from '../../utils/app';
-import {ClientJoinByUsername, ClientMuteRoom, Proto} from '../../modules/Proto/index';
+import {getAuthorHash, getFakeMessageId, setRoomHistorySelectedMode} from '../../utils/app';
+import {
+  ClientJoinByUsername,
+  ClientMuteRoom,
+  ClientSubscribeToRoom,
+  ClientUnsubscribeFromRoom,
+  Proto,
+} from '../../modules/Proto/index';
 import {getEntitiesRoomMessage} from '../../selector/entities/roomMessage';
-import {CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM} from '../../constants/methods/index';
+import {
+  CLIENT_JOIN_BY_USERNAME,
+  CLIENT_MUTE_ROOM,
+  CLIENT_SUBSCRIBE_TO_ROOM,
+  CLIENT_UNSUBSCRIBE_FROM_ROOM,
+} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import i18n from '../../i18n';
 import {getImageSize, prependFileProtocol} from '../../utils/core';
 import Clipboard from '../../modules/Clipboard/index';
+import {messengerRoomAddList} from '../../actions/messenger/rooms';
+import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger/roomMessages';
 
 class RoomHistoryScreen extends Component {
 
@@ -55,6 +68,17 @@ class RoomHistoryScreen extends Component {
   async componentDidMount() {
     const {room} = this.props;
     await loadRoomHistory(room.id);
+  }
+
+  componentWillUnmount() {
+    const {room} = this.props;
+    if (!room.isParticipant) {
+      const {clearMessageFromStore} = this.props;
+      clearMessageFromStore(room.id);
+      const clientUnsubscribeFromRoom = new ClientUnsubscribeFromRoom();
+      clientUnsubscribeFromRoom.setRoomId(room.id);
+      Api.invoke(CLIENT_UNSUBSCRIBE_FROM_ROOM, clientUnsubscribeFromRoom);
+    }
   }
 
   flatListRef = (ref) => {
@@ -91,6 +115,14 @@ class RoomHistoryScreen extends Component {
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
     };
+
+    if (!room.isParticipant) {
+      const {clearMessageFromStore} = this.props;
+      clearMessageFromStore(room.id);
+      const clientSubscribeToRoom = new ClientSubscribeToRoom();
+      clientSubscribeToRoom.setRoomId(room.id);
+      Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
+    }
   }
 
 
@@ -357,6 +389,10 @@ class RoomHistoryScreen extends Component {
           const clientJoinByUsername = new ClientJoinByUsername();
           clientJoinByUsername.setUsername(room.groupPublicUsername || room.channelPublicUsername);
           await Api.invoke(CLIENT_JOIN_BY_USERNAME, clientJoinByUsername);
+
+          const {addRoomList} = this.props;
+          room.isParticipant = true;
+          addRoomList(room.id);
         }
       } else {
         const clientMuteRoom = new ClientMuteRoom();
@@ -570,9 +606,26 @@ const makeMapStateToProps = () => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addRoomList: (roomId) => {
+      return dispatch(messengerRoomAddList({
+        [roomId]: {
+          id: roomId,
+          sort: getFakeMessageId().toString(),
+          pinId: '0',
+        },
+      }));
+    },
+
+    clearMessageFromStore: (roomId) => {
+      dispatch(messengerRoomMessageClearMessageFromStore(roomId));
+    },
+
+  };
+};
+
 RoomHistoryScreen.propTypes = {
   intl: intlShape.isRequired,
 };
-export default connect(
-  makeMapStateToProps
-)(injectIntl(RoomHistoryScreen));
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(RoomHistoryScreen));

@@ -5,6 +5,7 @@
 export const MESSENGER_ROOM_MESSAGE_CONCAT = 'MESSENGER_ROOM_MESSAGE_CONCAT';
 export const MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE = 'MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE';
 export const MESSENGER_ROOM_MESSAGE_REMOVE = 'MESSENGER_ROOM_MESSAGE_REMOVE';
+export const MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES_FROM_STORE = 'MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES_FROM_STORE';
 
 /**
  * @param {string} roomId
@@ -48,3 +49,11 @@ export function messengerRoomMessageRemove(roomId, messageId) {
     messageId,
   };
 }
+
+export function messengerRoomMessageClearMessageFromStore(roomId) {
+  return {
+    type: MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES_FROM_STORE,
+    roomId,
+  };
+}
+
