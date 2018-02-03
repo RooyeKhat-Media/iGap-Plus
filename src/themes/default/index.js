@@ -83,6 +83,11 @@ export default {
       elevation: 0,
     },
   },
+  actionButton: {
+    container: {
+      backgroundColor: primary,
+    },
+  },
   buttonPrimary: {
     backgroundColor: 'red',
   },

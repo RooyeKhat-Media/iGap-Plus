@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import styleSheet from './index.styles';
 import NearbyMapComponent from './Map';
 import NearbyListComponent from './List';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
-import {Toolbar} from '../../BaseUI/index';
+import {DialogModal, MCIcon, Switch, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
-import {injectIntl, intlShape} from 'react-intl';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import PropTypes from 'prop-types';
 
 class NearbyComponent extends Component {
 
@@ -15,16 +16,41 @@ class NearbyComponent extends Component {
   };
 
   renderContent() {
-    const {mapView} = this.props;
-    if (mapView) {
-      return (<NearbyMapComponent/>);
+    const {mapView, nearbyCoords, nearbyDist, getCommentForUser, myCoordinate, mapOnMarkerClick, findMyPosClick, isRegistered, registerSwitchChange} = this.props;
+    const styles = this.getStyles();
+    if (isRegistered) {
+      if (mapView) {
+        return (
+          <NearbyMapComponent
+            myCoordinate={myCoordinate}
+            nearbyList={nearbyCoords}
+            mapOnMarkerClick={mapOnMarkerClick}
+            findMyPosClick={findMyPosClick}
+          />
+        );
+      } else {
+        return (
+          <NearbyListComponent
+            myCoordinate={myCoordinate}
+            nearbyList={nearbyDist}
+            mapOnMarkerClick={mapOnMarkerClick}
+            getCommentForUser={getCommentForUser}/>
+        );
+      }
     } else {
-      return (<NearbyListComponent/>);
+      return (
+        <View style={styles.nearbyTurnOn}>
+          <Text style={styles.nearbyMessage}>
+            <FormattedMessage {...i18n.nearbyScreenRegisterNoties} />
+          </Text>
+          <Switch value={isRegistered} onValueChange={registerSwitchChange}/>
+        </View>
+      );
     }
   }
 
   render() {
-    const {mapView, toggleMode, intl} = this.props;
+    const {mapView, toggleMode, intl, registerSwitchChange, isRegistered, dialogControl, changeRegister} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -32,7 +58,9 @@ class NearbyComponent extends Component {
         <Toolbar
           leftElement={
             <Text
-              style={styles.titleText}>{intl.formatMessage(mapView ? i18n.nearbyScreenMapTitle : i18n.nearbyScreenListTitle)}</Text>}
+              style={styles.titleText}>
+              {intl.formatMessage(mapView ? i18n.nearbyScreenMapTitle : i18n.nearbyScreenListTitle)}
+            </Text>}
           rightElement={{
             menu: {
               icon: 'more-vert',
@@ -42,9 +70,26 @@ class NearbyComponent extends Component {
               ],
             },
           }}
+          centerElement={
+            (isRegistered ?
+              <TouchableOpacity onPress={registerSwitchChange}>
+                <MCIcon name="earth-off" size={28}/>
+              </TouchableOpacity> : '')}
           onRightElementPress={toggleMode}
         />
         {this.renderContent()}
+        <DialogModal
+          control={dialogControl}
+          title={<FormattedMessage {...i18n.nearbyDeactivateAreYouSure}/>}
+          content={<FormattedMessage {...i18n.nearbyDeactivateMessage} />}
+          actions={[{
+            label: intl.formatMessage(i18n.ok),
+            onPress: changeRegister,
+          }, {
+            label: intl.formatMessage(i18n.cancel),
+            onPress: () => {
+            },
+          }]}/>
       </View>
     );
   }
@@ -52,6 +97,18 @@ class NearbyComponent extends Component {
 
 NearbyComponent.propTypes = {
   intl: intlShape.isRequired,
+  registerSwitchChange: PropTypes.func.isRequired,
+  isRegistered: PropTypes.bool.isRequired,
+  mapView: PropTypes.bool.isRequired,
+  toggleMode: PropTypes.func.isRequired,
+  nearbyCoords: PropTypes.array.isRequired,
+  nearbyDist: PropTypes.array.isRequired,
+  getCommentForUser: PropTypes.func.isRequired,
+  mapOnMarkerClick: PropTypes.func.isRequired,
+  myCoordinate: PropTypes.object.isRequired,
+  findMyPosClick: PropTypes.func.isRequired,
+  dialogControl: PropTypes.func.isRequired,
+  changeRegister: PropTypes.func.isRequired,
 };
 
 export default injectIntl(NearbyComponent);

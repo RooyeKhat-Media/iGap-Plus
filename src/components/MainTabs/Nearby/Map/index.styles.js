@@ -1,4 +1,5 @@
 import {uniqueId} from 'lodash';
+import {StyleSheet} from 'react-native';
 
 const id = uniqueId();
 
@@ -9,7 +10,20 @@ export default [
       style: {
         container: {
           flex: 1,
-          backgroundColor: '#fff',
+        },
+        mapBox: {
+          ...StyleSheet.absoluteFillObject,
+        },
+        latlng: {
+          width: 200,
+          alignItems: 'stretch',
+        },
+        actionButton: {
+          container: {
+            width: 70,
+            height: 70,
+            borderRadius: 100,
+          },
         },
       },
     },

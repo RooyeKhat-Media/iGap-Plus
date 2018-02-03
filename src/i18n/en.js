@@ -20,6 +20,16 @@ export default {
     defaultMessage: 'Loading ....',
     description: 'loading',
   },
+  shortMeter: {
+    id: 'shortMeter',
+    defaultMessage: '{distance} M',
+    description: 'Meter',
+  },
+  shortKilometer: {
+    id: 'shortKilometer',
+    defaultMessage: '{distance} Km',
+    description: 'Kilometer',
+  },
   cancel: {
     id: 'cancel',
     defaultMessage: 'Cancel',
@@ -365,7 +375,6 @@ export default {
   twoStepRecoveryByEmailTokenHelp: {
     id: 'twoStepRecoveryByEmail.tokenHelp',
     defaultMessage: 'Send a recovery token to {email}.',
-
     description: 'twoStepVerification Page',
   },
   twoStepRecoveryByEmailSubmitFormBtnTitle: {
@@ -1513,5 +1522,20 @@ export default {
     id: 'nearbyScreen.mapTitle',
     defaultMessage: 'Nearby Map',
     description: 'Nearby Screen',
+  },
+  nearbyScreenRegisterNoties: {
+    id: 'nearbyScreen.RegisterNoties',
+    defaultMessage: 'Notice! Activating Map Status will result in making your location visible to others. Please be sure about it before turning on.',
+    description: 'Nearby Screen',
+  },
+  nearbyDeactivateAreYouSure: {
+    id: 'nearbyDeactivate.areYouSure',
+    defaultMessage: 'Are you sure ?',
+    description: 'Deactivate Nearby page',
+  },
+  nearbyDeactivateMessage: {
+    id: 'nearbyDeactivate.message',
+    defaultMessage: 'This will prevent you to see nearby people',
+    description: 'Deactivate Nearby page',
   },
 };

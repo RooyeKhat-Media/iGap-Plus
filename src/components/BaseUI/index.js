@@ -1,6 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, Picker as BasePicker, StyleSheet, Switch, Text} from 'react-native';
 import {
+  ActionButton,
   Avatar,
   Badge,
   BottomNavigation,
@@ -78,4 +79,5 @@ export {
   Confirm,
   LoadingDots,
   StatusBar,
+  ActionButton,
 };

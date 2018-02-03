@@ -5452,8 +5452,8 @@ react-native-material-design-styles@^0.2.6:
   resolved "https://registry.yarnpkg.com/react-native-material-design-styles/-/react-native-material-design-styles-0.2.7.tgz#428560ef4d0659db1163c9f9b5476d886ed22d57"
 
 react-native-material-ui@^1.15.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/react-native-material-ui/-/react-native-material-ui-1.18.0.tgz#beb9024cff49c7a639eb2fff489da1d2356304ba"
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/react-native-material-ui/-/react-native-material-ui-1.19.0.tgz#1809a04f4cbd37d1c8349bf52c677dd7503ef8aa"
   dependencies:
     color "2.0.1"
     lodash.merge "^4.0.0"

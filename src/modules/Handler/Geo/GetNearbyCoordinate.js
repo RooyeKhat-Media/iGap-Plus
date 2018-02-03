@@ -1,4 +1,5 @@
 import Base from '../Base';
+import putState from '../../Entities/RegisteredUsers/index';
 
 /**
  * @property {ProtoGeoGetNearbyCoordinate} _request
@@ -6,6 +7,9 @@ import Base from '../Base';
  */
 export default class GetNearbyCoordinate extends Base {
   handle() {
-    console.error('GetNearbyCoordinate', 'Not implemented yet', this);
+    const results = this._response.getResultList();
+    results.forEach(function(result) {
+      putState(result.getUserId().toString());
+    });
   }
 }

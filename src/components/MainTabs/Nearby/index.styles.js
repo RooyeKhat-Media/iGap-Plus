@@ -19,6 +19,15 @@ export default [
           alignSelf: 'flex-start',
           ...IRANSans_Medium,
         },
+        nearbyTurnOn: {
+          flexDirection: 'row',
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        nearbyMessage: {
+          flex: 0.5,
+        },
       },
     },
   ],
