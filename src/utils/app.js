@@ -14,7 +14,7 @@ import {
   USER_SESSION_LOGOUT,
   USER_UPDATE_STATUS,
 } from '../constants/methods/index';
-import Api, {CLIENT_STATUS} from '../modules/Api/index';
+import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong} from './core';
 import {
@@ -32,7 +32,6 @@ import {
 import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
 import putStateRoom from '../modules/Entities/Rooms';
 import Long from 'long';
-import {CLIENT_STATUS_CHANGED} from '../actions/api';
 import Contacts from '../modules/Contacts/index';
 
 let _userId;
@@ -307,7 +306,7 @@ export function appStateChange() {
   }
 }
 
-async function setUserOnline(force = false) {
+export async function setUserOnline(force = false) {
   clearTimeout(_userOfflineTimeout);
   if (!force && _isUserOnline) {
     return;
@@ -318,7 +317,7 @@ async function setUserOnline(force = false) {
 
 let _userOfflineTimeout;
 
-async function setUserOffline(updateServer = true) {
+export async function setUserOffline(updateServer = true) {
   clearTimeout(_userOfflineTimeout);
   _userOfflineTimeout = setTimeout(async () => {
     _isUserOnline = false;
@@ -333,17 +332,3 @@ async function invokeUserStatus(status) {
   userUpdateStatus.setStatus(status);
   return await Api.invoke(USER_UPDATE_STATUS, userUpdateStatus);
 }
-
-export const userUpdateStatusMiddleware = ({dispatch, getState}) => next => action => {
-  if (action.type === CLIENT_STATUS_CHANGED) {
-    switch (action.status) {
-      case CLIENT_STATUS.DISCONNECTED:
-        setUserOffline(false);
-        break;
-      case CLIENT_STATUS.LOGGED_IN:
-        setUserOnline(true);
-        break;
-    }
-  }
-  return next(action);
-};

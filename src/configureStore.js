@@ -14,7 +14,7 @@ import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUser
 import entitiesRoomMessagesMiddleware from './modules/Entities/RoomMessages/middleware';
 //Messenger
 import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
-import {userUpdateStatusMiddleware} from './utils/app';
+import userUpdateStatusMiddleware from './middlewares/userUpdateStatus';
 
 function configureStore(preloadedState) {
   const middlewares = [
