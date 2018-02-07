@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {
   Animated,
   BackHandler,
@@ -14,7 +14,7 @@ import {
 import {black200, gray800, primary} from '../../../themes/default/index';
 import {Icon, IconToggle, MCIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {injectIntl, intlShape} from 'react-intl';
 import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
@@ -22,13 +22,13 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../../constants/app';
 import VoiceRecorder from './VoiceRecorder';
-import EmojiPiker from './EmojiPiker';
+import EmojiPiker, {onEmojiSelected} from './EmojiPiker';
 import ShortMessage from '../../Unit/RoomMessage/MessageBox/ShortMessage';
 import Permission, {PERMISSION_MICROPHONE} from '../../../modules/Permission/index';
 import {goCamera} from '../../../navigators/SecondaryNavigator';
 import {cameraMode} from '../../../screens/General/CameraScreen';
 
-class SendBox extends Component {
+class SendBox extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -44,6 +44,8 @@ class SendBox extends Component {
     this.animatedValue = new Animated.Value(0);
     this.selectionStart = 0;
     this.selectionEnd = 0;
+
+    onEmojiSelected[0] = this.onEmojiSelected;
   }
 
   componentDidMount() {
@@ -53,7 +55,8 @@ class SendBox extends Component {
       this.setState({
         canLoadEmojiPiker: true,
       });
-    }, 1000);
+    }, 100);
+
   }
 
   onBackPress = () => {
@@ -115,6 +118,7 @@ class SendBox extends Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    onEmojiSelected.pop();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -374,7 +378,8 @@ class SendBox extends Component {
             </TouchableOpacity>
 
           </View>
-        </Animated.View>}
+        </Animated.View>
+        }
 
         <View style={styles.inputWrap}>
 
@@ -387,7 +392,7 @@ class SendBox extends Component {
 
           {Form.forwardedMessage && (<View style={styles.addonWrap}>
             <Text style={styles.addonText} numberOfLines={1}>
-              <FormattedMessage {...i18n.roomHistorySendBoxForward}/> :
+              {intl.formatMessage(i18n.roomHistorySendBoxForward)}
               <ShortMessage message={Form.forwardedMessage}/>
             </Text>
             <View style={styles.replyClose}>
@@ -397,7 +402,7 @@ class SendBox extends Component {
 
           {Form.replyTo && (<View style={styles.addonWrap}>
             <Text style={styles.addonText} numberOfLines={1}>
-              <FormattedMessage {...i18n.roomHistorySendBoxReplyTo}/> :
+              {intl.formatMessage(i18n.roomHistorySendBoxReplyTo)}
               <ShortMessage message={Form.replyTo}/>
             </Text>
             <View style={styles.replyClose}>
@@ -450,7 +455,7 @@ class SendBox extends Component {
           </View>
 
           <View style={this.state.showEmojiPiker ? styles.activeEmojiPiker : styles.inActiveEmojiPiker}>
-            {this.state.canLoadEmojiPiker && <EmojiPiker onEmojiSelected={this.onEmojiSelected}/>}
+            {this.state.canLoadEmojiPiker && <EmojiPiker/>}
           </View>
 
         </View>
@@ -473,8 +478,7 @@ SendBox.propTypes = {
 export default injectIntl(SendBox);
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   animatedWrap: {
     backgroundColor: '#fff',
   },
@@ -594,6 +598,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderLeftColor: primary,
     borderLeftWidth: 3,
+    color: black200,
   },
   soundRecorder: {
     position: 'absolute',

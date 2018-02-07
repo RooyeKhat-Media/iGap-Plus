@@ -4,23 +4,36 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import ScrollableTabView, {ScrollableTabBar} from 'react-native-scrollable-tab-view';
 import emojiList from '../../../constants/emojiList';
 
+let savedPiker = null;
+export const onEmojiSelected = [];
+
 class EmojiPiker extends PureComponent {
 
+  onSelect = (emoji) => {
+    if (onEmojiSelected.length > 0) {
+      onEmojiSelected[0](emoji);
+    }
+  };
+
+  piker = () => {
+    savedPiker = <View style={styles.container}>
+      <ScrollableTabView initialPage={0} prerenderingSiblingsNumber={8}
+        renderTabBar={() => <ScrollableTabBar textStyle={styles.text}/>}>
+        {
+          emojiList.map((tab, i) => (
+            <ScrollView key={i} tabLabel={tab.tabLabel}>
+              <EmojiCategory emojiList={tab.list} onEmojiSelected={this.onSelect}/>
+            </ScrollView>
+          ))
+        }
+      </ScrollableTabView>
+    </View>;
+    return savedPiker;
+  };
+
   render() {
-    const {onEmojiSelected} = this.props;
     return (
-      <View style={styles.container}>
-        <ScrollableTabView initialPage={0} prerenderingSiblingsNumber={8}
-          renderTabBar={() => <ScrollableTabBar textStyle={styles.text}/>}>
-          {
-            emojiList.map((tab, i) => (
-              <ScrollView key={i} tabLabel={tab.tabLabel}>
-                <EmojiCategory emojiList={tab.list} onEmojiSelected={onEmojiSelected}/>
-              </ScrollView>
-            ))
-          }
-        </ScrollableTabView>
-      </View>
+      savedPiker ? savedPiker : this.piker()
     );
   }
 }
