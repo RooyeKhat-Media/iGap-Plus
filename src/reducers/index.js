@@ -13,6 +13,7 @@ import {theme} from './theme';
 import methodsReducer from './methods';
 import entities from './entities';
 import messenger from './messenger';
+import {soundPlayer} from './soundPlayer';
 import {METHOD_USER_LOGOUT} from '../actions/methods/user/logout';
 
 const appReducer = combineReducers({
@@ -27,6 +28,7 @@ const appReducer = combineReducers({
   theme,
   entities,
   messenger,
+  soundPlayer,
 });
 
 const rootReducer = (state, action) => {

@@ -6,6 +6,7 @@ import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
+import soundPlayerMiddleware from './middlewares/soundPlayer';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
 import reduxLogger from 'redux-logger';
 //Entities
@@ -21,6 +22,7 @@ function configureStore(preloadedState) {
     thunkMiddleware,
     apiMiddleware,
     fileManagerMiddleware,
+    soundPlayerMiddleware,
     //Entities
     entitiesRoomsMiddleware,
     entitiesRegisteredUsersMiddleware,

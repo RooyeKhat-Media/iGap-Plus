@@ -27,3 +27,6 @@ export const ROOM_MESSAGE_ACTION_FORWARD = 'forward';
 export const ROOM_MESSAGE_ACTION_DELETE = 'delete';
 export const ROOM_MESSAGE_ACTION_REPORT = 'report';
 export const ROOM_MESSAGE_ACTION_EDIT = 'edit';
+
+export const SOUND_PLAYER_BOX_MESSAGE = 'SP_BOX_MESSAGE';
+export const SOUND_PLAYER_BOX_TOOLBAR = 'SP_BOX_TOOLBAR';

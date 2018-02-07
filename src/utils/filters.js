@@ -11,9 +11,9 @@ export function convertBytes(x) {
 }
 
 export function convertSecendToTime(secend) {
-  const mins = Math.floor(secend / 60);
-  const secs = Math.round(secend - mins * 60);
-  const hrs = Math.floor(secend / 3600);
+  const mins = Math.floor(secend / 60) || 0;
+  const secs = Math.round(secend - mins * 60) || 0;
+  const hrs = Math.floor(secend / 3600) || 0;
   return (hrs > 0 ? (hrs > 9 ? hrs + ':' : '0' + hrs + ':') : '') + (mins > 9 ? mins : '0' + mins) + ':' + (secs > 9 ? secs : '0' + secs);
 }
 

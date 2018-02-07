@@ -13,7 +13,6 @@ import {
   IconToggle,
   ListItem,
   RadioButton,
-  Toolbar,
 } from 'react-native-material-ui';
 import FlatList from './FlatList';
 import Modal from './Modal';
@@ -32,6 +31,7 @@ import Confirm from './Confirm';
 import LoadingDots from './LoadingDots';
 import {IRANSans} from '../../constants/fonts/index';
 import StatusBar from './StatusBar';
+import Toolbar from './Toolbar';
 
 const defaultTextStyle = StyleSheet.create({
   defaultStyle: {

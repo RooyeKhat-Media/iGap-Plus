@@ -216,6 +216,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VOICE:
         return (<Voice
           isForwarded={isForwarded}
+          attachment={message.attachment}
           uploading={uploading}
           downloadedFile={downloadedFile}
           waveformThumbnailUri={waveformThumbnailUri}

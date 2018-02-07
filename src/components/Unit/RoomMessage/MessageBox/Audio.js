@@ -9,6 +9,9 @@ import {convertBytes, convertSecendToTime} from '../../../../utils/filters';
 import MessageElement from './MessageElement';
 import {prependFileProtocol} from '../../../../utils/core';
 import {IRANSans_Medium} from '../../../../constants/fonts/index';
+import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../../../constants/fileManager';
+import SoundPlayer from '../../../../containers/Unit/SoundPlayer';
+import {SOUND_PLAYER_BOX_MESSAGE} from '../../../../constants/app';
 
 const {width} = Device.dimensions.window;
 const boxWidth = min([250, (0.7 * width)]);
@@ -16,7 +19,7 @@ const boxWidth = min([250, (0.7 * width)]);
 export default class Audio extends MessageElement {
 
   render() {
-    const {message, attachment, pickedFile, showText, smallThumbnailUri} = this.props;
+    const {message, attachment, pickedFile, showText, smallThumbnailUri, downloadedFile} = this.props;
     const uri = prependFileProtocol(smallThumbnailUri);
 
     const controlBar = this.renderControlBar(
@@ -32,25 +35,29 @@ export default class Audio extends MessageElement {
 
     return (
       <View style={styles.container}>
-        <View style={styles.fileWrap}>
-          {controlBar}
-
-          <View style={styles.fileInfoWrap}>
-            <BaseText numberOfLines={1} style={styles.fileName}>
-              {attachment && attachment.getName() || pickedFile && pickedFile.fileName}
-            </BaseText>
-            <BaseText style={styles.fileSize}>
-              {attachment && convertSecendToTime(attachment.getDuration())} {attachment && convertBytes(attachment.getSize().toNumber())}
-            </BaseText>
-            {this.renderProgressBar(boxWidth - 100, styles.progressStyle)}
-          </View>
-        </View>
-
+        {downloadedFile && downloadedFile.status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED ?
+          (<SoundPlayer
+            type={SOUND_PLAYER_BOX_MESSAGE}
+            uri={downloadedFile.uri}
+            title={attachment.getName()}
+            duration={attachment.getDuration()}
+            thumbnail={smallThumbnailUri}/>) :
+          (<View style={styles.fileWrap}>
+            {controlBar}
+            <View style={styles.fileInfoWrap}>
+              <BaseText numberOfLines={1} style={styles.fileName}>
+                {attachment && attachment.getName() || pickedFile && pickedFile.fileName}
+              </BaseText>
+              <BaseText style={styles.fileSize}>
+                {attachment && convertSecendToTime(attachment.getDuration())} {attachment && convertBytes(attachment.getSize().toNumber())}
+              </BaseText>
+              {this.renderProgressBar(boxWidth - 100, styles.progressStyle)}
+            </View>
+          </View>)}
         {(message && showText) ? (<Text showText={showText} message={message}/>) : null}
       </View>
     );
   }
-
 }
 
 
