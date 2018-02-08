@@ -16,24 +16,30 @@ class NearbyListComponent extends Component {
     super(props);
   }
 
+  keyExtractor = (item, index) => ('nb-' + index);
+
+  renderItem = (nearbyUser) => {
+    const {getCommentForUser, mapOnMarkerClick} = this.props;
+    return (<View>
+      <ListAvatarComponent
+        nearbyUser={nearbyUser}
+        getCommentForUser={getCommentForUser}
+        mapOnMarkerClick={mapOnMarkerClick}
+      />
+    </View>);
+  };
+
   render() {
-    const {nearbyList, getCommentForUser, mapOnMarkerClick} = this.props;
+    const {nearbyList} = this.props;
     const styles = this.getStyles();
 
     return (
       <View style={styles.container}>
 
         <FlatList
-          keyExtractor={(item, index) => ('nb-' + index)}
+          keyExtractor={this.keyExtractor}
           data={nearbyList}
-          renderItem={(nearbyUser) =>
-            (<View>
-              <ListAvatarComponent
-                nearbyUser={nearbyUser}
-                getCommentForUser={getCommentForUser}
-                mapOnMarkerClick={mapOnMarkerClick}
-              />
-            </View>)}
+          renderItem={this.renderItem}
         />
       </View>
     );

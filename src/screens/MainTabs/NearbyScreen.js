@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {injectIntl, intlShape} from 'react-intl';
 import NearbyComponent from '../../components/MainTabs/Nearby';
 import {
   CHAT_GET_ROOM,
@@ -24,6 +25,8 @@ import putState from '../../modules/Entities/RegisteredUsers';
 import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 import {ActivityIndicator} from '../../components/BaseUI/';
 import {View} from 'react-native';
+import Permission, {PERMISSION_LOCATION} from '../../modules/Permission/index';
+import i18n from '../../i18n/en';
 
 class NearbyScreen extends Component {
 
@@ -112,28 +115,71 @@ class NearbyScreen extends Component {
     }
   };
 
-  isGeoRegistered = async () => {
+  watchPosition = async () => {
     const getRegisterStatus = new GeoGetRegisterStatus();
     const geoResponse = await Api.invoke(GEO_GET_REGISTER_STATUS, getRegisterStatus);
-    const isEnabled = geoResponse.getEnable();
     this.setState({
-      isRegistered: isEnabled,
+      isRegistered: geoResponse.getEnable(),
     });
+    if (geoResponse.getEnable()) {
+      await  Permission.grant(PERMISSION_LOCATION,
+        this.props.intl.formatMessage(i18n.nearbyScreenLocationPermissionTitle),
+        this.props.intl.formatMessage(i18n.nearbyScreenLocationPermissionMessage));
+
+      this.watchLocId = GeoLocation.watchPosition({
+        enableHighAccuracy: false,
+        timeout: 3000,
+        maximumAge: 30 * 1000,
+      }, async (pos) => {
+        this.setState({
+          myCoordinate: {
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude,
+          },
+        });
+        await this.refreshNearby(this.state.mapView);
+      });
+
+      this.watchLocReportMeter = GeoLocation.watchPosition({
+        enableHighAccuracy: true,
+        timeout: 3000,
+        maximumAge: 1000,
+        distanceFilter: 50,
+      }, async (pos) => {
+        const updatePosition = new GeoUpdatePosition();
+        updatePosition.setLat(pos.coords.latitude);
+        updatePosition.setLon(pos.coords.longitude);
+        await Api.invoke(GEO_UPDATE_POSITION, updatePosition);
+      });
+    }
+  };
+
+  unWatchPosition = () => {
+    if (this.watchLocId !== undefined) {
+      GeoLocation.clearWatch(this.watchLocId);
+    }
+    if (this.watchLocReportMeter !== undefined) {
+      GeoLocation.clearWatch(this.watchLocReportMeter);
+    }
   };
 
   changeRegister = async () => {
-    const {isRegistered} = this.state;
-    //to show loading we clear isRegistered var
-    this.setState({
-      isRegistered: null,
-    });
+    let {isRegistered} = this.state;
+    const isEnabled = !isRegistered;
+
     const geoRegister = new GeoRegister();
-    geoRegister.setEnable(!isRegistered);
-    const geoResponse = await Api.invoke(GEO_REGISTER, geoRegister);
-    const isEnabled = geoResponse.getEnable();
+    geoRegister.setEnable(isEnabled);
+    await Api.invoke(GEO_REGISTER, geoRegister);
+
     this.setState({
       isRegistered: isEnabled,
     });
+
+    if (isEnabled) {
+      await this.watchPosition();
+    } else {
+      this.unWatchPosition();
+    }
     await this.findMyPosClick();
   };
 
@@ -148,41 +194,11 @@ class NearbyScreen extends Component {
   };
 
   async componentDidMount() {
-    this.isGeoRegistered();
-    this.watchLocId = GeoLocation.watchPosition({
-      enableHighAccuracy: false,
-      timeout: 3000,
-      maximumAge: 30 * 1000,
-    }, async (pos) => {
-      this.setState({
-        myCoordinate: {
-          latitude: pos.coords.latitude,
-          longitude: pos.coords.longitude,
-        },
-      });
-      await this.refreshNearby(this.state.mapView);
-    });
-
-    this.watchLocReportMeter = GeoLocation.watchPosition({
-      enableHighAccuracy: true,
-      timeout: 3000,
-      maximumAge: 1000,
-      distanceFilter: 50,
-    }, async (pos) => {
-      const updatePosition = new GeoUpdatePosition();
-      updatePosition.setLat(pos.coords.latitude);
-      updatePosition.setLon(pos.coords.longitude);
-      await Api.invoke(GEO_UPDATE_POSITION, updatePosition);
-    });
+    this.watchPosition();
   }
 
   async componentWillUnmount() {
-    if (this.watchLocId !== undefined) {
-      GeoLocation.clearWatch(this.watchLocId);
-    }
-    if (this.watchLocReportMeter !== undefined) {
-      GeoLocation.clearWatch(this.watchLocReportMeter);
-    }
+    this.unWatchPosition();
   }
 
   dialogControl = (dialog) => {
@@ -221,4 +237,8 @@ class NearbyScreen extends Component {
   }
 }
 
-export default NearbyScreen;
+NearbyScreen.propTypes = {
+  intl: intlShape.isRequired,
+};
+
+export default injectIntl(NearbyScreen);

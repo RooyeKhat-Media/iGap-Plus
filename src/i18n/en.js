@@ -1528,6 +1528,16 @@ export default {
     defaultMessage: 'Notice! Activating Map Status will result in making your location visible to others. Please be sure about it before turning on.',
     description: 'Nearby Screen',
   },
+  nearbyScreenLocationPermissionTitle: {
+    id: 'nearbyScreen.locationPermissionTitle',
+    defaultMessage: 'Location Permission',
+    description: 'Deactivate Nearby page',
+  },
+  nearbyScreenLocationPermissionMessage: {
+    id: 'nearbyScreen.locationPermissionMessage',
+    defaultMessage: 'To find your location and view online people near you.',
+    description: 'Deactivate Nearby page',
+  },
   nearbyDeactivateAreYouSure: {
     id: 'nearbyDeactivate.areYouSure',
     defaultMessage: 'Are you sure ?',

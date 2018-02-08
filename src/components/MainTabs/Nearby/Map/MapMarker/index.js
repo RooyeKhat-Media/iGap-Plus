@@ -20,20 +20,18 @@ class MapMarkerComponent extends Component {
   render() {
     const {userId, mySelf, coordinate} = this.props;
     const styles = this.getStyles();
-    const transparentStyle = (mySelf === true) ? styles.transparentBlueBorder : styles.transparentGreyBorder;
+    const transparentStyle = [mySelf ? styles.transparentBlueBorder : styles.transparentGreyBorder, styles.transparentBorder];
 
     return (
       <MapView.Marker
         coordinate={coordinate}
         onPress={this.infoPress}>
         <View style={styles.viewContainer}>
-          <View style={styles.blueBorder}>
-            <View style={transparentStyle}>
-              <View style={styles.whiteBorder}>
-                <Avatar userId={userId.toString()} size={52}/>
-              </View>
-              <View style={styles.triangle}/>
+          <View style={transparentStyle}>
+            <View style={styles.whiteBorder}>
+              <Avatar userId={userId.toString()} size={46}/>
             </View>
+            <View style={styles.triangle}/>
           </View>
         </View>
       </MapView.Marker>
