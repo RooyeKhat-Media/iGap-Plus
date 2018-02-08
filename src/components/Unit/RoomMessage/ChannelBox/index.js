@@ -15,7 +15,7 @@ import {BOX_TYPE_CHANNEL} from '../../../../modules/DimensionCalculator/index';
 class ChannelBox extends Component {
 
   getChildContext() {
-    return {boxType: BOX_TYPE_CHANNEL};
+    return {boxType: this.context.boxType ? this.context.boxType : BOX_TYPE_CHANNEL};
   }
 
   getStyles = () => {
@@ -66,6 +66,7 @@ class ChannelBox extends Component {
 
 ChannelBox.propTypes = {
   roomId: PropTypes.string,
+  isForwarded: PropTypes.bool,
   message: PropTypes.object.isRequired,
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
@@ -73,6 +74,10 @@ ChannelBox.propTypes = {
 };
 
 ChannelBox.childContextTypes = {
+  boxType: PropTypes.number,
+};
+
+ChannelBox.contextTypes = {
   boxType: PropTypes.number,
 };
 

@@ -17,7 +17,7 @@ class MessageBox extends React.Component {
     let forward = null;
     let main = null;
 
-    if (forwardFrom) {
+    if (!isForwarded && forwardFrom) {
       if (forwardFrom.channelViewsLabel) {
         forward = (
           <ChannelBox

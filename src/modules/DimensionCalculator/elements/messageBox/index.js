@@ -1,4 +1,3 @@
-
 /*
 
 +-+------------------------------+
@@ -66,7 +65,7 @@ const calculator = (maxWidth, outer, roomMessage, boxType, forwarded) => {
 
   } else {
     if (forwarded && roomMessage.channelViewsLabel) {
-      return channelBoxCalculator(maxWidth, outer, roomMessage, boxType, forwarded);
+      return channelBoxCalculator(maxWidth, outer, roomMessage, boxType, false);
     }
     return messageAtomBoxCalculator(maxWidth, outer, roomMessage, boxType, forwarded);
   }

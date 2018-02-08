@@ -30,6 +30,9 @@ const calculator = (maxWidth, outer, roomMessage, boxType, forwarded) => {
 
   if (boxType !== BOX_TYPE_CHANNEL) {
     maxWidth = min([250, maxWidth]);
+  } else if (imageWidth && imageWidth < maxWidth) {
+    imageWidth = maxWidth;
+    imageHeight = imageHeight / imageWidth * maxWidth;
   }
 
   const boxHeight = min([500, (0.8 * Device.dimensions.window.height)]);
