@@ -31,8 +31,16 @@ import {prependFileProtocol} from '../../utils/core';
 class MessageAtomBox extends Component {
 
   componentDidMount() {
-    const {message, download, smallThumbnailUri, waveformThumbnailUri} = this.props;
-    if (message.attachment) {
+    this.prepareAttachment(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.prepareAttachment(nextProps);
+  }
+
+  prepareAttachment(props) {
+    const {message, download, downloadedFile, smallThumbnailUri, waveformThumbnailUri} = props;
+    if (message.attachment && !downloadedFile) {
       info(message.attachment.getSize(), message.attachment.getCacheId(), message.attachment.getName());
       if (!smallThumbnailUri && message.attachment.getSmallThumbnail()) {
         download(
