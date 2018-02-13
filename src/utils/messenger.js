@@ -450,6 +450,10 @@ export function sendActionRequest(roomId, action, actionId = null) {
   let protoActionId, proto;
   const room = store.getState().entities.rooms[roomId];
 
+  if (room.type === Proto.Room.Type.CHANNEL) {
+    return;
+  }
+
   if (action === Proto.ClientAction.CANCEL && !actionId) {
     throw new Error('ActionId is Null for Cancel');
   }
