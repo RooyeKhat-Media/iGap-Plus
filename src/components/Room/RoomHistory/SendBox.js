@@ -265,120 +265,107 @@ class SendBox extends PureComponent {
       <View style={styles.container}>
 
         {this.state.showAttachment &&
-        <Animated.View style={[
-          styles.animatedWrap,
-          {
-            transform: [{translateY: movingMargin}],
-          },
-        ]}>
+          <Animated.View style={[
+            styles.animatedWrap,
+            {
+              transform: [{translateY: movingMargin}],
+            },
+          ]}>
 
-          <View style={styles.rowField}>
+            <View style={styles.rowField}>
 
-            <TouchableOpacity
-              style={styles.sharedItem}
-              onPress={this.selectCamera}>
-              <Icon
-                name="camera"
-                size={40} color="#fff"
-                style={[styles.iconColor, styles.colorRed]}/>
-              <Text
-                style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxCamera)}
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.sharedItem}
+                onPress={this.selectCamera}>
+                <View style={[styles.iconColor, styles.colorRed]}>
+                  <Icon name="camera" size={40} color="#fff"/>
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxCamera)}
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.sharedItem}
-              onPress={this.selectImages}>
-              <Icon
-                name="image"
-                size={35}
-                color="#fff"
-                style={[styles.iconColor, styles.colorPurple]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxImage)}
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.sharedItem}
+                onPress={this.selectImages}>
+                <View style={[styles.iconColor, styles.colorPurple]}>
+                  <Icon name="image" size={35} color="#fff"/>
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxImage)}
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sharedItem}
-              onPress={this.selectVideos}>
-              <Icon name="camera-roll"
-                size={35}
-                color="#fff" style={[styles.iconColor, styles.colorDarkRed]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxVideo)}
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.sharedItem}
+                onPress={this.selectVideos}>
+                <View style={[styles.iconColor, styles.colorDarkRed]}>
+                  <Icon name="camera-roll" size={35} color="#fff"/>
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxVideo)}
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sharedItem}
-              onPress={this.selectAudio}>
-              <Icon
-                name="library-music"
-                size={35}
-                color="#fff"
-                style={[styles.iconColor, styles.colorOrange]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxMusic)}
-              </Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity style={styles.sharedItem}
+                onPress={this.selectAudio}>
+                <View style={[styles.iconColor, styles.colorOrange]}>
+                  <Icon name="library-music" size={35} color="#fff"/>
+                </View>
 
-          <View style={styles.rowField}>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxMusic)}
+                </Text>
+              </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity
-              style={styles.sharedItem}
-              onPress={this.selectFile}>
-              <Icon
-                name="insert-drive-file"
-                size={35}
-                color="#fff"
-                style={[styles.iconColor, styles.colorDarkBlue]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxFile)}
-              </Text>
-            </TouchableOpacity>
+            <View style={styles.rowField}>
 
-            <TouchableOpacity
-              style={styles.sharedItem}
-              onPress={this.selectContact}>
-              <Icon
-                name="contacts"
-                size={35}
-                color="#fff"
-                style={[styles.iconColor, styles.colorLightBlue]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxContact)}
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.sharedItem}
+                onPress={this.selectFile}>
+                <View style={[styles.iconColor, styles.colorDarkBlue]}>
+                  <Icon name="insert-drive-file" size={35} color="#fff"/>
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxFile)}
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.sharedItem}
-              onPress={this.selectLocation}>
-              <Icon
-                name="location-on"
-                size={35}
-                color="#fff"
-                style={[styles.iconColor, styles.colorGreen]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxLocation)}
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.sharedItem}
+                onPress={this.selectContact}>
+                <View style={[styles.iconColor, styles.colorLightBlue]}>
+                  <Icon name="contacts" size={35} color="#fff"/>
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxContact)}
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.sharedItem}
-              onPress={this.toggleAttach}>
-              <Icon
-                name="keyboard-arrow-down"
-                size={35}
-                color="#fff"
-                style={[styles.iconColor, styles.colorBrown]}/>
-              <Text style={styles.textSharedMedia}>
-                {intl.formatMessage(i18n.roomHistorySendBoxClose)}
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.sharedItem}
+                onPress={this.selectLocation}>
+                <View style={[styles.iconColor, styles.colorGreen]}>
+                  <Icon name="location-on" size={35} color="#fff"/>
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxLocation)}
+                </Text>
+              </TouchableOpacity>
 
-          </View>
-        </Animated.View>
+              <TouchableOpacity
+                style={styles.sharedItem}
+                onPress={this.toggleAttach}>
+                <View style={[styles.iconColor, styles.colorBrown]}>
+                  <Icon name="keyboard-arrow-down" size={35} color="#fff" />
+                </View>
+                <Text style={styles.textSharedMedia}>
+                  {intl.formatMessage(i18n.roomHistorySendBoxClose)}
+                </Text>
+              </TouchableOpacity>
+
+            </View>
+          </Animated.View>
         }
 
         <View style={styles.inputWrap}>
@@ -412,7 +399,7 @@ class SendBox extends PureComponent {
 
           <View style={styles.inputBox}>
 
-            <TouchableOpacity onPress={() => this.emojiButtonClick()}>
+            <TouchableOpacity onPress={this.emojiButtonClick}>
               <MCIcon name={this.state.showEmojiPiker ? 'keyboard' : 'emoticon'} style={styles.iconEmoji} size={30}/>
             </TouchableOpacity>
 
@@ -448,9 +435,9 @@ class SendBox extends PureComponent {
             </TouchableOpacity>}
 
             {!(this.state.isActive || Form.pickedFile) &&
-            <View  {...this._panResponder.panHandlers} >
-              <MCIcon name="microphone" style={styles.iconMic} size={30}/>
-            </View>
+              <View  {...this._panResponder.panHandlers} >
+                <MCIcon name="microphone" style={styles.iconMic} size={30}/>
+              </View>
             }
           </View>
 
@@ -460,12 +447,12 @@ class SendBox extends PureComponent {
 
         </View>
         {this.state.isSoundRecord &&
-        <View style={styles.soundRecorder}>
-          <VoiceRecorder
-            onEndRecordSound={this.onEndRecordSound}
-            onRef={ref => (this.voiceRecorder = ref)}
-          />
-        </View>}
+          <View style={styles.soundRecorder}>
+            <VoiceRecorder
+              onEndRecordSound={this.onEndRecordSound}
+              onRef={ref => (this.voiceRecorder = ref)}
+            />
+          </View>}
       </View>
     );
   }
@@ -507,6 +494,7 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingTop: 4,
     paddingBottom: 9,
+    backgroundColor: 'transparent',
   },
 
   iconMic: {
@@ -515,6 +503,7 @@ const styles = StyleSheet.create({
     paddingRight: 6,
     paddingTop: 4,
     paddingBottom: 9,
+    backgroundColor: 'transparent',
 
   },
   iconSend: {
@@ -523,6 +512,8 @@ const styles = StyleSheet.create({
     paddingRight: 4,
     paddingTop: 4,
     paddingBottom: 9,
+    backgroundColor: 'transparent',
+
   },
   iconAttachment: {
     color: '#848484',
@@ -531,6 +522,8 @@ const styles = StyleSheet.create({
     paddingRight: 4,
     paddingTop: 4,
     paddingBottom: 9,
+    backgroundColor: 'transparent',
+
   },
   iconClose: {
     color: '#4b4b4b',
@@ -556,29 +549,30 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    paddingTop: 10,
-    paddingLeft: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   colorRed: {
-    backgroundColor: '#c3223c',
+    backgroundColor: '#ff2748',
   },
   colorPurple: {
-    backgroundColor: '#7b19b1',
+    backgroundColor: '#dba4da',
   },
   colorDarkRed: {
-    backgroundColor: '#990d3e',
+    backgroundColor: '#ec5877',
   },
   colorOrange: {
-    backgroundColor: '#cb6417',
+    backgroundColor: '#ff8135',
   },
   colorDarkBlue: {
-    backgroundColor: '#1b38bb',
+    backgroundColor: '#0193e5',
   },
   colorLightBlue: {
-    backgroundColor: '#12b2cf',
+    backgroundColor: '#36becf',
   },
   colorGreen: {
-    backgroundColor: '#1ac293',
+    backgroundColor: '#1de4b3',
   },
   colorBrown: {
     backgroundColor: '#9e9992',
