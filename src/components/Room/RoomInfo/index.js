@@ -15,7 +15,7 @@ class RoomInfoComponent extends React.Component {
   render() {
     const {
       intl, room, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
-      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goBack,
+      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, goBack,
     } = this.props;
     const styles = this.getStyles();
 
@@ -33,7 +33,7 @@ class RoomInfoComponent extends React.Component {
             <Avatar
               roomId={room.id}
               circle={false}
-              onPress={() => goAvatarList(room.id, access.isChat ? room.chatPeer.id : null)}
+              onPress={goAvatarList}
               size={360}/>
             <View style={styles.containerJoinLeav}>
               {/*Can Send Message to chatPeer Room ?*/}

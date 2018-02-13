@@ -34,6 +34,7 @@ import {
 import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
 import {
+  goAvatarList,
   goContactPicker,
   goRoomEdit,
   goRoomHistory,
@@ -239,6 +240,15 @@ class RoomInfoScreen extends Component {
     }
   };
 
+  avatarList = () => {
+    const {access} = this.state;
+    const {room} = this.props;
+    if ((access.isGroup && !room.groupAvatarCount) || (access.isChannel && !room.channelAvatarCount)) {
+      return;
+    }
+    goAvatarList(room.id, room.chatPeer);
+  }
+
   render() {
     const {access} = this.state;
     const {room, countRoomHistory} = this.props;
@@ -265,6 +275,7 @@ class RoomInfoScreen extends Component {
         revokeLink={this.revokeLink}
         clearHistory={this.clearHistory}
         deleteRoom={this.deleteRoom}
+        goAvatarList={this.avatarList}
         goBack={this.props.navigation.goBack}
       />
     );

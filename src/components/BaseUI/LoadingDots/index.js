@@ -8,9 +8,9 @@ class LoadingDots extends Component {
     const {dotStyle} = this.props;
     return (
       <View style={styles.container} {...this.props} >
-        <AnimatedDot key="dot-1" style={dotStyle} delayTime={0}/>
-        <AnimatedDot key="dot-2" style={dotStyle} delayTime={200}/>
-        <AnimatedDot key="dot-3" style={dotStyle} delayTime={400}/>
+        <AnimatedDot style={dotStyle} delayTime={0}/>
+        <AnimatedDot style={dotStyle} delayTime={200}/>
+        <AnimatedDot style={dotStyle} delayTime={400}/>
       </View>
     );
   }
