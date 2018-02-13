@@ -1,11 +1,35 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {uniqueId} from 'lodash';
+import {View} from 'react-native';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+import {ORIENTATION_PORTRAIT} from '../../../constants/screenBreakPoints';
+const id = uniqueId();
 
-export default (props) => (<View style={defaultStyle.container} />);
+const styleSheet = [
+  id,
+  [
+    {
+      query: ORIENTATION_PORTRAIT,
+      style: {
+        container: {
+          height: 20,
+          backgroundColor: '#e5e5e5',
+        },
+      },
+    },
+  ],
+];
 
-const defaultStyle = StyleSheet.create({
-  container: {
-    height: 20,
-    backgroundColor: '#e5e5e5',
-  },
-});
+class StatusBar extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
+  render() {
+    const styles = this.getStyles();
+    return (<View style={styles.container}/>);
+  }
+}
+
+export default responsive(StatusBar);
