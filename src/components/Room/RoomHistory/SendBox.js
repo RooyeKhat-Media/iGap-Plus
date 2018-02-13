@@ -605,6 +605,7 @@ const styles = StyleSheet.create({
   },
   inActiveEmojiPiker: {
     height: 0,
+    display: 'none',
   },
   replyClose: {
     width: 50,
