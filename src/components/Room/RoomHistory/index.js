@@ -101,9 +101,10 @@ class RoomHistoryComponent extends React.PureComponent {
             {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
             {dataProvider ?
               (<RecyclerListView
+                canChangeSize={true}
                 renderAheadOffset={640}
-                dataProvider={dataProvider}
                 layoutProvider={this._layoutProvider}
+                dataProvider={dataProvider}
                 rowRenderer={this.renderItem}
                 onScroll={onScroll}
                 initialRenderIndex={messageList.length - 1}

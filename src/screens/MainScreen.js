@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BackHandler} from 'react-native';
 import PropTypes from 'prop-types';
+import {floor} from 'lodash';
 import {connect} from 'react-redux';
 import {addNavigationHelpers} from 'react-navigation';
 import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
@@ -16,11 +17,18 @@ import {NORMAL_HEIGHT} from '../constants/screenBreakPoints';
 import {responsive} from '../modules/Responsive';
 import putState from '../modules/Entities/RegisteredUsers/index';
 import {getUserId} from '../utils/app';
+import {layoutChangeSecondaryWidth} from '../actions/layout';
+import {getSecondaryWidth} from '../modules/DimensionCalculator/index';
 
 const addPrimaryListener = createReduxBoundAddListener('primary');
 const addSecondaryListener = createReduxBoundAddListener('secondary');
 
 class MainScreen extends Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.secondaryWidth = floor(getSecondaryWidth());
+  }
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
@@ -47,6 +55,15 @@ class MainScreen extends Component {
     return false;
   };
 
+  onSecondaryLayout = () => {
+    const {dispatch} = this.props;
+    const secWidth = floor(getSecondaryWidth());
+    if (this.secondaryWidth !== secWidth) {
+      this.secondaryWidth = secWidth;
+      dispatch(layoutChangeSecondaryWidth(this.secondaryWidth));
+    }
+  };
+
   render() {
     const {dispatch, navSecondary, navPrimary} = this.props;
     const {width} = Device.dimensions.window;
@@ -57,7 +74,7 @@ class MainScreen extends Component {
         navigation={addNavigationHelpers({dispatch, state: navSecondary, addListener: addSecondaryListener})}/>);
     const isSecondaryActive = (navSecondary.index > 0) || (width > NORMAL_HEIGHT);
     return (
-      <MainComponent isSecondaryActive={isSecondaryActive} PrimaryNavigator={primaryNavigator}
+      <MainComponent onSecondaryLayout={this.onSecondaryLayout} isSecondaryActive={isSecondaryActive} PrimaryNavigator={primaryNavigator}
         SecondaryNavigator={secondaryNavigator}/>
     );
   }

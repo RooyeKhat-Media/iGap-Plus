@@ -39,6 +39,7 @@ export default class Image extends MessageElement {
 }
 
 Image.propTypes = {
+  secondaryWidth: PropTypes.number.isRequired,
   message: PropTypes.object.isRequired,
   showText: PropTypes.bool.isRequired,
   downloadedFile: PropTypes.object,

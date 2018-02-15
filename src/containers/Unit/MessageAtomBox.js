@@ -172,6 +172,7 @@ class MessageAtomBox extends Component {
       onMessageLongPress,
       showText,
       isForwarded,
+      layout,
     } = this.props;
 
     switch (message.messageType) {
@@ -185,6 +186,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.IMAGE:
       case Proto.RoomMessageType.IMAGE_TEXT:
         return (<Image
+          secondaryWidth={layout.secondaryWidth}
           isForwarded={isForwarded}
           message={message}
           uploading={uploading}
@@ -197,6 +199,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VIDEO:
       case Proto.RoomMessageType.VIDEO_TEXT:
         return (<Video
+          secondaryWidth={layout.secondaryWidth}
           isForwarded={isForwarded}
           message={message}
           uploading={uploading}
@@ -234,6 +237,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.GIF:
       case Proto.RoomMessageType.GIF_TEXT:
         return (<Gif
+          secondaryWidth={layout.secondaryWidth}
           isForwarded={isForwarded}
           message={message}
           uploading={uploading}
@@ -296,6 +300,7 @@ const makeMapStateToProps = () => {
       smallThumbnailUri: getSmallThumbnailUri(state, props.message.attachment),
       waveformThumbnailUri: getWaveformThumbnailUri(state, props.message.attachment),
       uploading: state.fileManager.upload[getRoomHistoryUploadIdPrefix(props.message.roomId, props.message.id)],
+      layout: state.layout,
     };
   };
 };

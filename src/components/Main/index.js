@@ -17,7 +17,7 @@ class MainComponent extends React.Component {
 
 
   render() {
-    const {isSecondaryActive, PrimaryNavigator, SecondaryNavigator} = this.props;
+    const {onSecondaryLayout, isSecondaryActive, PrimaryNavigator, SecondaryNavigator} = this.props;
     const styles = this.getStyles();
     return (
       <View style={styles.container}>
@@ -26,7 +26,7 @@ class MainComponent extends React.Component {
           <AppModal id={APP_MODAL_ID_PRIMARY}/>
         </View>
         {isSecondaryActive ?
-          (<View style={styles.secondary}>
+          (<View style={styles.secondary} onLayout={onSecondaryLayout}>
             {SecondaryNavigator}
             <AppModal id={APP_MODAL_ID_SECONDARY}/>
           </View>) : null}

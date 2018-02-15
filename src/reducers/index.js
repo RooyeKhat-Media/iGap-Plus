@@ -14,6 +14,7 @@ import methodsReducer from './methods';
 import entities from './entities';
 import messenger from './messenger';
 import {soundPlayer} from './soundPlayer';
+import {layout} from './layout';
 import {METHOD_USER_LOGOUT} from '../actions/methods/user/logout';
 
 const appReducer = combineReducers({
@@ -29,6 +30,7 @@ const appReducer = combineReducers({
   entities,
   messenger,
   soundPlayer,
+  layout,
 });
 
 const rootReducer = (state, action) => {

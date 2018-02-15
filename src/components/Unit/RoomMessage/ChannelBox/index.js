@@ -8,8 +8,7 @@ import MessageBox from '../MessageBox/index';
 import {MCIcon} from '../../../BaseUI/index';
 import AddonTime from '../MessageBox/AddonTime';
 import Avatar from '../../../../containers/Unit/Avatar';
-import style from './index.styles';
-import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import styles from './index.styles';
 import {BOX_TYPE_CHANNEL} from '../../../../modules/DimensionCalculator/index';
 
 class ChannelBox extends Component {
@@ -18,13 +17,8 @@ class ChannelBox extends Component {
     return {boxType: this.context.boxType ? this.context.boxType : BOX_TYPE_CHANNEL};
   }
 
-  getStyles = () => {
-    return MemoizeResponsiveStyleSheet(style);
-  };
-
   render() {
     const {room, message, onMessagePress, onMessageLongPress, showText, isForwarded} = this.props;
-    const styles = this.getStyles();
 
     return (
       <View style={styles.container}>
