@@ -1,5 +1,5 @@
 import {StackNavigator} from 'react-navigation';
-
+import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import {
   AVATAR_LIST_SCREEN,
   CALL_SCREEN,
@@ -87,6 +87,11 @@ export async function goCamera(resolve, reject, CameraMode, denialMessage) {
 export function goVideoPlayer(uri, fileName) {
   navigate(VIDEO_PLAYER, {uri, fileName});
 }
+
+export const middleware = createReactNavigationReduxMiddleware(
+  'secondary',
+  state => state.navSecondary,
+);
 
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},

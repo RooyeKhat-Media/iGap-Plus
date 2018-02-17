@@ -1,5 +1,6 @@
 import React from 'react';
 import {StackNavigator, TabNavigator} from 'react-navigation';
+import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import {navigate, resetPrimaryNavigation} from './index';
 import MainBottom from '../containers/MainBottom';
 
@@ -110,6 +111,11 @@ const tabNav = TabNavigator({
   swipeEnabled: false,
   lazy: true,
 });
+
+export const middleware = createReactNavigationReduxMiddleware(
+  'primary',
+  state => state.navPrimary,
+);
 
 const PrimaryNavigator = StackNavigator({
   [PRIMARY_NAV_TAB]: {

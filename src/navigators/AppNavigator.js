@@ -4,6 +4,7 @@
 
 import {navigate, resetNavigation} from './index';
 import {StackNavigator} from 'react-navigation';
+import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import IntroScreen from '../screens/IntroScreen';
 import UserRegister from '../screens/User/UserRegisterScreen';
 import UserVerify from '../screens/User/UserVerifyScreen';
@@ -91,6 +92,11 @@ export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {
 export function goUserVerifyDeleteScreen(token) {
   navigate(USER_VERIFY_DELETE_SCREEN, {token});
 }
+
+export const middleware = createReactNavigationReduxMiddleware(
+  'app',
+  state => state.nav,
+);
 
 const AppNavigator = StackNavigator({
   [MAIN_SCREEN]: {screen: MainScreen},

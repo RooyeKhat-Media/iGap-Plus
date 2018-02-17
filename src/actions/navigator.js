@@ -2,8 +2,6 @@
  * @flow
  */
 
-import {NavigationAction, NavigationParams} from 'react-navigation/src/TypeDefinition';
-
 export const NAVIGATOR_GO = 'NAVIGATOR_GO';
 
 export const NAVIGATOR_BACK = 'NAVIGATOR_BACK';
@@ -15,8 +13,8 @@ export const PRIMARY_NAVIGATOR_RESET = 'PRIMARY_NAVIGATOR_RESET';
 export const SECONDARY_NAVIGATOR_RESET = 'SECONDARY_NAVIGATOR_RESET';
 
 export function navigatorGo(routeName: string,
-  params?: NavigationParams,
-  action?: NavigationAction) {
+  params,
+  action) {
   return {
     type: NAVIGATOR_GO,
     routeName,

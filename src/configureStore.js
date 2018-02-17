@@ -9,6 +9,10 @@ import apiMiddleware from './modules/Api/middleware';
 import soundPlayerMiddleware from './middlewares/soundPlayer';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
 import reduxLogger from 'redux-logger';
+//Navigation
+import {middleware as appNavigatorMiddleware} from './navigators/AppNavigator';
+import {middleware as primaryNavigatorMiddleware} from './navigators/PrimaryNavigator';
+import {middleware as secondaryNavigatorMiddleware} from './navigators/SecondaryNavigator';
 //Entities
 import entitiesRoomsMiddleware from './modules/Entities/Rooms/middleware';
 import entitiesRegisteredUsersMiddleware from './modules/Entities/RegisteredUsers/middleware';
@@ -23,6 +27,10 @@ function configureStore(preloadedState) {
     apiMiddleware,
     fileManagerMiddleware,
     soundPlayerMiddleware,
+    //Navigation
+    appNavigatorMiddleware,
+    primaryNavigatorMiddleware,
+    secondaryNavigatorMiddleware,
     //Entities
     entitiesRoomsMiddleware,
     entitiesRegisteredUsersMiddleware,

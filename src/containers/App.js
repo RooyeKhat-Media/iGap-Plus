@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
+import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
 import {AppState, BackHandler, Platform, View} from 'react-native';
 
 import {AppModal, StatusBar} from '../components/BaseUI';
@@ -18,6 +19,8 @@ import {getAppTheme} from '../themes';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
 import {APP_MODAL_ID_MAIN, APP_STATE_ACTIVE, APP_STATE_BACKGROUND, APP_STATE_INACTIVE} from '../constants/app';
+
+const addListener = createReduxBoundAddListener('app');
 
 class App extends Component {
 
@@ -90,7 +93,7 @@ class App extends Component {
         <View style={{flex: 1}}>
           <View style={{flex: 1, zIndex: 2}}>
             <StatusBar />
-            <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav})}/>
+            <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav, addListener})}/>
           </View>
           <AppModal id={APP_MODAL_ID_MAIN}/>
         </View>

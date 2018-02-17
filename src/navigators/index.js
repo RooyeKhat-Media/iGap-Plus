@@ -3,15 +3,14 @@
  */
 
 import store from '../configureStore';
-import {NavigationAction, NavigationParams} from 'react-navigation/src/TypeDefinition';
 import {NavigationActions} from 'react-navigation';
 import {navigatorGo, navigatorReset, primaryNavigatorReset, secondaryNavigatorReset} from '../actions/navigator';
 import {PRIMARY_NAV_TAB, SECONDARY_INITIAL_SCREEN} from '../constants/navigators';
 
 
 export function navigate(routeName: string,
-  params?: NavigationParams,
-  action?: NavigationAction) {
+  params,
+  action) {
   store.dispatch(navigatorGo(
     routeName,
     params,

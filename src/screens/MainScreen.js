@@ -3,6 +3,7 @@ import {BackHandler} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers} from 'react-navigation';
+import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
 
 import {primaryNavigatorBack, secondaryNavigatorBack} from '../actions/navigator';
 import {MAIN_SCREEN} from '../constants/navigators';
@@ -16,6 +17,8 @@ import {responsive} from '../modules/Responsive';
 import putState from '../modules/Entities/RegisteredUsers/index';
 import {getUserId} from '../utils/app';
 
+const addPrimaryListener = createReduxBoundAddListener('primary');
+const addSecondaryListener = createReduxBoundAddListener('secondary');
 
 class MainScreen extends Component {
 
@@ -47,9 +50,11 @@ class MainScreen extends Component {
   render() {
     const {dispatch, navSecondary, navPrimary} = this.props;
     const {width} = Device.dimensions.window;
-    const primaryNavigator = (<PrimaryNavigator navigation={addNavigationHelpers({dispatch, state: navPrimary})}/>);
+    const primaryNavigator = (<PrimaryNavigator
+      navigation={addNavigationHelpers({dispatch, state: navPrimary, addListener: addPrimaryListener})}/>);
     const secondaryNavigator = (
-      <SecondaryNavigator navigation={addNavigationHelpers({dispatch, state: navSecondary})}/>);
+      <SecondaryNavigator
+        navigation={addNavigationHelpers({dispatch, state: navSecondary, addListener: addSecondaryListener})}/>);
     const isSecondaryActive = (navSecondary.index > 0) || (width > NORMAL_HEIGHT);
     return (
       <MainComponent isSecondaryActive={isSecondaryActive} PrimaryNavigator={primaryNavigator}
