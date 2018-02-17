@@ -54,7 +54,7 @@
     NSDictionary<NSString *, id> *msg = RCTJSONParse(message, &error);
 
     if (!error) {
-      [_delegate didReceiveWebSocketMessage:msg];
+      [_delegate didReceiveRnWebsocketMessage:msg];
     } else {
       RCTLogError(@"WebSocketManager failed to parse message with error %@\n<message>\n%@\n</message>", error, message);
     }

@@ -146,7 +146,7 @@ class WebSocket extends EventTarget(...WEBSOCKET_EVENTS) {
 
   _registerEvents(): void {
     this._subscriptions = [
-      this._eventEmitter.addListener('websocketMessage', ev => {
+      this._eventEmitter.addListener('rnWebsocketMessage', ev => {
         if (ev.id !== this._socketId) {
           return;
         }
@@ -154,14 +154,14 @@ class WebSocket extends EventTarget(...WEBSOCKET_EVENTS) {
           data: (ev.type === 'binary') ? base64.toByteArray(ev.data).buffer : ev.data,
         }));
       }),
-      this._eventEmitter.addListener('websocketOpen', ev => {
+      this._eventEmitter.addListener('rnWebsocketOpen', ev => {
         if (ev.id !== this._socketId) {
           return;
         }
         this.readyState = this.OPEN;
         this.dispatchEvent(new WebSocketEvent('open'));
       }),
-      this._eventEmitter.addListener('websocketClosed', ev => {
+      this._eventEmitter.addListener('rnWebsocketClosed', ev => {
         if (ev.id !== this._socketId) {
           return;
         }
@@ -173,7 +173,7 @@ class WebSocket extends EventTarget(...WEBSOCKET_EVENTS) {
         this._unregisterEvents();
         this.close();
       }),
-      this._eventEmitter.addListener('websocketFailed', ev => {
+      this._eventEmitter.addListener('rnWebsocketFailed', ev => {
         if (ev.id !== this._socketId) {
           return;
         }

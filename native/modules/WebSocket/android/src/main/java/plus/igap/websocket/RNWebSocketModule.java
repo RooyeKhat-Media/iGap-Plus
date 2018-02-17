@@ -122,7 +122,7 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
         mWebSocketConnections.put(id, webSocket);
         WritableMap params = Arguments.createMap();
         params.putInt("id", id);
-        sendEvent("websocketOpen", params);
+        sendEvent("rnWebsocketOpen", params);
       }
 
       @Override
@@ -131,12 +131,12 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
         params.putInt("id", id);
         params.putInt("code", code);
         params.putString("reason", reason);
-        sendEvent("websocketClosed", params);
+        sendEvent("rnWebsocketClosed", params);
       }
 
       @Override
       public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-        notifyWebSocketFailed(id, t.getMessage());
+        notifyRnWebsocketFailed(id, t.getMessage());
       }
 
       @Override
@@ -145,7 +145,7 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
         params.putInt("id", id);
         params.putString("data", text);
         params.putString("type", "text");
-        sendEvent("websocketMessage", params);
+        sendEvent("rnWebsocketMessage", params);
       }
 
       @Override
@@ -155,7 +155,7 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
         params.putInt("id", id);
         params.putString("data", text);
         params.putString("type", "binary");
-        sendEvent("websocketMessage", params);
+        sendEvent("rnWebsocketMessage", params);
       }
     });
 
@@ -192,7 +192,7 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
     try {
       client.send(message,mask);
     } catch (Exception e) {
-      notifyWebSocketFailed(id, e.getMessage());
+      notifyRnWebsocketFailed(id, e.getMessage());
     }
   }
 
@@ -206,7 +206,7 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
     try {
       client.send(ByteString.decodeBase64(base64String),mask);
     } catch (Exception e) {
-      notifyWebSocketFailed(id, e.getMessage());
+      notifyRnWebsocketFailed(id, e.getMessage());
     }
   }
 
@@ -220,15 +220,15 @@ public class RNWebSocketModule extends ReactContextBaseJavaModule {
     try {
       client.send(ByteString.EMPTY);
     } catch (Exception e) {
-      notifyWebSocketFailed(id, e.getMessage());
+      notifyRnWebsocketFailed(id, e.getMessage());
     }
   }
 
-  private void notifyWebSocketFailed(int id, String message) {
+  private void notifyRnWebsocketFailed(int id, String message) {
     WritableMap params = Arguments.createMap();
     params.putInt("id", id);
     params.putString("message", message);
-    sendEvent("websocketFailed", params);
+    sendEvent("rnWebsocketFailed", params);
   }
 
   /**

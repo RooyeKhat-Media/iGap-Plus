@@ -43,10 +43,10 @@ RCT_EXPORT_MODULE()
 
 - (NSArray *)supportedEvents
 {
-  return @[@"websocketMessage",
-           @"websocketOpen",
-           @"websocketFailed",
-           @"websocketClosed"];
+  return @[@"rnWebsocketMessage",
+           @"rnWebsocketOpen",
+           @"rnWebsocketFailed",
+           @"rnWebsocketClosed"];
 }
 
 - (void)dealloc
@@ -115,7 +115,7 @@ RCT_EXPORT_METHOD(close:(nonnull NSNumber *)socketID)
 - (void)webSocket:(RNSRWebSocket *)webSocket didReceiveMessage:(id)message
 {
   BOOL binary = [message isKindOfClass:[NSData class]];
-  [self sendEventWithName:@"websocketMessage" body:@{
+  [self sendEventWithName:@"rnWebsocketMessage" body:@{
     @"data": binary ? [message base64EncodedStringWithOptions:0] : message,
     @"type": binary ? @"binary" : @"text",
     @"id": webSocket.reactTag
@@ -124,14 +124,14 @@ RCT_EXPORT_METHOD(close:(nonnull NSNumber *)socketID)
 
 - (void)webSocketDidOpen:(RNSRWebSocket *)webSocket
 {
-  [self sendEventWithName:@"websocketOpen" body:@{
+  [self sendEventWithName:@"rnWebsocketOpen" body:@{
     @"id": webSocket.reactTag
   }];
 }
 
 - (void)webSocket:(RNSRWebSocket *)webSocket didFailWithError:(NSError *)error
 {
-  [self sendEventWithName:@"websocketFailed" body:@{
+  [self sendEventWithName:@"rnWebsocketFailed" body:@{
     @"message":error.localizedDescription,
     @"id": webSocket.reactTag
   }];
@@ -140,7 +140,7 @@ RCT_EXPORT_METHOD(close:(nonnull NSNumber *)socketID)
 - (void)webSocket:(RNSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code
            reason:(NSString *)reason wasClean:(BOOL)wasClean
 {
-  [self sendEventWithName:@"websocketClosed" body:@{
+  [self sendEventWithName:@"rnWebsocketClosed" body:@{
     @"code": @(code),
     @"reason": RCTNullIfNil(reason),
     @"clean": @(wasClean),

@@ -12,7 +12,7 @@
 #if RCT_DEV // Only supported in dev mode
 
 @protocol RNWebSocketObserverDelegate
-- (void)didReceiveWebSocketMessage:(NSDictionary<NSString *, id> *)message;
+- (void)didReceiveRnWebsocketMessage:(NSDictionary<NSString *, id> *)message;
 @end
 
 @protocol RNWebSocketObserver
