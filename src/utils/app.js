@@ -277,12 +277,16 @@ export async function importContact() {
     }
   }
 
-  if (contactListExport.length > 0) {
+  let offset = 0;
+  while (offset < contactListExport.length) {
     const userContactImport = new UserContactsImport();
-    userContactImport.setContactsList(contactListExport);
+    userContactImport.setContactsList(contactListExport.slice(offset, offset + 100));
     userContactImport.setForce(false);
-    await  Api.invoke(USER_CONTACTS_IMPORT, userContactImport);
-
+    await Api.invoke(USER_CONTACTS_IMPORT, userContactImport);
+    offset += 100;
+  }
+  // todo USER_CONTACTS_IMPORT_FORBIDDEN error
+  if (contactListExport.length > 0) {
     await MetaData.save(METADATA_USER_CONTACTS, contactList);
   }
 }
