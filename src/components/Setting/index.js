@@ -4,7 +4,7 @@ import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
-import {Confirm, ListItem, Toolbar} from '../BaseUI/index';
+import {Confirm, ListItem, Toolbar, PopupMenu} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
@@ -39,16 +39,10 @@ class SettingComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          rightElement={{
-            menu: {
-              icon: 'more-vert',
-              labels: [
-                intl.formatMessage(i18n.settingLogout),
-                intl.formatMessage(i18n.settingDeleteAccount),
-              ],
-            },
-          }}
-          onRightElementPress={(result) => this.menuClick(result.index)}
+          rightElement={(<PopupMenu actionList={[
+            intl.formatMessage(i18n.settingLogout),
+            intl.formatMessage(i18n.settingDeleteAccount),
+          ]} type={APP_MODAL_ID_PRIMARY} onPress={(result) => this.menuClick(result.index)}/>)}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.settingSetting)}</Text>}
         />
         <ScrollView style={styles.scrollView}>

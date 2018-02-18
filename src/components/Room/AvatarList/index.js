@@ -5,12 +5,13 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import Gallery from 'react-native-image-gallery';
-import {Toolbar} from '../../BaseUI/index';
+import {Toolbar, PopupMenu} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import LoadingDots from '../../BaseUI/LoadingDots/index';
 import {menuAction} from '../../../screens/Room/AvatarListScreen';
 import AvatarBox from '../../../containers/Unit/AvatarBox';
 import {textTitleStyle} from '../../../themes/default/index';
+import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 
 class AvatarListComponent extends Component {
 
@@ -76,13 +77,8 @@ class AvatarListComponent extends Component {
           leftElement="arrow-back"
           onLeftElementPress={goBack}
           centerElement={<Text style={textTitleStyle}>{imageSelectedIndex + 1} / {avatarList.length}</Text>}
-          rightElement={{
-            menu: {
-              icon: 'more-vert',
-              labels: this.menuItem,
-            },
-          }}
-          onRightElementPress={(result) => menuClick(this.menuActionList[result.index], imageSelectedIndex)}
+          rightElement={(<PopupMenu actionList={this.menuItem} type={APP_MODAL_ID_SECONDARY}
+            onPress={(index) => menuClick(this.menuActionList[index], imageSelectedIndex)}/>)}
         />
         <Gallery
           style={styles.galleryStyle}

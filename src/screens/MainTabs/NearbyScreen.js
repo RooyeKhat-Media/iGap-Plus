@@ -49,9 +49,9 @@ class NearbyScreen extends Component {
     });
   }
 
-  toggleMode = (action) => {
-    if (action.index >= 0) {
-      const isMapView = action.index === 1;
+  toggleMode = (index) => {
+    if (index >= 0) {
+      const isMapView = index === 1;
       this.setState({
         mapView: isMapView,
       }, async () => {

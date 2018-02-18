@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {Confirm, Toolbar} from '../../BaseUI/index';
+import {Confirm, Toolbar, PopupMenu} from '../../BaseUI/index';
 import styles from './index.styles';
 import SendBox from './SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
@@ -136,15 +136,7 @@ class RoomHistoryComponent extends React.PureComponent {
       leftElement="arrow-back"
       onLeftElementPress={goBack}
       centerElement={<Text numberOfLines={1} style={textTitleStyle}>{roomTitle}</Text>}
-      rightElement={{
-        menu: {
-          icon: 'more-vert',
-          labels: [
-            'Search',
-            'Report',
-          ],
-        },
-      }}
+      rightElement={(<PopupMenu actionList={['Search', 'Report']} type={APP_MODAL_ID_SECONDARY} onPress={goRoomInfoBtn}/>)}
       onPress={goRoomInfoBtn}
     />);
   }

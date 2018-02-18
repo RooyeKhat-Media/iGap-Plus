@@ -4,10 +4,11 @@ import styleSheet from './index.styles';
 import NearbyMapComponent from './Map';
 import NearbyListComponent from './List';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
-import {DialogModal, MCIcon, Switch, Toolbar} from '../../BaseUI';
+import {DialogModal, MCIcon, Switch, Toolbar, PopupMenu} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
+import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
 
 class NearbyComponent extends Component {
 
@@ -57,25 +58,21 @@ class NearbyComponent extends Component {
       <View style={styles.container}>
         <Toolbar
           leftElement={
-            <Text
-              style={styles.titleText}>
+            <Text style={styles.titleText}>
               {intl.formatMessage(mapView ? i18n.nearbyScreenMapTitle : i18n.nearbyScreenListTitle)}
             </Text>}
-          rightElement={{
-            menu: {
-              icon: 'more-vert',
-              labels: [
-                intl.formatMessage(i18n.nearbyScreenListTitle),
-                intl.formatMessage(i18n.nearbyScreenMapTitle),
-              ],
-            },
-          }}
           centerElement={
             (isRegistered ?
               <TouchableOpacity onPress={registerSwitchChange}>
                 <MCIcon name="earth-off" size={28}/>
               </TouchableOpacity> : '')}
-          onRightElementPress={toggleMode}
+          rightElement={
+            (<PopupMenu actionList={[
+              intl.formatMessage(i18n.nearbyScreenListTitle),
+              intl.formatMessage(i18n.nearbyScreenMapTitle),
+            ]} type={APP_MODAL_ID_PRIMARY}
+            onPress={toggleMode}/>)
+          }
         />
         {this.renderContent()}
         <DialogModal
