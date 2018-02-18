@@ -7,6 +7,7 @@ import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../con
 import {download, downloadingPromise, upload} from '../modules/FileManager';
 import {randomString} from '../utils/core';
 import {Proto} from '../modules/Proto/index';
+import {collect} from '../modules/FileManager';
 
 export const FILE_MANAGER_DOWNLOAD_PENDING = 'FILE_MANAGER_DOWNLOAD_PENDING';
 export const FILE_MANAGER_DOWNLOAD_PROGRESS = 'FILE_MANAGER_DOWNLOAD_PROGRESS';
@@ -21,11 +22,10 @@ export const FILE_MANAGER_UPLOAD_COMPLETED = 'FILE_MANAGER_UPLOAD_COMPLETED';
 export const FILE_MANAGER_UPLOAD_MANUALLY_PAUSED = 'FILE_MANAGER_UPLOAD_MANUALLY_PAUSED';
 export const FILE_MANAGER_UPLOAD_DISPOSED = 'FILE_MANAGER_UPLOAD_DISPOSED';
 
-export function fileManagerDownloadPending(cacheId, uid) {
+export function fileManagerDownloadPending(payload) {
   return {
     type: FILE_MANAGER_DOWNLOAD_PENDING,
-    cacheId,
-    uid,
+    payload,
   };
 }
 
@@ -99,7 +99,7 @@ export function fileManagerDownload(manner, token, selector, size, cacheId, file
     const uid = randomString(8);
     const promise = download(uid, token, selector, size, cacheId, fileName, priority);
     if (selector === Proto.FileDownload.Selector.FILE) {
-      dispatch(fileManagerDownloadPending(cacheId, uid));
+      collect({uid}, cacheId);
     }
     downloadingPromise.set(cacheId, promise);
 

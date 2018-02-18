@@ -17,17 +17,23 @@ export default function(state = initialState, action) {
   let newList = {};
   switch (action.type) {
     case FILE_MANAGER_DOWNLOAD_PENDING:
+      if (action.payload && action.payload.length) {
+        action.payload.forEach(function(data) {
+          newList[data.cacheId] = {
+            status: FILE_MANAGER_DOWNLOAD_STATUS.PENDING,
+            uid: data.uid,
+          };
+        });
+      }
       return {
         ...state,
-        [action.cacheId]: {
-          status: FILE_MANAGER_DOWNLOAD_STATUS.PENDING,
-          uid: action.uid,
-        },
+        ...newList,
       };
     case FILE_MANAGER_DOWNLOAD_PROGRESS:
       if (action.payload && action.payload.length) {
         action.payload.forEach(function(data) {
           newList[data.cacheId] = {
+            ...state[data.cacheId],
             status: FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING,
             progress: data.progress,
           };

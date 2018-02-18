@@ -18,7 +18,7 @@ import _upload from './upload';
 import _info from './info';
 import {
   FILE_MANAGER_DOWNLOAD_AUTO_PAUSED, FILE_MANAGER_DOWNLOAD_COMPLETED,
-  FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED, fileManagerDownloadCompleted, fileManagerDownloadProgress,
+  FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED, fileManagerDownloadCompleted, fileManagerDownloadPending, fileManagerDownloadProgress,
 } from '../../actions/fileManager';
 import Collector from '../Collector';
 import store from '../../configureStore';
@@ -135,9 +135,12 @@ export const {collect} = Collector(
   (collected) => {
     const completedDownloadList = [];
     const processDownloadList = [];
+    const pendingDownloadList = [];
     for (const [cacheId, data] of collected) {
       if (data.uri) {
         completedDownloadList.push({cacheId, uri: data.uri});
+      } else if (data.uid) {
+        pendingDownloadList.push({cacheId, uid: data.uid});
       } else if (data.progress) {
         processDownloadList.push({cacheId, progress: data.progress});
       }
@@ -148,6 +151,9 @@ export const {collect} = Collector(
     }
     if (processDownloadList.length) {
       store.dispatch(fileManagerDownloadProgress(processDownloadList));
+    }
+    if (pendingDownloadList.length) {
+      store.dispatch(fileManagerDownloadPending(pendingDownloadList));
     }
   },
   250
