@@ -26,23 +26,21 @@ class PopupMenu extends Component {
     return (
       <View>
         {element}
-        <Modal ref={this.modalRef} type={type}>
-          <View style={styles.dialogWrap}>
-            <View style={styles.dialog}>
-              {actionList.map((action, index) =>
-                (<ListItem
-                  key={index}
-                  centerElement={{
-                    primaryText: action,
-                  }}
-                  style={styles.listItem}
-                  onPress={() => {
-                    onPress(index);
-                    this.modal.close();
-                  }}
-                />)
-              )}
-            </View>
+        <Modal ref={this.modalRef} type={type} style={styles.dialogWrap}>
+          <View style={styles.dialog}>
+            {actionList.map((action, index) =>
+              (<ListItem
+                key={index}
+                centerElement={{
+                  primaryText: action,
+                }}
+                style={styles.listItem}
+                onPress={() => {
+                  onPress(index);
+                  this.modal.close();
+                }}
+              />)
+            )}
           </View>
         </Modal>
       </View>);
@@ -67,10 +65,11 @@ export default PopupMenu;
 
 const styles = StyleSheet.create({
   dialogWrap: {
+    alignSelf: 'center',
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 5,
   },
   dialog: {
     width: 280,
