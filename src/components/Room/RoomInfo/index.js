@@ -7,17 +7,26 @@ import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
-import {goAvatarList} from '../../../navigators/SecondaryNavigator';
 import {textTitleStyle} from '../../../themes/default/index';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import RichTextView from '../../../modules/RichTextView/index';
 
 class RoomInfoComponent extends React.Component {
   render() {
     const {
-      intl, room, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
+      intl, room, roomPeer, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
       addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, goBack,
     } = this.props;
     const styles = this.getStyles();
+    
+    let description;
+    if (room.groupDescription) {
+      description = room.groupDescription;
+    } else if (room.channelDescription) {
+      description = room.channelDescription;
+    } else if (roomPeer) {
+      description = roomPeer.bio;
+    }
 
     return (
       <View style={styles.container}>
@@ -87,10 +96,11 @@ class RoomInfoComponent extends React.Component {
                   secondaryText: '2 days ago - (Not Implemented)',
                 }}
               />
-              {(room.groupPublicUsername || room.channelPublicUsername || (room.chatPeer && room.chatPeer.username)) && (
+              {(description) && (<View style={styles.roomDescription}><RichTextView rawText={description}/></View>)}
+              {(room.groupPublicUsername || room.channelPublicUsername || (roomPeer && roomPeer.username)) && (
                 <ListItem
                   centerElement={{
-                    primaryText: '@' + (room.groupPublicUsername || room.channelPublicUsername || (room.chatPeer && room.chatPeer.username)),
+                    primaryText: '@' + (room.groupPublicUsername || room.channelPublicUsername || (roomPeer && roomPeer.username)),
                     secondaryText: intl.formatMessage(i18n.roomInfoUsername),
                   }}
                 />
@@ -281,6 +291,7 @@ class RoomInfoComponent extends React.Component {
 RoomInfoComponent.propTypes = {
   intl: intlShape.isRequired,
   room: PropTypes.object,
+  roomPeer: PropTypes.object,
   access: PropTypes.object,
   countRoomHistory: PropTypes.shape({
     media: PropTypes.number.isRequired,

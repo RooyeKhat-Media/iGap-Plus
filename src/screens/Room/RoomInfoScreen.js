@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import RoomViewComponent from '../../components/Room/RoomInfo';
-import {getRoom} from '../../selector/entities/room';
+import {getRoom, getRoomPeer} from '../../selector/entities/room';
 import {connect} from 'react-redux';
 import putState from '../../modules/Entities/Rooms/index';
 import {
@@ -247,11 +247,11 @@ class RoomInfoScreen extends Component {
       return;
     }
     goAvatarList(room.id, room.chatPeer);
-  }
+  };
 
   render() {
     const {access} = this.state;
-    const {room, countRoomHistory} = this.props;
+    const {room, roomPeer, countRoomHistory} = this.props;
     if (!room) {
       return null;
     }
@@ -259,6 +259,7 @@ class RoomInfoScreen extends Component {
     return (
       <RoomViewComponent
         room={room}
+        roomPeer={roomPeer}
         access={access}
         actions={actions}
         actionClick={this.actionClick}
@@ -284,6 +285,7 @@ class RoomInfoScreen extends Component {
 
 RoomInfoScreen.propTypes = {
   room: PropTypes.object,
+  roomPeer: PropTypes.object,
   countRoomHistory: PropTypes.shape({
     media: PropTypes.number.isRequired,
     image: PropTypes.number.isRequired,
@@ -300,6 +302,7 @@ const makeMapStateToProps = () => {
   return (state, props) => {
     return {
       room: getRoom(state, props),
+      roomPeer: getRoomPeer(state, props),
       countRoomHistory: getCountRoomHistory(state, props),
     };
   };

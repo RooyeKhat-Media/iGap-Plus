@@ -12,6 +12,10 @@ export default [
         container: {
           flex: 1,
         },
+        roomDescription: {
+          paddingLeft: 15,
+          paddingRight: 15,
+        },
         scroll: {},
         avatarWrap: {
           height: 200,
