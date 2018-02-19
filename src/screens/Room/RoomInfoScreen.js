@@ -11,7 +11,7 @@ import {
   ChatClearMessage,
   ChatDelete,
   ClientCountRoomHistory,
-  ClientJoinByUsername,
+  ClientJoinByUsername, ClientMuteRoom,
   GroupAddMember,
   GroupClearMessage,
   GroupDelete,
@@ -25,7 +25,7 @@ import {
   CHAT_CLEAR_MESSAGE,
   CHAT_DELETE,
   CLIENT_COUNT_ROOM_HISTORY,
-  CLIENT_JOIN_BY_USERNAME,
+  CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM,
   GROUP_ADD_MEMBER,
   GROUP_CLEAR_MESSAGE,
   GROUP_DELETE,
@@ -56,7 +56,9 @@ class RoomInfoScreen extends Component {
 
   constructor(props) {
     super(props);
+    const {room} = this.props;
     this.state = {
+      roomMute: room.roomMute,
       access: {
         canSendMessage: false,
         canCall: false,
@@ -249,8 +251,22 @@ class RoomInfoScreen extends Component {
     goAvatarList(room.id, room.chatPeer);
   };
 
+  toggleMute = () => {
+    const {room} = this.props;
+    let {roomMute} = this.state;
+    if (roomMute !== room.roomMute) {
+      return;
+    }
+    roomMute = room.roomMute === Proto.RoomMute.UNMUTE ? Proto.RoomMute.MUTE : Proto.RoomMute.UNMUTE;
+    const clientMuteRoom = new ClientMuteRoom();
+    clientMuteRoom.setRoomId(room.longId);
+    clientMuteRoom.setRoomMute(roomMute);
+    Api.invoke(CLIENT_MUTE_ROOM, clientMuteRoom);
+    this.setState({roomMute});
+  };
+
   render() {
-    const {access} = this.state;
+    const {access, roomMute} = this.state;
     const {room, roomPeer, countRoomHistory} = this.props;
     if (!room) {
       return null;
@@ -260,6 +276,7 @@ class RoomInfoScreen extends Component {
       <RoomViewComponent
         room={room}
         roomPeer={roomPeer}
+        roomMute={roomMute}
         access={access}
         actions={actions}
         actionClick={this.actionClick}
@@ -277,6 +294,7 @@ class RoomInfoScreen extends Component {
         clearHistory={this.clearHistory}
         deleteRoom={this.deleteRoom}
         goAvatarList={this.avatarList}
+        toggleMute={this.toggleMute}
         goBack={this.props.navigation.goBack}
       />
     );

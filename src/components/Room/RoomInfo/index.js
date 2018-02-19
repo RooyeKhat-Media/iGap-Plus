@@ -10,12 +10,13 @@ import styleSheet from './index.styles';
 import {textTitleStyle} from '../../../themes/default/index';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import RichTextView from '../../../modules/RichTextView/index';
+import {Proto} from "../../../modules/Proto/index";
 
 class RoomInfoComponent extends React.Component {
   render() {
     const {
-      intl, room, roomPeer, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
-      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, goBack,
+      intl, room, roomPeer, roomMute, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
+      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack,
     } = this.props;
     const styles = this.getStyles();
     
@@ -135,7 +136,7 @@ class RoomInfoComponent extends React.Component {
                 centerElement={{
                   primaryText: intl.formatMessage(i18n.roomInfoMuteNotifications),
                 }}
-                rightElement={<Switch/>}
+                rightElement={<Switch value={roomMute === Proto.RoomMute.UNMUTE} onValueChange={toggleMute}/>}
                 onPress={notification}
                 style={styles.listItem}
               />
@@ -292,6 +293,7 @@ RoomInfoComponent.propTypes = {
   intl: intlShape.isRequired,
   room: PropTypes.object,
   roomPeer: PropTypes.object,
+  roomMute: PropTypes.number,
   access: PropTypes.object,
   countRoomHistory: PropTypes.shape({
     media: PropTypes.number.isRequired,
@@ -303,6 +305,7 @@ RoomInfoComponent.propTypes = {
     file: PropTypes.number.isRequired,
     url: PropTypes.number.isRequired,
   }),
+  toggleMute: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   actionClick: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
