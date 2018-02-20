@@ -41,8 +41,8 @@ export function goRoomInfo(roomId) {
   navigate(ROOM_INFO_SCREEN, {roomId});
 }
 
-export function goCall(roomId) {
-  navigate(CALL_SCREEN, {roomId});
+export function goCall(userId, inComing, signalingType) {
+  navigate(CALL_SCREEN, {userId, inComing, signalingType});
 }
 
 export function goRoomEdit(roomId) {

@@ -714,7 +714,61 @@ export default {
     defaultMessage: 'iGap Call',
     description: 'call screen',
   },
-
+  callInCall: {
+    id: 'call.inCall',
+    defaultMessage: 'in Call',
+    description: 'call screen',
+  },
+  callOutCall: {
+    id: 'call.outCall',
+    defaultMessage: 'out Call',
+    description: 'call screen',
+  },
+  callDisconnected: {
+    id: 'call.disconnected',
+    defaultMessage: 'Disconnected',
+    description: 'call screen',
+  },
+  callCalling: {
+    id: 'call.calling',
+    defaultMessage: 'Calling',
+    description: 'call screen',
+  },
+  callRinging: {
+    id: 'call.ringing',
+    defaultMessage: 'Ringing',
+    description: 'call screen',
+  },
+  callConnecting: {
+    id: 'call.connecting',
+    defaultMessage: 'Connecting',
+    description: 'call screen',
+  },
+  callConnected: {
+    id: 'call.connected',
+    defaultMessage: 'Connected',
+    description: 'call screen',
+  },
+  callRejected: {
+    id: 'call.rejected',
+    defaultMessage: 'Rejected',
+    description: 'call screen',
+  },
+  callNotAnswered: {
+    id: 'call.notAnswered',
+    defaultMessage: 'Not Answered',
+    description: 'call screen',
+  },
+  callUnavailable: {
+    id: 'call.unavailable',
+    defaultMessage: 'unavailable',
+    description: 'call screen',
+  },
+  callBusy: {
+    id: 'call.Busy',
+    defaultMessage: 'Busy',
+    description: 'call screen',
+  },
   groupCreateSelectContactTitle: {
     id: 'groupCreate.selectContactTitle',
     defaultMessage: 'New Group with...',

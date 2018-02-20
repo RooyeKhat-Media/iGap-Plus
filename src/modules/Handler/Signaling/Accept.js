@@ -1,4 +1,5 @@
 import Base from '../Base';
+import Call from '../../Call/index';
 
 /**
  * @property {ProtoSignalingAccept} _request
@@ -6,6 +7,8 @@ import Base from '../Base';
  */
 export default class Accept extends Base {
   handle() {
-    console.error('Accept', 'Not implemented yet', this);
+    if (!this._request) {
+      Call.instance.onAccept(this._response.getCalledSdp());
+    }
   }
 }

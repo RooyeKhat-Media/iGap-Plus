@@ -6,6 +6,7 @@ import {applyMiddleware, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
+import callMiddleware from './modules/Call/middleware';
 import soundPlayerMiddleware from './middlewares/soundPlayer';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
 import reduxLogger from 'redux-logger';
@@ -25,6 +26,7 @@ function configureStore(preloadedState) {
   const middlewares = [
     thunkMiddleware,
     apiMiddleware,
+    callMiddleware,
     fileManagerMiddleware,
     soundPlayerMiddleware,
     //Navigation

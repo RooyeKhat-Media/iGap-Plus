@@ -12,6 +12,7 @@ import {userSession} from './user/session';
 import {selfRemove} from './user/profile/selfRemove';
 import {getAvatarList} from './rooms/getAvatarList';
 import {getActionList} from './rooms/getActionList';
+import {callAction} from './signaling/callAction';
 
 
 const methodsReducer = combineReducers({
@@ -28,5 +29,6 @@ const methodsReducer = combineReducers({
   selfRemove,
   getAvatarList,
   getActionList,
+  callAction,
 });
 export default methodsReducer;

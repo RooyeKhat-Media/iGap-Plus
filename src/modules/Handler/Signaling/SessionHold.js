@@ -1,4 +1,5 @@
 import Base from '../Base';
+import Call from '../../Call/index';
 
 /**
  * @property {ProtoSignalingSessionHold} _request
@@ -6,6 +7,6 @@ import Base from '../Base';
  */
 export default class SessionHold extends Base {
   handle() {
-    console.error('SessionHold', 'Not implemented yet', this);
+    Call.instance.onHold(this._response.getHold());
   }
 }

@@ -24,11 +24,23 @@ const styles = StyleSheet.create({
 
 class BlinkRecorder extends Component {
 
+  static defaultProps = {
+    showCircle: true,
+    startTime: 0,
+  };
+
   constructor(props) {
     super(props);
+
+    const {startTime} = this.props;
+    let startValue = 0;
+    if (startTime > 0) {
+      startValue = ( new Date().getTime() - startTime) / 1000;
+    }
+
     this.state = {
       showRedCircle: false,
-      timeValue: 0,
+      timeValue: startValue,
     };
   }
 
@@ -50,8 +62,8 @@ class BlinkRecorder extends Component {
   render() {
     return (
       <View style={styles.row}>
-        <View
-          style={[styles.circle, this.state.showRedCircle ? {backgroundColor: 'red'} : {backgroundColor: 'white'}]}/>
+        {this.props.showCircle && <View
+          style={[styles.circle, this.state.showRedCircle ? {backgroundColor: 'red'} : {backgroundColor: 'white'}]}/>}
         <Text style={[styles.textTimer, {color: this.props.textColor}]}>{toHHMMSS(this.state.timeValue)}</Text>
       </View>
     );
@@ -60,6 +72,8 @@ class BlinkRecorder extends Component {
 
 BlinkRecorder.propTypes = {
   textColor: PropTypes.string,
+  showCircle: PropTypes.bool,
+  startTime: PropTypes.number,
 };
 
 export default BlinkRecorder;

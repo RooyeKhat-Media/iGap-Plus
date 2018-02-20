@@ -1,4 +1,5 @@
 import Base from '../Base';
+import Call from '../../Call/index';
 
 /**
  * @property {ProtoSignalingCandidate} _request
@@ -6,6 +7,8 @@ import Base from '../Base';
  */
 export default class Candidate extends Base {
   handle() {
-    console.error('Candidate', 'Not implemented yet', this);
+    if (!this._request) {
+      Call.instance.onCandidate(this._response.getPeerSdpMId(), this._response.getPeerSdpMLineIndex(), this._response.getPeerCandidate());
+    }
   }
 }

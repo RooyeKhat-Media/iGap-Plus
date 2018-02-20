@@ -50,8 +50,9 @@ export default [
         rowField: {
           flexDirection: 'row',
           justifyContent: 'space-around',
-          marginTop: 10,
-          marginBottom: 10,
+          marginTop: 7,
+          marginBottom: 7,
+          height: 53,
         },
         activeIcon: {
           color: '#000',

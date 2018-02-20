@@ -1,4 +1,6 @@
 import Base from '../Base';
+import {status} from '../../../actions/methods/signaling/callAction';
+import {SIGNALING_STATUS} from '../../../constants/signaling';
 
 /**
  * @property {ProtoSignalingRinging} _request
@@ -6,6 +8,8 @@ import Base from '../Base';
  */
 export default class Ringing extends Base {
   handle() {
-    console.error('Ringing', 'Not implemented yet', this);
+    if (!this._request) {
+      this.dispatch(status(SIGNALING_STATUS.RINGING));
+    }
   }
 }
