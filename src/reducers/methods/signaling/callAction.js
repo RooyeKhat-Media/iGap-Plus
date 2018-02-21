@@ -7,6 +7,7 @@ import {
   METHOD_SIGNALING_IS_IN_CALL,
   METHOD_SIGNALING_REMOTE_URL,
   METHOD_SIGNALING_RESET,
+  METHOD_SIGNALING_SET_PERMISSION,
   METHOD_SIGNALING_STATUS,
   METHOD_SIGNALING_TOGGLE_MIC,
   METHOD_SIGNALING_TOGGLE_SPEAKER,
@@ -22,6 +23,10 @@ const defaultValue = {
   startTime: 0,
   isInCall: false,
   remoteUrl: '',
+  voiceCalling: false,
+  videoCalling: false,
+  screenSharing: false,
+  secretChat: false,
 };
 
 export function callAction(state = defaultValue, action) {
@@ -30,6 +35,10 @@ export function callAction(state = defaultValue, action) {
     case METHOD_SIGNALING_RESET:
       return {
         ...defaultValue,
+        voiceCalling: state.voiceCalling,
+        videoCalling: state.videoCalling,
+        screenSharing: state.screenSharing,
+        secretChat: state.secretChat,
       };
     case METHOD_SIGNALING_REMOTE_URL:
       return {
@@ -66,6 +75,14 @@ export function callAction(state = defaultValue, action) {
       return {
         ...state,
         isInCall: action.isInCall,
+      };
+    case METHOD_SIGNALING_SET_PERMISSION:
+      return {
+        ...state,
+        voiceCalling: action.voiceCalling,
+        videoCalling: action.videoCalling,
+        screenSharing: action.screenSharing,
+        secretChat: action.secretChat,
       };
     default:
       return state;

@@ -10,6 +10,7 @@ import {makeGetContactList} from '../../selector/methods/user/contacts/getList';
 import {connect} from 'react-redux';
 import {getPeerRoomId} from '../../utils/messenger';
 import {goRoomHistory} from '../../navigators/SecondaryNavigator';
+import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
 
 class NewScreen extends Component {
 
@@ -35,14 +36,15 @@ class NewScreen extends Component {
   };
 
   render() {
-    const {contactList} = this.props;
+    const {contactList, callAction} = this.props;
     return (
       <NewComponent
         contactList={contactList}
         goContactNew={goContactNew}
         goGroupCreate={this.newGroupBtn}
         onUserPress={this.onUserPress}
-        goChannelCreate={this.newChannelBtn}/>
+        goChannelCreate={this.newChannelBtn}
+        callAction={callAction}/>
     );
   }
 }
@@ -52,6 +54,7 @@ const makeMapStateToProps = () => {
   return (state, props) => {
     return {
       contactList: getContactList(state),
+      callAction: getCallPermission(state),
     };
   };
 };

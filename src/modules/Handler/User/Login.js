@@ -5,6 +5,9 @@ import {clientStatusChanged} from '../../../actions/api';
 import Client from '../../Api/Client';
 import {serverRoomsState} from '../../Messenger/Rooms';
 import {importContact} from '../../../utils/app';
+import Api from '../../Api/index';
+import {SIGNALING_GET_CONFIGURATION} from '../../../constants/methods/index';
+import {SignalingGetConfiguration} from '../../Proto/index';
 
 /**
  * @property {ProtoUserLogin} _request
@@ -17,6 +20,7 @@ export default class Login extends Base {
 
     Client.instance.loggedIn = true;
     store.dispatch(clientStatusChanged(CLIENT_STATUS.LOGGED_IN));
+    Api.invoke(SIGNALING_GET_CONFIGURATION, new SignalingGetConfiguration());
 
     await serverRoomsState();
     await importContact();

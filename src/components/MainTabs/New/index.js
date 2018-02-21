@@ -7,6 +7,10 @@ import {ListItem, MCIcon, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import {injectIntl} from 'react-intl';
 import UserListItem from '../../../containers/Unit/UserListItem';
+import Avatar from '../../../containers/Unit/Avatar';
+import {ListItem as BaseListItem} from '../../BaseUI/index';
+import {goCall} from '../../../navigators/SecondaryNavigator';
+import {Proto} from '../../../modules/Proto/index';
 
 class NewComponent extends Component {
 
@@ -23,7 +27,7 @@ class NewComponent extends Component {
   };
 
   render() {
-    const {intl, contactList, onUserPress, goContactNew, goGroupCreate, goChannelCreate} = this.props;
+    const {intl, contactList, goContactNew, goGroupCreate, goChannelCreate} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -92,10 +96,40 @@ class NewComponent extends Component {
           {contactList.length ? <FlatList
             data={contactList}
             keyExtractor={(item, index) => ('contact-' + item.id)}
-            renderItem={({item}) => <UserListItem userId={item.id} onPress={onUserPress} divider={item.divider}/>}
+            extraData={this.props.callAction}
+            renderItem={({item}) => <UserListItem userId={item.id} divider={item.divider}
+              render={(props) => this.renderItem(props)}/>}
           /> : null}
 
         </ScrollView>
+      </View>
+    );
+  }
+
+  renderItem = (userProps) => {
+    const {divider, user} = userProps;
+    const {onUserPress, callAction} = this.props;
+
+    const styles = this.getStyles();
+    return (
+      <View>
+        {divider ? (<Text style={styles.dividerHeader}>{divider}</Text>) : null}
+        <BaseListItem
+          leftElement={<Avatar userId={user.id} size={52}/>}
+          centerElement={{primaryText: user.displayName, secondaryText: user.phone.toString()}}
+          rightElement={
+            <View style={styles.iconsLayout}>
+              <MCIcon name="message-text" size={36} style={styles.icon} onPress={() => onUserPress(user.id)}/>
+              {callAction.video &&
+              <MCIcon name="message-video" size={36} style={styles.icon}
+                onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VIDEO_CALLING)}/>
+              }
+              {callAction.voice &&
+              <MCIcon name="phone" size={32} style={styles.icon}
+                onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VOICE_CALLING)}/>
+              }
+            </View>}
+        />
       </View>
     );
   }
@@ -105,6 +139,7 @@ NewComponent.propTypes = {
   goContactNew: PropTypes.func.isRequired,
   goGroupCreate: PropTypes.func.isRequired,
   goChannelCreate: PropTypes.func.isRequired,
+  callAction: PropTypes.object.isRequired,
 };
 
 export default injectIntl(NewComponent);

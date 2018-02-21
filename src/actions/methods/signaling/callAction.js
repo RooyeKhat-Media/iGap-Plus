@@ -5,6 +5,7 @@ export const METHOD_SIGNALING_CALL_INFO = 'METHOD_SIGNALING_CALL_INFO';
 export const METHOD_SIGNALING_STATUS = 'METHOD_SIGNALING_STATUS';
 export const METHOD_SIGNALING_IS_IN_CALL = 'METHOD_SIGNALING_IS_IN_CALL';
 export const METHOD_SIGNALING_REMOTE_URL = 'METHOD_SIGNALING_REMOTE_URL';
+export const METHOD_SIGNALING_SET_PERMISSION = 'METHOD_SIGNALING_SET_PERMISSION';
 
 export function reset() {
   return {
@@ -51,5 +52,15 @@ export function remoteUrl(remoteUrl) {
   return {
     type: METHOD_SIGNALING_REMOTE_URL,
     remoteUrl,
+  };
+}
+
+export function setWebRtcPermission(voiceCalling, videoCalling, screenSharing, secretChat) {
+  return {
+    type: METHOD_SIGNALING_SET_PERMISSION,
+    voiceCalling,
+    videoCalling,
+    screenSharing,
+    secretChat,
   };
 }
