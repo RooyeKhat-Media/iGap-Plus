@@ -1,5 +1,5 @@
 import {uniqueId} from 'lodash';
-import {black200, gray500, gray800, primary} from '../../themes/default/index';
+import {black200, gray500, gray800, primary, white} from '../../themes/default/index';
 import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const id = uniqueId();
@@ -25,7 +25,6 @@ export default [
           backgroundColor: primary + '88',
         },
         layoutCall: {
-          marginTop: -35,
           height: 70,
           flexDirection: 'row',
           justifyContent: 'center',
@@ -50,9 +49,8 @@ export default [
         rowField: {
           flexDirection: 'row',
           justifyContent: 'space-around',
-          marginTop: 7,
-          marginBottom: 7,
           height: 53,
+          marginTop: 4,
         },
         activeIcon: {
           color: '#000',
@@ -82,7 +80,31 @@ export default [
           color: black200,
           fontSize: 11,
           alignSelf: 'center',
-          marginBottom: 20,
+          marginBottom: 7,
+        },
+        rtcViewRemote: {
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+          position: 'absolute',
+        },
+        rtcViewSelf: {
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          margin: 5,
+        },
+        buttonLayout: {
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          left: 0,
+        },
+
+        whiteBackground: {
+          backgroundColor: white + '88',
+          marginTop: 5,
         },
       },
     },

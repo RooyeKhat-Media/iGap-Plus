@@ -10,6 +10,9 @@ import styleSheet from './index.styles';
 import {red} from '../../themes/default/index';
 import {SIGNALING_ACTION, SIGNALING_STATUS} from '../../constants/signaling';
 import BlinkRecorder from '../General/Camera/BlinkRecorder';
+import {RTCView} from 'react-native-webrtc';
+import {Proto} from '../../modules/Proto/index';
+import {getSecondaryWidth} from '../../modules/DimensionCalculator/index';
 
 class CallComponent extends Component {
 
@@ -17,6 +20,7 @@ class CallComponent extends Component {
     super(props);
     this.state = {
       imageSize: null,
+      showLayoutButton: true,
     };
   }
 
@@ -64,29 +68,49 @@ class CallComponent extends Component {
     return value;
   }
 
+  onLayoutPress = () => {
+    if (this.props.callAction.signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
+      this.setState({showLayoutButton: !this.state.showLayoutButton});
+    }
+  }
 
   render() {
     const styles = this.getStyles();
     const {intl, callAction, callBack, user} = this.props;
 
-    const showButton = callAction.status === SIGNALING_STATUS.CONNECTED || !callAction.incoming;
+    const connected = callAction.status === SIGNALING_STATUS.CONNECTED;
+    const showAvatar = this.state.imageSize && (callAction.signalingType === Proto.SignalingOffer.Type.VOICE_CALLING);
+    const videoCalling = callAction.signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING;
+    const showVideo = videoCalling && connected;
+    const showButton = connected || !callAction.incoming;
     const showChatAndAnswer = callAction.status === SIGNALING_STATUS.CALLING;
 
-    return (
-      <View style={styles.container}>
+    const screenWidth = getSecondaryWidth();
+    const smallCameraWidth = screenWidth / 3;
 
-        <View style={styles.avatar}
-          onLayout={(event) => {
-            this.setState({imageSize: event.nativeEvent.layout.height});
-          }}>
-          {this.state.imageSize && (
-            <Avatar userId={callAction.peerUserId} size={this.state.imageSize} circle={false}/>)}
-          <View style={styles.blueForeground}/>
+    return (
+
+      <TouchableOpacity activeOpacity={1} style={styles.container} onPress={this.onLayoutPress}>
+        <View style={styles.avatar} onLayout={(event) => {
+          this.setState({imageSize: event.nativeEvent.layout.height});
+        }}>
+          {showAvatar && (<Avatar userId={callAction.peerUserId} size={this.state.imageSize} circle={false}/>)}
+          {showAvatar && <View style={styles.blueForeground}/>}
+          {showVideo && <View style={styles.rtcViewRemote}>
+            <RTCView streamURL={callAction.remoteUrl} objectFit={'cover'}
+              style={{width: screenWidth, height: this.state.imageSize}}/>
+          </View>}
+          {videoCalling &&
+          <View style={styles.rtcViewSelf}>
+            <RTCView streamURL={callAction.selfRemoteUrl} objectFit={'cover'}
+              style={{width: smallCameraWidth, height: smallCameraWidth}}/>
+          </View>}
+
         </View>
 
-        {/*<RTCView  streamURL={callAction.remoteUrl} style={{ width: 500, height: 300, backgroundColor:'#987'}}/>*/}
+        {this.state.showLayoutButton &&
+        <View style={styles.buttonLayout}>
 
-        <View>
           <View style={styles.layoutCall}>
             {(callAction.incoming && showChatAndAnswer) &&
             <TouchableOpacity onPress={() => {
@@ -97,7 +121,8 @@ class CallComponent extends Component {
             }
             {(callAction.incoming && showChatAndAnswer) &&
             <TouchableOpacity onPress={() => callBack(SIGNALING_ACTION.ANSWER)}>
-              <CircleIcon icon="call-end" iconSize={35} size={70} iconColor="#2AEDEA" style={styles.callIcon}/>
+              <CircleIcon icon={videoCalling ? 'videocam' : 'call-end'} iconSize={35} size={70} iconColor="#2AEDEA"
+                style={styles.callIcon}/>
             </TouchableOpacity>
             }
 
@@ -107,61 +132,67 @@ class CallComponent extends Component {
 
           </View>
 
-          <View style={styles.rowField}>
-            {
-              showButton &&
-              <TouchableOpacity style={styles.layoutItem} onPress={() => callBack(SIGNALING_ACTION.TOGGLE_MIC)}>
-                <Icon name={callAction.mic ? 'mic' : 'mic-off'}
-                  style={callAction.mic ? styles.activeIcon : styles.inActiveIcon} size={24}/>
-                <Text
-                  style={callAction.mic ? styles.activeText : styles.inActiveText}>{intl.formatMessage(i18n.callMute)}</Text>
-              </TouchableOpacity>
-            }
-            <View style={styles.layoutItem}>
-              {/*<Icon name="more-vert" style={styles.activeIcon} size={24}/>*/}
-            </View>
-
-            {
-              showButton &&
-              <TouchableOpacity style={styles.layoutItem} onPress={() => callBack(SIGNALING_ACTION.TOGGLE_SPEAKER)}>
-                <Icon name={callAction.speaker ? 'volume-up' : 'volume-off'}
-                  style={callAction.speaker ? styles.activeIcon : styles.inActiveIcon} size={24}/>
-                <Text
-                  style={callAction.speaker ? styles.activeText : styles.inActiveText}>{intl.formatMessage(i18n.callSpeaker)}</Text>
-              </TouchableOpacity>
-            }
-          </View>
-
-          <View style={styles.rowField}>
-            {
-              showButton &&
-              <TouchableOpacity style={styles.layoutItem} onPress={() => callBack(SIGNALING_ACTION.CHAT)}>
-                <Icon name="chat" style={styles.activeIcon} size={24}/>
-                <Text style={styles.activeText}>{intl.formatMessage(i18n.callSendMessage)}</Text>
-              </TouchableOpacity>
-            }
-            <View style={styles.layoutItem}>
+          <View style={styles.whiteBackground}>
+            <View style={styles.rowField}>
               {
-                callAction.status === SIGNALING_STATUS.CONNECTED ?
-                  <BlinkRecorder textColor="black" showCircle={false} startTime={callAction.startTime}/>
-                  :
-                  <Text style={styles.activeText}>{this.getStatusString(callAction.status)}</Text>
+                showButton &&
+                <TouchableOpacity style={styles.layoutItem} onPress={() => callBack(SIGNALING_ACTION.TOGGLE_MIC)}>
+                  <Icon name={callAction.mic ? 'mic' : 'mic-off'}
+                    style={callAction.mic ? styles.activeIcon : styles.inActiveIcon} size={24}/>
+                  <Text
+                    style={callAction.mic ? styles.activeText : styles.inActiveText}>{intl.formatMessage(i18n.callMute)}</Text>
+                </TouchableOpacity>
+              }
+              <View style={styles.layoutItem}>
+                {/*<Icon name="more-vert" style={styles.activeIcon} size={24}/>*/}
+              </View>
+
+              {
+                showButton &&
+                <TouchableOpacity style={styles.layoutItem} onPress={() => callBack(SIGNALING_ACTION.TOGGLE_SPEAKER)}>
+                  <Icon name={callAction.speaker ? 'volume-up' : 'volume-off'}
+                    style={callAction.speaker ? styles.activeIcon : styles.inActiveIcon} size={24}/>
+                  <Text
+                    style={callAction.speaker ? styles.activeText : styles.inActiveText}>{intl.formatMessage(i18n.callSpeaker)}</Text>
+                </TouchableOpacity>
               }
             </View>
-            {
-              showButton &&
-              <TouchableOpacity style={styles.layoutItem} onPress={this.keypadClick}>
-                <Icon name="dialpad" style={styles.activeIcon} size={24}/>
-                <Text style={styles.activeText}> {intl.formatMessage(i18n.callKeyPad)}</Text>
-              </TouchableOpacity>
-            }
+
+            <View style={styles.rowField}>
+              {
+                showButton &&
+                <TouchableOpacity style={styles.layoutItem} onPress={() => callBack(SIGNALING_ACTION.CHAT)}>
+                  <Icon name="chat" style={styles.activeIcon} size={24}/>
+                  <Text style={styles.activeText}>{intl.formatMessage(i18n.callSendMessage)}</Text>
+                </TouchableOpacity>
+              }
+              <View style={styles.layoutItem}>
+                {
+                  callAction.status === SIGNALING_STATUS.CONNECTED ?
+                    <BlinkRecorder textColor="black" showCircle={false} startTime={callAction.startTime}/>
+                    :
+                    <Text style={styles.activeText}>{this.getStatusString(callAction.status)}</Text>
+                }
+              </View>
+              {
+                showButton &&
+                <TouchableOpacity style={styles.layoutItem} onPress={this.keypadClick}>
+                  <Icon name="dialpad" style={styles.activeIcon} size={24}/>
+                  <Text style={styles.activeText}> {intl.formatMessage(i18n.callKeyPad)}</Text>
+                </TouchableOpacity>
+              }
+            </View>
+
+            <Text style={styles.textName}>{user && user.firstName}</Text>
+
+            <Text
+              style={styles.textigapCall}>{intl.formatMessage(i18n.calliGapCall) + ' / '}{callAction.incoming ?
+                intl.formatMessage(i18n.callInCall) : intl.formatMessage(i18n.callOutCall)}</Text>
           </View>
 
-          <Text style={styles.textName}>{user && user.firstName}</Text>
-          <Text
-            style={styles.textigapCall}>{intl.formatMessage(i18n.calliGapCall) + ' / '}{callAction.incoming ? intl.formatMessage(i18n.callInCall) : intl.formatMessage(i18n.callOutCall)}</Text>
         </View>
-      </View>
+        }
+      </TouchableOpacity>
     );
   }
 }

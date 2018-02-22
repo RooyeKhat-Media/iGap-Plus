@@ -2,6 +2,7 @@ import Api from '../Api/index';
 import store from '../../configureStore';
 import {Proto} from '../../modules/Proto/index';
 import {goCall} from '../../navigators/SecondaryNavigator';
+import {SIGNALING_STATUS} from '../../constants/signaling';
 import {
   SignalingAccept,
   SignalingCandidate,
@@ -18,9 +19,19 @@ import {
   SIGNALING_OFFER,
   SIGNALING_RINGING,
 } from '../../constants/methods/index';
-import {getUserMedia, RTCIceCandidate, RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
-import {SIGNALING_STATUS} from '../../constants/signaling';
-import {remoteUrl, reset, status} from '../../actions/methods/signaling/callAction';
+import {
+  getUserMedia,
+  RTCIceCandidate,
+  RTCPeerConnection,
+  RTCSessionDescription,
+  MediaStreamTrack,
+} from 'react-native-webrtc';
+import {
+  remoteUrl,
+  reset,
+  selfRemoteUrl,
+  status,
+} from '../../actions/methods/signaling/callAction';
 
 const callSingleton = Symbol();
 const callSingletonEnforcer = Symbol();
@@ -30,6 +41,7 @@ let _offerSdp = null;
 let _offerType = null;
 let _isCreateAnswer = false;
 let _isSendLeave = false;
+let _localStream = null;
 
 export default class Call {
 
@@ -159,34 +171,33 @@ export default class Call {
     if (_offerType === Proto.SignalingOffer.Type.VOICE_CALLING) {
       audio = true;
       video = false;
-    }
-
-    /*        else if (_offerType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
+    } else if (_offerType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
       let isFront = true;
-
       const sourceInfos = await MediaStreamTrack.getSources();
-
       let videoSourceId;
       for (let i = 0; i < sourceInfos.length; i++) {
         const sourceInfo = sourceInfos[i];
-        if (sourceInfo.kind == 'video' && sourceInfo.facing == (isFront ? 'front' : 'back')) {
+        if (sourceInfo.kind === 'video' && sourceInfo.facing === (isFront ? 'front' : 'back')) {
           videoSourceId = sourceInfo.id;
         }
       }
       audio = true;
       video = {
         mandatory: {
-          // minWidth: 500, // Provide your own width, height and frame rate here
-          // minHeight: 300,
-          minFrameRate: 30,
+          maxWidth: 320,
+          maxHeight: 240,
+          width: 320,
+          height: 240,
+          frameRate: {ideal: 24, min: 16, max: 32},
         },
         facingMode: (isFront ? 'user' : 'environment'),
         optional: (videoSourceId ? [{sourceId: videoSourceId}] : []),
       };
-    }*/
+    }
 
-    const stream = await  getUserMedia({audio: audio, video: video});
-    await  _peerConnection.addStream(stream);
+    _localStream = await  getUserMedia({audio: audio, video: video});
+    store.dispatch(selfRemoteUrl(_localStream.toURL()));
+    await  _peerConnection.addStream(_localStream);
   }
 
   async _setConfig() {
@@ -226,6 +237,10 @@ export default class Call {
     if (!_isSendLeave) {
       Api.invoke(SIGNALING_LEAVE, new SignalingLeave());
       _isSendLeave = true;
+    }
+    if (_localStream) {
+      _localStream.release();
+      _localStream = null;
     }
   }
 
