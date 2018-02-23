@@ -43,7 +43,6 @@ import {
   goRoomUpdateUsername,
 } from '../../navigators/SecondaryNavigator';
 import i18n from '../../i18n/en';
-import {secondaryNavigatorBack} from '../../actions/navigator';
 import {resetSecondaryNavigation} from '../../navigators/index';
 import Long from 'long';
 
@@ -181,9 +180,7 @@ class RoomInfoScreen extends Component {
         promiseList.push(Api.invoke(addMemberActionId, roomAddMember));
       });
       return Promise.all(promiseList);
-    }, true, () => {
-      this.props.navigation.dispatch(secondaryNavigatorBack());
-    });
+    }, true);
 
   };
   notification = () => {

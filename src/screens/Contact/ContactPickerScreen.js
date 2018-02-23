@@ -6,6 +6,7 @@ import {USER_CONTACTS_GET_LIST} from '../../constants/methods/index';
 import {UserContactsGetList} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {makeGetContactList} from '../../selector/methods/user/contacts/getList';
+import {secondaryNavigatorBack} from "../../actions/navigator";
 
 class ContactPickerScreen extends Component {
 
@@ -35,6 +36,7 @@ class ContactPickerScreen extends Component {
       if (afterSubmit) {
         afterSubmit();
       }
+      this.props.navigation.dispatch(secondaryNavigatorBack());
     }
   }
 

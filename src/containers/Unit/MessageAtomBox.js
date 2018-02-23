@@ -150,7 +150,6 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.FILE:
       case Proto.RoomMessageType.FILE_TEXT:
       case Proto.RoomMessageType.LOCATION:
-      case Proto.RoomMessageType.CONTACT:
         return (<Sending
           showText={showText}
           message={message.message}

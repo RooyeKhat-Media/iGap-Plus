@@ -8,7 +8,7 @@ import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
-import {goCamera, goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
+import {goCamera, goContactPicker, goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
 import {
   deleteMessages,
   editRoomMessage,
@@ -236,6 +236,21 @@ class RoomHistoryScreen extends Component {
       cameraMode.CAMERA,
       denialMessage
     );
+  };
+
+  selectContact = () => {
+    const {room, getRegisteredUser} = this.props;
+    goContactPicker(i18n.roomHistoryPickContactTitle, (userId) => {
+      const user = getRegisteredUser(userId.toString());
+      if (user) {
+        const roomMessageContact = new Proto.RoomMessageContact();
+        roomMessageContact.setFirstName(user.firstName);
+        roomMessageContact.setLastName(user.lastName);
+        roomMessageContact.setNickname(user.displayName);
+        roomMessageContact.setPhoneList([user.phone.toString()]);
+        sendMessage(room.id, '', null, null, null, null, roomMessageContact);
+      }
+    }, false);
   };
 
   cancelAttach = () => {
@@ -553,6 +568,7 @@ class RoomHistoryScreen extends Component {
       forwardedMessage,
       selectAttachment: this.selectAttachment,
       selectCamera: this.selectCamera,
+      selectContact: this.selectContact,
       cancelAttach: this.cancelAttach,
       onChangeText: this.onChangeText,
       submitForm: this.submitForm,
@@ -629,6 +645,9 @@ const makeMapStateToProps = () => {
           type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
         }
         return type;
+      },
+      getRegisteredUser: (userId) => {
+        return state.entities.registeredUsers[userId];
       },
     };
   };

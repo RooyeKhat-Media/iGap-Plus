@@ -101,9 +101,10 @@ export function normalizeRoomMessage(roomMessage) {
  * @param {string} attachmentType
  * @param {Long} replyTo
  * @param {FlatRoomMessage} forwardMessage
+ * @param {Proto.RoomMessageContact} roomMessageContact
  * @returns {Promise.<void>}
  */
-export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo, forwardMessage) {
+export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo, forwardMessage, roomMessageContact) {
   /**
    * @type {ProtoChatSendMessage || ProtoGroupSendMessage || ProtoChannelSendMessage} proto
    */
@@ -136,6 +137,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
   __sendFakeMessage();
   proto.setRoomId(room.longId);
   proto.setMessage(text);
+  proto.setContact(roomMessageContact);
 
   if (replyTo) {
     proto.setReplyTo(replyTo);
@@ -180,6 +182,9 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
               pickedFile.fileSize));
         proto.setAttachment(token);
       }
+      if (roomMessageContact) {
+        proto.setMessageType(Proto.RoomMessageType.CONTACT);
+      }
       sendMessageResponse = await Api.invoke(actionId, proto);
     } finally {
       if (sendingActionId) {
@@ -210,6 +215,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
     roomMessage.setCreateTime(tNow());
     roomMessage.setUpdateTime(tNow());
     roomMessage.setStatus(Proto.RoomMessageStatus.SENDING);
+    roomMessage.setContact(roomMessageContact);
 
     /**
      * @type {proto.RoomMessage.Author}
@@ -239,6 +245,9 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
       case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
         roomMessage.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);
         break;
+    }
+    if (roomMessageContact) {
+      proto.setMessageType(Proto.RoomMessageType.CONTACT);
     }
 
     const normalizedRoomMessage = normalizeRoomMessage(roomMessage);

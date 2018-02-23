@@ -199,6 +199,9 @@ class SendBox extends PureComponent {
     Form.selectCamera();
   };
   selectContact = () => {
+    const {Form} = this.props;
+    this.toggleAttach();
+    Form.selectContact();
   };
   selectLocation = () => {
   };
