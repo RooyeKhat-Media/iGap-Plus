@@ -41,7 +41,7 @@ export default class Sending extends MessageElement {
             {this.renderProgressBar(boxWidth - 100, styles.progressStyle)}
           </View>
         </View>
-        {message && (<Text showText={true} message={message}/>)}
+        {(message && message.length) ? (<Text showText={true} message={message}/>) : null}
       </View>
     );
   }

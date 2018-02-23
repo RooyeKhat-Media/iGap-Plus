@@ -8,7 +8,7 @@ import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
-import {goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
+import {goCamera, goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
 import {
   deleteMessages,
   editRoomMessage,
@@ -50,6 +50,7 @@ import {getImageSize, prependFileProtocol} from '../../utils/core';
 import Clipboard from '../../modules/Clipboard/index';
 import {messengerRoomAddList} from '../../actions/messenger/rooms';
 import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger/roomMessages';
+import {cameraMode} from '../General/CameraScreen';
 
 class RoomHistoryScreen extends Component {
 
@@ -211,6 +212,32 @@ class RoomHistoryScreen extends Component {
       sendMultiAttachMessages(room.id, files, type);
     }
   };
+
+  selectCamera = () => {
+    const {intl} = this.props;
+    const denialMessage = [
+      intl.formatMessage(i18n.roomHistoryCameraPermission),
+      intl.formatMessage(i18n.roomHistoryCameraPermissionMessage),
+      intl.formatMessage(i18n.roomHistoryStoragePermission),
+      intl.formatMessage(i18n.roomHistoryStoragePermissionMessage),
+    ];
+    goCamera(
+      async (path) => {
+        const pickedFile = await RNFileSystem.fInfo(path);
+        const size = await getImageSize(path);
+        pickedFile.width = size.width;
+        pickedFile.height = size.height;
+        this.setState({
+          pickedFile: pickedFile,
+          attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
+        });
+      },
+      (error) => {},
+      cameraMode.CAMERA,
+      denialMessage
+    );
+  };
+
   cancelAttach = () => {
     this.setState({
       pickedFile: null,
@@ -525,6 +552,7 @@ class RoomHistoryScreen extends Component {
       editMessageId,
       forwardedMessage,
       selectAttachment: this.selectAttachment,
+      selectCamera: this.selectCamera,
       cancelAttach: this.cancelAttach,
       onChangeText: this.onChangeText,
       submitForm: this.submitForm,
