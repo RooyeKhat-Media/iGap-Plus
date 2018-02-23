@@ -8,6 +8,7 @@ import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import i18n from '../../../i18n';
 import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
 import {getPrimaryWidth} from '../../../modules/DimensionCalculator';
+import ReturnToCall from '../../Call/ReturnToCall';
 
 class RoomListComponent extends React.PureComponent {
 
@@ -54,6 +55,7 @@ class RoomListComponent extends React.PureComponent {
           <Toolbar
             centerElement={<Text style={styles.textTitle}>{intl.formatMessage(i18n.iGapPlus)}</Text>}
           />
+          <ReturnToCall/>
           <RecyclerListView
             canChangeSize={true}
             renderAheadOffset={640}

@@ -25,6 +25,7 @@ import {
   outerDimension,
 } from '../../../modules/DimensionCalculator/index';
 import {getAuthorHash} from '../../../utils/app';
+import ReturnToCall from '../../Call/ReturnToCall';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -99,6 +100,7 @@ class RoomHistoryComponent extends React.PureComponent {
         <View style={styles.mainWrap}>
           <View style={styles.messageListWrap}>
             {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
+            <ReturnToCall/>
             {dataProvider ?
               (<RecyclerListView
                 canChangeSize={true}

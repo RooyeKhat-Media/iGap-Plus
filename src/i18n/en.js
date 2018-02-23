@@ -769,6 +769,12 @@ export default {
     defaultMessage: 'Busy',
     description: 'call screen',
   },
+  callReturnToCall: {
+    id: 'call.returnToCall',
+    defaultMessage: 'Return To Call',
+    description: 'call screen',
+  },
+
   groupCreateSelectContactTitle: {
     id: 'groupCreate.selectContactTitle',
     defaultMessage: 'New Group with...',

@@ -10,6 +10,7 @@ import Avatar from '../../../containers/Unit/Avatar';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import {goSetting} from '../../../navigators/PrimaryNavigator';
 import {textTitleStyle} from '../../../themes/default/index';
+import ReturnToCall from '../../Call/ReturnToCall';
 
 class ProfileComponent extends Component {
 
@@ -55,6 +56,7 @@ class ProfileComponent extends Component {
             style={textTitleStyle}>{(currentUser && currentUser.phone && currentUser.phone.toString())}</Text>}
         />
 
+        <ReturnToCall/>
         <ScrollView style={styles.scroll}>
 
           <View style={styles.sectionTop}>

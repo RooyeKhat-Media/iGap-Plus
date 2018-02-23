@@ -11,6 +11,7 @@ import Avatar from '../../../containers/Unit/Avatar';
 import {ListItem as BaseListItem} from '../../BaseUI/index';
 import {goCall} from '../../../navigators/SecondaryNavigator';
 import {Proto} from '../../../modules/Proto/index';
+import ReturnToCall from '../../Call/ReturnToCall';
 
 class NewComponent extends Component {
 
@@ -39,6 +40,7 @@ class NewComponent extends Component {
             placeholder: 'Search',
           }}
         />
+        <ReturnToCall/>
         <ScrollView>
 
           <View style={styles.sectionTop}>
