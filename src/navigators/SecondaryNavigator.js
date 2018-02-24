@@ -3,7 +3,7 @@ import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpe
 import {
   AVATAR_LIST_SCREEN,
   CALL_SCREEN,
-  CAMERA_SCREEN,
+  CAMERA_SCREEN, LOCATION_PICKER_SCREEN,
   ROOM_EDIT_SCREEN,
   ROOM_HISTORY_SCREEN,
   ROOM_INFO_SCREEN,
@@ -31,6 +31,7 @@ import CameraScreen from '../screens/General/CameraScreen';
 import VideoPlayerScreen from '../screens/General/VideoPlayerScreen';
 import Permission, {PERMISSION_CAMERA, PERMISSION_STORAGE} from '../modules/Permission/index';
 import {Platform} from 'react-native';
+import LocationPickerScreen from '../screens/LocationPickerScreen';
 
 export function goRoomHistory(roomId, forwardedMessage) {
   navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
@@ -88,6 +89,10 @@ export function goVideoPlayer(uri, fileName) {
   navigate(VIDEO_PLAYER, {uri, fileName});
 }
 
+export function goLocationPicker(onSubmit) {
+  navigate(LOCATION_PICKER_SCREEN, {onSubmit});
+}
+
 export const middleware = createReactNavigationReduxMiddleware(
   'secondary',
   state => state.navSecondary,
@@ -107,6 +112,7 @@ const SecondaryNavigator = StackNavigator({
   [AVATAR_LIST_SCREEN]: {screen: AvatarListScreen},
   [CAMERA_SCREEN]: {screen: CameraScreen},
   [VIDEO_PLAYER]: {screen: VideoPlayerScreen},
+  [LOCATION_PICKER_SCREEN]: {screen: LocationPickerScreen},
 }, {
   navigationOptions: {
     header: null,

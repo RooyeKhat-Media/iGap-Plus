@@ -102,9 +102,10 @@ export function normalizeRoomMessage(roomMessage) {
  * @param {Long} replyTo
  * @param {FlatRoomMessage} forwardMessage
  * @param {Proto.RoomMessageContact} roomMessageContact
+ * @param {Proto.RoomMessageLocation} roomMessageLocation
  * @returns {Promise.<void>}
  */
-export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo, forwardMessage, roomMessageContact) {
+export async function sendMessage(roomId, text, pickedFile, attachmentType, replyTo, forwardMessage, roomMessageContact, roomMessageLocation) {
   /**
    * @type {ProtoChatSendMessage || ProtoGroupSendMessage || ProtoChannelSendMessage} proto
    */
@@ -138,6 +139,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
   proto.setRoomId(room.longId);
   proto.setMessage(text);
   proto.setContact(roomMessageContact);
+  proto.setLocation(roomMessageLocation);
 
   if (replyTo) {
     proto.setReplyTo(replyTo);
@@ -184,6 +186,8 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
       }
       if (roomMessageContact) {
         proto.setMessageType(Proto.RoomMessageType.CONTACT);
+      } else if (roomMessageLocation) {
+        proto.setMessageType(Proto.RoomMessageType.LOCATION);
       }
       sendMessageResponse = await Api.invoke(actionId, proto);
     } finally {
@@ -216,6 +220,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
     roomMessage.setUpdateTime(tNow());
     roomMessage.setStatus(Proto.RoomMessageStatus.SENDING);
     roomMessage.setContact(roomMessageContact);
+    roomMessage.setLocation(roomMessageLocation);
 
     /**
      * @type {proto.RoomMessage.Author}
@@ -248,6 +253,8 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
     }
     if (roomMessageContact) {
       proto.setMessageType(Proto.RoomMessageType.CONTACT);
+    } else if (roomMessageLocation) {
+      proto.setMessageType(Proto.RoomMessageType.LOCATION);
     }
 
     const normalizedRoomMessage = normalizeRoomMessage(roomMessage);

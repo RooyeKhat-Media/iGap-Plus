@@ -8,7 +8,7 @@ import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
-import {goCamera, goContactPicker, goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
+import {goCamera, goContactPicker, goLocationPicker, goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
 import {
   deleteMessages,
   editRoomMessage,
@@ -251,6 +251,16 @@ class RoomHistoryScreen extends Component {
         sendMessage(room.id, '', null, null, null, null, roomMessageContact);
       }
     }, false);
+  };
+
+  selectLocation = () => {
+    const {room} = this.props;
+    goLocationPicker((coordinate) => {
+      const roomMessageLocation = new Proto.RoomMessageLocation();
+      roomMessageLocation.setLat(coordinate.latitude);
+      roomMessageLocation.setLon(coordinate.longitude);
+      sendMessage(room.id, '', null, null, null, null, null, roomMessageLocation);
+    });
   };
 
   cancelAttach = () => {
@@ -569,6 +579,7 @@ class RoomHistoryScreen extends Component {
       selectAttachment: this.selectAttachment,
       selectCamera: this.selectCamera,
       selectContact: this.selectContact,
+      selectLocation: this.selectLocation,
       cancelAttach: this.cancelAttach,
       onChangeText: this.onChangeText,
       submitForm: this.submitForm,

@@ -30,3 +30,9 @@ export const ROOM_MESSAGE_ACTION_EDIT = 'edit';
 
 export const SOUND_PLAYER_BOX_MESSAGE = 'SP_BOX_MESSAGE';
 export const SOUND_PLAYER_BOX_TOOLBAR = 'SP_BOX_TOOLBAR';
+
+export const MAP_DEFAULT_LATITUDE = 37.78825;
+export const MAP_DEFAULT_LONGITUDE = -122.4324;
+
+export const MAP_LATITUDE_DELTA = 0.04;
+export const MAP_LONGITUDE_DELTA = 0.04;

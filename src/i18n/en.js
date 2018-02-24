@@ -1553,4 +1553,19 @@ export default {
     defaultMessage: 'This will prevent you to see nearby people',
     description: 'Deactivate Nearby page',
   },
+  locationPickerToolbar: {
+    id: 'locationPicker.toolbar',
+    defaultMessage: 'Chose a Location',
+    description: 'choseLocation Screen',
+  },
+  locationPickerHelp: {
+    id: 'locationPicker.help',
+    defaultMessage: 'Hold and Drag Marker to select another location',
+    description: 'choseLocation Screen',
+  },
+  locationPickerSendLocation: {
+    id: 'locationPicker.sendLocation',
+    defaultMessage: 'Send Location',
+    description: 'choseLocation Screen',
+  },
 };

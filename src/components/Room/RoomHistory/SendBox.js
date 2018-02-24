@@ -204,6 +204,9 @@ class SendBox extends PureComponent {
     Form.selectContact();
   };
   selectLocation = () => {
+    const {Form} = this.props;
+    this.toggleAttach();
+    Form.selectLocation();
   };
 
   emojiButtonClick = () => {

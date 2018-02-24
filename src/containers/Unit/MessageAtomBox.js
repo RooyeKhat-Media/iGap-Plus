@@ -149,7 +149,6 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VOICE:
       case Proto.RoomMessageType.FILE:
       case Proto.RoomMessageType.FILE_TEXT:
-      case Proto.RoomMessageType.LOCATION:
         return (<Sending
           showText={showText}
           message={message.message}
@@ -263,6 +262,7 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.LOCATION:
         return (<Location
           isForwarded={isForwarded}
+          message={message}
           location={message.location}/>);
 
       case Proto.RoomMessageType.CONTACT:

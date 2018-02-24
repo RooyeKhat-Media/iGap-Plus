@@ -1,30 +1,27 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import PropTypes from 'prop-types';
+import {Image, View} from 'react-native';
+import MessageElement from './MessageElement';
 import {getGoogleStaticMap} from '../../../../utils/app';
-import {dimensionCalculate} from '../../../../utils/core';
-import {min} from 'lodash';
-import Device from '../../../../modules/Responsive/Device';
+import {innerDimension} from '../../../../modules/DimensionCalculator/index';
 
-const {width, height} = Device.dimensions.window;
-const boxWidth = min([250, (0.7 * width)]);
-const boxHeight = min([500, (0.8 * height)]);
-
-export default class Location extends React.PureComponent {
+export default class Location extends MessageElement {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {width, height} = dimensionCalculate(300, 400, boxWidth, boxHeight);
-    const uri = getGoogleStaticMap();
+    const {isForwarded, location, message} = this.props;
+    const uri = getGoogleStaticMap(location.lat, location.lon);
+    const {width, height} = innerDimension(message, this.context.boxType, isForwarded);
+
     return (
-      <View style={styles.container}>
-        <Image source={{uri: uri}} style={{width, height}}/>
-      </View>
-    );
+      <View style={{width, height}}>
+        <Image source={{uri}} style={{width, height}}/>
+      </View>);
   }
 }
 
-const styles = StyleSheet.create({
-  container: {},
-});
+Location.contextTypes = {
+  boxType: PropTypes.number,
+};
