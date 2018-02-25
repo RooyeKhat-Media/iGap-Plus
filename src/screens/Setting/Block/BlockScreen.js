@@ -11,7 +11,6 @@ import {UserContactsBlock, UserContactsGetBlockedList, UserContactsUnblock} from
 import {getBlockList} from '../../../selector/methods/user/contacts/block';
 import {goContactPicker} from '../../../navigators/PrimaryNavigator';
 import i18n from '../../../i18n/en';
-import {primaryNavigatorBack} from '../../../actions/navigator';
 
 class BlockScreen extends Component {
 
@@ -28,9 +27,7 @@ class BlockScreen extends Component {
         promiseList.push(Api.invoke(USER_CONTACTS_BLOCK, userContactsBlock));
       });
       return Promise.all(promiseList);
-    }, true, () => {
-      this.props.dispatch(primaryNavigatorBack());
-    });
+    }, true);
   };
 
   unBlockAction = (userId) => {

@@ -6,7 +6,6 @@ import {USER_CONTACTS_GET_LIST} from '../../constants/methods/index';
 import {UserContactsGetList} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {makeGetContactList} from '../../selector/methods/user/contacts/getList';
-import {secondaryNavigatorBack} from "../../actions/navigator";
 
 class ContactPickerScreen extends Component {
 
@@ -27,18 +26,13 @@ class ContactPickerScreen extends Component {
   }
 
   onSubmit = async (data) => {
-    const {onSubmit, afterSubmit} = this.props.navigation.state.params;
-    this.loader.on();
+    const {onSubmit} = this.props.navigation.state.params;
     try {
       await onSubmit(data);
     } finally {
-      this.loader.off();
-      if (afterSubmit) {
-        afterSubmit();
-      }
-      this.props.navigation.dispatch(secondaryNavigatorBack());
+      this.props.navigation.goBack();
     }
-  }
+  };
 
   onSubmitBtnPress = () => {
     const {required} = this.props.navigation.state.params;

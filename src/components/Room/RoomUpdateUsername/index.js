@@ -38,9 +38,7 @@ class RoomUpdateUsernameComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={<Text
-            style={textTitleStyle}>{intl.formatMessage(i18n.twoStepForroomUpdateUsernameToolbarTitlegetTitle)}</Text>}
-        />
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomUpdateUsernameToolbarTitle)}</Text>} />
 
         <ScrollView style={styles.scroll}>
           <Form style={styles.form} control={(form) => {
