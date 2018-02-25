@@ -141,6 +141,7 @@ class RoomInfoScreen extends Component {
     const proto = new (room.type === Proto.Room.Type.GROUP ? GroupLeft : ChannelLeft)();
     proto.setRoomId(room.longId);
     await Api.invoke(actionId, proto);
+    resetSecondaryNavigation();
   };
 
   editRoom = () => {

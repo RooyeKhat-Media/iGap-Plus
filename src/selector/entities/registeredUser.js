@@ -18,7 +18,7 @@ export const getUser = createSelector(
 export const getCurrentUser = createSelector(
   (state) => state.entities.registeredUsers,
   (registeredUsers) => {
-    return registeredUsers[getCurrentUserId()];
+    return registeredUsers[getCurrentUserId(true)];
   }
 );
 

@@ -154,7 +154,7 @@ class SettingPrivacyComponent extends Component {
           <View style={styles.rowField}>
             <Text style={styles.itemText}> {intl.formatMessage(i18n.privacyLastSeen)}</Text>
             <PopupMenu
-              actionList={itemListSelfRemove}
+              actionList={itemList}
               onPress={(action) => this.callBackMenu(Proto.PrivacyType.USER_STATUS, action)}
               button={<Text
                 style={styles.textLoading}>{this.getStringFromValue(rules[Proto.PrivacyType.USER_STATUS])} </Text>}

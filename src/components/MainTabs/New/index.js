@@ -30,8 +30,6 @@ class NewComponent extends Component {
       <View style={styles.container}>
         <Toolbar
           leftElement={<Text style={styles.titleText}>{intl.formatMessage(i18n.newPlus)}</Text>}
-          rightElement="more-vert"
-          onRightElementPress={() => alert('menu')}
           searchable={{
             autoFocus: true,
             placeholder: 'Search',

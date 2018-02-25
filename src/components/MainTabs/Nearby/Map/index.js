@@ -8,11 +8,10 @@ import MapView from 'react-native-maps';
 import {getUserId} from '../../../../utils/app';
 import PropTypes from 'prop-types';
 import {ActionButton} from '../../../../components/BaseUI';
+import {MAP_LATITUDE_DELTA, MAP_LONGITUDE_DELTA} from '../../../../constants/app';
 
 const {width, height} = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 50.1;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const FOUND_POS_LATITUDE_DELTA = 0.1;
 const FOUND_POS_LONGITUDE_DELTA = FOUND_POS_LATITUDE_DELTA * ASPECT_RATIO;
 const TEHRAN_LATITUDE = 35.68741781;
@@ -26,8 +25,8 @@ class NearbyMapComponent extends Component {
       region: {
         latitude: TEHRAN_LATITUDE,
         longitude: TEHRAN_LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
+        latitudeDelta: MAP_LATITUDE_DELTA,
+        longitudeDelta: MAP_LONGITUDE_DELTA,
       },
       markers: [],
       myPos: {},

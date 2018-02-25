@@ -73,7 +73,7 @@ class RoomHistoryScreen extends Component {
 
   componentWillUnmount() {
     const {room} = this.props;
-    if (!room.isParticipant) {
+    if (room && !room.isParticipant) {
       const {clearMessageFromStore} = this.props;
       clearMessageFromStore(room.id);
       const clientUnsubscribeFromRoom = new ClientUnsubscribeFromRoom();

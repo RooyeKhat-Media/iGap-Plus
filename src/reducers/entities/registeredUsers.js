@@ -16,10 +16,10 @@ export function registeredUsers(state = initialState, action) {
     case ENTITIES_REGISTERED_USER_EDIT:
       return {
         ...state,
-        [action.id]: {
+        [action.id]: state[action.id] ? {
           ...state[action.id],
           ...action.payload,
-        },
+        } : null,
       };
     default:
       return state;

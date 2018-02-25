@@ -124,6 +124,7 @@ class SendBox extends PureComponent {
     if (Form.text || (Form.editMessageId || this.props.Form.editMessageId)) {
       this.onChangeText(Form.text);
     }
+    this.setState({isActive: (Form.text || Form.pickedFile || Form.forwardedMessage)});
   }
 
   animatePop() {
@@ -415,15 +416,15 @@ class SendBox extends PureComponent {
               <MCIcon name="close" style={styles.iconClose} size={30}/>
             </TouchableOpacity>}
 
-            {(this.state.isActive || Form.pickedFile) && <TouchableOpacity onPress={this.onSubmit}>
+            {(this.state.isActive) && <TouchableOpacity onPress={this.onSubmit}>
               <MCIcon name="send" style={styles.iconSend} size={30}/>
             </TouchableOpacity>}
 
-            {!(this.state.isActive || Form.pickedFile) && <TouchableOpacity onPress={this.toggleAttach}>
+            {!(this.state.isActive) && <TouchableOpacity onPress={this.toggleAttach}>
               <MCIcon name="paperclip" style={styles.iconAttachment} size={30}/>
             </TouchableOpacity>}
 
-            {!(this.state.isActive || Form.pickedFile) &&
+            {!(this.state.isActive) &&
               <View  {...this._panResponder.panHandlers} >
                 <MCIcon name="microphone" style={styles.iconMic} size={30}/>
               </View>

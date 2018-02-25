@@ -31,6 +31,10 @@ export default [
           marginTop: 10,
           alignItems: 'center',
         },
+        form: {
+          marginBottom: 20,
+          paddingBottom: 20,
+        },
         text_changePhoto: {
           padding: 5,
           margin: 5,
