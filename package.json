@@ -48,7 +48,7 @@
     "react-native-web-socket": "file:./native/modules/WebSocket",
     "react-native-webrtc": "^1.58.3",
     "react-native-windows": "0.52.0-rc.2",
-    "react-navigation": "^1.0.3",
+    "react-navigation": "^1.1.2",
     "react-navigation-redux-helpers": "^1.0.1",
     "react-redux": "^5.0.6",
     "recyclerlistview": "^1.2.6",
