@@ -149,12 +149,33 @@ const reactionTable = {
   [errorId(apiErrors.ERROR_SESSION_IS_TERMINATED)]: () => {
     cleanup();
   },
+
+  //User 1xx
+
   [errorId(apiErrors.ERROR_USER_LOGIN_FAILED)]: () => {
     cleanup();
   },
   [errorId(apiErrors.ERROR_USER_VERIFY_TWO_STEP_VERIFICATION_ENABLED)]: () => {
     goUserTwoStepVerificationScreen();
   },
+
+  //Chat 2xx
+
+  //Group chat 3xx
+
+  //Channel 4xx
+
+  //Info 5xx
+
+  //Client 6xx
+
+  //File 7xx
+
+  //QrCode 8xx
+
+  //Signaling 9xx
+
+  //Geo 10xx
 };
 
 export default reactionTable;

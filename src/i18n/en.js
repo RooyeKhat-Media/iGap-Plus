@@ -774,7 +774,16 @@ export default {
     defaultMessage: 'Return To Call',
     description: 'call screen',
   },
-
+  callListRecentCall: {
+    id: 'callList.recentCall',
+    defaultMessage: 'Recent Call',
+    description: 'callList screen',
+  },
+  callListClearCallHistory: {
+    id: 'callList.clearCallHistory',
+    defaultMessage: 'Clear Call History',
+    description: 'callList screen',
+  },
   groupCreateSelectContactTitle: {
     id: 'groupCreate.selectContactTitle',
     defaultMessage: 'New Group with...',

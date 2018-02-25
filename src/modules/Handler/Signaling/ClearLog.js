@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {clearLogList} from '../../../actions/methods/signaling/callLog';
 
 /**
  * @property {ProtoSignalingClearLog} _request
@@ -6,6 +7,6 @@ import Base from '../Base';
  */
 export default class ClearLog extends Base {
   handle() {
-    console.error('ClearLog', 'Not implemented yet', this);
+    this.dispatch(clearLogList(this._response.getClearId()));
   }
 }

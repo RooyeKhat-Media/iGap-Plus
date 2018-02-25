@@ -5,11 +5,12 @@ import {connect} from 'react-redux';
 import {goCall} from '../../navigators/SecondaryNavigator';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../i18n';
+import {greenDark} from '../../themes/default/index';
 
 const styles = StyleSheet.create({
   container: {
     height: 34,
-    backgroundColor: '#30e6ef',
+    backgroundColor: greenDark,
     justifyContent: 'center',
   },
   returnText: {

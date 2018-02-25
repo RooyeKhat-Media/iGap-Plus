@@ -123,7 +123,7 @@ class NewComponent extends Component {
             <View style={styles.iconsLayout}>
               <MCIcon name="message-text" size={36} style={styles.icon} onPress={() => onUserPress(user.id)}/>
               {callAction.video &&
-              <MCIcon name="message-video" size={36} style={styles.icon}
+              <MCIcon name="video" size={36} style={styles.icon}
                 onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VIDEO_CALLING)}/>
               }
               {callAction.voice &&

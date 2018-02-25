@@ -26,6 +26,8 @@ export const red = '#ff2748';
 export const gray1 = '#dbdbdb';
 export const gray2 = '#7d7d80';
 export const black1 = '#262626';
+export const green = '#1de4b3';
+export const greenDark = '#36becf';
 
 export const textTitleStyle = {
   flex: 1,

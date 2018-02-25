@@ -32,6 +32,13 @@ import {
   selfRemoteUrl,
   status,
 } from '../../actions/methods/signaling/callAction';
+import {requestGetLog} from '../../screens/MainTabs/CallListScreen';
+import ServerError from '../Error/ServerError';
+import {
+  ERROR_SIGNALING_OFFER_BLOCKED_BY_PEER,
+  ERROR_SIGNALING_OFFER_FORBIDDEN,
+  ERROR_SIGNALING_OFFER_PRIVACY_PROTECTION,
+} from '../Api/errors/index';
 
 const callSingleton = Symbol();
 const callSingletonEnforcer = Symbol();
@@ -68,15 +75,40 @@ export default class Call {
    * @type  ProtoSignalingOfferResponse
    */
   async sendOffer(userId, signalingType) {
-    _offerType = signalingType;
-    _isSendLeave = false;
-    await  this.getPeerConnectionInstance();
-    _offerSdp = await _peerConnection.createOffer();
-    const signalingOffer = new SignalingOffer();
-    signalingOffer.setType(signalingType);
-    signalingOffer.setCalledUserId(userId);
-    signalingOffer.setCallerSdp(_offerSdp.sdp);
-    Api.invoke(SIGNALING_OFFER, signalingOffer);
+    try {
+      _offerType = signalingType;
+      _isSendLeave = false;
+      await  this.getPeerConnectionInstance();
+      _offerSdp = await _peerConnection.createOffer();
+      const signalingOffer = new SignalingOffer();
+      signalingOffer.setType(signalingType);
+      signalingOffer.setCalledUserId(userId);
+      signalingOffer.setCallerSdp(_offerSdp.sdp);
+      Api.invoke(SIGNALING_OFFER, signalingOffer);
+    } catch (e) {
+      if (e instanceof ServerError) {
+        _isSendLeave = true;
+        switch (e.errorResponse.getMajorCode()) {
+          case ERROR_SIGNALING_OFFER_FORBIDDEN:
+            if (e.errorResponse.getMinorCode() === 9) {
+              store.dispatch(status(SIGNALING_STATUS.BUSY));
+            } else {
+              store.dispatch(status(SIGNALING_STATUS.UNAVAILABLE));
+            }
+            break;
+          case ERROR_SIGNALING_OFFER_BLOCKED_BY_PEER:
+          case ERROR_SIGNALING_OFFER_PRIVACY_PROTECTION:
+            store.dispatch(status(SIGNALING_STATUS.UNAVAILABLE));
+            break;
+          default:
+            store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
+        }
+      } else {
+        store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
+      }
+      store.dispatch(reset());
+      throw e;
+    }
   }
 
   async onAccept(calledSdp) {
@@ -102,23 +134,35 @@ export default class Call {
    * @type  ProtoSignalingOfferResponse
    */
   async receiveOffer(response) {
-    _offerType = response.getType();
-    _isSendLeave = false;
-    const info = {sdp: response.getCallerSdp(), type: 'offer'};
-    await  this.getPeerConnectionInstance();
-    await  _peerConnection.setRemoteDescription(new RTCSessionDescription(info));
-    Api.invoke(SIGNALING_RINGING, new SignalingRinging());
-    goCall(response.getCallerUserId().toString(), true, response.getType());
+    try {
+      _offerType = response.getType();
+      _isSendLeave = false;
+      const info = {sdp: response.getCallerSdp(), type: 'offer'};
+      await  this.getPeerConnectionInstance();
+      await  _peerConnection.setRemoteDescription(new RTCSessionDescription(info));
+      Api.invoke(SIGNALING_RINGING, new SignalingRinging());
+      goCall(response.getCallerUserId().toString(), true, response.getType());
+    } catch (e) {
+      store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
+      store.dispatch(reset());
+      throw e;
+    }
   }
 
   async createAnswer() {
-    if (!_isCreateAnswer) {
-      _isCreateAnswer = true;
-      const date = await _peerConnection.createAnswer();
-      const signalingAccept = new SignalingAccept();
-      signalingAccept.setCalledSdp(date.sdp);
-      await Api.invoke(SIGNALING_ACCEPT, signalingAccept);
-      await _peerConnection.setLocalDescription(date);
+    try {
+      if (!_isCreateAnswer) {
+        _isCreateAnswer = true;
+        const date = await _peerConnection.createAnswer();
+        const signalingAccept = new SignalingAccept();
+        signalingAccept.setCalledSdp(date.sdp);
+        await Api.invoke(SIGNALING_ACCEPT, signalingAccept);
+        await _peerConnection.setLocalDescription(date);
+      }
+    } catch (e) {
+      store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
+      store.dispatch(reset());
+      throw e;
     }
   }
 
@@ -229,6 +273,7 @@ export default class Call {
     if (_peerConnection !== null) {
       _peerConnection.close();
       _peerConnection = null;
+      setTimeout(() => requestGetLog(0, 1), 1000);
     }
     _offerSdp = null;
     _offerType = null;

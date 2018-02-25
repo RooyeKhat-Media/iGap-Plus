@@ -1,16 +1,16 @@
 export const METHOD_SIGNALING_LOG_LIST = 'METHOD_SIGNALING_LOG_LIST';
-export const METHOD_SIGNALING_ADD_LOG = 'METHOD_SIGNALING_ADD_LOG';
+export const METHOD_SIGNALING_CLEAR_LOG = 'METHOD_SIGNALING_CLEAR_LOG';
 
-export function getList(logList) {
+export function getLogList(logList) {
   return {
     type: METHOD_SIGNALING_LOG_LIST,
     logList,
   };
 }
 
-export function addLog(log) {
+export function clearLogList(clearId) {
   return {
-    type: METHOD_SIGNALING_ADD_LOG,
-    log,
+    type: METHOD_SIGNALING_CLEAR_LOG,
+    clearId,
   };
 }

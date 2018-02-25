@@ -10,22 +10,24 @@ import {SIGNALING_STATUS} from '../../../constants/signaling';
 export default class Leave extends Base {
   handle() {
 
-    Call.instance.setSendLeave(true);
+    if (!this._request) {
+      Call.instance.setSendLeave(true);
 
-    switch (this._response.getType()) {
-      case 'NOT_ANSWERED':
-        this.dispatch(status(SIGNALING_STATUS.NOT_ANSWERED));
-        break;
-      case 'REJECTED':
-        this.dispatch(status(SIGNALING_STATUS.REJECTED));
-        break;
-      case 'UNAVAILABLE':
-        this.dispatch(status(SIGNALING_STATUS.UNAVAILABLE));
-        break;
-      default:
-        this.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
-        break;
+      switch (this._response.getType()) {
+        case 'NOT_ANSWERED':
+          this.dispatch(status(SIGNALING_STATUS.NOT_ANSWERED));
+          break;
+        case 'REJECTED':
+          this.dispatch(status(SIGNALING_STATUS.REJECTED));
+          break;
+        case 'UNAVAILABLE':
+          this.dispatch(status(SIGNALING_STATUS.UNAVAILABLE));
+          break;
+        default:
+          this.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
+          break;
+      }
+      setTimeout(() => this.dispatch(reset()), 500);
     }
-    setTimeout(() => this.dispatch(reset()), 500);
   }
 }

@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {getLogList} from '../../../actions/methods/signaling/callLog';
 
 /**
  * @property {ProtoSignalingGetLog} _request
@@ -6,6 +7,6 @@ import Base from '../Base';
  */
 export default class GetLog extends Base {
   handle() {
-    console.error('GetLog', 'Not implemented yet', this);
+    this.dispatch(getLogList(this._response.getSignalingLogList()));
   }
 }

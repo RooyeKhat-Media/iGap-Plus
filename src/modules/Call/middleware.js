@@ -59,11 +59,13 @@ function manageRingtone(status, incoming) {
       if (incoming) {
         InCallManager.startRingtone('_DEFAULT_');
         isPlayRingtone = true;
+      } else {
+        InCallManager.start({media: 'audio', ringback: '_BUNDLE_'});
+        isPlayRingBack = true;
       }
       break;
     case SIGNALING_STATUS.RINGING:
-      InCallManager.start({media: 'audio', ringback: '_BUNDLE_'});
-      isPlayRingBack = true;
+      // nothing to do  only for manage call
       break;
     default :
       if (isPlayRingtone) {

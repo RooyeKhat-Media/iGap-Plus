@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CallComponent from '../components/Call/index';
 import {connect} from 'react-redux';
-import {callInfo, isInCall, toggleMic, toggleSpeaker} from '../actions/methods/signaling/callAction';
+import {callInfo, isInCall, reset, toggleMic, toggleSpeaker} from '../actions/methods/signaling/callAction';
 import Call from '../modules/Call/index';
 import {SIGNALING_ACTION, SIGNALING_STATUS} from '../constants/signaling';
 import Api from '../modules/Api/index';
@@ -52,7 +52,9 @@ class CallScreen extends Component {
         this.goToChat();
         break;
       case SIGNALING_ACTION.REJECT:
+        Call.instance.setSendLeave(true);
         this.props.navigation.goBack();
+        this.props.resetCall();
         Api.invoke(SIGNALING_LEAVE, new SignalingLeave());
         break;
     }
@@ -117,6 +119,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     toggleSpeaker: () => {
       return dispatch(toggleSpeaker());
+    },
+    resetCall: () => {
+      return dispatch(reset());
     },
   };
 };
