@@ -42,7 +42,7 @@ class SettingComponent extends Component {
           rightElement={(<PopupMenu actionList={[
             intl.formatMessage(i18n.settingLogout),
             intl.formatMessage(i18n.settingDeleteAccount),
-          ]} type={APP_MODAL_ID_PRIMARY} onPress={(result) => this.menuClick(result.index)}/>)}
+          ]} type={APP_MODAL_ID_PRIMARY} onPress={(result) => this.menuClick(result)}/>)}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.settingSetting)}</Text>}
         />
         <ScrollView style={styles.scrollView}>
