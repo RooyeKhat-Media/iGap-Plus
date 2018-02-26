@@ -178,6 +178,16 @@ export default {
     defaultMessage: 'Log in with QR Code',
     description: 'UserRegister Page',
   },
+  QrCodeLoginGoLoginScreenBtn: {
+    id: 'QrCodeLogin.goLoginScreenBtn',
+    defaultMessage: 'Login with Phone Number',
+    description: 'QrCode Login Page',
+  },
+  QrCodeLoginHelp: {
+    id: 'QrCodeLogin.help',
+    defaultMessage: 'Read this QrCode with your iGap app to login .',
+    description: 'QrCode Login Page',
+  },
   errorRequired: {
     id: 'Error.required',
     defaultMessage: 'The {field} field is required',

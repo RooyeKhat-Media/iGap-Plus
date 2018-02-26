@@ -14,7 +14,7 @@ import i18n from '../../i18n/index';
 import Api from '../../modules/Api/index';
 import {INFO_COUNTRY, INFO_LOCATION, USER_REGISTER} from '../../constants/methods/index';
 import {InfoCountry, InfoLocation, UserRegister} from '../../modules/Proto/index';
-import {goUserVerifyScreen} from '../../navigators/AppNavigator';
+import {goUserQrCodeLoginScreen, goUserVerifyScreen} from '../../navigators/AppNavigator';
 import {setAuthorHash, setUserId} from '../../utils/app';
 import {changeLocale, getUserLocale} from '../../utils/locale';
 import {errorId} from '../../modules/Error/index';
@@ -207,6 +207,7 @@ class UserRegisterScreen extends Component {
         localesList={localesList}
         selectNewLocale={this.selectNewLocale}
         defaultLocale={defaultLocale}
+        goUserQrCodeLoginScreen={goUserQrCodeLoginScreen}
       />
     );
   }

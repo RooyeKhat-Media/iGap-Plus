@@ -28,7 +28,7 @@ class UserRegisterComponent extends React.Component {
     const styles = this.getStyles();
     const {
       intl, countryList, formRules, formData, handleFormData,
-      onChangeCallingCode, onSelectCountry, selectNewLocale, localesList, defaultLocale,
+      onChangeCallingCode, onSelectCountry, selectNewLocale, localesList, defaultLocale, goUserQrCodeLoginScreen,
     } = this.props;
 
     const OS = Platform.OS;
@@ -126,7 +126,7 @@ class UserRegisterComponent extends React.Component {
               <View style={styles.dividerLine}/>
             </View>
 
-            <Button upperCase={false} primary style={styles.qrLoginBtn}
+            <Button upperCase={false} primary style={styles.qrLoginBtn} onPress={goUserQrCodeLoginScreen}
               text={intl.formatMessage(i18n.registerQrCodeLoginBtn)}
               icon={<MCIcon color="#3298ee" name="qrcode-scan" size={14}/>}/>
 

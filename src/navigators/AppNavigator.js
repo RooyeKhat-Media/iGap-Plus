@@ -24,7 +24,7 @@ import {
   INTRO_SCREEN,
   MAIN_SCREEN,
   TEST_SCREEN,
-  USER_NEW_PROFILE_SCREEN,
+  USER_NEW_PROFILE_SCREEN, USER_QR_CODE_LOGIN_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_FORGET_SCREEN,
   USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN,
@@ -33,6 +33,7 @@ import {
   USER_VERIFY_DELETE_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
+import UserQrCodeLoginScreen from '../screens/User/UserQrCodeLoginScreen';
 
 export function goInitialScreen() {
   navigate(INITIAL_SCREEN);
@@ -49,11 +50,15 @@ export function goMainScreen(reset = true) {
 }
 
 export function goIntroScreen() {
-  navigate(INTRO_SCREEN);
+  resetNavigation(INTRO_SCREEN);
 }
 
 export function goUserRegisterScreen() {
   resetNavigation(USER_REGISTER_SCREEN);
+}
+
+export function goUserQrCodeLoginScreen() {
+  navigate(USER_QR_CODE_LOGIN_SCREEN);
 }
 
 export function goUserVerifyScreen(phoneNumber, username, method, resendDelay, smsNumber, verifyCodeRegex, verifyCodeDigitCount, resendParams) {
@@ -104,6 +109,7 @@ const AppNavigator = StackNavigator({
 
   [INTRO_SCREEN]: {screen: IntroScreen},
   [USER_REGISTER_SCREEN]: {screen: UserRegister},
+  [USER_QR_CODE_LOGIN_SCREEN]: {screen: UserQrCodeLoginScreen},
   [USER_VERIFY_SCREEN]: {screen: UserVerify},
   [USER_NEW_PROFILE_SCREEN]: {screen: UserNewProfile},
   [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},

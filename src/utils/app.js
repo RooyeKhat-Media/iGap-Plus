@@ -100,21 +100,20 @@ export async function loadUserToken() {
   return await MetaData.load(METADATA_USER_TOKEN);
 }
 
+export function getPlatform() {
+  switch (Platform.OS) {
+    case 'android':
+      return Proto.Platform.ANDROID;
+    case 'ios':
+      return Proto.Platform.IOS;
+    case 'windows':
+      return Proto.Platform.WINDOWS;
+    default:
+      return Proto.Platform.UNKNOWN_PLATFORM;
+  }
+}
 
 export async function login() {
-
-  function getPlatform() {
-    switch (Platform.OS) {
-      case 'android':
-        return Proto.Platform.ANDROID;
-      case 'ios':
-        return Proto.Platform.IOS;
-      case 'windows':
-        return Proto.Platform.WINDOWS;
-      default:
-        return Proto.Platform.UNKNOWN_PLATFORM;
-    }
-  }
 
   const token = await loadUserToken();
   if (!token) {
