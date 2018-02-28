@@ -41,7 +41,7 @@ const middleware = ({dispatch, getState}) => next => action => {
       }
       break;
     case CLIENT_STATUS_CHANGED:
-      if (action.status === CLIENT_STATUS.DISCONNECTED) {
+      if (action.status === CLIENT_STATUS.DISCONNECTED && getState().methods.callAction.isInCall) {
         Call.instance.resetValue();
       }
       break;

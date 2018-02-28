@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import CallComponent from '../components/Call/index';
 import {connect} from 'react-redux';
-import {callInfo, isInCall, reset, toggleMic, toggleSpeaker} from '../actions/methods/signaling/callAction';
-import Call from '../modules/Call/index';
-import {SIGNALING_ACTION, SIGNALING_STATUS} from '../constants/signaling';
+import {injectIntl, intlShape} from 'react-intl';
+import {
+  callInfo,
+  isInCall,
+  reset,
+  toggleMic,
+  toggleSpeaker,
+} from '../actions/methods/signaling/callAction';
+import Call, {timeOutCloseCAllScreen} from '../modules/Call/index';
+import {
+  SIGNALING_ACTION,
+  SIGNALING_STATUS,
+} from '../constants/signaling';
 import Api from '../modules/Api/index';
 import {SIGNALING_LEAVE} from '../constants/methods/index';
 import {SignalingLeave} from '../modules/Proto/index';
@@ -11,7 +21,12 @@ import putState from '../modules/Entities/RegisteredUsers/index';
 import {getUser} from '../selector/entities/registeredUser';
 import {goRoomHistory} from '../navigators/SecondaryNavigator';
 import {getPeerRoomId} from '../utils/messenger';
-
+import Permission, {
+  PERMISSION_CAMERA,
+  PERMISSION_MICROPHONE,
+} from '../modules/Permission/index';
+import {Proto} from '../modules/Proto/index';
+import i18n from '../i18n/index';
 
 class CallScreen extends Component {
 
@@ -19,16 +34,35 @@ class CallScreen extends Component {
     header: null,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const {userId, inComing, signalingType} = this.props.navigation.state.params;
-    const {callAction, setIsInCall, setCallInfo} = this.props;
+    const {callAction, setIsInCall, setCallInfo, intl} = this.props;
     if (!callAction.isInCall) {
       putState(userId);
-      setCallInfo(userId, inComing, signalingType);
-      if (!inComing) {
-        Call.instance.sendOffer(userId, signalingType);
+      try {
+        if (signalingType === Proto.SignalingOffer.Type.VOICE_CALLING || signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
+          await  Permission.grant(PERMISSION_MICROPHONE,   intl.formatMessage(i18n.callTitleVoicePermission),  intl.formatMessage(i18n.callContentVoicePermission));
+        }
+        if (signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
+          await  Permission.grant(PERMISSION_CAMERA,  intl.formatMessage(i18n.callTitleVideoPermission), intl.formatMessage(i18n.callContentVideoPermission));
+        }
+        setCallInfo(userId, inComing, signalingType);
+
+        if (inComing) {
+          Call.instance.receiveOfferFromCall();
+        } else {
+          Call.instance.sendOffer(userId, signalingType);
+        }
+        setIsInCall(true);
+
+      } catch (error) {
+        if (inComing) {
+          this.endCallAndClose();
+        } else {
+          this.props.navigation.goBack();
+        }
       }
-      setIsInCall(true);
+
     }
   }
 
@@ -44,20 +78,24 @@ class CallScreen extends Component {
         Call.instance.createAnswer();
         break;
       case SIGNALING_ACTION.CHAT:
+        this.props.navigation.goBack();
         this.goToChat();
         break;
       case SIGNALING_ACTION.CHAT_AND_CLOSE:
-        this.props.navigation.goBack();
-        Api.invoke(SIGNALING_LEAVE, new SignalingLeave());
+        this.endCallAndClose();
         this.goToChat();
         break;
       case SIGNALING_ACTION.REJECT:
-        Call.instance.setSendLeave(true);
-        this.props.navigation.goBack();
-        this.props.resetCall();
-        Api.invoke(SIGNALING_LEAVE, new SignalingLeave());
+        this.endCallAndClose();
         break;
     }
+  };
+
+  endCallAndClose = () => {
+    Call.instance.setSendLeave(true);
+    this.props.navigation.goBack();
+    this.props.resetCall();
+    Api.invoke(SIGNALING_LEAVE, new SignalingLeave());
   };
 
   goToChat = async () => {
@@ -74,10 +112,10 @@ class CallScreen extends Component {
       case SIGNALING_STATUS.UNAVAILABLE:
       case SIGNALING_STATUS.DISCONNECTED:
       case SIGNALING_STATUS.BUSY:
-        setTimeout(this.props.navigation.goBack, 300);
+        setTimeout(this.props.navigation.goBack, timeOutCloseCAllScreen);
     }
 
-    if (!user || callAction.peerUserId === 0) {
+    if (!user) {
       return null;
     }
 
@@ -92,7 +130,7 @@ class CallScreen extends Component {
 }
 
 CallScreen.propTypes = {
-  // myProp: PropTypes.string.isRequired
+  intl: intlShape.isRequired,
 };
 
 
@@ -126,4 +164,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(CallScreen);
+export default connect(makeMapStateToProps, mapDispatchToProps)(injectIntl(CallScreen));

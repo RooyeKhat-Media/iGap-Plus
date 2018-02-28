@@ -43,12 +43,19 @@ import {
 const callSingleton = Symbol();
 const callSingletonEnforcer = Symbol();
 
+export const timeOutCloseCAll = 500;
+export const timeOutCloseCAllScreen = 550;
+const videoBandwidth = 256;
+
 let _peerConnection = null;
 let _offerSdp = null;
 let _offerType = null;
 let _isCreateAnswer = false;
-let _isSendLeave = false;
+let _isSendLeave = true;
 let _localStream = null;
+let _receiveOfferResponse = null;
+let _waitPromise = null;
+let _waitPromiseResolve = null;
 
 export default class Call {
 
@@ -80,11 +87,12 @@ export default class Call {
       _isSendLeave = false;
       await  this.getPeerConnectionInstance();
       _offerSdp = await _peerConnection.createOffer();
+      _offerSdp.sdp = this.setBandwidth(_offerSdp.sdp);
       const signalingOffer = new SignalingOffer();
       signalingOffer.setType(signalingType);
       signalingOffer.setCalledUserId(userId);
       signalingOffer.setCallerSdp(_offerSdp.sdp);
-      Api.invoke(SIGNALING_OFFER, signalingOffer);
+      await Api.invoke(SIGNALING_OFFER, signalingOffer);
     } catch (e) {
       if (e instanceof ServerError) {
         _isSendLeave = true;
@@ -106,7 +114,7 @@ export default class Call {
       } else {
         store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
       }
-      store.dispatch(reset());
+      setTimeout(() => store.dispatch(reset()), timeOutCloseCAll);
       throw e;
     }
   }
@@ -133,18 +141,29 @@ export default class Call {
    /**
    * @type  ProtoSignalingOfferResponse
    */
-  async receiveOffer(response) {
+  receiveOffer(response) {
+    _waitPromise = new Promise(function(resolve) {
+      _waitPromiseResolve = resolve;
+    });
+    _receiveOfferResponse = response;
+    goCall(response.getCallerUserId().toString(), true, response.getType());
+  }
+
+  async receiveOfferFromCall() {
+    if (_receiveOfferResponse === null) {
+      return;
+    }
     try {
-      _offerType = response.getType();
+      _offerType = _receiveOfferResponse.getType();
       _isSendLeave = false;
-      const info = {sdp: response.getCallerSdp(), type: 'offer'};
+      const info = {sdp: _receiveOfferResponse.getCallerSdp(), type: 'offer'};
       await  this.getPeerConnectionInstance();
       await  _peerConnection.setRemoteDescription(new RTCSessionDescription(info));
       Api.invoke(SIGNALING_RINGING, new SignalingRinging());
-      goCall(response.getCallerUserId().toString(), true, response.getType());
+      _waitPromiseResolve();
     } catch (e) {
       store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
-      store.dispatch(reset());
+      setTimeout(() => store.dispatch(reset()), timeOutCloseCAll);
       throw e;
     }
   }
@@ -153,7 +172,9 @@ export default class Call {
     try {
       if (!_isCreateAnswer) {
         _isCreateAnswer = true;
+        await  _waitPromise;
         const date = await _peerConnection.createAnswer();
+        date.sdp = this.setBandwidth(date.sdp);
         const signalingAccept = new SignalingAccept();
         signalingAccept.setCalledSdp(date.sdp);
         await Api.invoke(SIGNALING_ACCEPT, signalingAccept);
@@ -161,7 +182,7 @@ export default class Call {
       }
     } catch (e) {
       store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
-      store.dispatch(reset());
+      setTimeout(() => store.dispatch(reset()), timeOutCloseCAll);
       throw e;
     }
   }
@@ -183,7 +204,7 @@ export default class Call {
       case 'disconnected':
       case 'failed' :
         store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
-        setTimeout(() => store.dispatch(reset()), 500);
+        setTimeout(() => store.dispatch(reset()), timeOutCloseCAll);
         break;
       case 'checking' :
         store.dispatch(status(SIGNALING_STATUS.CONNECTING));
@@ -228,11 +249,9 @@ export default class Call {
       audio = true;
       video = {
         mandatory: {
-          maxWidth: 320,
-          maxHeight: 240,
-          width: 320,
-          height: 240,
-          frameRate: {ideal: 24, min: 16, max: 32},
+          minWidth: 320,
+          minHeight: 240,
+          minFrameRate: 15,
         },
         facingMode: (isFront ? 'user' : 'environment'),
         optional: (videoSourceId ? [{sourceId: videoSourceId}] : []),
@@ -267,6 +286,10 @@ export default class Call {
     };
   }
 
+  setBandwidth(sdp) {
+    return sdp.replace(/a=mid:video\r\n/g, 'a=mid:video\r\nb=AS:' + videoBandwidth + '\r\n');
+  }
+
   //**************************************************
 
   async resetValue() {
@@ -275,9 +298,13 @@ export default class Call {
       _peerConnection = null;
       setTimeout(() => requestGetLog(0, 1), 1000);
     }
+
+    _waitPromise = null;
+    _waitPromiseResolve = null;
     _offerSdp = null;
     _offerType = null;
     _isCreateAnswer = false;
+    _receiveOfferResponse = null;
 
     if (!_isSendLeave) {
       Api.invoke(SIGNALING_LEAVE, new SignalingLeave());

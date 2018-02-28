@@ -10,6 +10,6 @@ const getCallLogListState = (state) =>
 export const getCallLogList = createSelector(
   getCallLogListState,
   (objectList) => {
-    return orderBy(values(objectList), ['sort'], ['desc']);
+    return orderBy(values(objectList), ['offerTime'], ['desc']);
   }
 );

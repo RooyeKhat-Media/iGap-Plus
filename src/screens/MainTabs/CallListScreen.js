@@ -6,6 +6,7 @@ import Api from '../../modules/Api/index';
 import {SIGNALING_CLEAR_LOG, SIGNALING_GET_LOG} from '../../constants/methods/index';
 import {SIGNALING_GET_LOG_LIST_PAGINATION_LIMIT} from '../../constants/configs';
 import {getCallLogList} from '../../selector/methods/signaling/callLog';
+import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
 
 let offset = 0;
 
@@ -26,13 +27,14 @@ class CallListScreen extends Component {
   };
 
   render() {
-    const {callLogList} = this.props;
+    const {callLogList, permission} = this.props;
     offset = callLogList.length;
     return (
       <CallListComponent
         callLogList={callLogList}
         clearLogList={this.clearLogList}
         onLoadMore={this.onLoadMore}
+        permission={permission}
       />
     );
   }
@@ -57,6 +59,7 @@ CallListScreen.propTypes = {};
 const mapStateToProps = state => {
   return {
     callLogList: getCallLogList(state),
+    permission: getCallPermission(state),
   };
 };
 

@@ -6,14 +6,18 @@ import {
   METHOD_SIGNALING_LOG_LIST,
 } from '../../../actions/methods/signaling/callLog';
 
-export function callLog(state = {}, action) {
+export function callLog(state = [], action) {
   switch (action.type) {
     case METHOD_SIGNALING_LOG_LIST:
       const newState = {...state};
       for (const item of action.logList) {
         newState[item.id] = {
-          item,
-          sort: item.offerTime,
+          id: item.id,
+          peerId: item.peerId,
+          duration: item.duration,
+          offerTime: item.offerTime,
+          status: item.status,
+          type: item.type,
         };
       }
       return newState;

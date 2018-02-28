@@ -12,6 +12,7 @@ import ReturnToCall from '../../Call/ReturnToCall';
 import {Proto} from '../../../modules/Proto/index';
 import {toHHMMSS} from '../../../utils/core';
 import {goCall} from '../../../navigators/SecondaryNavigator';
+import UserListItem from '../../../containers/Unit/UserListItem';
 
 class CallListComponent extends Component {
   getStyles = () => {
@@ -40,8 +41,9 @@ class CallListComponent extends Component {
         <ReturnToCall/>
         <FlatList
           data={callLogList}
-          keyExtractor={(item, index) => ('callLogList-' + index)}
-          renderItem={({item}) => this.renderItem(item.item)}
+          keyExtractor={(item, index) => ('callLogList-' + item.id)}
+          renderItem={({item}) => <UserListItem userId={item.peerId.toString()} item={item}
+            render={(props) => this.renderItem(props)}/>}
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.5}
         />
@@ -49,24 +51,33 @@ class CallListComponent extends Component {
     );
   }
 
-  renderItem = (item) => {
+  onCallPress = (peerId, type) => {
+    const {permission} = this.props;
+    if ((type === Proto.SignalingOffer.Type.VOICE_CALLING && permission.voice)
+      || (type === Proto.SignalingOffer.Type.VIDEO_CALLING && permission.video)) {
+      goCall(peerId, false, type);
+    }
+  };
+
+  renderItem = (props) => {
+    const {item, user} = props;
     const styles = this.getStyles();
     const {statusIcon, statusColor} = this.statusIcon(item.status);
 
     return (
       <View style={styles.itemLayout}>
         <ListItem
-          leftElement={<Avatar userId={item.peer.id.toString()} size={52}/>}
+          leftElement={<Avatar userId={item.peerId.toString()} size={52}/>}
           centerElement={
             <View>
-              <Text style={styles.titleText} numberOfLines={1}> {item.peer.displayName}</Text>
+              <Text style={styles.titleText} numberOfLines={1}> {user.displayName}</Text>
               <View style={styles.rowLayout}>
                 <MCIcon name={statusIcon} color={statusColor} size={22} style={styles.icon}/>
                 <FormattedRelative updateInterval={0} value={item.offerTime * 1000}/>
               </View>
             </View>}
           rightElement={
-            <TouchableOpacity onPress={() => goCall(item.peer.id.toString(), false, item.type)}
+            <TouchableOpacity onPress={() => this.onCallPress(item.peerId.toString(), item.type)}
               style={styles.rightElement}>
               <MCIcon name={this.callTypeIcon(item.type)} size={30} style={styles.CallTypeIcon}/>
               <Text> {toHHMMSS(item.duration)}</Text>
@@ -120,6 +131,7 @@ class CallListComponent extends Component {
 CallListComponent.propTypes = {
   intl: intlShape.isRequired,
   callLogList: PropTypes.array.isRequired,
+  permission: PropTypes.object.isRequired,
   clearLogList: PropTypes.func.isRequired,
   onLoadMore: PropTypes.func.isRequired,
 };

@@ -72,7 +72,7 @@ class CallComponent extends Component {
     if (this.props.callAction.signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
       this.setState({showLayoutButton: !this.state.showLayoutButton});
     }
-  }
+  };
 
   render() {
     const styles = this.getStyles();
@@ -80,8 +80,7 @@ class CallComponent extends Component {
 
     const connected = callAction.status === SIGNALING_STATUS.CONNECTED;
     const showAvatar = this.state.imageSize && (callAction.signalingType === Proto.SignalingOffer.Type.VOICE_CALLING);
-    const videoCalling = callAction.signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING;
-    const showVideo = videoCalling && connected;
+    const videoCalling = (callAction.signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING && callAction.status !== SIGNALING_STATUS.DISCONNECTED);
     const showButton = connected || !callAction.incoming;
     const showChatAndAnswer = callAction.status === SIGNALING_STATUS.CALLING;
 
@@ -94,15 +93,15 @@ class CallComponent extends Component {
         <View style={styles.avatar} onLayout={(event) => {
           this.setState({imageSize: event.nativeEvent.layout.height});
         }}>
-          {showAvatar && (<Avatar userId={callAction.peerUserId} size={this.state.imageSize} circle={false}/>)}
+          {showAvatar && (<Avatar userId={user.id} size={this.state.imageSize} circle={false}/>)}
           {showAvatar && <View style={styles.blueForeground}/>}
-          {showVideo && <View style={styles.rtcViewRemote}>
-            <RTCView streamURL={callAction.remoteUrl} objectFit={'cover'}
+          {videoCalling && <View style={styles.rtcViewRemote}>
+            <RTCView streamURL={connected ? callAction.remoteUrl : callAction.selfRemoteUrl} objectFit={'cover'} zOrder={1}
               style={{width: screenWidth, height: this.state.imageSize}}/>
           </View>}
-          {videoCalling &&
+          {(videoCalling && connected) &&
           <View style={styles.rtcViewSelf}>
-            <RTCView streamURL={callAction.selfRemoteUrl} objectFit={'cover'}
+            <RTCView streamURL={callAction.selfRemoteUrl} zOrder={2} objectFit={'cover'}
               style={{width: smallCameraWidth, height: smallCameraWidth}}/>
           </View>}
 
@@ -183,7 +182,7 @@ class CallComponent extends Component {
               }
             </View>
 
-            <Text style={styles.textName}>{user && user.firstName}</Text>
+            <Text style={styles.textName}>{user && user.displayName}</Text>
 
             <Text
               style={styles.textigapCall}>{intl.formatMessage(i18n.calliGapCall) + ' / '}{callAction.incoming ?

@@ -939,6 +939,26 @@ export default {
     defaultMessage: 'Busy',
     description: 'call screen',
   },
+  callTitleVoicePermission: {
+    id: 'call.titleVoicePermission',
+    defaultMessage: 'Capture Voice',
+    description: 'call screen',
+  },
+  callContentVoicePermission: {
+    id: 'call.contentVoicePermission',
+    defaultMessage: 'Call Need Capture Voice',
+    description: 'call screen',
+  },
+  callTitleVideoPermission: {
+    id: 'call.titleVideoPermission',
+    defaultMessage: 'Capture Video',
+    description: 'call screen',
+  },
+  callContentVideoPermission: {
+    id: 'call.contentVideoPermission',
+    defaultMessage: 'Call Need Capture Video',
+    description: 'call screen',
+  },
   callReturnToCall: {
     id: 'call.returnToCall',
     defaultMessage: 'Return To Call',

@@ -1,5 +1,5 @@
 import Base from '../Base';
-import Call from '../../Call/index';
+import Call, {timeOutCloseCAll} from '../../Call/index';
 import {reset, status} from '../../../actions/methods/signaling/callAction';
 import {SIGNALING_STATUS} from '../../../constants/signaling';
 
@@ -27,7 +27,7 @@ export default class Leave extends Base {
           this.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
           break;
       }
-      setTimeout(() => this.dispatch(reset()), 500);
+      setTimeout(() => this.dispatch(reset()), timeOutCloseCAll);
     }
   }
 }
