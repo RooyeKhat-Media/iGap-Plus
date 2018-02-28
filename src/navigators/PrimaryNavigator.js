@@ -21,6 +21,8 @@ import {
   SETTING_BLOCK_SCREEN,
   SETTING_PRIVACY_SCREEN,
   SETTING_SCREEN,
+  USER_TWO_STEP_SET_PASSWORD_SCREEN,
+  USER_TWO_STEP_SETTING_SCREEN,
 } from '../constants/navigators';
 import ProfileScreen from '../screens/MainTabs/ProfileScreen';
 import NearbyScreen from '../screens/MainTabs/NearbyScreen';
@@ -37,6 +39,8 @@ import SettingScreen from '../screens/Setting/SettingScreen';
 import SettingPrivacyScreen from '../screens/Setting/Privacy/SettingPrivacyScreen';
 import BlockScreen from '../screens/Setting/Block/BlockScreen';
 import ActiveSessionScreen from '../screens/User/ActiveSessionScreen';
+import UserTwoStepSettingScreen from '../screens/User/TwoStep/UserTwoStepSettingScreen';
+import UserTwoStepSetPasswordScreen from '../screens/User/TwoStep/UserTwoStepSetPasswordScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -99,6 +103,14 @@ export function goActiveSession() {
   navigate(ACTIVE_SESSION_SCREEN);
 }
 
+export function goTowStepSetting() {
+  navigate(USER_TWO_STEP_SETTING_SCREEN);
+}
+
+export function goTowStepSetPassword(setPasswordState) {
+  navigate(USER_TWO_STEP_SET_PASSWORD_SCREEN, {setPasswordState});
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [NEARBY_SCREEN]: {screen: NearbyScreen},
@@ -134,6 +146,8 @@ const PrimaryNavigator = StackNavigator({
   [SETTING_PRIVACY_SCREEN]: {screen: SettingPrivacyScreen},
   [SETTING_BLOCK_SCREEN]: {screen: BlockScreen},
   [ACTIVE_SESSION_SCREEN]: {screen: ActiveSessionScreen},
+  [USER_TWO_STEP_SETTING_SCREEN]: {screen: UserTwoStepSettingScreen},
+  [USER_TWO_STEP_SET_PASSWORD_SCREEN]: {screen: UserTwoStepSetPasswordScreen},
 });
 
 export default PrimaryNavigator;

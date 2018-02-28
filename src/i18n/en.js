@@ -304,6 +304,119 @@ export default {
     description: 'twoStepVerification Page',
   },
 
+  twoStepSettingTitle: {
+    id: 'twoStepSetting.title',
+    defaultMessage: 'Tow-Step Verification',
+    description: 'two-step setting',
+  },
+  twoStepSettingSetAdditionalPasswordBtn: {
+    id: 'twoStepSetting.setAdditionalPasswordBtn',
+    defaultMessage: 'Set Additional Password',
+    description: 'two-step setting',
+  },
+  twoStepSettingSetAdditionalPasswordHelp: {
+    id: 'twoStepSetting.setAdditionalPasswordHelp',
+    defaultMessage: 'You can set a password that will be required when you log in on a new device in additional to the code you get in the SMS.',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordTitle: {
+    id: 'twoStepSetPassword.title',
+    defaultMessage: 'Your Password',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordPasswordLabel: {
+    id: 'twoStepSetPassword.passwordLabel',
+    defaultMessage: 'Enter Password',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordPasswordHint: {
+    id: 'twoStepSetPassword.passwordHint',
+    defaultMessage: 'Password',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordConfirmPasswordLabel: {
+    id: 'twoStepSetPassword.confirmPasswordLabel',
+    defaultMessage: 'Enter Confirm Password',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordConfirmPasswordNotMatch: {
+    id: 'twoStepSetPassword.confirmPasswordNotMatch',
+    defaultMessage: 'Confirmed Password is Not Match',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordConfirmPasswordHint: {
+    id: 'twoStepSetPassword.confirmPasswordHint',
+    defaultMessage: 'Confirm Password',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordHintLabel: {
+    id: 'twoStepSetPassword.hintLabel',
+    defaultMessage: 'Hint',
+    description: 'two-step setting',
+  },
+
+  twoStepSetPasswordQuestionOneLabel: {
+    id: 'twoStepSetPassword.questionOneLabel',
+    defaultMessage: 'Question One',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordAnswerOneLabel: {
+    id: 'twoStepSetPassword.answerOneLabel',
+    defaultMessage: 'Answer One',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordQuestionTwoLabel: {
+    id: 'twoStepSetPassword.questionTwoLabel',
+    defaultMessage: 'Question Two',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordAnswerTwoLabel: {
+    id: 'twoStepSetPassword.answerTwoLabel',
+    defaultMessage: 'Answer Two',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordEmailLabel: {
+    id: 'twoStepSetPassword.emailLabel',
+    defaultMessage: 'Email',
+    description: 'two-step setting',
+  },
+
+  twoStepSettingChangePasswordBtn: {
+    id: 'twoStepSetting.changePasswordBtn',
+    defaultMessage: 'Change Password',
+    description: 'two-step setting',
+  },
+  twoStepSettingChangeEmailBtn: {
+    id: 'twoStepSetting.changeEmailBtn',
+    defaultMessage: 'Change Email',
+    description: 'two-step setting',
+  },
+  twoStepSettingChangeHintBtn: {
+    id: 'twoStepSetting.changeHintBtn',
+    defaultMessage: 'Change Hint',
+    description: 'two-step setting',
+  },
+  twoStepSettingChangeRecoveryQuestionsBtn: {
+    id: 'twoStepSetting.changeRecoveryQuestionsBtn',
+    defaultMessage: 'Change Recovery Questions',
+    description: 'two-step setting',
+  },
+  twoStepSettingVerifyEmailBtn: {
+    id: 'twoStepSetting.verifyEmailBtn',
+    defaultMessage: 'Verify Email',
+    description: 'two-step setting',
+  },
+  twoStepSettingDeleteTwoStepBtn: {
+    id: 'twoStepSetting.deleteTwoStepBtn',
+    defaultMessage: 'Delete Two-Step Verification',
+    description: 'two-step setting',
+  },
+  twoStepSettingSettingHelp: {
+    id: 'twoStepSetting.settingHelp',
+    defaultMessage: 'Delete Two-Step Verification',
+    description: 'two-step setting',
+  },
+
 
   twoStepForgetTitle: {
     id: 'twoStepForget.toolbarTitle',
@@ -1313,6 +1426,11 @@ export default {
   settingLanguage: {
     id: 'setting.language',
     defaultMessage: 'Language',
+    description: 'setting screen',
+  },
+  settingTwoStepVerification: {
+    id: 'setting.twoStepVerification',
+    defaultMessage: 'Two-Step Verification',
     description: 'setting screen',
   },
   settingIgapVersion: {

@@ -5,6 +5,7 @@ import Api from '../../modules/Api/index';
 import {UserGetDeleteToken} from '../../modules/Proto/index';
 import {goUserVerifyDeleteScreen} from '../../navigators/AppNavigator';
 import {logout} from '../../utils/app';
+import {goTowStepSetting} from '../../navigators/PrimaryNavigator';
 
 class SettingScreen extends Component {
 
@@ -24,9 +25,10 @@ class SettingScreen extends Component {
   render() {
     return (
       <SettingComponent
-        goBack={this.props.navigation.goBack}
         logOut={this.logOut}
+        goTowStepSetting={goTowStepSetting}
         deleteAccount={this.deleteAccount}
+        goBack={this.props.navigation.goBack}
       />
     );
   }

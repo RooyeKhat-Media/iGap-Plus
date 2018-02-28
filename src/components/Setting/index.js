@@ -4,7 +4,7 @@ import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
-import {Confirm, ListItem, Toolbar, PopupMenu} from '../BaseUI/index';
+import {Confirm, ListItem, PopupMenu, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
@@ -33,7 +33,7 @@ class SettingComponent extends Component {
   render() {
     const styles = this.getStyles();
 
-    const {intl, goBack} = this.props;
+    const {intl, goTowStepSetting, goBack} = this.props;
     return (
       <View style={styles.root}>
         <Toolbar
@@ -70,6 +70,11 @@ class SettingComponent extends Component {
           <ListItem
             centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}
             onPress={null}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingTwoStepVerification)}}
+            onPress={goTowStepSetting}
             style={styles.listItem}
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>

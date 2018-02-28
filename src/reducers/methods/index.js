@@ -14,6 +14,7 @@ import {getAvatarList} from './rooms/getAvatarList';
 import {getActionList} from './rooms/getActionList';
 import {callAction} from './signaling/callAction';
 import {callLog} from './signaling/callLog';
+import {passwordDetail} from './user/twoStep/passwordDetail';
 
 
 const methodsReducer = combineReducers({
@@ -32,5 +33,6 @@ const methodsReducer = combineReducers({
   getActionList,
   callAction,
   callLog,
+  passwordDetail,
 });
 export default methodsReducer;
