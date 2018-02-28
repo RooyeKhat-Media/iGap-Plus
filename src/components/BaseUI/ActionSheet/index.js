@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import styles from './index.styles';
-import {Text, View} from 'react-native';
+import {Text, View, Animated, Easing} from 'react-native';
 import {ListItem, Modal} from '../index';
 
 class ActionSheet extends Component {
@@ -11,7 +11,22 @@ class ActionSheet extends Component {
     this.state = {
       actions: [],
     };
+    this.animatedValue = new Animated.Value(0);
   }
+
+  openWithAnimate = () => {
+    this.modal.open();
+    this.animatedValue.setValue(0);
+    Animated.timing(
+      this.animatedValue,
+      {
+        toValue: 1,
+        duration: 150,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }
+    ).start();
+  };
 
   modalControl = (ref) => {
     if (ref) {
@@ -23,9 +38,9 @@ class ActionSheet extends Component {
     if (actions) {
       this.setState({
         actions,
-      }, this.modal.open);
+      }, this.openWithAnimate);
     } else {
-      this.modal.open();
+      this.openWithAnimate();
     }
   };
 
@@ -35,9 +50,15 @@ class ActionSheet extends Component {
     if (!actions.length && this.props.actions) {
       actions = this.props.actions;
     }
+
+    const movingMargin = this.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [250, 0],
+    });
+
     return (
       <Modal type={type} ref={this.modalControl} style={styles.container}>
-        <View style={styles.wrap}>
+        <Animated.View style={[{transform: [{translateY: movingMargin}]}, styles.wrap]}>
           <View style={styles.headerWrap}>
             <Text style={styles.header}>{title}</Text>
           </View>
@@ -56,7 +77,7 @@ class ActionSheet extends Component {
               />);
             })}
           </View>
-        </View>
+        </Animated.View>
       </Modal>
     );
   }
