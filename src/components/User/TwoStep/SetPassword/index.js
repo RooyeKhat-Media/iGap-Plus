@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {Form, TextInputField, Toolbar} from '../../../BaseUI/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
@@ -121,5 +122,10 @@ class UserTwoStepSetPasswordComponent extends Component {
 
 UserTwoStepSetPasswordComponent.propTypes = {
   intl: intlShape.isRequired,
+  currentState: PropTypes.number.isRequired,
+  formData: PropTypes.object.isRequired,
+  formRules: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  goBack: PropTypes.func.isRequired,
 };
 export default injectIntl(UserTwoStepSetPasswordComponent);

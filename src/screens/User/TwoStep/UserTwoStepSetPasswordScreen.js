@@ -60,6 +60,7 @@ class UserTwoStepSetPasswordScreen extends Component {
   }
 
   onSubmit = async (data, form) => {
+    const {setPasswordState, currentPassword} = this.props.navigation.state.params;
     const {currentState} = this.state;
     let formData = {...this.state.formData};
     formData[navState[currentState]] = data[navState[currentState]];
@@ -80,6 +81,9 @@ class UserTwoStepSetPasswordScreen extends Component {
       try {
         form.loadingOn();
         const setPassword = new UserTwoStepVerificationSetPassword();
+        if (currentPassword) {
+          setPassword.setOldPassword(currentPassword);
+        }
         setPassword.setNewPassword(formData.password);
         setPassword.setHint(formData.hint);
         setPassword.setQuestionOne(formData.question_one);
@@ -90,7 +94,7 @@ class UserTwoStepSetPasswordScreen extends Component {
 
         await Api.invoke(USER_TWO_STEP_VERIFICATION_SET_PASSWORD, setPassword);
         await Api.invoke(USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL, new UserTwoStepVerificationGetPasswordDetail());
-        this.props.navigation.state.params.setPasswordState(formData.password);
+        setPasswordState(formData.password);
 
       } finally {
         form.loadingOff();

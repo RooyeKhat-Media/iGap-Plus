@@ -355,6 +355,23 @@ export default {
     description: 'two-step setting',
   },
 
+  twoStepChangeEmailTitle: {
+    id: 'twoStepChangeEmail.title',
+    defaultMessage: 'Change Email',
+    description: 'two-step setting',
+  },
+
+  twoStepChangeHintTitle: {
+    id: 'twoStepChangeHint.title',
+    defaultMessage: 'Change Hint',
+    description: 'two-step setting',
+  },
+  twoStepChangeRecoveryQuestionTitle: {
+    id: 'twoStepChangeRecoveryQuestion.title',
+    defaultMessage: 'Change Recovery Question',
+    description: 'two-step setting',
+  },
+
   twoStepSetPasswordQuestionOneLabel: {
     id: 'twoStepSetPassword.questionOneLabel',
     defaultMessage: 'Question One',

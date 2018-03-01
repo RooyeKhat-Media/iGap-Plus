@@ -3,7 +3,12 @@ import {connect} from 'react-redux';
 import UserTwoStepSettingComponent from '../../../components/User/TwoStep/Setting';
 import Api from '../../../modules/Api/index';
 import {requiredValidator, stringValidator} from '../../../utils/validator';
-import {goTowStepSetPassword} from '../../../navigators/PrimaryNavigator';
+import {
+  goTwoStepChangeEmail,
+  goTwoStepChangeHint,
+  goTwoStepChangeRecoveryQuestion,
+  goTwoStepSetPassword,
+} from '../../../navigators/PrimaryNavigator';
 import {
   USER_TWO_STEP_VERIFICATION_CHECK_PASSWORD,
   USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL,
@@ -80,7 +85,26 @@ class UserTwoStepSettingScreen extends Component {
   };
 
   goSetPassword = () => {
-    goTowStepSetPassword(this.setPasswordState);
+    goTwoStepSetPassword(this.setPasswordState);
+  };
+
+  goChangePassword = () => {
+    const {password} = this.state;
+    goTwoStepSetPassword(this.setPasswordState, password);
+  };
+
+  goChangeEmail = () => {
+    const {password} = this.state;
+    goTwoStepChangeEmail(password);
+  };
+
+  goChangeHint = () => {
+    const {password} = this.state;
+    goTwoStepChangeHint(password);
+  };
+  goChangeRecoveryQuestion = () => {
+    const {password} = this.state;
+    goTwoStepChangeRecoveryQuestion(password);
   };
 
   render() {
@@ -95,6 +119,10 @@ class UserTwoStepSettingScreen extends Component {
         passwordDetail={passwordDetail}
         checkPassword={this.checkPassword}
         geTwoStepSetPassword={this.goSetPassword}
+        geTwoStepChangePassword={this.goChangePassword}
+        geTwoStepChangeEmail={this.goChangeEmail}
+        geTwoStepChangeHint={this.goChangeHint}
+        goChangeRecoveryQuestion={this.goChangeRecoveryQuestion}
         goBack={this.props.navigation.goBack}
       />
     );

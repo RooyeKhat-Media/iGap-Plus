@@ -9,10 +9,6 @@ import styles from './index.styles';
 
 class UserTwoStepSettingComponent extends Component {
 
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
-
   checkPassword = async () => {
     const {checkPassword} = this.props;
     if (this.form) {
@@ -22,7 +18,18 @@ class UserTwoStepSettingComponent extends Component {
   };
 
   render() {
-    const {intl, SETTING_STATE, currentState, passwordDetail, formRules, geTwoStepSetPassword, goBack} = this.props;
+    const {
+      intl, SETTING_STATE,
+      currentState,
+      passwordDetail,
+      formRules,
+      geTwoStepSetPassword,
+      geTwoStepChangePassword,
+      geTwoStepChangeEmail,
+      geTwoStepChangeHint,
+      goChangeRecoveryQuestion,
+      goBack,
+    } = this.props;
     return (
       <View style={{flex: 1}}>
         <Toolbar
@@ -74,24 +81,28 @@ class UserTwoStepSettingComponent extends Component {
             centerElement={{
               primaryText: intl.formatMessage(i18n.twoStepSettingChangePasswordBtn),
             }}
+            onPress={geTwoStepChangePassword}
           />
           <ListItem
             divider
             centerElement={{
               primaryText: intl.formatMessage(i18n.twoStepSettingChangeEmailBtn),
             }}
+            onPress={geTwoStepChangeEmail}
           />
           <ListItem
             divider
             centerElement={{
               primaryText: intl.formatMessage(i18n.twoStepSettingChangeHintBtn),
             }}
+            onPress={geTwoStepChangeHint}
           />
           <ListItem
             divider
             centerElement={{
               primaryText: intl.formatMessage(i18n.twoStepSettingChangeRecoveryQuestionsBtn),
             }}
+            onPress={goChangeRecoveryQuestion}
           />
           <ListItem
             divider
@@ -117,5 +128,15 @@ class UserTwoStepSettingComponent extends Component {
 
 UserTwoStepSettingComponent.propTypes = {
   intl: intlShape.isRequired,
+  SETTING_STATE: PropTypes.object.isRequired,
+  currentState: PropTypes.string.isRequired,
+  passwordDetail: PropTypes.object,
+  formRules: PropTypes.object.isRequired,
+  geTwoStepSetPassword: PropTypes.func.isRequired,
+  geTwoStepChangePassword: PropTypes.func.isRequired,
+  geTwoStepChangeEmail: PropTypes.func.isRequired,
+  geTwoStepChangeHint: PropTypes.func.isRequired,
+  goChangeRecoveryQuestion: PropTypes.func.isRequired,
+  goBack: PropTypes.func.isRequired,
 };
 export default injectIntl(UserTwoStepSettingComponent);
