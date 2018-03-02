@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
+import {Button, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
@@ -32,10 +32,6 @@ class UserTwoStepForgetComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          rightElement="info"
-          onRightElementPress={() => {
-            this.dialog.open();
-          }}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepForgetTitle)}</Text>}
         />
         <View style={styles.recoveryBtnWrap}>
@@ -50,13 +46,6 @@ class UserTwoStepForgetComponent extends Component {
               text={intl.formatMessage(i18n.twoStepForgetRecoveryByQuestionBtn)}/>
           </View>
         </View>
-
-        <DialogModal control={(dialog) => {
-          this.dialog = dialog;
-        }}
-        title={<FormattedMessage {...i18n.twoStepForgetInfoTitle} />}
-        content={<FormattedMessage {...i18n.twoStepForgetInfoContent} />}/>
-
       </DimensionLimiter>
     );
   }

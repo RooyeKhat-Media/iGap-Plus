@@ -1,26 +1,12 @@
 export default {
   body: {
     flex: 1,
+    padding: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
     flexDirection: 'column',
   },
-  paddingBody: {
-    padding: 10,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  centerBody: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textHelp: {
-    padding: 10,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  recoveryBtn: {
-    marginBottom: 10,
-  },
+
   inputRow: {
     marginBottom: 10,
   },
@@ -30,12 +16,15 @@ export default {
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  forgetWrper: {
+  recoveryBtn: {
+    marginBottom: 10,
+  },
+  resendWrper: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
-  forgetBtn: {
+  resendBtn: {
     container: {
       marginTop: 20,
       marginLeft: 8,

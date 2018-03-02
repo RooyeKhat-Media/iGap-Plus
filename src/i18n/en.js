@@ -354,6 +354,21 @@ export default {
     defaultMessage: 'Hint',
     description: 'two-step setting',
   },
+  twoStepSetPasswordVerifyEmailTitle: {
+    id: 'twoStepVerifyEmail.title',
+    defaultMessage: 'Verify Email',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordVerifyEmailTokenLabel: {
+    id: 'twoStepVerifyEmail.tokenLabel',
+    defaultMessage: 'Verify Token',
+    description: 'two-step setting',
+  },
+  twoStepSetPasswordVerifyEmailRecentCode: {
+    id: 'twoStepVerifyEmail.recentCode',
+    defaultMessage: 'Recent Token',
+    description: 'two-step setting',
+  },
 
   twoStepChangeEmailTitle: {
     id: 'twoStepChangeEmail.title',
@@ -369,6 +384,11 @@ export default {
   twoStepChangeRecoveryQuestionTitle: {
     id: 'twoStepChangeRecoveryQuestion.title',
     defaultMessage: 'Change Recovery Question',
+    description: 'two-step setting',
+  },
+  twoStepVerifyEmailTitle: {
+    id: 'twoStepVerifyEmail.title',
+    defaultMessage: 'Verify Recovery Email',
     description: 'two-step setting',
   },
 
@@ -431,6 +451,16 @@ export default {
   twoStepSettingSettingHelp: {
     id: 'twoStepSetting.settingHelp',
     defaultMessage: 'Delete Two-Step Verification',
+    description: 'two-step setting',
+  },
+  twoStepSettingSettingUnsetPassowrdTitle: {
+    id: 'twoStepSetting.unsetPassowrdTitle',
+    defaultMessage: 'Delete Two-Step Verification',
+    description: 'two-step setting',
+  },
+  twoStepSettingSettingUnsetPassowrdDescription: {
+    id: 'twoStepSetting.unsetPassowrdTitle',
+    defaultMessage: 'Are you sure you want to delete Two-step Verification ?',
     description: 'two-step setting',
   },
 

@@ -8,10 +8,12 @@ import {
   goTwoStepChangeHint,
   goTwoStepChangeRecoveryQuestion,
   goTwoStepSetPassword,
+  goTwoStepVerifyEmail,
 } from '../../../navigators/PrimaryNavigator';
 import {
   USER_TWO_STEP_VERIFICATION_CHECK_PASSWORD,
   USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL,
+  USER_TWO_STEP_VERIFICATION_UNSET_PASSWORD,
 } from '../../../constants/methods/index';
 import ServerError from '../../../modules/Error/ServerError';
 import {
@@ -25,8 +27,10 @@ import {
 import {
   UserTwoStepVerificationCheckPassword,
   UserTwoStepVerificationGetPasswordDetail,
+  UserTwoStepVerificationUnsetPassword,
 } from '../../../modules/Proto/index';
 import {errorId} from '../../../modules/Error/index';
+import {goUserTwoStepForgetScreen} from '../../../navigators/AppNavigator';
 
 const rules = {
   password: [
@@ -107,6 +111,14 @@ class UserTwoStepSettingScreen extends Component {
     goTwoStepChangeRecoveryQuestion(password);
   };
 
+  deleteTwoStep = async () => {
+    const {password} = this.state;
+    const unsetPassword = new UserTwoStepVerificationUnsetPassword();
+    unsetPassword.setPassword(password);
+    await Api.invoke(USER_TWO_STEP_VERIFICATION_UNSET_PASSWORD, unsetPassword);
+    this.props.navigation.goBack();
+  };
+
   render() {
     const {currentState} = this.state;
     const {passwordDetail} = this.props;
@@ -123,6 +135,9 @@ class UserTwoStepSettingScreen extends Component {
         geTwoStepChangeEmail={this.goChangeEmail}
         geTwoStepChangeHint={this.goChangeHint}
         goChangeRecoveryQuestion={this.goChangeRecoveryQuestion}
+        goVerifyEmail={goTwoStepVerifyEmail}
+        deleteTwoStep={this.deleteTwoStep}
+        goForgetScreen={goUserTwoStepForgetScreen}
         goBack={this.props.navigation.goBack}
       />
     );

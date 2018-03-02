@@ -1,6 +1,7 @@
 import {
   USER_TWO_STEP_PASSWORD_CLEAR_DETAIL,
   USER_TWO_STEP_PASSWORD_DETAIL,
+  USER_TWO_STEP_PASSWORD_DETAIL_EDIT,
 } from '../../../../actions/methods/user/twoStep/passwordDetail';
 
 const initialState = {
@@ -22,6 +23,11 @@ export function passwordDetail(state = initialState, action) {
         hint: action.hint,
         has_confirmed_recovery_email: action.has_confirmed_recovery_email,
         unconfirmed_email_pattern: action.unconfirmed_email_pattern,
+      };
+    case USER_TWO_STEP_PASSWORD_DETAIL_EDIT:
+      return {
+        ...state,
+        ...action.params,
       };
     case USER_TWO_STEP_PASSWORD_CLEAR_DETAIL:
       return initialState;

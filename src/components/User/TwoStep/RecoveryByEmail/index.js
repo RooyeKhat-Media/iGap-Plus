@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, DialogModal, Toolbar} from '../../../BaseUI/index';
+import {Button, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
@@ -34,10 +34,6 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          rightElement="info"
-          onRightElementPress={() => {
-            this.dialog.open();
-          }}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}</Text>}
         />
         <Form style={styles.panel} control={(form) => {
@@ -82,12 +78,6 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
               text={intl.formatMessage(i18n.twoStepRecoveryByEmailResendBtnTitle)}/>
           </View>
         </Form>
-
-        <DialogModal control={(dialog) => {
-          this.dialog = dialog;
-        }}
-        title={<FormattedMessage {...i18n.twoStepRecoveryByEmailInfoTitle} />}
-        content={<FormattedMessage {...i18n.twoStepRecoveryByEmailInfoContent} />}/>
 
       </DimensionLimiter>
     );

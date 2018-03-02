@@ -20,7 +20,9 @@ class UserTwoStepChangeHintComponent extends Component {
           rightElement="check"
           onRightElementPress={async () => {
             const data = await this.form.submit();
-            await onSubmit(data, this.form);
+            this.form.loadingOn();
+            await onSubmit(data, this.form.setError);
+            this.form.loadingOff();
           }}
         />
         <Form style={styles.body} control={(form) => {

@@ -3,14 +3,8 @@ import {connect} from 'react-redux';
 import UserTwoStepChangeRecoveryQuestionComponent from '../../../components/User/TwoStep/ChangeRecoveryQuestion';
 import {requiredValidator} from '../../../utils/validator';
 import Api from '../../../modules/Api/index';
-import {
-  UserTwoStepVerificationChangeRecoveryQuestion,
-  UserTwoStepVerificationGetPasswordDetail,
-} from '../../../modules/Proto/index';
-import {
-  USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION,
-  USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL,
-} from '../../../constants/methods/index';
+import {UserTwoStepVerificationChangeRecoveryQuestion} from '../../../modules/Proto/index';
+import {USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION} from '../../../constants/methods/index';
 import {
   ERROR_USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION_BAD_PAYLOAD,
   ERROR_USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION_INTERNAL_SERVER_ERROR,
@@ -53,7 +47,6 @@ class UserTwoStepChangeRecoveryQuestionScreen extends Component {
         [errorId(ERROR_USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION_NO_PASSWORD)]: 'question_one',
         [errorId(ERROR_USER_TWO_STEP_VERIFICATION_CHANGE_RECOVERY_QUESTION_INVALID_PASSWORD)]: 'question_one',
       });
-    await Api.invoke(USER_TWO_STEP_VERIFICATION_GET_PASSWORD_DETAIL, new UserTwoStepVerificationGetPasswordDetail());
     this.props.navigation.goBack();
   };
 

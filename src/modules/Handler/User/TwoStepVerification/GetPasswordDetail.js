@@ -11,8 +11,8 @@ export default class GetPasswordDetail extends Base {
       this._response.getQuestionOne(),
       this._response.getQuestionTwo(),
       this._response.getHint(),
+      this._response.getHasConfirmedRecoveryEmail(),
       this._response.getUnconfirmedEmailPattern(),
-      this._response.getHasConfirmedRecoveryEmail()
     ));
   }
 }

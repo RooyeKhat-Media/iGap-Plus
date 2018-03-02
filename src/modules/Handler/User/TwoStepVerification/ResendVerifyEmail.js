@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {editPasswordDetail} from '../../../../actions/methods/user/twoStep/passwordDetail';
 
 /**
  * @property {ProtoUserTwoStepVerificationResendVerifyEmail} _request
@@ -6,6 +7,8 @@ import Base from '../../Base';
  */
 export default class ResendVerifyEmail extends Base {
   handle() {
-    console.error('ResendVerifyEmail', 'Not implemented yet', this);
+    this.dispatch(editPasswordDetail({
+      unconfirmed_email_pattern: this._response.getUnconfirmedEmailPattern(),
+    }));
   }
 }

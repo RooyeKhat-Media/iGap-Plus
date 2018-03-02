@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
-import {ActivityIndicator, Form, ListItem, TextInputField, Toolbar} from '../../../BaseUI/index';
+import {ActivityIndicator, Button, Confirm, Form, ListItem, TextInputField, Toolbar} from '../../../BaseUI/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../../i18n/index';
 import {textTitleStyle} from '../../../../themes/default/index';
 import styles from './index.styles';
+import {APP_MODAL_ID_PRIMARY} from '../../../../constants/app';
 
 class UserTwoStepSettingComponent extends Component {
 
@@ -28,6 +29,9 @@ class UserTwoStepSettingComponent extends Component {
       geTwoStepChangeEmail,
       geTwoStepChangeHint,
       goChangeRecoveryQuestion,
+      goVerifyEmail,
+      deleteTwoStep,
+      goForgetScreen,
       goBack,
     } = this.props;
     return (
@@ -71,6 +75,12 @@ class UserTwoStepSettingComponent extends Component {
               rules={formRules.password}
               label={intl.formatMessage(i18n.twoStepSetPasswordPasswordHint)}
               placeholder={passwordDetail.hint}/>
+            <View style={styles.forgetWrper}>
+              <Button
+                primary
+                style={styles.forgetBtn}
+                onPress={goForgetScreen} text={intl.formatMessage(i18n.twoStepVerificationForgetBtnTitle)}/>
+            </View>
           </View>
         </Form>)}
 
@@ -104,22 +114,36 @@ class UserTwoStepSettingComponent extends Component {
             }}
             onPress={goChangeRecoveryQuestion}
           />
-          <ListItem
+
+          {(passwordDetail.unconfirmed_email_pattern !== '') &&
+          (<ListItem
             divider
             centerElement={{
               primaryText: intl.formatMessage(i18n.twoStepSettingVerifyEmailBtn),
             }}
-          />
+            onPress={goVerifyEmail}
+          />)}
+
           <ListItem
             divider
             centerElement={{
               primaryText: intl.formatMessage(i18n.twoStepSettingDeleteTwoStepBtn),
+            }}
+            onPress={() => {
+              this.confirm.open(
+                i18n.twoStepSettingSettingUnsetPassowrdTitle,
+                i18n.twoStepSettingSettingUnsetPassowrdDescription,
+                deleteTwoStep);
             }}
           />
           <Text style={styles.textHelp}>
             <FormattedMessage {...i18n.twoStepSettingSettingHelp} />
           </Text>
         </View>)}
+
+        <Confirm control={(dialog) => {
+          this.confirm = dialog;
+        }} type={APP_MODAL_ID_PRIMARY}/>
 
       </View>
     );
@@ -137,6 +161,9 @@ UserTwoStepSettingComponent.propTypes = {
   geTwoStepChangeEmail: PropTypes.func.isRequired,
   geTwoStepChangeHint: PropTypes.func.isRequired,
   goChangeRecoveryQuestion: PropTypes.func.isRequired,
+  goVerifyEmail: PropTypes.func.isRequired,
+  deleteTwoStep: PropTypes.func.isRequired,
+  goForgetScreen: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
 };
 export default injectIntl(UserTwoStepSettingComponent);

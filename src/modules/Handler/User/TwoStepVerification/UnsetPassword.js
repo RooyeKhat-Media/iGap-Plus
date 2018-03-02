@@ -1,4 +1,5 @@
 import Base from '../../Base';
+import {clearPasswordDetail} from '../../../../actions/methods/user/twoStep/passwordDetail';
 
 /**
  * @property {ProtoUserTwoStepVerificationUnsetPassword} _request
@@ -6,6 +7,6 @@ import Base from '../../Base';
  */
 export default class UnsetPassword extends Base {
   handle() {
-    console.error('UnsetPassword', 'Not implemented yet', this);
+    this.dispatch(clearPasswordDetail());
   }
 }
