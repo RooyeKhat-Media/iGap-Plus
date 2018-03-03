@@ -5,7 +5,7 @@ import styles from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {Icon} from '../../BaseUI';
 import Video from 'react-native-video';
-import ProgressingProgress from '../../BaseUI/ProgressBar/ProgressingProgress';
+import SeekBarComponent from '../SeekBar/index';
 import {toHHMMSS} from '../../../utils/core';
 
 class VideoPlayerComponent extends Component {
@@ -60,7 +60,7 @@ class VideoPlayerComponent extends Component {
 
   getCurrentTimePercentage = (curentTime) => {
     if (curentTime > 0) {
-      return Number(((parseFloat(curentTime) * 100 ) / this.maxTime));
+      return Number(((parseFloat(curentTime)) / this.maxTime));
     }
     return 0;
   };
@@ -76,6 +76,14 @@ class VideoPlayerComponent extends Component {
     this.props.goBack();
   };
 
+  onSeek = (value) => {
+    const sec = Number((value * this.maxTime).toFixed(0));
+    this.player.seek(sec);
+    this.setState({
+      currentTime: toHHMMSS(sec),
+    });
+  };
+
   render() {
     const {uri, fileName, goBack} = this.props;
     const styles = this.getStyles();
@@ -87,14 +95,14 @@ class VideoPlayerComponent extends Component {
           ref={(ref) => this.player = ref}
           rate={1.0}
           volume={1.0}
-          muted={false}
+          muted={this.state.mute}
           paused={this.state.paused}
           resizeMode="contain"  //contain  cover  stretch
           repeat={false}
           playInBackground={false}
           playWhenInactive={false}
           ignoreSilentSwitch={'ignore'}
-          progressUpdateInterval={1000}
+          progressUpdateInterval={500}
           onLoad={this.onLoad}
           onProgress={this.onProgress}
           onEnd={this.onEnd}
@@ -104,8 +112,7 @@ class VideoPlayerComponent extends Component {
         {
           this.state.showControlBar &&
           <View style={styles.bottomOverlay} onLayout={(event) => this.width = event.nativeEvent.layout.width}>
-            <ProgressingProgress width={this.width} initialProgress={this.state.progress}
-              progress={this.state.progress}/>
+            <SeekBarComponent width={this.width} onSeek={this.onSeek} progress={this.state.progress}/>
             <View style={styles.row}>
               <TouchableOpacity style={styles.play} onPress={() => this.togglePlay()}>
                 <Icon name={this.state.paused ? 'play-arrow' : 'pause'} size={32} color={'white'}/>
