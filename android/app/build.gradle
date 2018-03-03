@@ -98,7 +98,7 @@ android {
     buildToolsVersion '25.0.3'
 
     defaultConfig {
-        applicationId "com.igapplus"
+        applicationId "iGap.Plus"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -141,7 +141,28 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        // These docs use an open ended version so that our plugin
+        // can be updated quickly in response to Android tooling updates
+
+        // We recommend changing it to the latest version from our changelog:
+        // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
+    compile project(':react-native-fabric')
     compile project(':react-native-incall-manager')
     compile project(':react-native-video-processing')
     compile project(':react-native-contacts')
@@ -159,6 +180,12 @@ dependencies {
     compile project(':react-native-web-socket')
     compile project(':react-native-svg')
     compile project(':react-native-vector-icons')
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:crashlytics-ndk:2.0.1@aar') {
+        transitive = true;
+    }
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:support-v4:25.0.0"
     compile "com.android.support:appcompat-v7:25.0.0"
@@ -170,4 +197,12 @@ dependencies {
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
+}
+
+crashlytics {
+    enableNdk true
+    androidNdkOut 'src/main/obj'
+    androidNdkLibsOut 'src/main/libs'
+    manifestPath 'src/main/AndroidManifest.xml'
+
 }
