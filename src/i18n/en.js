@@ -46,6 +46,21 @@ export default {
     defaultMessage: 'Dismiss',
     description: 'All Pages',
   },
+  connectionStatusConnecting: {
+    id: 'connectionStatus.connecting',
+    defaultMessage: 'Connecting...',
+    description: 'All Pages',
+  },
+  connectionStatusSecuring: {
+    id: 'connectionStatus.securing',
+    defaultMessage: 'Securing...',
+    description: 'All Pages',
+  },
+  connectionStatusAuthenticating: {
+    id: 'connectionStatus.authenticating',
+    defaultMessage: 'Authenticating...',
+    description: 'All Pages',
+  },
   introLogoTitle: {
     id: 'Intro.logoTitle',
     defaultMessage: 'iGap Messenger',

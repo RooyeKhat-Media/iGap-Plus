@@ -1,0 +1,42 @@
+/* eslint-disable import/no-unresolved, import/extensions */
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
+import {Text, View} from 'react-native';
+import {FormattedMessage} from 'react-intl';
+import {CLIENT_STATUS} from '../../../modules/Api/index';
+import i18n from '../../../i18n';
+import styles from './index.styles';
+
+class ConnectionStatusComponent extends PureComponent {
+  render() {
+    const {status} = this.props;
+    if (status === CLIENT_STATUS.LOGGED_IN) {
+      return null;
+    }
+    return (
+      <View style={styles.container}>
+        {(status === CLIENT_STATUS.DISCONNECTED || status === CLIENT_STATUS.CONNECTING) && (
+          <Text style={[styles.textContainer, styles.connecting]}>
+            <FormattedMessage {...i18n.connectionStatusConnecting}/>
+          </Text>
+        )}
+        {(status === CLIENT_STATUS.CONNECTED) && (
+          <Text style={[styles.textContainer, styles.securing]}>
+            <FormattedMessage {...i18n.connectionStatusSecuring}/>
+          </Text>
+        )}
+        {(status === CLIENT_STATUS.SECURED) && (
+          <Text style={[styles.textContainer, styles.authenticating]}>
+            <FormattedMessage {...i18n.connectionStatusAuthenticating}/>
+          </Text>
+        )}
+      </View>
+    );
+  }
+}
+
+ConnectionStatusComponent.propTypes = {
+  status: PropTypes.symbol.isRequired,
+};
+
+export default ConnectionStatusComponent;
