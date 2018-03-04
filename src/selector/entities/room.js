@@ -7,10 +7,10 @@ export const getRoomId = (state, props) => {
 };
 
 export const getRoom = createSelector(
-  (state) => state.entities,
+  (state) => state.entities.rooms,
   getRoomId,
-  (entities, roomId) => {
-    return entities.rooms[roomId];
+  (roomEntities, roomId) => {
+    return roomEntities[roomId];
   }
 );
 

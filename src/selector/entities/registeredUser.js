@@ -7,6 +7,13 @@ export const getUserId = (state, props) => {
   return props.userId || (props.navigation ? props.navigation.state.params.userId : null);
 };
 
+export const getUserFunc = createSelector(
+  (state) => state.entities.registeredUsers,
+  (registeredUsers) => (userId) => {
+    return registeredUsers[userId];
+  }
+);
+
 export const getUser = createSelector(
   getUserId,
   (state) => state.entities.registeredUsers,

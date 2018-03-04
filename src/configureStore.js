@@ -9,7 +9,7 @@ import apiMiddleware from './modules/Api/middleware';
 import callMiddleware from './modules/Call/middleware';
 import soundPlayerMiddleware from './middlewares/soundPlayer';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
-import reduxLogger from 'redux-logger';
+//import reduxLogger from 'redux-logger';
 //Navigation
 import {middleware as appNavigatorMiddleware} from './navigators/AppNavigator';
 import {middleware as primaryNavigatorMiddleware} from './navigators/PrimaryNavigator';
@@ -21,6 +21,8 @@ import entitiesRoomMessagesMiddleware from './modules/Entities/RoomMessages/midd
 //Messenger
 import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
 import userUpdateStatusMiddleware from './middlewares/userUpdateStatus';
+//Optimization
+//import collectorMiddleware from './middlewares/collector';
 
 function configureStore(preloadedState) {
   const middlewares = [
@@ -40,6 +42,8 @@ function configureStore(preloadedState) {
     //Messenger
     messengerRoomsMiddleware,
     userUpdateStatusMiddleware,
+    //Optimization
+    //collectorMiddleware,
   ];
 
   if (process.env.NODE_ENV === `development`) {

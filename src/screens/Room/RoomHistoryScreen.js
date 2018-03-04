@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {injectIntl, intlShape} from 'react-intl';
 import SaveTo from '../../../native/modules/SaveTo';
@@ -8,7 +8,14 @@ import RNFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
-import {goCamera, goContactPicker, goLocationPicker, goRoomHistory, goRoomInfo, goRoomReport} from '../../navigators/SecondaryNavigator';
+import {
+  goCamera,
+  goContactPicker,
+  goLocationPicker,
+  goRoomHistory,
+  goRoomInfo,
+  goRoomReport,
+} from '../../navigators/SecondaryNavigator';
 import {
   deleteMessages,
   editRoomMessage,
@@ -29,7 +36,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../constants/app';
-import {getAuthorHash, getFakeMessageId, setRoomHistorySelectedMode} from '../../utils/app';
+import {getAuthorHash, getFakeMessageId, getMessageDownloadFileUri, setRoomHistorySelectedMode} from '../../utils/app';
 import {
   ClientJoinByUsername,
   ClientMuteRoom,
@@ -37,7 +44,7 @@ import {
   ClientUnsubscribeFromRoom,
   Proto,
 } from '../../modules/Proto/index';
-import {getEntitiesRoomMessage} from '../../selector/entities/roomMessage';
+import {getEntitiesRoomMessageFunc, getEntitiesRoomMessageTypeFunc} from '../../selector/entities/roomMessage';
 import {
   CLIENT_JOIN_BY_USERNAME,
   CLIENT_MUTE_ROOM,
@@ -51,8 +58,9 @@ import Clipboard from '../../modules/Clipboard/index';
 import {messengerRoomAddList} from '../../actions/messenger/rooms';
 import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger/roomMessages';
 import {cameraMode} from '../General/CameraScreen';
+import {getUserFunc} from '../../selector/entities/registeredUser';
 
-class RoomHistoryScreen extends Component {
+class RoomHistoryScreen extends PureComponent {
 
   onScroll = async (event, offsetX, offsetY) => {
     const {room} = this.props;
@@ -154,13 +162,13 @@ class RoomHistoryScreen extends Component {
    * @returns {Promise.<void>}
    */
   submitForm = (text) => {
-    const {room, getEntitiesRoomMessage} = this.props;
+    const {room, getRoomMessage} = this.props;
     const {editMessageId, pickedFile, attachmentType, replyTo, forwardedMessage} = this.state;
     try {
       if (!editMessageId) {
         sendMessage(room.id, text, pickedFile, attachmentType, replyTo ? replyTo.longId : null, forwardedMessage);
       } else {
-        const roomMessage = getEntitiesRoomMessage(editMessageId);
+        const roomMessage = getRoomMessage(editMessageId);
         editRoomMessage(room.id, roomMessage.longId, text);
       }
     } finally {
@@ -290,7 +298,7 @@ class RoomHistoryScreen extends Component {
   };
 
   selectMessage = (messageId) => {
-    const {getEntitiesRoomMessage} = this.props;
+    const {getRoomMessage} = this.props;
     this.setState(prevState => {
       const selectedList = {...prevState.selectedList};
       const selectedCount = selectedList[messageId] ? prevState.selectedCount - 1 : prevState.selectedCount + 1;
@@ -299,7 +307,7 @@ class RoomHistoryScreen extends Component {
       } else {
         delete selectedList[messageId];
       }
-      const firstRoomMessage = selectedCount === 1 ? getEntitiesRoomMessage(Object.keys(selectedList)[0]) : null;
+      const firstRoomMessage = selectedCount === 1 ? getRoomMessage(Object.keys(selectedList)[0]) : null;
       return {
         ...prevState,
         selectedCount,
@@ -343,9 +351,9 @@ class RoomHistoryScreen extends Component {
   };
 
   selectedMessageAction = (selected) => {
-    const {room, getEntitiesRoomMessage} = this.props;
+    const {room, getRoomMessage} = this.props;
     const {selectedList} = this.state;
-    const roomMessage = getEntitiesRoomMessage(Object.keys(selectedList)[0]);
+    const roomMessage = getRoomMessage(Object.keys(selectedList)[0]);
     switch (selected.action) {
 
       case ROOM_MESSAGE_ACTION_REPLY:
@@ -467,7 +475,7 @@ class RoomHistoryScreen extends Component {
   getActionList = (roomMessage) => {
     const actions = [];
     const {access} = this.state;
-    const {intl, getMessageDownloadFileUri} = this.props;
+    const {intl} = this.props;
 
     let uri = null;
     let message = null;
@@ -629,37 +637,9 @@ const makeMapStateToProps = () => {
     return {
       room: getRoom(state, props),
       messageList: getRoomMessageList(state, props),
-      getEntitiesRoomMessage: (messageId) => {
-        return getEntitiesRoomMessage(state, messageId);
-      },
-      getMessageDownloadFileUri: (cacheId) => {
-        const downloadFile = state.fileManager.download[cacheId];
-        return downloadFile ? downloadFile.uri : null;
-      },
-      getRoomMessage: (messageId) => {
-        return state.entities.roomMessages[messageId];
-      },
-      getRoomMessageType: (messageId) => {
-        const roomMessage = state.entities.roomMessages[messageId];
-        if (!roomMessage) {
-          //todo Error Report
-          console.warn('getRoomMessageType: Invalid MessageId', messageId);
-          return -1;
-        }
-        let type = roomMessage.messageType;
-
-        if (roomMessage.replyTo) {
-          type += 100;
-        }
-        if (roomMessage.forwardFrom) {
-          const offset = roomMessage.forwardFrom.channelViewsLabel ? 100000 : 1000;
-          type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
-        }
-        return type;
-      },
-      getRegisteredUser: (userId) => {
-        return state.entities.registeredUsers[userId];
-      },
+      getRoomMessage: getEntitiesRoomMessageFunc(state),
+      getRoomMessageType: getEntitiesRoomMessageTypeFunc(state),
+      getRegisteredUser: getUserFunc(state),
     };
   };
 };

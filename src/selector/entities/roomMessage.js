@@ -1,7 +1,38 @@
 import {createSelector} from 'reselect';
 import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 
+export const getEntitiesRoomMessages = (state) => state.entities.roomMessages;
 export const getEntitiesRoomMessage = (state, messageId) => state.entities.roomMessages[messageId];
+
+export const getEntitiesRoomMessageFunc = createSelector(
+  getEntitiesRoomMessages,
+  (getEntitiesRoomMessages) => (messageId) => {
+    return getEntitiesRoomMessages[messageId];
+  }
+);
+
+export const getEntitiesRoomMessageTypeFunc = createSelector(
+  getEntitiesRoomMessages,
+  (getEntitiesRoomMessages) => (messageId) => {
+    const roomMessage = getEntitiesRoomMessages[messageId];
+    if (!roomMessage) {
+      //todo Error Report
+      console.warn('getRoomMessageType: Invalid MessageId', messageId);
+      return -1;
+    }
+    let type = roomMessage.messageType;
+
+    if (roomMessage.replyTo) {
+      type += 100;
+    }
+    if (roomMessage.forwardFrom) {
+      const offset = roomMessage.forwardFrom.channelViewsLabel ? 100000 : 1000;
+      type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
+    }
+    return type;
+  }
+);
+
 export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
 export const getDownloadedFile = createSelector(

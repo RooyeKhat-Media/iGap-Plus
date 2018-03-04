@@ -29,10 +29,12 @@ import ReturnToCall from '../../Call/ReturnToCall';
 
 class RoomHistoryComponent extends React.PureComponent {
 
+  _dataProvider = new DataProvider((r1, r2) => {
+    return r1 !== r2 || this.prevSelectedList[r1] !== this.props.selectedList[r1];
+  });
+
   getDataProvider = (messageList) => {
-    return new DataProvider((r1, r2) => {
-      return r1 !== r2 || this.prevSelectedList[r1] !== this.props.selectedList[r1];
-    }).cloneWithRows(messageList);
+    return this._dataProvider.cloneWithRows(messageList || []);
   };
 
   constructor(args) {

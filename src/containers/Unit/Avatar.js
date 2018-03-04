@@ -9,7 +9,7 @@ import {getUserAvatar, getUserAvatarUri} from '../../selector/entities/registere
 import Long from 'long';
 import {prependFileProtocol} from '../../utils/core';
 
-class Avatar extends React.PureComponent {
+class Avatar extends React.Component {
 
   componentDidMount() {
     const {avatarUri, avatarProps, download} = this.props;
@@ -24,6 +24,16 @@ class Avatar extends React.PureComponent {
     if (nextAvatar && (!prevAvatar || prevAvatar.token !== nextAvatar.token)) {
       nextProps.download(nextAvatar);
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return (
+      this.props.avatarProps.color !== nextProps.avatarProps.color
+        ||
+        this.props.avatarProps.initials !== nextProps.avatarProps.initials
+        ||
+        this.props.avatarUri !== nextProps.avatarUri
+    );
   }
 
   render() {

@@ -44,17 +44,18 @@ export function setDownloadChunkSize(value) {
 }
 
 export const middleware = ({dispatch, getState}) => next => action => {
-  if (action.type === CLIENT_STATUS_CHANGED) {
-    switch (action.status) {
-      case CLIENT_STATUS.CONNECTED:
+  switch (action.type) {
+    case CLIENT_STATUS_CHANGED:
+      if (action.status === CLIENT_STATUS.CONNECTED) {
         downloadChunkSize = FILE_MANAGER_DOWNLOAD_MAX_CHUNK_SIZE;
-        break;
-      case FILE_MANAGER_DOWNLOAD_COMPLETED:
-      case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
-      case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
-        downloadingPromise.delete(action.cacheId);
-        break;
-    }
+      }
+      break;
+    case FILE_MANAGER_DOWNLOAD_COMPLETED:
+    case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
+      action.payload.forEach(function(data) {
+        downloadingPromise.delete(data.cacheId);
+      });
+      break;
   }
   return next(action);
 };

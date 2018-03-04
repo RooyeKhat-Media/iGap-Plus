@@ -19,7 +19,7 @@ class RoomInfoComponent extends React.Component {
       addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack,
     } = this.props;
     const styles = this.getStyles();
-    
+
     let description;
     if (room.groupDescription) {
       description = room.groupDescription;

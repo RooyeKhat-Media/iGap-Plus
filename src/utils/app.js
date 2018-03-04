@@ -1,4 +1,5 @@
 import MetaData from '../models/MetaData';
+import store from '../configureStore';
 import {
   UserContactsImport,
   UserLogin,
@@ -334,4 +335,9 @@ async function invokeUserStatus(status) {
   const userUpdateStatus = new UserUpdateStatus();
   userUpdateStatus.setStatus(status);
   return await Api.invoke(USER_UPDATE_STATUS, userUpdateStatus);
+}
+
+export function getMessageDownloadFileUri(cacheId) {
+  const downloadFile = store.getState().fileManager.download[cacheId];
+  return downloadFile ? downloadFile.uri : null;
 }
