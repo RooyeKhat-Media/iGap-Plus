@@ -25,7 +25,6 @@ import {
   outerDimension,
 } from '../../../modules/DimensionCalculator/index';
 import {getAuthorHash} from '../../../utils/app';
-import ReturnToCall from '../../Call/ReturnToCall';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -64,7 +63,7 @@ class RoomHistoryComponent extends React.PureComponent {
     });
 
     this.state = {
-      dataProvider: messageList ? this.getDataProvider(messageList) : null,
+      dataProvider: this.getDataProvider(messageList),
       actions: [],
     };
   }
@@ -77,7 +76,7 @@ class RoomHistoryComponent extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const {messageList} = nextProps;
     this.setState({
-      dataProvider: messageList ? this.getDataProvider(messageList) : null,
+      dataProvider: this.getDataProvider(messageList),
     }, () => {
       this.prevSelectedList = nextProps.selectedList;
     });
@@ -85,34 +84,35 @@ class RoomHistoryComponent extends React.PureComponent {
 
   renderItem = (type, item) => {
     const {onMessagePress, onMessageLongPress, selectedList, roomType, roomId} = this.props;
-    return (<RoomMessage
-      roomId={roomId}
-      messageId={item}
-      roomType={roomType}
-      selected={!!selectedList[item]}
-      onMessagePress={onMessagePress}
-      onMessageLongPress={onMessageLongPress}/>);
+    return (<View style={styles.messageWrap}>
+      <RoomMessage
+        roomId={roomId}
+        messageId={item}
+        roomType={roomType}
+        selected={!!selectedList[item]}
+        onMessagePress={onMessagePress}
+        onMessageLongPress={onMessageLongPress}/>
+    </View>);
   };
 
   render() {
-    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, messageList, selectedCount, actionSheetControl, forwardModalControl, conformControl, onScroll} = this.props;
+    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, onScroll, onEndReached} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
+          {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
           <View style={styles.messageListWrap}>
-            {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
-            <ReturnToCall/>
-            {dataProvider ?
-              (<RecyclerListView
-                canChangeSize={true}
-                renderAheadOffset={640}
-                layoutProvider={this._layoutProvider}
-                dataProvider={dataProvider}
-                rowRenderer={this.renderItem}
-                onScroll={onScroll}
-                initialRenderIndex={messageList.length - 1}
-                forceNonDeterministicRendering={true}/>) : null}
+            <RecyclerListView
+              canChangeSize={true}
+              renderAheadOffset={640}
+              layoutProvider={this._layoutProvider}
+              dataProvider={dataProvider}
+              rowRenderer={this.renderItem}
+              onScroll={onScroll}
+              onEndReached={onEndReached}
+              onEndReachedThreshold={300}
+              forceNonDeterministicRendering={true}/>
           </View>
 
           <View style={styles.bottomWrap}>
@@ -186,6 +186,7 @@ RoomHistoryComponent.propTypes = {
   actionSheetControl: PropTypes.func.isRequired,
   toolbarActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   onScroll: PropTypes.func.isRequired,
+  onEndReached: PropTypes.func.isRequired,
   forwardModalControl: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
 };

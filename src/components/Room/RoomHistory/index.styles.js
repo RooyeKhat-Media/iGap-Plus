@@ -31,6 +31,12 @@ export default {
   },
   messageListWrap: {
     flex: 1,
+    flexDirection: 'column',
+    transform: [{rotateX: '180deg'}],
+  },
+  messageWrap: {
+    flex: 1,
+    transform: [{rotateX: '180deg'}],
   },
   bottomWrap: {
   },

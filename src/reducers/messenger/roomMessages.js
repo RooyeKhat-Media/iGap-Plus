@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-import {concat, uniq} from 'lodash';
+import {concat, uniq, reverse} from 'lodash';
 import {
   MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES_FROM_STORE,
   MESSENGER_ROOM_MESSAGE_CONCAT,
@@ -16,10 +16,11 @@ export function roomMessages(state = initialState, action) {
   let index;
   switch (action.type) {
     case MESSENGER_ROOM_MESSAGE_CONCAT:
-      newList = !state[action.roomId] ? action.messageIds :
+      const newMessages = reverse(action.messageIds);
+      newList = !state[action.roomId] ? newMessages :
         (action.before ?
-          concat(action.messageIds, state[action.roomId]) :
-          concat(state[action.roomId], action.messageIds));
+          concat(state[action.roomId], newMessages) :
+          concat(newMessages, state[action.roomId]));
       return {
         ...state,
         [action.roomId]: uniq(newList),

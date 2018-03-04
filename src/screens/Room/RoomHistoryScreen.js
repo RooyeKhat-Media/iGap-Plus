@@ -63,8 +63,11 @@ import {getUserFunc} from '../../selector/entities/registeredUser';
 class RoomHistoryScreen extends PureComponent {
 
   onScroll = async (event, offsetX, offsetY) => {
+  };
+
+  onEndReached = async () => {
     const {room} = this.props;
-    if (offsetY <= 300 && !this.loading) {
+    if (!this.loading) {
       try {
         this.loading = true;
         await loadRoomHistory(room.id);
@@ -75,8 +78,7 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   async componentDidMount() {
-    const {room} = this.props;
-    await loadRoomHistory(room.id);
+    await this.onEndReached();
   }
 
   componentWillUnmount() {
@@ -133,7 +135,6 @@ class RoomHistoryScreen extends PureComponent {
       Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
     }
   }
-
 
   goRoomInfoBtn = () => {
     const {room} = this.props;
@@ -625,6 +626,7 @@ class RoomHistoryScreen extends PureComponent {
         toolbarActions={toolbarActions}
         actionSheetControl={this.actionSheetControl}
         onScroll={this.onScroll}
+        onEndReached={this.onEndReached}
         forwardModalControl={this.forwardModalControl}
         goBack={this.props.navigation.goBack}
       />

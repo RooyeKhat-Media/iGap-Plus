@@ -23,7 +23,7 @@ const endOfScroll = {};
  * @returns {Promise.<void>}
  */
 export default async function loadRoomHistory(roomId, upward = true) {
-  if (endOfScroll[roomId]) {
+  if (endOfScroll[roomId] && endOfScroll[roomId][upward]) {
     return;
   }
   const firstMessageId = getRoomFirstMessageId(roomId);
@@ -35,7 +35,7 @@ export default async function loadRoomHistory(roomId, upward = true) {
     }
     await loadFromDb(roomId, firstMessageId, upward);
   } catch (e) {
-    if (!endOfScroll[roomId]) {
+    if (!(endOfScroll[roomId] && endOfScroll[roomId][upward])) {
       await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction);
     }
   }
@@ -123,7 +123,10 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
      * @type {ServerError} e
      */
     if (e instanceof ServerError && e.errorResponse.getMajorCode() === ERROR_CLIENT_GET_ROOM_HISTORY_NOT_FOUND) {
-      endOfScroll[roomId] = true;
+      if (!endOfScroll[roomId]) {
+        endOfScroll[roomId] = {};
+      }
+      endOfScroll[roomId][upward] = true;
       return;
     }
     throw e;
@@ -135,8 +138,8 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
  * @returns {string|null}
  */
 function getRoomFirstMessageId(roomId) {
-  const index = 0;
   const messageList = store.getState().messenger.roomMessages[roomId];
+  const index = messageList ? messageList.length - 1 : 0;
   return messageList && messageList[index] ? messageList[index] : null;
 }
 
