@@ -96,7 +96,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, onScroll, onEndReached} = this.props;
+    const {intl, flatListRef, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, onScroll, onEndReached} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -104,6 +104,7 @@ class RoomHistoryComponent extends React.PureComponent {
           {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
           <View style={styles.messageListWrap}>
             <RecyclerListView
+              ref={flatListRef}
               canChangeSize={true}
               renderAheadOffset={640}
               layoutProvider={this._layoutProvider}

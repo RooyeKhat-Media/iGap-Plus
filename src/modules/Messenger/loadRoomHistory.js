@@ -19,40 +19,42 @@ import ServerError from '../Error/ServerError';
 const endOfScroll = {};
 /**
  * @param {string} roomId
- * @param {boolean} upward
- * @returns {Promise.<void>}
+ * @param {string} firstMessageId
+ * @param {boolean} upward // if upward is `true` load messages from firstMessageId to oldest and if `false` load to newest
+ * @param {boolean} includeMessageId
+ * @returns {Promise.<int>}
  */
-export default async function loadRoomHistory(roomId, upward = true) {
+export default async function loadRoomHistory(roomId, firstMessageId, upward = true, includeMessageId = false) {
+  let roomMessagesCount = 0;
   if (endOfScroll[roomId] && endOfScroll[roomId][upward]) {
-    return;
+    return 0;
   }
-  const firstMessageId = getRoomFirstMessageId(roomId);
-  const firstMessage = store.getState().entities.roomMessages[firstMessageId];
 
+  const firstMessage = store.getState().entities.roomMessages[firstMessageId];
   try {
     if (firstMessage && firstMessage.fraction) {
       throw new Error('fraction message');
     }
-    await loadFromDb(roomId, firstMessageId, upward);
+    roomMessagesCount = await loadFromDb(roomId, firstMessageId, upward, includeMessageId);
   } catch (e) {
-    if (!(endOfScroll[roomId] && endOfScroll[roomId][upward])) {
-      await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction);
-    }
+    roomMessagesCount = await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction, includeMessageId);
   }
+  return roomMessagesCount;
 }
 
 /**
  * @param roomId
  * @param {string|null} firstMessageId
  * @param {boolean} upward
- * @returns {Promise.<void>}
+ * @param {boolean} includeMessageId
+ * @returns {Promise.<int>}
  */
-async function loadFromDb(roomId, firstMessageId, upward) {
+async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = false) {
   let fractionId = null;
   const entitiesRoomMessages = {};
   const messengerRoomMessages = [];
   const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION_DB_LIMIT);
-
+  let roomMessagesCount = roomMessages.length;
   for (const [index, message] of roomMessages.entries()) {
     entitiesRoomMessages[message.id] = message;
     if (upward) {
@@ -70,13 +72,25 @@ async function loadFromDb(roomId, firstMessageId, upward) {
     }
   }
 
-  store.dispatch(entitiesRoomMessagesAdd(entitiesRoomMessages, false));
-  store.dispatch(messengerRoomMessageConcat(roomId, messengerRoomMessages));
-  if (fractionId) {
-    await loadFromServer(roomId, fractionId, upward, true);
-  } else if (messengerRoomMessages.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
-    await loadFromServer(roomId, messengerRoomMessages[0], upward);
+  if (includeMessageId) {
+    if (upward) {
+      messengerRoomMessages.push(firstMessageId);
+    } else {
+      messengerRoomMessages.unshift(firstMessageId);
+    }
+    roomMessagesCount++;
   }
+  store.dispatch(entitiesRoomMessagesAdd(entitiesRoomMessages, false));
+  store.dispatch(messengerRoomMessageConcat(roomId, messengerRoomMessages, upward));
+  if (fractionId) {
+    roomMessagesCount += await loadFromServer(roomId, fractionId, upward, true);
+  } else if (messengerRoomMessages.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
+    roomMessagesCount += await loadFromServer(
+      roomId,
+      upward ? messengerRoomMessages[messengerRoomMessages.length - 1] : messengerRoomMessages[0],
+      upward);
+  }
+  return roomMessagesCount;
 }
 
 /**
@@ -85,7 +99,7 @@ async function loadFromDb(roomId, firstMessageId, upward) {
  * @param {string|null} firsMessageId
  * @param {boolean} upward
  * @param {boolean} fraction
- * @returns {Promise.<void>}
+ * @returns {Promise.<int>}
  */
 async function loadFromServer(roomId, firsMessageId, upward, fraction) {
   const clientRoomHistory = new ClientGetRoomHistory();
@@ -112,12 +126,13 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
       await setFractionIfNotExist(normalizedData.entities.roomMessages[lastMessageId]);
     }
     store.dispatch(entitiesRoomMessagesAdd(normalizedData.entities.roomMessages));
-    store.dispatch(messengerRoomMessageConcat(roomId, normalizedData.result));
+    store.dispatch(messengerRoomMessageConcat(roomId, normalizedData.result, upward));
     if (firsMessageId && upward) {
       store.dispatch(entitiesRoomMessageEdit(firsMessageId, {
         fraction: false,
       }));
     }
+    return normalizedData.result.length;
   } catch (e) {
     /**
      * @type {ServerError} e
@@ -137,10 +152,19 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
  * @param {string} roomId
  * @returns {string|null}
  */
-function getRoomFirstMessageId(roomId) {
+export function getRoomFirstMessageId(roomId) {
   const messageList = store.getState().messenger.roomMessages[roomId];
   const index = messageList ? messageList.length - 1 : 0;
   return messageList && messageList[index] ? messageList[index] : null;
+}
+
+/**
+ * @param {string} roomId
+ * @returns {string|null}
+ */
+export function getRoomLastMessageId(roomId) {
+  const messageList = store.getState().messenger.roomMessages[roomId];
+  return messageList && messageList[0] ? messageList[0] : null;
 }
 
 /**

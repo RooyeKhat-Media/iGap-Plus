@@ -51,10 +51,13 @@ export const middleware = ({dispatch, getState}) => next => action => {
       }
       break;
     case FILE_MANAGER_DOWNLOAD_COMPLETED:
-    case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
       action.payload.forEach(function(data) {
         downloadingPromise.delete(data.cacheId);
       });
+      break;
+    case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
+    case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
+      downloadingPromise.delete(action.cacheId);
       break;
   }
   return next(action);

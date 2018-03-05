@@ -5,7 +5,7 @@ import SaveTo from '../../../native/modules/SaveTo';
 import Share from '../../modules/Share/index';
 import {getRoom} from '../../selector/entities/room';
 import RNFileSystem, {FileUtil} from 'react-native-file-system';
-import loadRoomHistory from '../../modules/Messenger/loadRoomHistory';
+import loadRoomHistory, {getRoomFirstMessageId, getRoomLastMessageId} from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
 import {
@@ -53,24 +53,34 @@ import {
 } from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import i18n from '../../i18n';
-import {getImageSize, prependFileProtocol} from '../../utils/core';
+import {getImageSize, prependFileProtocol, sleep} from '../../utils/core';
 import Clipboard from '../../modules/Clipboard/index';
 import {messengerRoomAddList} from '../../actions/messenger/rooms';
 import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger/roomMessages';
 import {cameraMode} from '../General/CameraScreen';
 import {getUserFunc} from '../../selector/entities/registeredUser';
+import {entitiesRoomEdit} from '../../actions/entities/rooms';
 
 class RoomHistoryScreen extends PureComponent {
 
   onScroll = async (event, offsetX, offsetY) => {
+    const {room} = this.props;
+    if (!this.loading && offsetY < 300) {
+      try {
+        this.loading = true;
+        await loadRoomHistory(room.id, getRoomLastMessageId(room.id) || room.lastMessage, false);
+      } finally {
+        this.loading = false;
+      }
+    }
   };
 
-  onEndReached = async () => {
+  onEndReached = async (firstLoad = false) => {
     const {room} = this.props;
     if (!this.loading) {
       try {
         this.loading = true;
-        await loadRoomHistory(room.id);
+        await loadRoomHistory(room.id, getRoomFirstMessageId(room.id) || room.lastMessage, true, firstLoad);
       } finally {
         this.loading = false;
       }
@@ -78,17 +88,58 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   async componentDidMount() {
-    await this.onEndReached();
+    const {room, messageList} = this.props;
+    if (!messageList || !messageList.length) {
+      if (room.firstUnreadMessage) {
+        try {
+          this.loading = true;
+          await Promise.all([
+            loadRoomHistory(room.id, room.firstUnreadMessage),
+            loadRoomHistory(room.id, room.firstUnreadMessage, false, true),
+          ]);
+          this.scrollToIndex();
+        } finally {
+          this.loading = false;
+        }
+      } else {
+        await this.onEndReached(true);
+      }
+    } else {
+      this.scrollToIndex();
+    }
+
+    if (!room.isParticipant) {
+      const {clearMessageFromStore} = this.props;
+      clearMessageFromStore(room.id);
+      const clientSubscribeToRoom = new ClientSubscribeToRoom();
+      clientSubscribeToRoom.setRoomId(room.id);
+      await Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
+    }
   }
 
+  scrollToIndex = async () => {
+    const {room, messageList} = this.props;
+    await sleep(1);
+    if (messageList && room.firstUnreadMessage) {
+      const index = messageList.indexOf(room.firstUnreadMessage);
+      if (index >= 0) {
+        this.flatList.scrollToIndex(index);
+      }
+    }
+  };
+
   componentWillUnmount() {
-    const {room} = this.props;
+    const {room, editRoom} = this.props;
     if (room && !room.isParticipant) {
       const {clearMessageFromStore} = this.props;
       clearMessageFromStore(room.id);
       const clientUnsubscribeFromRoom = new ClientUnsubscribeFromRoom();
       clientUnsubscribeFromRoom.setRoomId(room.id);
       Api.invoke(CLIENT_UNSUBSCRIBE_FROM_ROOM, clientUnsubscribeFromRoom);
+    }
+
+    if (room && room.firstUnreadMessage) {
+      editRoom(room.id, {firstUnreadMessage: null});
     }
   }
 
@@ -126,14 +177,6 @@ class RoomHistoryScreen extends PureComponent {
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
     };
-
-    if (!room.isParticipant) {
-      const {clearMessageFromStore} = this.props;
-      clearMessageFromStore(room.id);
-      const clientSubscribeToRoom = new ClientSubscribeToRoom();
-      clientSubscribeToRoom.setRoomId(room.id);
-      Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
-    }
   }
 
   goRoomInfoBtn = () => {
@@ -662,6 +705,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(messengerRoomMessageClearMessageFromStore(roomId));
     },
 
+    editRoom: (roomId, payload, updateDb) => {
+      dispatch(entitiesRoomEdit(roomId, payload, updateDb));
+    },
   };
 };
 
