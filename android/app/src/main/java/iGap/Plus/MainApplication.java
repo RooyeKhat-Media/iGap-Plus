@@ -5,9 +5,9 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
 import com.facebook.react.ReactApplication;
+import plus.igap.videocompress.RNVideoCompressPackage;
 import com.smixx.fabric.FabricPackage;
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
-import com.shahenlibrary.RNVideoProcessingPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.brentvatne.react.ReactVideoPackage;
@@ -44,9 +44,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNVideoCompressPackage(),
             new FabricPackage(),
             new InCallManagerPackage(),
-            new RNVideoProcessingPackage(),
             new ReactNativeContacts(),
             new MapsPackage(),
             new ReactVideoPackage(),

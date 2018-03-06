@@ -5673,6 +5673,9 @@ react-native-vector-icons@^4.5.0:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
+"react-native-video-compress@file:./native/modules/VideoCompress":
+  version "1.0.0"
+
 react-native-video-processing@shahen94/react-native-video-processing#2a6787537f0cb6d27fc177a4bbb502c9e2cb2446:
   version "1.7.1"
   resolved "https://codeload.github.com/shahen94/react-native-video-processing/tar.gz/2a6787537f0cb6d27fc177a4bbb502c9e2cb2446"

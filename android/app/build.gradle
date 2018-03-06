@@ -162,9 +162,9 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-video-compress')
     compile project(':react-native-fabric')
     compile project(':react-native-incall-manager')
-    compile project(':react-native-video-processing')
     compile project(':react-native-contacts')
     compile project(':react-native-maps')
     compile project(':react-native-video')
