@@ -56,7 +56,7 @@ class RoomHistoryComponent extends React.PureComponent {
         boxType = BOX_TYPE_GROUP;
       }
 
-      const height = outerDimension(message, boxType).height || 45;
+      const height = outerDimension(message, boxType).height || 0;
 
       dim.width = getSecondaryWidth();
       dim.height = height;

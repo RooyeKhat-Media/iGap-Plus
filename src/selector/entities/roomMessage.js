@@ -35,6 +35,8 @@ export const getEntitiesRoomMessageTypeFunc = createSelector(
 
 export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
+export const getRoomMessageIsFirstUnread = (state, props) => state.entities.rooms[props.roomId] && state.entities.rooms[props.roomId].firstUnreadMessage === props.messageId;
+
 export const getDownloadedFile = createSelector(
   (state, attachment) => attachment,
   (state) => state.fileManager.download,

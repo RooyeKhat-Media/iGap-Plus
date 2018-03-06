@@ -25,7 +25,7 @@ const endOfScroll = {};
  * @returns {Promise.<int>}
  */
 export default async function loadRoomHistory(roomId, firstMessageId, upward = true, includeMessageId = false) {
-  let roomMessagesCount = 0;
+  let roomMessages = {};
   if (endOfScroll[roomId] && endOfScroll[roomId][upward]) {
     return 0;
   }
@@ -35,11 +35,11 @@ export default async function loadRoomHistory(roomId, firstMessageId, upward = t
     if (firstMessage && firstMessage.fraction) {
       throw new Error('fraction message');
     }
-    roomMessagesCount = await loadFromDb(roomId, firstMessageId, upward, includeMessageId);
+    roomMessages = await loadFromDb(roomId, firstMessageId, upward, includeMessageId);
   } catch (e) {
-    roomMessagesCount = await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction, includeMessageId);
+    roomMessages = await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction, includeMessageId);
   }
-  return roomMessagesCount;
+  return roomMessages;
 }
 
 /**
@@ -51,10 +51,9 @@ export default async function loadRoomHistory(roomId, firstMessageId, upward = t
  */
 async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = false) {
   let fractionId = null;
-  const entitiesRoomMessages = {};
+  let entitiesRoomMessages = {};
   const messengerRoomMessages = [];
   const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION_DB_LIMIT);
-  let roomMessagesCount = roomMessages.length;
   for (const [index, message] of roomMessages.entries()) {
     entitiesRoomMessages[message.id] = message;
     if (upward) {
@@ -78,19 +77,24 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
     } else {
       messengerRoomMessages.unshift(firstMessageId);
     }
-    roomMessagesCount++;
   }
   store.dispatch(entitiesRoomMessagesAdd(entitiesRoomMessages, false));
   store.dispatch(messengerRoomMessageConcat(roomId, messengerRoomMessages, upward));
   if (fractionId) {
-    roomMessagesCount += await loadFromServer(roomId, fractionId, upward, true);
+    entitiesRoomMessages = {
+      ...entitiesRoomMessages,
+      ...await loadFromServer(roomId, fractionId, upward, true),
+    };
   } else if (messengerRoomMessages.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
-    roomMessagesCount += await loadFromServer(
-      roomId,
-      upward ? messengerRoomMessages[messengerRoomMessages.length - 1] : messengerRoomMessages[0],
-      upward);
+    entitiesRoomMessages = {
+      ...entitiesRoomMessages,
+      ...await loadFromServer(
+        roomId,
+        upward ? messengerRoomMessages[messengerRoomMessages.length - 1] : messengerRoomMessages[0],
+        upward),
+    };
   }
-  return roomMessagesCount;
+  return entitiesRoomMessages;
 }
 
 /**
@@ -132,7 +136,7 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
         fraction: false,
       }));
     }
-    return normalizedData.result.length;
+    return normalizedData.entities;
   } catch (e) {
     /**
      * @type {ServerError} e

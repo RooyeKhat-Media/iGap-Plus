@@ -1200,6 +1200,11 @@ export default {
     defaultMessage: 'Revoke Link',
     description: 'Room Revoke Invite Link Screen',
   },
+  roomHistoryUnreadMessageLabel: {
+    id: 'roomHistory.unreadMessageLabel',
+    defaultMessage: 'Unread Messages',
+    description: 'roomHistory screen',
+  },
   roomHistorySendBoxCamera: {
     id: 'roomHistory.sendBox.camera',
     defaultMessage: 'Camera',

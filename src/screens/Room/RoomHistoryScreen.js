@@ -60,6 +60,7 @@ import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger
 import {cameraMode} from '../General/CameraScreen';
 import {getUserFunc} from '../../selector/entities/registeredUser';
 import {entitiesRoomEdit} from '../../actions/entities/rooms';
+import {getMessagesDimension} from '../../modules/DimensionCalculator/index';
 
 class RoomHistoryScreen extends PureComponent {
 
@@ -68,8 +69,11 @@ class RoomHistoryScreen extends PureComponent {
     if (!this.loading && offsetY < 300) {
       try {
         this.loading = true;
-        await loadRoomHistory(room.id, getRoomLastMessageId(room.id) || room.lastMessage, false);
+        const roomMessages = await loadRoomHistory(room.id, getRoomLastMessageId(room.id) || room.lastMessage, false);
+        const offsetTop = getMessagesDimension(roomMessages, room.type);
+        this.flatList.scrollToOffset(0, offsetTop);
       } finally {
+        await sleep(1);
         this.loading = false;
       }
     }

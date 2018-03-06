@@ -1,13 +1,14 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
-import {injectIntl, intlShape} from 'react-intl';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {Proto} from '../../../modules/Proto/index';
 import LogBox from './LogBox';
 import OwnerBox from './OwnerBox';
 import ChatBox from './ChatBox';
 import GroupBox from './GroupBox';
 import ChannelBox from './ChannelBox';
+import i18n from '../../../i18n';
 
 class RoomMessage extends React.PureComponent {
 
@@ -49,7 +50,7 @@ class RoomMessage extends React.PureComponent {
   };
 
   render() {
-    const {message, selected, onMessagePress, onMessageLongPress} = this.props;
+    const {message, selected, isFirstUnread, onMessagePress, onMessageLongPress} = this.props;
 
     if (message.messageType === Proto.RoomMessageType.LOG) {
       return (<LogBox message={message}/>);
@@ -59,6 +60,7 @@ class RoomMessage extends React.PureComponent {
       delayLongPress={700}
       onPress={onMessagePress}
       onLongPress={onMessageLongPress}>
+      {(isFirstUnread) && (<View style={styles.unreadBar}><FormattedMessage {...i18n.roomHistoryUnreadMessageLabel} /></View>)}
       {this.renderContent()}
     </TouchableOpacity>);
   }
@@ -86,6 +88,12 @@ const styles = StyleSheet.create({
   },
   selected: {
     flex: 1,
+    backgroundColor: '#d2dbff',
+  },
+  unreadBar: {
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#d2dbff',
   },
 });

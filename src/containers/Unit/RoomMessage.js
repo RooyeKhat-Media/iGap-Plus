@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAuthorHash} from '../../utils/app';
 import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
-import {getRoomMessage} from '../../selector/entities/roomMessage';
+import {getRoomMessage, getRoomMessageIsFirstUnread} from '../../selector/entities/roomMessage';
 import {getPeerRoomId} from '../../utils/messenger';
 import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 import {Proto} from '../../modules/Proto/index';
@@ -32,7 +32,7 @@ class RoomMessage extends PureComponent {
 
   render() {
     const authorHash = getAuthorHash();
-    const {message, roomType, selected} = this.props;
+    const {message, roomType, selected, isFirstUnread} = this.props;
     if (!message || message.deleted) {
       return null;
     }
@@ -42,6 +42,7 @@ class RoomMessage extends PureComponent {
         roomType={roomType}
         selected={selected}
         authorHash={authorHash}
+        isFirstUnread={isFirstUnread}
         goUserInfo={this.goUserInfo}
         onMessagePress={this.onMessagePress}
         onMessageLongPress={this.onMessageLongPress}/>
@@ -51,6 +52,7 @@ class RoomMessage extends PureComponent {
 
 RoomMessage.propTypes = {
   message: PropTypes.object.isRequired,
+  roomId: PropTypes.string.isRequired,
   roomType: PropTypes.oneOf([
     Proto.Room.Type.CHAT,
     Proto.Room.Type.GROUP,
@@ -59,6 +61,7 @@ RoomMessage.propTypes = {
   selected: PropTypes.bool,
   onMessagePress: PropTypes.func,
   onMessageLongPress: PropTypes.func,
+  isFirstUnread: PropTypes.bool,
 };
 
 RoomMessage.childContextTypes = {
@@ -69,6 +72,7 @@ const makeMapStateToProps = () => {
   return (state, props) => {
     return {
       message: getRoomMessage(state, props),
+      isFirstUnread: getRoomMessageIsFirstUnread(state, props),
     };
   };
 };

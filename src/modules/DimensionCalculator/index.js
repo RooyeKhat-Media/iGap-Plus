@@ -8,6 +8,8 @@ import chatBoxCalculator from './elements/chatBox';
 import groupBoxCalculator from './elements/groupBox';
 import channelBoxCalculator from './elements/channelBox';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../constants/screenBreakPoints';
+import {Proto} from '../Proto/index';
+import {getAuthorHash} from '../../utils/app';
 
 export const BOX_TYPE_NONE = 0;
 export const BOX_TYPE_OWNER = 1;
@@ -24,6 +26,9 @@ export const BOX_TYPE_CHANNEL = 4;
  * @private
  */
 function _calculateDimension(outer, roomMessage, boxType, forwarded) {
+  if (roomMessage.deleted) {
+    return {width: 0, height: 0};
+  }
   const maxWidth = getSecondaryWidth();
   if (roomMessage.log) {
     return logBoxCalculator(maxWidth, outer, roomMessage, boxType, forwarded);
@@ -86,4 +91,28 @@ export function getSecondaryWidth() {
     return width - getPrimaryWidth();
   }
   return width;
+}
+
+/**
+ * get object of roomMessages and return the dimensions
+ * @param roomMessages
+ * @param roomType
+ */
+export function getMessagesDimension(roomMessages, roomType) {
+  let height = 0;
+  for (let id in roomMessages) {
+    const message = roomMessages[id];
+    let boxType = BOX_TYPE_NONE;
+    if (roomType === Proto.Room.Type.CHANNEL) {
+      boxType = BOX_TYPE_CHANNEL;
+    } else if (message.authorHash === getAuthorHash()) {
+      boxType = BOX_TYPE_OWNER;
+    } else if (roomType === Proto.Room.Type.CHAT) {
+      boxType = BOX_TYPE_CHAT;
+    } else if (roomType === Proto.Room.Type.GROUP) {
+      boxType = BOX_TYPE_GROUP;
+    }
+    height += outerDimension(message, boxType).height;
+  }
+  return height;
 }
