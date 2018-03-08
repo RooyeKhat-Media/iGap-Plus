@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import SimpleMarkdown from 'simple-markdown';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
@@ -32,9 +32,9 @@ export default class RichTextView extends PureComponent {
       return null;
     }
     return (
-      <View>
+      <Text>
         {this._renderContent(rawText)}
-      </View>
+      </Text>
     );
   }
 

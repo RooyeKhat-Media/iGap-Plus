@@ -1,11 +1,10 @@
 /* eslint-disable no-useless-escape */
 import {createElement} from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import _ from 'lodash';
 import SimpleMarkdown from 'simple-markdown';
 import Linking from '../Linking/index';
 import styles from './index.styles';
-import {resolveUserName} from './util';
 import {ClientResolveUsername} from '../Proto/index';
 import {CLIENT_RESOLVE_USERNAME} from '../../constants/methods/index';
 import Api from '../Api/index';
@@ -209,7 +208,7 @@ const rules = {
       /^([\s\S]*)/
     ),
     react: (node, output, state) => {
-      return createElement(View, {
+      return createElement(Text, {
         key: state.key,
         style: styles.paragraph,
       }, output(node.content, state));
