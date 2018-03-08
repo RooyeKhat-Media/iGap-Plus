@@ -55,6 +55,7 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
   const messengerRoomMessages = [];
   const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION_DB_LIMIT);
   for (const [index, message] of roomMessages.entries()) {
+    prepareRoomMessage(message, roomId);
     entitiesRoomMessages[message.id] = message;
     if (upward) {
       messengerRoomMessages.unshift(message.id);

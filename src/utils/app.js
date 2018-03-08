@@ -34,6 +34,7 @@ import putStateRegisteredUser from '../modules/Entities/RegisteredUsers';
 import putStateRoom from '../modules/Entities/Rooms';
 import Long from 'long';
 import Contacts from '../modules/Contacts/index';
+import {deliverMessage, getFocusRoom, seenMessage} from './messenger';
 
 let _userId;
 let _userIdString;
@@ -194,6 +195,12 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId, checkState) {
       normalizedRoomMessage.forwardFrom.roomId = normalizedRoomMessage.forwardFrom.authorRoom;
       putStateRoom(normalizedRoomMessage.forwardFrom.roomId);
     }
+  }
+
+  if (getFocusRoom() === roomId) {
+    seenMessage(roomId, normalizedRoomMessage.id);
+  } else {
+    deliverMessage(roomId, normalizedRoomMessage.id);
   }
 
   setFakeMessageId(normalizedRoomMessage.longId);

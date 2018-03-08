@@ -17,8 +17,9 @@ import {
   goRoomReport,
 } from '../../navigators/SecondaryNavigator';
 import {
+  blurRoom,
   deleteMessages,
-  editRoomMessage,
+  editRoomMessage, focusRoom,
   forwardToList,
   resendMessage,
   sendActionRequest,
@@ -93,6 +94,20 @@ class RoomHistoryScreen extends PureComponent {
 
   async componentDidMount() {
     const {room, messageList} = this.props;
+    focusRoom(room.id);
+    this.didFocusSubscription = this.props.navigation.addListener(
+      'didFocus',
+      () => {
+        focusRoom(room.id);
+      }
+    );
+    this.didBlurSubscription = this.props.navigation.addListener(
+      'didBlur',
+      () => {
+        blurRoom(room.id);
+      }
+    );
+
     if (!messageList || !messageList.length) {
       if (room.firstUnreadMessage) {
         try {
@@ -134,6 +149,7 @@ class RoomHistoryScreen extends PureComponent {
 
   componentWillUnmount() {
     const {room, editRoom} = this.props;
+    blurRoom(room.id);
     if (room && !room.isParticipant) {
       const {clearMessageFromStore} = this.props;
       clearMessageFromStore(room.id);
@@ -145,6 +161,8 @@ class RoomHistoryScreen extends PureComponent {
     if (room && room.firstUnreadMessage) {
       editRoom(room.id, {firstUnreadMessage: null});
     }
+    this.didFocusSubscription.remove();
+    this.didBlurSubscription.remove();
   }
 
   flatListRef = (ref) => {

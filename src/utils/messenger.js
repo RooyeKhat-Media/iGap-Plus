@@ -7,10 +7,12 @@ import {
   CHAT_GET_ROOM,
   CHAT_SEND_MESSAGE,
   CHAT_SET_ACTION,
+  CHAT_UPDATE_STATUS,
   GROUP_DELETE_MESSAGE,
   GROUP_EDIT_MESSAGE,
   GROUP_SEND_MESSAGE,
   GROUP_SET_ACTION,
+  GROUP_UPDATE_STATUS,
 } from '../constants/methods/index';
 import {
   ChannelDeleteMessage,
@@ -21,10 +23,12 @@ import {
   ChatGetRoom,
   ChatSendMessage,
   ChatSetAction,
+  ChatUpdateStatus,
   GroupDeleteMessage,
   GroupEditMessage,
   GroupSendMessage,
   GroupSetAction,
+  GroupUpdateStatus,
   Proto,
 } from '../modules/Proto/index';
 import putUserState from '../modules/Entities/RegisteredUsers';
@@ -38,7 +42,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../constants/app';
-import {tNow} from './core';
+import {msSleep, tNow} from './core';
 import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
@@ -47,6 +51,45 @@ import Long from 'long';
 import roomMessageSchema from '../schemas/roomMessage';
 import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManager';
+
+/**
+ * @type {string} current Focus Room
+ */
+let _focusRoom;
+/**
+ * @type {Object.<string,string[]>}
+ * @private
+ */
+let _deliveredRoomMessages = {};
+/**
+ * @type {Object.<string,Object.<string,ProtoRoomMessageStatus>[]>}
+ * @private
+ */
+let _unresolvedRoomMessageStatus = {};
+
+/**
+ * set focus room
+ * @param roomId
+ */
+export function focusRoom(roomId) {
+  _focusRoom = roomId;
+  seenDeliveredMessages(roomId);
+}
+
+/**
+ * set focus room to null
+ */
+export function blurRoom() {
+  _focusRoom = null;
+}
+
+/**
+ * return focus room
+ * @returns {string}
+ */
+export function getFocusRoom() {
+  return _focusRoom;
+}
 
 /**
  * @param {string} userId
@@ -654,4 +697,110 @@ export function getLogMessageParams(message, details) {
       break;
   }
   return params;
+}
+
+/**
+ * @param roomId
+ * @param messageId
+ */
+export function deliverMessage(roomId, messageId) {
+  if (!_deliveredRoomMessages[roomId]) {
+    _deliveredRoomMessages[roomId] = [];
+  }
+  _deliveredRoomMessages[roomId].push(messageId);
+  return updateMessageStatus(roomId, messageId, Proto.RoomMessageStatus.DELIVERED);
+}
+
+/**
+ * @param roomId
+ * @param messageId
+ */
+export function seenMessage(roomId, messageId) {
+  return updateMessageStatus(roomId, messageId, Proto.RoomMessageStatus.SEEN);
+}
+
+/**
+ * @param roomId
+ */
+export function seenDeliveredMessages(roomId) {
+  if (_deliveredRoomMessages[roomId]) {
+    _deliveredRoomMessages[roomId].map(function(messageId) {
+      seenMessage(roomId, messageId);
+    });
+    _deliveredRoomMessages[roomId] = [];
+  }
+}
+
+/**
+ * @param {string} roomId
+ * @param {string} messageId
+ * @param {ProtoRoomMessageStatus} status
+ * @returns {Promise.<void>}
+ */
+export async function updateMessageStatus(roomId, messageId, status) {
+  await msSleep(random(0, 150));
+
+  /**
+   * @type {FlatRoom} room
+   */
+  const room = store.getState().entities.rooms[roomId];
+  /**
+   * @type {FlatRoomMessage} roomMessage
+   */
+  const roomMessage = store.getState().entities.roomMessages[messageId];
+
+  if (!room) {
+    if (!_unresolvedRoomMessageStatus[roomId]) {
+      _unresolvedRoomMessageStatus[roomId] = [];
+    }
+    _unresolvedRoomMessageStatus[roomId].push({messageId, status});
+    return;
+  }
+  if (room.type !== Proto.Room.Type.GROUP && room.type !== Proto.Room.Type.CHAT) {
+    return;
+  }
+  if (roomMessage.deleted) {
+    return;
+  }
+  if (roomMessage.authorHash === getAuthorHash()) {
+    return;
+  }
+  if (status === Proto.RoomMessageStatus.DELIVERED
+    &&
+    roomMessage.status !== Proto.RoomMessageStatus.SENT
+  ) {
+    return;
+  }
+  if (status === Proto.RoomMessageStatus.SEEN
+    &&
+    (
+      roomMessage.status !== Proto.RoomMessageStatus.SENT
+      &&
+      roomMessage.status !== Proto.RoomMessageStatus.DELIVERED
+    )) {
+    return;
+  }
+
+  const actionId = room.type === Proto.Room.Type.GROUP ? GROUP_UPDATE_STATUS : CHAT_UPDATE_STATUS;
+  const proto = room.type === Proto.Room.Type.GROUP ? new GroupUpdateStatus() : new ChatUpdateStatus();
+  proto.setRoomId(room.longId);
+  proto.setMessageId(roomMessage.longId);
+  proto.setStatus(status);
+
+
+  Api.invoke(actionId, proto);
+}
+
+/**
+ * send Unresolved Messages
+ * @param {string} roomId
+ * @returns {Promise.<void>}
+ */
+export async function processUnresolvedMessageStatus(roomId) {
+  if (_unresolvedRoomMessageStatus[roomId]) {
+    _unresolvedRoomMessageStatus[roomId].map(function(unhandle) {
+      updateMessageStatus(roomId, unhandle.messageId, unhandle.status);
+    });
+    _unresolvedRoomMessageStatus[roomId] = [];
+  }
 }

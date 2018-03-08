@@ -1,11 +1,8 @@
-import Base from '../Base';
+import BaseUpdateStatus from '../Chat/UpdateStatus';
 
 /**
  * @property {ProtoGroupUpdateStatus} _request
  * @property {ProtoGroupUpdateStatusResponse} _response
  */
-export default class UpdateStatus extends Base {
-  handle() {
-    console.error('UpdateStatus', 'Not implemented yet', this);
-  }
+export default class UpdateStatus extends BaseUpdateStatus {
 }
