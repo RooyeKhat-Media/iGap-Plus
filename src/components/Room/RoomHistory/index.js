@@ -25,6 +25,7 @@ import {
   outerDimension,
 } from '../../../modules/DimensionCalculator/index';
 import {getAuthorHash} from '../../../utils/app';
+import ScrollDown from './ScrollDown';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -95,8 +96,24 @@ class RoomHistoryComponent extends React.PureComponent {
     </View>);
   };
 
+  onScroll = (event, offsetX, offsetY) => {
+    const {onScroll} = this.props;
+    onScroll(event, offsetX, offsetY);
+    this.actionRef.onScroll(event, offsetX, offsetY);
+  };
+
+  flatListRef = (ref) => {
+    const {flatListRef} = this.props;
+    flatListRef(ref);
+    this.flatList = ref;
+  };
+
+  scrollToEnd = () => {
+    this.flatList.scrollToTop();
+  };
+
   render() {
-    const {intl, flatListRef, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, onScroll, onEndReached} = this.props;
+    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, onEndReached} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -104,18 +121,23 @@ class RoomHistoryComponent extends React.PureComponent {
           {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
           <View style={styles.messageListWrap}>
             <RecyclerListView
-              ref={flatListRef}
+              ref={this.flatListRef}
               canChangeSize={true}
               renderAheadOffset={640}
               layoutProvider={this._layoutProvider}
               dataProvider={dataProvider}
               rowRenderer={this.renderItem}
-              onScroll={onScroll}
+              onScroll={this.onScroll}
               onEndReached={onEndReached}
               onEndReachedThreshold={300}
               forceNonDeterministicRendering={true}/>
           </View>
 
+          <ScrollDown
+            scrollToEnd={this.scrollToEnd}
+            ref={(ref) => {
+              this.actionRef = ref;
+            }}/>
           <View style={styles.bottomWrap}>
             <RoomActions roomId={roomId} roomType={roomType}/>
             {!readOnly ? (<SendBox Form={Form}/>) : (
