@@ -12,7 +12,7 @@ import {MAP_LATITUDE_DELTA, MAP_LONGITUDE_DELTA} from '../../../../constants/app
 
 const {width, height} = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-const FOUND_POS_LATITUDE_DELTA = 0.1;
+const FOUND_POS_LATITUDE_DELTA = 0.01;
 const FOUND_POS_LONGITUDE_DELTA = FOUND_POS_LATITUDE_DELTA * ASPECT_RATIO;
 const TEHRAN_LATITUDE = 35.68741781;
 const TEHRAN_LONGITUDE = 51.39112473;

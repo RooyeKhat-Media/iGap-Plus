@@ -29,7 +29,7 @@ class MapMarkerComponent extends Component {
         <View style={styles.viewContainer}>
           <View style={transparentStyle}>
             <View style={styles.whiteBorder}>
-              <Avatar userId={userId.toString()} size={46}/>
+              <Avatar userId={userId.toString()} size={44}/>
             </View>
             <View style={styles.triangle}/>
           </View>

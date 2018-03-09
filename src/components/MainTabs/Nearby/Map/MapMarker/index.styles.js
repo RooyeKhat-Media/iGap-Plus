@@ -24,9 +24,9 @@ export default [
         },
         whiteBorder: {
           padding: 3,
-          width: 52,
-          height: 52,
-          borderRadius: 26,
+          width: 50,
+          height: 50,
+          borderRadius: 25,
           backgroundColor: 'white',
           alignItems: 'center',
           justifyContent: 'center',
