@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
+import {primary} from '../../../themes/default/index';
 
 export const pinedListItemStyle = StyleSheet.create({
   container: {
@@ -27,27 +28,34 @@ export default StyleSheet.create({
     color: '#aaa', fontSize: 11, marginLeft: 3,
   },
   pinStyle: {
-    marginTop: 5,
+    marginTop: 3,
   },
 });
 
 export const badgeStyle = StyleSheet.create({
   container: {
-    width: 20,
+    backgroundColor: primary,
+    textAlign:'center',
     height: 20,
+    minWidth: 20,
     borderRadius: 10,
     marginTop: 3,
-    position: null,
+    paddingLeft:4,
+    paddingRight:3,
+    fontSize :12,
   },
 });
 export const muteBadgeStyle = StyleSheet.create({
   container: {
     backgroundColor: '#aaa',
-    width: 20,
+    textAlign:'center',
     height: 20,
+    minWidth: 20,
     borderRadius: 10,
     marginTop: 3,
-    position: null,
+    paddingLeft:4,
+    paddingRight:3,
+    fontSize :12,
   },
 });
 export const hideStyle = StyleSheet.create({

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
-import {Badge, ListItem as BaseListItem, MCIcon} from '../../BaseUI/index';
+import {ListItem as BaseListItem, MCIcon} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import MessageStatus from '../../../containers/Unit/MessageStatus';
 import styles, {badgeStyle, boldListItemStyle, hideStyle, muteBadgeStyle, pinedListItemStyle} from './index.styles';
@@ -28,8 +28,8 @@ class RoomListItem extends React.PureComponent {
             </Text>
           </View>
           <View style={styles.row}>
-            <Badge style={unreadCount ? (roomMute ? muteBadgeStyle : badgeStyle) : hideStyle}
-              text={unreadCount ? unreadCount.toString() : null}/>
+            <Text numberOfLines={1} style={unreadCount ? (roomMute ? muteBadgeStyle.container : badgeStyle.container) : hideStyle.container}>
+              {unreadCount ? unreadCount.toString() : null}</Text>
             <Text style={roomPined ? styles.pinStyle : hideStyle.container}><MCIcon name="pin" size={22}/></Text>
           </View>
         </View>}
