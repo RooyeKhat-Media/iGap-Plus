@@ -22,7 +22,6 @@ export default (UserVerify) => ([
       verifyTitle: {
         color: UserVerify.verifyTitleColor,
         fontSize: 20,
-        lineHeight: 22,
         ...IRANSans_Medium,
         textAlign: 'center',
         marginBottom: 15,
@@ -31,7 +30,6 @@ export default (UserVerify) => ([
         color: UserVerify.verifySubTitleColor,
         textAlign: 'center',
         fontSize: 13,
-        lineHeight: 22,
         marginBottom: 15,
       },
       codeRow: {},
