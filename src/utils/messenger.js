@@ -731,6 +731,9 @@ export function seenDeliveredMessages(roomId) {
   }
 }
 
+export function listenMessage(roomId, messageId) {
+  updateMessageStatus(roomId, messageId, Proto.RoomMessageStatus.LISTENED);
+}
 /**
  * @param {string} roomId
  * @param {string} messageId
@@ -778,6 +781,12 @@ export async function updateMessageStatus(roomId, messageId, status) {
       &&
       roomMessage.status !== Proto.RoomMessageStatus.DELIVERED
     )) {
+    return;
+  }
+  if (status === Proto.RoomMessageStatus.LISTENED
+    &&
+    roomMessage.status !== Proto.RoomMessageStatus.SEEN
+  ) {
     return;
   }
 

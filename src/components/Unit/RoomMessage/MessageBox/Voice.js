@@ -36,6 +36,7 @@ export default class Voice extends MessageElement {
       <View style={styles.container}>
         {downloadedFile && downloadedFile.status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED ?
           (<SoundPlayer
+            onPress={this.props.onPress}
             type={SOUND_PLAYER_BOX_MESSAGE}
             uri={downloadedFile.uri}
             title={attachment.getName()}

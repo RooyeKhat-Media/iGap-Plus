@@ -8,11 +8,14 @@ import {SOUND_PLAYER_BOX_MESSAGE, SOUND_PLAYER_BOX_TOOLBAR} from '../../constant
 class SoundPlayer extends React.PureComponent {
 
   toggle = () => {
-    const {player, play, pause, stop, uri, title, duration} = this.props;
+    const {player, onPress, play, pause, stop, uri, title, duration} = this.props;
     if (!uri) {
       stop();
     } else if (!player || !player.playing) {
       play(uri, title, duration);
+      if (onPress) {
+        onPress();
+      }
     } else {
       pause();
     }
@@ -41,6 +44,7 @@ SoundPlayer.propTypes = {
   duration: PropTypes.number,
   thumbnail: PropTypes.string,
   player: PropTypes.object,
+  onPress: PropTypes.func,
 };
 
 const mapStateToProps = () => {

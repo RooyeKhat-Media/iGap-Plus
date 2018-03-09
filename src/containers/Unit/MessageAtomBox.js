@@ -27,6 +27,7 @@ import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '
 import {getRoomHistorySelectedMode, getRoomHistoryUploadIdPrefix} from '../../utils/app';
 import {goVideoPlayer} from '../../navigators/SecondaryNavigator';
 import {prependFileProtocol} from '../../utils/core';
+import {listenMessage} from '../../utils/messenger';
 
 class MessageAtomBox extends Component {
 
@@ -93,6 +94,9 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VIDEO:
       case Proto.RoomMessageType.VIDEO_TEXT:
         goVideoPlayer(prependFileProtocol(downloadedFile.uri), message.attachment.getName());
+        break;
+      case Proto.RoomMessageType.VOICE:
+        listenMessage(message.roomId, message.id);
         break;
     }
   };
