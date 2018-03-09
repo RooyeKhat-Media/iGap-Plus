@@ -59,16 +59,6 @@ export default (UserRegister) => ([
           fontSize: 30,
           color: UserRegister.headerTitleColor,
         },
-        plusWrap: {
-          backgroundColor: UserRegister.plusWrapBackgroundColor,
-          height: 17, padding: 1, borderRadius: 2,
-        },
-        plusTitle: {
-          fontSize: 25,
-          ...IRANSans_Medium,
-          color: UserRegister.plusTitleColor,
-          lineHeight: 15,
-        },
         topWrap: {},
         formWrap: {
           padding: 15,

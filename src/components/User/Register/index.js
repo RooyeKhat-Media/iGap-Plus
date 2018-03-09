@@ -55,11 +55,9 @@ class UserRegisterComponent extends React.Component {
               {(OS === 'android' || OS === 'ios') ?
                 (<View style={styles.logoWrap}>
                   <Text style={styles.headerTitle}>
-                    <FormattedMessage {...i18n.iGap}/>
+                    {intl.formatMessage(i18n.iGap)}
                   </Text>
-                  <View style={styles.plusWrap}>
-                    <Text style={styles.plusTitle}>+</Text>
-                  </View>
+                  <MCIcon name={'plus-box'}  size={25}/>
                 </View>) : null}
 
             </View>
