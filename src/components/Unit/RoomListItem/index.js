@@ -6,6 +6,7 @@ import {ListItem as BaseListItem, MCIcon} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import MessageStatus from '../../../containers/Unit/MessageStatus';
 import styles, {badgeStyle, boldListItemStyle, hideStyle, muteBadgeStyle, pinedListItemStyle} from './index.styles';
+import {metricSuffix} from '../../../utils/core';
 
 class RoomListItem extends React.PureComponent {
   render() {
@@ -29,7 +30,7 @@ class RoomListItem extends React.PureComponent {
           </View>
           <View style={styles.row}>
             <Text numberOfLines={1} style={unreadCount ? (roomMute ? muteBadgeStyle.container : badgeStyle.container) : hideStyle.container}>
-              {unreadCount ? unreadCount.toString() : null}</Text>
+              {unreadCount ? metricSuffix(unreadCount) : null}</Text>
             <Text style={roomPined ? styles.pinStyle : hideStyle.container}><MCIcon name="pin" size={22}/></Text>
           </View>
         </View>}

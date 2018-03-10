@@ -1,6 +1,6 @@
 import Base from '../Base';
 import putState from '../../Entities/Rooms/index';
-import {prepareRoomMessage} from '../../../utils/app';
+import {getAuthorHash, prepareRoomMessage} from '../../../utils/app';
 import {entitiesRoomEdit} from '../../../actions/entities/rooms';
 
 import {normalize} from 'normalizr';
@@ -26,7 +26,9 @@ export default class SendMessage extends Base {
         await sleep(1);
       } else {
 
-        const messageId = this._response.getRoomMessage().getMessageId().toString();
+        const room = store.getState().entities.rooms[roomId];
+        const message = this._response.getRoomMessage();
+        const messageId = message.getMessageId().toString();
 
         if (indexOf(store.getState().messenger.rooms, roomId) === -1 && store.getState().entities.rooms[roomId].isParticipant) {
 
@@ -39,11 +41,16 @@ export default class SendMessage extends Base {
           }));
         }
 
-        this.dispatch(entitiesRoomEdit(roomId, {
-          lastMessage: messageId,
-        }));
+        const editRoomPayload = {};
+        if (!room.lastMessage || room.lastMessage < messageId) {
+          editRoomPayload.lastMessage = messageId;
+          if (!message.getDeleted() && message.getAuthor().getHash() !== getAuthorHash()) {
+            editRoomPayload.unreadCount = room.unreadCount + 1;
+          }
+          this.dispatch(entitiesRoomEdit(roomId, editRoomPayload));
+        }
 
-        const normalizedData = normalize(this._response.getRoomMessage(), roomMessage);
+        const normalizedData = normalize(message, roomMessage);
 
         toPairs(normalizedData.entities.roomMessages).forEach(([messageId, roomMessage]) => {
           prepareRoomMessage(normalizedData.entities.roomMessages[messageId], roomId, true);

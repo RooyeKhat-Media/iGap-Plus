@@ -762,7 +762,7 @@ export async function updateMessageStatus(roomId, messageId, status) {
   if (room.type !== Proto.Room.Type.GROUP && room.type !== Proto.Room.Type.CHAT) {
     return;
   }
-  if (roomMessage.deleted) {
+  if (!roomMessage || roomMessage.deleted) {
     return;
   }
   if (roomMessage.authorHash === getAuthorHash()) {

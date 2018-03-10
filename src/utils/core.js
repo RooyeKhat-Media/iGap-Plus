@@ -143,3 +143,16 @@ export function toHHMMSS(secs) {
     .filter((v, i) => v !== '00' || i > 0)
     .join(':');
 }
+
+export function metricSuffix(number, digits = 1) {
+  if (number < 0) {return 0;}
+  if (number < 1e3) {return number;}
+
+  const exp = Math.floor(Math.log(number) / Math.log(1e3));
+  number /= Math.pow(1e3, exp);
+
+  const exp2 = Math.ceil(Math.log(number) / Math.log(1e1));
+  if (digits < exp2) {digits = exp2;}
+
+  return +number.toPrecision(digits) + 'kMBT'.charAt(exp - 1);
+}
