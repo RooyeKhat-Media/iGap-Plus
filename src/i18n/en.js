@@ -1525,6 +1525,23 @@ export default {
     defaultMessage: 'iGap plus client {platform} version {appVersion} ',
     description: 'setting screen',
   },
+  settingLoginWithQrCode: {
+    id: 'setting.LoginWithQrCode',
+    defaultMessage: 'Login with QR code',
+    description: 'setting screen',
+  },
+  qrCodeLoggedInDevice: {
+    id: 'qrCode.loggedInDevice',
+    defaultMessage: 'Logged in device',
+    description: 'qrCode screen',
+  },
+  qrCodeQrCodeLogin: {
+    id: 'qrCode.qrCodeLogin',
+    defaultMessage: 'QrCode Login',
+    description: 'qrCode screen',
+  },
+
+
   privacyPrivacy: {
     id: 'privacy.privacy',
     defaultMessage: 'Privacy',
@@ -1613,11 +1630,6 @@ export default {
   activeSessionCurrentSession: {
     id: 'activeSession.currentSession',
     defaultMessage: 'Current Session',
-    description: 'Active Session page',
-  },
-  activeSessionVersion: {
-    id: 'activeSession.version',
-    defaultMessage: 'Version',
     description: 'Active Session page',
   },
   activeSessionTerminateAllOtherActiveSession: {

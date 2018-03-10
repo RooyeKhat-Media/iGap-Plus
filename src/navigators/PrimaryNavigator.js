@@ -15,6 +15,7 @@ import {
   PRIMARY_CONTACT_PICKER_SCREEN,
   PRIMARY_NAV_TAB,
   PROFILE_SCREEN,
+  QR_CODE_SCREEN,
   ROOM_CREATE_SCREEN,
   ROOM_LIST_SCREEN,
   ROOM_UPDATE_USERNAME_SCREEN,
@@ -49,6 +50,7 @@ import UserTwoStepChangeEmailScreen from '../screens/User/TwoStep/UserTwoStepCha
 import UserTwoStepChangeHintScreen from '../screens/User/TwoStep/UserTwoStepChangeHintScreen';
 import UserTwoStepChangeRecoveryQuestionScreen from '../screens/User/TwoStep/UserTwoStepChangeRecoveryQuestionScreen';
 import UserTwoStepVerifyRecoveryEmailScreen from '../screens/User/TwoStep/UserTwoStepVerifyRecoveryEmail';
+import QrCodeScreen from '../screens/QrCode/QrCodeScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -135,6 +137,10 @@ export function goTwoStepVerifyEmail() {
   navigate(USER_TWO_STEP_VERIFY_EMAIL_SCREEN);
 }
 
+export function goQrCode() {
+  navigate(QR_CODE_SCREEN);
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [NEARBY_SCREEN]: {screen: NearbyScreen},
@@ -176,6 +182,7 @@ const PrimaryNavigator = StackNavigator({
   [USER_TWO_STEP_CHANGE_HINT_SCREEN]: {screen: UserTwoStepChangeHintScreen},
   [USER_TWO_STEP_CHANGE_RECOVERY_QUESTION_SCREEN]: {screen: UserTwoStepChangeRecoveryQuestionScreen},
   [USER_TWO_STEP_VERIFY_EMAIL_SCREEN]: {screen: UserTwoStepVerifyRecoveryEmailScreen},
+  [QR_CODE_SCREEN]: {screen: QrCodeScreen},
 });
 
 export default PrimaryNavigator;

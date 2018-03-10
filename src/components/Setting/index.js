@@ -6,7 +6,7 @@ import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
 import {Confirm, ListItem, PopupMenu, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
-import {goActiveSession, goBlockList, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
+import {goActiveSession, goBlockList, goQrCode, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
 import {textTitleStyle} from '../../themes/default/index';
 import {APP_VERSION} from '../../constants/configs';
@@ -75,6 +75,11 @@ class SettingComponent extends Component {
           <ListItem
             centerElement={{primaryText: intl.formatMessage(i18n.settingTwoStepVerification)}}
             onPress={goTowStepSetting}
+            style={styles.listItem}
+          />
+          <ListItem
+            centerElement={{primaryText: intl.formatMessage(i18n.settingLoginWithQrCode)}}
+            onPress={() => goQrCode()}
             style={styles.listItem}
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>
