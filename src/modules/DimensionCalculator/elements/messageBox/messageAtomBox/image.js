@@ -15,17 +15,19 @@ const calculator = (maxWidth, outer, roomMessage, boxType, forwarded) => {
    */
   const xSpace = 0;
 
-  const {attachment} = roomMessage;
+  const {attachment, pickedFile} = roomMessage;
 
   let imageWidth;
   let imageHeight;
-  if (attachment) {
+  if (attachment && attachment.getWidth() && attachment.getHeight()) {
     imageWidth = attachment.getWidth();
     imageHeight = attachment.getHeight();
+  } else if (pickedFile && pickedFile.width && pickedFile.height) {
+    imageWidth = pickedFile.width;
+    imageHeight = pickedFile.height;
   } else {
-    // TODO [Amerehie] - 2017-12-23 12:00 PM -  Picked file imageWidth imageHeight
-    imageWidth = 0;
-    imageHeight = 0;
+    imageWidth = 250;
+    imageHeight = 160;
   }
 
   if (boxType !== BOX_TYPE_CHANNEL) {
