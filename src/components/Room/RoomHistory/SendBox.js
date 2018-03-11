@@ -170,7 +170,6 @@ class SendBox extends PureComponent {
       height: 0,
       showEmojiPiker: false,
     });
-    Keyboard.dismiss();
   };
 
   selectImages = async () => {
@@ -473,10 +472,10 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     flex: 1,
+    minHeight: 50,
     borderWidth: 0,
     paddingLeft: 2,
     paddingRight: 4,
-    marginBottom: 6,
     fontSize: 16,
   },
   iconEmoji: {

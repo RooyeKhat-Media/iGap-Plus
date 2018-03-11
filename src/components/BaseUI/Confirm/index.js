@@ -35,11 +35,11 @@ class Confirm extends Component {
         }} type={type}
         actions={[
           {
-            label: intl.formatMessage(i18n.ok),
-            onPress: onConfirm,
+            label: intl.formatMessage(i18n.dismiss),
           },
           {
-            label: intl.formatMessage(i18n.dismiss),
+            label: intl.formatMessage(i18n.ok),
+            onPress: onConfirm,
           },
         ]}
         title={(<Text>{title && (<FormattedMessage {...title} />)}</Text>)}

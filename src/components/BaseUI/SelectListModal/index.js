@@ -1,8 +1,10 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {FlatList, Icon, IconToggle, TextInput} from '../index';
+import {injectIntl, intlShape} from 'react-intl';
+import {FlatList, Icon, TextInput, Button} from '../index';
 import styles from './index.styles';
 import PropTypes from 'prop-types';
+import i18n from '../../../i18n';
 
 class SelectListModal extends React.Component {
 
@@ -40,7 +42,7 @@ class SelectListModal extends React.Component {
   };
 
   render() {
-    const {multi, searchable, data, headerTitle, autoFocus} = this.props;
+    const {intl, multi, searchable, data, headerTitle, autoFocus} = this.props;
     const {searchText, selected} = this.state;
     const options = data.filter(function(option) {
       return searchText === '' || (option.filter && option.filter.indexOf(searchText.toLowerCase()) >= 0);
@@ -50,7 +52,6 @@ class SelectListModal extends React.Component {
         <View style={styles.headerWrap}>
           <View style={styles.headerTopWrap}>
             {headerTitle && (<Text style={styles.headerTitle}>{headerTitle}</Text>)}
-            {multi && (<IconToggle name="check" onPress={this.onSubmit}/>)}
           </View>
           {searchable &&
           (<View style={styles.searchWrap}>
@@ -65,6 +66,20 @@ class SelectListModal extends React.Component {
         </View>
         <View style={styles.bodyWrap}>
           <FlatList data={options} extraData={selected} keyExtractor={this.keyExtractor} renderItem={this.renderItem}/>
+        </View>
+        <View style={styles.footerWrap}>
+          <View style={styles.headerTopActions}>
+            <Button primary
+              upperCase={false}
+              style={styles.dialogBtn}
+              onPress={this.onSubmit}
+              text={intl.formatMessage(i18n.dismiss)} />
+            {multi && (<Button primary
+              upperCase={false}
+              style={styles.dialogBtn}
+              onPress={this.onSubmit}
+              text={intl.formatMessage(i18n.ok)} />)}
+          </View>
         </View>
       </View>
     );
@@ -93,6 +108,7 @@ SelectListModal.defaultProps = {
   autoFocus: true,
 };
 SelectListModal.propTypes = {
+  intl: intlShape.isRequired,
   multi: PropTypes.bool,
   searchable: PropTypes.bool,
   renderItem: PropTypes.func,
@@ -109,5 +125,4 @@ SelectListModal.propTypes = {
   ]),
   autoFocus: PropTypes.bool,
 };
-
-export default SelectListModal;
+export default injectIntl(SelectListModal);

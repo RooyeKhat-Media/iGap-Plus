@@ -26,6 +26,9 @@ export default {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  headerTopActions: {
+    flexDirection: 'row',
+  },
   headerTitle: {
     padding: 10,
     ...IRANSans_Medium,
@@ -68,5 +71,20 @@ export default {
   },
   countryList: {
     flex: 1,
+  },
+  footerWrap: {
+    padding: 5,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#dddddd',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
+  dialogBtn: {
+    container: {
+      marginLeft: 8,
+      paddingHorizontal: 8,
+      borderWidth: 0,
+    },
   },
 };

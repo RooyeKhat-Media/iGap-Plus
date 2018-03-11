@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import {isArray, keys} from 'lodash';
 import {injectIntl, intlShape} from 'react-intl';
 import SaveTo from '../../../native/modules/SaveTo';
 import Share from '../../modules/Share/index';
@@ -127,6 +128,17 @@ class RoomHistoryScreen extends PureComponent {
       this.scrollToIndex();
     }
 
+    if (this.props.navigation.state.params.forwardedMessage) {
+      const forwardParam = this.props.navigation.state.params.forwardedMessage;
+      if (isArray(forwardParam)) {
+        forwardParam.map(function (forwardedMessage) {
+          sendMessage(room.id, null, null, null, null, forwardedMessage);
+        });
+      } else {
+        this.setState({forwardedMessage: forwardParam});
+      }
+    }
+
     if (!room.isParticipant) {
       const {clearMessageFromStore} = this.props;
       clearMessageFromStore(room.id);
@@ -189,7 +201,7 @@ class RoomHistoryScreen extends PureComponent {
       pickedFile: null,
       attachmentType: null,
       replyTo: null,
-      forwardedMessage: this.props.navigation.state.params.forwardedMessage,
+      forwardedMessage: null,
       editMessageId: null,
       selectedList: {},
       selectedCount: 0,
@@ -208,6 +220,7 @@ class RoomHistoryScreen extends PureComponent {
 
   onChangeText = (text) => {
     const {room} = this.props;
+    this.setState({text});
     if (!text) {
       return;
     }
@@ -373,7 +386,7 @@ class RoomHistoryScreen extends PureComponent {
       } else {
         delete selectedList[messageId];
       }
-      const firstRoomMessage = selectedCount === 1 ? getRoomMessage(Object.keys(selectedList)[0]) : null;
+      const firstRoomMessage = selectedCount === 1 ? getRoomMessage(keys(selectedList)[0]) : null;
       return {
         ...prevState,
         selectedCount,
@@ -419,14 +432,19 @@ class RoomHistoryScreen extends PureComponent {
   selectedMessageAction = (selected) => {
     const {room, getRoomMessage} = this.props;
     const {selectedList} = this.state;
-    const roomMessage = getRoomMessage(Object.keys(selectedList)[0]);
+    const selectedKeys = keys(selectedList);
+    const roomMessage = getRoomMessage(selectedKeys[0]);
     switch (selected.action) {
 
       case ROOM_MESSAGE_ACTION_REPLY:
         this.actionReply(roomMessage);
         break;
       case ROOM_MESSAGE_ACTION_FORWARD:
-        this.actionForward([]);
+        const forwardList = [];
+        selectedKeys.forEach(function(id) {
+          forwardList.push(getRoomMessage(id));
+        });
+        this.actionForward(forwardList);
         break;
       case ROOM_MESSAGE_ACTION_DELETE:
         this.actionDeleteMessages(selectedList);
@@ -486,10 +504,10 @@ class RoomHistoryScreen extends PureComponent {
     this.confirm.open(i18n.roomHistoryDeleteMessagesTitle, {
       ...i18n.roomHistoryDeleteMessagesDescription, values: {
         roomTitle: room.title,
-        count: Object.keys(selectedList).length,
+        count: keys(selectedList).length,
       },
     }, () => {
-      deleteMessages(room.id, Object.keys(selectedList));
+      deleteMessages(room.id, keys(selectedList));
     });
   };
 

@@ -89,7 +89,7 @@ class MessageAtomBox extends Component {
   };
 
   openFile = () => {
-    const {downloadedFile, message} = this.props;
+    const {downloadedFile, message, onMessagePress} = this.props;
     switch (this.props.message.messageType) {
       case Proto.RoomMessageType.VIDEO:
       case Proto.RoomMessageType.VIDEO_TEXT:
@@ -98,6 +98,8 @@ class MessageAtomBox extends Component {
       case Proto.RoomMessageType.VOICE:
         listenMessage(message.roomId, message.id);
         break;
+      default:
+        onMessagePress(message);
     }
   };
 
@@ -120,7 +122,7 @@ class MessageAtomBox extends Component {
       }
       return this.startDownload();
     } else {
-      onMessagePress(message.id);
+      onMessagePress(message);
     }
   };
 
