@@ -1,12 +1,9 @@
-import Base from '../Base';
+import GroupAddMember from '../Group/AddMember';
 
 /**
  * @property {ProtoChannelAddMember} _request
  * @property {ProtoChannelAddMemberResponse} _response
  */
-export default class AddMember extends Base {
-  handle() {
-    // console.error('AddMember', 'Not implemented yet', this);
-    // todo ChannelAddMember
-  }
+export default class AddMember extends GroupAddMember {
+  role = 'channelRole';
 }
