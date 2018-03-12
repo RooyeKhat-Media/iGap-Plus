@@ -6,7 +6,7 @@ import i18n from '../../i18n';
 import {textTitleStyle} from '../../themes/default/index';
 import {Toolbar} from '../BaseUI/index';
 
-class PrivacyPolicyComponent extends React.Component {
+class PrivacyPolicyComponent extends React.PureComponent {
   render() {
     const {intl, privacyPolicy, goBack} = this.props;
     return (
@@ -17,7 +17,7 @@ class PrivacyPolicyComponent extends React.Component {
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.privacyPolicyTitle)}</Text>}
           showAuthenticating={false}
         />
-        <WebView style={styles.root} source={{html: privacyPolicy}} />
+        <WebView style={styles.webView} source={{html: privacyPolicy || ''}} />
       </View>
     );
   }
@@ -26,6 +26,11 @@ class PrivacyPolicyComponent extends React.Component {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor: '#fff',
+  },
+  webView: {
+    flex: 1,
+    margin: 15,
   },
 });
 
