@@ -11,6 +11,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 
 
 const uniqueId = _.uniqueId();
@@ -40,6 +41,7 @@ class UserVerifyComponent extends Component {
 
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+        <ConnectionStatus showAuthenticating={false}/>
 
         <Form style={styles.panel} control={(form) => {
           this.form = form;

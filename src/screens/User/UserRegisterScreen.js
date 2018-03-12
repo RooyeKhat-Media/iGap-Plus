@@ -8,13 +8,14 @@ import {integerValidator, regexValidator, requiredValidator} from '../../utils/v
 import countries from '../../constants/country/index';
 import {LOCALES} from '../../constants/locale';
 import {Text} from 'react-native';
+import {keys} from 'lodash';
 import {ListItem} from '../../components/BaseUI/index';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../i18n/index';
 import Api from '../../modules/Api/index';
 import {INFO_COUNTRY, INFO_LOCATION, USER_REGISTER} from '../../constants/methods/index';
 import {InfoCountry, InfoLocation, UserRegister} from '../../modules/Proto/index';
-import {goUserQrCodeLoginScreen, goUserVerifyScreen} from '../../navigators/AppNavigator';
+import {goPrivacyPolicy, goUserQrCodeLoginScreen, goUserVerifyScreen} from '../../navigators/AppNavigator';
 import {setAuthorHash, setUserId} from '../../utils/app';
 import {changeLocale, getUserLocale} from '../../utils/locale';
 import {errorId} from '../../modules/Error/index';
@@ -167,13 +168,12 @@ class UserRegisterScreen extends Component {
     const countryList = [];
     const localesList = [];
 
-    Object.keys(LOCALES).map((locale) => {
+    keys(LOCALES).map((locale) => {
       localesList.push({
         key: locale,
         value: LOCALES[locale].en,
         element: (<ListItem
-          centerElement={{primaryText: LOCALES[locale].en}}
-          rightElement={<Text>{LOCALES[locale].native}</Text>}
+          centerElement={{primaryText: LOCALES[locale].native || LOCALES[locale].en}}
           style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
         />),
         filter: locale,
@@ -207,6 +207,7 @@ class UserRegisterScreen extends Component {
         localesList={localesList}
         selectNewLocale={this.selectNewLocale}
         defaultLocale={defaultLocale}
+        goPrivacyPolicy={goPrivacyPolicy}
         goUserQrCodeLoginScreen={goUserQrCodeLoginScreen}
       />
     );

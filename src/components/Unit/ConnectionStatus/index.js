@@ -9,8 +9,8 @@ import styles from './index.styles';
 
 class ConnectionStatusComponent extends PureComponent {
   render() {
-    const {status} = this.props;
-    if (status === CLIENT_STATUS.LOGGED_IN) {
+    const {status, showAuthenticating} = this.props;
+    if (status === CLIENT_STATUS.LOGGED_IN || (!showAuthenticating && status === CLIENT_STATUS.SECURED)) {
       return null;
     }
     return (
@@ -25,7 +25,7 @@ class ConnectionStatusComponent extends PureComponent {
             <FormattedMessage {...i18n.connectionStatusSecuring}/>
           </Text>
         )}
-        {(status === CLIENT_STATUS.SECURED) && (
+        {(showAuthenticating && status === CLIENT_STATUS.SECURED) && (
           <Text style={[styles.textContainer, styles.authenticating]}>
             <FormattedMessage {...i18n.connectionStatusAuthenticating}/>
           </Text>
@@ -37,6 +37,7 @@ class ConnectionStatusComponent extends PureComponent {
 
 ConnectionStatusComponent.propTypes = {
   status: PropTypes.symbol.isRequired,
+  showAuthenticating: PropTypes.bool.isRequired,
 };
 
 export default ConnectionStatusComponent;

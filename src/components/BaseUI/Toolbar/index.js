@@ -5,10 +5,12 @@ import SoundPlayer from '../../../containers/Unit/SoundPlayer';
 import {SOUND_PLAYER_BOX_TOOLBAR} from '../../../constants/app';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 
-export default (props) => (
-  <View>
-    <Toolbar {...props}/>
-    <ConnectionStatus/>
-    <SoundPlayer type={SOUND_PLAYER_BOX_TOOLBAR}/>
-  </View>
-);
+export default (props) => {
+  return (
+    <View>
+      <Toolbar {...props}/>
+      <ConnectionStatus showAuthenticating={props.showAuthenticating}/>
+      <SoundPlayer type={SOUND_PLAYER_BOX_TOOLBAR}/>
+    </View>
+  );
+};

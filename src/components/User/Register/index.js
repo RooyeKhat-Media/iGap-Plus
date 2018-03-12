@@ -13,6 +13,7 @@ import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import LinerLogo from '../../../assets/images/linerLogo';
+import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 
 const uniqueId = _.uniqueId();
 
@@ -27,8 +28,7 @@ class UserRegisterComponent extends React.Component {
   render() {
     const styles = this.getStyles();
     const {
-      intl, countryList, formRules, formData, handleFormData,
-      onChangeCallingCode, onSelectCountry, selectNewLocale, localesList, defaultLocale, goUserQrCodeLoginScreen,
+      intl, countryList, formRules, formData, handleFormData, onChangeCallingCode, onSelectCountry, goPrivacyPolicy, selectNewLocale, localesList, goUserQrCodeLoginScreen,
     } = this.props;
 
     const OS = Platform.OS;
@@ -36,13 +36,13 @@ class UserRegisterComponent extends React.Component {
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <View style={styles.wrapper}>
+          <ConnectionStatus showAuthenticating={false}/>
 
           <View style={styles.topWrap}>
 
             <View style={styles.changeLanguageWrap}>
               <Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
                 style={styles.changeLanguagePicker}
-                defaultValue={defaultLocale}
                 options={localesList} onItemSelect={selectNewLocale}
                 placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>
             </View>
@@ -57,7 +57,7 @@ class UserRegisterComponent extends React.Component {
                   <Text style={styles.headerTitle}>
                     {intl.formatMessage(i18n.iGap)}
                   </Text>
-                  <MCIcon name={'plus-box'}  size={25}/>
+                  <MCIcon name={'plus-box'} size={25}/>
                 </View>) : null}
 
             </View>
@@ -111,7 +111,9 @@ class UserRegisterComponent extends React.Component {
                     this.form.loadingOff();
                   }
                 }} upperCase={false} style={styles.btnSubmit}/>
-              <Button upperCase={false} style={styles.privacyBtn}
+              <Button upperCase={false}
+                style={styles.privacyBtn}
+                onPress={goPrivacyPolicy}
                 text={intl.formatMessage(i18n.registerPrivacyBtnTitle)}
                 icon={<MCIcon color="#7d7d7d" name="alert-decagram" size={14}/>}/>
             </View>
@@ -151,5 +153,6 @@ UserRegisterComponent.propTypes = {
   handleFormData: PropTypes.func.isRequired,
   onSelectCountry: PropTypes.func.isRequired,
   onChangeCallingCode: PropTypes.func.isRequired,
+  goPrivacyPolicy: PropTypes.func.isRequired,
 };
 export default injectIntl(responsive(UserRegisterComponent));

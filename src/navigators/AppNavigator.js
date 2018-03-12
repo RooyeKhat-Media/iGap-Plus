@@ -23,6 +23,7 @@ import {
   INITIAL_SCREEN,
   INTRO_SCREEN,
   MAIN_SCREEN,
+  PRIVACY_POLICY_SCREEN,
   TEST_SCREEN,
   USER_NEW_PROFILE_SCREEN, USER_QR_CODE_LOGIN_SCREEN,
   USER_REGISTER_SCREEN,
@@ -34,6 +35,7 @@ import {
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
 import UserQrCodeLoginScreen from '../screens/User/UserQrCodeLoginScreen';
+import PrivacyPolicyScreen from '../screens/PrivacyPolicyScreen';
 
 export function goInitialScreen() {
   navigate(INITIAL_SCREEN);
@@ -98,6 +100,10 @@ export function goUserVerifyDeleteScreen(token) {
   navigate(USER_VERIFY_DELETE_SCREEN, {token});
 }
 
+export function goPrivacyPolicy() {
+  navigate(PRIVACY_POLICY_SCREEN);
+}
+
 export const middleware = createReactNavigationReduxMiddleware(
   'app',
   state => state.nav,
@@ -113,6 +119,7 @@ const AppNavigator = StackNavigator({
   [USER_VERIFY_SCREEN]: {screen: UserVerify},
   [USER_NEW_PROFILE_SCREEN]: {screen: UserNewProfile},
   [USER_TWO_STEP_VERIFICATION_SCREEN]: {screen: UserTwoStepVerificationScreen},
+  [PRIVACY_POLICY_SCREEN]: {screen: PrivacyPolicyScreen},
   [USER_TWO_STEP_FORGET_SCREEN]: {screen: UserTwoStepForgetScreen},
   [INITIAL_SCREEN]: {screen: InitialScreen},
   [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},

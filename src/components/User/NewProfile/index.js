@@ -37,6 +37,7 @@ class UserNewProfileComponent extends Component {
           onRightElementPress={() => {
             this.dialog.open();
           }}
+          showAuthenticating={false}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.newProfileTitle)}</Text>}
         />
 

@@ -170,7 +170,7 @@ export default {
   },
   registerChangeLanguagePlaceholder: {
     id: 'UserRegister.changeLanguagePlaceholder',
-    defaultMessage: 'Hello world',
+    defaultMessage: 'Language',
     description: 'UserRegister Page',
   },
   registerChangeLanguageTitle: {
@@ -244,6 +244,11 @@ export default {
     description: 'error',
   },
 
+  privacyPolicyTitle: {
+    id: 'privacyPolicy.title',
+    defaultMessage: 'Privacy and Policy',
+    description: 'Privacy Policy Page',
+  },
 
   verifyTitle: {
     id: 'UserVerify.title',
