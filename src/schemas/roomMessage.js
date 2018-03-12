@@ -23,9 +23,9 @@ export const flatProtoRoomMessage = (roomMessage) => {
   const flat = {
     id: roomMessage.getMessageId().toString(),
     longId: roomMessage.getMessageId(),
-    messageVersion: roomMessage.getMessageVersion(),
+    messageVersion: roomMessage.getMessageVersion().toString(),
     status: roomMessage.getStatus(),
-    statusVersion: roomMessage.getStatusVersion(),
+    statusVersion: roomMessage.getStatusVersion().toString(),
     messageType: roomMessage.getMessageType(),
     message: roomMessage.getMessage(),
     attachment: roomMessage.getAttachment(),
@@ -92,8 +92,6 @@ export const serializableRoomMessageToNormalizedRoomMessage = (serializableRoomM
   return {
     ...serializableRoomMessage,
     longId: objectToLong(serializableRoomMessage.longId),
-    messageVersion: objectToLong(serializableRoomMessage.messageVersion),
-    statusVersion: objectToLong(serializableRoomMessage.statusVersion),
 
     attachment: serializableRoomMessage.attachment ? Proto.File.deserializeBinary(objectToUint8Array(serializableRoomMessage.attachment)) : null,
     location: serializableRoomMessage.location ? Proto.RoomMessageLocation.deserializeBinary(objectToUint8Array(serializableRoomMessage.location)) : null,

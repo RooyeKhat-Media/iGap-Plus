@@ -26,6 +26,9 @@ export function persistCallback(persist) {
       delete data.roomId;
       delete data.messageType;
       delete data.message;
+      delete data.messageVersion;
+      delete data.statusVersion;
+      delete data.deleteVersion;
 
       if (!serializableRoomMessage.roomId) {
         console.error('serializableRoomMessage.roomId must be set', serializableRoomMessage);
@@ -36,6 +39,9 @@ export function persistCallback(persist) {
         roomId: serializableRoomMessage.roomId,
         messageType: serializableRoomMessage.messageType,
         message: serializableRoomMessage.message,
+        messageVersion: serializableRoomMessage.messageVersion,
+        statusVersion: serializableRoomMessage.statusVersion,
+        deleteVersion: serializableRoomMessage.deleteVersion,
         data: JSON.stringify(data),
         fraction: serializableRoomMessage.fraction || 0,
         cacheTime,
@@ -66,10 +72,13 @@ export function retrieveCallback(retrieve) {
     const params = Squel.select().from('entities_room_messages')
       .field('CAST(id AS TEXT) AS id')
       .field('data')
-      .field('roomId')
+      .field('CAST(roomId AS TEXT) AS roomId')
       .field('message')
       .field('fraction')
       .field('messageType')
+      .field('CAST(messageVersion AS TEXT) AS messageVersion')
+      .field('CAST(statusVersion AS TEXT) AS statusVersion')
+      .field('CAST(deleteVersion AS TEXT) AS deleteVersion')
       .where('id IN ?', [...retrieve.keys()]).toParam();
 
     transaction.executeSql(params.text, params.values, (transaction, results) => {
@@ -81,6 +90,9 @@ export function retrieveCallback(retrieve) {
           message: row.message,
           fraction: row.fraction,
           messageType: row.messageType,
+          messageVersion: row.messageVersion,
+          statusVersion: row.statusVersion,
+          deleteVersion: row.deleteVersion,
           ...JSON.parse(row.data),
         };
         const dataInRetrieve = retrieve.get(row.id);
@@ -119,6 +131,9 @@ export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
         .field('message')
         .field('fraction')
         .field('messageType')
+        .field('CAST(messageVersion AS TEXT) AS messageVersion')
+        .field('CAST(statusVersion AS TEXT) AS statusVersion')
+        .field('CAST(deleteVersion AS TEXT) AS deleteVersion')
         .where('roomId = ?', roomId)
         .order('id', !upward)
         .limit(limit);
@@ -139,6 +154,9 @@ export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
               message: row.message,
               fraction: row.fraction,
               messageType: row.messageType,
+              messageVersion: row.messageVersion,
+              statusVersion: row.statusVersion,
+              deleteVersion: row.deleteVersion,
               ...JSON.parse(row.data),
             });
             roomMessages.push(dbDoc);

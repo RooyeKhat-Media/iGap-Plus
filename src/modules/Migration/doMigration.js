@@ -35,13 +35,16 @@ function init() {
       )`);
 
       transaction.executeSql(`CREATE TABLE IF NOT EXISTS entities_room_messages (
-        id          INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE,
-        roomId      INTEGER NOT NULL,
-        messageType INTEGER,
-        message     TEXT,
-        data        TEXT    NOT NULL,
-        fraction    INTEGER NOT NULL,
-        cacheTime   INTEGER NOT NULL
+        id             INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE,
+        roomId         INTEGER NOT NULL,
+        messageType    INTEGER,
+        message        TEXT,
+        messageVersion INTEGER NOT NULL,
+        statusVersion  INTEGER NOT NULL,
+        deleteVersion  INTEGER NOT NULL,
+        data           TEXT    NOT NULL,
+        fraction       INTEGER NOT NULL,
+        cacheTime      INTEGER NOT NULL
       )`);
       transaction.executeSql(`CREATE INDEX IF NOT EXISTS entities_room_messages_roomId_index
         ON entities_room_messages (roomId);`);

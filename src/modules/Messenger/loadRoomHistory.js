@@ -51,6 +51,7 @@ export default async function loadRoomHistory(roomId, firstMessageId, upward = t
  */
 async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = false) {
   let fractionId = null;
+  let deletedMessageCunt = 0;
   let entitiesRoomMessages = {};
   const messengerRoomMessages = [];
   const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION_DB_LIMIT);
@@ -70,6 +71,9 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
       }
       break;
     }
+    if (message.deleted) {
+      deletedMessageCunt++;
+    }
   }
 
   if (includeMessageId) {
@@ -86,6 +90,10 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
       ...entitiesRoomMessages,
       ...await loadFromServer(roomId, fractionId, upward, true),
     };
+  } else if (deletedMessageCunt >= CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT / 2) {
+    loadRoomHistory(roomId,
+      upward ? messengerRoomMessages[messengerRoomMessages.length - 1] : messengerRoomMessages[0],
+      upward);
   } else if (messengerRoomMessages.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
     entitiesRoomMessages = {
       ...entitiesRoomMessages,
