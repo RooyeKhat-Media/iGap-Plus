@@ -37,12 +37,6 @@ export default [
           marginLeft: 10,
           alignSelf: 'flex-start',
         },
-        titleText: {
-          color: black200,
-          fontSize: 18,
-          alignSelf: 'flex-start',
-          ...IRANSans_Medium,
-        },
         divider: {
           flex: 1,
           borderTopWidth: 1,

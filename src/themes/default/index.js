@@ -30,12 +30,10 @@ export const green = '#1de4b3';
 export const greenDark = '#36becf';
 
 export const textTitleStyle = {
-  flex: 1,
   color: black600,
-  ...IRANSans_Medium,
   fontSize: 18,
-  textAlign: 'left',
-  textAlignVertical: 'center',
+  alignSelf: 'flex-start',
+  ...IRANSans_Medium,
 };
 
 export default {

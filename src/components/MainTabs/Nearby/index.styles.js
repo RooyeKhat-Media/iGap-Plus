@@ -13,12 +13,6 @@ export default [
           flex: 1,
           backgroundColor: '#fff',
         },
-        titleText: {
-          color: black200,
-          fontSize: 18,
-          alignSelf: 'flex-start',
-          ...IRANSans_Medium,
-        },
         nearbyTurnOn: {
           flexDirection: 'row',
           flex: 1,
@@ -27,6 +21,9 @@ export default [
         },
         nearbyMessage: {
           flex: 0.5,
+        },
+        titleText: {
+          marginLeft: 20,
         },
       },
     },

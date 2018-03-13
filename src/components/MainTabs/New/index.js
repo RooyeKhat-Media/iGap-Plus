@@ -12,6 +12,7 @@ import {ListItem as BaseListItem} from '../../BaseUI/index';
 import {goCall} from '../../../navigators/SecondaryNavigator';
 import {Proto} from '../../../modules/Proto/index';
 import ReturnToCall from '../../Call/ReturnToCall';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class NewComponent extends Component {
 
@@ -34,7 +35,7 @@ class NewComponent extends Component {
     return (
       <View style={styles.container}>
         <Toolbar
-          leftElement={<Text style={styles.titleText}>{intl.formatMessage(i18n.newPlus)}</Text>}
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.newPlus)}</Text>}
           searchable={{
             autoFocus: true,
             placeholder: 'Search',

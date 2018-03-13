@@ -7,12 +7,10 @@ export default {
     backgroundColor: '#fff',
   },
   textTitle: {
-    flex: 1,
     color: black600,
     fontSize: 18,
-    textAlign: 'left',
+    alignSelf: 'flex-start',
     ...Neuropolitical,
-    textAlignVertical: 'center',
   },
 
 };

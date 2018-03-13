@@ -9,6 +9,7 @@ import i18n from '../../../i18n/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
+import {textTitleStyle} from '../../../themes/default/index';
 
 class NearbyComponent extends Component {
 
@@ -58,7 +59,7 @@ class NearbyComponent extends Component {
       <View style={styles.container}>
         <Toolbar
           leftElement={
-            <Text style={styles.titleText}>
+            <Text style={[textTitleStyle, styles.titleText]}>
               {intl.formatMessage(mapView ? i18n.nearbyScreenMapTitle : i18n.nearbyScreenListTitle)}
             </Text>}
           centerElement={
