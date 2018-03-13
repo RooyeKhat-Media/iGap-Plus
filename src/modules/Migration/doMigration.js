@@ -48,6 +48,12 @@ function init() {
       )`);
       transaction.executeSql(`CREATE INDEX IF NOT EXISTS entities_room_messages_roomId_index
         ON entities_room_messages (roomId);`);
+      transaction.executeSql(`CREATE INDEX IF NOT EXISTS entities_room_messages_messageVersion_index
+        ON entities_room_messages (messageVersion);`);
+      transaction.executeSql(`CREATE INDEX IF NOT EXISTS entities_room_messages_statusVersion_index
+        ON entities_room_messages (statusVersion);`);
+      transaction.executeSql(`CREATE INDEX IF NOT EXISTS entities_room_messages_deleteVersion_index
+        ON entities_room_messages (deleteVersion);`);
 
       /**
        * Messenger

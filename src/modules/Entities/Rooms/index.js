@@ -46,6 +46,9 @@ export default async function putState(id, offlineInvokeApi = false) {
         if (normalizedRoom.lastMessage) {
           putRoomMessageState(normalizedRoom.lastMessage);
         }
+        if (normalizedRoom.firstUnreadMessage) {
+          putRoomMessageState(normalizedRoom.firstUnreadMessage);
+        }
         collect(normalizedRoom, normalizedRoom.id);
       } finally {
         if (offlineInvokeApi) {

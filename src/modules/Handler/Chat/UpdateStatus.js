@@ -19,7 +19,7 @@ export default class UpdateStatus extends Base {
   handle() {
     collect({
       status: this._response.getStatus(),
-      statusVersion: this._response.getStatusVersion(),
+      statusVersion: this._response.getStatusVersion().toString(),
     }, this._response.getMessageId().toString());
   }
 }

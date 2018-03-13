@@ -26,7 +26,7 @@ export const BOX_TYPE_CHANNEL = 4;
  * @private
  */
 function _calculateDimension(outer, roomMessage, boxType, forwarded) {
-  if (roomMessage.deleted) {
+  if (!roomMessage || roomMessage.deleted) {
     return {width: 0, height: 0};
   }
   const maxWidth = getSecondaryWidth();
