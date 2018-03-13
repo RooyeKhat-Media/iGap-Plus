@@ -18,15 +18,15 @@ class UserQrCodeLoginComponent extends React.Component {
     return (
       <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <View style={styles.wrapper}>
-          <View style={styles.wrapper}>
+          <View style={styles.imageWrapper}>
             <Image
               style={styles.image}
               source={{uri: qrCodeImage}}
             />
-            <Text>
-              <FormattedMessage {...i18n.QrCodeLoginHelp} />
-            </Text>
           </View>
+          <Text style={styles.loginText}>
+            <FormattedMessage {...i18n.QrCodeLoginHelp} />
+          </Text>
           <Button
             primary
             upperCase={false}

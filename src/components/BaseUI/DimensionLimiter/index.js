@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive/index';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,9 @@ class DimensionLimiter extends React.Component {
     return (
       <View style={[styles.wrapper, this.props.wrapperStyle]}>
         <View style={[styles.layout, this.props.layoutStyle]}>
-          {this.props.children}
+          <ScrollView>
+            {this.props.children}
+          </ScrollView>
         </View>
       </View>
     );

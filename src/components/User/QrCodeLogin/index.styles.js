@@ -3,11 +3,19 @@ export default {
     backgroundColor: '#fff',
   },
   wrapper: {
-    flex: 1,
-    padding: 20,
-    flexDirection: 'column',
+    padding: 10,
+  },
+  imageWrapper: {
+    height:240,
+    marginTop:50,
   },
   image: {
-    height: 300, width: null,
+    height: 240,
+    width:240,
+    alignSelf:'center',
+  },
+  loginText:{
+    alignSelf:'center',
+    marginBottom:50,
   },
 };
