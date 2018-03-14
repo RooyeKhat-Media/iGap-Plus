@@ -1,5 +1,5 @@
 import {uniqueId} from 'lodash';
-import {black200, gray500, gray800, primary} from '../../../themes/default/index';
+import {black200, gray200, gray500, gray800, primary} from '../../../themes/default/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
@@ -100,6 +100,15 @@ export default [
           color: gray800,
           fontSize: 14,
           alignSelf: 'flex-start',
+        },
+        iconsLayout: {
+          flexDirection: 'row',
+          marginRight: 10,
+        },
+        circleIcon: {
+          container: {
+            backgroundColor: gray200,
+          },
         },
         textInfo: {
           color: black200,

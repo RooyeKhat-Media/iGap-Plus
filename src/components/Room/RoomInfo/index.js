@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {Button, Confirm, ListItem, MCIcon, Switch, Toolbar} from '../../BaseUI/index';
+import {Button, Confirm, ListItem, MCIcon, Switch, Toolbar, Avatar as CircleIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
-import {textTitleStyle} from '../../../themes/default/index';
+import {gray950, textTitleStyle} from '../../../themes/default/index';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import RichTextView from '../../../modules/RichTextView/index';
-import {Proto} from "../../../modules/Proto/index";
+import {Proto} from '../../../modules/Proto/index';
 
 class RoomInfoComponent extends React.Component {
   render() {
     const {
       intl, room, roomPeer, roomMute, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
-      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack,
+      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack, callAction,
     } = this.props;
     const styles = this.getStyles();
 
@@ -46,19 +46,20 @@ class RoomInfoComponent extends React.Component {
               onPress={goAvatarList}
               size={360}/>
             <View style={styles.containerJoinLeav}>
-              {/*Can Send Message to chatPeer Room ?*/}
-              {access.canSendMessage &&
-              (<Button style={styles.buttonBlue}
-                upperCase={false} primary raised accent={false}
-                onPress={sendMessage}
-                text={intl.formatMessage(i18n.roomInfoChatSendMessageBtn)}/>)}
-
-              {/*Can Call chatPeer Room ?*/}
-              {access.canCall &&
-              (<Button style={styles.buttonwhite}
-                upperCase={false} primary raised accent={false}
-                onPress={callUser}
-                text={intl.formatMessage(i18n.roomInfoChatCallBtn)}/>)}
+              <View style={styles.iconsLayout}>
+                {(callAction.voice && access.canCall) &&
+                <TouchableOpacity onPress={() => callUser('voice')}>
+                  <CircleIcon icon={'phone'} iconSize={25} size={40} iconColor={gray950} style={styles.circleIcon}/>
+                </TouchableOpacity>}
+                {(callAction.video && access.canCall) &&
+                <TouchableOpacity onPress={() => callUser('video')} style={{marginLeft: 10, marginRight: 10}}>
+                  <CircleIcon icon={'videocam'} iconSize={28} size={40} iconColor={gray950} style={styles.circleIcon}/>
+                </TouchableOpacity>}
+                {access.canSendMessage &&
+                <TouchableOpacity onPress={sendMessage}>
+                  <CircleIcon icon={'chat'} iconSize={22} size={40} iconColor={gray950} style={styles.circleIcon}/>
+                </TouchableOpacity>}
+              </View>
 
               {/*Can Leave Room ?*/}
               {access.canLeaveRoom &&
@@ -309,6 +310,7 @@ RoomInfoComponent.propTypes = {
   goBack: PropTypes.func.isRequired,
   actionClick: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
+  callAction: PropTypes.object.isRequired,
 };
 
 export default injectIntl(RoomInfoComponent);

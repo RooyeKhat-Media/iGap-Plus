@@ -35,6 +35,7 @@ import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
 import {
   goAvatarList,
+  goCall,
   goContactPicker,
   goRoomEdit,
   goRoomHistory,
@@ -45,6 +46,7 @@ import {
 import i18n from '../../i18n/en';
 import {resetSecondaryNavigation} from '../../navigators/index';
 import Long from 'long';
+import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -154,7 +156,16 @@ class RoomInfoScreen extends Component {
     goRoomHistory(room.id);
   };
 
-  callUser = () => {
+  callUser = (callType) => {
+    const {roomPeer} = this.props;
+    switch (callType) {
+      case 'voice':
+        goCall(roomPeer.id, false, Proto.SignalingOffer.Type.VOICE_CALLING);
+        break;
+      case 'video':
+        goCall(roomPeer.id, false, Proto.SignalingOffer.Type.VIDEO_CALLING);
+        break;
+    }
   };
 
   memberList = () => {
@@ -265,7 +276,7 @@ class RoomInfoScreen extends Component {
 
   render() {
     const {access, roomMute} = this.state;
-    const {room, roomPeer, countRoomHistory} = this.props;
+    const {room, roomPeer, countRoomHistory, callAction} = this.props;
     if (!room) {
       return null;
     }
@@ -294,6 +305,7 @@ class RoomInfoScreen extends Component {
         goAvatarList={this.avatarList}
         toggleMute={this.toggleMute}
         goBack={this.props.navigation.goBack}
+        callAction={callAction}
       />
     );
   }
@@ -320,6 +332,7 @@ const makeMapStateToProps = () => {
       room: getRoom(state, props),
       roomPeer: getRoomPeer(state, props),
       countRoomHistory: getCountRoomHistory(state, props),
+      callAction: getCallPermission(state),
     };
   };
 };

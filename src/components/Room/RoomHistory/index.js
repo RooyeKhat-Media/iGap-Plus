@@ -26,6 +26,7 @@ import {
 } from '../../../modules/DimensionCalculator/index';
 import {getAuthorHash} from '../../../utils/app';
 import ScrollDown from './ScrollDown';
+import ReturnToCall from '../../Call/ReturnToCall';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -119,6 +120,7 @@ class RoomHistoryComponent extends React.PureComponent {
       <View style={styles.container}>
         <View style={styles.mainWrap}>
           {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
+          <ReturnToCall/>
           <View style={styles.messageListWrap}>
             <RecyclerListView
               ref={this.flatListRef}
