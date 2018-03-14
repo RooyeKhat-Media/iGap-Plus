@@ -50,7 +50,6 @@ const middleware = ({dispatch, getState}) => next => action => {
   return next(action);
 };
 
-let isPlayRingtone = false;
 let isPlayRingBack = false;
 
 function manageRingtone(status, incoming) {
@@ -58,7 +57,6 @@ function manageRingtone(status, incoming) {
     case SIGNALING_STATUS.CALLING:
       if (incoming) {
         InCallManager.startRingtone('_DEFAULT_');
-        isPlayRingtone = true;
       } else {
         InCallManager.start({media: 'audio', ringback: '_BUNDLE_'});
         isPlayRingBack = true;
@@ -68,10 +66,6 @@ function manageRingtone(status, incoming) {
       // nothing to do  only for manage call
       break;
     default :
-      if (isPlayRingtone) {
-        InCallManager.stopRingtone();
-        isPlayRingtone = false;
-      }
       if (isPlayRingBack) {
         InCallManager.stopRingback();
         isPlayRingBack = false;

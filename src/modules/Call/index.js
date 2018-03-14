@@ -39,6 +39,7 @@ import {
   ERROR_SIGNALING_OFFER_FORBIDDEN,
   ERROR_SIGNALING_OFFER_PRIVACY_PROTECTION,
 } from '../Api/errors/index';
+import InCallManager from './inCall';
 
 const callSingleton = Symbol();
 const callSingletonEnforcer = Symbol();
@@ -54,8 +55,6 @@ let _isCreateAnswer = false;
 let _isSendLeave = true;
 let _localStream = null;
 let _receiveOfferResponse = null;
-let _waitPromise = null;
-let _waitPromiseResolve = null;
 
 export default class Call {
 
@@ -142,9 +141,6 @@ export default class Call {
    * @type  ProtoSignalingOfferResponse
    */
   receiveOffer(response) {
-    _waitPromise = new Promise(function(resolve) {
-      _waitPromiseResolve = resolve;
-    });
     _receiveOfferResponse = response;
     goCall(response.getCallerUserId().toString(), true, response.getType());
   }
@@ -153,26 +149,21 @@ export default class Call {
     if (_receiveOfferResponse === null) {
       return;
     }
-    try {
-      _offerType = _receiveOfferResponse.getType();
-      _isSendLeave = false;
-      const info = {sdp: _receiveOfferResponse.getCallerSdp(), type: 'offer'};
-      await  this.getPeerConnectionInstance();
-      await  _peerConnection.setRemoteDescription(new RTCSessionDescription(info));
-      Api.invoke(SIGNALING_RINGING, new SignalingRinging());
-      _waitPromiseResolve();
-    } catch (e) {
-      store.dispatch(status(SIGNALING_STATUS.DISCONNECTED));
-      setTimeout(() => store.dispatch(reset()), timeOutCloseCAll);
-      throw e;
-    }
+    Api.invoke(SIGNALING_RINGING, new SignalingRinging());
   }
 
   async createAnswer() {
     try {
       if (!_isCreateAnswer) {
+        InCallManager.stopRingtone();
+
+        _offerType = _receiveOfferResponse.getType();
+        _isSendLeave = false;
+        const info = {sdp: _receiveOfferResponse.getCallerSdp(), type: 'offer'};
+        await  this.getPeerConnectionInstance();
+        await  _peerConnection.setRemoteDescription(new RTCSessionDescription(info));
+
         _isCreateAnswer = true;
-        await  _waitPromise;
         const date = await _peerConnection.createAnswer();
         date.sdp = this.setBandwidth(date.sdp);
         const signalingAccept = new SignalingAccept();
@@ -298,9 +289,6 @@ export default class Call {
       _peerConnection = null;
       setTimeout(() => requestGetLog(0, 1), 1000);
     }
-
-    _waitPromise = null;
-    _waitPromiseResolve = null;
     _offerSdp = null;
     _offerType = null;
     _isCreateAnswer = false;
