@@ -7,7 +7,7 @@ import i18n from '../../../i18n/en';
 class JoinBox extends Component {
   render() {
     const {isParticipant, roomMute, isPublic, joinBoxToggle, intl} = this.props;
-    const style = {container: {height: 50}};
+    const style = {container: {height: 50, backgroundColor: 'white'}};
     return (
       <View>
         {(isPublic && !isParticipant) &&
