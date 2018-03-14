@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
@@ -47,13 +48,17 @@ class RoomListComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, actionSheetControl, confirmControl} = this.props;
+    const {intl, clientUpdating, actionSheetControl, confirmControl} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>
           <Toolbar
-            centerElement={<Text style={styles.textTitle}>{intl.formatMessage(i18n.iGapPlus)}</Text>}
+            centerElement={
+              <Text style={styles.textTitle}>
+                {clientUpdating ? intl.formatMessage(i18n.clientUpdating) : intl.formatMessage(i18n.iGapPlus)}
+              </Text>
+            }
           />
           <ReturnToCall/>
           <RecyclerListView
@@ -75,5 +80,6 @@ class RoomListComponent extends React.PureComponent {
 
 RoomListComponent.propTypes = {
   intl: intlShape.isRequired,
+  clientUpdating: PropType.bool,
 };
 export default injectIntl(RoomListComponent);

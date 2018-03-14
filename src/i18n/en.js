@@ -14,7 +14,11 @@ export default {
   },
   ...country,
   ...apiErrors,
-
+  clientUpdating: {
+    id: 'clientUpdating',
+    defaultMessage: 'Updating ...',
+    description: 'Updating',
+  },
   loading: {
     id: 'loading',
     defaultMessage: 'Loading ....',

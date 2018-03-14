@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import style from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 import {BOX_TYPE_OWNER} from '../../../../modules/DimensionCalculator/index';
+import MessageStatus from '../../../../containers/Unit/MessageStatus';
 
 class OwnerBox extends Component {
 
@@ -30,7 +31,10 @@ class OwnerBox extends Component {
             onMessagePress={onMessagePress}
             onMessageLongPress={onMessageLongPress}/>
         </View>
-        <AddonTime createTime={message.createTime}/>
+        <View style={styles.footerWrapper}>
+          <AddonTime createTime={message.createTime}/>
+          <MessageStatus status={message.status} size={15}/>
+        </View>
       </View>
     );
   }

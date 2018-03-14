@@ -173,3 +173,21 @@ export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
     });
   });
 }
+export function clearHistory(roomId, clearId) {
+  return new Promise((resolve, reject) => {
+    storage.readTransaction((transaction) => {
+      const params = Squel.delete()
+        .from('entities_room_messages')
+        .where('roomId = ?', roomId)
+        .where('id <= ?', clearId)
+        .toParam();
+      transaction.executeSql(params.text, params.values, (transaction, results) => {
+        resolve();
+      });
+    }, (error) => {
+      reject(error);
+    }, () => {
+      reject();
+    });
+  });
+}

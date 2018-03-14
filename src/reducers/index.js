@@ -16,6 +16,7 @@ import messenger from './messenger';
 import {soundPlayer} from './soundPlayer';
 import {layout} from './layout';
 import {METHOD_USER_LOGOUT} from '../actions/methods/user/logout';
+import {updating} from './updating';
 
 const appReducer = combineReducers({
   api,
@@ -31,6 +32,7 @@ const appReducer = combineReducers({
   messenger,
   soundPlayer,
   layout,
+  clientUpdating: updating,
 });
 
 const rootReducer = (state, action) => {

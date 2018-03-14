@@ -3,7 +3,7 @@
  */
 
 import QueueDb from '../../../modules/QueueDb';
-import {persistCallback, retrieveCallback, retrieveHistoryCallback} from './backend';
+import {persistCallback, retrieveCallback, retrieveHistoryCallback, clearHistory} from './backend';
 import {Proto} from '../../../modules/Proto';
 
 const {save, load, remove} = QueueDb(
@@ -52,5 +52,9 @@ export default class RoomMessages {
       return message;
     });
     return roomMessages;
+  }
+
+  static async clearHistory(roomId, clearId) {
+    clearHistory(roomId, clearId);
   }
 }

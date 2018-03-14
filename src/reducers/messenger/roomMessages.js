@@ -3,6 +3,7 @@
  */
 import {concat, uniq, reverse} from 'lodash';
 import {
+  MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES,
   MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES_FROM_STORE,
   MESSENGER_ROOM_MESSAGE_CONCAT,
   MESSENGER_ROOM_MESSAGE_REMOVE,
@@ -56,6 +57,16 @@ export function roomMessages(state = initialState, action) {
         [action.roomId]: [],
       };
 
+    case MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES:
+      ([...state[action.roomId]] || []).forEach(function(messageId) {
+        if (action.clearId < messageId) {
+          newList.push(messageId);
+        }
+      });
+      return {
+        ...state,
+        [action.roomId]: newList,
+      };
     default:
       return state;
   }

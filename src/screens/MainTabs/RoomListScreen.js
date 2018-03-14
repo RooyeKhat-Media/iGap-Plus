@@ -208,10 +208,11 @@ class RoomListScreen extends Component {
   };
 
   render() {
-    const {roomList} = this.props;
+    const {roomList, clientUpdating} = this.props;
     return (
       <RoomListComponent
         roomList={roomList}
+        clientUpdating={clientUpdating}
         onLongPress={this.onLongPress}
         confirmControl={this.confirmControl}
         actionSheetControl={this.actionSheetControl}
@@ -225,6 +226,7 @@ const makeMapStateToProps = () => {
   return (state) => {
     return {
       roomList: getRoomList(state),
+      clientUpdating: state.clientUpdating,
     };
   };
 };

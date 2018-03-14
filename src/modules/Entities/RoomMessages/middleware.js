@@ -4,7 +4,10 @@ import {
   ENTITIES_ROOM_MESSAGE_REMOVE,
 } from '../../../actions/entities/roomMessages';
 import RoomMessages from '../../../models/entities/RoomMessages';
-import {MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE} from '../../../actions/messenger/roomMessages';
+import {
+  MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES,
+  MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE,
+} from '../../../actions/messenger/roomMessages';
 
 const middleware = ({dispatch, getState}) => next => action => {
   let message;
@@ -23,6 +26,9 @@ const middleware = ({dispatch, getState}) => next => action => {
       break;
     case MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE:
       RoomMessages.removeFromQueue(action.oldMessageId);
+      break;
+    case MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES:
+      RoomMessages.removeFromQueue(action.roomId, action.clearId);
       break;
     case ENTITIES_ROOM_MESSAGE_EDIT:
       message = getState().entities.roomMessages[action.messageId];

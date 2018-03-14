@@ -1,4 +1,6 @@
 import Base from '../Base';
+import RoomsMeta from '../../../models/entities/Rooms/Meta/index';
+import {messengerRoomMessageClearHistory} from "../../../actions/messenger/roomMessages";
 
 /**
  * @property {ProtoChatClearMessage} _request
@@ -6,6 +8,9 @@ import Base from '../Base';
  */
 export default class ClearMessage extends Base {
   handle() {
-    console.error('ClearMessage', 'Not implemented yet', this);
+    const roomId = this._response.getRoomId().toString();
+    const clearId = this._response.getClearId().toString();
+    RoomsMeta.saveToQueue(roomId, clearId);
+    this.dispatch(messengerRoomMessageClearHistory(roomId, clearId));
   }
 }

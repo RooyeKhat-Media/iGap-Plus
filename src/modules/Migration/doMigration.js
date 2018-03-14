@@ -16,7 +16,6 @@ function init() {
         data      TEXT    NOT NULL,
         cacheTime INTEGER NOT NULL
       )`);
-
       /**
        * Entities
        */
@@ -26,6 +25,13 @@ function init() {
         title     TEXT,
         data      TEXT    NOT NULL,
         cacheTime INTEGER NOT NULL
+      )`);
+      transaction.executeSql(`CREATE TABLE IF NOT EXISTS entities_rooms_meta (
+        roomId  INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE,
+        clearId INTEGER NOT NULL
+--         CONSTRAINT entities_rooms_meta_roomId_fk FOREIGN KEY (roomId) REFERENCES entities_rooms (id)
+--           ON DELETE CASCADE
+--           ON UPDATE CASCADE
       )`);
 
       transaction.executeSql(`CREATE TABLE IF NOT EXISTS entities_registered_users (

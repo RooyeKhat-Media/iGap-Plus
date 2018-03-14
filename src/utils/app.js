@@ -10,6 +10,7 @@ import {Platform} from 'react-native';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
 import {
+  CLIENT_CONDITION,
   USER_CONTACTS_IMPORT,
   USER_LOGIN,
   USER_SESSION_LOGOUT,
@@ -35,6 +36,7 @@ import putStateRoom from '../modules/Entities/Rooms';
 import Long from 'long';
 import Contacts from '../modules/Contacts/index';
 import {deliverMessage, getFocusRoom, seenMessage} from './messenger';
+import Condition from '../modules/Condition/index';
 
 let _userId;
 let _userIdString;
@@ -113,6 +115,11 @@ export function getPlatform() {
     default:
       return Proto.Platform.UNKNOWN_PLATFORM;
   }
+}
+
+export async function clientCondition() {
+  const request = await Condition();
+  return Api.invoke(CLIENT_CONDITION, request);
 }
 
 export async function login() {

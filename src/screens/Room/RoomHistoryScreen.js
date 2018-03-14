@@ -660,7 +660,7 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   render() {
-    const {room, messageList, getRoomMessage, getRoomMessageType} = this.props;
+    const {room, clientUpdating, messageList, getRoomMessage, getRoomMessageType} = this.props;
     const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList} = this.state;
     const Form = {
       text,
@@ -690,6 +690,7 @@ class RoomHistoryScreen extends PureComponent {
         roomType={room.type}
         roomTitle={room.title}
         readOnly={room.readOnly}
+        clientUpdating={clientUpdating}
         isParticipant={room.isParticipant}
         isPublic={room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM || room.channelType === Proto.ChannelRoom.Type.PUBLIC_ROOM}
         roomMute={room.roomMute === Proto.RoomMute.MUTE}
@@ -725,6 +726,7 @@ const makeMapStateToProps = () => {
       getRoomMessage: getEntitiesRoomMessageFunc(state),
       getRoomMessageType: getEntitiesRoomMessageTypeFunc(state),
       getRegisteredUser: getUserFunc(state),
+      clientUpdating: state.clientUpdating,
     };
   };
 };
