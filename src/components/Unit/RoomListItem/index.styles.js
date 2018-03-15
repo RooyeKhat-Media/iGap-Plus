@@ -43,6 +43,8 @@ export const badgeStyle = StyleSheet.create({
     paddingLeft:4,
     paddingRight:3,
     fontSize :12,
+    overflow:'hidden',
+    color:'white',
   },
 });
 export const muteBadgeStyle = StyleSheet.create({
@@ -56,6 +58,8 @@ export const muteBadgeStyle = StyleSheet.create({
     paddingLeft:4,
     paddingRight:3,
     fontSize :12,
+    overflow:'hidden',
+    color:'white',
   },
 });
 export const hideStyle = StyleSheet.create({
