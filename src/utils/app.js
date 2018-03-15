@@ -1,5 +1,6 @@
 import MetaData from '../models/MetaData';
 import store from '../configureStore';
+import RNFileSystem from 'react-native-file-system';
 import {
   UserContactsImport,
   UserLogin,
@@ -37,6 +38,7 @@ import Long from 'long';
 import Contacts from '../modules/Contacts/index';
 import {deliverMessage, getFocusRoom, seenMessage} from './messenger';
 import Condition from '../modules/Condition/index';
+import Permission, {PERMISSION_STORAGE} from '../modules/Permission/index';
 
 let _userId;
 let _userIdString;
@@ -355,3 +357,14 @@ export function getMessageDownloadFileUri(cacheId) {
   const downloadFile = store.getState().fileManager.download[cacheId];
   return downloadFile ? downloadFile.uri : null;
 }
+
+export async function filePicker(fileType) {
+  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  return RNFileSystem.filePicker(fileType);
+}
+
+export async function filesPicker(fileType) {
+  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  return RNFileSystem.filesPicker(fileType);
+}
+

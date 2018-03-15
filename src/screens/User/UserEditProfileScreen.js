@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RNFileSystem, {FileUtil} from 'react-native-file-system';
+import {FileUtil} from 'react-native-file-system';
 import UserEditProfileComponent from '../../components/User/EditProfile/index';
 import {
   Proto,
@@ -44,6 +44,7 @@ import {
 } from '../../modules/Api/errors/index';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../../actions/fileManager';
 import {FILE_UPLOAD_ID_EDIT_PROFILE} from '../../constants/app';
+import {filePicker} from '../../utils/app';
 
 const formRules = {
   email: [
@@ -177,7 +178,7 @@ class UserEditProfileScreen extends Component {
   selectPhoto = async () => {
     const {upload, dispose} = this.props;
     try {
-      const file = await RNFileSystem.filePicker(FileUtil.images());
+      const file = await filePicker(FileUtil.images());
       const token = await upload(file);
 
       const userAvatarAdd = new UserAvatarAdd();

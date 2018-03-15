@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import RNFileSystem, {FileUtil} from 'react-native-file-system';
+import {FileUtil} from 'react-native-file-system';
 import RoomEditComponent from '../../components/Room/RoomEdit/index';
 import {requiredValidator, stringValidator} from '../../utils/validator';
 import {ChannelAvatarAdd, ChannelEdit, GroupAvatarAdd, GroupEdit, Proto} from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import {CHANNEL_AVATAR_ADD, CHANNEL_EDIT, GROUP_AVATAR_ADD, GROUP_EDIT} from '../../constants/methods/index';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../../actions/fileManager';
-import {getRoomAvatarUploadIdPrefix} from '../../utils/app';
+import {filePicker, getRoomAvatarUploadIdPrefix} from '../../utils/app';
 import {errorId} from '../../modules/Error/index';
 import {
   ERROR_CHANNEL_CREATE_BAD_PAYLOAD,
@@ -57,7 +57,7 @@ class RoomEditScreen extends Component {
     const {room} = this.props;
     const {dispose, upload} = this.props;
     try {
-      const selectedFile = await RNFileSystem.filePicker(FileUtil.images());
+      const selectedFile = await filePicker(FileUtil.images());
       const token = await upload(getRoomAvatarUploadIdPrefix(room.id), selectedFile);
 
       const actionId = room.type === Proto.Room.Type.GROUP ? GROUP_AVATAR_ADD : CHANNEL_AVATAR_ADD;

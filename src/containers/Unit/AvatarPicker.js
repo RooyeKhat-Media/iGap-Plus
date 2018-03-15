@@ -1,9 +1,10 @@
 import React from 'react';
-import RNFileSystem, {FileUtil} from 'react-native-file-system';
+import {FileUtil} from 'react-native-file-system';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Avatar} from '../../components/BaseUI';
 import PropTypes from 'prop-types';
 import {prependFileProtocol} from '../../utils/core';
+import {filePicker} from '../../utils/app';
 
 class AvatarPicker extends React.PureComponent {
 
@@ -17,7 +18,7 @@ class AvatarPicker extends React.PureComponent {
   onPress = async () => {
     const {selectPhoto} = this.props;
     try {
-      const selectedFile = await RNFileSystem.filePicker(FileUtil.images());
+      const selectedFile = await filePicker(FileUtil.images());
       this.setState({selectedFile});
       selectPhoto(selectedFile);
     } finally {

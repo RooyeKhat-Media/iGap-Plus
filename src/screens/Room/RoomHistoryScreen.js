@@ -38,7 +38,13 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../constants/app';
-import {getAuthorHash, getFakeMessageId, getMessageDownloadFileUri, setRoomHistorySelectedMode} from '../../utils/app';
+import {
+  filesPicker,
+  getAuthorHash,
+  getFakeMessageId,
+  getMessageDownloadFileUri,
+  setRoomHistorySelectedMode,
+} from '../../utils/app';
 import {
   ClientJoinByUsername,
   ClientMuteRoom,
@@ -131,7 +137,7 @@ class RoomHistoryScreen extends PureComponent {
     if (this.props.navigation.state.params.forwardedMessage) {
       const forwardParam = this.props.navigation.state.params.forwardedMessage;
       if (isArray(forwardParam)) {
-        forwardParam.map(function (forwardedMessage) {
+        forwardParam.map(function(forwardedMessage) {
           sendMessage(room.id, null, null, null, null, forwardedMessage);
         });
       } else {
@@ -284,7 +290,7 @@ class RoomHistoryScreen extends PureComponent {
       default:
         throw new Error('Invalid File Picker Format');
     }
-    const files = await RNFileSystem.filesPicker(fileType);
+    const files = await filesPicker(fileType);
     files.map(async function(file) {
       const size = await getImageSize(prependFileProtocol(file.fileUri));
       file.width = size.width;
@@ -319,7 +325,8 @@ class RoomHistoryScreen extends PureComponent {
           attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
         });
       },
-      (error) => {},
+      (error) => {
+      },
       cameraMode.CAMERA,
       denialMessage
     );
