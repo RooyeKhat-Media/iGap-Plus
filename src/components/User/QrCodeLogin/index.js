@@ -21,7 +21,7 @@ class UserQrCodeLoginComponent extends React.Component {
           <View style={styles.imageWrapper}>
             <Image
               style={styles.image}
-              source={{uri: qrCodeImage}}
+              source={{uri: qrCodeImage?qrCodeImage:undefined}}
             />
           </View>
           <Text style={styles.loginText}>
