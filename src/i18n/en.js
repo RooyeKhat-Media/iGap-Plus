@@ -97,22 +97,22 @@ export default {
   },
   introCallTitle: {
     id: 'Intro.callTitle',
-    defaultMessage: 'Intro callTitle',
+    defaultMessage: 'Free Call',
     description: 'Intro Page',
   },
   introCallSubTitle: {
     id: 'Intro.callSubTitle',
-    defaultMessage: 'Intro callSubTitle',
+    defaultMessage: 'You can make thoroughly free and secure voice/video calls to anyone on iGap and save your money. iGap call is P2P-based with no server\'s interference in transmission.',
     description: 'Intro Page',
   },
   introLocationTitle: {
     id: 'Intro.locationTitle',
-    defaultMessage: 'Intro locationTitle',
+    defaultMessage: 'Nearby',
     description: 'Intro Page',
   },
   introLocationSubTitle: {
     id: 'Intro.locationSubTitle',
-    defaultMessage: 'Intro locationSubTitle',
+    defaultMessage: 'You are able to recognize and see who is near, get to know and chat for more acquaintances.',
     description: 'Intro Page',
   },
   introTransferTitle: {

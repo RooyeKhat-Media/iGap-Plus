@@ -25,7 +25,7 @@ const pages = [
   {
     ImageSvg: Chat,
     title: (<FormattedMessage {...i18n.introChatTitle}/>),
-    subtitle: (<FormattedMessage {...i18n.introCallSubTitle}/>),
+    subtitle: (<FormattedMessage {...i18n.introChatSubTitle}/>),
   },
   {
     ImageSvg: Call,
