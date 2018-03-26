@@ -89,7 +89,7 @@ class VideoPlayerComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <TouchableOpacity style={styles.container} onPress={() => this.toggleControlBar()}>
+      <TouchableOpacity activeOpacity={1} style={styles.container} onPress={() => this.toggleControlBar()}>
         <Video
           source={{uri: uri}}
           ref={(ref) => this.player = ref}

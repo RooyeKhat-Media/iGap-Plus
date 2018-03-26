@@ -4,7 +4,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import {MCIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {black200, primary} from '../../../themes/default/index';
+import {black200, gray800, primary} from '../../../themes/default/index';
 import BlinkRecorder from '../../General/Camera/BlinkRecorder';
 import SoundRecorder from 'react-native-sound-recorder';
 
@@ -140,8 +140,12 @@ const styles = StyleSheet.create({
   },
   recordBox: {
     flexDirection: 'row',
-    height: 60,
+    height: 52,
     backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: gray800,
+    borderRadius: 25,
+    margin: 5,
   },
   micWrap: {
     position: 'absolute',

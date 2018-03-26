@@ -9,11 +9,12 @@ const getCallAction = (state) =>
   state.methods.callAction;
 
 export const getIsInCall = createSelector(
-  getCallAction,
-  (callAction) => {
+  (state) => state.methods.callAction.isInCall,
+  (state) => state.methods.callAction.peerUserId,
+  (isInCall, peerUserId) => {
     return {
-      isInCall: callAction.isInCall,
-      userId: callAction.peerUserId,
+      isInCall: isInCall,
+      userId: peerUserId,
     };
   }
 );

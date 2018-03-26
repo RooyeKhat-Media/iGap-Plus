@@ -51,7 +51,7 @@ class ChannelBox extends Component {
           <MCIcon color={black600} name="thumb-up" size={20} onPress={() => alert('up')}/>
           <Text style={styles.textUPDown}>{message.channelThumbsDownLabel}</Text>
           <MCIcon color={black600} name="thumb-down" size={20} onPress={() => alert('down')}/>
-          <Text style={styles.textSignature}>{message.channelSignature}</Text>
+          <Text numberOfLines={1} style={styles.textSignature}>{message.channelSignature}</Text>
           <AddonTime createTime={message.createTime}/>
         </View>
       </View>
