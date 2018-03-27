@@ -39,6 +39,7 @@ import Contacts from '../modules/Contacts/index';
 import {deliverMessage, getFocusRoom, seenMessage} from './messenger';
 import Condition from '../modules/Condition/index';
 import Permission, {PERMISSION_STORAGE} from '../modules/Permission/index';
+import SaveTo from '../../native/modules/SaveTo';
 
 let _userId;
 let _userIdString;
@@ -368,3 +369,17 @@ export async function filesPicker(fileType) {
   return RNFileSystem.filesPicker(fileType);
 }
 
+export async function saveToGallery(fileUri, mimeType) {
+  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  return SaveTo.gallery(fileUri, mimeType);
+}
+
+export async function saveToMusic(fileUri, mimeType) {
+  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  return SaveTo.music(fileUri, mimeType);
+}
+
+export async function saveToDownloads(fileUri) {
+  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  return SaveTo.downloads(fileUri);
+}

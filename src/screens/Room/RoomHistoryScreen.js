@@ -43,6 +43,9 @@ import {
   getAuthorHash,
   getFakeMessageId,
   getMessageDownloadFileUri,
+  saveToDownloads,
+  saveToGallery,
+  saveToMusic,
   setRoomHistorySelectedMode,
 } from '../../utils/app';
 import {
@@ -632,7 +635,7 @@ class RoomHistoryScreen extends PureComponent {
         icon: 'cloud-download',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToDownload),
         onPress: () => {
-          SaveTo.downloads(uri);
+          saveToDownloads(uri);
         },
       });
     }
@@ -641,7 +644,7 @@ class RoomHistoryScreen extends PureComponent {
         icon: 'collections',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToGallery),
         onPress: () => {
-          SaveTo.gallery(uri, mimType);
+          saveToGallery(uri, mimType);
         },
       });
     }
@@ -650,7 +653,7 @@ class RoomHistoryScreen extends PureComponent {
         icon: 'audiotrack',
         title: intl.formatMessage(i18n.roomHistoryActionSaveToMusic),
         onPress: () => {
-          SaveTo.music(uri, mimType);
+          saveToMusic(uri, mimType);
         },
       });
     }

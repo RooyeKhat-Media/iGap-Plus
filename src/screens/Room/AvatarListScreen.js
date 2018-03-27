@@ -13,7 +13,10 @@ import {
   UserAvatarDelete,
   UserAvatarGetList,
 } from '../../modules/Proto/index';
-import {getUserId} from '../../utils/app';
+import {
+  getUserId,
+  saveToGallery,
+} from '../../utils/app';
 import Api from '../../modules/Api/index';
 import {
   CHANNEL_AVATAR_DELETE,
@@ -142,7 +145,7 @@ class AvatarListScreen extends Component {
         this.shareAvatar(index);
         break;
       case 'save':
-        this.saveToGallery(index);
+        this.saveAvatarToGallery(index);
         break;
     }
   };
@@ -160,12 +163,10 @@ class AvatarListScreen extends Component {
     }
   };
 
-  saveToGallery = async (index) => {
+  saveAvatarToGallery = async (index) => {
     const _info = await  this.checkDownloadState(index);
     if (_info) {
-      if (SaveTo.gallerySupport(_info.mimeType)) {
-        SaveTo.gallery(prependFileProtocol(_info.uri), _info.mimeType);
-      }
+      saveToGallery(prependFileProtocol(_info.uri), _info.mimeType);
     }
   };
 
