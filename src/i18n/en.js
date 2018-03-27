@@ -254,6 +254,16 @@ export default {
     description: 'Privacy Policy Page',
   },
 
+  verifySmsPermissionTitle: {
+    id: 'UserVerify.receiveSms',
+    defaultMessage: 'Receive Sms',
+    description: 'UserVerify Page',
+  },
+  verifySmsPermissionContent: {
+    id: 'UserVerify.fillAutomaticallyReceivedCodeNeedSmsPermission',
+    defaultMessage: 'Fill automatically received code need sms permission',
+    description: 'UserVerify Page',
+  },
   verifyTitle: {
     id: 'UserVerify.title',
     defaultMessage: 'Verify Phone Number',

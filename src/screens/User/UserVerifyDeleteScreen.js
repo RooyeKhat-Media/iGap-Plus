@@ -14,6 +14,9 @@ import {
 } from '../../modules/Api/errors/index';
 import {goUserRegisterScreen} from '../../navigators/AppNavigator';
 import SmsListener from '../../modules/SmsListener';
+import Permission, {PERMISSION_RECEIVE_SMS} from '../../modules/Permission/index';
+import i18n from '../../i18n/index';
+import {injectIntl, intlShape} from 'react-intl';
 
 
 class UserVerifyDeleteScreen extends Component {
@@ -42,6 +45,20 @@ class UserVerifyDeleteScreen extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
+    this.registerSmsListener();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    if (this.smsListener) {
+      SmsListener.removeListener(this.smsListener);
+    }
+  }
+
+  registerSmsListener = async () => {
+    const {intl} = this.props;
+    await Permission.grant(PERMISSION_RECEIVE_SMS, intl.formatMessage(i18n.verifySmsPermissionTitle), intl.formatMessage(i18n.verifySmsPermissionContent));
+
     const {token} = this.props.navigation.state.params;
     this.smsListener = SmsListener.addListener((message, originatingAddress) => {
       if (originatingAddress) {
@@ -56,12 +73,7 @@ class UserVerifyDeleteScreen extends Component {
         });
       }
     });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-    SmsListener.removeListener(this.smsListener);
-  }
+  };
 
   handleFormData = async (verifyCode, setError) => {
 
@@ -114,6 +126,8 @@ class UserVerifyDeleteScreen extends Component {
   }
 }
 
-UserVerifyDeleteScreen.propTypes = {};
+UserVerifyDeleteScreen.propTypes = {
+  intl: intlShape.isRequired,
+};
 
-export default UserVerifyDeleteScreen;
+export default injectIntl(UserVerifyDeleteScreen);

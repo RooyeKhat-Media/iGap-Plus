@@ -27,6 +27,8 @@ import {
 } from '../../modules/Api/errors/index';
 import {errorId} from '../../modules/Error/index';
 import SmsListener from '../../modules/SmsListener';
+import Permission, {PERMISSION_RECEIVE_SMS} from '../../modules/Permission/index';
+import i18n from '../../i18n/index';
 
 const rules = {
   code: [
@@ -61,8 +63,21 @@ class UserVerifyScreen extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
-    const {smsNumber, verifyCodeRegex} = this.props.navigation.state.params;
+    this.registerSmsListener();
+  }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    if (this.smsListener) {
+      SmsListener.removeListener(this.smsListener);
+    }
+  }
+
+  registerSmsListener = async () => {
+    const {intl} = this.props;
+    await Permission.grant(PERMISSION_RECEIVE_SMS, intl.formatMessage(i18n.verifySmsPermissionTitle), intl.formatMessage(i18n.verifySmsPermissionContent));
+
+    const {smsNumber, verifyCodeRegex} = this.props.navigation.state.params;
     this.smsListener = SmsListener.addListener((message, originatingAddress) => {
       if (originatingAddress) {
         smsNumber.forEach((number) => {
@@ -76,12 +91,8 @@ class UserVerifyScreen extends Component {
         });
       }
     });
-  }
+  };
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-    SmsListener.removeListener(this.smsListener);
-  }
 
   handleFormData = async (verifyCode, setError) => {
     const {username} = this.props.navigation.state.params;

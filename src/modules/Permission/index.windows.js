@@ -10,6 +10,7 @@ export const PERMISSION_NOTIFICATION = 'notification';
 export const PERMISSION_BACKGROUND_REFRESH = 'backgroundRefresh';
 export const PERMISSION_SPEECH_RECOGNITION = 'speechRecognition';
 export const PERMISSION_STORAGE = 'storage';
+export const PERMISSION_RECEIVE_SMS = 'receiveSms';
 
 export default class Permission {
   static async check(permissionType, option) {
