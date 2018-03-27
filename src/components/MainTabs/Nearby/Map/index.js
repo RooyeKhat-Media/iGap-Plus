@@ -47,9 +47,35 @@ class NearbyMapComponent extends Component {
     });
   }
 
+  getBoundingBox(pLatitude, pLongitude, pDistanceInMeters) {
+    const latRadian = pLatitude * Math.PI / 180;
+    const degLatKm = 110.574235;
+    const degLongKm = 110.572833 * Math.cos(latRadian);
+    const deltaLat = pDistanceInMeters / 1000.0 / degLatKm;
+    const deltaLong = pDistanceInMeters / 1000.0 / degLongKm;
+    const minLat = pLatitude - deltaLat;
+    const minLong = pLongitude - deltaLong;
+    const maxLat = pLatitude + deltaLat;
+    const maxLong = pLongitude + deltaLong;
+    return {
+      top: {
+        latitude: maxLat,
+        longitude: maxLong,
+      },
+      bottom: {
+        latitude: minLat,
+        longitude: minLong,
+      },
+    };
+  }
+
   componentWillReceiveProps(prev) {
     if (!this.state.preventNextPositionSet && prev.myCoordinate.latitude) {
       this.setMapRegion(prev.myCoordinate.latitude, prev.myCoordinate.longitude);
+      if (this.map) {
+        const po = this.getBoundingBox(prev.myCoordinate.latitude, prev.myCoordinate.longitude, 5000);
+        this.map.setMapBoundaries(po.top, po.bottom);
+      }
     }
   }
 
@@ -74,7 +100,11 @@ class NearbyMapComponent extends Component {
         <MapView
           region={region}
           style={styles.mapBox}
-          initialRegion={region}>
+          initialRegion={region}
+          ref={map => {
+            this.map = map;
+          }}
+        >
 
           {myCoordinate.latitude &&
           (<MapMarkerComponent
