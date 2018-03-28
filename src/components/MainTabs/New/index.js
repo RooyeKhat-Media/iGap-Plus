@@ -13,6 +13,7 @@ import {goCall} from '../../../navigators/SecondaryNavigator';
 import {Proto} from '../../../modules/Proto/index';
 import ReturnToCall from '../../Call/ReturnToCall';
 import {textTitleStyle} from '../../../themes/default/index';
+import {getUserId} from '../../../utils/app';
 
 class NewComponent extends Component {
 
@@ -112,6 +113,7 @@ class NewComponent extends Component {
   renderItem = (userProps) => {
     const {divider, user} = userProps;
     const {onUserPress, callAction} = this.props;
+    const isNotMyUser = user.id !== getUserId(true);
 
     const styles = this.getStyles();
     return (
@@ -123,11 +125,11 @@ class NewComponent extends Component {
           rightElement={
             <View style={styles.iconsLayout}>
               <MCIcon name="message-text" size={36} style={styles.icon} onPress={() => onUserPress(user.id)}/>
-              {callAction.video &&
+              {(callAction.video && isNotMyUser) &&
               <MCIcon name="video" size={36} style={styles.icon}
                 onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VIDEO_CALLING)}/>
               }
-              {callAction.voice &&
+              {(callAction.voice && isNotMyUser) &&
               <MCIcon name="phone" size={32} style={styles.icon}
                 onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VOICE_CALLING)}/>
               }

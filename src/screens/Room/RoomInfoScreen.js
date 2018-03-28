@@ -47,6 +47,7 @@ import i18n from '../../i18n/en';
 import {resetSecondaryNavigation} from '../../navigators/index';
 import Long from 'long';
 import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
+import {getUserId} from '../../utils/app';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -93,7 +94,7 @@ class RoomInfoScreen extends Component {
   }
 
   setRoomActionsAccess = () => {
-    const {room} = this.props;
+    const {room, roomPeer} = this.props;
     const isChat = room.type === Proto.Room.Type.CHAT;
     const isGroup = room.type === Proto.Room.Type.GROUP;
     const isChannel = room.type === Proto.Room.Type.CHANNEL;
@@ -113,7 +114,7 @@ class RoomInfoScreen extends Component {
         isOwner: isOwner,
         isAdmin: isAdmin,
         canSendMessage: isChat,
-        canCall: isChat,
+        canCall: isChat && roomPeer.id !== getUserId(true),
         canJoinRoom: !room.isParticipant && isPublic,
         canLeaveRoom: room.isParticipant && !isChat && (isPrivate || !isOwner),
         canEditRoom: isOwner || isAdmin,
