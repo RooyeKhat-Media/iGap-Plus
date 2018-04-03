@@ -41,10 +41,16 @@ class CallScreen extends Component {
       putState(userId);
       try {
         if (signalingType === Proto.SignalingOffer.Type.VOICE_CALLING || signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
-          await  Permission.grant(PERMISSION_MICROPHONE,   intl.formatMessage(i18n.callTitleVoicePermission),  intl.formatMessage(i18n.callContentVoicePermission));
+          await  Permission.grant(PERMISSION_MICROPHONE, intl.formatMessage(i18n.callTitlePermission, {
+            callDirect: inComing,
+            callType: signalingType,
+          }), intl.formatMessage(i18n.callContentVoicePermission));
         }
         if (signalingType === Proto.SignalingOffer.Type.VIDEO_CALLING) {
-          await  Permission.grant(PERMISSION_CAMERA,  intl.formatMessage(i18n.callTitleVideoPermission), intl.formatMessage(i18n.callContentVideoPermission));
+          await  Permission.grant(PERMISSION_CAMERA, intl.formatMessage(i18n.callTitlePermission, {
+            callDirect: inComing,
+            callType: signalingType,
+          }), intl.formatMessage(i18n.callContentVideoPermission));
         }
         setCallInfo(userId, inComing, signalingType);
 

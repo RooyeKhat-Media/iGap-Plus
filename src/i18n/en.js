@@ -973,19 +973,14 @@ export default {
     defaultMessage: 'Busy',
     description: 'call screen',
   },
-  callTitleVoicePermission: {
+  callTitlePermission: {
     id: 'call.titleVoicePermission',
-    defaultMessage: 'Capture Voice',
+    defaultMessage: '{callDirect , select ,true{Incoming} false{Outgoing} } {callType,select ,0{Voice} 1{Video} } Call',
     description: 'call screen',
   },
   callContentVoicePermission: {
     id: 'call.contentVoicePermission',
     defaultMessage: 'Call Need Capture Voice',
-    description: 'call screen',
-  },
-  callTitleVideoPermission: {
-    id: 'call.titleVideoPermission',
-    defaultMessage: 'Capture Video',
     description: 'call screen',
   },
   callContentVideoPermission: {

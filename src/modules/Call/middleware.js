@@ -15,15 +15,15 @@ import {
   METHOD_SIGNALING_TOGGLE_SPEAKER, toggleSpeaker,
 } from '../../actions/methods/signaling/callAction';
 
+let isPlayRingBack = false;
+let isPlayRingtone = false;
 
 const middleware = ({dispatch, getState}) => next => action => {
 
   switch (action.type) {
     case METHOD_SIGNALING_RESET:
-      InCallManager.setSpeakerphoneOn(false);
-      InCallManager.setMicrophoneMute(false);
       Call.instance.resetValue();
-      InCallManager.stop();
+      resetIncallManager();
       break;
     case METHOD_SIGNALING_TOGGLE_SPEAKER:
       InCallManager.setSpeakerphoneOn(!getState().methods.callAction.speaker);
@@ -46,16 +46,14 @@ const middleware = ({dispatch, getState}) => next => action => {
       }
       break;
   }
-
   return next(action);
 };
-
-let isPlayRingBack = false;
 
 function manageRingtone(status, incoming) {
   switch (status) {
     case SIGNALING_STATUS.CALLING:
       if (incoming) {
+        isPlayRingtone = true;
         InCallManager.startRingtone('_DEFAULT_');
       } else {
         InCallManager.start({media: 'audio', ringback: '_BUNDLE_'});
@@ -70,11 +68,34 @@ function manageRingtone(status, incoming) {
         InCallManager.stopRingback();
         isPlayRingBack = false;
       }
+      if (isPlayRingtone) {
+        isPlayRingtone = false;
+        InCallManager.stopRingtone();
+      }
       if (status === SIGNALING_STATUS.BUSY) {
         InCallManager.stop({busytone: '_BUNDLE_'});
       }
       break;
   }
+}
+
+function resetIncallManager() {
+  if (isPlayRingBack) {
+    InCallManager.stopRingback();
+    isPlayRingBack = false;
+  }
+  if (isPlayRingtone) {
+    isPlayRingtone = false;
+    InCallManager.stopRingtone();
+  }
+
+  InCallManager.setSpeakerphoneOn(false);
+  InCallManager.setMicrophoneMute(false);
+  InCallManager.stop();
+}
+
+export function setRingtoneStatuse(status) {
+  isPlayRingtone = status;
 }
 
 export default middleware;

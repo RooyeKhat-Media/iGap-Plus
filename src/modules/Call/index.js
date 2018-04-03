@@ -40,6 +40,7 @@ import {
   ERROR_SIGNALING_OFFER_PRIVACY_PROTECTION,
 } from '../Api/errors/index';
 import InCallManager from './inCall';
+import {setRingtoneStatuse} from './middleware';
 
 const callSingleton = Symbol();
 const callSingletonEnforcer = Symbol();
@@ -156,6 +157,7 @@ export default class Call {
     try {
       if (!_isCreateAnswer) {
         InCallManager.stopRingtone();
+        setRingtoneStatuse(false);
 
         _offerType = _receiveOfferResponse.getType();
         _isSendLeave = false;
