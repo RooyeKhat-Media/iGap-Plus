@@ -175,7 +175,7 @@ export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
 }
 export function clearHistory(roomId, clearId) {
   return new Promise((resolve, reject) => {
-    storage.readTransaction((transaction) => {
+    storage.transaction((transaction) => {
       const params = Squel.delete()
         .from('entities_room_messages')
         .where('roomId = ?', roomId)
@@ -186,8 +186,6 @@ export function clearHistory(roomId, clearId) {
       });
     }, (error) => {
       reject(error);
-    }, () => {
-      reject();
     });
   });
 }

@@ -37,7 +37,7 @@ export default async function loadRoomHistory(roomId, firstMessageId, upward = t
     }
     roomMessages = await loadFromDb(roomId, firstMessageId, upward, includeMessageId);
   } catch (e) {
-    if (includeMessageId) {
+    if (includeMessageId && firstMessageId) {
       store.dispatch(messengerRoomMessageConcat(roomId, [firstMessageId], upward));
     }
     roomMessages = await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction, includeMessageId);
@@ -79,7 +79,7 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
     }
   }
 
-  if (includeMessageId) {
+  if (includeMessageId && firstMessageId) {
     if (upward) {
       messengerRoomMessages.push(firstMessageId);
     } else {

@@ -58,7 +58,7 @@ export function roomMessages(state = initialState, action) {
       };
 
     case MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES:
-      ([...state[action.roomId]] || []).forEach(function(messageId) {
+      (state[action.roomId] || []).forEach(function(messageId) {
         if (action.clearId < messageId) {
           newList.push(messageId);
         }

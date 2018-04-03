@@ -54,7 +54,7 @@ export default class RoomMessages {
     return roomMessages;
   }
 
-  static async clearHistory(roomId, clearId) {
-    clearHistory(roomId, clearId);
+  static clearHistory(roomId, clearId) {
+    return clearHistory(roomId, clearId);
   }
 }

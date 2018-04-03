@@ -28,7 +28,7 @@ const middleware = ({dispatch, getState}) => next => action => {
       RoomMessages.removeFromQueue(action.oldMessageId);
       break;
     case MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES:
-      RoomMessages.removeFromQueue(action.roomId, action.clearId);
+      RoomMessages.clearHistory(action.roomId, action.clearId);
       break;
     case ENTITIES_ROOM_MESSAGE_EDIT:
       message = getState().entities.roomMessages[action.messageId];

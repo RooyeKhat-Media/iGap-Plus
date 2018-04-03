@@ -7,7 +7,7 @@ import {
   ENTITIES_ROOM_MESSAGE_EDIT,
   ENTITIES_ROOM_MESSAGE_REMOVE,
 } from '../../actions/entities/roomMessages';
-import {MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES} from "../../actions/messenger/roomMessages";
+import {MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES} from '../../actions/messenger/roomMessages';
 
 const initialState = {};
 
@@ -32,8 +32,13 @@ export function roomMessages(state = initialState, action) {
         },
       };
     case MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES:
-      // todo clear roomMessages Entities from state
-      return state;
+      newState = {...state};
+      for (const id in newState) {
+        if (newState[id].roomId === action.roomId && id <= action.clearId) {
+          delete newState[id];
+        }
+      }
+      return newState;
     default:
       return state;
   }
