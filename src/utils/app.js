@@ -1,6 +1,7 @@
 import MetaData from '../models/MetaData';
 import store from '../configureStore';
 import RNFileSystem from 'react-native-file-system';
+import Share from '../modules/Share/index';
 import {
   UserContactsImport,
   UserLogin,
@@ -19,7 +20,7 @@ import {
 } from '../constants/methods/index';
 import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
-import {objectToLong} from './core';
+import {objectToLong, prependFileProtocol} from './core';
 import {
   METADATA_AUTHOR_HASH,
   METADATA_USER_CONTACTS,
@@ -382,4 +383,42 @@ export async function saveToMusic(fileUri, mimeType) {
 export async function saveToDownloads(fileUri) {
   await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
   return SaveTo.downloads(fileUri);
+}
+
+export function shareMessage(roomMessage) {
+  let uri = null;
+  let message = null;
+  let mimType = null;
+  const forwardMessage = roomMessage.forwardFrom;
+
+  if (forwardMessage) {
+    message = forwardMessage.message;
+    if (forwardMessage.attachment) {
+      uri = getMessageDownloadFileUri(forwardMessage.attachment.getCacheId());
+      mimType = forwardMessage.attachment.getMime();
+    }
+  }
+  if (roomMessage.message) {
+    message = roomMessage.message;
+  }
+  if (roomMessage.attachment) {
+    uri = getMessageDownloadFileUri(roomMessage.attachment.getCacheId());
+    mimType = roomMessage.attachment.getMime();
+  }
+  uri = prependFileProtocol(uri);
+  Share.open(uri, uri ? mimType : null, message);
+}
+
+/**
+ * @param peerId
+ * @returns FlatRoom|null
+ */
+export function getPeerRoom(peerId) {
+  for (const id in store.getState().entities.rooms) {
+    const room = store.getState().entities.rooms[id];
+    if (room.type === Proto.Room.Type.CHAT && peerId === room.chatPeer) {
+      return room;
+    }
+  }
+  return null;
 }

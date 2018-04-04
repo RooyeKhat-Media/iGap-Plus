@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getAuthorHash} from '../../utils/app';
+import {getAuthorHash, getPeerRoom, getUserId, shareMessage} from '../../utils/app';
 import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
 import {getRoomMessage, getRoomMessageIsFirstUnread} from '../../selector/entities/roomMessage';
-import {getPeerRoomId} from '../../utils/messenger';
+import {getPeerRoomId, sendMessage} from '../../utils/messenger';
 import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 import {Proto} from '../../modules/Proto/index';
 
@@ -30,6 +30,19 @@ class RoomMessage extends PureComponent {
     onMessageLongPress(message);
   };
 
+  onShareMessagePress = () => {
+    const {message} = this.props;
+    shareMessage(message);
+  };
+
+  onSaveMessagePress = async () => {
+    const {message} = this.props;
+    const room = getPeerRoom(getUserId(true));
+    if (room) {
+      await sendMessage(room.id, null, null, null, null, message);
+    }
+  };
+
   render() {
     const authorHash = getAuthorHash();
     const {message, roomType, selected, isFirstUnread} = this.props;
@@ -45,7 +58,9 @@ class RoomMessage extends PureComponent {
         isFirstUnread={isFirstUnread}
         goUserInfo={this.goUserInfo}
         onMessagePress={this.onMessagePress}
-        onMessageLongPress={this.onMessageLongPress}/>
+        onMessageLongPress={this.onMessageLongPress}
+        onShareMessagePress={this.onShareMessagePress}
+        onSaveMessagePress={this.onSaveMessagePress}/>
     );
   }
 }

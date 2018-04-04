@@ -13,7 +13,7 @@ import i18n from '../../../i18n';
 class RoomMessage extends React.PureComponent {
 
   renderContent = () => {
-    const {message, authorHash, roomType, goUserInfo, onMessagePress, onMessageLongPress} = this.props;
+    const {message, authorHash, roomType, goUserInfo, onMessagePress, onMessageLongPress, onShareMessagePress, onSaveMessagePress} = this.props;
 
     if (roomType === Proto.Room.Type.CHANNEL) {
       return (<ChannelBox
@@ -21,7 +21,9 @@ class RoomMessage extends React.PureComponent {
         message={message}
         showText={false}
         onMessagePress={onMessagePress}
-        onMessageLongPress={onMessageLongPress}/>);
+        onMessageLongPress={onMessageLongPress}
+        onShareMessagePress={onShareMessagePress}
+        onSaveMessagePress={onSaveMessagePress}/>);
 
     } else if (message.authorHash === authorHash) {
       return (<OwnerBox
@@ -79,6 +81,8 @@ RoomMessage.propTypes = {
   goUserInfo: PropTypes.func,
   onMessagePress: PropTypes.func,
   onMessageLongPress: PropTypes.func,
+  onShareMessagePress: PropTypes.func,
+  onSaveMessagePress: PropTypes.func,
 };
 export default injectIntl(RoomMessage);
 
