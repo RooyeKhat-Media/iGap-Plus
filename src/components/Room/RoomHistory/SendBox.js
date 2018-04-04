@@ -61,6 +61,9 @@ class SendBox extends PureComponent {
     if (this.state.showEmojiPiker) {
       this.setState({showEmojiPiker: false});
       return true;
+    } else if (this.state.showAttachment) {
+      this.setState({showAttachment: false});
+      return true;
     }
     return false;
   };
