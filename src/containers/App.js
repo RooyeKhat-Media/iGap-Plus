@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
 import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
-import {AppState, BackHandler, Platform, View} from 'react-native';
+import {AppState, BackHandler, Platform, View, StyleSheet} from 'react-native';
 
 import {AppModal, StatusBar} from '../components/BaseUI';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
@@ -19,6 +19,7 @@ import {getAppTheme} from '../themes';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
 import {APP_MODAL_ID_MAIN, APP_STATE_ACTIVE, APP_STATE_BACKGROUND, APP_STATE_INACTIVE} from '../constants/app';
+import {KeyboardAvoidingView} from '../components/BaseUI/index';
 
 const addListener = createReduxBoundAddListener('app');
 
@@ -90,10 +91,14 @@ class App extends Component {
     const appTheme = getAppTheme(theme);
     return (
       <ThemeProvider uiTheme={appTheme}>
-        <View style={{flex: 1}}>
-          <View style={{flex: 1, zIndex: 2}}>
-            <StatusBar />
-            <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav, addListener})}/>
+        <View style={styles.root}>
+          <View style={styles.content}>
+            <KeyboardAvoidingView>
+              <View style={styles.contentKeyboard}>
+                <StatusBar/>
+                <AppNavigator navigation={addNavigationHelpers({dispatch, state: nav, addListener})}/>
+              </View>
+            </KeyboardAvoidingView>
           </View>
           <AppModal id={APP_MODAL_ID_MAIN}/>
         </View>
@@ -113,3 +118,18 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(App);
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    zIndex: 2,
+  },
+  contentKeyboard: {
+    flex: 1,
+    minWidth: 200,
+    minHeight: 200,
+  },
+});

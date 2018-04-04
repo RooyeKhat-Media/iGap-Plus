@@ -32,6 +32,7 @@ import LoadingDots from './LoadingDots';
 import {IRANSans} from '../../constants/fonts/index';
 import StatusBar from './StatusBar';
 import Toolbar from './Toolbar';
+import KeyboardAvoidingView from './KeyboardAvoidingView';
 
 const defaultTextStyle = StyleSheet.create({
   defaultStyle: {
@@ -80,4 +81,5 @@ export {
   LoadingDots,
   StatusBar,
   ActionButton,
+  KeyboardAvoidingView,
 };

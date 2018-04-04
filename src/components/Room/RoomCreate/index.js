@@ -22,7 +22,7 @@ class RoomCreateComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <View>
+      <View style={styles.root}>
         <Toolbar
           leftElement="arrow-back"
           rightElement="check"
@@ -60,7 +60,6 @@ class RoomCreateComponent extends Component {
               label={intl.formatMessage(i18n.roomCreateFieldDescription)}
               placeholder={intl.formatMessage(i18n.roomCreateFieldDescription)}
             />
-            <View style={{height: 100}}/>
           </Form>
         </ScrollView>
       </View>

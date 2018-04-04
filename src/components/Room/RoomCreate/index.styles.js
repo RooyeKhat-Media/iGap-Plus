@@ -7,11 +7,15 @@ export default [
     {
       query: {},
       style: {
+        root: {
+          flex: 1,
+        },
         container: {
           flex: 1,
         },
         scroll: {
-          paddingBottom: 100,
+          flex: 1,
+          paddingBottom: 20,
         },
         form: {
           padding: 15,
