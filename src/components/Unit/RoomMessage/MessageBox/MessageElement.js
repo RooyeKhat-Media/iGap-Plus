@@ -34,7 +34,7 @@ class MessageElement extends React.Component {
   get isPaused() {
     const {downloadedFile} = this.props;
     if (!downloadedFile) {
-      return true;
+      return false;
     }
 
     return (
@@ -62,6 +62,7 @@ class MessageElement extends React.Component {
     const {downloadedFile, uploading, onPress, onMessageLongPress} = this.props;
     const overrideOnPress = options.onPress || onPress;
 
+    const processing = this.isPending || this.isProcessing || this.isUploading;
     return (
       <TouchableOpacity onPress={overrideOnPress} delayLongPress={700} onLongPress={onMessageLongPress}
         activeOpacity={0.9}>
@@ -69,7 +70,7 @@ class MessageElement extends React.Component {
         <View>
           {siblingElement}
 
-          {(this.isPending || this.isProcessing || this.isUploading) && (
+          {processing && (
             <View style={styles.controlBtnWrap}>
               <View style={styles.controlBtn}><Icon name="close" size={30} color="#fafafa"/></View>
             </View>)}
@@ -83,6 +84,11 @@ class MessageElement extends React.Component {
           {this.isPaused && (
             <View style={styles.controlBtnWrap}>
               <View style={styles.controlBtn}><Icon name="file-download" size={30} color="#fafafa"/></View>
+            </View>)}
+
+          {(!processing && uploading) && (
+            <View style={styles.controlBtnWrap}>
+              <View style={styles.controlBtn}><Icon name="file-upload" size={30} color="#fafafa"/></View>
             </View>)}
         </View>
 

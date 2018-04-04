@@ -20,7 +20,7 @@ export default class AddMember extends Base {
       this.dispatch(messengerRoomAddList({
         [roomId]: {
           id: roomId,
-          sort: getFakeMessageId(),
+          sort: getFakeMessageId().toString(),
           pinId: '0',
         },
       }));

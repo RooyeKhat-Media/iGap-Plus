@@ -224,7 +224,6 @@ class RoomInfoScreen extends Component {
       proto.setClearId(Long.fromString(room.lastMessage));
       proto.setRoomId(room.longId);
       await Api.invoke(actionId, proto);
-      this.props.navigation.goBack();
     }
   };
   deleteRoom = async () => {
@@ -247,8 +246,8 @@ class RoomInfoScreen extends Component {
     if (actionId && proto) {
       proto = new proto();
       proto.setRoomId(room.longId);
-      await Api.invoke(actionId, proto);
       resetSecondaryNavigation();
+      await Api.invoke(actionId, proto);
     }
   };
 
