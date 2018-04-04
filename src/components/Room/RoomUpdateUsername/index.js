@@ -74,7 +74,7 @@ class RoomUpdateUsernameComponent extends Component {
               </Text>
             </View>) : null}
 
-            {(inviteLink && !isPublic) &&
+            {(!!inviteLink && !isPublic) &&
             (<View style={styles.LinkWrap}>
               <Text style={styles.inviteLinkLabel}>
                 <FormattedMessage {...i18n.roomUpdateUsernameInviteLinkLabel} />

@@ -74,6 +74,9 @@ class RoomUpdateUsername extends Component {
       isPublic: false,
       username: '',
     };
+  }
+
+  componentDidMount() {
     const {room} = this.props;
     this.prepareRoom(room);
   }
@@ -110,11 +113,13 @@ class RoomUpdateUsername extends Component {
         proto.setRoomId(room.longId);
         await Api.invoke(actionId, proto);
       }
-      if (goBack) {
-        goBack();
-      } else {
-        this.props.navigation.goBack();
-      }
+      setTimeout(() => {
+        if (goBack) {
+          goBack();
+        } else {
+          this.props.navigation.goBack();
+        }
+      });
     } catch (e) {
     }
   };

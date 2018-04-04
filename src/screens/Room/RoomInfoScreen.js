@@ -83,18 +83,18 @@ class RoomInfoScreen extends Component {
     const {roomId} = this.props.navigation.state.params;
     await putState(roomId);
     const {room} = this.props;
-    this.setRoomActionsAccess();
+    this.setRoomActionsAccess(this.props);
     const clientCountRoomHistory = new ClientCountRoomHistory();
     clientCountRoomHistory.setRoomId(room.longId);
     await Api.invoke(CLIENT_COUNT_ROOM_HISTORY, clientCountRoomHistory);
   }
 
-  componentWillReceiveProps() {
-    this.setRoomActionsAccess();
+  componentWillReceiveProps(nextProps) {
+    this.setRoomActionsAccess(nextProps);
   }
 
-  setRoomActionsAccess = () => {
-    const {room, roomPeer} = this.props;
+  setRoomActionsAccess = (props) => {
+    const {room, roomPeer} = props;
     const isChat = room.type === Proto.Room.Type.CHAT;
     const isGroup = room.type === Proto.Room.Type.GROUP;
     const isChannel = room.type === Proto.Room.Type.CHANNEL;
