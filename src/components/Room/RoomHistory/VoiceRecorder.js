@@ -25,6 +25,7 @@ class VoiceRecorder extends Component {
     this.startY = 0;
     this.lastX = 0;
     this.lastY = 0;
+    this.stoped = false;
   }
 
   componentDidMount() {
@@ -32,14 +33,20 @@ class VoiceRecorder extends Component {
     this.startRecord();
   }
 
+  componentWillUnmount() {
+    if (!this.stoped) {
+      this.stopRecord(true);
+    }
+  }
+
   startRecord = () => {
     SoundRecorder.start(SoundRecorder.PATH_DOCUMENT + '/' + Date.now().toString() + '.mp4');
   };
 
   stopRecord = (isCancel) => {
+    this.stoped = true;
     const {onEndRecordSound, onRef} = this.props;
     onRef(null);
-
     SoundRecorder.stop()
       .then(function(data) {
         if (isCancel || data.duration < 1000) {

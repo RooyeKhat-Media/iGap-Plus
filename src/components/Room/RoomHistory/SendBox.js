@@ -69,6 +69,7 @@ class SendBox extends PureComponent {
   };
 
   componentWillMount() {
+    this.mounted = true;
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
 
     this.onEnd = (evt, gestureState) => {
@@ -118,6 +119,7 @@ class SendBox extends PureComponent {
   }
 
   componentWillUnmount() {
+    this.mounted = false;
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
     onEmojiSelected.pop();
   }
@@ -239,7 +241,9 @@ class SendBox extends PureComponent {
   };
 
   onEndRecordSound = (path) => {
-    this.setState({isSoundRecord: false});
+    if (this.mounted) {
+      this.setState({isSoundRecord: false});
+    }
     if (path) {
       // todo nejati      send audio to chatBox  with this path
     }
