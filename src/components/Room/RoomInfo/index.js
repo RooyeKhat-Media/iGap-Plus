@@ -33,7 +33,6 @@ class RoomInfoComponent extends React.Component {
       <View style={styles.container}>
         <Toolbar
           leftElement="arrow-back"
-          rightElement="more-vert"
           onLeftElementPress={goBack}
           centerElement={<Text numberOfLines={1} style={textTitleStyle}>{room.title}</Text>}/>
 
