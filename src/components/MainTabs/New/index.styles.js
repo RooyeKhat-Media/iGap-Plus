@@ -27,8 +27,9 @@ export default [
           alignContent: 'center',
         },
         icon: {
-          marginRight: 3,
-          marginLeft: 3,
+          marginRight: 2,
+          marginLeft: 2,
+          padding:4,
         },
 
         textitem: {

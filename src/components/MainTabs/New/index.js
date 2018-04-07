@@ -124,14 +124,14 @@ class NewComponent extends Component {
           centerElement={{primaryText: user.displayName, secondaryText: user.phone.toString()}}
           rightElement={
             <View style={styles.iconsLayout}>
-              <MCIcon name="message-text" size={36} style={styles.icon} onPress={() => onUserPress(user.id)}/>
-              {(callAction.video && isNotMyUser) &&
-              <MCIcon name="video" size={36} style={styles.icon}
-                onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VIDEO_CALLING)}/>
-              }
+              <MCIcon name="message-text" size={28} style={styles.icon} onPress={() => onUserPress(user.id)}/>
               {(callAction.voice && isNotMyUser) &&
-              <MCIcon name="phone" size={32} style={styles.icon}
+              <MCIcon name="phone" size={28} style={styles.icon}
                 onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VOICE_CALLING)}/>
+              }
+              {(callAction.video && isNotMyUser) &&
+              <MCIcon name="video" size={28} style={styles.icon}
+                onPress={() => goCall(user.id.toString(), false, Proto.SignalingOffer.Type.VIDEO_CALLING)}/>
               }
             </View>}
         />
