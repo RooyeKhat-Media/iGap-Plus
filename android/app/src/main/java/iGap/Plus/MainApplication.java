@@ -19,6 +19,7 @@ import com.centaurwarchief.smslistener.SmsListenerPackage;
 import io.fabric.sdk.android.Fabric;
 import plus.igap.saveto.RNSaveToPackage;
 import cl.json.RNSharePackage;
+import cl.json.ShareApplication;
 import dog.craftz.sqlite_2.RNSqlite2Package;
 import plus.igap.filesystem.RNFileSystemPackage;
 import plus.igap.websocket.RNWebSocketPackage;
@@ -32,7 +33,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends Application implements ReactApplication , ShareApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -82,4 +83,9 @@ public class MainApplication extends Application implements ReactApplication {
     Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
     SoLoader.init(this, /* native exopackage */ false);
   }
+
+      @Override
+       public String getFileProviderAuthority() {
+              return "iGap.Plus.provider";
+       }
 }
