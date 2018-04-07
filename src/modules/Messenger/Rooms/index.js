@@ -46,6 +46,7 @@ export async function serverRoomsState() {
   let tries = 0;
   let offset = 0;
   let sort = Long.fromInt(10000000);
+  let loadComplete = true;
 
   const newRoomList = [];
 
@@ -85,7 +86,9 @@ export async function serverRoomsState() {
 
       offset += clientGetRoomListResponse.getRoomsList().length;
       tries = 0;
+      loadComplete = true;
     } catch (e) {
+      loadComplete = false;
       await sleep(2);
       tries++;
       if (tries > 3) {
@@ -96,9 +99,10 @@ export async function serverRoomsState() {
     }
   } while (true);
 
-  const oldRoomList = keys(store.getState().messenger.rooms);
-  difference(oldRoomList, newRoomList).forEach(function(roomId) {
-    store.dispatch(messengerRoomRemove(roomId));
-  });
-
+  if (loadComplete) {
+    const oldRoomList = keys(store.getState().messenger.rooms);
+    difference(oldRoomList, newRoomList).forEach(function(roomId) {
+      store.dispatch(messengerRoomRemove(roomId));
+    });
+  }
 }
