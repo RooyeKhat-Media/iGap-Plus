@@ -37,12 +37,14 @@ export function resetPrimaryNavigation(routeName: string, params, index: number 
     }));
 }
 
-export function resetSecondaryNavigation(routeName: string = SECONDARY_INITIAL_SCREEN, params, index: number = 0) {
+export function resetSecondaryNavigation(routeName: string, params) {
+  const actions = [NavigationActions.navigate({routeName: SECONDARY_INITIAL_SCREEN, params})];
+  if (routeName) {
+    actions.push(NavigationActions.navigate({routeName, params}));
+  }
   store.dispatch(secondaryNavigatorReset(
     {
-      index,
-      actions: [
-        NavigationActions.navigate({routeName, params}),
-      ],
+      index: actions.length - 1,
+      actions,
     }));
 }

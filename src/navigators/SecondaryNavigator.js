@@ -16,7 +16,7 @@ import {
   SECONDARY_ROOM_UPDATE_USERNAME_SCREEN,
   VIDEO_PLAYER,
 } from '../constants/navigators';
-import {navigate} from './index';
+import {navigate, resetSecondaryNavigation} from './index';
 import RoomHistoryScreen from '../screens/Room/RoomHistoryScreen';
 import SecondaryInitialScreen from '../screens/SecondaryInitialScreen';
 import RoomInfoScreen from '../screens/Room/RoomInfoScreen';
@@ -35,8 +35,12 @@ import {Platform} from 'react-native';
 import LocationPickerScreen from '../screens/LocationPickerScreen';
 import RoomGalleryScreen from '../screens/Room/RoomGalleryScreen';
 
-export function goRoomHistory(roomId, forwardedMessage) {
-  navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
+export function goRoomHistory(roomId, forwardedMessage, reset = true) {
+  if (reset) {
+    resetSecondaryNavigation(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
+  } else {
+    navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
+  }
 }
 
 export function goRoomInfo(roomId) {
