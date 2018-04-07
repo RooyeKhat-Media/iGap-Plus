@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Icon} from '../../../BaseUI';
 import {View} from 'react-native';
 import MessageBox from '../MessageBox/index';
 import AddonTime from '../MessageBox/AddonTime';
@@ -32,7 +33,10 @@ class OwnerBox extends Component {
             onMessageLongPress={onMessageLongPress}/>
         </View>
         <View style={styles.footerWrapper}>
-          <AddonTime createTime={message.createTime}/>
+          <View style={styles.footerTimeWrap}>
+            {message.edited && (<Icon size={15} name="mode-edit" />)}
+            <AddonTime createTime={message.createTime}/>
+          </View>
           <MessageStatus status={message.status} size={15}/>
         </View>
       </View>

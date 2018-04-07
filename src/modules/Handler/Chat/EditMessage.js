@@ -8,6 +8,7 @@ import {entitiesRoomMessageEdit} from '../../../actions/entities/roomMessages';
 export default class EditMessage extends Base {
   handle() {
     this.dispatch(entitiesRoomMessageEdit(this._response.messageId.toString(), {
+      edited: true,
       message: this._response.message,
       messageVersion: this._response.getMessageVersion().toString(),
     }));

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Icon} from '../../../BaseUI';
 import {Text, View} from 'react-native';
 import {black600, red} from '../../../../themes/default/index';
 import {connect} from 'react-redux';
@@ -76,6 +77,7 @@ class ChannelBox extends Component {
           <Text style={styles.textUPDown}>{message.channelThumbsDownLabel}</Text>
           <MCIcon color={black600} name="thumb-down" size={20} onPress={() => alert('down')}/>
           <Text numberOfLines={1} style={styles.textSignature}>{message.channelSignature}</Text>
+          {message.edited && (<Icon name="mode-edit" size={15} />)}
           <AddonTime createTime={message.createTime}/>
         </View>
       </View>

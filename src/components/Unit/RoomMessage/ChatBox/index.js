@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
+import {Icon} from '../../../BaseUI';
 import MessageBox from '../MessageBox/index';
 import Avatar from '../../../../containers/Unit/Avatar';
 import AddonTime from '../MessageBox/AddonTime';
@@ -36,6 +37,7 @@ class ChatBox extends Component {
               onMessageLongPress={onMessageLongPress}/>
           </View>
           <View style={styles.footerWrap}>
+            {message.edited && (<Icon name="mode-edit" />)}
             <AddonTime createTime={message.createTime}/>
           </View>
         </View>

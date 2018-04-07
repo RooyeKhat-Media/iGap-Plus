@@ -26,6 +26,9 @@ export default [
           justifyContent: 'space-between',
           alignItems: 'center',
         },
+        footerTimeWrap: {
+          flexDirection: 'row',
+        },
       },
     },
   ],
