@@ -47,6 +47,7 @@ import {
   saveToGallery,
   saveToMusic,
   setRoomHistorySelectedMode,
+  shareMessage,
 } from '../../utils/app';
 import {
   ClientJoinByUsername,
@@ -371,7 +372,7 @@ class RoomHistoryScreen extends PureComponent {
     const {selectedCount} = this.state;
     if (message.status === Proto.RoomMessageStatus.FAILED) {
       resendMessage(message);
-    } else {
+    } else if (message.status !== Proto.RoomMessageStatus.SENDING) {
       if (selectedCount) {
         this.selectMessage(message.id);
       } else {
@@ -381,7 +382,7 @@ class RoomHistoryScreen extends PureComponent {
   };
   onMessageLongPress = (message) => {
     const {selectedCount} = this.state;
-    if (!selectedCount) {
+    if (!selectedCount && message.status !== Proto.RoomMessageStatus.SENDING) {
       this.selectMessage(message.id);
     }
   };
@@ -662,7 +663,7 @@ class RoomHistoryScreen extends PureComponent {
         icon: 'share',
         title: intl.formatMessage(i18n.roomHistoryActionShare),
         onPress: () => {
-          Share.open(uri, uri ? mimType : null, message);
+          shareMessage(roomMessage);
         },
       });
     }
