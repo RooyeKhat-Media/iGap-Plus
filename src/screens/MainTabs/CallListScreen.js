@@ -46,7 +46,7 @@ class CallListScreen extends Component {
   clearLogList = () => {
     const {callLogList} = this.props;
     if (callLogList.length > 0) {
-      const lastId = callLogList[0].item.id;
+      const lastId = callLogList[0].id;
       const signalingClearLog = new SignalingClearLog();
       signalingClearLog.setClearId(lastId);
       Api.invoke(SIGNALING_CLEAR_LOG, signalingClearLog);
