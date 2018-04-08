@@ -42,6 +42,7 @@ export default [
           color: gray2,
           fontSize: 14,
           alignSelf: 'center',
+          marginTop: -4,
         },
         scroll: {
           backgroundColor: 'white',

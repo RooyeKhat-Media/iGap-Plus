@@ -25,7 +25,7 @@ import {
 import {Proto} from '../../modules/Proto/index';
 import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '../../selector/entities/roomMessage';
 import {getRoomHistorySelectedMode, getRoomHistoryUploadIdPrefix} from '../../utils/app';
-import {goVideoPlayer} from '../../navigators/SecondaryNavigator';
+import {goRoomGallery, goVideoPlayer} from '../../navigators/SecondaryNavigator';
 import {prependFileProtocol} from '../../utils/core';
 import {listenMessage} from '../../utils/messenger';
 
@@ -97,6 +97,15 @@ class MessageAtomBox extends Component {
         break;
       case Proto.RoomMessageType.VOICE:
         listenMessage(message.roomId, message.id);
+        break;
+      case Proto.RoomMessageType.IMAGE:
+      case Proto.RoomMessageType.IMAGE_TEXT:
+        const dimensions = {
+          width: message.attachment.getWidth(),
+          height: message.attachment.getHeight(),
+        };
+
+        goRoomGallery(prependFileProtocol(downloadedFile.uri), dimensions, message.message, message.attachment.getName());
         break;
       default:
         onMessagePress(message);

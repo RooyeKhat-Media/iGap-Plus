@@ -5,6 +5,7 @@ import {
   CALL_SCREEN,
   CAMERA_SCREEN, LOCATION_PICKER_SCREEN,
   ROOM_EDIT_SCREEN,
+  ROOM_GALLERY_SCREEN,
   ROOM_HISTORY_SCREEN,
   ROOM_INFO_SCREEN,
   ROOM_INVITE_LINK_SCREEN,
@@ -32,6 +33,7 @@ import VideoPlayerScreen from '../screens/General/VideoPlayerScreen';
 import Permission, {PERMISSION_CAMERA, PERMISSION_STORAGE} from '../modules/Permission/index';
 import {Platform} from 'react-native';
 import LocationPickerScreen from '../screens/LocationPickerScreen';
+import RoomGalleryScreen from '../screens/Room/RoomGalleryScreen';
 
 export function goRoomHistory(roomId, forwardedMessage) {
   navigate(ROOM_HISTORY_SCREEN, {roomId, forwardedMessage});
@@ -98,6 +100,10 @@ export const middleware = createReactNavigationReduxMiddleware(
   state => state.navSecondary,
 );
 
+export function goRoomGallery(uri, dimensions, text, fileName) {
+  navigate(ROOM_GALLERY_SCREEN, {uri, dimensions, text, fileName});
+}
+
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},
   [CALL_SCREEN]: {screen: CallScreen},
@@ -113,6 +119,7 @@ const SecondaryNavigator = StackNavigator({
   [CAMERA_SCREEN]: {screen: CameraScreen},
   [VIDEO_PLAYER]: {screen: VideoPlayerScreen},
   [LOCATION_PICKER_SCREEN]: {screen: LocationPickerScreen},
+  [ROOM_GALLERY_SCREEN]: {screen: RoomGalleryScreen},
 }, {
   navigationOptions: {
     header: null,
