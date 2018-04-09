@@ -43,7 +43,7 @@ class Confirm extends Component {
           },
         ]}
         title={(<Text>{title && (<FormattedMessage {...title} />)}</Text>)}
-        content={(<Text>{title && (<FormattedMessage {...description} />)}</Text>)}
+        content={(<Text>{description && (<FormattedMessage {...description} />)}</Text>)}
       />
     );
   }
