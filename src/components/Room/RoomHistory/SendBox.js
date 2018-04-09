@@ -385,7 +385,7 @@ class SendBox extends PureComponent {
 
           {Form.replyTo && (<View style={styles.addonWrap}>
             <Text style={styles.addonText} numberOfLines={1}>
-              {intl.formatMessage(i18n.roomHistorySendBoxReplyTo)}
+              {intl.formatMessage(i18n.roomHistorySendBoxReplyTo) + ' : '}
               <ShortMessage message={Form.replyTo}/>
             </Text>
             <View style={styles.replyClose}>
@@ -588,7 +588,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderLeftColor: primary,
     borderLeftWidth: 3,
-    color: black200,
+    color: 'black',
   },
   soundRecorder: {
     position: 'absolute',

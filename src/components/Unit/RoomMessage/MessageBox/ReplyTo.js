@@ -12,7 +12,8 @@ import {primary} from '../../../../themes/default/index';
 export default ({message}) => {
   return (
     <Text numberOfLines={1} style={styles.container}>
-      <FormattedMessage {...i18n.roomMessageReplyTo}/>
+      <Text style={styles.replay}><FormattedMessage {...i18n.roomMessageReplyTo }/></Text>
+      {' : '}
       <ShortMessage message={message}/>
     </Text>
   );
@@ -25,5 +26,8 @@ const styles = StyleSheet.create({
     borderLeftColor: primary,
     borderLeftWidth: 3,
     marginBottom: 5,
+  },
+  replay:{
+    color:'black',
   },
 });

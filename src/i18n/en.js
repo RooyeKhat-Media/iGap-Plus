@@ -1261,7 +1261,7 @@ export default {
   },
   roomHistorySendBoxReplyTo: {
     id: 'roomHistory.sendBox.replyTo',
-    defaultMessage: 'Reply To',
+    defaultMessage: 'Reply to',
     description: 'roomHistory sendBox screen',
   },
   roomHistorySendBoxForward: {
@@ -1391,7 +1391,7 @@ export default {
   },
   roomMessageReplyTo: {
     id: 'roomMessage.replyTo',
-    defaultMessage: 'Reply To: ',
+    defaultMessage: 'Reply to',
     description: 'roomMessage Box',
   },
   logMessageTypeUserJoined: {
