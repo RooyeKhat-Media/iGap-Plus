@@ -11,7 +11,7 @@ import {primary} from '../../../../themes/default/index';
  */
 export default ({message}) => {
   return (
-    <Text style={styles.container}>
+    <Text numberOfLines={1} style={styles.container}>
       <FormattedMessage {...i18n.roomMessageReplyTo}/>
       <ShortMessage message={message}/>
     </Text>
