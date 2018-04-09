@@ -1,6 +1,7 @@
 import {uniqueId} from 'lodash';
 import {MAX_WIDTH_NORMAL_HEIGHT, MIN_WIDTH_NORMAL_HEIGHT} from '../../constants/screenBreakPoints';
 import {getPrimaryWidth} from '../../modules/DimensionCalculator';
+import {gray500} from '../../themes/default/index';
 
 
 const id = uniqueId();
@@ -50,6 +51,8 @@ export default () => ([
         primary: {
           flex: null,
           width: getPrimaryWidth(),
+          borderRightWidth:1,
+          borderRightColor:gray500,
         },
         secondary: {
           flex: 1,
