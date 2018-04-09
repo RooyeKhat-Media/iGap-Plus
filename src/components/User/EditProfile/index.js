@@ -8,6 +8,8 @@ import {Form, LoadingDots, PickerField, TextInputField, Toolbar} from '../../Bas
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {textTitleStyle} from '../../../themes/default/index';
+import {goAvatarList} from '../../../navigators/SecondaryNavigator';
+import {getUserId} from '../../../utils/app';
 
 class UserEditProfile extends Component {
 
@@ -46,7 +48,8 @@ class UserEditProfile extends Component {
         <ScrollView style={styles.scroll}>
 
           <View style={styles.avatar}>
-            {(currentUser && !uploading) && <Avatar userId={currentUser.id} size={110}/>}
+            {(currentUser && !uploading) &&
+            <Avatar userId={currentUser.id} size={110} onPress={() => goAvatarList(null, getUserId(true))}/>}
             {(uploading) && <LoadingDots style={styles.loaderStyle}/>}
           </View>
 

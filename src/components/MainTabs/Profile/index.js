@@ -11,6 +11,8 @@ import UserListItem from '../../../containers/Unit/UserListItem';
 import {goSetting} from '../../../navigators/PrimaryNavigator';
 import {textTitleStyle} from '../../../themes/default/index';
 import ReturnToCall from '../../Call/ReturnToCall';
+import {goAvatarList} from '../../../navigators/SecondaryNavigator';
+import {getUserId} from '../../../utils/app';
 
 class ProfileComponent extends Component {
 
@@ -62,7 +64,8 @@ class ProfileComponent extends Component {
           <View style={styles.sectionTop}>
 
             <View style={styles.avatar}>
-              {currentUser && <Avatar userId={currentUser.id} size={80}/>}
+              {currentUser &&
+              <Avatar userId={currentUser.id} size={80} onPress={() => goAvatarList(null, getUserId(true))}/>}
             </View>
 
             <View style={styles.sectionTopSub1}>
