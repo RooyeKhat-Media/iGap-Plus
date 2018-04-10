@@ -29,6 +29,7 @@ import {errorId} from '../../modules/Error/index';
 import SmsListener from '../../modules/SmsListener';
 import Permission, {PERMISSION_RECEIVE_SMS} from '../../modules/Permission/index';
 import i18n from '../../i18n/index';
+import {Platform} from 'react-native';
 
 const rules = {
   code: [
@@ -63,7 +64,10 @@ class UserVerifyScreen extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
-    this.registerSmsListener();
+    if (Platform.OS === 'android') {
+      this.registerSmsListener();
+    }
+
   }
 
   componentWillUnmount() {

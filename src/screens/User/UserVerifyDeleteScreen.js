@@ -17,6 +17,7 @@ import SmsListener from '../../modules/SmsListener';
 import Permission, {PERMISSION_RECEIVE_SMS} from '../../modules/Permission/index';
 import i18n from '../../i18n/index';
 import {injectIntl, intlShape} from 'react-intl';
+import {Platform} from 'react-native';
 
 
 class UserVerifyDeleteScreen extends Component {
@@ -45,7 +46,9 @@ class UserVerifyDeleteScreen extends Component {
 
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
-    this.registerSmsListener();
+    if (Platform.OS === 'android') {
+      this.registerSmsListener();
+    }
   }
 
   componentWillUnmount() {
