@@ -361,27 +361,37 @@ export function getMessageDownloadFileUri(cacheId) {
 }
 
 export async function filePicker(fileType) {
-  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  if (Platform.OS === 'android') {
+    await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  }
   return RNFileSystem.filePicker(fileType);
 }
 
 export async function filesPicker(fileType) {
-  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  if (Platform.OS === 'android') {
+    await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  }
   return RNFileSystem.filesPicker(fileType);
 }
 
 export async function saveToGallery(fileUri, mimeType) {
-  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  if (Platform.OS === 'android') {
+    await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  }
   return SaveTo.gallery(fileUri, mimeType);
 }
 
 export async function saveToMusic(fileUri, mimeType) {
-  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  if (Platform.OS === 'android') {
+    await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  }
   return SaveTo.music(fileUri, mimeType);
 }
 
 export async function saveToDownloads(fileUri) {
-  await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  if (Platform.OS === 'android') {
+    await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
+  }
   return SaveTo.downloads(fileUri);
 }
 
