@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import styles from './index.styles';
 import {connect} from 'react-redux';
 
@@ -8,6 +8,7 @@ import MessageAtomBox from '../../../../containers/Unit/MessageAtomBox';
 import {Proto} from '../../../../modules/Proto/index';
 import {getEntitiesRoomMessage} from '../../../../selector/entities/roomMessage';
 import ReplyTo from './ReplyTo';
+import ForwardFrom from './ForwardFrom';
 
 class MessageBox extends React.Component {
   render() {
@@ -50,7 +51,7 @@ class MessageBox extends React.Component {
     return (
       <View style={[styles.container]}>
         {forward && (<View>
-          <Text>Forward from ...</Text>
+          <ForwardFrom userId={forwardFrom.authorUser} roomId={forwardFrom.authorRoom}/>
           {forward}
         </View>)}
         {replyToMessage ? (<ReplyTo message={replyToMessage}/>) : null}

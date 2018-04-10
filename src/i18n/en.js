@@ -1394,6 +1394,16 @@ export default {
     defaultMessage: 'Reply to',
     description: 'roomMessage Box',
   },
+  roomMessageForwardFrom: {
+    id: 'roomMessage.ForwardFrom',
+    defaultMessage: 'Forward from',
+    description: 'roomMessage Box',
+  },
+  roomMessagePrivateRoom: {
+    id: 'roomMessage.privateRoom',
+    defaultMessage: 'Private room',
+    description: 'roomMessage Box',
+  },
   logMessageTypeUserJoined: {
     id: 'logMessageType.userJoined',
     defaultMessage: '`{author}` joined iGap',
