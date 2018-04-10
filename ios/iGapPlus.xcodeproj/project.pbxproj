@@ -55,6 +55,7 @@
 		4F44D0531FC1A28D00504A19 /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F44D04C1FC1A28D00504A19 /* libc.tbd */; };
 		4F44D0541FC1A28D00504A19 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F44D0521FC1A28D00504A19 /* libstdc++.tbd */; };
 		4F45C861C0CC4E6E89436ADD /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E04C0199D3894A3097448000 /* Roboto-MediumItalic.ttf */; };
+		4FB05953207CB6AD00E91A13 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB05920207CB65400E91A13 /* libRCTCameraRoll.a */; };
 		4FC619F72045923A00A606DF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC619F52045923A00A606DF /* Fabric.framework */; };
 		4FC619F82045923A00A606DF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC619F62045923A00A606DF /* Crashlytics.framework */; };
 		4FC7DB621FEA3BE600210503 /* RNVideoProcessingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7DB481FEA3BE600210503 /* RNVideoProcessingManager.swift */; };
@@ -364,6 +365,13 @@
 			remoteGlobalIDString = 6463C84C1EBA12A60095B8CD;
 			remoteInfo = "SMXCrashlytics-tvOS";
 		};
+		4FB0591F207CB65400E91A13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FB05912207CB65400E91A13 /* RCTCameraRoll.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
+			remoteInfo = RCTCameraRoll;
+		};
 		4FC619E3204591FC00A606DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -617,6 +625,7 @@
 		4F44D0501FC1A28D00504A19 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		4F44D0511FC1A28D00504A19 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		4F44D0521FC1A28D00504A19 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		4FB05912207CB65400E91A13 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		4FC619F52045923A00A606DF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		4FC619F62045923A00A606DF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		4FC7DB481FEA3BE600210503 /* RNVideoProcessingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNVideoProcessingManager.swift; sourceTree = "<group>"; };
@@ -709,6 +718,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB05953207CB6AD00E91A13 /* libRCTCameraRoll.a in Frameworks */,
 				4FC7DB7D1FEA3CBA00210503 /* GPUImage.framework in Frameworks */,
 				4FC7DB7A1FEA3C8A00210503 /* CoreVideo.framework in Frameworks */,
 				4FC619F82045923A00A606DF /* Crashlytics.framework in Frameworks */,
@@ -945,6 +955,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4FB05913207CB65400E91A13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4FB05920207CB65400E91A13 /* libRCTCameraRoll.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4FC7DB301FEA3BA800210503 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1157,6 +1175,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4FB05912207CB65400E91A13 /* RCTCameraRoll.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -1414,6 +1433,10 @@
 				{
 					ProductGroup = 4F44D0401FC19C7200504A19 /* Products */;
 					ProjectRef = 948429E9804E4161ACBDACED /* RCTCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = 4FB05913207CB65400E91A13 /* Products */;
+					ProjectRef = 4FB05912207CB65400E91A13 /* RCTCameraRoll.xcodeproj */;
 				},
 				{
 					ProductGroup = 4FC7DB341FEA3BA800210503 /* Products */;
@@ -1755,6 +1778,13 @@
 			fileType = archive.ar;
 			path = libSMXCrashlytics.a;
 			remoteRef = 4F5DA140204689F9009F2303 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4FB05920207CB65400E91A13 /* libRCTCameraRoll.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCameraRoll.a;
+			remoteRef = 4FB0591F207CB65400E91A13 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4FC619E4204591FC00A606DF /* libjsinspector.a */ = {
