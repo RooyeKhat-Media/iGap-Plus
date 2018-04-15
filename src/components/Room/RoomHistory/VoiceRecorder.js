@@ -4,7 +4,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import {MCIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/en';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {black200, gray800, primary} from '../../../themes/default/index';
+import {black200, gray500, gray800, primary} from '../../../themes/default/index';
 import BlinkRecorder from '../../General/Camera/BlinkRecorder';
 import SoundRecorder from 'react-native-sound-recorder';
 
@@ -170,7 +170,9 @@ const styles = StyleSheet.create({
     bottom: 80,
     justifyContent: 'center',
     borderRadius: 20,
-    backgroundColor: 'red',
+    backgroundColor: 'white',
+    borderWidth:1,
+    borderColor:gray500,
     padding: 3,
   },
   micIcon: {

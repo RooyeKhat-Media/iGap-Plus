@@ -495,7 +495,7 @@ const styles = StyleSheet.create({
 
   iconMic: {
     color: '#848484',
-    paddingLeft: 4,
+    paddingLeft: 7,
     paddingRight: 6,
     paddingTop: 4,
     paddingBottom: 9,
@@ -515,7 +515,7 @@ const styles = StyleSheet.create({
     color: '#848484',
     transform: [{rotate: '45deg'}],
     paddingLeft: 4,
-    paddingRight: 4,
+    paddingRight: 1,
     paddingTop: 4,
     paddingBottom: 9,
     backgroundColor: 'transparent',
