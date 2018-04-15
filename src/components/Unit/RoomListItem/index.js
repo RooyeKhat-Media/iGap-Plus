@@ -15,7 +15,7 @@ class RoomListItem extends React.PureComponent {
       style={(selected || roomPined) ? pinedListItemStyle : boldListItemStyle}
       onPress={onPress}
       onLongPress={onLongPress}
-      leftElement={<Avatar roomId={roomId} size={52}/>}
+      leftElement={<Avatar onPress={onPress} roomId={roomId} size={52}/>}
       centerElement={{
         primaryText: roomTitle || ' ',
         secondaryText: lastMessageTitle || ' ',
