@@ -247,6 +247,12 @@ export default class Client {
     }
   }
 
+  close() {
+    if (this._socket) {
+      this._socket.close();
+    }
+  }
+
   async _onClose(event) {
     changeSessionUid();
     store.dispatch(clientStatusChanged(CLIENT_STATUS.DISCONNECTED));
