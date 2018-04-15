@@ -4,6 +4,9 @@ import putUserState from '../../Entities/RegisteredUsers/index';
 import {Proto} from '../../Proto/index';
 import {cancelAction, setAction} from '../../../actions/methods/rooms/actionList';
 import {getUserId} from '../../../utils/app';
+import {randomString} from '../../../utils/core';
+import {ACTION_TYPING_TIME} from '../../../constants/configs';
+import store from '../../../configureStore';
 
 /**
  * @property {ProtoChatSetAction} _request
@@ -23,7 +26,20 @@ export default class SetAction extends Base {
     if (this._response.getAction() === Proto.ClientAction.CANCEL) {
       this.dispatch(cancelAction(roomId, userId));
     } else {
-      this.dispatch(setAction(roomId, this._response.getAction(), userId));
+      const random = randomString(5);
+      this.dispatch(setAction(roomId, {
+        action: this._response.getAction(),
+        random,
+      }, userId));
+
+      if (this._response.getAction() === Proto.ClientAction.TYPING) {
+        setTimeout(() => {
+          const roomAction = store.getState().methods.getActionList[roomId];
+          if (roomAction[userId] && random === roomAction[userId].random) {
+            this.dispatch(cancelAction(roomId, userId));
+          }
+        }, ACTION_TYPING_TIME);
+      }
     }
   }
 }

@@ -41,15 +41,15 @@ export const getActionList = createSelector(
   (state) => state.entities.registeredUsers,
   (actionList, users) => {
     let newActionList = {};
-    forEach(actionList, function(value, key) {
-      if (!newActionList[value]) {
-        newActionList[value] = {
-          action: value,
+    forEach(actionList, function(payload, key) {
+      if (!newActionList[payload.action]) {
+        newActionList[payload.action] = {
+          action: payload.action,
           users: [],
         };
       }
       if (users[key] && users[key].displayName) {
-        newActionList[value].users.push(users[key].displayName);
+        newActionList[payload.action].users.push(users[key].displayName);
       }
     });
     return orderBy(newActionList, function(item) {

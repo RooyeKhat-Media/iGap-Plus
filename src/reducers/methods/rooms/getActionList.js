@@ -10,7 +10,7 @@ export function getActionList(state = {}, action) {
         ...state,
         [action.roomId]: {
           ...state[action.roomId],
-          [action.userId]: action.action,
+          [action.userId]: action.payload,
         },
       };
     case METHOD_SET_ACTION_CANCEL:
