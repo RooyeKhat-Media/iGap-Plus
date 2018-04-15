@@ -18,7 +18,6 @@ import forge from 'node-forge';
 import {arrayBufferToString, stringToArrayBuffer} from '../../utils/buffer';
 import {clientStatusChanged} from '../../actions/api';
 import store from '../../configureStore';
-import 'es6-symbol/implement';
 import {getCacheId, getCacheRevokeIds} from '../../constants/methods/cacheable';
 import CacheableMethod from '../../models/CacheableMethod';
 

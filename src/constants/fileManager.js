@@ -2,7 +2,6 @@
  * @flow
  */
 
-import 'es6-symbol/implement';
 
 export const FILE_MANAGER_DOWNLOAD_MANNER = {
   AUTO: Symbol('AUTO'),

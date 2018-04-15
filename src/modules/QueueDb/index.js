@@ -2,7 +2,6 @@
  * @flow
  */
 
-import 'es6-map/implement';
 
 
 /**

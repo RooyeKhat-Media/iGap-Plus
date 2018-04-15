@@ -1,7 +1,6 @@
 /**
  * @flow
  */
-import 'es6-symbol/implement';
 
 export const SIGNALING_STATUS = {
   DISCONNECTED: Symbol('DISCONNECTED'),

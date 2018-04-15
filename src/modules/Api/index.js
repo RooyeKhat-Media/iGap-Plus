@@ -17,8 +17,6 @@ import {Proto} from '../../modules/Proto';
 import {ErrorResponse} from '../Proto/index';
 import {ERROR_TIMEOUT} from './errors/index';
 import ServerError from '../Error/ServerError';
-import 'es6-symbol/implement';
-import 'es6-map/implement';
 import {mapReact} from '../Error/index';
 import {getCacheId} from '../../constants/methods/cacheable';
 import CacheableMethod from '../../models/CacheableMethod';

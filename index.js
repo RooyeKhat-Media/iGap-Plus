@@ -1,8 +1,10 @@
 /**
  * @flow
  */
+import 'core-js/es6/symbol';
+import 'core-js/fn/symbol/iterator';
+import 'core-js/es6/map';
 
-import 'es6-symbol/implement';
 import {AppRegistry} from 'react-native';
 import Root from './src/containers/Root';
 
