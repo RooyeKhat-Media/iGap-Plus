@@ -2,16 +2,12 @@ import MetaData from '../models/MetaData';
 import store from '../configureStore';
 import RNFileSystem from 'react-native-file-system';
 import Share from '../modules/Share/index';
-import {
-  UserContactsImport,
-  UserLogin,
-  UserSessionLogout,
-  UserUpdateStatus,
-} from '../modules/Proto/index';
+import {ChatGetRoom, UserContactsImport, UserLogin, UserSessionLogout, UserUpdateStatus,} from '../modules/Proto/index';
 import {Platform} from 'react-native';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
 import {
+  CHAT_GET_ROOM,
   CLIENT_CONDITION,
   USER_CONTACTS_IMPORT,
   USER_LOGIN,
@@ -20,7 +16,7 @@ import {
 } from '../constants/methods/index';
 import Api from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
-import {objectToLong, prependFileProtocol} from './core';
+import {objectToLong, prependFileProtocol, sleep} from './core';
 import {
   METADATA_AUTHOR_HASH,
   METADATA_USER_CONTACTS,
@@ -431,4 +427,19 @@ export function getPeerRoom(peerId) {
     }
   }
   return null;
+}
+
+export async function loadPeerRoom(peerId) {
+  let tries = 0;
+  let room = getPeerRoom(peerId);
+  if (!room) {
+    const chatGetRoom = new ChatGetRoom();
+    chatGetRoom.setPeerId(Long.fromString(peerId));
+    await Api.invoke(CHAT_GET_ROOM, chatGetRoom);
+    do {
+      await sleep(1);
+      room = getPeerRoom(peerId);
+    } while (!room && ++tries < 3);
+  }
+  return room;
 }

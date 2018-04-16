@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getAuthorHash, getPeerRoom, getUserId, shareMessage} from '../../utils/app';
+import {getAuthorHash, getUserId, loadPeerRoom, shareMessage} from '../../utils/app';
 import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
 import {getRoomMessage, getRoomMessageIsFirstUnread} from '../../selector/entities/roomMessage';
 import {getPeerRoomId, sendMessage} from '../../utils/messenger';
@@ -37,7 +37,7 @@ class RoomMessage extends PureComponent {
 
   onSaveMessagePress = async () => {
     const {message} = this.props;
-    const room = getPeerRoom(getUserId(true));
+    const room = await loadPeerRoom(getUserId(true));
     if (room) {
       await sendMessage(room.id, null, null, null, null, message);
     }
