@@ -42,7 +42,9 @@ export default {
       marginLeft: 8,
       paddingHorizontal: 8,
       borderWidth: 0,
-
+    },
+    text:{
+      ...IRANSans_Medium,
     },
   },
 };

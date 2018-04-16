@@ -35,11 +35,9 @@ export default [
         },
         listItem: {
           container: {
-            height: 55,
             marginBottom: 2,
           },
           primaryText: {
-            fontSize: 16,
             color: black200,
           },
         },
