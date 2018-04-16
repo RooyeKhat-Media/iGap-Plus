@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MapMarkerComponent from './MapMarker';
-import {Dimensions, View} from 'react-native';
+import {Dimensions, View, Platform} from 'react-native';
 import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive/index';
 import {injectIntl, intlShape} from 'react-intl';
@@ -72,7 +72,7 @@ class NearbyMapComponent extends Component {
   componentWillReceiveProps(prev) {
     if (!this.state.preventNextPositionSet && prev.myCoordinate.latitude) {
       this.setMapRegion(prev.myCoordinate.latitude, prev.myCoordinate.longitude);
-      if (this.map) {
+      if (this.map && Platform.OS === 'android') {
         const po = this.getBoundingBox(prev.myCoordinate.latitude, prev.myCoordinate.longitude, 5000);
         this.map.setMapBoundaries(po.top, po.bottom);
       }
