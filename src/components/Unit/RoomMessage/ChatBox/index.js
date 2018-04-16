@@ -37,7 +37,7 @@ class ChatBox extends Component {
               onMessageLongPress={onMessageLongPress}/>
           </View>
           <View style={styles.footerWrap}>
-            {message.edited && (<Icon name="mode-edit" />)}
+            {message.edited && (<Icon size={15} name="mode-edit" />)}
             <AddonTime createTime={message.createTime}/>
           </View>
         </View>

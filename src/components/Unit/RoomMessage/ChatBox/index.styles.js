@@ -29,6 +29,7 @@ export default [
         },
         footerWrap: {
           alignSelf: 'flex-end',
+          flexDirection: 'row',
         },
       },
     },
