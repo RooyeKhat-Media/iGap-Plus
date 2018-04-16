@@ -311,6 +311,8 @@ export default class Client {
     if (handlerClass) {
       const handler = new handlerClass(responseProto, wrapper.request);
       handler.handle();
+    } else {
+      console.warn('Handler class not found ' + responseActionId);
     }
   }
 
