@@ -77,8 +77,16 @@ import {getMessagesDimension} from '../../modules/DimensionCalculator/index';
 class RoomHistoryScreen extends PureComponent {
 
   onScroll = async (event, offsetX, offsetY) => {
+    if (offsetY < 300) {
+      this.loadFromBottom();
+    } else if (event.nativeEvent.contentSize.height - offsetY <= 2 * event.nativeEvent.layoutMeasurement.height) {
+      this.loadFromTop();
+    }
+  };
+
+  loadFromBottom = async () => {
     const {room} = this.props;
-    if (!this.loading && offsetY < 300) {
+    if (!this.loading) {
       try {
         this.loading = true;
         const roomMessages = await loadRoomHistory(room.id, getRoomLastMessageId(room.id) || room.lastMessage, false);
@@ -91,7 +99,7 @@ class RoomHistoryScreen extends PureComponent {
     }
   };
 
-  onEndReached = async (firstLoad = false) => {
+  loadFromTop = async (firstLoad = false) => {
     const {room} = this.props;
     if (!this.loading) {
       try {
@@ -132,7 +140,7 @@ class RoomHistoryScreen extends PureComponent {
           this.loading = false;
         }
       } else {
-        await this.onEndReached(true);
+        await this.loadFromTop(true);
       }
     } else {
       this.scrollToIndex();
@@ -721,7 +729,6 @@ class RoomHistoryScreen extends PureComponent {
         toolbarActions={toolbarActions}
         actionSheetControl={this.actionSheetControl}
         onScroll={this.onScroll}
-        onEndReached={this.onEndReached}
         forwardModalControl={this.forwardModalControl}
         goBack={this.props.navigation.goBack}
       />

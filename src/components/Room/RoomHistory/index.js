@@ -114,7 +114,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, onEndReached} = this.props;
+    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -130,8 +130,6 @@ class RoomHistoryComponent extends React.PureComponent {
               dataProvider={dataProvider}
               rowRenderer={this.renderItem}
               onScroll={this.onScroll}
-              onEndReached={onEndReached}
-              onEndReachedThreshold={300}
               forceNonDeterministicRendering={true}/>
           </View>
 
@@ -213,7 +211,6 @@ RoomHistoryComponent.propTypes = {
   actionSheetControl: PropTypes.func.isRequired,
   toolbarActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   onScroll: PropTypes.func.isRequired,
-  onEndReached: PropTypes.func.isRequired,
   forwardModalControl: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
 };
