@@ -22,6 +22,8 @@ import UserContactsEdit from './User/Contacts/Edit';
 import UserProfileGetEmail from './User/Profile/GetEmail';
 import UserProfileGetGender from './User/Profile/GetGender';
 import UserProfileGetNickname from './User/Profile/GetNickname';
+import UserProfileGetBio from './User/Profile/GetBio';
+import UserProfileSetBio from './User/Profile/SetBio';
 import UserAvatarAdd from './User/Avatar/Add';
 import UserAvatarDelete from './User/Avatar/Delete';
 import UserAvatarGetList from './User/Avatar/GetList';
@@ -238,6 +240,8 @@ export default {
   [methods.USER_PRIVACY_GET_RULE_RESPONSE]: UserPrivacyGetRule,
   [methods.USER_PRIVACY_SET_RULE_RESPONSE]: UserPrivacySetRule,
   [methods.USER_VERIFY_NEW_DEVICE_RESPONSE]: UserVerifyNewDevice,
+  [methods.USER_PROFILE_SET_BIO_RESPONSE]: UserProfileSetBio,
+  [methods.USER_PROFILE_GET_BIO_RESPONSE]: UserProfileGetBio,
 
   //Chat 2xx
   [methods.CHAT_GET_ROOM_RESPONSE]: ChatGetRoom,
