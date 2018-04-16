@@ -13,6 +13,7 @@ import {
   IconToggle,
   ListItem,
   RadioButton,
+  RippleFeedback,
 } from 'react-native-material-ui';
 import FlatList from './FlatList';
 import Modal from './Modal';
@@ -82,4 +83,5 @@ export {
   StatusBar,
   ActionButton,
   KeyboardAvoidingView,
+  RippleFeedback,
 };

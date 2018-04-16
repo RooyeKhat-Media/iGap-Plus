@@ -2,22 +2,67 @@ import {StyleSheet} from 'react-native';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 import {primary} from '../../../themes/default/index';
 
-export const pinedListItemStyle = StyleSheet.create({
-  container: {
+export default StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    height: 72,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding: 10,
+  },
+  wrapperBold: {
+    flex: 1,
+    height: 72,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding: 10,
     backgroundColor: '#eee',
   },
-  primaryText: {
+  avatar: {
+    height: 52,
+    width: 52,
+  },
+  primary: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 3,
+  },
+  secondary: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  body: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  title: {
+    flex: 1,
+    fontSize: 16,
+    color: '#555444',
+    textAlign: 'left',
+    paddingLeft: 10,
+    paddingRight: 5,
     ...IRANSans_Medium,
   },
-});
-
-export const boldListItemStyle = StyleSheet.create({
-  primaryText: {
-    ...IRANSans_Medium,
+  description: {
+    flex: 1,
+    fontSize: 12,
+    color: '#888',
+    textAlign: 'left',
+    paddingLeft: 10,
+    paddingRight: 5,
   },
-});
-
-export default StyleSheet.create({
+  addOn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   rightElementWrap: {
     width: 60, height: 45, flexDirection: 'column', alignItems: 'center',
   },
@@ -30,10 +75,7 @@ export default StyleSheet.create({
   pinStyle: {
     marginTop: 3,
   },
-});
-
-export const badgeStyle = StyleSheet.create({
-  container: {
+  badgeStyle: {
     backgroundColor: primary,
     textAlign:'center',
     height: 20,
@@ -46,9 +88,7 @@ export const badgeStyle = StyleSheet.create({
     overflow:'hidden',
     color:'white',
   },
-});
-export const muteBadgeStyle = StyleSheet.create({
-  container: {
+  muteBadgeStyle: {
     backgroundColor: '#aaa',
     textAlign:'center',
     height: 20,
@@ -61,9 +101,7 @@ export const muteBadgeStyle = StyleSheet.create({
     overflow:'hidden',
     color:'white',
   },
-});
-export const hideStyle = StyleSheet.create({
-  container: {
+  hideStyle: {
     display: 'none',
     opacity: 0,
   },
