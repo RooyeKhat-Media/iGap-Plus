@@ -19,7 +19,9 @@ class Spinner extends Component {
       type: APP_MODAL_ID_MAIN,
     };
   }
-
+  componentWillUnmount() {
+    this.modal.close();
+  }
   on = (modalId = APP_MODAL_ID_MAIN) => {
     this.setState({
       type: modalId,
