@@ -1888,4 +1888,14 @@ export default {
     defaultMessage: 'Send Location',
     description: 'choseLocation Screen',
   },
+  roomStatusLabelMember: {
+    id: 'roomStatusLabel.member',
+    defaultMessage: '{member, select,0{nun Member} 1{one Member} other{{memberLabel} Members}}',
+    description: 'roomStatusLabelMember',
+  },
+  roomStatusLabelStatus: {
+    id: 'roomStatusLabel.status',
+    defaultMessage: '{status, select,1{Last Month} 2{Last Week} 3{Online} 5{Recently} 6{Support} 7{Service Notification} other{Long time ago}}',
+    description: 'roomStatusLabelMember',
+  },
 };

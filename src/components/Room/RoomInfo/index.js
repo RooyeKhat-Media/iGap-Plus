@@ -11,6 +11,7 @@ import {gray950, textTitleStyle} from '../../../themes/default/index';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import RichTextView from '../../../modules/RichTextView/index';
 import {Proto} from '../../../modules/Proto/index';
+import RoomStatus from '../../../containers/Unit/RoomStatus';
 
 class RoomInfoComponent extends React.Component {
   render() {
@@ -92,10 +93,10 @@ class RoomInfoComponent extends React.Component {
 
             <View style={styles.section}>
               <ListItem
-                centerElement={{
-                  primaryText: room.title,
-                  secondaryText: '2 days ago - (Not Implemented)',
-                }}
+                centerElement={<View style={styles.roomTitleWrap}>
+                  <Text style={styles.roomTitle}>{room.title}</Text>
+                  <Text style={styles.roomStatus}><RoomStatus roomId={room.id}/></Text>
+                </View>}
               />
               {(description) && (<View style={styles.roomDescription}><RichTextView rawText={description}/></View>)}
               {(room.groupPublicUsername || room.channelPublicUsername || (roomPeer && roomPeer.username)) && (

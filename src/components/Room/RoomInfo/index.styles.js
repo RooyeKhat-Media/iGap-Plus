@@ -90,6 +90,20 @@ export default [
             borderWidth: 1,
           },
         },
+        roomTitleWrap: {
+        },
+        roomTitle: {
+          color: '#000',
+          ...IRANSans_Medium,
+          fontSize: 15,
+          textAlign: 'left',
+          marginTop: 7,
+        },
+        roomStatus: {
+          fontSize: 13,
+          textAlign: 'left',
+          marginTop: -3,
+        },
         textTitle: {
           color: '#000',
           ...IRANSans_Medium,
