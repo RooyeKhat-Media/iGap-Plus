@@ -18,6 +18,7 @@ import {
 import {errorId} from '../../modules/Error/index';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../../actions/fileManager';
 import {FILE_UPLOAD_ID_EDIT_PROFILE} from '../../constants/app';
+import {syncData} from '../../utils/app';
 
 const rules = {
   nickName: [
@@ -53,6 +54,7 @@ class UserNewProfileScreen extends Component {
         [errorId(ERROR_USER_PROFILE_SET_NICKNAME_INTERNAL_SERVER_ERROR)]: 'nickName',
       }
     );
+    syncData();
     this.uploadAvatar();
     goMainScreen();
   };

@@ -2,19 +2,21 @@ import MetaData from '../models/MetaData';
 import store from '../configureStore';
 import RNIGFileSystem from 'react-native-file-system';
 import Share from '../modules/Share/index';
-import {ChatGetRoom, UserContactsImport, UserLogin, UserSessionLogout, UserUpdateStatus,} from '../modules/Proto/index';
+import {ChatGetRoom, SignalingGetConfiguration, UserContactsImport, UserLogin, UserSessionLogout, UserUpdateStatus,
+} from '../modules/Proto/index';
 import {Platform} from 'react-native';
 import {Proto} from '../modules/Proto';
 import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '../constants/configs';
 import {
   CHAT_GET_ROOM,
   CLIENT_CONDITION,
+  SIGNALING_GET_CONFIGURATION,
   USER_CONTACTS_IMPORT,
   USER_LOGIN,
   USER_SESSION_LOGOUT,
   USER_UPDATE_STATUS,
 } from '../constants/methods/index';
-import Api from '../modules/Api/index';
+import Api, {CLIENT_STATUS, HANDLER_PRECEDENCE} from '../modules/Api/index';
 import ClientError from '../modules/Error/ClientError';
 import {objectToLong, prependFileProtocol, sleep} from './core';
 import {
@@ -37,6 +39,10 @@ import {deliverMessage, getFocusRoom, seenMessage} from './messenger';
 import Condition from '../modules/Condition/index';
 import Permission, {PERMISSION_STORAGE} from '../modules/Permission/index';
 import SaveTo from '../../native/modules/SaveTo';
+import Client from '../modules/Api/Client';
+import {clientStatusChanged} from '../actions/api';
+import {clientStatusUpdating} from '../actions/updating';
+import {serverRoomsState} from '../modules/Messenger/Rooms/index';
 
 let _userId;
 let _userIdString;
@@ -122,7 +128,7 @@ export async function clientCondition() {
   return Api.invoke(CLIENT_CONDITION, request);
 }
 
-export async function login() {
+export async function login(handlerPrecedence = HANDLER_PRECEDENCE.BEFORE) {
 
   const token = await loadUserToken();
   if (!token) {
@@ -144,12 +150,28 @@ export async function login() {
   userLogin.setLanguage(Proto.Language.FA_IR);
   // TODO [Amerehie] - 8/30/2017 2:05 PM - setPlatform , setPlatformVersion ...
 
-  return Api.invoke(USER_LOGIN, userLogin);
+  const response = await Api.invoke(USER_LOGIN, userLogin, null, handlerPrecedence);
+
+  Client.instance.loggedIn = true;
+  store.dispatch(clientStatusChanged(CLIENT_STATUS.LOGGED_IN));
+
+  return response;
 }
 
 export async function logout() {
   const userLogout = new UserSessionLogout();
   return await Api.invoke(USER_SESSION_LOGOUT, userLogout);
+}
+
+export async function syncData() {
+  Api.invoke(SIGNALING_GET_CONFIGURATION, new SignalingGetConfiguration());
+
+  importContact();
+  store.dispatch(clientStatusUpdating(true));
+  await clientCondition();
+  await serverRoomsState();
+  await sleep(3);
+  store.dispatch(clientStatusUpdating(false));
 }
 
 /**

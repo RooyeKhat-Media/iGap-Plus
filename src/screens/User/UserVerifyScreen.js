@@ -7,7 +7,7 @@ import {integerValidator, requiredValidator} from '../../utils/validator';
 import {injectIntl, intlShape} from 'react-intl';
 import UserVerifyComponent from '../../components/User/Verify/index';
 import {UserRegister, UserVerify} from '../../modules/Proto/index';
-import Api from '../../modules/Api/index';
+import Api, {HANDLER_PRECEDENCE} from '../../modules/Api/index';
 import {USER_REGISTER, USER_VERIFY} from '../../constants/methods/index';
 import {login, setUserToken} from '../../utils/app';
 import {goMainScreen, goUserNewProfileScreen} from '../../navigators/AppNavigator';
@@ -123,7 +123,7 @@ class UserVerifyScreen extends Component {
       }
     );
     await setUserToken(response.getToken());
-    await login();
+    await login(response.getNewUser() ? HANDLER_PRECEDENCE.NONE : HANDLER_PRECEDENCE.BEFORE);
 
     if (response.getNewUser()) {
       goUserNewProfileScreen();
