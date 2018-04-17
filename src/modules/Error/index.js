@@ -5,7 +5,7 @@
 import i18n from '../../i18n/index';
 import * as apiErrors from '../Api/errors/index';
 import {login} from '../../utils/app';
-import {goUserTwoStepVerificationScreen} from '../../navigators/AppNavigator';
+import {goUserNewProfileScreen, goUserTwoStepVerificationScreen} from '../../navigators/AppNavigator';
 import cleanup from '../Cleanup/index';
 
 /**
@@ -148,6 +148,9 @@ const reactionTable = {
   },
   [errorId(apiErrors.ERROR_SESSION_IS_TERMINATED)]: () => {
     cleanup();
+  },
+  [errorId(apiErrors.ERROR_NICKNAME_REQUIRED)]: () => {
+    goUserNewProfileScreen();
   },
 
   //User 1xx
