@@ -59,6 +59,10 @@ class LocationPickerScreen extends Component {
     this.props.navigation.goBack();
   };
 
+  goBack = () => {
+    this.props.navigation.goBack();
+  }
+
   render() {
     const {region, coordinate} = this.state;
     return <LocationPickerComponent
@@ -66,7 +70,8 @@ class LocationPickerScreen extends Component {
       coordinate={coordinate}
       onDragEnd={this.onDragEnd}
       getLocation={this.getLocation}
-      sendLocation={this.sendLocation}/>;
+      sendLocation={this.sendLocation}
+      goBack={this.goBack}/>;
   }
 }
 

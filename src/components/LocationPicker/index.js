@@ -2,17 +2,21 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {Toolbar, ListItem, ActionButton, Avatar} from '../BaseUI';
+import {ActionButton, Avatar, ListItem, Toolbar} from '../BaseUI';
 import MapView, {Marker} from 'react-native-maps';
 import styles from './index.styles';
 import i18n from '../../i18n';
 
 class LocationPickerComponent extends Component {
   render() {
-    const {intl, region, coordinate, onDragEnd, sendLocation, getLocation} = this.props;
+    const {intl, region, coordinate, onDragEnd, sendLocation, getLocation, goBack} = this.props;
     return (
       <View style={styles.wrapper}>
-        <Toolbar centerElement={<FormattedMessage {...i18n.locationPickerToolbar} />}/>
+        <Toolbar
+          centerElement={intl.formatMessage(i18n.locationPickerToolbar)}
+          rightElement="close"
+          onRightElementPress={goBack}
+        />
         <MapView
           style={styles.mapView}
           region={region}
