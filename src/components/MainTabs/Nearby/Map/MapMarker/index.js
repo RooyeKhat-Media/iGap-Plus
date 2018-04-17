@@ -20,7 +20,10 @@ class MapMarkerComponent extends Component {
   render() {
     const {userId, mySelf, coordinate} = this.props;
     const styles = this.getStyles();
-    const transparentStyle = [mySelf ? styles.transparentBlueBorder : styles.transparentGreyBorder, styles.transparentBorder];
+    const transparentStyle = [
+      styles.transparentBorder,
+      mySelf ? styles.transparentBlueBorder : styles.transparentGreyBorder,
+    ];
 
     return (
       <MapView.Marker

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {injectIntl, intlShape} from 'react-intl';
 import NearbyComponent from '../../components/MainTabs/Nearby';
 import {
-  CHAT_GET_ROOM,
   GEO_GET_COMMENT,
   GEO_GET_NEARBY_COORDINATE,
   GEO_GET_NEARBY_DISTANCE,
@@ -11,7 +10,6 @@ import {
   GEO_UPDATE_POSITION,
 } from '../../constants/methods/index';
 import {
-  ChatGetRoom,
   GeoGetComment,
   GeoGetNearbyCoordinate,
   GeoGetNearbyDistance,
@@ -21,12 +19,12 @@ import {
 } from '../../modules/Proto/index';
 import Api from '../../modules/Api/index';
 import GeoLocation from '../../modules/GeoLocation/index';
-import putState from '../../modules/Entities/RegisteredUsers';
 import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 import {ActivityIndicator} from '../../components/BaseUI/';
 import {View} from 'react-native';
 import Permission, {PERMISSION_LOCATION} from '../../modules/Permission/index';
 import i18n from '../../i18n/en';
+import {loadPeerRoom} from "../../utils/app";
 
 class NearbyScreen extends Component {
 
@@ -54,32 +52,29 @@ class NearbyScreen extends Component {
       const isMapView = index === 1;
       this.setState({
         mapView: isMapView,
-      }, async () => {
-        await this.refreshNearby(isMapView);
-      });
-      this.refreshMyCoordinate();
+      }, this.refreshNearby);
     }
   };
 
-  invokeNearbyDistance = async (pos) => {
+  invokeNearbyDistance = async () => {
+    const {myCoordinate} = this.state;
     const nearbyDist = new GeoGetNearbyDistance();
-    nearbyDist.setLat(pos.latitude);
-    nearbyDist.setLon(pos.longitude);
+    nearbyDist.setLat(myCoordinate.latitude);
+    nearbyDist.setLon(myCoordinate.longitude);
     const nearbyResponse = await Api.invoke(GEO_GET_NEARBY_DISTANCE, nearbyDist);
-    nearbyResponse.result.forEach(x => putState(x.getUserId().toString()));
     this.setState({
-      nearbyDistance: nearbyResponse.result,
+      nearbyDistance: nearbyResponse.getResultList(),
     });
   };
 
-  invokeNearbyCoordinate = async (pos) => {
+  invokeNearbyCoordinate = async () => {
+    const {myCoordinate} = this.state;
     const nearbyCoord = new GeoGetNearbyCoordinate();
-    nearbyCoord.setLat(pos.latitude);
-    nearbyCoord.setLon(pos.longitude);
+    nearbyCoord.setLat(myCoordinate.latitude);
+    nearbyCoord.setLon(myCoordinate.longitude);
     const nearbyResponse = await Api.invoke(GEO_GET_NEARBY_COORDINATE, nearbyCoord);
-    nearbyResponse.result.forEach(x => putState(x.getUserId().toString()));
     this.setState({
-      nearbyCoordinate: nearbyResponse.result,
+      nearbyCoordinate: nearbyResponse.getResultList(),
     });
   };
 
@@ -90,39 +85,32 @@ class NearbyScreen extends Component {
   };
 
   mapOnMarkerClick = async (userId) => {
-    const chatGetRoom = new ChatGetRoom();
-    chatGetRoom.setPeerId(userId);
-    const chatGetRoomResponse = await Api.invoke(CHAT_GET_ROOM, chatGetRoom);
-    const roomId = chatGetRoomResponse.getRoom().getId().toString();
-    goRoomInfo(roomId.toString());
+    const room = await loadPeerRoom(userId.toString());
+    goRoomInfo(room.id);
   };
 
-  findMyPosClick = () => this.refreshNearby(this.state.mapView);
-
-  refreshNearby = async (isMapView) => {
-    const {myCoordinate} = this.state;
-    this.refreshMyCoordinate();
-    if (isMapView) {
-      if ((new Date().getTime()) - this.lastMapLocationRefresh > 30 * 1000) {
-        this.lastMapLocationRefresh = new Date().getTime();
-        await this.invokeNearbyCoordinate(myCoordinate);
-      }
-    } else {
-      if ((new Date().getTime()) - this.lastListLocationRefresh > 30 * 1000) {
-        this.lastListLocationRefresh = new Date().getTime();
-        await this.invokeNearbyDistance(myCoordinate);
+  refreshNearby = async () => {
+    const {mapView, isRegistered} = this.state;
+    if (isRegistered) {
+      this.refreshMyCoordinate();
+      if (mapView) {
+        if ((new Date().getTime()) - this.lastMapLocationRefresh > 30 * 1000) {
+          this.lastMapLocationRefresh = new Date().getTime();
+          await this.invokeNearbyCoordinate();
+        }
+      } else {
+        if ((new Date().getTime()) - this.lastListLocationRefresh > 30 * 1000) {
+          this.lastListLocationRefresh = new Date().getTime();
+          await this.invokeNearbyDistance();
+        }
       }
     }
   };
 
   watchPosition = async () => {
-    const getRegisterStatus = new GeoGetRegisterStatus();
-    const geoResponse = await Api.invoke(GEO_GET_REGISTER_STATUS, getRegisterStatus);
-    this.setState({
-      isRegistered: geoResponse.getEnable(),
-    });
-    if (geoResponse.getEnable()) {
-      await  Permission.grant(PERMISSION_LOCATION,
+    const {isRegistered} = this.state;
+    if (isRegistered) {
+      await Permission.grant(PERMISSION_LOCATION,
         this.props.intl.formatMessage(i18n.nearbyScreenLocationPermissionTitle),
         this.props.intl.formatMessage(i18n.nearbyScreenLocationPermissionMessage));
 
@@ -136,8 +124,7 @@ class NearbyScreen extends Component {
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
           },
-        });
-        await this.refreshNearby(this.state.mapView);
+        }, this.refreshNearby);
       });
 
       this.watchLocReportMeter = GeoLocation.watchPosition({
@@ -164,23 +151,19 @@ class NearbyScreen extends Component {
   };
 
   changeRegister = async () => {
-    let {isRegistered} = this.state;
-    const isEnabled = !isRegistered;
-
-    const geoRegister = new GeoRegister();
-    geoRegister.setEnable(isEnabled);
-    await Api.invoke(GEO_REGISTER, geoRegister);
-
-    this.setState({
-      isRegistered: isEnabled,
+    this.setState((prev) => ({
+      isRegistered: !prev.isRegistered,
+    }), async () => {
+      const {isRegistered} = this.state;
+      const geoRegister = new GeoRegister();
+      geoRegister.setEnable(isRegistered);
+      await Api.invoke(GEO_REGISTER, geoRegister);
+      if (isRegistered) {
+        this.watchPosition();
+      } else {
+        this.unWatchPosition();
+      }
     });
-
-    if (isEnabled) {
-      await this.watchPosition();
-    } else {
-      this.unWatchPosition();
-    }
-    await this.findMyPosClick();
   };
 
   registerSwitchChange = async () => {
@@ -194,6 +177,11 @@ class NearbyScreen extends Component {
   };
 
   async componentDidMount() {
+    const getRegisterStatus = new GeoGetRegisterStatus();
+    const geoResponse = await Api.invoke(GEO_GET_REGISTER_STATUS, getRegisterStatus);
+    this.setState({
+      isRegistered: geoResponse.getEnable(),
+    });
     this.watchPosition();
   }
 
@@ -227,7 +215,7 @@ class NearbyScreen extends Component {
           toggleMode={this.toggleMode}
           dialogControl={this.dialogControl}
           changeRegister={this.changeRegister}
-          findMyPosClick={this.findMyPosClick}
+          findMyPosClick={this.refreshNearby}
           mapOnMarkerClick={this.mapOnMarkerClick}
           getCommentForUser={this.getCommentForUser}
           registerSwitchChange={this.registerSwitchChange}

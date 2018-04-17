@@ -7,9 +7,6 @@ import putState from '../../Entities/RegisteredUsers/index';
  */
 export default class GetNearbyCoordinate extends Base {
   handle() {
-    const results = this._response.getResultList();
-    results.forEach(function(result) {
-      putState(result.getUserId().toString());
-    });
+    this._response.getResultList().forEach(x => putState(x.getUserId().toString()));
   }
 }

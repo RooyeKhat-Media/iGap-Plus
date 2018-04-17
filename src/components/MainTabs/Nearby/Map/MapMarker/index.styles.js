@@ -20,7 +20,8 @@ export default [
           borderTopColor: 'white',
           marginLeft: -1,
           position: 'absolute',
-          bottom: 5,
+          bottom: 0,
+          zIndex: -1,
         },
         whiteBorder: {
           padding: 3,
@@ -35,16 +36,17 @@ export default [
           alignItems: 'center',
           justifyContent: 'center',
           padding: 19,
-          width: 90,
-          height: 90,
+          width: 75,
+          height: 75,
           borderRadius: 45,
           borderWidth: 2,
-          borderColor: '#50a7f1',
         },
         transparentBlueBorder: {
+          borderColor: '#50a7f1',
           backgroundColor: '#3298ee3f',
         },
         transparentGreyBorder: {
+          borderColor: '#888888',
           backgroundColor: '#0000003f',
         },
         viewContainer: {
