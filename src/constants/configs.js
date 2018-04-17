@@ -10,7 +10,7 @@ export const APP_VERSION = '1.0.0';
 export const DATABASE_SCHEMA_VERSION = 1;
 
 export const WEBSOCKET_ENDPOINT = 'wss://secure.igap.net/hybrid/';
-export const WEBSOCKET_RECONNECT_INTERVAL_SEC = 10;
+export const WEBSOCKET_RECONNECT_INTERVAL_SEC = 3;
 
 export const NON_WEBSOCKET_UPLOAD_ENDPOINT = 'https://secure.igap.net/api/hybrid/';
 export const GOOGLE_API_KEY = 'AIzaSyAhMmHvy9fL7-Rdz4D25QTFIKgiB5pe-TE';
