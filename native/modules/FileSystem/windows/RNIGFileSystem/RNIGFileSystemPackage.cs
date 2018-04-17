@@ -4,7 +4,7 @@ using ReactNative.UIManager;
 using System;
 using System.Collections.Generic;
 
-namespace iGapPlus.RNFileSystem
+namespace iGapPlus.RNIGFileSystem
 {
     /// <summary>
     /// Package defining core framework modules (e.g., <see cref="UIManagerModule"/>).
@@ -12,7 +12,7 @@ namespace iGapPlus.RNFileSystem
     /// other framework parts (e.g., with the list of packages to load view
     /// managers from).
     /// </summary>
-    public class RNFileSystemPackage : IReactPackage
+    public class RNIGFileSystemPackage : IReactPackage
     {
         /// <summary>
         /// Creates the list of native modules to register with the react
@@ -24,7 +24,7 @@ namespace iGapPlus.RNFileSystem
         {
             return new List<INativeModule>
             {
-                new RNFileSystemModule(reactContext),
+                new RNIGFileSystemModule(reactContext),
             };
         }
 

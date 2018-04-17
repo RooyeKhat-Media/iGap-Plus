@@ -5,7 +5,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import SaveTo from '../../../native/modules/SaveTo';
 import Share from '../../modules/Share/index';
 import {getRoom} from '../../selector/entities/room';
-import RNFileSystem, {FileUtil} from 'react-native-file-system';
+import RNIGFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory, {getRoomFirstMessageId, getRoomLastMessageId} from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
 import {getRoomMessageList} from '../../selector/messenger/roomMessage';
@@ -328,7 +328,7 @@ class RoomHistoryScreen extends PureComponent {
     ];
     goCamera(
       async (path) => {
-        const pickedFile = await RNFileSystem.fInfo(path);
+        const pickedFile = await RNIGFileSystem.fInfo(path);
         const size = await getImageSize(path);
         pickedFile.width = size.width;
         pickedFile.height = size.height;

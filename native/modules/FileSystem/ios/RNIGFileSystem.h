@@ -5,7 +5,7 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
-@interface RNFileSystem : NSObject <RCTBridgeModule>
+@interface RNIGFileSystem : NSObject <RCTBridgeModule>
 
 @end
   

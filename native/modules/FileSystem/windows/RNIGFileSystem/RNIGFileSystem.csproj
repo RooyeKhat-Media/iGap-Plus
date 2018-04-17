@@ -7,8 +7,8 @@
     <ProjectGuid>{128E8920-8592-11E7-BE82-13BD81BED55A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RNFileSystem</RootNamespace>
-    <AssemblyName>RNFileSystem</AssemblyName>
+    <RootNamespace>RNIGFileSystem</RootNamespace>
+    <AssemblyName>RNIGFileSystem</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -113,9 +113,9 @@
   <ItemGroup>
     <Compile Include="FileWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RNFileSystemModule.cs" />
-    <Compile Include="RNFileSystemPackage.cs" />
-    <EmbeddedResource Include="Properties\RNFileSystem.rd.xml" />
+    <Compile Include="RNIGFileSystemModule.cs" />
+    <Compile Include="RNIGFileSystemPackage.cs" />
+    <EmbeddedResource Include="Properties\RNIGFileSystem.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(ReactWindowsRoot)\react-native-windows\ReactWindows\ReactNative\ReactNative.csproj">

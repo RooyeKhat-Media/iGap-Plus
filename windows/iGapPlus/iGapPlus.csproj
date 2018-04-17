@@ -290,9 +290,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\node_modules\react-native-file-system\windows\RNFileSystem\RNFileSystem.csproj">
+    <ProjectReference Include="..\..\node_modules\react-native-file-system\windows\RNIGFileSystem\RNIGFileSystem.csproj">
       <Project>{128e8920-8592-11e7-be82-13bd81bed55a}</Project>
-      <Name>RNFileSystem</Name>
+      <Name>RNIGFileSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\node_modules\react-native-sqlite-2\windows\RNSqlite2\RNSqlite2.csproj">
       <Project>{aa4a1906-7230-4cfb-a193-3602011c768c}</Project>

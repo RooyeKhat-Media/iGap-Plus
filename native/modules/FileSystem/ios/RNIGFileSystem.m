@@ -1,4 +1,4 @@
-#import "RNFileSystem.h"
+#import "RNIGFileSystem.h"
 #import <React/RCTConvert.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>
@@ -43,13 +43,13 @@
 @end
 
 
-#pragma mark - RNFileSystem
-@interface RNFileSystem() <UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
+#pragma mark - RNIGFileSystem
+@interface RNIGFileSystem() <UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     
 }
 @end
 
-@implementation RNFileSystem {
+@implementation RNIGFileSystem {
     RCTPromiseResolveBlock currentResolveCallBack;
     RCTPromiseRejectBlock  currentRejectCallBack;
     BOOL currentResolveCallBackShouldBeArray;
@@ -71,7 +71,7 @@ dispatch_queue_t backgroundQueue() {
     static dispatch_once_t queueCreationGuard;
     static dispatch_queue_t queue;
     dispatch_once(&queueCreationGuard, ^{
-        queue = dispatch_queue_create("rnFileSystem.Queue", 0);
+        queue = dispatch_queue_create("rNIGFileSystem.Queue", 0);
     });
     return queue;
 }

@@ -1,4 +1,4 @@
-import RNFileSystem, {FileUtil} from 'react-native-file-system';
+import RNIGFileSystem, {FileUtil} from 'react-native-file-system';
 import {getExtension} from '../../utils/core';
 import store from '../../configureStore';
 import {fileManagerDownloadAutoPaused} from '../../actions/fileManager';
@@ -21,7 +21,7 @@ export default async function(size, cacheId, originalFileName) {
     const fileUri = FileUtil.uriCombine(rootUri, fileName);
 
     try {
-      let fileInfo = await RNFileSystem.fInfo(fileUri);
+      let fileInfo = await RNIGFileSystem.fInfo(fileUri);
 
       if (fileInfo.fileSize.lessThan(size)) {
         throw new Error('Paused download');

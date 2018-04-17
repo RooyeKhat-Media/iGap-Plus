@@ -1,6 +1,6 @@
 import MetaData from '../models/MetaData';
 import store from '../configureStore';
-import RNFileSystem from 'react-native-file-system';
+import RNIGFileSystem from 'react-native-file-system';
 import Share from '../modules/Share/index';
 import {ChatGetRoom, UserContactsImport, UserLogin, UserSessionLogout, UserUpdateStatus,} from '../modules/Proto/index';
 import {Platform} from 'react-native';
@@ -360,14 +360,14 @@ export async function filePicker(fileType) {
   if (Platform.OS === 'android') {
     await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
   }
-  return RNFileSystem.filePicker(fileType);
+  return RNIGFileSystem.filePicker(fileType);
 }
 
 export async function filesPicker(fileType) {
   if (Platform.OS === 'android') {
     await Permission.grant(PERMISSION_STORAGE, 'Storage Access', 'Storage permission is needed');
   }
-  return RNFileSystem.filesPicker(fileType);
+  return RNIGFileSystem.filesPicker(fileType);
 }
 
 export async function saveToGallery(fileUri, mimeType) {

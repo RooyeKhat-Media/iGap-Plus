@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading;
 
-namespace iGapPlus.RNFileSystem
+namespace iGapPlus.RNIGFileSystem
 {
     class FileWrapper
     {

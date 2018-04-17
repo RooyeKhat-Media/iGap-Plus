@@ -12,7 +12,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChakraBridge", "..\node_mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactNativeWebViewBridge", "..\node_modules\react-native-windows\ReactWindows\ReactNativeWebViewBridge\ReactNativeWebViewBridge.csproj", "{7596216B-669C-41F8-86DA-F3637F6545C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNFileSystem", "..\node_modules\react-native-file-system\windows\RNFileSystem\RNFileSystem.csproj", "{128E8920-8592-11E7-BE82-13BD81BED55A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNIGFileSystem", "..\node_modules\react-native-file-system\windows\RNIGFileSystem\RNIGFileSystem.csproj", "{128E8920-8592-11E7-BE82-13BD81BED55A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNSqlite2", "..\node_modules\react-native-sqlite-2\windows\RNSqlite2\RNSqlite2.csproj", "{AA4A1906-7230-4CFB-A193-3602011C768C}"
 EndProject

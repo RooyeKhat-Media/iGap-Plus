@@ -3,7 +3,7 @@ using ReactNative.Modules.Core;
 using ReactNativeVideo;
 using iGapPlus.RNSaveTo;
 using Cl.Json.RNShare;
-using iGapPlus.RNFileSystem;
+using iGapPlus.RNIGFileSystem;
 using RNSqlite2;
 using ReactNative.Shell;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace iGapPlus
                     new ReactVideoPackage(),
                     new RNSaveToPackage(),
                     new RNSharePackage(),
-                    new RNFileSystemPackage(),
+                    new RNIGFileSystemPackage(),
                     new RNSqlite2Package(),
                 };
             }

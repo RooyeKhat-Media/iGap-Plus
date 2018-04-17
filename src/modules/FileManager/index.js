@@ -2,7 +2,7 @@
  * @flow
  */
 
-import RNFileSystem from 'react-native-file-system';
+import RNIGFileSystem from 'react-native-file-system';
 import {CLIENT_STATUS} from '../Api/index';
 import PromiseLimiter from '../PromiseLimiter/index';
 import {
@@ -75,7 +75,7 @@ export function getRootDir() {
       reject();
     }
   }).catch(() => {
-    return RNFileSystem.getFilesDir().then(function(uri) {
+    return RNIGFileSystem.getFilesDir().then(function(uri) {
       getRootDirCache = uri;
       return uri;
     });

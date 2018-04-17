@@ -3,7 +3,7 @@
  */
 
 import Long from 'long';
-import RNFileSystem, {OPEN_MODE_READ} from 'react-native-file-system';
+import RNIGFileSystem, {OPEN_MODE_READ} from 'react-native-file-system';
 import {noMaskSupport} from 'react-native-web-socket';
 import Api from '../Api/index';
 import {
@@ -60,22 +60,22 @@ export default async function(id, fileUri, fileName, fileSize) {
 
   let fHandle;
   try { // Init
-    fHandle = await RNFileSystem.fOpen(
+    fHandle = await RNIGFileSystem.fOpen(
       fileUri,
       OPEN_MODE_READ
     );
 
-    const firstBytes = await RNFileSystem.fRead(
+    const firstBytes = await RNIGFileSystem.fRead(
       fHandle,
       Long.ZERO,
       fileUploadOptionResponse.getFirstBytesLimit()
     );
-    const lastBytes = await RNFileSystem.fRead(
+    const lastBytes = await RNIGFileSystem.fRead(
       fHandle,
       fileSize.subtract(fileUploadOptionResponse.getLastBytesLimit()),
       fileUploadOptionResponse.getLastBytesLimit()
     );
-    const fileHash = await RNFileSystem.fSha256(fHandle);
+    const fileHash = await RNIGFileSystem.fSha256(fHandle);
 
     pauseIfNeeded(id);
 
@@ -104,7 +104,7 @@ export default async function(id, fileUri, fileName, fileSize) {
 
       uploading:
       do {
-        const uploadBytes = await RNFileSystem.fRead(fHandle, offset, limit);
+        const uploadBytes = await RNIGFileSystem.fRead(fHandle, offset, limit);
 
         const fileUpload = new FileUpload();
         fileUpload.setToken(token);
@@ -192,7 +192,7 @@ export default async function(id, fileUri, fileName, fileSize) {
     return token;
   } finally {
     if (fHandle !== undefined) {
-      await RNFileSystem.fClose(fHandle);
+      await RNIGFileSystem.fClose(fHandle);
     }
   }
 }

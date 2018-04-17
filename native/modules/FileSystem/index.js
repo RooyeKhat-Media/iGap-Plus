@@ -4,17 +4,17 @@ import base64 from 'base64-js';
 import binaryToBase64 from 'react-native/Libraries/Utilities/binaryToBase64';
 import Long from 'long';
 
-const {RNFileSystem} = NativeModules;
+const {RNIGFileSystem} = NativeModules;
 
 /**
  * @constant {number} Read mode constant
  */
-export const OPEN_MODE_READ = RNFileSystem.read;
+export const OPEN_MODE_READ = RNIGFileSystem.read;
 
 /**
  * @constant {number} Write mode constant
  */
-export const OPEN_MODE_WRITE = RNFileSystem.write;
+export const OPEN_MODE_WRITE = RNIGFileSystem.write;
 
 class FileSystem {
   /**
@@ -23,7 +23,7 @@ class FileSystem {
    * @returns {Promise<{fileUri:string ,fileName:string ,fileSize:Long}>}
    */
   filePicker(fileType) {
-    return RNFileSystem.filePicker(fileType).then(function({fileUri, fileName, fileSize}) {
+    return RNIGFileSystem.filePicker(fileType).then(function({fileUri, fileName, fileSize}) {
       return {
         fileUri,
         fileName,
@@ -38,7 +38,7 @@ class FileSystem {
    * @returns {Promise<{fileUri:string ,fileName:string ,fileSize:Long}[]>}
    */
   filesPicker(fileType) {
-    return RNFileSystem.filesPicker(fileType).then(function(data) {
+    return RNIGFileSystem.filesPicker(fileType).then(function(data) {
       const result = [];
       data.forEach(function(element) {
         const {fileUri, fileName, fileSize} = element;
@@ -59,7 +59,7 @@ class FileSystem {
    * @returns {Promise<{fileUri:string ,fileName:string ,fileSize:Long}>}
    */
   fInfo(fileUri) {
-    return RNFileSystem.fInfo(fileUri).then(function({fileUri, fileName, fileSize}) {
+    return RNIGFileSystem.fInfo(fileUri).then(function({fileUri, fileName, fileSize}) {
       return {
         fileUri,
         fileName,
@@ -75,7 +75,7 @@ class FileSystem {
    * @returns {Promise<number>}
    */
   fOpen(fileUri, mode) {
-    return RNFileSystem.fOpen(fileUri, mode);
+    return RNIGFileSystem.fOpen(fileUri, mode);
   }
 
   /**
@@ -86,7 +86,7 @@ class FileSystem {
    * @returns {Promise.<Uint8Array>}
    */
   fRead(refId, offset, limit) {
-    return RNFileSystem.fRead(refId, offset.toString(), limit).then(function(base64String) {
+    return RNIGFileSystem.fRead(refId, offset.toString(), limit).then(function(base64String) {
       return new Uint8Array(base64.toByteArray(base64String).buffer);
     });
   }
@@ -97,7 +97,7 @@ class FileSystem {
    * @returns {Promise.<Uint8Array>}
    */
   fSha256(refId) {
-    return RNFileSystem.fSha256(refId).then(function(base64String) {
+    return RNIGFileSystem.fSha256(refId).then(function(base64String) {
       return new Uint8Array(base64.toByteArray(base64String).buffer);
     });
   }
@@ -109,7 +109,7 @@ class FileSystem {
    * @returns {Promise}
    */
   fAppend(refId, data) {
-    return RNFileSystem.fAppend(refId, binaryToBase64(data));
+    return RNIGFileSystem.fAppend(refId, binaryToBase64(data));
   }
 
   /**
@@ -118,7 +118,7 @@ class FileSystem {
    * @returns {Promise}
    */
   fClose(refId) {
-    return RNFileSystem.fClose(refId);
+    return RNIGFileSystem.fClose(refId);
   }
 
   /**
@@ -126,7 +126,7 @@ class FileSystem {
    * @returns {Promise<string>}
    */
   getFilesDir() {
-    return RNFileSystem.getFilesDir();
+    return RNIGFileSystem.getFilesDir();
   }
 
 }

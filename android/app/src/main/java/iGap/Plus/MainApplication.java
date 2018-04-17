@@ -5,6 +5,7 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
 import com.facebook.react.ReactApplication;
+import plus.igap.camera.RNIGCameraPackage;
 import plus.igap.videocompress.RNVideoCompressPackage;
 import com.smixx.fabric.FabricPackage;
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
@@ -14,14 +15,14 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.oney.WebRTCModule.WebRTCModulePackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.reactlibrary.RNSoundRecorderPackage;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.centaurwarchief.smslistener.SmsListenerPackage;
 import io.fabric.sdk.android.Fabric;
 import plus.igap.saveto.RNSaveToPackage;
 import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
 import dog.craftz.sqlite_2.RNSqlite2Package;
-import plus.igap.filesystem.RNFileSystemPackage;
+import plus.igap.filesystem.RNIGFileSystemPackage;
 import plus.igap.websocket.RNWebSocketPackage;
 import com.horcrux.svg.SvgPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -45,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication , S
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNIGCameraPackage(),
             new RNVideoCompressPackage(),
             new FabricPackage(),
             new InCallManagerPackage(),
@@ -54,12 +56,12 @@ public class MainApplication extends Application implements ReactApplication , S
             new WebRTCModulePackage(),
             new RNSoundPackage(),
             new RNSoundRecorderPackage(),
-            new RCTCameraPackage(),
+            new RNCameraPackage(),
             new SmsListenerPackage(),
             new RNSaveToPackage(),
             new RNSharePackage(),
             new RNSqlite2Package(),
-            new RNFileSystemPackage(),
+            new RNIGFileSystemPackage(),
             new RNWebSocketPackage(),
             new SvgPackage(),
             new VectorIconsPackage()

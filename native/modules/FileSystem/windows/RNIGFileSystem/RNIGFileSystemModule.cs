@@ -11,9 +11,9 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 
-namespace iGapPlus.RNFileSystem
+namespace iGapPlus.RNIGFileSystem
 {
-    class RNFileSystemModule : ReactContextNativeModuleBase
+    class RNIGFileSystemModule : ReactContextNativeModuleBase
     {
         private Dictionary<int, FileWrapper> files= new Dictionary<int, FileWrapper>();
 
@@ -30,7 +30,7 @@ namespace iGapPlus.RNFileSystem
         private const int FILE_OPEN_MODE_READ = 0;
         private const int FILE_OPEN_MODE_WRITE = 1;
 
-        public RNFileSystemModule(ReactContext reactContext)
+        public RNIGFileSystemModule(ReactContext reactContext)
             : base(reactContext)
         {
 
@@ -40,7 +40,7 @@ namespace iGapPlus.RNFileSystem
         {
             get
             {
-                return "RNFileSystem";
+                return "RNIGFileSystem";
             }
         }
 

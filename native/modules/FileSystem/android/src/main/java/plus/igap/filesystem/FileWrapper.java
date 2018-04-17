@@ -56,7 +56,7 @@ public class FileWrapper {
             try {
                 this.inputStreamChannel.close();
             } catch (Exception e) {
-                Log.i("RNFileSystem", e.getMessage(), e);
+                Log.i("RNIGFileSystem", e.getMessage(), e);
             } finally {
                 this.inputStreamChannel = null;
             }
@@ -66,7 +66,7 @@ public class FileWrapper {
             try {
                 this.randomAccessFile.close();
             } catch (Exception e) {
-                Log.i("RNFileSystem", e.getMessage(), e);
+                Log.i("RNIGFileSystem", e.getMessage(), e);
             } finally {
                 this.randomAccessFile = null;
             }
@@ -76,7 +76,7 @@ public class FileWrapper {
             try {
                 this.fileOutputStream.close();
             } catch (Exception e) {
-                Log.i("RNFileSystem", e.getMessage(), e);
+                Log.i("RNIGFileSystem", e.getMessage(), e);
             } finally {
                 this.fileOutputStream = null;
             }

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNFileSystem", "RNFileSystem\RNFileSystem.csproj", "{128E8920-8592-11E7-BE82-13BD81BED55A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNIGFileSystem", "RNIGFileSystem\RNIGFileSystem.csproj", "{128E8920-8592-11E7-BE82-13BD81BED55A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactNative", "..\node_modules\react-native-windows\ReactWindows\ReactNative\ReactNative.csproj", "{C7673AD5-E3AA-468C-A5FD-FA38154E205C}"
 EndProject

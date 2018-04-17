@@ -95,7 +95,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "iGap.Plus"
@@ -162,6 +162,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-igap-camera')
     compile project(':react-native-video-compress')
     compile project(':react-native-fabric')
     compile project(':react-native-incall-manager')
@@ -171,7 +172,6 @@ dependencies {
     compile project(':react-native-webrtc')
     compile project(':react-native-sound')
     compile project(':react-native-sound-recorder')
-    compile project(':react-native-camera')
     compile project(':react-native-android-sms-listener')
     compile project(':react-native-save-to')
     compile project(':react-native-share')
@@ -180,6 +180,14 @@ dependencies {
     compile project(':react-native-web-socket')
     compile project(':react-native-svg')
     compile project(':react-native-vector-icons')
+    compile (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+        exclude group: "com.android.support"
+        compile "com.android.support:exifinterface:25.+"
+        compile("com.google.android.gms:play-services-vision:10.2.0") {
+            force = true
+        }
+    }
     compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true;
     }

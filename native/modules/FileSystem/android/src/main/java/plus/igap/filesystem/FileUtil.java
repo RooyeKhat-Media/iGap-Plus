@@ -72,7 +72,7 @@ public class FileUtil {
                         String hashName = makeSHA1Hash(uri.getPath());
                         name = hashName + File.separator + name;
                     } catch (NoSuchAlgorithmException e) {
-                        Log.i("RNFileSystem", e.getMessage(), e);
+                        Log.i("RNIGFileSystem", e.getMessage(), e);
                     }
                 }
 
@@ -82,7 +82,7 @@ public class FileUtil {
 
                 return destinationPath;
             } catch (Exception e) {
-                Log.i("RNFileSystem", e.getMessage(), e);
+                Log.i("RNIGFileSystem", e.getMessage(), e);
             }
         }
 

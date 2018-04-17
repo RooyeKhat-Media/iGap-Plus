@@ -3,7 +3,7 @@
  */
 
 import Long from 'long';
-import RNFileSystem, {FileUtil, OPEN_MODE_WRITE} from 'react-native-file-system';
+import RNIGFileSystem, {FileUtil, OPEN_MODE_WRITE} from 'react-native-file-system';
 import Api from '../Api/index';
 import store from '../../configureStore';
 import {FILE_DOWNLOAD} from '../../constants/methods/index';
@@ -39,7 +39,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
   let fileInfo;
 
   try {
-    fileInfo = await RNFileSystem.fInfo(fileUri);
+    fileInfo = await RNIGFileSystem.fInfo(fileUri);
   } catch (e) {
     fileInfo = {
       fileUri,
@@ -51,7 +51,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
   let fHandle;
   try {
     if (fileInfo.fileSize.lessThan(size)) {
-      fHandle = await RNFileSystem.fOpen(
+      fHandle = await RNIGFileSystem.fOpen(
         fileUri,
         OPEN_MODE_WRITE
       );
@@ -87,7 +87,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
           throw new ClientError('Append conflict detected');
         }
 
-        await RNFileSystem.fAppend(fHandle, fileDownloadResponse.getBytes());
+        await RNIGFileSystem.fAppend(fHandle, fileDownloadResponse.getBytes());
         fileInfo.fileSize = fileInfo.fileSize.add(fileDownloadResponse.getBytes().byteLength);
       } catch (e) {
         if (e instanceof ServerError && e.errorResponse.getMajorCode() === ERROR_TIMEOUT) {
@@ -104,7 +104,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
     throw e;
   } finally {
     if (fHandle !== undefined) {
-      await RNFileSystem.fClose(fHandle);
+      await RNIGFileSystem.fClose(fHandle);
     }
   }
 }

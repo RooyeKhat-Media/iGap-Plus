@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 import okio.ByteString;
 
 
-public class RNFileSystemModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+public class RNIGFileSystemModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     private class PromiseWrapper {
         Promise promise;
@@ -63,14 +63,14 @@ public class RNFileSystemModule extends ReactContextBaseJavaModule implements Ac
     private static final int FILE_OPEN_MODE_READ = 0;
     private static final int FILE_OPEN_MODE_WRITE = 1;
 
-    public RNFileSystemModule(ReactApplicationContext reactContext) {
+    public RNIGFileSystemModule(ReactApplicationContext reactContext) {
         super(reactContext);
         reactContext.addActivityEventListener(this);
     }
 
     @Override
     public String getName() {
-        return "RNFileSystem";
+        return "RNIGFileSystem";
     }
 
     @Override
@@ -158,9 +158,9 @@ public class RNFileSystemModule extends ReactContextBaseJavaModule implements Ac
         if (!file.exists() || file.isDirectory())
             throw new Exception("File is not exists");
 
-        result.putString(RNFileSystemModule.Fields.FILE_NAME, file.getName());
-        result.putString(RNFileSystemModule.Fields.FILE_SIZE, String.valueOf(file.length()));
-        result.putString(RNFileSystemModule.Fields.FILE_URI, path);
+        result.putString(RNIGFileSystemModule.Fields.FILE_NAME, file.getName());
+        result.putString(RNIGFileSystemModule.Fields.FILE_SIZE, String.valueOf(file.length()));
+        result.putString(RNIGFileSystemModule.Fields.FILE_URI, path);
 
         return result;
     }
