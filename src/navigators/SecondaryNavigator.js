@@ -28,12 +28,13 @@ import RoomUpdateUsernameScreen from '../screens/Room/RoomUpdateUsernameScreen';
 import RoomInviteLinkScreen from '../screens/Room/RoomInviteLinkScreen';
 import RoomReportScreen from '../screens/Room/RoomReportScreen';
 import AvatarListScreen from '../screens/Room/AvatarListScreen';
-import CameraScreen from '../screens/General/CameraScreen';
+import CameraScreen, {cameraMode} from '../screens/General/CameraScreen';
 import VideoPlayerScreen from '../screens/General/VideoPlayerScreen';
 import Permission, {PERMISSION_CAMERA, PERMISSION_STORAGE} from '../modules/Permission/index';
 import {Platform} from 'react-native';
 import LocationPickerScreen from '../screens/LocationPickerScreen';
 import RoomGalleryScreen from '../screens/Room/RoomGalleryScreen';
+import Camera from 'react-native-igap-camera';
 
 export function goRoomHistory(roomId, forwardedMessage, reset = true) {
   if (reset) {
@@ -84,8 +85,24 @@ export async function goCamera(resolve, reject, CameraMode, denialMessage) {
     await  Permission.grant(PERMISSION_CAMERA, denialMessage[0], denialMessage[1]);
     if (Platform.OS === 'android') {
       await  Permission.grant(PERMISSION_STORAGE, denialMessage[2], denialMessage[3]);
+
+      switch (CameraMode) {
+        case cameraMode.CAMERA:
+          const picUrl = await Camera.takePictureAsync();
+          resolve(picUrl);
+          break;
+        case cameraMode.VIDEO:
+          const videoUrl = await Camera.recordAsync();
+          resolve(videoUrl);
+          break;
+        case cameraMode.QR:
+          navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
+          break;
+      }
+    } else {
+      navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
     }
-    navigate(CAMERA_SCREEN, {resolve, reject, CameraMode});
+
   } catch (e) {
     reject(e);
   }
