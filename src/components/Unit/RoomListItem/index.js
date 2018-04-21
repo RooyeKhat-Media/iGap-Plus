@@ -50,7 +50,10 @@ RoomListItem.propTypes = {
   roomPined: PropTypes.bool,
   roomMute: PropTypes.bool,
   selected: PropTypes.bool,
-  lastMessageTitle: PropTypes.string,
+  lastMessageTitle: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
   lastMessageStatue: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.bool,

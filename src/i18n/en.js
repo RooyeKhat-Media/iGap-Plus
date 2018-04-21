@@ -1837,7 +1837,11 @@ export default {
     defaultMessage: 'Leave Room',
     description: 'Room List Screen',
   },
-
+  roomListLastMessageTitle: {
+    id: 'roomList.lastMessageTitle',
+    defaultMessage: '{type, select, 1{Image Message} 3{Video Message} 5{Audio Message} 7{Voice Message} 8{Gif} 9{Attachment} 11{Location} 12{Log Message} 13{Contact} other{None Message}}',
+    description: 'Room List Screen',
+  },
   nearbyScreenListTitle: {
     id: 'nearbyScreen.listTitle',
     defaultMessage: 'Nearby List',
