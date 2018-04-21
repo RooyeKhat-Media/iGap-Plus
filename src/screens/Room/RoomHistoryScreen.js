@@ -390,7 +390,9 @@ class RoomHistoryScreen extends PureComponent {
   };
   onMessageLongPress = (message) => {
     const {selectedCount} = this.state;
-    if (!selectedCount && message.status !== Proto.RoomMessageStatus.SENDING) {
+    if (!selectedCount && (
+      message.status === Proto.RoomMessageStatus.FAILED &&
+        message.status !== Proto.RoomMessageStatus.SENDING)) {
       this.selectMessage(message.id);
     }
   };
