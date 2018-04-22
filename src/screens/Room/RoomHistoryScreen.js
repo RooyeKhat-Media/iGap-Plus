@@ -36,7 +36,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
-  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
 } from '../../constants/app';
 import {
   filesPicker,
@@ -213,6 +213,7 @@ class RoomHistoryScreen extends PureComponent {
 
     this.loading = false;
     this.typingId = null;
+    this.recordingVoiceId = null;
     this.typingTimeout = null;
     this.state = {
       text: '',
@@ -369,6 +370,25 @@ class RoomHistoryScreen extends PureComponent {
     });
   };
 
+  onStartRecordSound = () => {
+    const {room} = this.props;
+    if (!this.recordingVoiceId) {
+      this.recordingVoiceId = sendActionRequest(room.id, Proto.ClientAction.RECORDING_VOICE);
+    }
+  };
+
+  onEndRecordSound = async (path) => {
+    const {room} = this.props;
+    if (path) {
+      const pickedFile = await RNIGFileSystem.fInfo(path);
+      await sendMessage(room.id, '', pickedFile, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE);
+    }
+    if (this.recordingVoiceId) {
+      sendActionRequest(room.id, Proto.ClientAction.CANCEL, this.recordingVoiceId);
+      this.recordingVoiceId = null;
+    }
+  };
+
   cancelAttach = () => {
     this.setState({
       pickedFile: null,
@@ -391,7 +411,7 @@ class RoomHistoryScreen extends PureComponent {
   onMessageLongPress = (message) => {
     const {selectedCount} = this.state;
     if (!selectedCount && (
-      message.status === Proto.RoomMessageStatus.FAILED &&
+      message.status !== Proto.RoomMessageStatus.FAILED &&
         message.status !== Proto.RoomMessageStatus.SENDING)) {
       this.selectMessage(message.id);
     }
@@ -414,7 +434,10 @@ class RoomHistoryScreen extends PureComponent {
         selectedList,
         access: {
           ...prevState.access,
-          editMessage: firstRoomMessage ? firstRoomMessage.authorHash === getAuthorHash() : false,
+          editMessage: firstRoomMessage ? (
+            firstRoomMessage.authorHash === getAuthorHash() &&
+            firstRoomMessage.messageType !== Proto.RoomMessageType.VOICE
+          ) : false,
         },
       };
     }, () => {
@@ -613,7 +636,7 @@ class RoomHistoryScreen extends PureComponent {
         },
       });
     }
-    if (roomMessage.authorHash === getAuthorHash()) {
+    if (roomMessage.authorHash === getAuthorHash() && roomMessage.messageType !== Proto.RoomMessageType.VOICE) {
       actions.push({
         icon: 'edit',
         title: intl.formatMessage(i18n.roomHistoryActionEdit),
@@ -693,6 +716,8 @@ class RoomHistoryScreen extends PureComponent {
       selectCamera: this.selectCamera,
       selectContact: this.selectContact,
       selectLocation: this.selectLocation,
+      onStartRecordSound: this.onStartRecordSound,
+      onEndRecordSound: this.onEndRecordSound,
       cancelAttach: this.cancelAttach,
       onChangeText: this.onChangeText,
       submitForm: this.submitForm,

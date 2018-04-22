@@ -40,7 +40,9 @@ class VoiceRecorder extends Component {
   }
 
   startRecord = () => {
-    SoundRecorder.start(SoundRecorder.PATH_DOCUMENT + '/' + Date.now().toString() + '.mp4');
+    const {onStartRecordSound} = this.props;
+    SoundRecorder.start(SoundRecorder.PATH_DOCUMENT + '/' + Date.now().toString() + '.mp3');
+    onStartRecordSound();
   };
 
   stopRecord = (isCancel) => {
@@ -135,6 +137,7 @@ class VoiceRecorder extends Component {
 VoiceRecorder.propTypes = {
   intl: intlShape.isRequired,
   onEndRecordSound: PropTypes.func.isRequired,
+  onStartRecordSound: PropTypes.func.isRequired,
   onRef: PropTypes.func.isRequired,
 };
 

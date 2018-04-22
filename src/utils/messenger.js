@@ -40,7 +40,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
-  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
 } from '../constants/app';
 import {msSleep, tNow} from './core';
 import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
@@ -212,12 +212,17 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
             proto.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
             sendingAction = Proto.ClientAction.SENDING_AUDIO;
             break;
+          case ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE:
+            proto.setMessageType(Proto.RoomMessageType.VOICE);
+            break;
           case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
             proto.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);
             sendingAction = Proto.ClientAction.SENDING_FILE;
             break;
         }
-        sendingActionId = sendActionRequest(room.id, sendingAction);
+        if (sendingAction !== null) {
+          sendingActionId = sendActionRequest(room.id, sendingAction);
+        }
         const token =
           await store.dispatch(
             fileManagerUpload(
@@ -289,6 +294,9 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
         break;
       case ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO:
         roomMessage.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
+        break;
+      case ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE:
+        roomMessage.setMessageType(Proto.RoomMessageType.VOICE);
         break;
       case ROOM_MESSAGE_ATTACHMENT_TYPE_FILE:
         roomMessage.setMessageType(text ? Proto.RoomMessageType.FILE_TEXT : Proto.RoomMessageType.FILE);

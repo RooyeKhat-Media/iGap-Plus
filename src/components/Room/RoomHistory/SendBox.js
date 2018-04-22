@@ -241,12 +241,11 @@ class SendBox extends PureComponent {
   };
 
   onEndRecordSound = (path) => {
+    const {Form} = this.props;
     if (this.mounted) {
       this.setState({isSoundRecord: false});
     }
-    if (path) {
-      // todo nejati      send audio to chatBox  with this path
-    }
+    Form.onEndRecordSound(path);
   };
 
   render() {
@@ -446,6 +445,7 @@ class SendBox extends PureComponent {
           <View style={styles.soundRecorder}>
             <VoiceRecorder
               onEndRecordSound={this.onEndRecordSound}
+              onStartRecordSound={Form.onStartRecordSound}
               onRef={ref => (this.voiceRecorder = ref)}
             />
           </View>}
