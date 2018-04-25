@@ -703,6 +703,15 @@ class RoomHistoryScreen extends PureComponent {
     return actions;
   };
 
+  onRoomHistoryMorePress = (selected) => {
+    const {room} = this.props;
+    switch (selected) {
+      case 0:
+        goRoomReport(room.id);
+        break;
+    }
+  };
+
   render() {
     const {room, clientUpdating, messageList, getRoomMessage, getRoomMessageType} = this.props;
     const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList} = this.state;
@@ -754,6 +763,7 @@ class RoomHistoryScreen extends PureComponent {
         conformControl={this.confirmControl}
         flatListRef={this.flatListRef}
         toolbarActions={toolbarActions}
+        onRoomHistoryMorePress={this.onRoomHistoryMorePress}
         actionSheetControl={this.actionSheetControl}
         onScroll={this.onScroll}
         forwardModalControl={this.forwardModalControl}

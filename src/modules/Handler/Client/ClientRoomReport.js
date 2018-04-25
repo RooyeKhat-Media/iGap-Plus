@@ -6,6 +6,5 @@ import Base from '../Base';
  */
 export default class ClientRoomReport extends Base {
   handle() {
-    console.error('ClientRoomReport', 'Not implemented yet', this);
   }
 }

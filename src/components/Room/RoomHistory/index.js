@@ -158,13 +158,13 @@ class RoomHistoryComponent extends React.PureComponent {
   }
 
   renderBaseToolbar() {
-    const {intl, roomTitle, clientUpdating, goRoomInfoBtn, goBack} = this.props;
+    const {intl, roomTitle, clientUpdating, goRoomInfoBtn, goBack, onRoomHistoryMorePress} = this.props;
     return (<Toolbar
       leftElement="arrow-back"
       onLeftElementPress={goBack}
       centerElement={<Text numberOfLines={1} style={textTitleStyle}>
         {clientUpdating ? intl.formatMessage(i18n.clientUpdating) : roomTitle}</Text>}
-      rightElement={(<PopupMenu actionList={['Search', 'Report']} type={APP_MODAL_ID_SECONDARY} onPress={goRoomInfoBtn}/>)}
+      rightElement={(<PopupMenu actionList={[intl.formatMessage(i18n.roomHistoryActionReport)]} type={APP_MODAL_ID_SECONDARY} onPress={onRoomHistoryMorePress}/>)}
       onPress={goRoomInfoBtn}
     />);
   }
