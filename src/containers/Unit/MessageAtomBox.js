@@ -142,7 +142,7 @@ class MessageAtomBox extends Component {
       return null;
     }
 
-    if (message.status !== Proto.RoomMessageStatus.SENDING) {
+    if (message.status !== Proto.RoomMessageStatus.SENDING && message.status !== Proto.RoomMessageStatus.FAILED) {
       return this.renderContent();
     } else {
       return this.renderSending();
