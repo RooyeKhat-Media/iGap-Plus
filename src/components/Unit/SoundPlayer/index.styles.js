@@ -43,6 +43,15 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
   },
   headerSoundName: {
+    flex: 1,
     flexDirection: 'row',
+    overflow: 'hidden',
+  },
+  hederTimer: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    minWidth: 81,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

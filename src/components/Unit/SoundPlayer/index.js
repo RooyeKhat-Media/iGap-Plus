@@ -47,11 +47,13 @@ export default class SoundPlayerComponent extends React.PureComponent {
               {title}
             </BaseText>
           </View>
-          <BaseText style={styles.fileSize}>
-            {convertSecendToTime(currentTime)}
-            -
-            {convertSecendToTime(duration)}
-          </BaseText>
+          <View style={styles.hederTimer}>
+            <BaseText style={styles.fileSize}>
+              {convertSecendToTime(currentTime)}
+              -
+              {convertSecendToTime(duration)}
+            </BaseText>
+          </View>
         </View>
       </TouchableWithoutFeedback>);
   }
