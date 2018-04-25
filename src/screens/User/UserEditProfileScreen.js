@@ -52,7 +52,7 @@ const formRules = {
   ],
   nickName: [
     {validate: requiredValidator},
-    {validate: stringValidator, options: {min: 3}},
+    {validate: stringValidator, options: {min: 1}},
   ],
   userName: [
     {validate: requiredValidator},
