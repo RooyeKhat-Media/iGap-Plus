@@ -20,6 +20,11 @@ export const getEntitiesRoomMessageTypeFunc = createSelector(
       console.warn('getRoomMessageType: Invalid MessageId', messageId);
       return -1;
     }
+
+    if (roomMessage.deleted) {
+      return -2;
+    }
+
     let type = roomMessage.messageType;
 
     if (roomMessage.replyTo) {
