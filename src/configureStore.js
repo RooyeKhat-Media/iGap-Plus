@@ -7,7 +7,6 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import apiMiddleware from './modules/Api/middleware';
 import callMiddleware from './modules/Call/middleware';
-import soundPlayerMiddleware from './middlewares/soundPlayer';
 import {middleware as fileManagerMiddleware} from './modules/FileManager';
 //import reduxLogger from 'redux-logger';
 //Navigation
@@ -31,7 +30,6 @@ function configureStore(preloadedState) {
     apiMiddleware,
     callMiddleware,
     fileManagerMiddleware,
-    soundPlayerMiddleware,
     //Navigation
     appNavigatorMiddleware,
     primaryNavigatorMiddleware,

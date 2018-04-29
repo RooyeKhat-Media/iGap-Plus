@@ -1,6 +1,6 @@
 import Sound from 'react-native-sound';
 import store from '../../configureStore';
-import {soundPlayerPlaying} from '../../actions/soundPlayer';
+import {soundPlayerPause, soundPlayerPlay, soundPlayerPlaying, soundPlayerStop} from '../../actions/soundPlayer';
 
 const singletonEnforcer = Symbol();
 
@@ -75,16 +75,21 @@ class SoundPlayer {
     });
   }
 
-  async play(uri) {
+  async play(uri, title, duration) {
     if (this.uri !== uri) {
-      this.stop();
+      if (this.uri) {
+        this.stop();
+      }
       await this.load(uri);
     }
     if (!this.playing) {
       this.tick();
       this.playing = true;
-      this.whoosh.play(this.stop);
+      this.whoosh.play((success) => {
+        this.stop();
+      });
       this.timerInterval = setInterval(() => this.tick(), 1000);
+      store.dispatch(soundPlayerPlay(uri, title, duration));
     }
   }
 
@@ -101,6 +106,7 @@ class SoundPlayer {
         this.whoosh.pause();
         this.playing = false;
       }
+      store.dispatch(soundPlayerPause());
       clearInterval(this.timerInterval);
     }
   }
@@ -109,7 +115,10 @@ class SoundPlayer {
     if (this.whoosh) {
       this.whoosh.stop();
     }
+    this.uri = null;
     this.playing = false;
+    this.whoosh.setCurrentTime(0);
+    store.dispatch(soundPlayerStop());
     clearInterval(this.timerInterval);
   }
 }

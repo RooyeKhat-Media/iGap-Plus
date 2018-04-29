@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {soundPlayerPause, soundPlayerPlay, soundPlayerStop} from '../../actions/soundPlayer';
 import SoundPlayerComponent from '../../components/Unit/SoundPlayer/index';
 import {SOUND_PLAYER_BOX_MESSAGE, SOUND_PLAYER_BOX_TOOLBAR} from '../../constants/app';
+import BaseSoundPlayer from '../../modules/SoundPlayer/index';
 
 class SoundPlayer extends React.PureComponent {
 
   toggle = () => {
-    const {player, onPress, play, pause, stop, uri, title, duration} = this.props;
+    const {player, onPress, uri, title, duration} = this.props;
     if (!uri) {
-      stop();
+      BaseSoundPlayer.instance.stop();
     } else if (!player || !player.playing) {
-      play(uri, title, duration);
+      BaseSoundPlayer.instance.play(uri, title, duration);
       if (onPress) {
         onPress();
       }
     } else {
-      pause();
+      BaseSoundPlayer.instance.pause();
     }
   };
 
@@ -55,20 +55,4 @@ const mapStateToProps = () => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    play: function(uri, title, duration) {
-      dispatch(soundPlayerPlay(uri, title, duration));
-    },
-    pause: function() {
-      dispatch(soundPlayerPause());
-    },
-    stop: function() {
-      dispatch(soundPlayerStop());
-    },
-  };
-};
-
-export default connect(
-  mapStateToProps, mapDispatchToProps
-)(SoundPlayer);
+export default connect(mapStateToProps)(SoundPlayer);
