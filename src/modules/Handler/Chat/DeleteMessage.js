@@ -34,8 +34,8 @@ export default class DeleteMessage extends Base {
       channelThumbsUpLabel: null,
       channelThumbsDownLabel: null,
       deleteVersion: this._response.getDeleteVersion().toString(),
-      messageVersion: prevMessage.messageVersion < 0 ? 0 : prevMessage.messageVersion,
-      statusVersion: prevMessage.statusVersion < 0 ? 0 : prevMessage.statusVersion,
+      messageVersion: prevMessage && prevMessage.messageVersion > 0 ? prevMessage.messageVersion : 0,
+      statusVersion: prevMessage && prevMessage.statusVersion > 0 ? prevMessage.statusVersion : 0,
       deleted: true,
     }));
     this.dispatch(messengerRoomMessageRemove(roomId, messageId));

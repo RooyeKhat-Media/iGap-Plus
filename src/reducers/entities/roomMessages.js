@@ -2,11 +2,7 @@
  * @flow
  */
 
-import {
-  ENTITIES_ROOM_MESSAGE_ADD,
-  ENTITIES_ROOM_MESSAGE_EDIT,
-  ENTITIES_ROOM_MESSAGE_REMOVE,
-} from '../../actions/entities/roomMessages';
+import {ENTITIES_ROOM_MESSAGE_ADD, ENTITIES_ROOM_MESSAGE_EDIT} from '../../actions/entities/roomMessages';
 import {MESSENGER_ROOM_MESSAGE_CLEAR_MESSAGES} from '../../actions/messenger/roomMessages';
 
 const initialState = {};
@@ -19,11 +15,10 @@ export function roomMessages(state = initialState, action) {
         ...state,
         ...action.roomMessages,
       };
-    case ENTITIES_ROOM_MESSAGE_REMOVE:
-      newState = {...state};
-      delete newState[action.messageId];
-      return newState;
     case ENTITIES_ROOM_MESSAGE_EDIT:
+      if (!state[action.messageId]) {
+        return state;
+      }
       return {
         ...state,
         [action.messageId]: {

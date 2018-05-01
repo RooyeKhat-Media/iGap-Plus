@@ -41,7 +41,7 @@ export function roomMessages(state = initialState, action) {
       };
 
     case MESSENGER_ROOM_MESSAGE_REMOVE:
-      newList = [...state[action.roomId]] || [];
+      newList = state[action.roomId] || [];
       index = newList.indexOf(action.messageId);
       if (index >= 0) {
         newList.splice(index, 1);

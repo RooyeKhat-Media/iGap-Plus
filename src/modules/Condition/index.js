@@ -22,7 +22,7 @@ export default async function Condition() {
     roomListCondition.push(roomCondition);
   });
   const clientCondition = new ClientCondition();
-  clientCondition.setRoomsList(clientCondition);
+  clientCondition.setRoomsList(roomListCondition);
   return clientCondition;
 }
 

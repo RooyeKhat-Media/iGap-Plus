@@ -1,7 +1,6 @@
 import {
   ENTITIES_ROOM_MESSAGE_ADD,
   ENTITIES_ROOM_MESSAGE_EDIT,
-  ENTITIES_ROOM_MESSAGE_REMOVE,
 } from '../../../actions/entities/roomMessages';
 import RoomMessages from '../../../models/entities/RoomMessages';
 import {
@@ -10,7 +9,6 @@ import {
 } from '../../../actions/messenger/roomMessages';
 
 const middleware = ({dispatch, getState}) => next => action => {
-  let message;
   switch (action.type) {
     case ENTITIES_ROOM_MESSAGE_ADD:
       if (action.fromServer) {
@@ -21,9 +19,6 @@ const middleware = ({dispatch, getState}) => next => action => {
         }
       }
       break;
-    case ENTITIES_ROOM_MESSAGE_REMOVE:
-      RoomMessages.removeFromQueue(action.messageId);
-      break;
     case MESSENGER_ROOM_MESSAGE_REPLACE_MESSAGE:
       RoomMessages.removeFromQueue(action.oldMessageId);
       break;
@@ -31,16 +26,32 @@ const middleware = ({dispatch, getState}) => next => action => {
       RoomMessages.clearHistory(action.roomId, action.clearId);
       break;
     case ENTITIES_ROOM_MESSAGE_EDIT:
-      message = getState().entities.roomMessages[action.messageId];
-      if (message && action.fromServer) {
-        RoomMessages.saveToQueue({
-          ...message,
-          ...action.payload,
-        });
-      }
+      editMessage(action, getState);
       break;
   }
   return next(action);
 };
 
 export default middleware;
+
+/**
+ * edit room message to db
+ *
+ * @param action
+ * @param getState
+ * @returns {Promise.<void>}
+ */
+async function editMessage(action, getState) {
+  let message = getState().entities.roomMessages[action.messageId];
+  try {
+    if (!message) {
+      message = await RoomMessages.loadFromQueue(action.messageId);
+    }
+    if (message) {
+      RoomMessages.saveToQueue({
+        ...message,
+        ...action.payload,
+      });
+    }
+  } catch (e) {}
+}
