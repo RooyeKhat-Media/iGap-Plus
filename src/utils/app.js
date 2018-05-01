@@ -250,7 +250,7 @@ export function getGoogleStaticMap(lat, lan, width = 300, height = 400) {
   return 'https://maps.googleapis.com/maps/api/staticmap?' +
     'zoom=15&' +
     'size=' + width + 'x' + height + '&' +
-    'markers=color:red|label:G|' + lat + ',' + lan + '&' +
+    'markers=color:red|' + lat + ',' + lan + '&' +
     'key=' + GOOGLE_API_KEY;
 }
 

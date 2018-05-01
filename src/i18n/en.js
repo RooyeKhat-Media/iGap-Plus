@@ -1884,7 +1884,7 @@ export default {
   },
   locationPickerToolbar: {
     id: 'locationPicker.toolbar',
-    defaultMessage: 'Chose a Location',
+    defaultMessage: 'Choose a Location',
     description: 'choseLocation Screen',
   },
   locationPickerHelp: {
