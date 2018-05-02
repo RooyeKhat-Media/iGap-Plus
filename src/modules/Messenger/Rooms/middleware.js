@@ -1,15 +1,19 @@
 import {MESSENGER_ROOM_ADD_LIST, MESSENGER_ROOM_REMOVE} from '../../../actions/messenger/rooms';
 import Rooms from '../../../models/messenger/Rooms';
+import {assign, forIn} from 'lodash';
 
 const middleware = ({dispatch, getState}) => next => action => {
   switch (action.type) {
     case MESSENGER_ROOM_ADD_LIST:
       if (action.fromServer) {
-        for (const roomId in action.payload) {
-          if (action.payload.hasOwnProperty(roomId)) {
-            Rooms.saveToQueue(action.payload[roomId]);
-          }
-        }
+        const state = getState().messenger.rooms;
+        const newStateList = {};
+        forIn(action.payload, (value, key) => {
+          newStateList[key] = assign(state[key] || {pinId: '0'}, value);
+        });
+        forIn(newStateList, (value, key) => {
+          Rooms.saveToQueue(value);
+        });
       }
       break;
     case MESSENGER_ROOM_REMOVE:

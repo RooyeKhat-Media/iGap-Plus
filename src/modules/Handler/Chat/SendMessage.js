@@ -36,7 +36,6 @@ export default class SendMessage extends Base {
             [roomId]: {
               id: roomId,
               sort: messageId,
-              pinId: '0',
             },
           }));
         }

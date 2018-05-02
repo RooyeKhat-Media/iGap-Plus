@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-
+import {assign, forIn} from 'lodash';
 import {MESSENGER_ROOM_ADD_LIST, MESSENGER_ROOM_REMOVE} from '../../actions/messenger/rooms';
 import {ENTITIES_ROOM_EDIT} from '../../actions/entities/rooms';
 
@@ -12,9 +12,13 @@ export function rooms(state = initialState, action) {
   switch (action.type) {
 
     case MESSENGER_ROOM_ADD_LIST:
+      newStateList = {};
+      forIn(action.payload, (value, key) => {
+        newStateList[key] = assign(state[key] || {pinId: '0'}, value);
+      });
       return {
         ...state,
-        ...action.payload,
+        ...newStateList,
       };
 
     case MESSENGER_ROOM_REMOVE:
