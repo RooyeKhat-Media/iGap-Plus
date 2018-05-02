@@ -63,7 +63,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
         if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED) {
           throw new ClientError('Manually paused');
         } else if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED) {
-          throw new ClientError('Automatically paused');
+          // throw new ClientError('Automatically paused');
         }
       }
 
