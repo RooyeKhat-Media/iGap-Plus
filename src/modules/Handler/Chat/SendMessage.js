@@ -30,6 +30,10 @@ export default class SendMessage extends Base {
         const message = this._response.getRoomMessage();
         const messageId = message.getMessageId().toString();
 
+        if (room.firstUnreadMessage && messageId > room.firstUnreadMessage) {
+          return;
+        }
+
         if (indexOf(store.getState().messenger.rooms, roomId) === -1 && store.getState().entities.rooms[roomId].isParticipant) {
 
           this.dispatch(messengerRoomAddList({

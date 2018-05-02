@@ -1,5 +1,6 @@
 import {normalize} from 'normalizr';
 import Long from 'long';
+import {filter} from 'lodash';
 import Api from '../Api/index';
 import {ClientGetRoomHistory} from '../Proto/index';
 import {CLIENT_GET_ROOM_HISTORY} from '../../constants/methods/index';
@@ -42,6 +43,13 @@ export default async function loadRoomHistory(roomId, firstMessageId, upward = t
     }
     roomMessages = await loadFromServer(roomId, firstMessageId, upward, firstMessage && firstMessage.fraction, includeMessageId);
   }
+
+  const deletedMessageCount = filter(roomMessages, 'deleted');
+  if (deletedMessageCount >= CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT / 2) {
+    loadRoomHistory(roomId,
+      upward ? getRoomLastMessageId(roomId) : getRoomLastMessageId(roomId),
+      upward);
+  }
   return roomMessages;
 }
 
@@ -54,7 +62,6 @@ export default async function loadRoomHistory(roomId, firstMessageId, upward = t
  */
 async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = false) {
   let fractionId = null;
-  let deletedMessageCunt = 0;
   let entitiesRoomMessages = {};
   const messengerRoomMessages = [];
   const roomMessages = await RoomMessages.loadHistoryFromDb(roomId, firstMessageId, upward, CLIENT_GET_ROOM_HISTORY_PAGINATION_DB_LIMIT);
@@ -74,9 +81,6 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
       }
       break;
     }
-    if (message.deleted) {
-      deletedMessageCunt++;
-    }
   }
 
   if (includeMessageId && firstMessageId) {
@@ -93,10 +97,6 @@ async function loadFromDb(roomId, firstMessageId, upward, includeMessageId = fal
       ...entitiesRoomMessages,
       ...await loadFromServer(roomId, fractionId, upward, true),
     };
-  } else if (deletedMessageCunt >= CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT / 2) {
-    loadRoomHistory(roomId,
-      upward ? messengerRoomMessages[messengerRoomMessages.length - 1] : messengerRoomMessages[0],
-      upward);
   } else if (messengerRoomMessages.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
     entitiesRoomMessages = {
       ...entitiesRoomMessages,
@@ -158,9 +158,8 @@ async function loadFromServer(roomId, firsMessageId, upward, fraction) {
         endOfScroll[roomId] = {};
       }
       endOfScroll[roomId][upward] = true;
-      return;
     }
-    throw e;
+    return {};
   }
 }
 

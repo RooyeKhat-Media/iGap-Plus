@@ -73,6 +73,7 @@ import {cameraMode} from '../General/CameraScreen';
 import {getUserFunc} from '../../selector/entities/registeredUser';
 import {entitiesRoomEdit} from '../../actions/entities/rooms';
 import {getMessagesDimension} from '../../modules/DimensionCalculator/index';
+import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from "../../constants/configs";
 
 class RoomHistoryScreen extends PureComponent {
 
@@ -127,23 +128,19 @@ class RoomHistoryScreen extends PureComponent {
       }
     );
 
-    if (!messageList || !messageList.length) {
-      if (room.firstUnreadMessage) {
-        try {
-          this.loading = true;
-          await Promise.all([
-            loadRoomHistory(room.id, room.firstUnreadMessage),
-            loadRoomHistory(room.id, room.firstUnreadMessage, false, true),
-          ]);
-          this.scrollToIndex();
-        } finally {
-          this.loading = false;
-        }
-      } else {
-        await this.loadFromTop(true);
+    if (room.firstUnreadMessage) {
+      try {
+        this.loading = true;
+        await Promise.all([
+          loadRoomHistory(room.id, room.firstUnreadMessage),
+          loadRoomHistory(room.id, room.firstUnreadMessage, false, true),
+        ]);
+        this.scrollToIndex();
+      } finally {
+        this.loading = false;
       }
-    } else {
-      this.scrollToIndex();
+    } else if (!messageList || messageList.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
+      await this.loadFromTop(true);
     }
 
     if (this.props.navigation.state.params.forwardedMessage) {
