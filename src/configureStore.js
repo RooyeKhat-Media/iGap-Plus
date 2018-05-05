@@ -22,7 +22,7 @@ import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
 import userUpdateStatusMiddleware from './middlewares/userUpdateStatus';
 import entitiesRoomMiddleware from './middlewares/entitiesRoom';
 //Optimization
-//import collectorMiddleware from './middlewares/collector';
+import collectorMiddleware from './middlewares/collector';
 
 function configureStore(preloadedState) {
   const middlewares = [
@@ -43,7 +43,7 @@ function configureStore(preloadedState) {
     userUpdateStatusMiddleware,
     entitiesRoomMiddleware,
     //Optimization
-    //collectorMiddleware,
+    collectorMiddleware,
   ];
 
   if (process.env.NODE_ENV === `development`) {

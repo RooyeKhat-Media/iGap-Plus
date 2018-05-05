@@ -749,7 +749,7 @@ export function listenMessage(roomId, messageId) {
  * @returns {Promise.<void>}
  */
 export async function updateMessageStatus(roomId, messageId, status) {
-  await msSleep(random(0, 150));
+  await msSleep(random(0, 300));
 
   /**
    * @type {FlatRoom} room
