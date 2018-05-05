@@ -1,6 +1,6 @@
 import {
   CHANNEL_DELETE_MESSAGE,
-  CHANNEL_EDIT_MESSAGE,
+  CHANNEL_EDIT_MESSAGE, CHANNEL_GET_MESSAGES_STATS,
   CHANNEL_SEND_MESSAGE,
   CHAT_DELETE_MESSAGE,
   CHAT_EDIT_MESSAGE,
@@ -16,7 +16,7 @@ import {
 } from '../constants/methods/index';
 import {
   ChannelDeleteMessage,
-  ChannelEditMessage,
+  ChannelEditMessage, ChannelGetMessagesStats,
   ChannelSendMessage,
   ChatDeleteMessage,
   ChatEditMessage,
@@ -46,11 +46,12 @@ import {msSleep, tNow} from './core';
 import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
-import {random} from 'lodash';
+import {random, groupBy, forIn, map} from 'lodash';
 import Long from 'long';
 import roomMessageSchema from '../schemas/roomMessage';
 import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManager';
+import Collector from '../modules/Collector';
 
 /**
  * @type {string} current Focus Room
@@ -66,6 +67,8 @@ let _deliveredRoomMessages = {};
  * @private
  */
 let _unresolvedRoomMessageStatus = {};
+
+let _viewedMessages = {};
 
 /**
  * set focus room
@@ -821,3 +824,25 @@ export async function processUnresolvedMessageStatus(roomId) {
     _unresolvedRoomMessageStatus[roomId] = [];
   }
 }
+
+export function getMessageStats(roomId, messageId) {
+  if (!_viewedMessages[messageId]) {
+    _viewedMessages[messageId] = true;
+    collect({roomId, messageId});
+  }
+}
+
+const {collect} = Collector(
+  (collected) => {
+    const groupedMessages = groupBy(collected, 'roomId');
+    forIn(groupedMessages, (messages, roomId) => {
+      const getMessageStats = new ChannelGetMessagesStats();
+      getMessageStats.setRoomId(Long.fromString(roomId));
+      getMessageStats.setMessageIdList(map(messages, 'messageId'));
+      Api.invoke(CHANNEL_GET_MESSAGES_STATS, getMessageStats);
+    });
+  },
+  10000,
+  100,
+  true
+);

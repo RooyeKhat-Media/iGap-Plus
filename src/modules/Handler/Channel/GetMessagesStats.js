@@ -1,4 +1,5 @@
 import Base from '../Base';
+import {entitiesRoomMessageEdit} from '../../../actions/entities/roomMessages';
 
 /**
  * @property {ProtoChannelGetMessagesStats} _request
@@ -6,6 +7,12 @@ import Base from '../Base';
  */
 export default class GetMessagesStats extends Base {
   handle() {
-    console.error('GetMessagesStats', 'Not implemented yet', this);
+    this._response.getStatsList().forEach((stats) => {
+      this.dispatch(entitiesRoomMessageEdit(stats.getMessageId().toString(), {
+        channelViewsLabel: stats.getViewsLabel(),
+        channelThumbsUpLabel: stats.getThumbsUpLabel(),
+        channelThumbsDownLabel: stats.getThumbsDownLabel(),
+      }));
+    });
   }
 }

@@ -27,16 +27,31 @@ import {getDownloadedFile, getSmallThumbnailUri, getWaveformThumbnailUri} from '
 import {getRoomHistorySelectedMode, getRoomHistoryUploadIdPrefix} from '../../utils/app';
 import {goRoomGallery, goVideoPlayer} from '../../navigators/SecondaryNavigator';
 import {prependFileProtocol} from '../../utils/core';
-import {listenMessage} from '../../utils/messenger';
+import {getMessageStats, listenMessage} from '../../utils/messenger';
 
 class MessageAtomBox extends Component {
 
   componentDidMount() {
-    this.prepareAttachment(this.props);
+    this.initialMessages(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.prepareAttachment(nextProps);
+    this.initialMessages(nextProps);
+  }
+
+  initialMessages(props) {
+    this.viewMessage(props.message);
+    this.prepareAttachment(props);
+  }
+
+  viewMessage(roomMessage) {
+    const forwardMessage = roomMessage.forwardFrom;
+    if (roomMessage.channelViewsLabel) {
+      getMessageStats(roomMessage.roomId, roomMessage.longId);
+    }
+    if (forwardMessage && forwardMessage.channelViewsLabel) {
+      getMessageStats(forwardMessage.roomId, forwardMessage.longId);
+    }
   }
 
   prepareAttachment(props) {
