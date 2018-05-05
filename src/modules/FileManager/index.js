@@ -17,12 +17,10 @@ import _download from './download';
 import _upload from './upload';
 import _info from './info';
 import {
-  FILE_MANAGER_DOWNLOAD_AUTO_PAUSED, FILE_MANAGER_DOWNLOAD_COMPLETED,
-  FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED, fileManagerDownloadCompleted, fileManagerDownloadPending, fileManagerDownloadProgress,
+  FILE_MANAGER_DOWNLOAD_COMPLETED,
+  FILE_MANAGER_DOWNLOAD_AUTO_PAUSED,
+  FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED,
 } from '../../actions/fileManager';
-import Collector from '../Collector';
-import store from '../../configureStore';
-
 let getRootDirCache;
 
 let downloadChunkSize = FILE_MANAGER_DOWNLOAD_MAX_CHUNK_SIZE;
@@ -51,13 +49,13 @@ export const middleware = ({dispatch, getState}) => next => action => {
       }
       break;
     case FILE_MANAGER_DOWNLOAD_COMPLETED:
-      action.payload.forEach(function(data) {
-        downloadingPromise.delete(data.cacheId);
-      });
-      break;
-    case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
     case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
       downloadingPromise.delete(action.cacheId);
+      break;
+    case FILE_MANAGER_DOWNLOAD_AUTO_PAUSED:
+      if (action.pauseDownload) {
+        downloadingPromise.delete(action.cacheId);
+      }
       break;
   }
   return next(action);
@@ -133,32 +131,3 @@ export function info(size, cacheId, fileName) {
     return _info(size, cacheId, fileName);
   }, --infoPriority);
 }
-
-
-export const {collect} = Collector(
-  (collected) => {
-    const completedDownloadList = [];
-    const processDownloadList = [];
-    const pendingDownloadList = [];
-    for (const [cacheId, data] of collected) {
-      if (data.uri) {
-        completedDownloadList.push({cacheId, uri: data.uri});
-      } else if (data.uid) {
-        pendingDownloadList.push({cacheId, uid: data.uid});
-      } else if (data.progress) {
-        processDownloadList.push({cacheId, progress: data.progress});
-      }
-    }
-
-    if (completedDownloadList.length) {
-      store.dispatch(fileManagerDownloadCompleted(completedDownloadList));
-    }
-    if (processDownloadList.length) {
-      store.dispatch(fileManagerDownloadProgress(processDownloadList));
-    }
-    if (pendingDownloadList.length) {
-      store.dispatch(fileManagerDownloadPending(pendingDownloadList));
-    }
-  },
-  250
-);

@@ -1,8 +1,8 @@
 import RNIGFileSystem, {FileUtil} from 'react-native-file-system';
 import {getExtension} from '../../utils/core';
 import store from '../../configureStore';
-import {fileManagerDownloadAutoPaused} from '../../actions/fileManager';
-import {collect, getRootDir} from './index';
+import {fileManagerDownloadAutoPaused, fileManagerDownloadCompleted} from '../../actions/fileManager';
+import {getRootDir} from './index';
 
 /**
  * Update file state
@@ -26,9 +26,9 @@ export default async function(size, cacheId, originalFileName) {
       if (fileInfo.fileSize.lessThan(size)) {
         throw new Error('Paused download');
       }
-      collect({uri: fileInfo.fileUri}, cacheId);
+      store.dispatch(fileManagerDownloadCompleted(cacheId, fileInfo.fileUri));
     } catch (e) {
-      store.dispatch(fileManagerDownloadAutoPaused(cacheId));
+      store.dispatch(fileManagerDownloadAutoPaused(cacheId, false));
     }
   }
 }

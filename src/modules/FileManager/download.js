@@ -12,9 +12,11 @@ import {ERROR_TIMEOUT} from '../Api/errors/index';
 import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 import {
   fileManagerDownloadAutoPaused,
+  fileManagerDownloadCompleted,
+  fileManagerDownloadProgress,
 } from '../../actions/fileManager';
 
-import {getDownloadChunkSize, getRootDir, setDownloadChunkSize, collect} from './index';
+import {getDownloadChunkSize, getRootDir, setDownloadChunkSize, downloadingPromise} from './index';
 import ServerError from '../Error/ServerError';
 import {getExtension} from '../../utils/core';
 import ClientError from '../Error/ClientError';
@@ -62,13 +64,17 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
       if (storeFile) {
         if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.MANUALLY_PAUSED) {
           throw new ClientError('Manually paused');
-        } else if (storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED) {
-          // throw new ClientError('Automatically paused');
+        } else if (
+            storeFile.status === FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED
+            &&
+            storeFile.pauseDownload
+        ) {
+          throw new ClientError('Automatically paused');
         }
       }
 
       if (selector === Proto.FileDownload.Selector.FILE) {
-        collect({progress: fileInfo.fileSize.multiply(100).divide(size).toInt()}, cacheId);
+        store.dispatch(fileManagerDownloadProgress(cacheId, fileInfo.fileSize.multiply(100).divide(size).toInt()));
       }
 
       const fileDownload = new FileDownload();
@@ -82,8 +88,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
          */
         const fileDownloadResponse = await Api.invoke(FILE_DOWNLOAD, fileDownload);
 
-        const storeSameFile = store.getState().fileManager.download[cacheId];
-        if (storeSameFile && storeSameFile.uid && storeSameFile.uid !== uid) {
+        if (downloadingPromise.has(cacheId) && downloadingPromise.get(cacheId).uid !== uid) {
           throw new ClientError('Append conflict detected');
         }
 
@@ -96,7 +101,7 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
         throw e;
       }
     }
-    collect({uri: fileInfo.fileUri}, cacheId);
+    store.dispatch(fileManagerDownloadCompleted(cacheId, fileInfo.fileUri));
   } catch (e) {
     if (!(e instanceof ClientError)) {
       store.dispatch(fileManagerDownloadAutoPaused(cacheId));

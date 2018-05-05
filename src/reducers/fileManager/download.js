@@ -14,47 +14,29 @@ import {FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 const initialState = {};
 
 export default function(state = initialState, action) {
-  let newList = {};
   switch (action.type) {
     case FILE_MANAGER_DOWNLOAD_PENDING:
-      if (action.payload && action.payload.length) {
-        action.payload.forEach(function(data) {
-          newList[data.cacheId] = {
-            status: FILE_MANAGER_DOWNLOAD_STATUS.PENDING,
-            uid: data.uid,
-          };
-        });
-      }
       return {
         ...state,
-        ...newList,
+        [action.cacheId]: {
+          status: FILE_MANAGER_DOWNLOAD_STATUS.PENDING,
+        },
       };
     case FILE_MANAGER_DOWNLOAD_PROGRESS:
-      if (action.payload && action.payload.length) {
-        action.payload.forEach(function(data) {
-          newList[data.cacheId] = {
-            ...state[data.cacheId],
-            status: FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING,
-            progress: data.progress,
-          };
-        });
-      }
       return {
         ...state,
-        ...newList,
+        [action.cacheId]: {
+          status: FILE_MANAGER_DOWNLOAD_STATUS.PROCESSING,
+          progress: action.progress,
+        },
       };
     case FILE_MANAGER_DOWNLOAD_COMPLETED:
-      if (action.payload && action.payload.length) {
-        action.payload.forEach(function(data) {
-          newList[data.cacheId] = {
-            status: FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED,
-            uri: data.uri,
-          };
-        });
-      }
       return {
         ...state,
-        ...newList,
+        [action.cacheId]: {
+          status: FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED,
+          uri: action.uri,
+        },
       };
     case FILE_MANAGER_DOWNLOAD_MANUALLY_PAUSED:
       if (state[action.cacheId] && state[action.cacheId].status === FILE_MANAGER_DOWNLOAD_STATUS.COMPLETED) {
@@ -74,6 +56,7 @@ export default function(state = initialState, action) {
         ...state,
         [action.cacheId]: {
           status: FILE_MANAGER_DOWNLOAD_STATUS.AUTO_PAUSED,
+          pauseDownload: action.pauseDownload,
         },
       };
     default:
