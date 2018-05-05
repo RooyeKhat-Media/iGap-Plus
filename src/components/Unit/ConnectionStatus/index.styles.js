@@ -4,6 +4,8 @@ import {golden, primary, red} from '../../../themes/default/index';
 export default StyleSheet.create({
   container: {
     height: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   textContainer: {
     flex: 1,
