@@ -310,21 +310,42 @@ const rules = {
       }
 
       if (url) {
-        const iGapMatch = url.match(/^https?:\/\/(?:igap)?\.net\/(.+)/i);
+        const iGapMatch = url.match(/^https?:\/\/(?:www\.)?igap\.net\/(.+)/i);
+        let igap = null;
         if (iGapMatch) {
           const path = iGapMatch[1].split('/');
           switch (_.toLower(path[0])) {
             case 'join':
               url = 'igap://join?invite=' + path[1];
+              igap = {
+                type:'join',
+                token:path[1],
+              };
               break;
             default:
               if (3 < path[0].length) {
                 if (path[1] && path[1].match(/^\d+$/)) {
-                  url = 'igap://resolve?domain=' + path[0] + '&post=' + path[1];
+                  // url = 'igap://resolve?domain=' + path[0] + '&post=' + path[1];
+                  return {
+                    type: 'mention',
+                    content: [{
+                      type: 'text',
+                      content: capture[0],
+                    }],
+                    target: path[0],
+                  };
                 } else if (!path[1]) {
                   const domainQuery = path[0].split('?');
                   if (3 < domainQuery[0].length) {
-                    url = 'igap://resolve?domain=' + domainQuery[0] + (domainQuery[1] ? '&' + domainQuery[1] : '');
+                    // url = 'igap://resolve?domain=' + domainQuery[0] + (domainQuery[1] ? '&' + domainQuery[1] : '');
+                    return {
+                      type: 'mention',
+                      content: [{
+                        type: 'text',
+                        content: capture[0],
+                      }],
+                      target: domainQuery[0],
+                    };
                   }
                 }
               }
@@ -334,13 +355,14 @@ const rules = {
           }
         }
         return {
-          type: 'link',
+          type: 'url',
           content: [{
             type: 'text',
             content: capture[0],
           }],
           target: url,
           title: undefined,
+          igap,
         };
       }
 
@@ -357,7 +379,18 @@ const rules = {
       return createElement(Text, {
         key: state.key,
         style: styles.url,
-        onPress: openURL(node.target),
+        onPress: () => {
+          if (node.igap) {
+            const igap = node.igap;
+            switch (igap.type) {
+              case 'join':
+                console.log(igap.token);
+                break;
+            }
+          } else {
+            openURL(node.target);
+          }
+        },
       }, output(node.content, state));
     },
   },

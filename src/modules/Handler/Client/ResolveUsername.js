@@ -18,7 +18,7 @@ export default class ResolveUsername extends Base {
       case Proto.ClientResolveUsernameResponse.prototype.Type.USER:
         const normalizedDataUser = normalize(this._response.getUser(), registeredUser);
         this.dispatch(entitiesRegisteredUserAdd(normalizedDataUser.entities.registeredUsers));
-        const chatId = await getPeerRoomId(this._response.getUser().getId());
+        const chatId = await getPeerRoomId(this._response.getUser().getId().toString());
         goRoomHistory(chatId);
         break;
       case Proto.ClientResolveUsernameResponse.prototype.Type.ROOM:
