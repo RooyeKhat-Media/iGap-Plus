@@ -162,10 +162,6 @@ class SendBox extends PureComponent {
     Form.onChangeText(text);
   };
 
-  onContentSizeChange = (event) => {
-    this.setState({height: event.nativeEvent.contentSize.height});
-  };
-
   onSubmit = () => {
     const {Form} = this.props;
     Form.submitForm(this.state.text);
@@ -404,10 +400,9 @@ class SendBox extends PureComponent {
               value={this.state.text}
               autoCorrect={false}
               onChangeText={this.onChangeText}
-              onContentSizeChange={this.onContentSizeChange}
               onFocus={() => this.setState({showEmojiPiker: false, showAttachment: false})}
               underlineColorAndroid={'transparent'}
-              style={[styles.textInputStyle, {height: this.state.height}]}
+              style={styles.textInputStyle}
               ref={(ref) => {
                 this.chatTextInput = ref;
               }}
@@ -467,7 +462,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: gray800,
     borderRadius: 25,
@@ -479,7 +474,6 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     flex: 1,
-    minHeight: 50,
     borderWidth: 0,
     paddingLeft: 2,
     paddingRight: 4,
@@ -488,8 +482,6 @@ const styles = StyleSheet.create({
   iconEmoji: {
     color: '#848484',
     paddingLeft: 4,
-    paddingTop: 4,
-    paddingBottom: 9,
     backgroundColor: 'transparent',
   },
 
@@ -497,8 +489,6 @@ const styles = StyleSheet.create({
     color: '#848484',
     paddingLeft: 7,
     paddingRight: 6,
-    paddingTop: 4,
-    paddingBottom: 9,
     backgroundColor: 'transparent',
 
   },
@@ -506,8 +496,6 @@ const styles = StyleSheet.create({
     color: '#848484',
     paddingLeft: 4,
     paddingRight: 4,
-    paddingTop: 4,
-    paddingBottom: 9,
     backgroundColor: 'transparent',
 
   },
@@ -516,8 +504,6 @@ const styles = StyleSheet.create({
     transform: [{rotate: '45deg'}],
     paddingLeft: 4,
     paddingRight: 1,
-    paddingTop: 4,
-    paddingBottom: 9,
     backgroundColor: 'transparent',
 
   },
@@ -525,8 +511,6 @@ const styles = StyleSheet.create({
     color: '#4b4b4b',
     paddingLeft: 4,
     paddingRight: 4,
-    paddingTop: 4,
-    paddingBottom: 9,
   },
   rowField: {
     flexDirection: 'row',
