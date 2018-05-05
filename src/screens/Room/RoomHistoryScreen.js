@@ -73,7 +73,7 @@ import {cameraMode} from '../General/CameraScreen';
 import {getUserFunc} from '../../selector/entities/registeredUser';
 import {entitiesRoomEdit} from '../../actions/entities/rooms';
 import {getMessagesDimension} from '../../modules/DimensionCalculator/index';
-import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from "../../constants/configs";
+import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from '../../constants/configs';
 
 class RoomHistoryScreen extends PureComponent {
 
@@ -113,53 +113,9 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   async componentDidMount() {
-    const {room, messageList} = this.props;
-    focusRoom(room.id);
-    this.didFocusSubscription = this.props.navigation.addListener(
-      'didFocus',
-      () => {
-        focusRoom(room.id);
-      }
-    );
-    this.didBlurSubscription = this.props.navigation.addListener(
-      'didBlur',
-      () => {
-        blurRoom(room.id);
-      }
-    );
-
-    if (room.firstUnreadMessage) {
-      try {
-        this.loading = true;
-        await Promise.all([
-          loadRoomHistory(room.id, room.firstUnreadMessage),
-          loadRoomHistory(room.id, room.firstUnreadMessage, false, true),
-        ]);
-        this.scrollToIndex();
-      } finally {
-        this.loading = false;
-      }
-    } else if (!messageList || messageList.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
-      await this.loadFromTop(true);
-    }
-
-    if (this.props.navigation.state.params.forwardedMessage) {
-      const forwardParam = this.props.navigation.state.params.forwardedMessage;
-      if (isArray(forwardParam)) {
-        forwardParam.map(function(forwardedMessage) {
-          sendMessage(room.id, null, null, null, null, forwardedMessage);
-        });
-      } else {
-        this.setState({forwardedMessage: forwardParam});
-      }
-    }
-
-    if (!room.isParticipant) {
-      const {clearMessageFromStore} = this.props;
-      clearMessageFromStore(room.id);
-      const clientSubscribeToRoom = new ClientSubscribeToRoom();
-      clientSubscribeToRoom.setRoomId(room.id);
-      await Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
+    let {room} = this.props;
+    if (room) {
+      this.initializeRoom(room);
     }
   }
 
@@ -198,16 +154,7 @@ class RoomHistoryScreen extends PureComponent {
 
   constructor(props) {
     super(props);
-    const {room} = this.props;
-
-    const isChat = room.type === Proto.Room.Type.CHAT;
-    const isGroup = room.type === Proto.Room.Type.GROUP;
-    const isChannel = room.type === Proto.Room.Type.CHANNEL;
-
-    const isOwner = ((isGroup && room.groupRole === Proto.GroupRoom.Role.OWNER) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.OWNER));
-    const isAdmin = ((isGroup && room.groupRole === Proto.GroupRoom.Role.ADMIN) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.ADMIN));
-    const isModerator = ((isGroup && room.groupRole === Proto.GroupRoom.Role.MODERATOR) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.MODERATOR));
-
+    this.initialized = false;
     this.loading = false;
     this.typingId = null;
     this.recordingVoiceId = null;
@@ -222,11 +169,92 @@ class RoomHistoryScreen extends PureComponent {
       selectedList: {},
       selectedCount: 0,
       access: {
+        sendMessage: false,
+        editMessage: false,
+        deleteMessage: false,
+      },
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {room} = nextProps;
+    if (room && !this.initialized) {
+      this.initializeRoom(room);
+    }
+    if (room && this.props.room && this.props.room.type !== room.type) {
+      this.setAccess(room);
+    }
+  }
+
+  async initializeRoom(room) {
+    const {messageList} = this.props;
+    this.initialized = true;
+    this.setAccess(room);
+    focusRoom(room.id);
+    this.didFocusSubscription = this.props.navigation.addListener(
+      'didFocus',
+      () => {
+        focusRoom(room.id);
+      }
+    );
+    this.didBlurSubscription = this.props.navigation.addListener(
+      'didBlur',
+      () => {
+        blurRoom(room.id);
+      }
+    );
+
+    if (room.firstUnreadMessage) {
+      try {
+        this.loading = true;
+        await Promise.all([
+          loadRoomHistory(room.id, room.firstUnreadMessage),
+          loadRoomHistory(room.id, room.firstUnreadMessage, false, true),
+        ]);
+        this.scrollToIndex();
+      } finally {
+        this.loading = false;
+      }
+    } else if (!messageList || messageList.length < CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT) {
+      await loadRoomHistory(room.id, room.lastMessage, true, true);
+    }
+
+    if (this.props.navigation.state.params.forwardedMessage) {
+      const forwardParam = this.props.navigation.state.params.forwardedMessage;
+      if (isArray(forwardParam)) {
+        forwardParam.map(function(forwardedMessage) {
+          sendMessage(room.id, null, null, null, null, forwardedMessage);
+        });
+      } else {
+        this.setState({forwardedMessage: forwardParam});
+      }
+    }
+
+    if (!room.isParticipant) {
+      const {clearMessageFromStore} = this.props;
+      clearMessageFromStore(room.id);
+      const clientSubscribeToRoom = new ClientSubscribeToRoom();
+      clientSubscribeToRoom.setRoomId(room.id);
+      await Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
+    }
+  }
+
+  setAccess(room) {
+    const isChat = room.type === Proto.Room.Type.CHAT;
+    const isGroup = room.type === Proto.Room.Type.GROUP;
+    const isChannel = room.type === Proto.Room.Type.CHANNEL;
+
+    const isOwner = ((isGroup && room.groupRole === Proto.GroupRoom.Role.OWNER) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.OWNER));
+    const isAdmin = ((isGroup && room.groupRole === Proto.GroupRoom.Role.ADMIN) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.ADMIN));
+    const isModerator = ((isGroup && room.groupRole === Proto.GroupRoom.Role.MODERATOR) || (isChannel && room.channelRole === Proto.ChannelRoom.Role.MODERATOR));
+
+    this.setState({
+      access: {
         sendMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
         editMessage: false,
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
-    };
+    });
   }
 
   goRoomInfoBtn = () => {
