@@ -83,10 +83,10 @@ class ChannelBox extends Component {
 
         <View style={styles.layoutChannelInfo}>
           <View style={styles.channelReactionWrap}>
-            <Button style={styles.reactionBtn} text={message.channelViewsLabel} icon="visibility"/>
-            <Button style={styles.reactionBtn} text={message.channelThumbsUpLabel} icon="thumb-up"
+            <Button style={styles.reactionBtn} text={message.channelViewsLabel || '0'} icon="visibility"/>
+            <Button style={styles.reactionBtn} text={message.channelThumbsUpLabel || '0'} icon="thumb-up"
               onPress={this.reactionUp}/>
-            <Button style={styles.reactionBtn} text={message.channelThumbsDownLabel} icon="thumb-down"
+            <Button style={styles.reactionBtn} text={message.channelThumbsDownLabel || '0'} icon="thumb-down"
               onPress={this.reactionDown}/>
           </View>
           <View style={styles.chanelInfoWrap}>

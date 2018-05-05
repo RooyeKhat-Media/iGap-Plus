@@ -52,6 +52,10 @@ class RoomMessage extends PureComponent {
       message = message.forwardedMessage;
     }
 
+    if (message.status === Proto.RoomMessageStatus.FAILED ||
+      message.status === Proto.RoomMessageStatus.SENDING) {
+      return;
+    }
     const channelReaction = new ChannelAddMessageReaction();
     channelReaction.setRoomId(Long.fromString(message.roomId));
     channelReaction.setMessageId(message.longId);
