@@ -30,6 +30,15 @@ export default {
   layoutChannelInfo: {
     marginTop: 8,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  channelReactionWrap: {
+    flexDirection: 'row',
+  },
+  chanelInfoWrap: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   textUPDown: {
     marginRight: 3,
@@ -41,8 +50,7 @@ export default {
   textSignature: {
     fontSize: 14,
     marginRight: 10,
-    flex: 1,
-    textAlign: 'right',
+    marginLeft: 10,
   },
   textMessage: {
     color: black600,
@@ -52,5 +60,12 @@ export default {
   },
   bookmark: {
     marginLeft: 18,
+  },
+  reactionBtn: {
+    container: {
+      borderWidth: 0,
+      padding: 0,
+      paddingHorizontal: 7,
+    },
   },
 };

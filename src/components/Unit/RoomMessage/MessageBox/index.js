@@ -12,7 +12,7 @@ import ForwardFrom from './ForwardFrom';
 
 class MessageBox extends React.Component {
   render() {
-    const {isForwarded, message, replyToMessage, showText, onMessagePress, onMessageLongPress} = this.props;
+    const {isForwarded, message, replyToMessage, showText, onMessagePress, onMessageLongPress, onReactionPress} = this.props;
     const forwardFrom = message.forwardFrom;
 
     let forward = null;
@@ -27,7 +27,8 @@ class MessageBox extends React.Component {
             onMessageLongPress={onMessageLongPress}
             message={forwardFrom}
             showText={false}
-            roomId={forwardFrom.roomId}/>);
+            roomId={forwardFrom.roomId}
+            onReactionPress={onReactionPress}/>);
       } else {
         forward = (
           <MessageAtomBox

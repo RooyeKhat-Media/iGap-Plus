@@ -20,7 +20,7 @@ class OwnerBox extends Component {
   };
 
   render() {
-    const {message, showText, onMessagePress, onMessageLongPress} = this.props;
+    const {message, showText, onMessagePress, onMessageLongPress, onReactionPress} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -30,11 +30,12 @@ class OwnerBox extends Component {
             message={message}
             showText={showText}
             onMessagePress={onMessagePress}
-            onMessageLongPress={onMessageLongPress}/>
+            onMessageLongPress={onMessageLongPress}
+            onReactionPress={onReactionPress}/>
         </View>
         <View style={styles.footerWrapper}>
           <View style={styles.footerTimeWrap}>
-            {message.edited && (<Icon size={15} name="mode-edit" />)}
+            {message.edited && (<Icon size={15} name="mode-edit"/>)}
             <AddonTime createTime={message.createTime}/>
           </View>
           <MessageStatus status={message.status} size={15}/>
@@ -49,6 +50,7 @@ OwnerBox.propTypes = {
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
+  onReactionPress: PropTypes.func.isRequired,
 };
 
 OwnerBox.childContextTypes = {

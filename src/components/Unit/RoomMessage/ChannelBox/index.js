@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Icon} from '../../../BaseUI';
 import {Text, View} from 'react-native';
 import {black600, red} from '../../../../themes/default/index';
 import {connect} from 'react-redux';
 import {getRoom} from '../../../../selector/entities/room';
 import MessageBox from '../MessageBox/index';
-import {MCIcon, IconToggle} from '../../../BaseUI/index';
+import {Button, Icon, IconToggle, MCIcon} from '../../../BaseUI/index';
 import AddonTime from '../MessageBox/AddonTime';
 import Avatar from '../../../../containers/Unit/Avatar';
 import styles from './index.styles';
 import {BOX_TYPE_CHANNEL} from '../../../../modules/DimensionCalculator/index';
 import RichTextView from '../../../../modules/RichTextView/index';
+import {Proto} from '../../../../modules/Proto/index';
 
 class ChannelBox extends Component {
 
@@ -34,9 +34,18 @@ class ChannelBox extends Component {
     }
   };
 
+  reactionUp = () => {
+    const {onReactionPress, isForwarded} = this.props;
+    onReactionPress(Proto.RoomMessageReaction.THUMBS_UP, isForwarded);
+  };
+  reactionDown = () => {
+    const {onReactionPress, isForwarded} = this.props;
+    onReactionPress(Proto.RoomMessageReaction.THUMBS_DOWN, isForwarded);
+  };
+
   render() {
     const {saveMessageState} = this.state;
-    const {room, message, onMessagePress, onMessageLongPress, showText, isForwarded, onShareMessagePress} = this.props;
+    const {room, message, onMessagePress, onMessageLongPress, showText, isForwarded, onShareMessagePress, onReactionPress} = this.props;
 
     return (
       <View style={styles.container}>
@@ -49,13 +58,15 @@ class ChannelBox extends Component {
           <MCIcon color={black600} name="share-variant" size={20} onPress={onShareMessagePress}/>
 
           {saveMessageState === 'default' &&
-          (<IconToggle color={black600} name="cloud-upload" size={25} onPress={this.saveMessagePress} style={styles.bookmark}/>)}
+          (<IconToggle color={black600} name="cloud-upload" size={25} onPress={this.saveMessagePress}
+            style={styles.bookmark}/>)}
 
           {saveMessageState === 'loading' &&
           (<IconToggle color={black600} name="hourglass-empty" size={25} style={styles.bookmark}/>)}
 
           {saveMessageState === 'failed' &&
-          (<IconToggle color={red} name="remove-circle" size={25} onPress={this.saveMessagePress} style={styles.bookmark}/>)}
+          (<IconToggle color={red} name="remove-circle" size={25} onPress={this.saveMessagePress}
+            style={styles.bookmark}/>)}
 
         </View>
 
@@ -65,20 +76,24 @@ class ChannelBox extends Component {
             message={message}
             showText={showText}
             onMessagePress={onMessagePress}
-            onMessageLongPress={onMessageLongPress}/>
+            onMessageLongPress={onMessageLongPress}
+            onReactionPress={onReactionPress}/>
           <RichTextView style={styles.textMessage} rawText={message.message}/>
         </View>
 
         <View style={styles.layoutChannelInfo}>
-          <Text style={styles.textSeen}>{message.channelViewsLabel}</Text>
-          <MCIcon color={black600} name="eye" size={22}/>
-          <Text style={styles.textUPDown}>{message.channelThumbsUpLabel}</Text>
-          <MCIcon color={black600} name="thumb-up" size={20} onPress={() => alert('up')}/>
-          <Text style={styles.textUPDown}>{message.channelThumbsDownLabel}</Text>
-          <MCIcon color={black600} name="thumb-down" size={20} onPress={() => alert('down')}/>
-          <Text numberOfLines={1} style={styles.textSignature}>{message.channelSignature}</Text>
-          {message.edited && (<Icon name="mode-edit" size={15} />)}
-          <AddonTime createTime={message.createTime}/>
+          <View style={styles.channelReactionWrap}>
+            <Button style={styles.reactionBtn} text={message.channelViewsLabel} icon="visibility"/>
+            <Button style={styles.reactionBtn} text={message.channelThumbsUpLabel} icon="thumb-up"
+              onPress={this.reactionUp}/>
+            <Button style={styles.reactionBtn} text={message.channelThumbsDownLabel} icon="thumb-down"
+              onPress={this.reactionDown}/>
+          </View>
+          <View style={styles.chanelInfoWrap}>
+            {message.edited && (<Icon name="mode-edit" size={15}/>)}
+            <AddonTime createTime={message.createTime}/>
+            <Text numberOfLines={1} style={styles.textSignature}>{message.channelSignature}</Text>
+          </View>
         </View>
       </View>
     );
@@ -92,6 +107,7 @@ ChannelBox.propTypes = {
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
+  onReactionPress: PropTypes.func.isRequired,
 };
 
 ChannelBox.childContextTypes = {

@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import Long from 'long';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAuthorHash, getUserId, loadPeerRoom, shareMessage} from '../../utils/app';
@@ -6,7 +7,9 @@ import RoomMessageComponent from '../../components/Unit/RoomMessage/index';
 import {getRoomMessage, getRoomMessageIsFirstUnread} from '../../selector/entities/roomMessage';
 import {getPeerRoomId, sendMessage} from '../../utils/messenger';
 import {goRoomInfo} from '../../navigators/SecondaryNavigator';
-import {Proto} from '../../modules/Proto/index';
+import {ChannelAddMessageReaction, Proto} from '../../modules/Proto/index';
+import Api from '../../modules/Api/index';
+import {CHANNEL_ADD_MESSAGE_REACTION} from '../../constants/methods/index';
 
 class RoomMessage extends PureComponent {
 
@@ -43,6 +46,19 @@ class RoomMessage extends PureComponent {
     }
   };
 
+  onReactionPress = (reaction, forward = false) => {
+    let {message} = this.props;
+    if (forward && message.forwardedMessage) {
+      message = message.forwardedMessage;
+    }
+
+    const channelReaction = new ChannelAddMessageReaction();
+    channelReaction.setRoomId(Long.fromString(message.roomId));
+    channelReaction.setMessageId(message.longId);
+    channelReaction.setReaction(reaction);
+    return Api.invoke(CHANNEL_ADD_MESSAGE_REACTION, channelReaction);
+  };
+
   render() {
     const authorHash = getAuthorHash();
     const {message, roomType, selected, isFirstUnread} = this.props;
@@ -60,7 +76,8 @@ class RoomMessage extends PureComponent {
         onMessagePress={this.onMessagePress}
         onMessageLongPress={this.onMessageLongPress}
         onShareMessagePress={this.onShareMessagePress}
-        onSaveMessagePress={this.onSaveMessagePress}/>
+        onSaveMessagePress={this.onSaveMessagePress}
+        onReactionPress={this.onReactionPress}/>
     );
   }
 }

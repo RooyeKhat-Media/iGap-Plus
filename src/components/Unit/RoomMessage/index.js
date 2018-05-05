@@ -13,7 +13,7 @@ import i18n from '../../../i18n';
 class RoomMessage extends React.PureComponent {
 
   renderContent = () => {
-    const {message, authorHash, roomType, goUserInfo, onMessagePress, onMessageLongPress, onShareMessagePress, onSaveMessagePress} = this.props;
+    const {message, authorHash, roomType, goUserInfo, onMessagePress, onMessageLongPress, onShareMessagePress, onSaveMessagePress, onReactionPress} = this.props;
 
     if (roomType === Proto.Room.Type.CHANNEL) {
       return (<ChannelBox
@@ -23,14 +23,16 @@ class RoomMessage extends React.PureComponent {
         onMessagePress={onMessagePress}
         onMessageLongPress={onMessageLongPress}
         onShareMessagePress={onShareMessagePress}
-        onSaveMessagePress={onSaveMessagePress}/>);
+        onSaveMessagePress={onSaveMessagePress}
+        onReactionPress={onReactionPress}/>);
 
     } else if (message.authorHash === authorHash) {
       return (<OwnerBox
         message={message}
         showText={true}
         onMessagePress={onMessagePress}
-        onMessageLongPress={onMessageLongPress}/>);
+        onMessageLongPress={onMessageLongPress}
+        onReactionPress={onReactionPress}/>);
 
     } else if (roomType === Proto.Room.Type.CHAT) {
       return (<ChatBox
@@ -38,7 +40,8 @@ class RoomMessage extends React.PureComponent {
         showText={true}
         goUserInfo={goUserInfo}
         onMessagePress={onMessagePress}
-        onMessageLongPress={onMessageLongPress}/>);
+        onMessageLongPress={onMessageLongPress}
+        onReactionPress={onReactionPress}/>);
 
     } else if (roomType === Proto.Room.Type.GROUP) {
       return (<GroupBox
@@ -46,7 +49,8 @@ class RoomMessage extends React.PureComponent {
         showText={true}
         goUserInfo={goUserInfo}
         onMessagePress={onMessagePress}
-        onMessageLongPress={onMessageLongPress}/>);
+        onMessageLongPress={onMessageLongPress}
+        onReactionPress={onReactionPress}/>);
     }
     return null;
   };
@@ -62,7 +66,8 @@ class RoomMessage extends React.PureComponent {
       delayLongPress={700}
       onPress={onMessagePress}
       onLongPress={onMessageLongPress}>
-      {(isFirstUnread) && (<View style={styles.unreadBar}><FormattedMessage {...i18n.roomHistoryUnreadMessageLabel} /></View>)}
+      {(isFirstUnread) && (
+        <View style={styles.unreadBar}><FormattedMessage {...i18n.roomHistoryUnreadMessageLabel} /></View>)}
       {this.renderContent()}
     </TouchableOpacity>);
   }
@@ -83,6 +88,7 @@ RoomMessage.propTypes = {
   onMessageLongPress: PropTypes.func,
   onShareMessagePress: PropTypes.func,
   onSaveMessagePress: PropTypes.func,
+  onReactionPress: PropTypes.func,
 };
 export default injectIntl(RoomMessage);
 

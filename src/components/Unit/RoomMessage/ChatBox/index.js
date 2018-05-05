@@ -20,7 +20,7 @@ class ChatBox extends Component {
   };
 
   render() {
-    const {message, showText, onMessagePress, onMessageLongPress, goUserInfo} = this.props;
+    const {message, showText, onMessagePress, onMessageLongPress, goUserInfo, onReactionPress} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -34,10 +34,11 @@ class ChatBox extends Component {
               message={message}
               showText={showText}
               onMessagePress={onMessagePress}
-              onMessageLongPress={onMessageLongPress}/>
+              onMessageLongPress={onMessageLongPress}
+              onReactionPress={onReactionPress}/>
           </View>
           <View style={styles.footerWrap}>
-            {message.edited && (<Icon size={15} name="mode-edit" />)}
+            {message.edited && (<Icon size={15} name="mode-edit"/>)}
             <AddonTime createTime={message.createTime}/>
           </View>
         </View>
@@ -51,6 +52,7 @@ ChatBox.propTypes = {
   showText: PropTypes.bool.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
+  onReactionPress: PropTypes.func.isRequired,
 };
 
 ChatBox.childContextTypes = {
