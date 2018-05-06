@@ -41,7 +41,7 @@ class VoiceRecorder extends Component {
 
   startRecord = () => {
     const {onStartRecordSound} = this.props;
-    SoundRecorder.start(SoundRecorder.PATH_DOCUMENT + '/' + Date.now().toString() + '.mp3');
+    SoundRecorder.start(SoundRecorder.PATH_DOCUMENT + '/' + Date.now().toString() + '.m4a');
     onStartRecordSound();
   };
 
