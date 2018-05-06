@@ -9,8 +9,8 @@ import {Proto} from '../../../modules/Proto';
 const {save, load, remove} = QueueDb(
   persistCallback,
   retrieveCallback,
-  500,
-  500,
+  100,
+  100,
   50
 );
 

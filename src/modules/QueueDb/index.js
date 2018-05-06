@@ -25,8 +25,8 @@
  */
 export default function(persistCallback,
   retrieveCallback,
-  saveDelay = 500,
-  loadDelay = 500,
+  saveDelay = 100,
+  loadDelay = 100,
   saveQueueSize = 100,
   loadQueueSize = 100) {
   /**
