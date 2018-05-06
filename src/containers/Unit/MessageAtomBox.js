@@ -114,7 +114,10 @@ class MessageAtomBox extends Component {
 
   togglePress = () => {
     const {message, downloadedFile, uploading, stopUpload, onMessagePress} = this.props;
-    if (!getRoomHistorySelectedMode()) {
+    if (
+      message.status !== Proto.RoomMessageStatus.SENDING &&
+      message.status !== Proto.RoomMessageStatus.FAILED &&
+      !getRoomHistorySelectedMode()) {
       if (uploading) {
         switch (uploading.status) {
           case FILE_MANAGER_UPLOAD_STATUS.UPLOADING:
