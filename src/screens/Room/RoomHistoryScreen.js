@@ -20,7 +20,9 @@ import {
 import {
   blurRoom,
   deleteMessages,
-  editRoomMessage, focusRoom,
+  dispatchMessengerRoomAddList,
+  editRoomMessage,
+  focusRoom,
   forwardToList,
   resendMessage,
   sendActionRequest,
@@ -36,12 +38,12 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
-  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
 } from '../../constants/app';
 import {
   filesPicker,
   getAuthorHash,
-  getFakeMessageId,
   getMessageDownloadFileUri,
   saveToDownloads,
   saveToGallery,
@@ -67,13 +69,13 @@ import Api from '../../modules/Api/index';
 import i18n from '../../i18n';
 import {getImageSize, prependFileProtocol, sleep} from '../../utils/core';
 import Clipboard from '../../modules/Clipboard/index';
-import {messengerRoomAddList} from '../../actions/messenger/rooms';
 import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger/roomMessages';
 import {cameraMode} from '../General/CameraScreen';
 import {getUserFunc} from '../../selector/entities/registeredUser';
 import {entitiesRoomEdit} from '../../actions/entities/rooms';
 import {getMessagesDimension} from '../../modules/DimensionCalculator/index';
 import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from '../../constants/configs';
+import {apiInvoke} from '../../modules/Entities/Rooms/index';
 
 class RoomHistoryScreen extends PureComponent {
 
@@ -231,8 +233,6 @@ class RoomHistoryScreen extends PureComponent {
     }
 
     if (!room.isParticipant) {
-      const {clearMessageFromStore} = this.props;
-      clearMessageFromStore(room.id);
       const clientSubscribeToRoom = new ClientSubscribeToRoom();
       clientSubscribeToRoom.setRoomId(room.id);
       await Api.invoke(CLIENT_SUBSCRIBE_TO_ROOM, clientSubscribeToRoom);
@@ -602,10 +602,8 @@ class RoomHistoryScreen extends PureComponent {
           const clientJoinByUsername = new ClientJoinByUsername();
           clientJoinByUsername.setUsername(room.groupPublicUsername || room.channelPublicUsername);
           await Api.invoke(CLIENT_JOIN_BY_USERNAME, clientJoinByUsername);
-
-          const {addRoomList} = this.props;
-          room.isParticipant = true;
-          addRoomList(room.id);
+          await apiInvoke(room.id);
+          dispatchMessengerRoomAddList(room.id);
         }
       } else {
         const clientMuteRoom = new ClientMuteRoom();
@@ -813,16 +811,6 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addRoomList: (roomId) => {
-      return dispatch(messengerRoomAddList({
-        [roomId]: {
-          id: roomId,
-          sort: getFakeMessageId().toString(),
-          pinId: '0',
-        },
-      }));
-    },
-
     clearMessageFromStore: (roomId) => {
       dispatch(messengerRoomMessageClearMessageFromStore(roomId));
     },

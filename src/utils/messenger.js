@@ -1,6 +1,7 @@
 import {
   CHANNEL_DELETE_MESSAGE,
-  CHANNEL_EDIT_MESSAGE, CHANNEL_GET_MESSAGES_STATS,
+  CHANNEL_EDIT_MESSAGE,
+  CHANNEL_GET_MESSAGES_STATS,
   CHANNEL_SEND_MESSAGE,
   CHAT_DELETE_MESSAGE,
   CHAT_EDIT_MESSAGE,
@@ -16,7 +17,8 @@ import {
 } from '../constants/methods/index';
 import {
   ChannelDeleteMessage,
-  ChannelEditMessage, ChannelGetMessagesStats,
+  ChannelEditMessage,
+  ChannelGetMessagesStats,
   ChannelSendMessage,
   ChatDeleteMessage,
   ChatEditMessage,
@@ -40,18 +42,20 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
-  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
+  ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
 } from '../constants/app';
 import {msSleep, tNow} from './core';
 import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
-import {random, groupBy, forIn, map} from 'lodash';
+import {forIn, groupBy, map, random} from 'lodash';
 import Long from 'long';
 import roomMessageSchema from '../schemas/roomMessage';
 import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../actions/entities/roomMessages';
 import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManager';
 import Collector from '../modules/Collector';
+import {messengerRoomAddList} from '../actions/messenger/rooms';
 
 /**
  * @type {string} current Focus Room
@@ -745,6 +749,7 @@ export function seenDeliveredMessages(roomId) {
 export function listenMessage(roomId, messageId) {
   updateMessageStatus(roomId, messageId, Proto.RoomMessageStatus.LISTENED);
 }
+
 /**
  * @param {string} roomId
  * @param {string} messageId
@@ -846,3 +851,13 @@ const {collect} = Collector(
   100,
   true
 );
+
+export function dispatchMessengerRoomAddList(roomId) {
+  store.dispatch(messengerRoomAddList({
+    [roomId]: {
+      id: roomId,
+      sort: getFakeMessageId().toString(),
+      pinId: '0',
+    },
+  }));
+}

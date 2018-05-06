@@ -63,7 +63,7 @@ export default async function putState(id, offlineInvokeApi = false) {
  * @param {string} id
  * @return {Promise.<ProtoClientGetRoomResponse>}
  */
-function apiInvoke(id) {
+export function apiInvoke(id) {
   const clientGetRoom = new ClientGetRoom();
   clientGetRoom.setRoomId(Long.fromString(id));
 

@@ -13,6 +13,8 @@ import {ClientJoinByInviteLink} from '../../Proto/index';
 import {CLIENT_JOIN_BY_INVITE_LINK} from '../../../constants/methods/index';
 import {goRoomHistory} from '../../../navigators/SecondaryNavigator';
 import {collect} from './GetRoom';
+import {apiInvoke} from '../../Entities/Rooms/index';
+import {dispatchMessengerRoomAddList} from '../../../utils/messenger';
 
 /**
  * @property {ProtoClientCheckInviteLink} _request
@@ -56,6 +58,8 @@ function getContent(room, dispatch, token) {
                 const clientJoinByInviteLink = new ClientJoinByInviteLink();
                 clientJoinByInviteLink.setInviteToken(token);
                 await Api.invoke(CLIENT_JOIN_BY_INVITE_LINK, clientJoinByInviteLink);
+                await apiInvoke(room.id);
+                dispatchMessengerRoomAddList(room.id);
               }
               goRoomHistory(room.getId().toString());
             }}

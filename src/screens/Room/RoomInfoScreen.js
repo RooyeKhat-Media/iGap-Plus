@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RoomViewComponent from '../../components/Room/RoomInfo';
 import {getRoom, getRoomPeer} from '../../selector/entities/room';
 import {connect} from 'react-redux';
-import putState from '../../modules/Entities/Rooms/index';
+import putState, {apiInvoke} from '../../modules/Entities/Rooms/index';
 import {
   ChannelAddMember,
   ChannelDelete,
@@ -48,6 +48,7 @@ import {resetSecondaryNavigation} from '../../navigators/index';
 import Long from 'long';
 import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
 import {getUserId} from '../../utils/app';
+import {dispatchMessengerRoomAddList} from '../../utils/messenger';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -134,8 +135,10 @@ class RoomInfoScreen extends Component {
   joinRoom = async () => {
     const {room} = this.props;
     const clientJoinByUsername = new ClientJoinByUsername();
-    clientJoinByUsername.setUsername(room.username);
+    clientJoinByUsername.setUsername(room.groupPublicUsername || room.channelPublicUsername);
     await Api.invoke(CLIENT_JOIN_BY_USERNAME, clientJoinByUsername);
+    await apiInvoke(room.id);
+    dispatchMessengerRoomAddList(room.id);
   };
 
   leaveRoom = async () => {
