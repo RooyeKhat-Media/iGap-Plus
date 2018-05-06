@@ -1,5 +1,9 @@
 import Collector from '../modules/Collector';
 import {startsWith} from 'lodash';
+import {
+  FILE_MANAGER_UPLOAD_DISPOSED,
+  FILE_MANAGER_UPLOAD_PENDING,
+} from '../actions/fileManager';
 
 
 const {collect} = Collector(
@@ -25,6 +29,10 @@ export default store => next => action => {
       startsWith(action.type, 'SECONDARY_NAVIGATOR_')
       ||
       startsWith(action.type, 'Navigation/')
+      ||
+      action.type === FILE_MANAGER_UPLOAD_PENDING
+      ||
+      action.type === FILE_MANAGER_UPLOAD_DISPOSED
       ||
       false
   );
