@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
-import {injectIntl, intlShape, FormattedRelative} from 'react-intl';
+import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
-import {red, green, primary, textTitleStyle} from '../../../themes/default/index';
-import {ListItem, MCIcon, FlatList, Toolbar} from '../../BaseUI/index';
+import {green, primary, red, textTitleStyle} from '../../../themes/default/index';
+import {FlatList, ListItem, MCIcon, Toolbar} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import ReturnToCall from '../../Call/ReturnToCall';
 import {Proto} from '../../../modules/Proto/index';
 import {toHHMMSS} from '../../../utils/core';
 import {goCall} from '../../../navigators/SecondaryNavigator';
 import UserListItem from '../../../containers/Unit/UserListItem';
+import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
+import PopupMenu from '../../BaseUI/PopupMenu/index';
 
 class CallListComponent extends Component {
   getStyles = () => {
@@ -35,8 +37,11 @@ class CallListComponent extends Component {
       <View style={styles.root}>
         <Toolbar
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.callListRecentCall)}</Text>}
-          rightElement={{menu: {icon: 'more-vert', labels: [intl.formatMessage(i18n.callListClearCallHistory)]}}}
-          onRightElementPress={(result) => this.menuClick(result.index)}
+          rightElement={(<PopupMenu actionList={[
+            intl.formatMessage(i18n.callListClearCallHistory),
+          ]}
+          type={APP_MODAL_ID_PRIMARY}
+          onPress={(result) => this.menuClick(result)}/>)}
         />
         <ReturnToCall/>
         <FlatList
