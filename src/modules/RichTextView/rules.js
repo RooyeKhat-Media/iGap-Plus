@@ -5,8 +5,14 @@ import _ from 'lodash';
 import SimpleMarkdown from 'simple-markdown';
 import Linking from '../Linking/index';
 import styles from './index.styles';
-import {ClientResolveUsername} from '../Proto/index';
-import {CLIENT_RESOLVE_USERNAME} from '../../constants/methods/index';
+import {
+  ClientCheckInviteLink,
+  ClientResolveUsername,
+} from '../Proto/index';
+import {
+  CLIENT_CHECK_INVITE_LINK,
+  CLIENT_RESOLVE_USERNAME,
+} from '../../constants/methods/index';
 import Api from '../Api/index';
 
 const TLD = [
@@ -318,8 +324,8 @@ const rules = {
             case 'join':
               url = 'igap://join?invite=' + path[1];
               igap = {
-                type:'join',
-                token:path[1],
+                type: 'join',
+                token: path[1],
               };
               break;
             default:
@@ -384,7 +390,9 @@ const rules = {
             const igap = node.igap;
             switch (igap.type) {
               case 'join':
-                console.log(igap.token);
+                const clientCheckInviteLink = new ClientCheckInviteLink();
+                clientCheckInviteLink.setInviteToken(igap.token);
+                Api.invoke(CLIENT_CHECK_INVITE_LINK, clientCheckInviteLink);
                 break;
             }
           } else {

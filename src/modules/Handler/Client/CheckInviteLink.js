@@ -1,4 +1,18 @@
 import Base from '../Base';
+import {normalize} from 'normalizr';
+import room from '../../../schemas/room';
+import {closeModal, openModal} from '../../../actions/modal';
+import {View} from 'react-native';
+import React from 'react';
+import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import {ListItem, Button} from '../../../components/BaseUI/index';
+import Avatar from '../../../containers/Unit/Avatar';
+import styles from '../../../components/BaseUI/DialogModal/index.style';
+import Api from '../../Api/index';
+import {ClientJoinByInviteLink} from '../../Proto/index';
+import {CLIENT_JOIN_BY_INVITE_LINK} from '../../../constants/methods/index';
+import {goRoomHistory} from '../../../navigators/SecondaryNavigator';
+import {collect} from './GetRoom';
 
 /**
  * @property {ProtoClientCheckInviteLink} _request
@@ -6,6 +20,48 @@ import Base from '../Base';
  */
 export default class CheckInviteLink extends Base {
   handle() {
-    console.error('CheckInviteLink', 'Not implemented yet', this);
+    const normalizedData = normalize(this._response.getRoom(), room);
+    collect(normalizedData, this._response.getRoom().getId().toString());
+    this.dispatch(openModal(APP_MODAL_ID_SECONDARY, getContent(this._response.getRoom(), this.dispatch, this._request.getInviteToken()), true));
   }
+}
+
+// todo nejati use 18n   join and cancel
+
+function getContent(room, dispatch, token) {
+  let member = 0;
+  if (room.getChannelRoomExtra()) {
+    member = room.getChannelRoomExtra().getParticipantsCount();
+  } else if (room.getGroupRoomExtra()) {
+    member = room.getGroupRoomExtra().getParticipantsCount();
+  }
+  return (
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <View
+        style={{width: 320, height: 150, alignSelf: 'center', backgroundColor: 'white', borderRadius: 7, padding: 10}}>
+        <ListItem
+          leftElement={<Avatar roomId={room.getId().toString()} size={52}/>}
+          centerElement={{
+            primaryText: room.getTitle(),
+            secondaryText: member + ' member',
+          }}
+        />
+        <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+          <Button upperCase={false} primary text={'Cancel'} style={styles.dialogBtn}
+            onPress={() => dispatch(closeModal(APP_MODAL_ID_SECONDARY))}/>
+          <Button upperCase={false} primary text={'Join'} style={styles.dialogBtn}
+            onPress={async () => {
+              dispatch(closeModal(APP_MODAL_ID_SECONDARY));
+              if (!room.isParticipant) {
+                const clientJoinByInviteLink = new ClientJoinByInviteLink();
+                clientJoinByInviteLink.setInviteToken(token);
+                await Api.invoke(CLIENT_JOIN_BY_INVITE_LINK, clientJoinByInviteLink);
+              }
+              goRoomHistory(room.getId().toString());
+            }}
+          />
+        </View>
+      </View>
+    </View>
+  );
 }
