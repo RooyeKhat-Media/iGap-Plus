@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, {PureComponent} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {memoize} from 'lodash';
 
@@ -49,7 +49,7 @@ const getAvatarStyle = memoize(({color, size, hasUri, circle}) => {
       width: size,
       height: size,
       borderRadius: circle ? size / 2 : null,
-      display: !hasUri ? 'none' : null,
+      display: (!hasUri && Platform.os !== 'android') ? 'none' : null,
     },
   });
 }, function({color, size, hasUri, circle}) {
