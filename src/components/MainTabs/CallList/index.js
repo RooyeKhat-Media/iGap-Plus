@@ -45,7 +45,7 @@ class CallListComponent extends Component {
           renderItem={({item}) => <UserListItem userId={item.peerId.toString()} item={item}
             render={(props) => this.renderItem(props)}/>}
           onEndReached={onLoadMore}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={1}
         />
       </View>
     );

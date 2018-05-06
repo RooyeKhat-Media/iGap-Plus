@@ -289,7 +289,7 @@ export default class Call {
     if (_peerConnection !== null) {
       _peerConnection.close();
       _peerConnection = null;
-      setTimeout(() => requestGetLog(0, 1), 1000);
+      setTimeout(() => requestGetLog(0, 1), 1500);
     }
     _offerSdp = null;
     _offerType = null;

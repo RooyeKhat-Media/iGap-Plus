@@ -22,8 +22,7 @@ export default [
           flexDirection: 'row',
         },
         sectionTopSub1: {
-          marginLeft: 10,
-          marginRight: 2,
+          margin: 10,
           flex: 1,
         },
         avatar: {

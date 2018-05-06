@@ -47,11 +47,11 @@ class SettingComponent extends Component {
         />
         <ScrollView style={styles.scrollView}>
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingGeneralSettings)} </Text>
-          <ListItem
-            centerElement={{primaryText: intl.formatMessage(i18n.settingNotificationAndSound)}}
-            onPress={null}
-            style={styles.listItem}
-          />
+          {/*<ListItem*/}
+          {/*centerElement={{primaryText: intl.formatMessage(i18n.settingNotificationAndSound)}}*/}
+          {/*onPress={null}*/}
+          {/*style={styles.listItem}*/}
+          {/*/>*/}
           <ListItem
             centerElement={{primaryText: intl.formatMessage(i18n.privacyPrivacy)}}
             onPress={() => goSettingPrivacy()}
@@ -67,11 +67,11 @@ class SettingComponent extends Component {
             onPress={() => goActiveSession()}
             style={styles.listItem}
           />
-          <ListItem
-            centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}
-            onPress={null}
-            style={styles.listItem}
-          />
+          {/*<ListItem*/}
+          {/*centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}*/}
+          {/*onPress={null}*/}
+          {/*style={styles.listItem}*/}
+          {/*/>*/}
           <ListItem
             centerElement={{primaryText: intl.formatMessage(i18n.settingTwoStepVerification)}}
             onPress={goTowStepSetting}

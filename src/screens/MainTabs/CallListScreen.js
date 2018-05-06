@@ -26,6 +26,11 @@ class CallListScreen extends Component {
     header: null,
   };
 
+  componentDidMount() {
+    offset = 0;
+    this.onLoadMore();
+  }
+
   render() {
     const {callLogList, permission} = this.props;
     offset = callLogList.length;
