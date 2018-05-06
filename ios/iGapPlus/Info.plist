@@ -50,9 +50,11 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need to access your location</string>
+    <string>iGap needs to access your Location.
+This access is that perhaps you are sending your position to someone else or using the Nearby to view people around you.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to access Photo Library</string>
+	<string>iGap needs to access your Photo-Library.
+This is the option to choose a photo from your gallery and send it to someone else.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
     <string>We need write-only access to Photo Library</string>
 	<key>UIAppFonts</key>
@@ -100,11 +102,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>We need to access Camera</string>
+	<string>iGap needs to access your Camera.
+It has access to take photos and send to others. Note that you can not access this if you do not want to take a photo.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We need to access Microphone</string>
+	<string>iGap needs to access your Microphone.
+It has access to record your voice, you want to record your voice and send it to another.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>We need to access your contacts</string>
+	<string>iGap needs to access your address book and sync your contact list to its servers in order for you to be able to find other iGap users, call and text for free</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
