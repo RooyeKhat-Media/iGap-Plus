@@ -8,7 +8,12 @@ const getBlockListState = (state) =>
   state.methods.blockUser;
 export const getBlockList = createSelector(
   getBlockListState,
-  (roomListObject) => {
-    return orderBy(values(roomListObject), ['sort'], ['asc']);
+  (blockListObject) => {
+    return orderBy(values(blockListObject), ['sort'], ['asc']);
   }
+);
+
+export const getIsBlockFunc = createSelector(
+  getBlockListState,
+  (blockListObject) => (id) => !!blockListObject[id],
 );

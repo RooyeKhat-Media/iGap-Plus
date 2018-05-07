@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {Button, Confirm, ListItem, MCIcon, Switch, Toolbar, Avatar as CircleIcon} from '../../BaseUI/index';
+import {Button, Confirm, ListItem, MCIcon, Switch, Toolbar, Avatar as CircleIcon, PopupMenu} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
@@ -18,7 +18,7 @@ class RoomInfoComponent extends React.Component {
     const {
       intl, room, roomPeer, roomMute, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
       addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack, callAction,
-    } = this.props;
+      isBlock, onActionListPress} = this.props;
     const styles = this.getStyles();
 
     let description;
@@ -30,11 +30,25 @@ class RoomInfoComponent extends React.Component {
       description = roomPeer.bio;
     }
 
+    const actionList = [];
+    if (roomPeer && roomPeer.mutual) {
+      actionList.push(intl.formatMessage(i18n.roomInfoShareContact));
+      actionList.push(intl.formatMessage(i18n.roomInfoEditContact));
+      actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
+      actionList.push(intl.formatMessage(i18n.roomInfoDeleteContact));
+    } else if (roomPeer) {
+      actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
+    }
     return (
       <View style={styles.container}>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
+          rightElement={roomPeer ? (
+            <PopupMenu
+              actionList={actionList}
+              type={APP_MODAL_ID_SECONDARY}
+              onPress={(idx) => {onActionListPress(idx, this.confirm); }}/>) : null}
           centerElement={<Text numberOfLines={1} style={textTitleStyle}>{room.title}</Text>}/>
 
         <ScrollView style={styles.scroll}>
@@ -311,6 +325,8 @@ RoomInfoComponent.propTypes = {
   actionClick: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
   callAction: PropTypes.object.isRequired,
+  onActionListPress: PropTypes.func.isRequired,
+  isBlock: PropTypes.bool.isRequired,
 };
 
 export default injectIntl(RoomInfoComponent);

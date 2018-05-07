@@ -41,18 +41,18 @@ export default async function putState(id, cacheId = null) {
         throw new Error('User cacheId is changed and local data is not valid');
       }
     } catch (e) {
-      await apiInvoke(id);
+      await apiInvoke(Long.fromString(id));
     }
   }
 }
 
 /**
- * @param {string} id
+ * @param {Long} id
  * @return {Promise.<ProtoUserInfoResponse>}
  */
-function apiInvoke(id) {
+export function apiInvoke(id) {
   const userInfo = new UserInfo();
-  userInfo.setUserId(Long.fromString(id));
+  userInfo.setUserId(id);
 
   return Api.invoke(USER_INFO, userInfo);
 }

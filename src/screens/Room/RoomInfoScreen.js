@@ -11,12 +11,15 @@ import {
   ChatClearMessage,
   ChatDelete,
   ClientCountRoomHistory,
-  ClientJoinByUsername, ClientMuteRoom,
+  ClientJoinByUsername,
+  ClientMuteRoom,
   GroupAddMember,
   GroupClearMessage,
   GroupDelete,
   GroupLeft,
   Proto,
+  UserContactsBlock,
+  UserContactsDelete, UserContactsUnblock,
 } from '../../modules/Proto/index';
 import {
   CHANNEL_ADD_MEMBER,
@@ -25,11 +28,15 @@ import {
   CHAT_CLEAR_MESSAGE,
   CHAT_DELETE,
   CLIENT_COUNT_ROOM_HISTORY,
-  CLIENT_JOIN_BY_USERNAME, CLIENT_MUTE_ROOM,
+  CLIENT_JOIN_BY_USERNAME,
+  CLIENT_MUTE_ROOM,
   GROUP_ADD_MEMBER,
   GROUP_CLEAR_MESSAGE,
   GROUP_DELETE,
   GROUP_LEFT,
+  USER_CONTACTS_BLOCK,
+  USER_CONTACTS_DELETE,
+  USER_CONTACTS_UNBLOCK,
 } from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
@@ -49,6 +56,9 @@ import Long from 'long';
 import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
 import {getUserId} from '../../utils/app';
 import {dispatchMessengerRoomAddList} from '../../utils/messenger';
+import {deleteContact} from '../../actions/methods/user/contacts/getList';
+import {apiInvoke as userApiInvoke} from '../../modules/Entities/RegisteredUsers/index';
+import {getIsBlockFunc} from '../../selector/methods/user/contacts/block';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -277,9 +287,60 @@ class RoomInfoScreen extends Component {
     this.setState({roomMute});
   };
 
+  onActionListPress = (idx, confirm) => {
+    const {roomPeer} = this.props;
+    switch (idx) {
+      case 0:
+        roomPeer.mutual ? this.shareContact() : this.toggleBlockContact(confirm);
+        break;
+      case 1:
+        roomPeer.mutual && this.editContact();
+        break;
+      case 2:
+        this.toggleBlockContact(confirm);
+        break;
+      case 3:
+        roomPeer.mutual && this.deleteContact(confirm);
+        break;
+      default: break;
+    }
+  };
+
+  shareContact = () => {
+    // goRoomHistory()
+  };
+  editContact = () => {
+  };
+  toggleBlockContact = (confirm) => {
+    const {roomPeer, getIsBlockFunc} = this.props;
+    if (!getIsBlockFunc(roomPeer.id)) {
+      confirm.open(i18n.roomInfoBlockContactConfirmTitle, i18n.roomInfoBlockContactConfirmDescription,
+        async () => {
+          const blockContact = new UserContactsBlock();
+          blockContact.setUserId(roomPeer.longId);
+          Api.invoke(USER_CONTACTS_BLOCK, blockContact);
+        });
+    } else {
+      const unblockContact = new UserContactsUnblock();
+      unblockContact.setUserId(roomPeer.longId);
+      Api.invoke(USER_CONTACTS_UNBLOCK, unblockContact);
+    }
+  };
+  deleteContact = (confirm) => {
+    const {roomPeer, dispatchDeleteContact} = this.props;
+    confirm.open(i18n.roomInfoDeleteContactConfirmTitle, i18n.roomInfoDeleteContactConfirmDescription,
+      async () => {
+        const deleteContact = new UserContactsDelete();
+        deleteContact.setPhone(roomPeer.phone);
+        await Api.invoke(USER_CONTACTS_DELETE, deleteContact);
+        dispatchDeleteContact(roomPeer.id);
+        userApiInvoke(roomPeer.longId);
+      });
+  };
+
   render() {
     const {access, roomMute} = this.state;
-    const {room, roomPeer, countRoomHistory, callAction} = this.props;
+    const {room, roomPeer, countRoomHistory, callAction, getIsBlockFunc} = this.props;
     if (!room) {
       return null;
     }
@@ -307,6 +368,8 @@ class RoomInfoScreen extends Component {
         deleteRoom={this.deleteRoom}
         goAvatarList={this.avatarList}
         toggleMute={this.toggleMute}
+        onActionListPress={this.onActionListPress}
+        isBlock={roomPeer ? getIsBlockFunc(roomPeer.id) : false}
         goBack={this.props.navigation.goBack}
         callAction={callAction}
       />
@@ -336,10 +399,17 @@ const makeMapStateToProps = () => {
       roomPeer: getRoomPeer(state, props),
       countRoomHistory: getCountRoomHistory(state, props),
       callAction: getCallPermission(state),
+      getIsBlockFunc: getIsBlockFunc(state),
     };
   };
 };
 
+const bindActions = (dispatch) => {
+  return {
+    dispatchDeleteContact: id => dispatch(deleteContact(id)),
+  };
+};
 export default connect(
   makeMapStateToProps,
+  bindActions,
 )(RoomInfoScreen);

@@ -1169,6 +1169,51 @@ export default {
     defaultMessage: 'Are you sure you want to Leave From {roomTitle}?',
     description: 'room info screen',
   },
+  roomInfoShareContact: {
+    id: 'roomInfo.shareContact',
+    defaultMessage: 'Share',
+    description: 'room info screen',
+  },
+  roomInfoEditContact: {
+    id: 'roomInfo.editContact',
+    defaultMessage: 'Edit Contact',
+    description: 'room info screen',
+  },
+  roomInfoBlockContact: {
+    id: 'roomInfo.blockContact',
+    defaultMessage: 'Block Contact',
+    description: 'room info screen',
+  },
+  roomInfoUnBlockContact: {
+    id: 'roomInfo.unBlockContact',
+    defaultMessage: 'UnBlock Contact',
+    description: 'room info screen',
+  },
+  roomInfoDeleteContact: {
+    id: 'roomInfo.deleteContact',
+    defaultMessage: 'Delete Contact',
+    description: 'room info screen',
+  },
+  roomInfoDeleteContactConfirmTitle: {
+    id: 'roomInfo.deleteContactConfirmTitle',
+    defaultMessage: 'Delete Contact',
+    description: 'room info screen',
+  },
+  roomInfoDeleteContactConfirmDescription: {
+    id: 'roomInfo.deleteContactConfirmDescription',
+    defaultMessage: 'Are you sure you want to delete this contact?',
+    description: 'room info screen',
+  },
+  roomInfoBlockContactConfirmTitle: {
+    id: 'roomInfo.blockContactConfirmTitle',
+    defaultMessage: 'Block Contact',
+    description: 'room info screen',
+  },
+  roomInfoBlockContactConfirmDescription: {
+    id: 'roomInfo.blockContactConfirmDescription',
+    defaultMessage: 'Are you sure you want to Block this contact?',
+    description: 'room info screen',
+  },
   roomMemberListToolbarTitle: {
     id: 'roomMemberList.toolbarTitle',
     defaultMessage: 'Member List',
