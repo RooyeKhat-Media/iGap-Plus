@@ -4,8 +4,8 @@
 
 export const APP_NAME = 'iGap+';
 export const APP_ID = 10;
-export const APP_BUILD_VERSION = 4;
-export const APP_VERSION = '1.0.2';
+export const APP_BUILD_VERSION = 5;
+export const APP_VERSION = '1.0.3';
 
 export const DATABASE_SCHEMA_VERSION = 1;
 
