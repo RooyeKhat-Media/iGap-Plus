@@ -42,7 +42,7 @@ import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
 import {
   goAvatarList,
-  goCall,
+  goCall, goContactEdit,
   goContactPicker,
   goRoomEdit,
   goRoomHistory,
@@ -291,25 +291,21 @@ class RoomInfoScreen extends Component {
     const {roomPeer} = this.props;
     switch (idx) {
       case 0:
-        roomPeer.mutual ? this.shareContact() : this.toggleBlockContact(confirm);
+        roomPeer.mutual ? this.editContact() : this.toggleBlockContact(confirm);
         break;
       case 1:
-        roomPeer.mutual && this.editContact();
-        break;
-      case 2:
         this.toggleBlockContact(confirm);
         break;
-      case 3:
+      case 2:
         roomPeer.mutual && this.deleteContact(confirm);
         break;
       default: break;
     }
   };
 
-  shareContact = () => {
-    // goRoomHistory()
-  };
   editContact = () => {
+    const {roomPeer} = this.props;
+    goContactEdit(roomPeer);
   };
   toggleBlockContact = (confirm) => {
     const {roomPeer, getIsBlockFunc} = this.props;

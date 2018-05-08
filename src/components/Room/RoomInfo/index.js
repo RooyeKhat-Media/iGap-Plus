@@ -32,7 +32,6 @@ class RoomInfoComponent extends React.Component {
 
     const actionList = [];
     if (roomPeer && roomPeer.mutual) {
-      actionList.push(intl.formatMessage(i18n.roomInfoShareContact));
       actionList.push(intl.formatMessage(i18n.roomInfoEditContact));
       actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
       actionList.push(intl.formatMessage(i18n.roomInfoDeleteContact));

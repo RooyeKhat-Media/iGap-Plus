@@ -3,7 +3,7 @@ import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpe
 import {
   AVATAR_LIST_SCREEN,
   CALL_SCREEN,
-  CAMERA_SCREEN, LOCATION_PICKER_SCREEN,
+  CAMERA_SCREEN, CONTACT_EDIT_SCREEN, LOCATION_PICKER_SCREEN,
   ROOM_EDIT_SCREEN,
   ROOM_GALLERY_SCREEN,
   ROOM_HISTORY_SCREEN,
@@ -35,6 +35,7 @@ import {Platform} from 'react-native';
 import LocationPickerScreen from '../screens/LocationPickerScreen';
 import RoomGalleryScreen from '../screens/Room/RoomGalleryScreen';
 import Camera from 'react-native-igap-camera';
+import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 
 export function goRoomHistory(roomId, forwardedMessage, reset = true) {
   if (reset) {
@@ -125,6 +126,10 @@ export function goRoomGallery(uri, dimensions, text, fileName) {
   navigate(ROOM_GALLERY_SCREEN, {uri, dimensions, text, fileName});
 }
 
+export function goContactEdit(contact) {
+  navigate(CONTACT_EDIT_SCREEN, {contact});
+}
+
 const SecondaryNavigator = StackNavigator({
   [SECONDARY_INITIAL_SCREEN]: {screen: SecondaryInitialScreen},
   [CALL_SCREEN]: {screen: CallScreen},
@@ -141,6 +146,7 @@ const SecondaryNavigator = StackNavigator({
   [VIDEO_PLAYER]: {screen: VideoPlayerScreen},
   [LOCATION_PICKER_SCREEN]: {screen: LocationPickerScreen},
   [ROOM_GALLERY_SCREEN]: {screen: RoomGalleryScreen},
+  [CONTACT_EDIT_SCREEN]: {screen: ContactNewScreen},
 }, {
   navigationOptions: {
     header: null,

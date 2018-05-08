@@ -11,7 +11,8 @@ import {textTitleStyle} from '../../../themes/default/index';
 
 class ContactFormComponent extends React.Component {
   render() {
-    const {intl, formData, handleFormData, formRules, goBack, countryList, onChangeCallingCode, onSelectCountry} = this.props;
+    const {intl, formData, handleFormData, formRules, goBack, countryList, onChangeCallingCode, onSelectCountry,
+      editMode, firstName, lastName, phone} = this.props;
     return (
       <View style={{flex: 1}}>
         <Toolbar
@@ -44,6 +45,7 @@ class ContactFormComponent extends React.Component {
                   isField={true}
                   rules={formRules.firstName}
                   name="firstName"
+                  defaultValue={firstName}
                   label={intl.formatMessage(i18n.contactFormFirstNameLabel)}
                   placeholder={intl.formatMessage(i18n.contactFormFirstNameLabel)}
                 />
@@ -51,20 +53,34 @@ class ContactFormComponent extends React.Component {
                   isField={true}
                   rules={formRules.lastName}
                   name="lastName"
+                  defaultValue={lastName}
                   label={intl.formatMessage(i18n.contactFormLastNameLabel)}
                   placeholder={intl.formatMessage(i18n.contactFormLastNameLabel)}
                 />
               </View>
             </View>
 
-            <View style={styles.phoneWrap}>
-
+            {editMode &&
+            (<View style={styles.phoneWrap}>
+              <TextInputField
+                isField={true}
+                rules={formRules.phone}
+                name="phone"
+                editable={false}
+                defaultValue={phone}
+                label={intl.formatMessage(i18n.contactFormPhoneLabel)}
+                style={styles.phoneNumberInput}
+                keyboardType="phone-pad"
+                placeholder={intl.formatMessage(i18n.contactFormPhoneLabel)}
+                help={intl.formatMessage(i18n.contactFormPhoneHelp)}
+              />
+            </View>)}
+            {(!editMode) &&
+            (<View style={styles.phoneWrap}>
               <Picker searchable={true}
                 defaultValue={formData.countryCode}
                 options={countryList} onItemSelect={onSelectCountry}
                 placeHolder="Country .."/>
-
-
               <View style={styles.phoneNumberRow}>
                 <TextInput
                   keyboardType="phone-pad"
@@ -83,8 +99,8 @@ class ContactFormComponent extends React.Component {
                   help={intl.formatMessage(i18n.contactFormPhoneHelp)}
                 />
               </View>
+            </View>)}
 
-            </View>
 
           </Form>
 
