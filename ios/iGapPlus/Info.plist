@@ -109,6 +109,16 @@ It has access to take photos and send to others. Note that you can not access th
 It has access to record your voice, you want to record your voice and send it to another.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>iGap needs to access your address book and sync your contact list to its servers in order for you to be able to find other iGap users, call and text for free</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+    <string>iGap needs to access your Bluetooth</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>iGap needs to access your Calendars</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>iGap needs to access Apple’s speech recognition</string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>iGap needs to access your media library</string>
+    <key>NSMotionUsageDescription</key>
+    <string>iGap needs to access the device’s accelerometer</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
