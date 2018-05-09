@@ -194,7 +194,11 @@ public class FileUtil {
 
 
     public String getFilesDirPath() {
-        return context.getExternalFilesDir(null).getAbsolutePath();
+        File storageDir = context.getExternalFilesDir(null);
+        if (storageDir == null || (!storageDir.exists() && !storageDir.mkdirs())) {
+              storageDir = context.getFilesDir();
+        }
+       return storageDir.getAbsolutePath();
     }
 
 
