@@ -207,7 +207,7 @@ class AvatarListScreen extends Component {
 
   stopAvatarDownload = (index) => {
     const {pauseDownload, avatarList} = this.props;
-    if (avatarList[index]) {
+    if (avatarList && avatarList[index]) {
       const avatar = avatarList[index].avatar;
       const attachment = avatar.getFile();
       pauseDownload(attachment.getCacheId());

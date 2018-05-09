@@ -50,7 +50,7 @@ class RoomHistoryComponent extends React.PureComponent {
 
       if (roomType === Proto.Room.Type.CHANNEL) {
         boxType = BOX_TYPE_CHANNEL;
-      } else if (message.authorHash === getAuthorHash()) {
+      } else if (message && message.authorHash === getAuthorHash()) {
         boxType = BOX_TYPE_OWNER;
       } else if (roomType === Proto.Room.Type.CHAT) {
         boxType = BOX_TYPE_CHAT;
