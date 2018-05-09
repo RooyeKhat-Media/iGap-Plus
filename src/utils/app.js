@@ -123,11 +123,6 @@ export function getPlatform() {
   }
 }
 
-export async function clientCondition() {
-  const request = await Condition();
-  return Api.invoke(CLIENT_CONDITION, request);
-}
-
 export async function login(handlerPrecedence = HANDLER_PRECEDENCE.BEFORE) {
 
   const token = await loadUserToken();
@@ -168,8 +163,9 @@ export async function syncData() {
 
   importContact();
   store.dispatch(clientStatusUpdating(true));
-  await clientCondition();
+  const request = await Condition();
   await serverRoomsState();
+  await Api.invoke(CLIENT_CONDITION, request);
   await sleep(3);
   store.dispatch(clientStatusUpdating(false));
 }
