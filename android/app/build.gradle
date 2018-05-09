@@ -101,8 +101,8 @@ android {
         applicationId "iGap.Plus"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 7
-        versionName "1.0.5"
+        versionCode 8
+        versionName "1.0.6"
         vectorDrawables.useSupportLibrary = true
         ndk {
             abiFilters "armeabi-v7a", "x86"
