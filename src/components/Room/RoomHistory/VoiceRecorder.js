@@ -6,7 +6,7 @@ import i18n from '../../../i18n/en';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {black200, gray500, gray800, primary} from '../../../themes/default/index';
 import BlinkRecorder from '../../General/Camera/BlinkRecorder';
-import SoundRecorder from 'react-native-sound-recorder';
+// import SoundRecorder from 'react-native-sound-recorder';
 
 const _slideToCancel = 100;
 const _slideToLock = 60;

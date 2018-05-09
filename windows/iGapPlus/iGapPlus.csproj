@@ -4,20 +4,28 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{ADF1E92C-4725-4DA7-A67B-9AE081E358EC}</ProjectGuid>
+    <ProjectGuid>{D6A75229-369C-4589-945F-945F7E32AA01}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iGapPlus</RootNamespace>
     <AssemblyName>iGapPlus</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>iGapPlus_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>4FCAB8CAEDF9C280945FB915ABB6AB278F26BEC1</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F57A0D8C146C2D4DCE5C3E716973CE4CE7FE0E90</PackageCertificateThumbprint>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <DependencyConfiguration>Debug</DependencyConfiguration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'DebugBundle'">
+    <DependencyConfiguration>Debug</DependencyConfiguration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release' or '$(Configuration)' == 'ReleaseBundle'">
+    <DependencyConfiguration>Release</DependencyConfiguration>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -170,107 +178,51 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans.ttf">
-      <Link>Assets\IRANSans.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Black.ttf">
-      <Link>Assets\IRANSans_Black.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Bold.ttf">
-      <Link>Assets\IRANSans_Bold.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Light.ttf">
-      <Link>Assets\IRANSans_Light.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Medium.ttf">
-      <Link>Assets\IRANSans_Medium.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_UltraLight.ttf">
-      <Link>Assets\IRANSans_UltraLight.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\neuropolitical\neuropolitical.ttf">
-      <Link>Assets\neuropolitical.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Black.ttf">
-      <Link>Assets\Roboto-Black.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-BlackItalic.ttf">
-      <Link>Assets\Roboto-BlackItalic.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Bold.ttf">
-      <Link>Assets\Roboto-Bold.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-BoldItalic.ttf">
-      <Link>Assets\Roboto-BoldItalic.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Italic.ttf">
-      <Link>Assets\Roboto-Italic.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Light.ttf">
-      <Link>Assets\Roboto-Light.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-LightItalic.ttf">
-      <Link>Assets\Roboto-LightItalic.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Medium.ttf">
-      <Link>Assets\Roboto-Medium.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-MediumItalic.ttf">
-      <Link>Assets\Roboto-MediumItalic.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Regular.ttf">
-      <Link>Assets\Roboto-Regular.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-Thin.ttf">
-      <Link>Assets\Roboto-Thin.ttf</Link>
-    </Content>
-    <Content Include="..\..\src\assets\fonts\Roboto\Roboto-ThinItalic.ttf">
-      <Link>Assets\Roboto-ThinItalic.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Entypo.ttf">
-      <Link>Assets\Entypo.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\EvilIcons.ttf">
-      <Link>Assets\EvilIcons.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\FontAwesome.ttf">
-      <Link>Assets\FontAwesome.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Foundation.ttf">
-      <Link>Assets\Foundation.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Ionicons.ttf">
-      <Link>Assets\Ionicons.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialCommunityIcons.ttf">
-      <Link>Assets\MaterialCommunityIcons.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialIcons.ttf">
-      <Link>Assets\MaterialIcons.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Octicons.ttf">
-      <Link>Assets\Octicons.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\SimpleLineIcons.ttf">
-      <Link>Assets\SimpleLineIcons.ttf</Link>
-    </Content>
-    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\Zocial.ttf">
-      <Link>Assets\Zocial.ttf</Link>
-    </Content>
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.cs" />
+    <Compile Include="MainReactNativeHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialCommunityIcons.ttf">
+      <Link>Assets\MaterialCommunityIcons.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\node_modules\react-native-vector-icons\Fonts\MaterialIcons.ttf">
+      <Link>Assets\MaterialIcons.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans.ttf">
+      <Link>Assets\IRANSans.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Black.ttf">
+      <Link>Assets\IRANSans_Black.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Bold.ttf">
+      <Link>Assets\IRANSans_Bold.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Light.ttf">
+      <Link>Assets\IRANSans_Light.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_Medium.ttf">
+      <Link>Assets\IRANSans_Medium.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\IRANSans\IRANSans_UltraLight.ttf">
+      <Link>Assets\IRANSans_UltraLight.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\assets\fonts\neuropolitical\neuropolitical.ttf">
+      <Link>Assets\neuropolitical.ttf</Link>
+    </Content>
     <None Include="iGapPlus_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -291,8 +243,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\node_modules\react-native-file-system\windows\RNIGFileSystem\RNIGFileSystem.csproj">
-      <Project>{128e8920-8592-11e7-be82-13bd81bed55a}</Project>
+      <Project>{128E8920-8592-11E7-BE82-13BD81BED55A}</Project>
       <Name>RNIGFileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-share\windows\RNShare\RNShare.csproj">
+      <Project>{4ACDD44C-E556-423E-BD74-B4CEF3E67FF0}</Project>
+      <Name>RNShare</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-sound\windows\RNSoundModule\RNSoundModule\RNSoundModule.csproj">
+      <Project>{7b8a9860-75ec-434d-ac70-c6135600c0c7}</Project>
+      <Name>RNSoundModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\node_modules\react-native-sqlite-2\windows\RNSqlite2\RNSqlite2.csproj">
       <Project>{aa4a1906-7230-4cfb-a193-3602011c768c}</Project>
@@ -308,9 +268,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.0.6</Version>
+    </PackageReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\..\node_modules\react-native-windows\Yoga\csharp\Yoga\bin\Universal\$(Platform)\$(DependencyConfiguration)\yoga.dll">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>False</Visible>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StatusBar, TouchableOpacity, View, Platform} from 'react-native';
 import styles from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import {RNCamera} from 'react-native-camera';
+// import {RNCamera} from 'react-native-camera';
 import {Icon} from '../../BaseUI';
 import BlinkRecorder from './BlinkRecorder';
 import {cameraMode} from '../../../screens/General/CameraScreen';
