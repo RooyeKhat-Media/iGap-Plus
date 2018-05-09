@@ -39,7 +39,7 @@ export const flatProtoRoomMessage = (roomMessage) => {
     deleted: roomMessage.getDeleted(),
     forwardFrom: flatProtoRoomMessage(roomMessage.getForwardFrom()),
     replyTo: roomMessage.getReplyTo(),
-    previousMessageId: roomMessage.getPreviousMessageId(),
+    previousMessageId: roomMessage.getPreviousMessageId().toString(),
     fraction: roomMessage.getPreviousMessageId().toString() !== '0',
   };
 

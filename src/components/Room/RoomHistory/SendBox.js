@@ -219,9 +219,11 @@ class SendBox extends PureComponent {
       });
     } else {
       Keyboard.dismiss();
-      this.setState({
-        showEmojiPiker: true,
-        showAttachment: false,
+      setTimeout(() => {
+        this.setState({
+          showEmojiPiker: true,
+          showAttachment: false,
+        });
       });
     }
   };
