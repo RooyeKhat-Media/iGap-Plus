@@ -71,7 +71,7 @@ class RoomInfoScreen extends Component {
     super(props);
     const {room} = this.props;
     this.state = {
-      roomMute: room.roomMute,
+      roomMute: room && room.roomMute,
       access: {
         canSendMessage: false,
         canCall: false,
@@ -98,6 +98,7 @@ class RoomInfoScreen extends Component {
     const clientCountRoomHistory = new ClientCountRoomHistory();
     clientCountRoomHistory.setRoomId(room.longId);
     await Api.invoke(CLIENT_COUNT_ROOM_HISTORY, clientCountRoomHistory);
+    this.setState({roomMute: room.roomMute});
   }
 
   componentWillReceiveProps(nextProps) {
