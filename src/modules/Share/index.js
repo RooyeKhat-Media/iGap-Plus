@@ -19,6 +19,10 @@ export default class Share {
       return Promise.reject('Share is not supported on this platform');
     }
 
+    if (!url) {
+      url = '';
+    }
+
     return ReactNativeShare.open({
       url,
       type : mimeType || 'application/octet-stream',
