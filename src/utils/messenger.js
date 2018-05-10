@@ -831,8 +831,8 @@ export async function processUnresolvedMessageStatus(roomId) {
 }
 
 export function getMessageStats(roomId, messageId) {
-  if (!_viewedMessages[messageId]) {
-    _viewedMessages[messageId] = true;
+  if (!_viewedMessages[messageId.toString()]) {
+    _viewedMessages[messageId.toString()] = true;
     collect({roomId, messageId});
   }
 }

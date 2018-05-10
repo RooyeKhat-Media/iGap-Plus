@@ -48,11 +48,11 @@ class RoomMessage extends PureComponent {
 
   onReactionPress = (reaction, forward = false) => {
     let {message} = this.props;
-    if (forward && message.forwardedMessage) {
-      message = message.forwardedMessage;
+    if (forward) {
+      message = message.forwardFrom;
     }
 
-    if (message.status === Proto.RoomMessageStatus.FAILED ||
+    if (!message || message.status === Proto.RoomMessageStatus.FAILED ||
       message.status === Proto.RoomMessageStatus.SENDING) {
       return;
     }
