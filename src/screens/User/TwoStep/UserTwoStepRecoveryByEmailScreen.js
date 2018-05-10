@@ -17,6 +17,16 @@ import Api from '../../../modules/Api/index';
 import {requiredValidator} from '../../../utils/validator';
 import {login, setUserToken} from '../../../utils/app';
 import {goMainScreen} from '../../../navigators/AppNavigator';
+import {errorId} from '../../../modules/Error/index';
+import {
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_BAD_PAYLOAD,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_EXPIRED_TOKEN,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_FORBIDDEN,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_INTERNAL_SERVER_ERROR,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_INVALID_TOKEN,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_MAX_TRY_LOCK,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_NO_PASSWORD,
+} from '../../../modules/Api/errors/index';
 
 const rules = {
   token: [
@@ -33,26 +43,30 @@ class UserTwoStepRecoveryByEmailScreen extends Component {
     };
   }
 
-  handleFormData = async (formData) => {
+  handleFormData = async (formData, setError) => {
     const {navigation} = this.props;
-    const {needLogin} = navigation;
-    try {
-      const recoveryPasswordByToken = new UserTwoStepVerificationRecoverPasswordByToken();
-      recoveryPasswordByToken.setToken(formData.token);
-      const response = await Api.invoke(USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN, recoveryPasswordByToken);
-      if (needLogin) {
-        await setUserToken(response.getToken());
-        await login();
-        goMainScreen();
-      } else {
-        navigation.goBack();
-      }
-      this.setState({tokenError: ''});
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      this.setState({tokenError: e.name + ': ' + e.message});
+    const {needLogin} = navigation.state.params;
+    const recoveryPasswordByToken = new UserTwoStepVerificationRecoverPasswordByToken();
+    recoveryPasswordByToken.setToken(formData.token);
+    const response = await Api.invokeMapError(
+      USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN,
+      recoveryPasswordByToken, setError, {
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_BAD_PAYLOAD)]: 'token',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_INTERNAL_SERVER_ERROR)]: 'token',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_MAX_TRY_LOCK)]: 'token',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_EXPIRED_TOKEN)]: 'token',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_INVALID_TOKEN)]: 'token',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_NO_PASSWORD)]: 'token',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_TOKEN_FORBIDDEN)]: 'token',
+      });
+    if (needLogin) {
+      await setUserToken(response.getToken());
+      await login();
+      goMainScreen();
+    } else {
+      navigation.goBack();
     }
-  }
+  };
 
   resendToken = async () => {
     try {

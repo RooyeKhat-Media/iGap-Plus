@@ -88,8 +88,8 @@ export function goUserTwoStepForgetScreen() {
   navigate(USER_TWO_STEP_FORGET_SCREEN);
 }
 
-export function goUserTwoStepRecoveryByEmailScreen() {
-  navigate(USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN);
+export function goUserTwoStepRecoveryByEmailScreen(needLogin = false) {
+  navigate(USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN, {needLogin});
 }
 
 export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {

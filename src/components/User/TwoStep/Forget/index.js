@@ -32,6 +32,7 @@ class UserTwoStepForgetComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
+          showAuthenticating={false}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepForgetTitle)}</Text>}
         />
         <View style={styles.recoveryBtnWrap}>

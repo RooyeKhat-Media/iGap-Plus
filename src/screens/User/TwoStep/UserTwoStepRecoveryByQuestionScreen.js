@@ -17,6 +17,15 @@ import Api from '../../../modules/Api/index';
 import {requiredValidator} from '../../../utils/validator';
 import {login, setUserToken} from '../../../utils/app';
 import {goMainScreen} from '../../../navigators/AppNavigator';
+import {errorId} from '../../../modules/Error/index';
+import {
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_BAD_PAYLOAD,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_FORBIDDEN,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_INTERNAL_SERVER_ERROR,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_INVALID_ANSWERS,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_MAX_TRY_LOCK,
+  ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_NO_PASSWORD,
+} from '../../../modules/Api/errors/index';
 
 const rules = {
   question1: [
@@ -48,26 +57,29 @@ class UserTwoStepRecoveryByQuestionScreen extends Component {
       });
   }
 
-  handleFormData = async (formData) => {
+  handleFormData = async (formData, setError) => {
     const {navigation} = this.props;
-    const {needLogin} = navigation;
-    try {
-      const recoveryPasswordByAnswers = new UserTwoStepVerificationRecoverPasswordByAnswers();
-      recoveryPasswordByAnswers.setAnswerOne(formData.question1);
-      recoveryPasswordByAnswers.setAnswerTwo(formData.question2);
-      const response = await Api.invoke(USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS, recoveryPasswordByAnswers);
-      if (needLogin) {
-        await setUserToken(response.getToken());
-        await login();
-        goMainScreen();
-      } else {
-        navigation.goBack();
-      }
-      this.setState({passwordError: ''});
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      this.setState({errorQuestion1: e.name + ': ' + e.message});
-      this.setState({errorQuestion2: e.name + ': ' + e.message});
+    const {needLogin} = navigation.state.params;
+    const recoveryPasswordByAnswers = new UserTwoStepVerificationRecoverPasswordByAnswers();
+    recoveryPasswordByAnswers.setAnswerOne(formData.question1);
+    recoveryPasswordByAnswers.setAnswerTwo(formData.question2);
+    const response = await Api.invokeMapError(
+      USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS,
+      recoveryPasswordByAnswers,
+      setError, {
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_BAD_PAYLOAD)]: 'question1',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_INTERNAL_SERVER_ERROR)]: 'question1',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_MAX_TRY_LOCK)]: 'question1',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_INVALID_ANSWERS)]: 'question1',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_NO_PASSWORD)]: 'question1',
+        [errorId(ERROR_USER_TWO_STEP_VERIFICATION_RECOVER_PASSWORD_BY_ANSWERS_FORBIDDEN)]: 'question1',
+      });
+    if (needLogin) {
+      await setUserToken(response.getToken());
+      await login();
+      goMainScreen();
+    } else {
+      navigation.goBack();
     }
   };
 

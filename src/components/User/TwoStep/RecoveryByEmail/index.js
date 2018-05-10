@@ -34,6 +34,7 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
+          showAuthenticating={false}
           centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}</Text>}
         />
         <Form style={styles.panel} control={(form) => {
@@ -60,7 +61,7 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
                 try {
                   this.form.loadingOn();
                   const data = await this.form.submit();
-                  await handleFormData(data);
+                  await handleFormData(data, this.form.setError);
                 } finally {
                   this.form.loadingOff();
                 }
