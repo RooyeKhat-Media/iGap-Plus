@@ -30,7 +30,7 @@ class NewComponent extends Component {
   };
 
   render() {
-    const {intl, contactList, goContactNew, goGroupCreate, goChannelCreate} = this.props;
+    const {intl, contactList, goContactNew, goGroupCreate, goChannelCreate, onUserPress} = this.props;
     const styles = this.getStyles();
 
     return (
@@ -62,23 +62,33 @@ class NewComponent extends Component {
               onPress={goChannelCreate}
               style={styles.listItem}
             />
-            <ListItem
-              leftElement={<MCIcon name="lock" size={24}/>}
-              centerElement={{
-                primaryText: intl.formatMessage(i18n.newNewSecretP2PChat),
-              }}
-              onPress={this.newSecretP2pChat}
-              style={styles.listItem}
-            />
-            <ListItem
-              leftElement={<MCIcon name="credit-card" size={24}/>}
-              centerElement={{
-                primaryText: intl.formatMessage(i18n.newNewCreateInvoice),
-              }}
-              onPress={this.newCreateInvoice}
-              style={styles.listItem}
-            />
+            {/*<ListItem*/}
+            {/*leftElement={<MCIcon name="lock" size={24}/>}*/}
+            {/*centerElement={{*/}
+            {/*primaryText: intl.formatMessage(i18n.newNewSecretP2PChat),*/}
+            {/*}}*/}
+            {/*onPress={this.newSecretP2pChat}*/}
+            {/*style={styles.listItem}*/}
+            {/*/>*/}
+            {/*<ListItem*/}
+            {/*leftElement={<MCIcon name="credit-card" size={24}/>}*/}
+            {/*centerElement={{*/}
+            {/*primaryText: intl.formatMessage(i18n.newNewCreateInvoice),*/}
+            {/*}}*/}
+            {/*onPress={this.newCreateInvoice}*/}
+            {/*style={styles.listItem}*/}
+            {/*/>*/}
 
+            <ListItem
+              leftElement={<MCIcon name="cloud" size={20}/>}
+              centerElement={{
+                primaryText: intl.formatMessage(i18n.newMyCloud),
+              }}
+              onPress={() => {
+                onUserPress(getUserId());
+              }}
+              style={styles.listItem}
+            />
 
             <View style={[styles.rowField, {marginTop: 15, marginBottom: 7}]}>
               <Text style={styles.titleText}>{intl.formatMessage(i18n.newContacts)}</Text>

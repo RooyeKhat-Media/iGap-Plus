@@ -858,6 +858,11 @@ export default {
     defaultMessage: 'New Create Invoice',
     description: 'new Screen',
   },
+  newMyCloud: {
+    id: 'new.myCloud',
+    defaultMessage: 'My Cloud',
+    description: 'new Screen',
+  },
   newContacts: {
     id: 'new.contacts',
     defaultMessage: 'Contacts',
