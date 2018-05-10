@@ -45,7 +45,7 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE,
 } from '../constants/app';
-import {msSleep, tNow} from './core';
+import {msSleep, prependFileProtocol, tNow} from './core';
 import {messengerRoomMessageConcat, messengerRoomMessageReplace} from '../actions/messenger/roomMessages';
 
 import {normalize} from 'normalizr';
@@ -56,6 +56,7 @@ import {entitiesRoomMessageEdit, entitiesRoomMessagesAdd} from '../actions/entit
 import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManager';
 import Collector from '../modules/Collector';
 import {messengerRoomAddList} from '../actions/messenger/rooms';
+import VideoCompress from '../modules/VideoCompress';
 
 /**
  * @type {string} current Focus Room
@@ -214,6 +215,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
           case ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO:
             proto.setMessageType(text ? Proto.RoomMessageType.VIDEO_TEXT : Proto.RoomMessageType.VIDEO);
             sendingAction = Proto.ClientAction.SENDING_VIDEO;
+            await __compressVideo();
             break;
           case ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO:
             proto.setMessageType(text ? Proto.RoomMessageType.AUDIO_TEXT : Proto.RoomMessageType.AUDIO);
@@ -259,6 +261,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
     store.dispatch(messengerRoomMessageReplace(room.id, normalizedRoomMessage.id, fakeIdToString));
 
   } catch (e) {
+    console.warn('sendMessageFiled', e);
     store.dispatch(entitiesRoomMessageEdit(fakeIdToString, {
       status: Proto.RoomMessageStatus.FAILED,
     }));
@@ -324,6 +327,12 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
 
     store.dispatch(entitiesRoomMessagesAdd({[normalizedRoomMessage.id]: normalizedRoomMessage}));
     store.dispatch(messengerRoomMessageConcat(room.id, [normalizedRoomMessage.id], false));
+  }
+
+  async function __compressVideo() {
+    const source = await VideoCompress.compress(prependFileProtocol(pickedFile.fileUri));
+    pickedFile.fileUri = source.source;
+    store.dispatch(entitiesRoomMessageEdit(fakeId.toString(), {pickedFile}));
   }
 }
 
