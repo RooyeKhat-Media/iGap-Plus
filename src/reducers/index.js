@@ -17,6 +17,7 @@ import {soundPlayer} from './soundPlayer';
 import {layout} from './layout';
 import {METHOD_USER_LOGOUT} from '../actions/methods/user/logout';
 import {updating} from './updating';
+import {snackBar} from './snackBar';
 
 const appReducer = combineReducers({
   api,
@@ -33,6 +34,7 @@ const appReducer = combineReducers({
   soundPlayer,
   layout,
   clientUpdating: updating,
+  snackBar,
 });
 
 const rootReducer = (state, action) => {

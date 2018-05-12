@@ -35,6 +35,7 @@ import StatusBar from './StatusBar';
 import Toolbar from './Toolbar';
 import KeyboardAvoidingView from './KeyboardAvoidingView';
 import Checkbox from './Checkbox';
+import SnackBar from './SnackBar';
 
 const defaultTextStyle = StyleSheet.create({
   defaultStyle: {
@@ -86,4 +87,5 @@ export {
   ActionButton,
   KeyboardAvoidingView,
   RippleFeedback,
+  SnackBar,
 };

@@ -9,7 +9,7 @@ import {addNavigationHelpers, NavigationActions} from 'react-navigation';
 import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
 import {AppState, BackHandler, Platform, View, StyleSheet} from 'react-native';
 
-import {AppModal, StatusBar} from '../components/BaseUI';
+import {AppModal, StatusBar, SnackBar} from '../components/BaseUI';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
@@ -101,6 +101,7 @@ class App extends Component {
             </KeyboardAvoidingView>
           </View>
           <AppModal id={APP_MODAL_ID_MAIN}/>
+          <SnackBar/>
         </View>
       </ThemeProvider>
     );
