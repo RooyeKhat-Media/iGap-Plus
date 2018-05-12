@@ -53,7 +53,7 @@ import {
   goRoomMemberList,
   goRoomUpdateUsername,
 } from '../../navigators/SecondaryNavigator';
-import i18n from '../../i18n/en';
+import i18n from '../../i18n/index';
 import {resetSecondaryNavigation} from '../../navigators/index';
 import Long from 'long';
 import {getCallPermission} from '../../selector/methods/signaling/callPermissin';

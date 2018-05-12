@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {black200, gray800, primary} from '../../../themes/default/index';
 import {Icon, IconToggle, MCIcon} from '../../BaseUI/index';
-import i18n from '../../../i18n/en';
+import i18n from '../../../i18n/index';
 import {injectIntl, intlShape} from 'react-intl';
 import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,

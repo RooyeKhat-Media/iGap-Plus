@@ -20,7 +20,7 @@ import {
   GROUP_REMOVE_USERNAME,
   GROUP_UPDATE_USERNAME,
 } from '../../constants/methods/index';
-import i18n from '../../i18n/en';
+import i18n from '../../i18n/index';
 import {getRoom} from '../../selector/entities/room';
 import {errorId} from '../../modules/Error/index';
 import {

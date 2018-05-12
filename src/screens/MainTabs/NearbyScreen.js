@@ -23,8 +23,8 @@ import {goRoomInfo} from '../../navigators/SecondaryNavigator';
 import {ActivityIndicator} from '../../components/BaseUI/';
 import {View} from 'react-native';
 import Permission, {PERMISSION_LOCATION} from '../../modules/Permission/index';
-import i18n from '../../i18n/en';
-import {loadPeerRoom} from "../../utils/app";
+import i18n from '../../i18n/index';
+import {loadPeerRoom} from '../../utils/app';
 
 class NearbyScreen extends Component {
 

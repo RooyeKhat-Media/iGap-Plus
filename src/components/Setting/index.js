@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
-import {injectIntl, intlShape} from 'react-intl';
+import {injectIntl, intlShape, FormattedMessage} from 'react-intl';
 import {Confirm, ListItem, PopupMenu, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goQrCode, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
@@ -11,12 +11,23 @@ import Linking from '../../modules/Linking/index';
 import {textTitleStyle} from '../../themes/default/index';
 import {APP_VERSION} from '../../constants/configs';
 import {APP_MODAL_ID_PRIMARY} from '../../constants/app';
+import Picker from '../BaseUI/Picker/index';
+import {getLocalList} from '../../screens/User/UserRegisterScreen';
+import {changeLocale} from '../../utils/locale';
 
 class SettingComponent extends Component {
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      localesList: [],
+    };
+    getLocalList(this.state.localesList);
+  }
 
   menuClick = (index) => {
     const {logOut, deleteAccount} = this.props;
@@ -67,11 +78,6 @@ class SettingComponent extends Component {
             onPress={() => goActiveSession()}
             style={styles.listItem}
           />
-          {/*<ListItem*/}
-          {/*centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}*/}
-          {/*onPress={null}*/}
-          {/*style={styles.listItem}*/}
-          {/*/>*/}
           <ListItem
             centerElement={{primaryText: intl.formatMessage(i18n.settingTwoStepVerification)}}
             onPress={goTowStepSetting}
@@ -80,6 +86,20 @@ class SettingComponent extends Component {
           <ListItem
             centerElement={{primaryText: intl.formatMessage(i18n.settingLoginWithQrCode)}}
             onPress={() => goQrCode()}
+            style={styles.listItem}
+          />
+
+          <ListItem
+            onPress={() => this.languagePicker.modal.open(true)}
+            centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}
+            rightElement={
+              <Picker ref={(ref) => {
+                this.languagePicker = ref;
+              }}
+              headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
+              options={this.state.localesList}
+              onItemSelect={(locale) => changeLocale(locale)}
+              placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>}
             style={styles.listItem}
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>

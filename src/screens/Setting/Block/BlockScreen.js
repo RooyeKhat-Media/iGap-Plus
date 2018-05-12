@@ -10,7 +10,7 @@ import {
 import {UserContactsBlock, UserContactsGetBlockedList, UserContactsUnblock} from '../../../modules/Proto/index';
 import {getBlockList} from '../../../selector/methods/user/contacts/block';
 import {goContactPicker} from '../../../navigators/PrimaryNavigator';
-import i18n from '../../../i18n/en';
+import i18n from '../../../i18n/index';
 
 class BlockScreen extends Component {
 

@@ -40,12 +40,12 @@ class UserRegisterComponent extends React.Component {
 
           <View style={styles.topWrap}>
 
-            {/*<View style={styles.changeLanguageWrap}>*/}
-            {/*<Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}*/}
-            {/*style={styles.changeLanguagePicker}*/}
-            {/*options={localesList} onItemSelect={selectNewLocale}*/}
-            {/*placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>*/}
-            {/*</View>*/}
+            <View style={styles.changeLanguageWrap}>
+              <Picker headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
+                style={styles.changeLanguagePicker}
+                options={localesList} onItemSelect={selectNewLocale}
+                placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>
+            </View>
 
             <View style={styles.headerWrapper}>
               <View style={styles.svgWrap}>

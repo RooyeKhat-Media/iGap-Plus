@@ -1,6 +1,8 @@
 import MetaData from '../models/MetaData';
 import {LOCALE_EN} from '../constants/locale';
 import {METADATA_USER_LOCALE} from '../models/MetaData/constant';
+import {localeChange} from '../actions/locale';
+import store from '../configureStore';
 
 const LOCALE_DEFAULT = LOCALE_EN;
 
@@ -24,5 +26,5 @@ export async function changeLocale(locale) {
     _userLocale = locale;
     await setUserLocale(locale);
   }
-  // store.dispatch(localeChange(locale));//todo locale uncomment dispatch change local
+  // store.dispatch(localeChange(locale));
 }

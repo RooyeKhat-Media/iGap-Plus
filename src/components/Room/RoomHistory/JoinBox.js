@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View} from 'react-native';
 import {Button} from '../../BaseUI';
 import {injectIntl, intlShape} from 'react-intl';
-import i18n from '../../../i18n/en';
+import i18n from '../../../i18n/index';
 
 class JoinBox extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 import {MCIcon} from '../../BaseUI/index';
-import i18n from '../../../i18n/en';
+import i18n from '../../../i18n/index';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {black200, gray500, gray800, primary} from '../../../themes/default/index';
 import BlinkRecorder from '../../General/Camera/BlinkRecorder';
