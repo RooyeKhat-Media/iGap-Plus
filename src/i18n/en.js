@@ -285,7 +285,7 @@ export default {
     description: 'UserVerify Page',
   },
   verifyResendCodeTimer: {
-    id: 'UserVerify.codePlaceholder',
+    id: 'UserVerify.resendCodeTimer',
     defaultMessage: 'resend code in {time} Second.',
     description: 'UserVerify Page',
   },
@@ -389,7 +389,7 @@ export default {
     description: 'two-step setting',
   },
   twoStepSetPasswordVerifyEmailTitle: {
-    id: 'twoStepVerifyEmail.title',
+    id: 'twoStepSetPasswordVerifyEmail.title',
     defaultMessage: 'Verify Email',
     description: 'two-step setting',
   },
@@ -493,7 +493,7 @@ export default {
     description: 'two-step setting',
   },
   twoStepSettingSettingUnsetPassowrdDescription: {
-    id: 'twoStepSetting.unsetPassowrdTitle',
+    id: 'twoStepSetting.unsetPassowrdDescription',
     defaultMessage: 'Are you sure you want to delete Two-step Verification ?',
     description: 'two-step setting',
   },
@@ -567,7 +567,7 @@ export default {
   },
 
   twoStepRecoveryByEmailTitle: {
-    id: 'twoStepRecoveryByEmail.infoContent',
+    id: 'twoStepRecoveryByEmail.title',
     defaultMessage: 'Recovery By Email',
     description: 'twoStepVerification Page',
   },
@@ -1435,7 +1435,7 @@ export default {
     description: 'roomHistory screen',
   },
   roomHistoryActionChat: {
-    id: 'roomHistory.action',
+    id: 'roomHistory.actionChat',
     defaultMessage: 'is {action, select, 1{Typing} 2{Sending Image} 3{Capturing Image} 4{Sending Video} 5{Capturing Video} 6{Sending Audio} 7{Recording Voice} 8{Sending Voice} 9{Sending Document} 10{Sending Gif} 11{Sending File} 12{Sending Location} 13{Choosing Contact} 14{Painting}}...',
     description: 'roomHistory screen',
   },

@@ -22,6 +22,9 @@ fs.readdir(__dirname + '/../../src/i18n', (err, files) => {
     };
 
     for (const id in source) {
+      if (output.hasOwnProperty(source[id]['id'])) {
+        throw new Error('Duplicated ' + source[id]['id']);
+      }
       output[source[id]['id']] = source[id]['defaultMessage'];
     }
 
