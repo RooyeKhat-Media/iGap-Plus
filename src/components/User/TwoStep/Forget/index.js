@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import * as _ from 'lodash';
+import {uniqueId} from 'lodash';
 import {Button, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
 import {injectIntl, intlShape} from 'react-intl';
@@ -11,7 +11,7 @@ import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 import {Text, View} from 'react-native';
 import {textTitleStyle} from '../../../../themes/default/index';
 
-const uniqueId = _.uniqueId();
+const _uniqueId = uniqueId();
 
 class UserTwoStepForgetComponent extends Component {
 
@@ -28,7 +28,7 @@ class UserTwoStepForgetComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}

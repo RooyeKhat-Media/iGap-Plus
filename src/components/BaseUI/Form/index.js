@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View} from 'react-native';
-import * as _ from 'lodash';
+import {isObject} from 'lodash';
 import {Spinner} from '../index';
 import {sleep} from "../../../utils/core";
 
@@ -35,7 +35,7 @@ class Form extends Component {
     if (inputs[name]) {
       inputs[name].setError(error);
     }
-  }
+  };
 
   submit = async () => {
     const {submitLock} = this.props;
@@ -97,7 +97,7 @@ class Form extends Component {
   recursiveCloneChildren(children) {
     return React.Children.map(children, child => {
 
-      if (!_.isObject(child)) {
+      if (!isObject(child)) {
         return child;
       }
 

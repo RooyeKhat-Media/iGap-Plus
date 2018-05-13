@@ -1,5 +1,5 @@
 // @flow
-import * as _ from 'lodash';
+import {merge} from 'lodash';
 import {StyleSheet} from 'react-native';
 import Device from './Device';
 import MediaQuerySelector, {MediaQuery} from './MediaQuerySelector';
@@ -14,7 +14,7 @@ export default class MediaQueryStyleSheet {
     const {width, height} = Device.dimensions.window;
     let selectedStyles: StyleSheet.Styles[] = [];
     styles.forEach(style =>
-      selectedStyles = MediaQuerySelector.query(style.query, width, height) ? _.merge(selectedStyles, {...style.style}) : selectedStyles
+      selectedStyles = MediaQuerySelector.query(style.query, width, height) ? merge(selectedStyles, {...style.style}) : selectedStyles
     );
     return selectedStyles;
   }

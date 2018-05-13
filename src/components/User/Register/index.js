@@ -8,14 +8,14 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
-import * as _ from 'lodash';
+import {uniqueId} from 'lodash';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import LinerLogo from '../../../assets/images/linerLogo';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 
-const uniqueId = _.uniqueId();
+const _uniqueId = uniqueId();
 
 class UserRegisterComponent extends React.Component {
   static contextTypes = {
@@ -34,7 +34,7 @@ class UserRegisterComponent extends React.Component {
     const OS = Platform.OS;
 
     return (
-      <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <View style={styles.wrapper}>
           <ConnectionStatus showAuthenticating={false}/>
 

@@ -4,7 +4,7 @@ import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {Button} from '../../BaseUI/index';
 import {Text, View} from 'react-native';
 import styleSheet from './index.styles';
-import * as _ from 'lodash';
+import {uniqueId} from 'lodash';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
 import i18n from '../../../i18n/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
@@ -14,7 +14,7 @@ import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsi
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 
 
-const uniqueId = _.uniqueId();
+const _uniqueId = uniqueId();
 
 class UserVerifyComponent extends Component {
 
@@ -40,7 +40,7 @@ class UserVerifyComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <DimensionLimiter id={uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <ConnectionStatus showAuthenticating={false}/>
 
         <Form style={styles.panel} control={(form) => {

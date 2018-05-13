@@ -1,5 +1,5 @@
 import i18n from '../i18n/index';
-import * as _ from 'lodash';
+import {has} from 'lodash';
 
 function _messageSelector(optionMessage, defaultMessage) {
   if (optionMessage) {
@@ -38,13 +38,13 @@ export const stringValidator = function(value, options = {}) {
     if (typeof value !== 'string') {
       reject(_messageSelector(options.message, i18n.errorTypeString));
 
-    } else if (_.has(options, 'min') && value.length < options.min) {
+    } else if (has(options, 'min') && value.length < options.min) {
       reject(_messageSelector(options.errorStringLengthMin, {
         ...i18n.errorStringLengthMin,
         values: {min: options.min},
       }));
 
-    } else if (_.has(options, 'max') && value.length > options.max) {
+    } else if (has(options, 'max') && value.length > options.max) {
       reject(_messageSelector(options.errorStringLengthMax, {
         ...i18n.errorStringLengthMax,
         values: {max: options.max},
