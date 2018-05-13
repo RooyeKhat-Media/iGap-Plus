@@ -14,7 +14,7 @@ import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '.
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
 import {appStateChange, loadAuthorHash, loadUserId, loadUserToken, setAppState} from '../utils/app';
-import {changeLocale, getUserLocale, loadUserLocale} from '../utils/locale';
+import {changeLocale, getUserLocale, loadUserLocale, LOCALE_DEFAULT} from '../utils/locale';
 import {getAppTheme} from '../themes';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
@@ -39,8 +39,10 @@ class App extends Component {
       return Promise.all([
         loadUserId(),
         loadAuthorHash(),
-        loadUserLocale().then(() => {
-          return changeLocale(getUserLocale());
+        loadUserLocale().then((locale) => {
+          if (locale !== LOCALE_DEFAULT) {
+            return changeLocale(getUserLocale());
+          }
         }),
         loadAppThemeName(),
         loadUserToken().then((token) => {
