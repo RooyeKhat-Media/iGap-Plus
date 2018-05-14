@@ -657,6 +657,7 @@
 		4FC7DB7C1FEA3CA500210503 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4FC7DB7E1FEA3CC600210503 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4FC7DBD41FEA445D00210503 /* iGapPlus-bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iGapPlus-bridging-header.h"; path = "iGapPlus/iGapPlus-bridging-header.h"; sourceTree = "<group>"; };
+		4FD6707E20A9670A00CB1878 /* iGapPlus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iGapPlus.entitlements; path = iGapPlus/iGapPlus.entitlements; sourceTree = "<group>"; };
 		4FE7D4D51FA088BB00DEE321 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		4FF626A220355B3E008F334F /* incallmanager_busytone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incallmanager_busytone.mp3; sourceTree = "<group>"; };
 		4FF626A320355B3E008F334F /* incallmanager_ringback.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incallmanager_ringback.mp3; sourceTree = "<group>"; };
@@ -869,6 +870,7 @@
 		13B07FAE1A68108700A75B9A /* iGapPlus */ = {
 			isa = PBXGroup;
 			children = (
+				4FD6707E20A9670A00CB1878 /* iGapPlus.entitlements */,
 				4FC7DBD41FEA445D00210503 /* iGapPlus-bridging-header.h */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1388,6 +1390,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = MZ7XTDD264;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -2280,6 +2287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iGapPlus/iGapPlus.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = MZ7XTDD264;
@@ -2329,6 +2337,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iGapPlus/iGapPlus.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = MZ7XTDD264;
