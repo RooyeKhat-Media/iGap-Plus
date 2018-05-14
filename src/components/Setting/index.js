@@ -99,7 +99,8 @@ class SettingComponent extends Component {
               headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
               options={this.state.localesList}
               onItemSelect={(locale) => changeLocale(locale)}
-              placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}/>}
+              placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
+              style={{wrapper:{display:'none'}}}/>}
             style={styles.listItem}
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>

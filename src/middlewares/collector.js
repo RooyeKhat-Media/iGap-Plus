@@ -5,6 +5,7 @@ import {
   FILE_MANAGER_UPLOAD_PENDING,
 } from '../actions/fileManager';
 import {METHOD_USER_LOGOUT} from '../actions/methods/user/logout';
+import {APP_ENABLE} from "../actions/app";
 
 
 const {collect} = Collector(
@@ -30,6 +31,10 @@ export default store => next => action => {
       startsWith(action.type, 'SECONDARY_NAVIGATOR_')
       ||
       startsWith(action.type, 'Navigation/')
+      ||
+      startsWith(action.type, '@@intl/')
+      ||
+      action.type === APP_ENABLE
       ||
       action.type === FILE_MANAGER_UPLOAD_PENDING
       ||
