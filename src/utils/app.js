@@ -43,6 +43,7 @@ import Client from '../modules/Api/Client';
 import {clientStatusChanged} from '../actions/api';
 import {clientStatusUpdating} from '../actions/updating';
 import {serverRoomsState} from '../modules/Messenger/Rooms/index';
+import {appEnable} from '../actions/app';
 
 let _userId;
 let _userIdString;
@@ -475,4 +476,9 @@ export function getChatDeleteMessageForBothPeriod() {
  */
 export function setChatDeleteMessageForBothPeriod(time) {
   _chatDeleteMessageForBothPeriod = time;
+}
+
+export function reloadApp() {
+  store.dispatch(appEnable(false));
+  store.dispatch(appEnable(true));
 }

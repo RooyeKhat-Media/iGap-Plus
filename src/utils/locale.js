@@ -3,6 +3,7 @@ import {LOCALE_EN} from '../constants/locale';
 import {METADATA_USER_LOCALE} from '../models/MetaData/constant';
 import {localeChange} from '../actions/locale';
 import store from '../configureStore';
+import {reloadApp} from './app';
 
 export const LOCALE_DEFAULT = LOCALE_EN;
 
@@ -27,4 +28,5 @@ export async function changeLocale(locale) {
     await setUserLocale(locale);
   }
   store.dispatch(localeChange(locale));
+  reloadApp();
 }

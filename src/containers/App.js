@@ -89,8 +89,13 @@ class App extends Component {
   };
 
   render() {
-    const {dispatch, nav, theme} = this.props;
+    const {dispatch, nav, theme, app} = this.props;
     const appTheme = getAppTheme(theme);
+
+    if (!app.isEnable) {
+      return null;
+    }
+
     return (
       <ThemeProvider uiTheme={appTheme}>
         <View style={styles.root}>
@@ -118,6 +123,7 @@ App.propTypes = {
 const mapStateToProps = state => ({
   nav: state.nav,
   theme: state.theme,
+  app: state.app,
 });
 
 export default connect(mapStateToProps)(App);
