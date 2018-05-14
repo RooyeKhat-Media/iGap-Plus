@@ -14,7 +14,7 @@ class PrivacyPolicyComponent extends React.PureComponent {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.privacyPolicyTitle)}</Text>}
+          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.registerTermsOfService)}</Text>}
           showAuthenticating={false}
         />
         <WebView style={styles.webView} source={{html: privacyPolicy || ''}} />

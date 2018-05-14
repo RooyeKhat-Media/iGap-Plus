@@ -14,6 +14,7 @@ import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints'
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import LinerLogo from '../../../assets/images/linerLogo';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
+import Linking from '../../../modules/Linking/index';
 
 const _uniqueId = uniqueId();
 
@@ -111,11 +112,18 @@ class UserRegisterComponent extends React.Component {
                     this.form.loadingOff();
                   }
                 }} upperCase={false} style={styles.btnSubmit}/>
-              <Button upperCase={false}
-                style={styles.privacyBtn}
-                onPress={goPrivacyPolicy}
-                text={intl.formatMessage(i18n.registerPrivacyBtnTitle)}
-                icon={<MCIcon color="#7d7d7d" name="alert-decagram" size={14}/>}/>
+              <View style={styles.privacy}>
+                <Button upperCase={false}
+                  style={styles.privacyBtn}
+                  onPress={goPrivacyPolicy}
+                  text={intl.formatMessage(i18n.registerTermsOfService)}
+                  icon={<MCIcon color="#7d7d7d" name="alert-decagram" size={14}/>}/>
+                <Button upperCase={false}
+                  style={styles.privacyBtn}
+                  onPress={() => Linking.openURL('https://www.igap.net/privacy.html')}
+                  text={intl.formatMessage(i18n.registerPrivacyBtnTitle)}
+                  icon={<MCIcon color="#7d7d7d" name="information-outline" size={14}/>}/>
+              </View>
             </View>
 
             <View style={styles.divider}>

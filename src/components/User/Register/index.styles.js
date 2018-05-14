@@ -116,14 +116,16 @@ export default (UserRegister) => ([
           container: {
             borderWidth: 0,
             marginTop: 5,
-            marginBottom: 5,
           },
           text: {
             fontSize: 10,
             color: UserRegister.privacyBtnColor,
           },
         },
-
+        privacy:{
+          flexDirection:'row',
+          justifyContent:'center',
+        },
         divider: {
           flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
         },

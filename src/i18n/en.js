@@ -187,6 +187,11 @@ export default {
     defaultMessage: 'Privacy and Policy',
     description: 'UserRegister Page',
   },
+  registerTermsOfService: {
+    id: 'register.TermsOfService',
+    defaultMessage: 'Terms of Service',
+    description: 'UserRegister Page',
+  },
   registerLoginDivider: {
     id: 'UserRegister.loginDivider',
     defaultMessage: 'OR',
@@ -247,13 +252,6 @@ export default {
     defaultMessage: 'The {field} Invalid.',
     description: 'error',
   },
-
-  privacyPolicyTitle: {
-    id: 'privacyPolicy.title',
-    defaultMessage: 'Privacy and Policy',
-    description: 'Privacy Policy Page',
-  },
-
   verifySmsPermissionTitle: {
     id: 'UserVerify.receiveSms',
     defaultMessage: 'Receive Sms',
