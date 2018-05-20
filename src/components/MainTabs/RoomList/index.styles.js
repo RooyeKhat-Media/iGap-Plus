@@ -12,5 +12,9 @@ export default {
     alignSelf: 'flex-start',
     ...Neuropolitical,
   },
-
+  roomListWrap: {
+    flex: 1,
+    minWidth: 100,
+    minHeight: 100,
+  },
 };

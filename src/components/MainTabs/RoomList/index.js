@@ -61,12 +61,14 @@ class RoomListComponent extends React.PureComponent {
             }
           />
           <ReturnToCall/>
-          {!!roomList.length && (<RecyclerListView
-            canChangeSize={true}
-            renderAheadOffset={640}
-            layoutProvider={this._layoutProvider}
-            dataProvider={dataProvider}
-            rowRenderer={this._rowRenderer}/>)}
+          <View style={styles.roomListWrap}>
+            {!!roomList.length && (<RecyclerListView
+              canChangeSize={true}
+              renderAheadOffset={640}
+              layoutProvider={this._layoutProvider}
+              dataProvider={dataProvider}
+              rowRenderer={this._rowRenderer}/>)}
+          </View>
         </View>
         <ActionSheet
           type={APP_MODAL_ID_PRIMARY}

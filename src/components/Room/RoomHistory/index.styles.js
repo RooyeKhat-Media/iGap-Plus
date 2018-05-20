@@ -34,6 +34,8 @@ export default {
     flexDirection: 'column',
     justifyContent: 'flex-end',
     transform: [{rotateX: '180deg'}],
+    minWidth: 100,
+    minHeight: 100,
   },
   messageWrap: {
     flex: 1,
