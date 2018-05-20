@@ -111,6 +111,14 @@ class RoomInfoComponent extends React.Component {
                   <Text style={styles.roomStatus}><RoomStatus roomId={room.id}/></Text>
                 </View>}
               />
+              {(roomPeer && roomPeer.mutual) && (
+                <ListItem
+                  centerElement={{
+                    primaryText: roomPeer.phone.toString(),
+                    secondaryText: intl.formatMessage(i18n.roomInfoPhone),
+                  }}
+                />
+              )}
               {(description) && (<View style={styles.roomDescription}><RichTextView rawText={description}/></View>)}
               {(room.groupPublicUsername || room.channelPublicUsername || (roomPeer && roomPeer.username)) && (
                 <ListItem

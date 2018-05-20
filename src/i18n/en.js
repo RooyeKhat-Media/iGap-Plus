@@ -788,6 +788,11 @@ export default {
     defaultMessage: 'Username',
     description: 'RoomInfo screen',
   },
+  roomInfoPhone: {
+    id: 'roomInfo.phone',
+    defaultMessage: 'Phone',
+    description: 'RoomInfo screen',
+  },
   roomInfoMuteNotifications: {
     id: 'roomInfo.mute.notifications',
     defaultMessage: 'Mute Notifications',
