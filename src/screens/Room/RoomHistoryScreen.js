@@ -189,7 +189,7 @@ class RoomHistoryScreen extends PureComponent {
   }
 
   async initializeRoom(room) {
-    const {messageList} = this.props;
+    const {messageList, editRoom} = this.props;
     this.initialized = true;
     this.setAccess(room);
     focusRoom(room.id);
@@ -231,7 +231,7 @@ class RoomHistoryScreen extends PureComponent {
         this.setState({forwardedMessage: forwardParam});
       }
     }
-
+    editRoom(room.id, {unreadCount: 0});
     if (!room.isParticipant) {
       const clientSubscribeToRoom = new ClientSubscribeToRoom();
       clientSubscribeToRoom.setRoomId(room.id);

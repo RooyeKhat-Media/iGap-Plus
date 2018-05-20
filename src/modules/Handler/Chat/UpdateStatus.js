@@ -19,11 +19,6 @@ const {collect} = Collector(
         payload.updaterAuthorHash === getAuthorHash()
       );
     }
-    for (const roomId in seenMessages) {
-      if (seenMessages[roomId]) {
-        store.dispatch(entitiesRoomEdit(roomId, {unreadCount: 0}));
-      }
-    }
   },
   250
 );
