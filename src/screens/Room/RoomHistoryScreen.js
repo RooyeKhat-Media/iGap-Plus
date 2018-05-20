@@ -773,7 +773,7 @@ class RoomHistoryScreen extends PureComponent {
         isPublic={room.groupType === Proto.GroupRoom.Type.PUBLIC_ROOM || room.channelType === Proto.ChannelRoom.Type.PUBLIC_ROOM}
         roomMute={room.roomMute === Proto.RoomMute.MUTE}
         joinBoxToggle={this.joinBoxToggle}
-        messageList={messageList}
+        messageList={messageList || []}
         selectedList={selectedList}
         selectedCount={selectedCount}
         getRoomMessage={getRoomMessage}

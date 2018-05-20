@@ -35,7 +35,7 @@ class RoomHistoryComponent extends React.PureComponent {
   });
 
   getDataProvider = (messageList) => {
-    return this._dataProvider.cloneWithRows(messageList || []);
+    return this._dataProvider.cloneWithRows(messageList);
   };
 
   constructor(args) {
@@ -114,7 +114,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl} = this.props;
+    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, forwardModalControl, conformControl, messageList} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -122,7 +122,7 @@ class RoomHistoryComponent extends React.PureComponent {
           {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
           <ReturnToCall/>
           <View style={styles.messageListWrap}>
-            <RecyclerListView
+            {!!messageList.length && (<RecyclerListView
               ref={this.flatListRef}
               canChangeSize={true}
               renderAheadOffset={640}
@@ -130,7 +130,7 @@ class RoomHistoryComponent extends React.PureComponent {
               dataProvider={dataProvider}
               rowRenderer={this.renderItem}
               onScroll={this.onScroll}
-              forceNonDeterministicRendering={true}/>
+              forceNonDeterministicRendering={true}/>)}
           </View>
 
           <ScrollDown

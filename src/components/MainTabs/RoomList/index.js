@@ -48,7 +48,7 @@ class RoomListComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, clientUpdating, actionSheetControl, confirmControl} = this.props;
+    const {intl, clientUpdating, actionSheetControl, confirmControl, roomList} = this.props;
     const {dataProvider} = this.state;
     return (
       <View style={{flex: 1}}>
@@ -61,12 +61,12 @@ class RoomListComponent extends React.PureComponent {
             }
           />
           <ReturnToCall/>
-          <RecyclerListView
+          {!!roomList.length && (<RecyclerListView
             canChangeSize={true}
             renderAheadOffset={640}
             layoutProvider={this._layoutProvider}
             dataProvider={dataProvider}
-            rowRenderer={this._rowRenderer}/>
+            rowRenderer={this._rowRenderer}/>)}
         </View>
         <ActionSheet
           type={APP_MODAL_ID_PRIMARY}
@@ -81,5 +81,6 @@ class RoomListComponent extends React.PureComponent {
 RoomListComponent.propTypes = {
   intl: intlShape.isRequired,
   clientUpdating: PropType.bool,
+  roomList: PropType.array,
 };
 export default injectIntl(RoomListComponent);
