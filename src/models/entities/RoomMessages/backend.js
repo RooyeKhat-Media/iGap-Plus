@@ -1,9 +1,11 @@
 import Squel from '../../../modules/Squel';
 import {storage} from '../../MetaData/storage';
+import {map} from 'lodash';
 import {
   normalizedRoomMessageToSerializableRoomMessage,
   serializableRoomMessageToNormalizedRoomMessage,
 } from '../../../schemas/roomMessage';
+import LogReport from '../../../modules/LogReport';
 
 /**
  * @param {DbSaveQueueMap} persist
@@ -51,8 +53,23 @@ export function persistCallback(persist) {
 
   storage.transaction((transaction) => {
     if (createDocs.length) {
-      const params = Squel.insert().into('entities_room_messages').setFieldsRows(createDocs).toParam();
-      transaction.executeSql(params.text, params.values);
+      try {
+        const params = Squel.insert().into('entities_room_messages').setFieldsRows(createDocs).toParam();
+        transaction.executeSql(params.text, params.values);
+      } catch (e) {
+        LogReport('EntitiesRoomMessages.insertException', {
+          id: map(createDocs, ({id}) => typeof id),
+          roomId: map(createDocs, ({roomId}) => typeof roomId),
+          messageType: map(createDocs, ({messageType}) => typeof messageType),
+          message: map(createDocs, ({message}) => typeof message),
+          messageVersion: map(createDocs, ({messageVersion}) => typeof messageVersion),
+          statusVersion: map(createDocs, ({statusVersion}) => typeof statusVersion),
+          deleteVersion: map(createDocs, ({deleteVersion}) => typeof deleteVersion),
+          data: map(createDocs, ({data}) => typeof data),
+          fraction: map(createDocs, ({fraction}) => typeof fraction),
+          cacheTime: map(createDocs, ({cacheTime}) => typeof cacheTime),
+        });
+      }
     }
 
     if (deleteDocs.length) {
@@ -173,6 +190,7 @@ export function retrieveHistoryCallback(roomId, firstMessageId, upward, limit) {
     });
   });
 }
+
 export function clearHistory(roomId, clearId) {
   return new Promise((resolve, reject) => {
     storage.transaction((transaction) => {
