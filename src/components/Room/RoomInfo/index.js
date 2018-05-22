@@ -12,6 +12,7 @@ import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import RichTextView from '../../../modules/RichTextView/index';
 import {Proto} from '../../../modules/Proto/index';
 import RoomStatus from '../../../containers/Unit/RoomStatus';
+import {getUserId} from "../../../utils/app";
 
 class RoomInfoComponent extends React.Component {
   render() {
@@ -31,12 +32,14 @@ class RoomInfoComponent extends React.Component {
     }
 
     const actionList = [];
-    if (roomPeer && roomPeer.mutual) {
-      actionList.push(intl.formatMessage(i18n.roomInfoEditContact));
-      actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
-      actionList.push(intl.formatMessage(i18n.roomInfoDeleteContact));
-    } else if (roomPeer) {
-      actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
+    if (roomPeer && roomPeer.id !== getUserId(true)) {
+      if (roomPeer.mutual) {
+        actionList.push(intl.formatMessage(i18n.roomInfoEditContact));
+        actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
+        actionList.push(intl.formatMessage(i18n.roomInfoDeleteContact));
+      } else {
+        actionList.push(intl.formatMessage(isBlock ? i18n.roomInfoUnBlockContact : i18n.roomInfoBlockContact));
+      }
     }
     return (
       <View style={styles.container}>

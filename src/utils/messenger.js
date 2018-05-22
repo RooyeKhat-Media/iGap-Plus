@@ -574,7 +574,7 @@ export function sendActionRequest(roomId, action, actionId = null) {
  */
 export function getLogMessageParams(message, details) {
 
-  let params = {};
+  let params = null;
   const targetUserId = message.log.getTargetUser() ? message.log.getTargetUser().getId().toString() : null;
 
   const roomType = details.roomType;
