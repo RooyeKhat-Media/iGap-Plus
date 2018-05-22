@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import * as _ from 'lodash';
 import {Spinner} from '../index';
+import {sleep} from "../../../utils/core";
 
 class Form extends Component {
   inputs = {};
@@ -11,6 +12,7 @@ class Form extends Component {
     super(props);
     const {control} = this.props;
     this.recursiveCloneChildren = this.recursiveCloneChildren.bind(this);
+    this.submitCount = 0;
     control({
       submit: this.submit,
       validate: this.validate,
@@ -35,23 +37,32 @@ class Form extends Component {
     }
   }
 
-  submit = () => {
+  submit = async () => {
     const output = {};
     const inputs = this.inputs;
-    return this.validate().then(function() {
-      Object.keys(inputs).forEach(function(name) {
-        output[name] = inputs[name].getValue();
-      });
-      return Promise.resolve(output);
+    this.submitCount++;
+    if (this.submitCount !== 1) {
+      return Promise.reject('Fast Submit');
+    }
+    await this.validate();
+    Object.keys(inputs).forEach(function(name) {
+      output[name] = inputs[name].getValue();
     });
+    return output;
   };
 
   loadingOn = () => {
-    this.loading.on();
+    if (this.submitCount === 0) {
+      this.loading.on();
+    }
   };
 
-  loadingOff = () => {
-    this.loading.off();
+  loadingOff = async () => {
+    await sleep(0.5);
+    this.submitCount--;
+    if (this.submitCount === 0) {
+      this.loading.off();
+    }
   };
 
   validate = () => {
