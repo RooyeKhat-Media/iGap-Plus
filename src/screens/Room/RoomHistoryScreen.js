@@ -403,10 +403,12 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   onEndRecordSound = async (path) => {
+    const {replyTo} = this.state;
     const {room} = this.props;
     if (path) {
       const pickedFile = await RNIGFileSystem.fInfo(path);
-      await sendMessage(room.id, '', pickedFile, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE);
+      await sendMessage(room.id, '', pickedFile, ROOM_MESSAGE_ATTACHMENT_TYPE_VOICE, replyTo ? replyTo.longId : null);
+      this.setState({replyTo: null});
     }
     if (this.recordingVoiceId) {
       sendActionRequest(room.id, Proto.ClientAction.CANCEL, this.recordingVoiceId);
