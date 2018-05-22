@@ -13,8 +13,13 @@ class UserTwoStepSettingComponent extends Component {
   checkPassword = async () => {
     const {checkPassword} = this.props;
     if (this.form) {
-      const data = await this.form.submit();
-      await checkPassword(data, this.form.setError);
+      try {
+        this.form.loadingOn();
+        const data = await this.form.submit();
+        await checkPassword(data, this.form.setError);
+      } finally {
+        this.form.loadingOff();
+      }
     }
   };
 

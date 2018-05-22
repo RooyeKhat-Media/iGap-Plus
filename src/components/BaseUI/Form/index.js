@@ -38,11 +38,14 @@ class Form extends Component {
   }
 
   submit = async () => {
+    const {submitLock} = this.props;
     const output = {};
     const inputs = this.inputs;
-    this.submitCount++;
-    if (this.submitCount !== 1) {
-      return Promise.reject('Fast Submit');
+    if (submitLock) {
+      this.submitCount++;
+      if (this.submitCount !== 1) {
+        return Promise.reject('Fast Submit');
+      }
     }
     await this.validate();
     Object.keys(inputs).forEach(function(name) {
@@ -52,15 +55,19 @@ class Form extends Component {
   };
 
   loadingOn = () => {
-    if (this.submitCount === 0) {
+    const {submitLock} = this.props;
+    if (!submitLock || this.submitCount === 0) {
       this.loading.on();
     }
   };
 
   loadingOff = async () => {
+    const {submitLock} = this.props;
     await sleep(0.5);
-    this.submitCount--;
-    if (this.submitCount === 0) {
+    if (submitLock) {
+      this.submitCount--;
+    }
+    if (!submitLock || this.submitCount === 0) {
       this.loading.off();
     }
   };
@@ -107,8 +114,13 @@ class Form extends Component {
   }
 }
 
+Form.defaultProps = {
+  submitLock: true,
+};
+
 Form.propTypes = {
   control: PropTypes.func.isRequired,
+  submitLock: PropTypes.bool,
 };
 
 export default Form;

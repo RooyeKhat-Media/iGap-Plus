@@ -23,7 +23,7 @@ class UserTwoStepSetPasswordComponent extends Component {
             await onSubmit(data, this.form);
           }}
         />
-        <Form style={styles.body} control={(form) => {
+        <Form submitLock={currentState === 5} style={styles.body} control={(form) => {
           this.form = form;
         }}>
 
