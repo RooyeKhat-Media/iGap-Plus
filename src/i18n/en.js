@@ -1264,6 +1264,11 @@ export default {
     defaultMessage: 'Revoke Link',
     description: 'Room Revoke Invite Link Screen',
   },
+  roomInviteLinkCopyClipboardBtn: {
+    id: 'roomInviteLink.copyClipboardBtn',
+    defaultMessage: 'Copy Link',
+    description: 'Room Revoke Invite Link Screen',
+  },
   roomHistoryUnreadMessageLabel: {
     id: 'roomHistory.unreadMessageLabel',
     defaultMessage: 'Unread Messages',

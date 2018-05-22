@@ -39,6 +39,9 @@ export default [
           padding: 5,
           paddingTop: 10,
         },
+        revokeBtn: {
+          marginLeft: 5,
+        },
       },
     },
   ],
