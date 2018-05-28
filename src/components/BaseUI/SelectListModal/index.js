@@ -42,13 +42,13 @@ class SelectListModal extends React.Component {
   };
 
   render() {
-    const {intl, multi, searchable, data, headerTitle, autoFocus} = this.props;
+    const {intl, multi, searchable, data, headerTitle, autoFocus, flexContainer} = this.props;
     const {searchText, selected} = this.state;
     const options = data.filter(function(option) {
       return searchText === '' || (option.filter && option.filter.indexOf(searchText.toLowerCase()) >= 0);
     });
     return (
-      <View style={styles.container}>
+      <View style={flexContainer ? styles.flexContainer : styles.container}>
         <View style={styles.headerWrap}>
           <View style={styles.headerTopWrap}>
             {headerTitle && (<Text style={styles.headerTitle}>{headerTitle}</Text>)}

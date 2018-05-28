@@ -15,6 +15,7 @@ import {
   goLocationPicker,
   goRoomHistory,
   goRoomInfo,
+  goRoomPicker,
   goRoomReport,
 } from '../../navigators/SecondaryNavigator';
 import {
@@ -548,14 +549,8 @@ class RoomHistoryScreen extends PureComponent {
     });
   };
 
-  forwardModalControl = (ref) => {
-    if (ref) {
-      this.forwardModal = ref.getWrappedInstance();
-    }
-  };
-
   actionForward = (message) => {
-    this.forwardModal.open(selectList => {
+    goRoomPicker(selectList => {
       if (selectList.length === 1 && selectList[0].roomId) {
         goRoomHistory(selectList[0].roomId, message);
       } else {
@@ -791,7 +786,6 @@ class RoomHistoryScreen extends PureComponent {
         onRoomHistoryMorePress={this.onRoomHistoryMorePress}
         actionSheetControl={this.actionSheetControl}
         onScroll={this.onScroll}
-        forwardModalControl={this.forwardModalControl}
         goBack={this.props.navigation.goBack}
       />
     );

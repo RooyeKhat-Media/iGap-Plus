@@ -15,6 +15,11 @@ export default {
     minWidth: 280,
     maxWidth: 420,
   },
+  flexContainer: {
+    flex: 1,
+    borderRadius: 2,
+    backgroundColor: '#fff',
+  },
   headerWrap: {
     padding: 5,
     backgroundColor: '#fff',

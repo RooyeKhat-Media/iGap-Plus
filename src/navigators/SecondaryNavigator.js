@@ -3,13 +3,16 @@ import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpe
 import {
   AVATAR_LIST_SCREEN,
   CALL_SCREEN,
-  CAMERA_SCREEN, CONTACT_EDIT_SCREEN, LOCATION_PICKER_SCREEN,
+  CAMERA_SCREEN,
+  CONTACT_EDIT_SCREEN,
+  LOCATION_PICKER_SCREEN,
   ROOM_EDIT_SCREEN,
   ROOM_GALLERY_SCREEN,
   ROOM_HISTORY_SCREEN,
   ROOM_INFO_SCREEN,
   ROOM_INVITE_LINK_SCREEN,
   ROOM_MEMBER_LIST_SCREEN,
+  ROOM_PICKER_SCREEN,
   ROOM_REPORT_SCREEN,
   SECONDARY_CONTACT_PICKER_SCREEN,
   SECONDARY_INITIAL_SCREEN,
@@ -36,6 +39,7 @@ import LocationPickerScreen from '../screens/LocationPickerScreen';
 import RoomGalleryScreen from '../screens/Room/RoomGalleryScreen';
 import Camera from 'react-native-igap-camera';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
+import RoomPickerScreen from '../screens/RoomPickerScreen';
 
 export function goRoomHistory(roomId, forwardedMessage, reset = true) {
   if (reset) {
@@ -117,6 +121,10 @@ export function goLocationPicker(onSubmit) {
   navigate(LOCATION_PICKER_SCREEN, {onSubmit});
 }
 
+export function goRoomPicker(onSubmit) {
+  navigate(ROOM_PICKER_SCREEN, {onSubmit});
+}
+
 export const middleware = createReactNavigationReduxMiddleware(
   'secondary',
   state => state.navSecondary,
@@ -145,6 +153,7 @@ const SecondaryNavigator = StackNavigator({
   [CAMERA_SCREEN]: {screen: CameraScreen},
   [VIDEO_PLAYER]: {screen: VideoPlayerScreen},
   [LOCATION_PICKER_SCREEN]: {screen: LocationPickerScreen},
+  [ROOM_PICKER_SCREEN]: {screen: RoomPickerScreen},
   [ROOM_GALLERY_SCREEN]: {screen: RoomGalleryScreen},
   [CONTACT_EDIT_SCREEN]: {screen: ContactNewScreen},
 }, {

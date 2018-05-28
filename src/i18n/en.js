@@ -1962,4 +1962,9 @@ export default {
     defaultMessage: '{status, select,1{Last Month} 2{Last Week} 3{Online} 5{Recently} 6{Support} 7{Service Notification} other{Long time ago}}',
     description: 'roomStatusLabelMember',
   },
+  roomPickerTitle: {
+    id: 'roomPicker.title',
+    defaultMessage: 'Select a Chat',
+    description: 'RoomPicker Screen',
+  },
 };
