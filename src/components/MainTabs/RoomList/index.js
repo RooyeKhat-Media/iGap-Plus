@@ -1,22 +1,41 @@
 import React from 'react';
 import PropType from 'prop-types';
 import {Text, View} from 'react-native';
+import {filter} from 'lodash';
+import MaterialTabs from 'react-native-material-tabs';
 import {injectIntl, intlShape} from 'react-intl';
 import styles from './index.styles';
 import {ActionSheet, Confirm, Toolbar} from '../../BaseUI/index';
 import RoomListItem from '../../../containers/Unit/RoomListItem';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import i18n from '../../../i18n';
-import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
+import {APP_MODAL_ID_PRIMARY, SOUND_PLAYER_BOX_TOOLBAR} from '../../../constants/app';
 import {getPrimaryWidth} from '../../../modules/DimensionCalculator';
 import ReturnToCall from '../../Call/ReturnToCall';
+import {gray100, gray1000, gray950} from '../../../themes/default/index';
+import SoundPlayer from '../../../containers/Unit/SoundPlayer';
+import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
+import {Proto} from '../../../modules/Proto/index';
 
 class RoomListComponent extends React.PureComponent {
 
-  getDataProvider = (roomList) => {
+  getDataProvider = (roomList, selectedTab) => {
+    const {getRoomType} = this.props;
+    const filterRoomList = filter(roomList, (item) => {
+      switch (selectedTab) {
+        case 1:
+          return getRoomType(item.id) === Proto.Room.Type.CHAT;
+        case 2:
+          return getRoomType(item.id) === Proto.Room.Type.GROUP;
+        case 3:
+          return getRoomType(item.id) === Proto.Room.Type.CHANNEL;
+        default:
+          return true;
+      }
+    });
     return new DataProvider((r1, r2) => {
       return r1.id !== r2.id;
-    }).cloneWithRows(roomList);
+    }).cloneWithRows(filterRoomList);
   };
 
   constructor(args) {
@@ -30,21 +49,31 @@ class RoomListComponent extends React.PureComponent {
       dim.height = 72;
     });
     this.state = {
-      dataProvider: this.getDataProvider(roomList),
+      selectedTab: 0,
+      dataProvider: this.getDataProvider(roomList, 0),
       actions: [],
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextState) {
     const {roomList} = nextProps;
+    const {selectedTab} = nextState;
     this.setState({
-      dataProvider: this.getDataProvider(roomList),
+      dataProvider: this.getDataProvider(roomList, selectedTab),
     });
   }
 
   _rowRenderer = (type, item) => {
     const {onPress, onLongPress} = this.props;
     return (<RoomListItem onLongPress={onLongPress} onPress={onPress} roomId={item.id}/>);
+  };
+
+  onChangeTab = (index) => {
+    const {roomList} = this.props;
+    this.setState({
+      selectedTab: index,
+      dataProvider: this.getDataProvider(roomList, index),
+    });
   };
 
   render() {
@@ -54,12 +83,30 @@ class RoomListComponent extends React.PureComponent {
       <View style={{flex: 1}}>
         <View style={styles.container}>
           <Toolbar
+            hideConnectionStatus={true}
+            hideSoundPlayer={true}
             centerElement={
               <Text style={styles.textTitle}>
                 {clientUpdating ? intl.formatMessage(i18n.clientUpdating) : intl.formatMessage(i18n.iGapPlus)}
               </Text>
             }
           />
+          <MaterialTabs
+            barColor={gray100}
+            indicatorColor={gray950}
+            activeTextColor={gray1000}
+            inactiveTextColor={gray950}
+            items={[
+              intl.formatMessage(i18n.roomListFilterAll),
+              intl.formatMessage(i18n.roomListFilterChat),
+              intl.formatMessage(i18n.roomListFilterGroup),
+              intl.formatMessage(i18n.roomListFilterChannel),
+            ]}
+            selectedIndex={this.state.selectedTab}
+            onChange={this.onChangeTab}
+          />
+          <ConnectionStatus/>
+          <SoundPlayer type={SOUND_PLAYER_BOX_TOOLBAR}/>
           <ReturnToCall/>
           <View style={styles.roomListWrap}>
             {!!roomList.length && (<RecyclerListView
@@ -84,5 +131,6 @@ RoomListComponent.propTypes = {
   intl: intlShape.isRequired,
   clientUpdating: PropType.bool,
   roomList: PropType.array,
+  getRoomType: PropType.func,
 };
 export default injectIntl(RoomListComponent);

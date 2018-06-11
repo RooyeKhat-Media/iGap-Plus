@@ -1902,6 +1902,31 @@ export default {
     defaultMessage: '{type, select, 1{Image Message} 3{Video Message} 5{Audio Message} 7{Voice Message} 8{Gif} 9{Attachment} 11{Location} 12{Log Message} 13{Contact} other{None Message}}',
     description: 'Room List Screen',
   },
+  roomListFilterAll: {
+    id: 'roomList.filterAll',
+    defaultMessage: 'All',
+    description: 'Room List Screen',
+  },
+  roomListFilterChat: {
+    id: 'roomList.filterChat',
+    defaultMessage: 'Chat',
+    description: 'Room List Screen',
+  },
+  roomListFilterGroup: {
+    id: 'roomList.filterGroup',
+    defaultMessage: 'Group',
+    description: 'Room List Screen',
+  },
+  roomListFilterChannel: {
+    id: 'roomList.filterChannel',
+    defaultMessage: 'Chanel',
+    description: 'Room List Screen',
+  },
+  roomListFilterCall: {
+    id: 'roomList.filterCall',
+    defaultMessage: 'Call',
+    description: 'Room List Screen',
+  },
   nearbyScreenListTitle: {
     id: 'nearbyScreen.listTitle',
     defaultMessage: 'Nearby List',
