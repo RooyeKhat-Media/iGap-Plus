@@ -9,8 +9,8 @@ export default (props) => {
   return (
     <View>
       <Toolbar {...props}/>
-      <ConnectionStatus showAuthenticating={props.showAuthenticating}/>
-      <SoundPlayer type={SOUND_PLAYER_BOX_TOOLBAR}/>
+      {!props.hideConnectionStatus && (<ConnectionStatus showAuthenticating={props.showAuthenticating}/>)}
+      {!props.hideSoundPlayer && (<SoundPlayer type={SOUND_PLAYER_BOX_TOOLBAR}/>)}
     </View>
   );
 };
