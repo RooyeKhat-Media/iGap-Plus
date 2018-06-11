@@ -16,6 +16,7 @@ import {
   ROOM_REPORT_SCREEN,
   SECONDARY_CONTACT_PICKER_SCREEN,
   SECONDARY_INITIAL_SCREEN,
+  SECONDARY_ROOM_CREATE_SCREEN,
   SECONDARY_ROOM_UPDATE_USERNAME_SCREEN,
   VIDEO_PLAYER,
 } from '../constants/navigators';
@@ -40,6 +41,7 @@ import RoomGalleryScreen from '../screens/Room/RoomGalleryScreen';
 import Camera from 'react-native-igap-camera';
 import ContactNewScreen from '../screens/Contact/ContactNewScreen';
 import RoomPickerScreen from '../screens/RoomPickerScreen';
+import RoomCreateScreen from '../screens/Room/RoomCreateScreen';
 
 export function goRoomHistory(roomId, forwardedMessage, reset = true) {
   if (reset) {
@@ -63,6 +65,10 @@ export function goRoomEdit(roomId) {
 
 export function goContactPicker(title, onSubmit, multiple, required = true) {
   navigate(SECONDARY_CONTACT_PICKER_SCREEN, {title, onSubmit, multiple, required});
+}
+
+export function goRoomCreate(type, selectedContact = {}, roomId = null) {
+  resetSecondaryNavigation(SECONDARY_ROOM_CREATE_SCREEN, {type, selectedContact, roomId});
 }
 
 export function goRoomMemberList(roomId) {
@@ -145,6 +151,7 @@ const SecondaryNavigator = StackNavigator({
   [ROOM_INFO_SCREEN]: {screen: RoomInfoScreen},
   [ROOM_EDIT_SCREEN]: {screen: RoomEditScreen},
   [SECONDARY_CONTACT_PICKER_SCREEN]: {screen: ContactPickerScreen},
+  [SECONDARY_ROOM_CREATE_SCREEN]: {screen: RoomCreateScreen},
   [ROOM_MEMBER_LIST_SCREEN]: {screen: RoomMemberListScreen},
   [SECONDARY_ROOM_UPDATE_USERNAME_SCREEN]: {screen: RoomUpdateUsernameScreen},
   [ROOM_INVITE_LINK_SCREEN]: {screen: RoomInviteLinkScreen},

@@ -19,7 +19,8 @@ import {
   GroupLeft,
   Proto,
   UserContactsBlock,
-  UserContactsDelete, UserContactsUnblock,
+  UserContactsDelete,
+  UserContactsUnblock,
 } from '../../modules/Proto/index';
 import {
   CHANNEL_ADD_MEMBER,
@@ -42,8 +43,10 @@ import Api from '../../modules/Api/index';
 import {getCountRoomHistory} from '../../selector/methods/client/index';
 import {
   goAvatarList,
-  goCall, goContactEdit,
+  goCall,
+  goContactEdit,
   goContactPicker,
+  goRoomCreate,
   goRoomEdit,
   goRoomHistory,
   goRoomInviteLink,
@@ -59,6 +62,7 @@ import {dispatchMessengerRoomAddList} from '../../utils/messenger';
 import {deleteContact} from '../../actions/methods/user/contacts/getList';
 import {apiInvoke as userApiInvoke} from '../../modules/Entities/RegisteredUsers/index';
 import {getIsBlockFunc} from '../../selector/methods/user/contacts/block';
+import {ROOM_CREATE_SCREEN_TYPE_GROUP} from '../../constants/app';
 
 const actions = {
   image: 'image', video: 'video', audio: 'audio', voice: 'voice', file: 'file', link: 'link',
@@ -193,6 +197,9 @@ class RoomInfoScreen extends Component {
     const {access} = this.state;
 
     goContactPicker(i18n.roomInfoAddMemberToolbarTitle, async (contacts) => {
+      if (access.isChat) {
+        return goRoomCreate(ROOM_CREATE_SCREEN_TYPE_GROUP, contacts, room.longId);
+      }
       const promiseList = [];
       contacts.forEach(function(userId) {
         const addMemberActionId = access.isGroup ? GROUP_ADD_MEMBER : CHANNEL_ADD_MEMBER;
@@ -300,7 +307,8 @@ class RoomInfoScreen extends Component {
       case 2:
         roomPeer.mutual && this.deleteContact(confirm);
         break;
-      default: break;
+      default:
+        break;
     }
   };
 

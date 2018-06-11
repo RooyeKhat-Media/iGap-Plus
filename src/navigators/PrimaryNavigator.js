@@ -88,8 +88,8 @@ export function goEditProfile() {
   navigate(EDIT_PROFILE_SCREEN);
 }
 
-export function goRoomCreate(type, selectedContact = {}) {
-  resetPrimaryNavigation(ROOM_CREATE_SCREEN, {type, selectedContact});
+export function goRoomCreate(type, selectedContact = {}, roomId = null) {
+  resetPrimaryNavigation(ROOM_CREATE_SCREEN, {type, selectedContact, roomId});
 }
 
 export function goRoomUpdateUsername(roomId) {

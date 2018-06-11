@@ -6,6 +6,7 @@ import {
   ChannelAddMember,
   ChannelAvatarAdd,
   ChannelCreate,
+  ChatConvertToGroup,
   GroupAddMember,
   GroupAvatarAdd,
   GroupCreate,
@@ -15,6 +16,7 @@ import {
   CHANNEL_ADD_MEMBER,
   CHANNEL_AVATAR_ADD,
   CHANNEL_CREATE,
+  CHAT_CONVERT_TO_GROUP,
   GROUP_ADD_MEMBER,
   GROUP_AVATAR_ADD,
   GROUP_CREATE,
@@ -54,46 +56,52 @@ class RoomCreateScreen extends Component {
   }
 
   handleFormData = async (formData, setError) => {
-    const {selectedContact, type} = this.props.navigation.state.params;
-    const actionId = type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GROUP_CREATE : CHANNEL_CREATE;
-    const proto = new (type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GroupCreate : ChannelCreate)();
-    try {
-      proto.setName(formData.name);
-      proto.setDescription(formData.description);
-
-      const roomCreateResponse = await Api.invokeMapError(actionId, proto, setError, {
-        [errorId(ERROR_CHANNEL_CREATE_BAD_PAYLOAD)]: 'name',
-        [errorId(ERROR_CHANNEL_CREATE_LIMIT_REACHED)]: 'name',
-        [errorId(ERROR_GROUP_CREATE_BAD_PAYLOAD)]: 'name',
-        [errorId(ERROR_GROUP_CREATE_LIMIT_REACHED)]: 'name',
-      });
-      const roomId = roomCreateResponse.getRoomId().toString();
-
-      selectedContact.forEach(function(userId) {
-
-        const addMemberActionId = type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GROUP_ADD_MEMBER : CHANNEL_ADD_MEMBER;
-        const addMemberProto = type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GroupAddMember : ChannelAddMember;
-
-        const member = new addMemberProto.Member();
-        member.setUserId(userId);
-
-        const roomAddMember = new addMemberProto();
-        roomAddMember.setRoomId(roomCreateResponse.getRoomId());
-        roomAddMember.setMember(member);
-        Api.invoke(addMemberActionId, roomAddMember);
-      });
-      this.addAvatar(roomCreateResponse.getRoomId());
-
-      this.props.navigation.goBack();
-      goRoomUpdateUsername(roomId, {
-        goBack: () => {
-          goRoomHistory(roomId);
-        },
-      });
-    } catch (e) {
-      // TODO COMPLETE ERRORS
-      console.log('create group', e.name + ': ' + e.message);
+    const {selectedContact, type, roomId} = this.props.navigation.state.params;
+    let actionId;
+    let proto;
+    if (roomId) {
+      actionId = CHAT_CONVERT_TO_GROUP;
+      proto = new ChatConvertToGroup();
+      proto.setRoomId(roomId);
+    } else if (type === ROOM_CREATE_SCREEN_TYPE_GROUP) {
+      actionId = GROUP_CREATE;
+      proto = new GroupCreate();
+    } else {
+      actionId = CHANNEL_CREATE;
+      proto = new ChannelCreate();
     }
+    proto.setName(formData.name);
+    proto.setDescription(formData.description);
+
+    const roomCreateResponse = await Api.invokeMapError(actionId, proto, setError, {
+      [errorId(ERROR_CHANNEL_CREATE_BAD_PAYLOAD)]: 'name',
+      [errorId(ERROR_CHANNEL_CREATE_LIMIT_REACHED)]: 'name',
+      [errorId(ERROR_GROUP_CREATE_BAD_PAYLOAD)]: 'name',
+      [errorId(ERROR_GROUP_CREATE_LIMIT_REACHED)]: 'name',
+    });
+    const newRoomId = roomCreateResponse.getRoomId().toString();
+
+    selectedContact.forEach(function(userId) {
+
+      const addMemberActionId = type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GROUP_ADD_MEMBER : CHANNEL_ADD_MEMBER;
+      const addMemberProto = type === ROOM_CREATE_SCREEN_TYPE_GROUP ? GroupAddMember : ChannelAddMember;
+
+      const member = new addMemberProto.Member();
+      member.setUserId(userId);
+
+      const roomAddMember = new addMemberProto();
+      roomAddMember.setRoomId(roomCreateResponse.getRoomId());
+      roomAddMember.setMember(member);
+      Api.invoke(addMemberActionId, roomAddMember);
+    });
+    this.addAvatar(roomCreateResponse.getRoomId());
+
+    this.props.navigation.goBack();
+    goRoomUpdateUsername(newRoomId, {
+      goBack: () => {
+        goRoomHistory(newRoomId);
+      },
+    });
   };
 
   addAvatar = async (roomId) => {
