@@ -27,11 +27,11 @@ class MainScreen extends Component {
 
   constructor(props, context) {
     super(props, context);
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
     this.secondaryWidth = floor(getSecondaryWidth());
   }
 
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
     putState(getUserId(true));
   }
 
