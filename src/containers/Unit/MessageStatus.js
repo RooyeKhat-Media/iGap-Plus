@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Icon} from '../../components/BaseUI/index';
+import {Icon, MCIcon} from '../../components/BaseUI/index';
 import {Proto} from '../../modules/Proto/index';
 
 class MessageStatus extends Component {
@@ -19,7 +19,7 @@ class MessageStatus extends Component {
       case Proto.RoomMessageStatus.SEEN:
         return (<Icon {...this.props} size={size} name="done-all" color="#3298ee"/>);
       case Proto.RoomMessageStatus.LISTENED:
-        return (<Icon {...this.props} size={size} name="done-all" color="#3298ee"/>);
+        return (<MCIcon {...this.props} size={size} name="ear-hearing" color="#3298ee"/>);
       default:
         return null;
     }
