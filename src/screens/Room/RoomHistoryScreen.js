@@ -45,6 +45,7 @@ import {
 import {
   filesPicker,
   getAuthorHash,
+  getChatDeleteMessageForBothPeriod,
   getMessageDownloadFileUri,
   saveToDownloads,
   saveToGallery,
@@ -66,7 +67,7 @@ import {
   CLIENT_SUBSCRIBE_TO_ROOM,
   CLIENT_UNSUBSCRIBE_FROM_ROOM,
 } from '../../constants/methods/index';
-import Api from '../../modules/Api/index';
+import Api, {getServerTime} from '../../modules/Api/index';
 import i18n from '../../i18n';
 import {getImageSize, prependFileProtocol, sleep} from '../../utils/core';
 import Clipboard from '../../modules/Clipboard/index';
@@ -566,15 +567,28 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   actionDeleteMessages = (selectedList) => {
-    const {room} = this.props;
+    const {room, intl, getRoomMessage} = this.props;
+    let _allowDeleteForBoth = room.type === Proto.Room.Type.CHAT;
+    keys(selectedList).forEach((key) => {
+      const message = getRoomMessage(key);
+      _allowDeleteForBoth =
+        _allowDeleteForBoth &&
+        message &&
+        message.authorHash === getAuthorHash() &&
+        getServerTime() < getRoomMessage(key).createTime + getChatDeleteMessageForBothPeriod();
+    });
+
     this.confirm.open(i18n.roomHistoryDeleteMessagesTitle, {
       ...i18n.roomHistoryDeleteMessagesDescription, values: {
         roomTitle: room.title,
         count: keys(selectedList).length,
       },
-    }, () => {
-      deleteMessages(room.id, keys(selectedList));
-    });
+    }, (both) => {
+      deleteMessages(room.id, keys(selectedList), both);
+    }, _allowDeleteForBoth ? {
+      label: intl.formatMessage(i18n.roomHistoryDeleteMessageForBoth, {userTitle: room.title}),
+      value: 'checkbox',
+    } : null);
   };
 
   cancelEdit = () => {

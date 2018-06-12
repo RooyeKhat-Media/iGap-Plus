@@ -1449,6 +1449,11 @@ export default {
     defaultMessage: 'Select Contact',
     description: 'roomHistory screen',
   },
+  roomHistoryDeleteMessageForBoth: {
+    id: 'roomHistory.deleteMessageForBoth',
+    defaultMessage: 'Delete Message For {userTitle}?',
+    description: 'roomHistory screen',
+  },
   roomMessageReplyTo: {
     id: 'roomMessage.replyTo',
     defaultMessage: 'Reply to',

@@ -9,7 +9,10 @@ import {sleep} from '../../utils/core';
 import {WEBSOCKET_ENDPOINT, WEBSOCKET_RECONNECT_INTERVAL_SEC} from '../../constants/configs';
 import protoTable from '../Proto';
 import handlerTable from '../Handler';
-import Api, {API_RESPONSE_ACTION_ID_OFFSET, changeSessionUid, CLIENT_STATUS, HANDLER_PRECEDENCE} from './index';
+import Api, {
+  API_RESPONSE_ACTION_ID_OFFSET, changeSessionUid, CLIENT_STATUS, HANDLER_PRECEDENCE,
+  setServerTime,
+} from './index';
 import RequestWrapper from './RequestWrapper';
 import ClientError from '../Error/ClientError';
 import ServerError from '../Error/ServerError';
@@ -157,6 +160,9 @@ export default class Client {
 
       let wrapper = inputWrapper;
       if (!wrapper) {
+        if (responseProto.getResponse()) {
+          setServerTime(responseProto.getResponse().getTimestamp());
+        }
         if (responseProto.getResponse() && responseProto.getResponse().getId()) {
           wrapper = Api.instance.getRequestWrapper(responseProto.getResponse().getId());
           if (!wrapper) {

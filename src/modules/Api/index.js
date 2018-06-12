@@ -22,6 +22,7 @@ import {getCacheId} from '../../constants/methods/cacheable';
 import CacheableMethod from '../../models/CacheableMethod';
 import protoTable from '../Proto';
 import {getAggregateId} from '../../constants/methods/aggregate';
+import {floor} from 'lodash';
 
 const apiSingleton = Symbol();
 const apiSingletonEnforcer = Symbol();
@@ -71,6 +72,22 @@ export function getSessionUid() {
 export function changeSessionUid() {
   __sessionUid = (new Date()).getTime();
   return __sessionUid;
+}
+
+let _serverTime = floor((new Date()).getTime() / 1000);
+
+/**
+ * @param {number} time
+ */
+export function setServerTime(time) {
+  _serverTime = time;
+}
+
+/**
+ * @returns {number}
+ */
+export function getServerTime() {
+  return _serverTime;
 }
 
 export default class Api {

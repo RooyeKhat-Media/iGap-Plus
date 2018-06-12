@@ -1,12 +1,34 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Modal} from '../index';
+import {Button, Checkbox, Modal} from '../index';
 import {Text, View} from 'react-native';
 import styles from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n';
 
 class DialogModal extends Component {
+
+  state = {
+    checkboxChecked: false,
+  };
+
+  componentDidMount() {
+    const {checkbox} = this.props;
+    if (checkbox) {
+      this.setState({checkboxChecked: !!checkbox.checked});
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {checkbox} = nextProps;
+    if (checkbox && (!this.props.checkbox || checkbox.checked !== this.props.checkbox.checked)) {
+      this.setState({checkboxChecked: checkbox.checked});
+    }
+  }
+
+  toggleCheck = (checked) => {
+    this.setState({checkboxChecked: checked});
+  };
 
   controlRef = (ref) => {
     const {control} = this.props;
@@ -17,22 +39,27 @@ class DialogModal extends Component {
   };
 
   render() {
-    const {intl, type, title, content, actions} = this.props;
+    const {intl, type, title, content, actions, checkbox} = this.props;
+    const {checkboxChecked} = this.state;
     return (
       <Modal ref={
         this.controlRef} type={type} style={styles.dialogWrap}>
         <View style={styles.dialog}>
           <Text style={styles.dialogHeader}>{title}</Text>
           <Text style={styles.dialogContent}>{content}</Text>
+          {!!checkbox && (<View style={styles.dialogSwitch}>
+            <Checkbox label={checkbox.label} value={checkbox.value} checked={checkboxChecked}
+              onCheck={this.toggleCheck}/>
+          </View>)}
           <View style={styles.dialogActions}>
             {actions ? actions.map((action, idex) => (
               <Button
                 key={'action-' + idex}
-                upperCase={false}primary
+                upperCase={false} primary
                 text={action.label}
                 onPress={() => {
                   if (action.onPress) {
-                    action.onPress();
+                    action.onPress(this.state.checkboxChecked);
                   }
                   this.modal.close();
                 }}
@@ -71,6 +98,11 @@ DialogModal.propTypes = {
       onPress: PropTypes.func,
     })
   ),
+  checkbox: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    checked: PropTypes.bool,
+  }),
   intl: intlShape.isRequired,
 };
 

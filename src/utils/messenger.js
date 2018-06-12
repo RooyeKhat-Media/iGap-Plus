@@ -489,9 +489,10 @@ export async function editRoomMessage(roomId, longMessageId, text) {
  * delete Message List
  * @param roomId
  * @param {string[]} messages
+ * @param {boolean} both
  * @returns {Promise.<void>}
  */
-export async function deleteMessages(roomId, messages) {
+export async function deleteMessages(roomId, messages, both) {
   const promiseList = [];
   let actionId, proto;
   const room = store.getState().entities.rooms[roomId];
@@ -517,6 +518,9 @@ export async function deleteMessages(roomId, messages) {
     const deleteMessage = new proto();
     deleteMessage.setRoomId(room.longId);
     deleteMessage.setMessageId(Long.fromString(messageId));
+    if (both) {
+      deleteMessage.setBoth(both);
+    }
     promiseList.push(Api.invoke(actionId, deleteMessage));
   });
   await Promise.all(promiseList);

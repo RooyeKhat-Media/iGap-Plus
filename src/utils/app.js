@@ -51,6 +51,7 @@ let _authorHash;
 let _fakeMessageId = Long.ZERO;
 let _roomHistorySelectedMode = false;
 let _appState;
+let _chatDeleteMessageForBothPeriod = 2 * 3600;
 
 /**
  * @returns {Long}
@@ -460,4 +461,18 @@ export async function loadPeerRoom(peerId) {
     } while (!room && ++tries < 3);
   }
   return room;
+}
+
+/**
+ * @returns {number}
+ */
+export function getChatDeleteMessageForBothPeriod() {
+  return _chatDeleteMessageForBothPeriod;
+}
+
+/**
+ * @param time
+ */
+export function setChatDeleteMessageForBothPeriod(time) {
+  _chatDeleteMessageForBothPeriod = time;
 }
