@@ -5,6 +5,7 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
 import plus.igap.camera.RNIGCameraPackage;
 import plus.igap.videocompress.RNVideoCompressPackage;
 import com.smixx.fabric.FabricPackage;
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication , S
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFirebasePackage(),
             new RNIGCameraPackage(),
             new RNVideoCompressPackage(),
             new FabricPackage(),
