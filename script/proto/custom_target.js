@@ -2,7 +2,7 @@
 module.exports = custom_target;
 
 var protobuf = require('protobufjs'),
-  cliUtil = require('protobufjs/cli/util'),
+  cliUtil = protobuf.util,
   espree = require('espree'),
   escodegen = require('escodegen'),
   estraverse = require('estraverse');
@@ -91,7 +91,7 @@ function escapeName(name) {
   if (!name) {
     return '$root';
   }
-  return cliUtil.reserved(name) ? name + '_' : name;
+  return cliUtil.isReserved(name) ? name + '_' : name;
 }
 
 function aOrAn(name) {
