@@ -1,7 +1,7 @@
 import React from 'react';
 import {uniqueId} from 'lodash';
 import {View} from 'react-native';
-import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import {ORIENTATION_PORTRAIT} from '../../../constants/screenBreakPoints';
 
 const uId = uniqueId();
