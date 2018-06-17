@@ -1,15 +1,17 @@
 import {uniqueId} from 'lodash';
+import {appTheme} from '../../../themes/default/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
         root: {
           flex: 1,
-          backgroundColor: 'white',
+          backgroundColor: appTheme.pageBackground,
         },
         itemLayout: {
           height: 72,
@@ -23,7 +25,8 @@ export default [
         },
         titleText: {
           fontSize: 18,
-          color: 'black',
+          color: appTheme.primaryText,
+          textAlign: 'left',
         },
         rightElement: {
           paddingRight: 10,

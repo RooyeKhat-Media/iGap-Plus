@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {uniqueId} from 'lodash';
 import {Button, Toolbar} from '../../../BaseUI/index';
 import DimensionLimiter from '../../../BaseUI/DimensionLimiter/index';
@@ -8,19 +7,14 @@ import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
-import {Text, View} from 'react-native';
-import {textTitleStyle} from '../../../../themes/default/index';
+import {View} from 'react-native';
 
 const _uniqueId = uniqueId();
 
 class UserTwoStepForgetComponent extends Component {
 
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
-
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserTwoStepForget));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
@@ -28,21 +22,22 @@ class UserTwoStepForgetComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}
+        layoutStyle={styles.layout}>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
           showAuthenticating={false}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepForgetTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.twoStepForgetTitle)}
         />
         <View style={styles.recoveryBtnWrap}>
           <View style={styles.recoveryBtn}>
-            <Button disabled={!hasConfirmedEmail} raised accent
+            <Button disabled={!hasConfirmedEmail} raised primary
               onPress={recoveryByEmail}
               text={intl.formatMessage(i18n.twoStepForgetRecoveryByEmailBtn)}/>
           </View>
           <View style={styles.recoveryBtn}>
-            <Button raised accent
+            <Button raised primary
               onPress={recoveryByQuestionAndAnswer}
               text={intl.formatMessage(i18n.twoStepForgetRecoveryByQuestionBtn)}/>
           </View>

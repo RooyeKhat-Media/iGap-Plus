@@ -1607,6 +1607,21 @@ export default {
     defaultMessage: 'Language',
     description: 'setting screen',
   },
+  settingThemes: {
+    id: 'setting.themes',
+    defaultMessage: 'Themes',
+    description: 'setting screen',
+  },
+  settingThemesPickerTitle: {
+    id: 'setting.themesPickerTitle',
+    defaultMessage: 'Theme',
+    description: 'setting screen',
+  },
+  settingThemesPickerPlaceHolder: {
+    id: 'setting.themesPickerPlaceHolder',
+    defaultMessage: 'Change Theme',
+    description: 'setting screen',
+  },
   settingTwoStepVerification: {
     id: 'setting.twoStepVerification',
     defaultMessage: 'Two-Step Verification',

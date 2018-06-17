@@ -1,21 +1,45 @@
-import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import React, {Component} from 'react';
+import {Text} from 'react-native';
 import {FormattedRelative} from 'react-intl';
 import PropTypes from 'prop-types';
+import {uniqueId} from 'lodash';
+import {appTheme} from '../../../../themes/default/index';
+import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-const AddonTime = ({createTime}) => (
-  <Text style={styles.timeText}>
-    <FormattedRelative updateInterval={0} value={createTime * 1000}/>
-  </Text>
-);
+class AddonTime extends Component {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
+  render() {
+    const {createTime} = this.props;
+    const styles = this.getStyles();
+    return (
+      <Text style={styles.timeText}>
+        <FormattedRelative updateInterval={0} value={createTime * 1000}/>
+      </Text>
+    );
+  }
+}
+
 AddonTime.propTypes = {
   createTime: PropTypes.number.isRequired,
 };
-
 export default AddonTime;
 
-const styles = StyleSheet.create({
-  timeText: {
-    fontSize: 13,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        timeText: {
+          fontSize: 13,
+          color: appTheme.primaryText,
+        },
+      },
+    },
+  ],
+  true,
+];

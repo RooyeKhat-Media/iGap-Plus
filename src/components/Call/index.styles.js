@@ -1,11 +1,12 @@
 import {uniqueId} from 'lodash';
-import {black200, gray1000, gray500, primary, white} from '../../themes/default/index';
+import {appTheme, circleButtonBackground} from '../../themes/default/index';
 import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
@@ -22,7 +23,7 @@ export default [
           left: 0,
           bottom: 0,
           position: 'absolute',
-          backgroundColor: primary + '88',
+          backgroundColor: appTheme.primary + '88',
         },
         layoutCall: {
           height: 70,
@@ -31,19 +32,19 @@ export default [
         },
         callIcon: {
           container: {
-            backgroundColor: primary,
+            backgroundColor: appTheme.primary,
             marginLeft: 20,
             marginRight: 20,
           },
         },
         chatIcon: {
           container: {
-            backgroundColor: gray500,
+            backgroundColor: circleButtonBackground,
           },
         },
         endIcon: {
           container: {
-            backgroundColor: gray500,
+            backgroundColor: circleButtonBackground,
           },
         },
         rowField: {
@@ -56,14 +57,14 @@ export default [
           color: '#000',
         },
         inActiveIcon: {
-          color: gray1000,
+          color: '#606060',
         },
         activeText: {
-          color: black200,
+          color: '#444444',
           fontSize: 14,
         },
         inActiveText: {
-          color: gray1000,
+          color: '#606060',
           fontSize: 14,
         },
         layoutItem: {
@@ -71,13 +72,13 @@ export default [
           width: 120,
         },
         textName: {
-          color: black200,
+          color: '#444444',
           fontSize: 20,
           ...IRANSans_Medium,
           alignSelf: 'center',
         },
         textigapCall: {
-          color: black200,
+          color: appTheme.titleText,
           fontSize: 11,
           alignSelf: 'center',
           marginBottom: 7,
@@ -103,7 +104,7 @@ export default [
         },
 
         whiteBackground: {
-          backgroundColor: white + '99',
+          backgroundColor: '#ffffff99',
           marginTop: 5,
         },
       },

@@ -1,10 +1,10 @@
 import {uniqueId} from 'lodash';
-import {blackTransparent} from '../../../themes/default/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
@@ -27,7 +27,7 @@ export default [
           right: 0,
           left: 0,
           bottom: 0,
-          backgroundColor: blackTransparent,
+          backgroundColor: 'rgba(0,0,0,0.4)',
           flexDirection: 'row',
           justifyContent: 'center',
         },
@@ -48,7 +48,7 @@ export default [
           left: 20,
           top: 20,
           borderRadius: 5,
-          backgroundColor: blackTransparent,
+          backgroundColor: 'rgba(0,0,0,0.4)',
         },
         close: {
           position: 'absolute',

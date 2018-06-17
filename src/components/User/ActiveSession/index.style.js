@@ -1,20 +1,24 @@
 import {uniqueId} from 'lodash';
-import {gray1, gray2, primary, red} from '../../../themes/default/index';
+import {appTheme, red} from '../../../themes/default/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
-
+        root: {
+          backgroundColor: appTheme.pageBackground,
+          flex: 1,
+        },
         contentTerminate: {
           justifyContent: 'center',
           borderWidth: 1,
           borderRadius: 5,
-          borderColor: gray1,
+          borderColor: appTheme.border,
           alignSelf: 'center',
           padding: 5,
           marginTop: 10,
@@ -31,7 +35,7 @@ export default [
           margin: 5,
         },
         status: {
-          color: primary,
+          color: appTheme.primary,
           ...IRANSans_Medium,
           marginTop: 15,
           marginBottom: 5,
@@ -39,13 +43,10 @@ export default [
           fontSize: 18,
         },
         textLogsOut: {
-          color: gray2,
+          color: appTheme.secondaryText,
           fontSize: 14,
           alignSelf: 'center',
           marginTop: -4,
-        },
-        scroll: {
-          backgroundColor: 'white',
         },
       },
     },

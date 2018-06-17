@@ -5,9 +5,9 @@ import {closeModal, openModal} from '../../../actions/modal';
 import {View} from 'react-native';
 import React from 'react';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
-import {ListItem, Button} from '../../../components/BaseUI/index';
+import {Button, ListItem} from '../../../components/BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
-import styles from '../../../components/BaseUI/DialogModal/index.style';
+import styleSheet from '../../../components/BaseUI/DialogModal/index.style';
 import Api from '../../Api/index';
 import {ClientJoinByInviteLink} from '../../Proto/index';
 import {CLIENT_JOIN_BY_INVITE_LINK} from '../../../constants/methods/index';
@@ -15,6 +15,8 @@ import {goRoomHistory} from '../../../navigators/SecondaryNavigator';
 import {collect} from './GetRoom';
 import {apiInvoke} from '../../Entities/Rooms/index';
 import {dispatchMessengerRoomAddList} from '../../../utils/messenger';
+import {appTheme} from '../../../themes/default/index';
+import {MemoizeResponsiveStyleSheet} from '../../Responsive';
 
 /**
  * @property {ProtoClientCheckInviteLink} _request
@@ -37,10 +39,18 @@ function getContent(room, dispatch, token) {
   } else if (room.getGroupRoomExtra()) {
     member = room.getGroupRoomExtra().getParticipantsCount();
   }
+  const styles = MemoizeResponsiveStyleSheet(styleSheet);
   return (
     <View style={{flex: 1, justifyContent: 'center'}}>
       <View
-        style={{width: 320, height: 150, alignSelf: 'center', backgroundColor: 'white', borderRadius: 7, padding: 10}}>
+        style={{
+          width: 320,
+          height: 150,
+          alignSelf: 'center',
+          backgroundColor: appTheme.pageBackground,
+          borderRadius: 7,
+          padding: 10,
+        }}>
         <ListItem
           leftElement={<Avatar roomId={room.getId().toString()} size={52}/>}
           centerElement={{

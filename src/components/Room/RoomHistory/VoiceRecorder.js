@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
+import {uniqueId} from 'lodash';
 import {MCIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {black200, gray500, gray800, primary} from '../../../themes/default/index';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {appTheme} from '../../../themes/default/index';
 import BlinkRecorder from '../../General/Camera/BlinkRecorder';
 import SoundRecorder from 'react-native-sound-recorder';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 const _slideToCancel = 100;
 const _slideToLock = 60;
@@ -101,13 +103,18 @@ class VoiceRecorder extends Component {
     return Number((1 - (  value / _slideToLock )).toFixed(2));
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {intl} = this.props;
+    const styles = this.getStyles();
     return (
       <View style={styles.container}>
         <View style={styles.recordBox}>
           <View style={{alignSelf: 'center', marginLeft: 5}}>
-            <BlinkRecorder textColor="black"/>
+            <BlinkRecorder textColor={appTheme.primaryText}/>
           </View>
           {this.state.isTouchMode ?
             <Text style={[styles.slideText, {
@@ -120,13 +127,16 @@ class VoiceRecorder extends Component {
           }
         </View>
         <TouchableOpacity style={styles.micWrap} onPress={() => this.stopRecord(false)}>
-          <MCIcon name={this.state.isTouchMode ? 'microphone' : 'send'} style={styles.micIcon} size={30}/>
+          <MCIcon name={this.state.isTouchMode ? 'microphone' : 'send'} style={styles.micIcon} size={30}
+            color={appTheme.icon}/>
         </TouchableOpacity>
 
         <View style={[styles.lockWrap, this.state.isTouchMode ? {marginBottom: Number(this.state.bottomMove)} : {}]}>
-          <MCIcon name={this.state.isTouchMode ? 'lock-open' : 'lock'} style={styles.micIcon} size={20}/>
+          <MCIcon name={this.state.isTouchMode ? 'lock-open' : 'lock'} style={styles.micIcon} size={20}
+            color={appTheme.icon}/>
           {this.state.isTouchMode &&
-          <MCIcon name="chevron-up" style={[styles.micIcon, {opacity: this.calculateOpacityLock}]} size={20}/>
+          <MCIcon name="chevron-up" style={[styles.micIcon, {opacity: this.calculateOpacityLock}]} size={20}
+            color={appTheme.icon}/>
           }
         </View>
       </View>
@@ -143,62 +153,72 @@ VoiceRecorder.propTypes = {
 
 export default injectIntl(VoiceRecorder);
 
-const styles = StyleSheet.create({
-  container: {
-    height: 200,
-    justifyContent: 'flex-end',
-  },
-  recordBox: {
-    flexDirection: 'row',
-    height: 52,
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: gray800,
-    borderRadius: 25,
-    margin: 5,
-  },
-  micWrap: {
-    position: 'absolute',
-    right: -16,
-    bottom: -6,
-    width: 80,
-    height: 80,
-    justifyContent: 'center',
-    borderRadius: 40,
-    backgroundColor: primary,
-  },
-  lockWrap: {
-    position: 'absolute',
-    right: 10,
-    bottom: 80,
-    justifyContent: 'center',
-    borderRadius: 20,
-    backgroundColor: 'white',
-    borderWidth:1,
-    borderColor:gray500,
-    padding: 3,
-  },
-  micIcon: {
-    alignSelf: 'center',
-  },
-  timeLayout: {
-    alignSelf: 'center',
-    marginRight: 10,
-    marginLeft: 10,
-  },
-  slideText: {
-    flex: 1,
-    textAlign: 'center',
-    alignSelf: 'center',
-    fontSize: 14,
-    color: black200,
-  },
-  cancelText: {
-    flex: 1,
-    textAlign: 'center',
-    marginRight: 100,
-    alignSelf: 'center',
-    fontSize: 18,
-    color: 'red',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        container: {
+          height: 200,
+          justifyContent: 'flex-end',
+        },
+        recordBox: {
+          flexDirection: 'row',
+          height: 52,
+          backgroundColor: appTheme.wrapperBackground,
+          borderWidth: 1,
+          borderColor: appTheme.border,
+          borderRadius: 25,
+          margin: 5,
+        },
+        micWrap: {
+          position: 'absolute',
+          right: -16,
+          bottom: -6,
+          width: 80,
+          height: 80,
+          justifyContent: 'center',
+          borderRadius: 40,
+          backgroundColor: appTheme.primary,
+        },
+        lockWrap: {
+          position: 'absolute',
+          right: 10,
+          bottom: 80,
+          justifyContent: 'center',
+          borderRadius: 20,
+          backgroundColor: appTheme.wrapperBackground,
+          borderWidth: 1,
+          borderColor: appTheme.border,
+          padding: 3,
+        },
+        micIcon: {
+          alignSelf: 'center',
+        },
+        timeLayout: {
+          alignSelf: 'center',
+          marginRight: 10,
+          marginLeft: 10,
+        },
+        slideText: {
+          flex: 1,
+          textAlign: 'center',
+          alignSelf: 'center',
+          fontSize: 14,
+          color: appTheme.titleText,
+        },
+        cancelText: {
+          flex: 1,
+          textAlign: 'center',
+          marginRight: 100,
+          alignSelf: 'center',
+          fontSize: 18,
+          color: 'red',
+        },
+      },
+    },
+  ],
+  true,
+];

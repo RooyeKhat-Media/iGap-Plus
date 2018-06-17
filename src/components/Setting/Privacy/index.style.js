@@ -1,24 +1,25 @@
 import {uniqueId} from 'lodash';
-import {black200, primary, white} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
         root: {
           flex: 1,
+          backgroundColor: appTheme.pageBackground,
         },
         scrollView: {
           flex: 1,
-          backgroundColor: '#f6f6f6',
         },
         itemText: {
           fontSize: 15,
-          color: black200,
+          color: appTheme.titleText,
           paddingLeft: 3,
           paddingTop: 14,
           paddingBottom: 14,
@@ -27,34 +28,33 @@ export default [
         },
         rowField: {
           flexDirection: 'row',
-          backgroundColor: '#fff',
+          borderBottomWidth: 1,
+          borderBottomColor: appTheme.border,
           marginBottom: 2,
         },
         textLoading: {
           fontSize: 15,
           paddingTop: 14,
-          color: '#1ac293',
+          color: appTheme.titleText,
           paddingRight: 8,
           ...IRANSans_Medium,
           alignSelf: 'center',
         },
         textSelfRemove: {
           fontSize: 18,
-          color: primary,
+          color: appTheme.primary,
           alignSelf: 'center',
           margin: 8,
         },
         rowFieldSelfRemove: {
           flexDirection: 'row',
-          backgroundColor: '#fff',
         },
         textSelfRemoveComment: {
           fontSize: 12,
-          color: black200,
+          color: appTheme.titleText,
           paddingRight: 5,
           paddingLeft: 5,
           paddingBottom: 10,
-          backgroundColor: white,
           marginBottom: 2,
         },
       },

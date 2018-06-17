@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DimensionLimiter from '../../BaseUI/DimensionLimiter/index';
 import {Button, Toolbar} from '../../BaseUI/index';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import styleSheet from './index.styles';
 import {uniqueId} from 'lodash';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../constants/screenBreakPoints';
@@ -12,18 +12,13 @@ import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import AvatarPicker from '../../../containers/Unit/AvatarPicker';
-import {textTitleStyle} from '../../../themes/default/index';
 
 const _uniqueId = uniqueId();
 
 class UserNewProfileComponent extends Component {
 
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
-
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserNewProfile));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
@@ -33,7 +28,7 @@ class UserNewProfileComponent extends Component {
     return (
       <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
         <Toolbar
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.newProfileTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.newProfileTitle)}
         />
 
         <Form style={styles.panel} control={(form) => {

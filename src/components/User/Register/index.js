@@ -15,15 +15,14 @@ import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsi
 import LinerLogo from '../../../assets/images/linerLogo';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 import Linking from '../../../modules/Linking/index';
+import {appTheme} from '../../../themes/default/index';
 
 const _uniqueId = uniqueId();
 
 class UserRegisterComponent extends React.Component {
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
+
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserRegister));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
@@ -35,8 +34,8 @@ class UserRegisterComponent extends React.Component {
     const OS = Platform.OS;
 
     return (
-      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
-        <View style={styles.wrapper}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}>
+        <View style={styles.layout}>
           <ConnectionStatus showAuthenticating={false}/>
 
           <View style={styles.topWrap}>
@@ -58,7 +57,7 @@ class UserRegisterComponent extends React.Component {
                   <Text style={styles.headerTitle}>
                     {intl.formatMessage(i18n.iGap)}
                   </Text>
-                  <MCIcon name={'plus-box'} size={25}/>
+                  <MCIcon name={'plus-box'} size={25} color={appTheme.primaryText}/>
                 </View>) : null}
 
             </View>
@@ -136,7 +135,7 @@ class UserRegisterComponent extends React.Component {
 
             <Button upperCase={false} primary style={styles.qrLoginBtn} onPress={goUserQrCodeLoginScreen}
               text={intl.formatMessage(i18n.registerQrCodeLoginBtn)}
-              icon={<MCIcon color="#3298ee" name="qrcode-scan" size={14}/>}/>
+              icon={<MCIcon color={appTheme.primary} name="qrcode-scan" size={14}/>}/>
 
           </Form>
         </View>

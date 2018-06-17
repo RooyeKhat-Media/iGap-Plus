@@ -23,7 +23,7 @@ class DimensionLimiter extends React.Component {
     const {width, height, id} = this.props;
     return MemoizeResponsiveStyleSheet([
       id,
-      [
+      () => [
         {
           query: {},
           style: {

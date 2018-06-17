@@ -2,15 +2,29 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import Gallery from 'react-native-image-gallery';
-import {Toolbar} from '../../BaseUI/index';
+import {PopupMenu, Toolbar} from '../../BaseUI/index';
 import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import {textTitleStyle} from '../../../themes/default/index';
+import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import {saveToDownloads, saveToGallery} from '../../../utils/app';
+import {prependFileProtocol} from '../../../utils/core';
 
 class RoomGalleryComponent extends Component {
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
+  onMenuClick = (index) => {
+    const {uri} = this.props;
+    switch (index) {
+      case 0:
+        saveToGallery(prependFileProtocol(uri), 'image');
+        break;
+      case 1:
+        saveToDownloads(uri);
+        break;
+    }
   };
 
   render() {
@@ -23,8 +37,10 @@ class RoomGalleryComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={[textTitleStyle, {paddingRight: 20}]} numberOfLines={1}
-            ellipsizeMode={'middle'}>{fileName}</Text>}/>
+          centerElement={<Text style={styles.toolbarText} numberOfLines={1} ellipsizeMode={'middle'}>{fileName}</Text>}
+          rightElement={(<PopupMenu actionList={['saveToGallary', 'saveToDownload']} type={APP_MODAL_ID_SECONDARY}
+            onPress={(index) => this.onMenuClick(index)}/>)}
+        />
         <Gallery
           style={styles.galleryStyle}
           images={[{source: {uri: uri}, dimensions}]}
@@ -45,7 +61,7 @@ RoomGalleryComponent.propTypes = {
   dimensions: PropTypes.object,
   text: PropTypes.string,
   goBack: PropTypes.func.isRequired,
-  fileName : PropTypes.string,
+  fileName: PropTypes.string,
 };
 
 export default RoomGalleryComponent;

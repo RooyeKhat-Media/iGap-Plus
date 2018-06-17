@@ -1,16 +1,18 @@
 import {uniqueId} from 'lodash';
-import {black200, gray200, gray500, gray800, primary} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
         container: {
           flex: 1,
+          backgroundColor: appTheme.pageBackground,
         },
         roomDescription: {
           paddingLeft: 15,
@@ -22,15 +24,13 @@ export default [
           alignSelf: 'center',
           overflow: 'hidden',
         },
-        sectionWrap: {
-          backgroundColor: '#fafafa',
-        },
+        sectionWrap: {},
         section: {
-          backgroundColor: '#fff',
+
           borderTopWidth: 1,
-          borderTopColor: '#e2e2e2',
+          borderTopColor: appTheme.border,
           borderBottomWidth: 1,
-          borderBottomColor: '#eee',
+          borderBottomColor: appTheme.border,
           marginBottom: 10,
         },
         containerJoinLeav: {
@@ -57,11 +57,10 @@ export default [
           text: {
             fontSize: 16,
             color: '#fff',
-
           },
           container: {
             height: 35,
-            backgroundColor: primary,
+            backgroundColor: appTheme.primary,
             marginLeft: 5,
             marginRight: 5,
           },
@@ -74,7 +73,7 @@ export default [
           container: {
             height: 35,
             width: 160,
-            backgroundColor: primary,
+            backgroundColor: appTheme.primary,
           },
         },
         buttonLeave: {
@@ -90,10 +89,9 @@ export default [
             borderWidth: 1,
           },
         },
-        roomTitleWrap: {
-        },
+        roomTitleWrap: {},
         roomTitle: {
-          color: '#000',
+          color: appTheme.titleText,
           ...IRANSans_Medium,
           fontSize: 15,
           textAlign: 'left',
@@ -101,17 +99,18 @@ export default [
         },
         roomStatus: {
           fontSize: 13,
+          color: appTheme.primaryText,
           textAlign: 'left',
           marginTop: -3,
         },
         textTitle: {
-          color: '#000',
+          color: appTheme.titleText,
           ...IRANSans_Medium,
           fontSize: 22,
           alignSelf: 'flex-start',
         },
         textSub: {
-          color: gray800,
+          color: appTheme.secondaryText,
           fontSize: 14,
           alignSelf: 'flex-start',
         },
@@ -121,11 +120,11 @@ export default [
         },
         circleIcon: {
           container: {
-            backgroundColor: gray200,
+            backgroundColor: appTheme.wrapperBackground,
           },
         },
         textInfo: {
-          color: black200,
+          color: appTheme.titleText,
           fontSize: 16,
           alignSelf: 'flex-start',
         },
@@ -138,13 +137,13 @@ export default [
           paddingBottom: 20,
         },
         textSharedMedia: {
-          color: black200,
+          color: appTheme.titleText,
           fontSize: 16,
         },
         divider: {
           flex: 1,
           borderTopWidth: 1,
-          borderTopColor: gray500,
+          borderTopColor: appTheme.border,
           alignSelf: 'center',
           marginLeft: 10,
         },
@@ -159,9 +158,9 @@ export default [
         sharedIcon: {
           width: 35,
           height: 35,
-          backgroundColor: gray800,
+          backgroundColor: appTheme.wrapperBackground,
           borderRadius: 5,
-          color: '#fff',
+          color: appTheme.icon,
           paddingTop: 6,
           paddingLeft: 6,
         },

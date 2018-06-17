@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {injectIntl} from 'react-intl';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import i18n from '../../i18n';
-import {gray700, primary, textTitleStyle} from '../../themes/default/index';
+import {isEmpty, uniqueId} from 'lodash';
+import {appTheme} from '../../themes/default/index';
 import {Icon, Toolbar} from '../BaseUI/index';
-import {isEmpty} from 'lodash';
 import {Proto} from '../../modules/Proto/index';
 import {IRANSans_Medium} from '../../constants/fonts/index';
+import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class QrCodeComponent extends React.Component {
 
@@ -27,8 +28,13 @@ class QrCodeComponent extends React.Component {
     return iconName;
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {verifiedDeviceInfo, intl, goBack} = this.props;
+    const styles = this.getStyles();
 
     if (isEmpty(verifiedDeviceInfo)) {
       return null;
@@ -41,17 +47,17 @@ class QrCodeComponent extends React.Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.qrCodeQrCodeLogin)}</Text>}
+          centerElement={intl.formatMessage(i18n.qrCodeQrCodeLogin)}
         />
         <View style={styles.titleIcon}>
-          <Icon name="important-devices" size={160} color={gray700}/>
+          <Icon name="important-devices" size={160} color={appTheme.icon}/>
         </View>
         <View style={styles.container}>
           <Text style={styles.loggedIn}>{intl.formatMessage(i18n.qrCodeLoggedInDevice)}</Text>
           <View style={styles.layoutDeviceInfo}>
 
             <View style={{margin: 10}}>
-              <Icon name={iconName} size={40} color={gray700}/>
+              <Icon name={iconName} size={40} color={appTheme.icon}/>
             </View>
 
             <View>
@@ -69,42 +75,54 @@ class QrCodeComponent extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-  titleIcon: {
-    alignSelf: 'center',
-    marginTop: 20,
-  },
-  container: {
-    margin: 20,
-  },
-  loggedIn: {
-    color: primary,
-    fontSize: 18,
-    backgroundColor: 'white',
-    fontWeight: 'bold',
-    margin: 1,
-    padding: 7,
-    paddingLeft: 17,
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
-  },
-  layoutDeviceInfo: {
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    margin: 1,
-    padding: 7,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        root: {
+          flex: 1,
+          backgroundColor: appTheme.pageBackground,
+        },
+        titleIcon: {
+          alignSelf: 'center',
+          marginTop: 20,
+        },
+        container: {
+          margin: 20,
+        },
+        loggedIn: {
+          color: appTheme.primary,
+          fontSize: 18,
+          backgroundColor: appTheme.pageBackground,
+          fontWeight: 'bold',
+          margin: 1,
+          padding: 7,
+          paddingLeft: 17,
+          borderTopRightRadius: 5,
+          borderTopLeftRadius: 5,
+        },
+        layoutDeviceInfo: {
+          flexDirection: 'row',
+          backgroundColor: appTheme.pageBackground,
+          margin: 1,
+          padding: 7,
+          borderBottomLeftRadius: 5,
+          borderBottomRightRadius: 5,
 
-  },
-  deviceText: {
-    fontSize: 15,
-    ...IRANSans_Medium,
-  },
-});
+        },
+        deviceText: {
+          fontSize: 15,
+          ...IRANSans_Medium,
+          color: appTheme.primaryText,
+        },
+      },
+    },
+  ],
+  true,
+];
 
 QrCodeComponent.propTypes = {
   verifiedDeviceInfo: PropTypes.object.isRequired,

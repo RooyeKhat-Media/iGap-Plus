@@ -29,7 +29,7 @@ class CallComponent extends Component {
   };
 
   keypadClick = () => {
-    alert('keypad');
+    // alert('keypad');
   };
 
   getStatusString(status) {
@@ -96,7 +96,8 @@ class CallComponent extends Component {
           {showAvatar && (<Avatar userId={user.id} size={this.state.imageSize} circle={false}/>)}
           {showAvatar && <View style={styles.blueForeground}/>}
           {videoCalling && <View style={styles.rtcViewRemote}>
-            <RTCView streamURL={connected ? callAction.remoteUrl : callAction.selfRemoteUrl} objectFit={'cover'} zOrder={1}
+            <RTCView streamURL={connected ? callAction.remoteUrl : callAction.selfRemoteUrl} objectFit={'cover'}
+              zOrder={1}
               style={{width: screenWidth, height: this.state.imageSize}}/>
           </View>}
           {(videoCalling && connected) &&
@@ -175,8 +176,8 @@ class CallComponent extends Component {
               </View>
               {
                 showButton &&
-                <TouchableOpacity style={styles.layoutItem} onPress={this.keypadClick}>
-                  <Icon name="dialpad" style={styles.activeIcon} size={24}/>
+                <TouchableOpacity style={styles.layoutItem} onPress={this.keypadClick} activeOpacity={1}>
+                  <Icon name="dialpad" style={styles.inActiveIcon} size={24}/>
                   <Text style={styles.activeText}> {intl.formatMessage(i18n.callKeyPad)}</Text>
                 </TouchableOpacity>
               }

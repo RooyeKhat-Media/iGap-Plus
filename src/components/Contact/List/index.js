@@ -1,13 +1,19 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {Avatar, FlatList, ListItem, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
-import {textTitleStyle} from '../../../themes/default/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class ContactListComponent extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
+
   keyExtractor = (item) => {
     return 'contact-' + item.getId();
   };
@@ -25,14 +31,15 @@ class ContactListComponent extends React.Component {
 
   render() {
     const {intl, goBack, goContactNew, loading, contactList} = this.props;
+    const styles = this.getStyles();
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.root}>
         <Toolbar
           leftElement="arrow-back"
           rightElement="add"
           onRightElementPress={goContactNew}
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.contactListTitleToolbar)}</Text>}
+          centerElement={intl.formatMessage(i18n.contactListTitleToolbar)}
         />
         <View style={styles.container}>
           {loading && !contactList.length ? (<Text>Please Wait ...</Text>) :

@@ -1,11 +1,11 @@
 import {uniqueId} from 'lodash';
-import {gray400} from '../../../../themes/default/index';
+import {appTheme} from '../../../../themes/default/index';
 
 const id = uniqueId();
 
 export default [
   id,
-  [
+  () => [
     {
       query: {},
       style: {
@@ -22,10 +22,11 @@ export default [
         messageBox: {
           borderRadius: 15,
           borderWidth: 1,
-          borderColor: gray400,
+          borderColor: appTheme.border,
           padding: 7,
           marginLeft: 5,
           maxWidth: 260,
+          backgroundColor: appTheme.receiveBox,
         },
         footerWrap: {
           alignSelf: 'flex-end',

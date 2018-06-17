@@ -1,12 +1,18 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {FlatList, Icon, TextInput, Button} from '../index';
-import styles from './index.styles';
+import {Button, FlatList, Icon, TextInput} from '../index';
+import styleSheet from './index.styles';
 import PropTypes from 'prop-types';
 import i18n from '../../../i18n';
+import {appTheme} from '../../../themes/default/index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class SelectListModal extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   constructor(props) {
     super(props);
@@ -44,6 +50,7 @@ class SelectListModal extends React.Component {
   render() {
     const {intl, multi, searchable, data, headerTitle, autoFocus, flexContainer} = this.props;
     const {searchText, selected} = this.state;
+    const styles = this.getStyles();
     const options = data.filter(function(option) {
       return searchText === '' || (option.filter && option.filter.indexOf(searchText.toLowerCase()) >= 0);
     });
@@ -56,7 +63,7 @@ class SelectListModal extends React.Component {
           {searchable &&
           (<View style={styles.searchWrap}>
             <View style={styles.searchIcon}>
-              <Icon name="search" size={26} color="#aaaaaa"/>
+              <Icon name="search" size={26} color={appTheme.icon}/>
             </View>
             <TextInput style={styles.searchInput} autoFocus={autoFocus} underlineColorAndroid="transparent"
               onChangeText={(text) => {
@@ -73,12 +80,12 @@ class SelectListModal extends React.Component {
               upperCase={false}
               style={styles.dialogBtn}
               onPress={this.onSubmit}
-              text={intl.formatMessage(i18n.dismiss)} />
+              text={intl.formatMessage(i18n.dismiss)}/>
             {multi && (<Button primary
               upperCase={false}
               style={styles.dialogBtn}
               onPress={this.onSubmit}
-              text={intl.formatMessage(i18n.ok)} />)}
+              text={intl.formatMessage(i18n.ok)}/>)}
           </View>
         </View>
       </View>

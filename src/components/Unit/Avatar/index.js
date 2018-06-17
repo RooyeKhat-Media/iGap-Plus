@@ -1,8 +1,9 @@
 /* eslint-disable import/no-unresolved, import/extensions */
 import React, {PureComponent} from 'react';
-import {Image, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Platform, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
-import {memoize} from 'lodash';
+import {memoize, uniqueId} from 'lodash';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 
 class AvatarComponent extends PureComponent {
@@ -26,32 +27,44 @@ class AvatarComponent extends PureComponent {
 }
 
 const getAvatarStyle = memoize(({color, size, hasUri, circle}) => {
-  return StyleSheet.create({
-    container: {
-      flexGrow: 1,
-    },
-    wrapStyles: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden',
-      width: size,
-      height: size,
-      borderRadius: circle ? size / 2 : null,
-      backgroundColor: color,
-    },
-    contentStyle: {
-      color: '#fff',
-      textAlign: 'center',
-      fontSize: size / 2.3,
-      display: hasUri ? 'none' : null,
-    },
-    imageStyles: {
-      width: size,
-      height: size,
-      borderRadius: circle ? size / 2 : null,
-      display: (!hasUri && Platform.os !== 'android') ? 'none' : null,
-    },
-  });
+  const uId = uniqueId();
+  return MemoizeResponsiveStyleSheet([
+    uId,
+    () => [
+      {
+        query: {},
+        style: {
+          container: {
+            flexGrow: 1,
+          },
+          wrapStyles: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            width: size,
+            height: size,
+            borderRadius: circle ? size / 2 : null,
+            backgroundColor: color,
+          },
+          contentStyle: {
+            color: '#fff',
+            textAlign: 'center',
+            fontSize: size / 2.3,
+            display: hasUri ? 'none' : null,
+          },
+          imageStyles: {
+            width: size,
+            height: size,
+            borderRadius: circle ? size / 2 : null,
+            display: (!hasUri && Platform.os !== 'android') ? 'none' : null,
+          },
+        },
+      },
+    ],
+    true,
+  ]);
+
+
 }, function({color, size, hasUri, circle}) {
   return color + '_' + size + '_' + hasUri + '_' + circle;
 });

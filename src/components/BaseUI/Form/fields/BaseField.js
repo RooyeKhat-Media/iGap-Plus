@@ -2,9 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {FormattedMessage} from 'react-intl';
-import styles from '../index.style';
+import styleSheet from '../index.style';
+import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
 class BaseField extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   constructor(props) {
     super(props);
     const {defaultValue, control} = this.props;
@@ -77,6 +83,7 @@ class BaseField extends Component {
   render() {
     const {help, defaultError} = this.props;
     const {error} = this.state;
+    const styles = this.getStyles();
 
     let {style} = this.props;
 

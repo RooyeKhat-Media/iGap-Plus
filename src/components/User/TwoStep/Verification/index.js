@@ -16,12 +16,8 @@ const _uniqueId = uniqueId();
 
 class TwoStepVerificationComponent extends Component {
 
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
-
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserTwoStepVerification));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
@@ -29,7 +25,8 @@ class TwoStepVerificationComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}
+        wrapperStyle={styles.wrapper}>
 
         <Form style={styles.panel} control={(form) => {
           this.form = form;

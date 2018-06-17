@@ -1,19 +1,31 @@
 import React, {Component} from 'react';
-import {Animated, Easing, StyleSheet, View} from 'react-native';
-import {primary} from '../../../themes/default/index';
+import {Animated, Easing, View} from 'react-native';
+import {uniqueId} from 'lodash';
+import {appTheme} from '../../../themes/default/index';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-const styles = StyleSheet.create({
-  content: {
-    backgroundColor: 'rgba(100, 100, 100, 0.3)',
-    height: 7,
-    borderRadius: 2,
-  },
-  progress: {
-    backgroundColor: primary,
-    height: 7,
-    borderRadius: 2,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        content: {
+          backgroundColor: 'rgba(100, 100, 100, 0.3)',
+          height: 7,
+          borderRadius: 2,
+        },
+        progress: {
+          backgroundColor: appTheme.primary,
+          height: 7,
+          borderRadius: 2,
+        },
+      },
+    },
+  ],
+  true,
+];
 
 
 class PendingProgress extends Component {
@@ -67,8 +79,13 @@ class PendingProgress extends Component {
     this.progressAnimation();
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {width} = this.props;
+    const styles = this.getStyles();
     const left = {
       transform: [
         {

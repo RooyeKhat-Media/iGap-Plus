@@ -8,7 +8,6 @@ import {Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import {Proto} from '../../../modules/Proto/index';
 import PopupMenu from '../../BaseUI/PopupMenu/index';
-import {textTitleStyle} from '../../../themes/default/index';
 
 class SettingPrivacyComponent extends Component {
 
@@ -107,7 +106,7 @@ class SettingPrivacyComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.privacyPrivacy)}</Text>}
+          centerElement={intl.formatMessage(i18n.privacyPrivacy)}
         />
         <ScrollView style={styles.scrollView}>
 

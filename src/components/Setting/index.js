@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {forIn} from 'lodash';
 import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
-import {injectIntl, intlShape, FormattedMessage} from 'react-intl';
+import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {Confirm, ListItem, PopupMenu, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goQrCode, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
-import {textTitleStyle} from '../../themes/default/index';
 import {APP_VERSION} from '../../constants/configs';
 import {APP_MODAL_ID_PRIMARY} from '../../constants/app';
 import Picker from '../BaseUI/Picker/index';
 import {getLocalList} from '../../screens/User/UserRegisterScreen';
 import {changeLocale} from '../../utils/locale';
+import {IRANSans_Medium} from '../../constants/fonts/index';
+import {changeAppTheme, setAppThemeName, themes} from '../../themes/index';
 
 class SettingComponent extends Component {
 
@@ -23,10 +25,27 @@ class SettingComponent extends Component {
 
   constructor(props) {
     super(props);
+    const styles = this.getStyles();
     this.state = {
-      localesList: [],
+      currentTheme: null,
     };
-    getLocalList(this.state.localesList);
+    this.localesList = [];
+    this.themesList = [];
+    forIn(themes, (theme, key) => {
+      this.themesList.push({
+        key,
+        value: theme.name,
+        element: (<ListItem
+          centerElement={{primaryText: theme.name}}
+          rightElement={<View style={styles.themeColorWrap}>{
+            theme.colors.map(color => <View style={[styles.themeColor, {backgroundColor: color}]}/>)
+          }</View>}
+          style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
+        />),
+        filter: theme.name,
+      });
+    });
+    getLocalList(this.localesList);
   }
 
   menuClick = (index) => {
@@ -38,6 +57,16 @@ class SettingComponent extends Component {
       case 1:
         this.confirm.open(i18n.settingDeleteAccount, i18n.settingDeleteAccountSubTitle, deleteAccount);
         break;
+    }
+  };
+
+  changeLocaleTheme = async (local) => {
+    changeLocale(local);
+  };
+  changeTheme = async (idx) => {
+    if (themes[idx]) {
+      await setAppThemeName(idx);
+      changeAppTheme(idx);
     }
   };
 
@@ -54,7 +83,7 @@ class SettingComponent extends Component {
             intl.formatMessage(i18n.settingLogout),
             intl.formatMessage(i18n.settingDeleteAccount),
           ]} type={APP_MODAL_ID_PRIMARY} onPress={(result) => this.menuClick(result)}/>)}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.settingSetting)}</Text>}
+          centerElement={intl.formatMessage(i18n.settingSetting)}
         />
         <ScrollView style={styles.scrollView}>
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingGeneralSettings)} </Text>
@@ -97,10 +126,24 @@ class SettingComponent extends Component {
                 this.languagePicker = ref;
               }}
               headerTitle={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
-              options={this.state.localesList}
-              onItemSelect={(locale) => changeLocale(locale)}
+              options={this.localesList}
+              onItemSelect={this.changeLocaleTheme}
               placeHolder={<FormattedMessage {...i18n.registerChangeLanguagePlaceholder} />}
-              style={{wrapper:{display:'none'}}}/>}
+              style={{wrapper: {display: 'none'}}}/>}
+            style={styles.listItem}
+          />
+          <ListItem
+            onPress={() => this.themesPicker.modal.open(true)}
+            centerElement={{primaryText: intl.formatMessage(i18n.settingThemesPickerTitle)}}
+            rightElement={<Picker
+              ref={(ref) => {
+                this.themesPicker = ref;
+              }}
+              headerTitle={<FormattedMessage {...i18n.settingThemesPickerPlaceHolder} />}
+              placeHolder={<FormattedMessage {...i18n.settingThemesPickerPlaceHolder} />}
+              options={this.themesList}
+              onItemSelect={this.changeTheme}
+              style={{wrapper: {display: 'none'}}}/>}
             style={styles.listItem}
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>

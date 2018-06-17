@@ -8,7 +8,6 @@ import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomUpdateUsernameComponent extends Component {
 
@@ -38,7 +37,7 @@ class RoomUpdateUsernameComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomUpdateUsernameToolbarTitle)}</Text>} />
+          centerElement={intl.formatMessage(i18n.roomUpdateUsernameToolbarTitle)}/>
 
         <ScrollView style={styles.scroll}>
           <Form style={styles.form} control={(form) => {
@@ -51,12 +50,14 @@ class RoomUpdateUsernameComponent extends Component {
                 checked={!isPublic}
                 onSelect={onSelectRadioBtn}
                 label={intl.formatMessage(i18n.roomUpdateUsernameRadioBtnPrivate)}
+                style={styles.radioLabel}
               />
               <RadioButton
                 value={1}
                 checked={isPublic}
                 onSelect={onSelectRadioBtn}
                 label={intl.formatMessage(i18n.roomUpdateUsernameRadioBtnPublic)}
+                style={styles.radioLabel}
               />
             </View>
 
@@ -69,7 +70,7 @@ class RoomUpdateUsernameComponent extends Component {
                 label={intl.formatMessage(i18n.roomUpdateUsernameTitle)}
                 placeholder={intl.formatMessage(i18n.roomUpdateUsernameTitle)}
               />
-              <Text>
+              <Text style={styles.textPublic}>
                 <FormattedMessage {...i18n.roomUpdateUsernameDescription} />
               </Text>
             </View>) : null}

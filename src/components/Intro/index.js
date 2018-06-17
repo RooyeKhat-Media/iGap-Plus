@@ -6,7 +6,7 @@ import {Button} from '../BaseUI';
 import {injectIntl, intlShape} from 'react-intl';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../modules/Responsive';
 import styleSheet from './index.styles';
-import {uniqueId, min} from 'lodash';
+import {min, uniqueId} from 'lodash';
 import i18n from '../../i18n';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../constants/screenBreakPoints';
 import DimensionLimiter from '../BaseUI/DimensionLimiter';
@@ -14,10 +14,6 @@ import DimensionLimiter from '../BaseUI/DimensionLimiter';
 const _uniqueId = uniqueId();
 
 class Intro extends React.Component {
-
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
 
   constructor(props, context) {
     super(props, context);
@@ -88,7 +84,7 @@ class Intro extends React.Component {
   }
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.Intro));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   }
 }
 

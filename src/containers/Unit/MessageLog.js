@@ -1,12 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {FormattedMessage} from 'react-intl';
 import {getLogMessageParams} from '../../utils/messenger';
-import {primary} from '../../themes/default/index';
+import {appTheme} from '../../themes/default/index';
+import {uniqueId} from 'lodash';
 import putUserState from '../../modules/Entities/RegisteredUsers';
 import putRoomState from '../../modules/Entities/Rooms';
 import {connect} from 'react-redux';
 import {getLogMessageDetails} from '../../selector/entities/roomMessage';
+import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 /**
  *
@@ -32,7 +34,12 @@ class MessageLog extends React.PureComponent {
     }
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {message, messageDetail} = this.props;
     const logParams = getLogMessageParams(message, messageDetail);
     return (
@@ -55,16 +62,26 @@ export default connect(
 )(MessageLog);
 
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingRight: 15,
-    paddingLeft: 15,
-    backgroundColor: primary,
-    borderRadius: 15,
-  },
-  text: {
-    color: 'white',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        container: {
+          paddingTop: 4,
+          paddingBottom: 4,
+          paddingRight: 15,
+          paddingLeft: 15,
+          backgroundColor: appTheme.primary,
+          borderRadius: 15,
+        },
+        text: {
+          color: 'white',
+        },
+      },
+    },
+  ],
+  true,
+];

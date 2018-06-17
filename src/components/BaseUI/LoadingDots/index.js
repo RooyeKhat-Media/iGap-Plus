@@ -1,26 +1,37 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Animated, View} from 'react-native';
-import styles from './index.styles';
+import styleSheet from './index.styles';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class LoadingDots extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
-    const {dotStyle} = this.props;
+    const {style} = this.props;
+    const styles = this.getStyles();
     return (
       <View style={styles.container} {...this.props} >
-        <AnimatedDot style={dotStyle} delayTime={0}/>
-        <AnimatedDot style={dotStyle} delayTime={200}/>
-        <AnimatedDot style={dotStyle} delayTime={400}/>
+        <AnimatedDot style={style} delayTime={0}/>
+        <AnimatedDot style={style} delayTime={200}/>
+        <AnimatedDot style={style} delayTime={400}/>
       </View>
     );
   }
 }
 
 LoadingDots.propTypes = {
-  dotStyle: PropTypes.object,
+  style: PropTypes.object,
 };
 
 class AnimatedDot extends Component {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   constructor(props) {
     super(props);
     this.fadeAnimate = new Animated.Value(0);
@@ -54,6 +65,7 @@ class AnimatedDot extends Component {
 
   render() {
     const {style, key} = this.props;
+    const styles = this.getStyles();
     let fadeAnimate = this.fadeAnimate;
     return (
       <Animated.View key={key} style={[styles.dot, style, {opacity: fadeAnimate}]}/>

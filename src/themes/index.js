@@ -1,30 +1,46 @@
-import defaultTheme from './default';
 import MetaData from '../models/MetaData';
-import store from '../configureStore';
-import {themeChange} from '../actions/theme';
 import {METADATA_APP_THEME} from '../models/MetaData/constant';
+import {setAppTheme} from './default/index';
+import {reloadApp} from '../utils/app';
+
+import light from './light';
+import dark from './dark';
+
+export const themes = {
+  light: {
+    name: 'Light',
+    theme: light,
+    colors: ['#ffffff', '#efefef', '#fafafa'],
+  },
+  dark: {
+    name: 'Dark',
+    theme: dark,
+    colors: ['#000000', '#222222', '#232931'],
+  },
+};
 
 export const DEFAULT_THEME_NAME = 'defaultTheme';
 
-let _appTheme = DEFAULT_THEME_NAME;
+let _appThemeName = DEFAULT_THEME_NAME;
 
 export async function loadAppThemeName() {
-  _appTheme = await MetaData.load(METADATA_APP_THEME);
-  return _appTheme;
+  _appThemeName = await MetaData.load(METADATA_APP_THEME) || DEFAULT_THEME_NAME;
+  if (_appThemeName !== DEFAULT_THEME_NAME) {
+    changeAppTheme(_appThemeName);
+  }
+  return _appThemeName;
 }
 
-export function getAppTheme() {
-  if (_appTheme === DEFAULT_THEME_NAME) {
-    return defaultTheme;
-  }
-  return defaultTheme;
+export function getAppThemeName() {
+  return _appThemeName;
 }
 
 export async function setAppThemeName(newTheme) {
-  _appTheme = newTheme;
+  _appThemeName = newTheme;
   return MetaData.save(METADATA_APP_THEME, newTheme);
 }
 
 export function changeAppTheme(newTheme) {
-  store.dispatch(themeChange(newTheme));
+  setAppTheme(themes[newTheme].theme);
+  reloadApp();
 }

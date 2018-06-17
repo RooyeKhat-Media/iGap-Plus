@@ -1,23 +1,29 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {FlatList, Toolbar} from '../../BaseUI';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import Spinner from '../../BaseUI/Spinner/index';
-import {textTitleStyle} from '../../../themes/default/index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class ContactPickerComponent extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {intl, onSubmit, loaderControl, goBack, title, activeSubmitBtn, selectedList, onSelectItem, contactList} = this.props;
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.root}>
         <Toolbar
           leftElement="arrow-back"
           rightElement={activeSubmitBtn ? 'done' : null}
           onRightElementPress={onSubmit}
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(title)}</Text>}
+          centerElement={intl.formatMessage(title)}
         />
         <View style={styles.container}>
           <FlatList

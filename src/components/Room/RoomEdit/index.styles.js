@@ -1,13 +1,18 @@
 import {uniqueId} from 'lodash';
-import {primary} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
+        root: {
+          backgroundColor: appTheme.pageBackground,
+          flex: 1,
+        },
         container: {
           flex: 1,
         },
@@ -26,7 +31,7 @@ export default [
           padding: 5,
           margin: 5,
           fontSize: 18,
-          color: primary,
+          color: appTheme.primary,
           alignSelf: 'center',
         },
         loaderStyle: {

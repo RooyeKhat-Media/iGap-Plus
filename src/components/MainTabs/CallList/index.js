@@ -5,7 +5,7 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
-import {green, primary, red, textTitleStyle} from '../../../themes/default/index';
+import {appTheme, red} from '../../../themes/default/index';
 import {FlatList, ListItem, MCIcon, Toolbar} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import ReturnToCall from '../../Call/ReturnToCall';
@@ -36,12 +36,12 @@ class CallListComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.callListRecentCall)}</Text>}
-          rightElement={(<PopupMenu actionList={[
-            intl.formatMessage(i18n.callListClearCallHistory),
-          ]}
-          type={APP_MODAL_ID_PRIMARY}
-          onPress={(result) => this.menuClick(result)}/>)}
+          centerElement={intl.formatMessage(i18n.callListRecentCall)}
+          rightElement={(<PopupMenu
+            actionList={[intl.formatMessage(i18n.callListClearCallHistory)]}
+            type={APP_MODAL_ID_PRIMARY}
+            onPress={(result) => this.menuClick(result)}
+          />)}
         />
         <ReturnToCall/>
         <FlatList
@@ -78,14 +78,15 @@ class CallListComponent extends Component {
               <Text style={styles.titleText} numberOfLines={1}> {user.displayName}</Text>
               <View style={styles.rowLayout}>
                 <MCIcon name={statusIcon} color={statusColor} size={22} style={styles.icon}/>
-                <FormattedRelative updateInterval={0} value={item.offerTime * 1000}/>
+                <Text style={{color: appTheme.primaryText}}><FormattedRelative updateInterval={0}
+                  value={item.offerTime * 1000}/></Text>
               </View>
             </View>}
           rightElement={
             <TouchableOpacity onPress={() => this.onCallPress(item.peerId.toString(), item.type)}
               style={styles.rightElement}>
-              <MCIcon name={this.callTypeIcon(item.type)} size={30} style={styles.CallTypeIcon}/>
-              <Text> {toHHMMSS(item.duration)}</Text>
+              <MCIcon name={this.callTypeIcon(item.type)} size={30} style={styles.CallTypeIcon} color={appTheme.icon}/>
+              <Text style={{color: appTheme.primaryText}}> {toHHMMSS(item.duration)}</Text>
             </TouchableOpacity>}
         />
       </View>
@@ -106,11 +107,11 @@ class CallListComponent extends Component {
         break;
       case Proto.SignalingGetLogResponse.SignalingLog.Status.INCOMING :
         statusIcon = 'phone-incoming';
-        statusColor = primary;
+        statusColor = appTheme.primary;
         break;
       case Proto.SignalingGetLogResponse.SignalingLog.Status.OUTGOING :
         statusIcon = 'phone-outgoing';
-        statusColor = green;
+        statusColor = '#1de4b3';
         break;
     }
     return {

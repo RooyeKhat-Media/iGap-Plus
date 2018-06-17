@@ -1,0 +1,16 @@
+export default {
+  primary: '#3298ee',
+  pageBackground: '#ffffff',
+  wrapperBackground: '#efefef',
+  toolbar: '#fafafa',
+  titleText: '#202020',
+  primaryText: '#262626',
+  secondaryText: '#7d7d80',
+  border: '#dbdbdb',
+  icon: '#7d7d7d',
+  activeIcon: '#222222',
+  channelBox: '#f5f5f5',
+  ownerBox: '#e9eaed',
+  receiveBox: '#EDE9EB',
+  statusBar: '#e5e5e5',
+};

@@ -28,6 +28,7 @@ import {
   USER_TWO_STEP_SET_PASSWORD_SCREEN,
   USER_TWO_STEP_SETTING_SCREEN,
   USER_TWO_STEP_VERIFY_EMAIL_SCREEN,
+  USER_VERIFY_DELETE_SCREEN,
 } from '../constants/navigators';
 import ProfileScreen from '../screens/MainTabs/ProfileScreen';
 import NearbyScreen from '../screens/MainTabs/NearbyScreen';
@@ -51,6 +52,7 @@ import UserTwoStepChangeHintScreen from '../screens/User/TwoStep/UserTwoStepChan
 import UserTwoStepChangeRecoveryQuestionScreen from '../screens/User/TwoStep/UserTwoStepChangeRecoveryQuestionScreen';
 import UserTwoStepVerifyRecoveryEmailScreen from '../screens/User/TwoStep/UserTwoStepVerifyRecoveryEmail';
 import QrCodeScreen from '../screens/QrCode/QrCodeScreen';
+import UserVerifyDeleteScreen from '../screens/User/UserVerifyDeleteScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -141,6 +143,10 @@ export function goQrCode() {
   navigate(QR_CODE_SCREEN);
 }
 
+export function goUserVerifyDeleteScreen(token) {
+  navigate(USER_VERIFY_DELETE_SCREEN, {token});
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [NEARBY_SCREEN]: {screen: NearbyScreen},
@@ -183,6 +189,7 @@ const PrimaryNavigator = StackNavigator({
   [USER_TWO_STEP_CHANGE_RECOVERY_QUESTION_SCREEN]: {screen: UserTwoStepChangeRecoveryQuestionScreen},
   [USER_TWO_STEP_VERIFY_EMAIL_SCREEN]: {screen: UserTwoStepVerifyRecoveryEmailScreen},
   [QR_CODE_SCREEN]: {screen: QrCodeScreen},
+  [USER_VERIFY_DELETE_SCREEN]: {screen: UserVerifyDeleteScreen},
 });
 
 export default PrimaryNavigator;

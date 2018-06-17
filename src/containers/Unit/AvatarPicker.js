@@ -1,10 +1,12 @@
 import React from 'react';
 import {FileUtil} from 'react-native-file-system';
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {Avatar} from '../../components/BaseUI';
 import PropTypes from 'prop-types';
 import {prependFileProtocol} from '../../utils/core';
 import {filePicker} from '../../utils/app';
+import {uniqueId} from 'lodash';
+import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class AvatarPicker extends React.PureComponent {
 
@@ -24,9 +26,13 @@ class AvatarPicker extends React.PureComponent {
     } finally {
     }
   };
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   render() {
     const {selectedFile} = this.state;
+    const styles = this.getStyles();
     return (
       <TouchableOpacity style={styles.avatarWrap} onPress={this.onPress}>
         {selectedFile ? (
@@ -43,15 +49,25 @@ AvatarPicker.propTypes = {
 
 export default AvatarPicker;
 
-const styles = StyleSheet.create({
-  avatarWrap: {
-    margin: 10,
-    alignSelf: 'center',
-    height: 150,
-  },
-  imageStyles: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        avatarWrap: {
+          margin: 10,
+          alignSelf: 'center',
+          height: 150,
+        },
+        imageStyles: {
+          width: 150,
+          height: 150,
+          borderRadius: 75,
+        },
+      },
+    },
+  ],
+  true,
+];

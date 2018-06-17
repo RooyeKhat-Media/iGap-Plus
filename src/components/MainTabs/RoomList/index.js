@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import {filter} from 'lodash';
 import MaterialTabs from 'react-native-material-tabs';
 import {injectIntl, intlShape} from 'react-intl';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {ActionSheet, Confirm, Toolbar} from '../../BaseUI/index';
 import RoomListItem from '../../../containers/Unit/RoomListItem';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
@@ -16,8 +16,13 @@ import {gray100, gray1000, gray950} from '../../../themes/default/index';
 import SoundPlayer from '../../../containers/Unit/SoundPlayer';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 import {Proto} from '../../../modules/Proto/index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class RoomListComponent extends React.PureComponent {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   getDataProvider = (roomList, selectedTab) => {
     const {getRoomType} = this.props;
@@ -78,9 +83,10 @@ class RoomListComponent extends React.PureComponent {
 
   render() {
     const {intl, clientUpdating, actionSheetControl, confirmControl, roomList} = this.props;
+    const styles = this.getStyles();
     const {dataProvider} = this.state;
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.root}>
         <View style={styles.container}>
           <Toolbar
             hideConnectionStatus={true}

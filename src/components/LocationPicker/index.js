@@ -4,12 +4,18 @@ import PropTypes from 'prop-types';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {ActionButton, Avatar, ListItem, Toolbar} from '../BaseUI';
 import MapView, {Marker} from 'react-native-maps';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import i18n from '../../i18n';
+import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 
 class LocationPickerComponent extends Component {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {intl, region, coordinate, onDragEnd, sendLocation, getLocation, goBack} = this.props;
+    const styles = this.getStyles();
     return (
       <View style={styles.wrapper}>
         <Toolbar

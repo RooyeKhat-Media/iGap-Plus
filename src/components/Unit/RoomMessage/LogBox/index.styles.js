@@ -4,7 +4,7 @@ const id = uniqueId();
 
 export default [
   id,
-  [
+  () => [
     {
       query: {},
       style: {

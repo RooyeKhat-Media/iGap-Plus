@@ -7,7 +7,6 @@ import {injectIntl, intlShape} from 'react-intl';
 import {Form, LoadingDots, PickerField, TextInputField, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Avatar from '../../../containers/Unit/Avatar';
-import {textTitleStyle} from '../../../themes/default/index';
 import {goAvatarList} from '../../../navigators/SecondaryNavigator';
 import {getUserId} from '../../../utils/app';
 
@@ -42,7 +41,7 @@ class UserEditProfile extends Component {
           rightElement="check"
           onLeftElementPress={goBack}
           onRightElementPress={this.handleFormData}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.editProfileEditProfile)}</Text>}
+          centerElement={intl.formatMessage(i18n.editProfileEditProfile)}
         />
 
         <ScrollView style={styles.scroll}>
@@ -100,6 +99,7 @@ class UserEditProfile extends Component {
               rules={[]}
               name="gender"
               label="gender"
+              style={styles.PickerField}
               defaultValue={gender}
               options={[
                 {value: 0, label: intl.formatMessage(i18n.editProfileNotSpecified)},

@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
-import {KeyboardAvoidingView as KeyboardAvoidingViewReact, StyleSheet} from 'react-native';
+import {KeyboardAvoidingView as KeyboardAvoidingViewReact} from 'react-native';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {uniqueId} from 'lodash';
 
 class KeyboardAvoidingView extends Component {
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     return (
       <KeyboardAvoidingViewReact
         behavior="padding"
@@ -16,8 +23,18 @@ class KeyboardAvoidingView extends Component {
 
 export default KeyboardAvoidingView;
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        root: {
+          flex: 1,
+        },
+      },
+    },
+  ],
+  true,
+];

@@ -1,8 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
+import {uniqueId} from 'lodash';
 import ScrollableTabView, {ScrollableTabBar} from 'react-native-scrollable-tab-view';
 import emojiList from '../../../constants/emojiList';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 let savedPiker = null;
 export const onEmojiSelected = [];
@@ -15,7 +17,12 @@ class EmojiPiker extends PureComponent {
     }
   };
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   piker = () => {
+    const styles = this.getStyles();
     savedPiker = <View style={styles.container}>
       <ScrollableTabView initialPage={0} prerenderingSiblingsNumber={8}
         renderTabBar={() => <ScrollableTabBar textStyle={styles.text}/>}>
@@ -39,7 +46,12 @@ class EmojiPiker extends PureComponent {
 }
 
 class EmojiCategory extends PureComponent {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {emojiList, onEmojiSelected} = this.props;
     return (
       <View>
@@ -53,26 +65,36 @@ class EmojiCategory extends PureComponent {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    height: 250,
-  },
-  categoryInner: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  emoji: {
-    minWidth: 40,
-    fontSize: 28,
-    color: 'black',
-    margin: 2,
-  },
-  text: {
-    fontSize: 22,
-    color: 'black',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        container: {
+          height: 250,
+        },
+        categoryInner: {
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        },
+        emoji: {
+          minWidth: 40,
+          fontSize: 28,
+          color: 'black',
+          margin: 2,
+        },
+        text: {
+          fontSize: 22,
+          color: 'black',
+        },
+      },
+    },
+  ],
+  true,
+];
 
 EmojiPiker.propTypes = {
   onEmojiSelected: PropTypes.func,

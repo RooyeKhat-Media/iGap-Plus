@@ -1,17 +1,47 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {Component} from 'react';
+import {View} from 'react-native';
+import {uniqueId} from 'lodash';
+import PropTypes from 'prop-types';
 import RichTextView from '../../../../modules/RichTextView/index';
+import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-export default ({message, showText}) => (
-  showText ?
-    <View style={styles.container}>
-      <RichTextView style={styles.message} rawText={message}/>
-    </View> : null
-);
+class Text extends Component {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
-const styles = StyleSheet.create({
-  container: {},
-  message: {
-    color: '#202020',
-  },
-});
+  render() {
+    const styles = this.getStyles();
+    const {message, showText} = this.props;
+    return (
+      showText ?
+        <View style={styles.container}>
+          <RichTextView style={styles.message} rawText={message}/>
+        </View> : null
+    );
+  }
+}
+
+Text.propTypes = {
+  message: PropTypes.string.isRequired,
+  showText: PropTypes.bool.isRequired,
+};
+
+export default Text;
+
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        container: {},
+        message: {
+          color: '#202020',
+        },
+      },
+    },
+  ],
+  true,
+];

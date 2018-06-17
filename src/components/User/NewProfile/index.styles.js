@@ -1,14 +1,16 @@
 import {uniqueId} from 'lodash';
+import {appTheme} from '../../../themes/default/index';
 
 const id = uniqueId();
-export default (UserNewProfile) => ([
+
+export default [
   id,
-  [
+  () => [
     {
       query: {},
       style: {
         layout: {
-          backgroundColor: UserNewProfile.layoutBackgroundColor,
+          backgroundColor: appTheme.pageBackground,
         },
         panel: {
           flex: 1,
@@ -28,8 +30,8 @@ export default (UserNewProfile) => ([
           width: 130,
           height: 130,
           borderWidth: 3,
-          borderColor: UserNewProfile.selectAvatarBorderColor,
+          borderColor: appTheme.border,
         },
       },
     }],
-]);
+];

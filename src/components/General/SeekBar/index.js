@@ -1,45 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  gray950,
-  primary,
-} from '../../../themes/default/index';
-import {
-  Animated,
-  StyleSheet,
-  View,
-  PanResponder,
-  Easing,
-} from 'react-native';
+import {appTheme} from '../../../themes/default/index';
+import {Animated, Easing, PanResponder, View} from 'react-native';
+import {uniqueId} from 'lodash';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 const _size = 24;
-const styles = StyleSheet.create({
-  container: {
-    height: _size,
-    backgroundColor: '#0000',
-    marginTop: 3,
-    marginBottom: 3,
-  },
-  background: {
-    backgroundColor: gray950,
-    height: 6,
-    overflow: 'hidden',
-    borderRadius: 2,
-    marginTop: 9,
-  },
-  fill: {
-    backgroundColor: primary,
-    height: 6,
-    borderRadius: 2,
-  },
-  circle: {
-    width: _size,
-    height: _size,
-    borderRadius: _size / 2,
-    backgroundColor: primary,
-    position: 'absolute',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        container: {
+          height: _size,
+          backgroundColor: '#0000',
+          marginTop: 3,
+          marginBottom: 3,
+        },
+        background: {
+          backgroundColor: '#7d7d7d',
+          height: 6,
+          overflow: 'hidden',
+          borderRadius: 2,
+          marginTop: 9,
+        },
+        fill: {
+          backgroundColor: appTheme.primary,
+          height: 6,
+          borderRadius: 2,
+        },
+        circle: {
+          width: _size,
+          height: _size,
+          borderRadius: _size / 2,
+          backgroundColor: appTheme.primary,
+          position: 'absolute',
+        },
+      },
+    },
+  ],
+  true,
+];
 
 class SeekBarComponent extends React.Component {
   state = {
@@ -116,7 +119,12 @@ class SeekBarComponent extends React.Component {
     });
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {width} = this.props;
     const fillWidth = {
       transform: [

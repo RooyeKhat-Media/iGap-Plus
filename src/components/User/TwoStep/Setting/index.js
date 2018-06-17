@@ -4,11 +4,15 @@ import {Text, View} from 'react-native';
 import {ActivityIndicator, Button, Confirm, Form, ListItem, TextInputField, Toolbar} from '../../../BaseUI/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../../i18n/index';
-import {textTitleStyle} from '../../../../themes/default/index';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {APP_MODAL_ID_PRIMARY} from '../../../../constants/app';
+import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
 class UserTwoStepSettingComponent extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   checkPassword = async () => {
     const {checkPassword} = this.props;
@@ -24,6 +28,7 @@ class UserTwoStepSettingComponent extends Component {
   };
 
   render() {
+    const styles = this.getStyles();
     const {
       intl, SETTING_STATE,
       currentState,
@@ -40,11 +45,11 @@ class UserTwoStepSettingComponent extends Component {
       goBack,
     } = this.props;
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.root}>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepSettingTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.twoStepSettingTitle)}
           rightElement={(currentState === SETTING_STATE.CHECK_PASSWORD ? 'check' : null)}
           onRightElementPress={this.checkPassword}
         />
@@ -141,9 +146,9 @@ class UserTwoStepSettingComponent extends Component {
                 deleteTwoStep);
             }}
           />
-          <Text style={styles.textHelp}>
-            <FormattedMessage {...i18n.twoStepSettingSettingHelp} />
-          </Text>
+          {/*<Text style={styles.textHelp}>*/}
+          {/*<FormattedMessage {...i18n.twoStepSettingSettingHelp} />*/}
+          {/*</Text>*/}
         </View>)}
 
         <Confirm control={(dialog) => {

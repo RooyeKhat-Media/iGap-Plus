@@ -1,28 +1,46 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {getIsInCall} from '../../selector/methods/signaling/callPermissin';
 import {connect} from 'react-redux';
 import {goCall} from '../../navigators/SecondaryNavigator';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../i18n';
-import {greenDark} from '../../themes/default/index';
+import {uniqueId} from 'lodash';
+import {appTheme} from '../../themes/default/index';
+import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-const styles = StyleSheet.create({
-  container: {
-    height: 34,
-    backgroundColor: greenDark,
-    justifyContent: 'center',
-  },
-  returnText: {
-    alignSelf: 'center',
-    fontSize: 20,
-    color: 'black',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        container: {
+          height: 34,
+          backgroundColor: appTheme.primary,
+          justifyContent: 'center',
+        },
+        returnText: {
+          alignSelf: 'center',
+          fontSize: 20,
+          color: appTheme.primaryText,
+        },
+      },
+    },
+  ],
+  true,
+];
 
 class ReturnToCall extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {isInCall, userId} = this.props.callState;
+    const styles = this.getStyles();
     const {intl} = this.props;
     return (
       (isInCall &&

@@ -1,45 +1,57 @@
 import {uniqueId} from 'lodash';
-import {black200, gray950, primary} from '../../themes/default/index';
+import {appTheme} from '../../themes/default/index';
 import {IRANSans_Medium} from '../../constants/fonts/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
         root: {
           flex: 1,
+          backgroundColor: appTheme.pageBackground,
         },
         scrollView: {
           flex: 1,
-          backgroundColor: '#f6f6f6',
         },
         TitleText: {
           fontSize: 18,
-          color: primary,
+          color: appTheme.primary,
           textAlign: 'center',
           paddingTop: 15,
           paddingBottom: 5,
           ...IRANSans_Medium,
-          backgroundColor: '#fff',
           marginTop: 10,
         },
         subItemText: {
           fontSize: 14,
-          color: gray950,
+          color: appTheme.secondaryText,
           padding: 12,
           textAlign: 'center',
-          backgroundColor: '#fff',
         },
         listItem: {
           container: {
-            marginBottom: 2,
+            borderBottomWidth: 1,
+            borderBottomColor: appTheme.border,
+            margin: 5,
           },
           primaryText: {
-            color: black200,
+            color: appTheme.titleText,
           },
+        },
+        themeColorWrap: {
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+        },
+        themeColor: {
+          width: 20,
+          height: 20,
+          borderRadius: 10,
+          margin: 2,
         },
       },
     },

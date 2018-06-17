@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {BottomNavigation, Button, FlatList, MCIcon, Toolbar} from '../../BaseUI/index';
+import {Button, FlatList, MCIcon, Toolbar} from '../../BaseUI/index';
 import {ScrollView, Text, View} from 'react-native';
 import i18n from '../../../i18n/index';
 import styleSheet from './index.styles';
-import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import {injectIntl, intlShape} from 'react-intl';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import {goSetting} from '../../../navigators/PrimaryNavigator';
-import {textTitleStyle} from '../../../themes/default/index';
 import ReturnToCall from '../../Call/ReturnToCall';
 import {goAvatarList} from '../../../navigators/SecondaryNavigator';
 import {getUserId} from '../../../utils/app';
+import {appTheme} from '../../../themes/default/index';
 
 class ProfileComponent extends Component {
 
@@ -41,9 +41,8 @@ class ProfileComponent extends Component {
       <View style={styles.root}>
 
         <Toolbar
-          rightElement={<MCIcon name="dots-vertical" color="#000" size={30} onPress={this.menuClick}/>}
-          centerElement={<Text numberOfLines={1}
-            style={textTitleStyle}>{(currentUser && currentUser.phone && currentUser.phone.toString())}</Text>}/>
+          rightElement={<MCIcon name="dots-vertical" color={appTheme.icon} size={30} onPress={this.menuClick}/>}
+          centerElement={(currentUser && currentUser.phone && currentUser.phone.toString())}/>
 
         <ReturnToCall/>
         <ScrollView style={styles.scroll}>
@@ -68,13 +67,13 @@ class ProfileComponent extends Component {
             </View>
           </View>
 
-          <View style={styles.bottomNavigation}>
-            <BottomNavigation.Action
-              style={this.state.selectionMenu === 1 ? styles.activeBottomNavigationAction : styles.notactiveBottomNavigationAction}
-              key="list"
-              icon="people-outline"
-            />
-          </View>
+          {/*<View style={styles.bottomNavigation}>*/}
+          {/*<BottomNavigation.Action*/}
+          {/*style={this.state.selectionMenu === 1 ? styles.activeBottomNavigationAction : styles.notactiveBottomNavigationAction}*/}
+          {/*key="list"*/}
+          {/*icon="people-outline"*/}
+          {/*/>*/}
+          {/*</View>*/}
 
           <FlatList
             data={contactList}

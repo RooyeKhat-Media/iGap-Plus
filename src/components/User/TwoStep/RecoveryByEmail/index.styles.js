@@ -1,24 +1,21 @@
 import {uniqueId} from 'lodash';
-import {IRANSans_Medium} from '../../../../constants/fonts/index';
+import {appTheme} from '../../../../themes/default/index';
 
 const id = uniqueId();
-export default (UserTwoStepForget) => ([
+export default [
   id,
-  [
+  () => [
     {
       query: {},
       style: {
+        wrapper: {
+          backgroundColor: appTheme.wrapperBackground,
+        },
         layout: {
-          backgroundColor: UserTwoStepForget.layoutBackgroundColor,
+          backgroundColor: appTheme.pageBackground,
         },
         panel: {
           padding: 15,
-        },
-        divider: {
-          marginBottom: 15,
-          marginTop: 15,
-          borderBottomColor: '#eee',
-          borderBottomWidth: 1,
         },
         formGroup: {
           marginBottom: 15,
@@ -35,10 +32,6 @@ export default (UserTwoStepForget) => ([
             borderWidth: 0,
           },
         },
-        label: {
-          ...IRANSans_Medium,
-          fontSize: 15,
-        },
       },
     }],
-]);
+];

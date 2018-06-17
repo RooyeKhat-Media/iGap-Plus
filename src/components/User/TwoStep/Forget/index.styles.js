@@ -1,14 +1,18 @@
 import {uniqueId} from 'lodash';
+import {appTheme} from '../../../../themes/default/index';
 
 const id = uniqueId();
-export default (UserTwoStepForget) => ([
+export default [
   id,
-  [
+  () => [
     {
       query: {},
       style: {
+        wrapper: {
+          backgroundColor: appTheme.wrapperBackground,
+        },
         layout: {
-          backgroundColor: UserTwoStepForget.layoutBackgroundColor,
+          backgroundColor: appTheme.pageBackground,
         },
         recoveryBtnWrap: {
           padding: 15,
@@ -20,4 +24,4 @@ export default (UserTwoStepForget) => ([
         },
       },
     }],
-]);
+];

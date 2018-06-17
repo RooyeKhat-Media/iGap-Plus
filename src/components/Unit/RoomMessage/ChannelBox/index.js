@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
-import {black600, red} from '../../../../themes/default/index';
+import {appTheme, red} from '../../../../themes/default/index';
 import {connect} from 'react-redux';
 import {getRoom} from '../../../../selector/entities/room';
 import MessageBox from '../MessageBox/index';
 import {Button, Icon, IconToggle, MCIcon} from '../../../BaseUI/index';
 import AddonTime from '../MessageBox/AddonTime';
 import Avatar from '../../../../containers/Unit/Avatar';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {BOX_TYPE_CHANNEL} from '../../../../modules/DimensionCalculator/index';
 import RichTextView from '../../../../modules/RichTextView/index';
 import {Proto} from '../../../../modules/Proto/index';
+import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
 class ChannelBox extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   state = {
     saveMessageState: 'default',
@@ -44,6 +49,7 @@ class ChannelBox extends Component {
   };
 
   render() {
+    const styles = this.getStyles();
     const {saveMessageState} = this.state;
     const {room, message, onMessagePress, onMessageLongPress, showText, isForwarded, onShareMessagePress, onReactionPress} = this.props;
 
@@ -54,15 +60,15 @@ class ChannelBox extends Component {
           <View style={styles.avatarWrap}>
             <Avatar roomId={message.roomId} size={45}/>
           </View>
-          {room && <Text style={styles.textTitle}>{room.title}</Text>}
-          <MCIcon color={black600} name="share-variant" size={20} onPress={onShareMessagePress}/>
+          {room && <Text style={styles.textTitle} numberOfLines={1}>{room.title}</Text>}
+          <MCIcon color={appTheme.titleText} name="share-variant" size={20} onPress={onShareMessagePress}/>
 
           {saveMessageState === 'default' &&
-          (<IconToggle color={black600} name="cloud-upload" size={25} onPress={this.saveMessagePress}
+          (<IconToggle color={appTheme.titleText} name="cloud-upload" size={25} onPress={this.saveMessagePress}
             style={styles.bookmark}/>)}
 
           {saveMessageState === 'loading' &&
-          (<IconToggle color={black600} name="hourglass-empty" size={25} style={styles.bookmark}/>)}
+          (<IconToggle color={appTheme.titleText} name="hourglass-empty" size={25} style={styles.bookmark}/>)}
 
           {saveMessageState === 'failed' &&
           (<IconToggle color={red} name="remove-circle" size={25} onPress={this.saveMessagePress}
@@ -90,7 +96,7 @@ class ChannelBox extends Component {
               onPress={this.reactionDown}/>
           </View>
           <View style={styles.chanelInfoWrap}>
-            {message.edited && (<Icon name="mode-edit" size={15}/>)}
+            {message.edited && (<Icon name="mode-edit" size={15} color={appTheme.icon}/>)}
             <AddonTime createTime={message.createTime}/>
             <Text numberOfLines={1} style={styles.textSignature}>{message.channelSignature}</Text>
           </View>

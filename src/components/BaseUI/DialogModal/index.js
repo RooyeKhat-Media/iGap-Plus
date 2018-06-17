@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Checkbox, Modal} from '../index';
 import {Text, View} from 'react-native';
-import styles from './index.style';
+import styleSheet from './index.style';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class DialogModal extends Component {
 
@@ -30,6 +31,11 @@ class DialogModal extends Component {
     this.setState({checkboxChecked: checked});
   };
 
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   controlRef = (ref) => {
     const {control} = this.props;
     if (ref) {
@@ -41,6 +47,7 @@ class DialogModal extends Component {
   render() {
     const {intl, type, title, content, actions, checkbox} = this.props;
     const {checkboxChecked} = this.state;
+    const styles = this.getStyles();
     return (
       <Modal ref={
         this.controlRef} type={type} style={styles.dialogWrap}>

@@ -15,7 +15,6 @@ import MainScreen from '../screens/MainScreen';
 import InitialScreen from '../screens/InitialScreen';
 import UserTwoStepRecoveryByEmailScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByEmailScreen';
 import UserTwoStepRecoveryByQuestionScreen from '../screens/User/TwoStep/UserTwoStepRecoveryByQuestionScreen';
-import UserVerifyDeleteScreen from '../screens/User/UserVerifyDeleteScreen';
 
 import TestScreen from '../screens/TestScreen';
 
@@ -25,13 +24,13 @@ import {
   MAIN_SCREEN,
   PRIVACY_POLICY_SCREEN,
   TEST_SCREEN,
-  USER_NEW_PROFILE_SCREEN, USER_QR_CODE_LOGIN_SCREEN,
+  USER_NEW_PROFILE_SCREEN,
+  USER_QR_CODE_LOGIN_SCREEN,
   USER_REGISTER_SCREEN,
   USER_TWO_STEP_FORGET_SCREEN,
   USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN,
   USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN,
   USER_TWO_STEP_VERIFICATION_SCREEN,
-  USER_VERIFY_DELETE_SCREEN,
   USER_VERIFY_SCREEN,
 } from '../constants/navigators';
 import UserQrCodeLoginScreen from '../screens/User/UserQrCodeLoginScreen';
@@ -96,9 +95,6 @@ export function goUserTwoStepRecoveryByQuestionScreen(needLogin = false) {
   navigate(USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN, {needLogin});
 }
 
-export function goUserVerifyDeleteScreen(token) {
-  navigate(USER_VERIFY_DELETE_SCREEN, {token});
-}
 
 export function goPrivacyPolicy() {
   navigate(PRIVACY_POLICY_SCREEN);
@@ -124,7 +120,6 @@ const AppNavigator = StackNavigator({
   [INITIAL_SCREEN]: {screen: InitialScreen},
   [USER_TWO_STEP_RECOVERY_BY_EMAIL_SCREEN]: {screen: UserTwoStepRecoveryByEmailScreen},
   [USER_TWO_STEP_RECOVERY_BY_QUESTION_SCREEN]: {screen: UserTwoStepRecoveryByQuestionScreen},
-  [USER_VERIFY_DELETE_SCREEN]: {screen: UserVerifyDeleteScreen},
 });
 
 export default AppNavigator;

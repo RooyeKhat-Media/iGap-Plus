@@ -1,17 +1,19 @@
 import {uniqueId} from 'lodash';
-import {black200, gray500, gray800, primary, white} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 
 const id = uniqueId();
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
         root: {
           flex: 1,
-          backgroundColor: white,
+          backgroundColor: appTheme.pageBackground,
+          paddingBottom: 20,
         },
         scroll: {
           flex: 1,
@@ -32,13 +34,13 @@ export default [
         name: {
           fontSize: 18,
           ...IRANSans_Medium,
-          color: black200,
+          color: appTheme.titleText,
           textAlign: 'left',
 
         },
         userName: {
           fontSize: 16,
-          color: gray800,
+          color: appTheme.secondaryText,
           marginBottom: 5,
         },
         sectionTopSub1_1: {
@@ -49,53 +51,53 @@ export default [
         text: {
           fontSize: 16,
           ...IRANSans_Medium,
-          color: black200,
+          color: appTheme.titleText,
           flex: 1,
         },
         detatil: {
           fontSize: 14,
-          color: primary,
+          color: appTheme.primary,
         },
         balance: {
           fontSize: 14,
-          color: gray800,
+          color: appTheme.secondaryText,
         },
         button: {
           text: {
             fontSize: 16,
-            color: gray800,
+            color: appTheme.secondaryText,
           },
           container: {
             height: 30,
           },
         },
-        bottomNavigation: {
-          borderTopWidth: 1,
-          borderBottomWidth: 1,
-          borderBottomColor: '#e6e6e6',
-          borderTopColor: '#e6e6e6',
-          justifyContent: 'center',
-          flexDirection: 'row',
-
-        },
-        activeBottomNavigationAction: {
-          icon: {
-            color: primary,
-          },
-          container: {
-            paddingBottom: 0,
-            paddingTop: 5,
-          },
-        },
-        notactiveBottomNavigationAction: {
-          icon: {
-            color: gray500,
-          },
-          container: {
-            paddingBottom: 0,
-            paddingTop: 5,
-          },
-        },
+        // bottomNavigation: {
+        //   borderTopWidth: 1,
+        //   borderBottomWidth: 1,
+        //   borderBottomColor: '#e6e6e6',
+        //   borderTopColor: '#e6e6e6',
+        //   justifyContent: 'center',
+        //   flexDirection: 'row',
+        //
+        // },
+        // activeBottomNavigationAction: {
+        //   icon: {
+        //     color: appTheme.primary,
+        //   },
+        //   container: {
+        //     paddingBottom: 0,
+        //     paddingTop: 5,
+        //   },
+        // },
+        // notactiveBottomNavigationAction: {
+        //   icon: {
+        //     color: circleButtonBackground,
+        //   },
+        //   container: {
+        //     paddingBottom: 0,
+        //     paddingTop: 5,
+        //   },
+        // },
 
       },
     },

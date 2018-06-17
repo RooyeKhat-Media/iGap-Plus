@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {DialogModal, FlatList, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import UserListItem from '../../../containers/Unit/UserListItem';
-import {textTitleStyle} from '../../../themes/default/index';
 
 let selectedUserID = '0';
 
@@ -27,7 +26,7 @@ class BlockComponent extends Component {
           onLeftElementPress={goBack}
           rightElement="add"
           onRightElementPress={blockAction}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.settingBlockList)}</Text>}
+          centerElement={intl.formatMessage(i18n.settingBlockList)}
         />
 
         <FlatList

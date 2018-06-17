@@ -5,9 +5,10 @@ import MessageBox from '../MessageBox/index';
 import Avatar from '../../../../containers/Unit/Avatar';
 import AddonTime from '../MessageBox/AddonTime';
 import PropTypes from 'prop-types';
-import style from './index.styles';
+import styleSheet from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 import {BOX_TYPE_CHAT} from '../../../../modules/DimensionCalculator/index';
+import {appTheme} from '../../../../themes/default/index';
 
 class ChatBox extends Component {
 
@@ -16,7 +17,7 @@ class ChatBox extends Component {
   }
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(style);
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
@@ -38,7 +39,7 @@ class ChatBox extends Component {
               onReactionPress={onReactionPress}/>
           </View>
           <View style={styles.footerWrap}>
-            {message.edited && (<Icon size={15} name="mode-edit"/>)}
+            {message.edited && (<Icon size={15} name="mode-edit" color={appTheme.icon}/>)}
             <AddonTime createTime={message.createTime}/>
           </View>
         </View>

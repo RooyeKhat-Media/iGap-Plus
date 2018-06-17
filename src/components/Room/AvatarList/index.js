@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import Gallery from 'react-native-image-gallery';
-import {Toolbar, PopupMenu} from '../../BaseUI/index';
+import {PopupMenu, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import LoadingDots from '../../BaseUI/LoadingDots/index';
 import {menuAction} from '../../../screens/Room/AvatarListScreen';
 import AvatarBox from '../../../containers/Unit/AvatarBox';
-import {textTitleStyle} from '../../../themes/default/index';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 
 class AvatarListComponent extends Component {
@@ -76,7 +75,7 @@ class AvatarListComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{imageSelectedIndex + 1} / {avatarList.length}</Text>}
+          centerElement={(imageSelectedIndex + 1) + '/' + avatarList.length}
           rightElement={(<PopupMenu actionList={this.menuItem} type={APP_MODAL_ID_SECONDARY}
             onPress={(index) => menuClick(this.menuActionList[index], imageSelectedIndex)}/>)}
         />

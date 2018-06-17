@@ -163,7 +163,8 @@ const SecondaryNavigator = StackNavigator({
   [ROOM_PICKER_SCREEN]: {screen: RoomPickerScreen},
   [ROOM_GALLERY_SCREEN]: {screen: RoomGalleryScreen},
   [CONTACT_EDIT_SCREEN]: {screen: ContactNewScreen},
-}, {
+},
+{
   navigationOptions: {
     header: null,
   },

@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {StatusBar, TouchableOpacity, View, Platform} from 'react-native';
-import styles from './index.styles';
+import {Platform, StatusBar, TouchableOpacity, View} from 'react-native';
+import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {RNCamera} from 'react-native-camera';
 import {Icon} from '../../BaseUI';
 import BlinkRecorder from './BlinkRecorder';
 import {cameraMode} from '../../../screens/General/CameraScreen';
-import {gray1000} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 import {replace} from 'lodash';
 
 class CameraComponent extends Component {
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styles);
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   constructor(props) {
@@ -58,11 +58,11 @@ class CameraComponent extends Component {
         {!this.state.isRecording && <View style={styles.topOverlay}>
           {this.pictureMode &&
           <TouchableOpacity style={styles.flashButton} onPress={this.switchFlash}>
-            <Icon name={this.flashIcon} size={30} color={gray1000}/>
+            <Icon name={this.flashIcon} size={30} color={appTheme.icon}/>
           </TouchableOpacity>}
           {!this.qrCodeMode &&
           <TouchableOpacity style={styles.typeButton} onPress={this.switchType}>
-            <Icon name={this.typeIcon} size={30} color={gray1000}/>
+            <Icon name={this.typeIcon} size={30} color={appTheme.icon}/>
           </TouchableOpacity>}
 
         </View>}
@@ -70,23 +70,23 @@ class CameraComponent extends Component {
         <View style={styles.bottomOverlay}>
           {this.pictureMode &&
           <TouchableOpacity style={styles.captureButton} onPress={this.takePicture}>
-            <Icon name="photo-camera" size={32} color={gray1000}/>
+            <Icon name="photo-camera" size={32} color={appTheme.icon}/>
           </TouchableOpacity>}
 
           {this.videoMode &&
           (!this.state.isRecording &&
             <TouchableOpacity style={styles.captureButton} onPress={this.startRecording}>
-              <Icon name="videocam" size={32} color={gray1000}/>
+              <Icon name="videocam" size={32} color={appTheme.icon}/>
             </TouchableOpacity>
             ||
             <TouchableOpacity style={styles.captureButton} onPress={this.stopRecording}>
-              <Icon name="stop" size={32} color={gray1000}/>
+              <Icon name="stop" size={32} color={appTheme.icon}/>
             </TouchableOpacity>)}
 
         </View>
 
         <TouchableOpacity style={styles.close} onPress={() => goBack()}>
-          <Icon name="close" size={32} color={gray1000}/>
+          <Icon name="close" size={32} color={appTheme.icon}/>
         </TouchableOpacity>
 
       </View>

@@ -1,14 +1,17 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {Proto} from '../../../modules/Proto/index';
 import LogBox from './LogBox';
+import {uniqueId} from 'lodash';
 import OwnerBox from './OwnerBox';
 import ChatBox from './ChatBox';
 import GroupBox from './GroupBox';
 import ChannelBox from './ChannelBox';
 import i18n from '../../../i18n';
+import {appTheme} from '../../../themes/default/index';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class RoomMessage extends React.PureComponent {
 
@@ -54,10 +57,13 @@ class RoomMessage extends React.PureComponent {
     }
     return null;
   };
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   render() {
     const {message, selected, isFirstUnread, onMessagePress, onMessageLongPress} = this.props;
-
+    const styles = this.getStyles();
     if (message.messageType === Proto.RoomMessageType.LOG) {
       return (<LogBox message={message}/>);
     }
@@ -92,18 +98,28 @@ RoomMessage.propTypes = {
 };
 export default injectIntl(RoomMessage);
 
-const styles = StyleSheet.create({
-  baseStyle: {
-    flex: 1,
-  },
-  selected: {
-    flex: 1,
-    backgroundColor: '#d2dbff',
-  },
-  unreadBar: {
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#d2dbff',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        baseStyle: {
+          flex: 1,
+        },
+        selected: {
+          flex: 1,
+          backgroundColor: appTheme.wrapperBackground,
+        },
+        unreadBar: {
+          height: 20,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: appTheme.wrapperBackground,
+        },
+      },
+    },
+  ],
+  true,
+];

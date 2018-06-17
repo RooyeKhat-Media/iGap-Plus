@@ -1,11 +1,18 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {Icon, Modal} from '../index';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import PropTypes from 'prop-types';
 import SelectListModal from '../SelectListModal/index';
+import {appTheme} from '../../../themes/default/index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class Picker extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   state = {
     selectedKey: false,
   };
@@ -18,6 +25,7 @@ class Picker extends React.Component {
   render() {
     let {selectedKey} = this.state;
     const {placeHolder, options, defaultValue, headerTitle, searchable} = this.props;
+    const styles = this.getStyles();
     let {style} = this.props;
     let defaultSelected = defaultValue;
     if (!defaultSelected) {
@@ -42,7 +50,7 @@ class Picker extends React.Component {
               </Text>
             </View>
             <View style={[styles.selectIcon, style.selectIcon]}>
-              <Icon name="expand-more"/>
+              <Icon name="expand-more" color={appTheme.icon}/>
             </View>
           </View>
         </TouchableOpacity>

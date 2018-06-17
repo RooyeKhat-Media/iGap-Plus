@@ -1,14 +1,17 @@
 import {uniqueId} from 'lodash';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
+import {appTheme} from '../../../themes/default/index';
 
 const id = uniqueId();
 
-export default (MemberList) => ([
-  id, [
+export default [
+  id,
+  () => [
     {
       query: {},
       style: {
         container: {
+          backgroundColor: appTheme.pageBackground,
           flex: 1,
         },
         rightElementWrap: {
@@ -22,4 +25,4 @@ export default (MemberList) => ([
       },
     },
   ],
-]);
+];

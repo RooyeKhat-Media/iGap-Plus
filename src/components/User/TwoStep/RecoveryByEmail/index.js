@@ -7,22 +7,17 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import Form from '../../../BaseUI/Form/index';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
-import {textTitleStyle} from '../../../../themes/default/index';
 
 const _uniqueId = uniqueId();
 
 class UserTwoStepRecoveryByEmailComponent extends Component {
 
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
-
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.UserTwoStepRecoveryByEmail));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
@@ -30,12 +25,13 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
     const styles = this.getStyles();
 
     return (
-      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} layoutStyle={styles.layout}>
+      <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}
+        layoutStyle={styles.layout}>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
           showAuthenticating={false}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}
         />
         <Form style={styles.panel} control={(form) => {
           this.form = form;

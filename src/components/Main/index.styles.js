@@ -1,17 +1,19 @@
 import {uniqueId} from 'lodash';
 import {MAX_WIDTH_NORMAL_HEIGHT, MIN_WIDTH_NORMAL_HEIGHT} from '../../constants/screenBreakPoints';
 import {getPrimaryWidth} from '../../modules/DimensionCalculator';
-import {gray500} from '../../themes/default/index';
+import {appTheme} from '../../themes/default/index';
 
 
 const id = uniqueId();
-export default () => ([
-  id, [
+export default [
+  id,
+  () => [
     {
       query: {},
       style: {
         container: {
           flex: 1,
+          backgroundColor: appTheme.pageBackground,
         },
         primary: {
           flex: 1,
@@ -51,8 +53,8 @@ export default () => ([
         primary: {
           flex: null,
           width: getPrimaryWidth(),
-          borderRightWidth:1,
-          borderRightColor:gray500,
+          borderRightWidth: 1,
+          borderRightColor: appTheme.border,
         },
         secondary: {
           flex: 1,
@@ -60,4 +62,4 @@ export default () => ([
       },
     },
   ],
-]);
+];

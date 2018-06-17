@@ -4,16 +4,11 @@ import {Text} from 'react-native';
 import _ from 'lodash';
 import SimpleMarkdown from 'simple-markdown';
 import Linking from '../Linking/index';
-import styles from './index.styles';
-import {
-  ClientCheckInviteLink,
-  ClientResolveUsername,
-} from '../Proto/index';
-import {
-  CLIENT_CHECK_INVITE_LINK,
-  CLIENT_RESOLVE_USERNAME,
-} from '../../constants/methods/index';
+import styleSheet from './index.styles';
+import {ClientCheckInviteLink, ClientResolveUsername} from '../Proto/index';
+import {CLIENT_CHECK_INVITE_LINK, CLIENT_RESOLVE_USERNAME} from '../../constants/methods/index';
 import Api from '../Api/index';
+import MemoizeResponsiveStyleSheet from '../Responsive/MemoizeResponsiveStyleSheet';
 
 const TLD = [
   'abogado', 'ac', 'academy', 'accountants', 'active', 'actor', 'ad', 'adult', 'ae', 'aero', 'af', 'ag', 'agency',
@@ -149,6 +144,7 @@ function checkBrackets(url) {
   return url;
 }
 
+const styles = MemoizeResponsiveStyleSheet(styleSheet);
 const rules = {
   del: {
     react: (node, output, state) => {

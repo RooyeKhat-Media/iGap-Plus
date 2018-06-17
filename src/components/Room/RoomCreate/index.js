@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import {Toolbar} from '../../BaseUI';
@@ -9,7 +9,6 @@ import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import AvatarPicker from '../../../containers/Unit/AvatarPicker';
-import {textTitleStyle} from '../../../themes/default/index';
 
 class RoomCreateComponent extends Component {
 
@@ -36,7 +35,7 @@ class RoomCreateComponent extends Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomCreateToolbarTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.roomCreateToolbarTitle)}
         />
 
         <ScrollView style={styles.scroll}>

@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import styles from './index.styles';
-import {Text, View, Animated, Easing} from 'react-native';
+import styleSheet from './index.styles';
+import {Animated, Easing, Text, View} from 'react-native';
 import {ListItem, Modal} from '../index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class ActionSheet extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   constructor(props) {
     super(props);
@@ -46,6 +51,7 @@ class ActionSheet extends Component {
 
   render() {
     let {title, type} = this.props;
+    const styles = this.getStyles();
     let {actions} = this.state;
     if (!actions.length && this.props.actions) {
       actions = this.props.actions;
@@ -72,7 +78,8 @@ class ActionSheet extends Component {
                   primaryText: (action.title),
                 }}
                 style={styles.listItem} onPress={() => {
-                  this.modal.close();  action.onPress();
+                  this.modal.close();
+                  action.onPress();
                 }}
               />);
             })}

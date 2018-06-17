@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {IconToggle, ListItem, Modal} from '../../BaseUI/index';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {uniqueId} from 'lodash';
 
 class PopupMenu extends Component {
 
@@ -15,7 +17,12 @@ class PopupMenu extends Component {
     }
   };
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {button, onPress, actionList, type} = this.props;
     let element = null;
     if (typeof button === 'string') {
@@ -63,17 +70,27 @@ PopupMenu.propTypes = {
 
 export default PopupMenu;
 
-const styles = StyleSheet.create({
-  dialogWrap: {
-    alignSelf: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-  },
-  dialog: {
-    width: 280,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        dialogWrap: {
+          alignSelf: 'center',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 5,
+        },
+        dialog: {
+          width: 280,
+          flexDirection: 'column',
+          backgroundColor: '#fff',
+        },
+      },
+    },
+  ],
+  true,
+];

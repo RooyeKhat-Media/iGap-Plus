@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import i18n from '../../../../i18n/index';
-import {Text, StyleSheet} from 'react-native';
+import {Text} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import {primary} from '../../../../themes/default/index';
+import {appTheme} from '../../../../themes/default/index';
+import {uniqueId} from 'lodash';
 import Api from '../../../../modules/Api/index';
 import {CHAT_GET_ROOM} from '../../../../constants/methods/index';
 import {goRoomHistory, goRoomInfo} from '../../../../navigators/SecondaryNavigator';
@@ -12,6 +13,7 @@ import {connect} from 'react-redux';
 import {getRoomTitle} from '../../../../selector/entities/room';
 import {getUserTitle} from '../../../../selector/entities/registeredUser';
 import Client from '../../../../modules/Api/Client';
+import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class ForwardFrom extends Component {
 
@@ -29,10 +31,15 @@ class ForwardFrom extends Component {
     }
   };
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {author, intl} = this.props;
+    const styles = this.getStyles();
     return (
-      <Text numberOfLines={1}>
+      <Text numberOfLines={1} style={styles.normalText}>
         {intl.formatMessage(i18n.roomMessageForwardFrom)}
         {' '}
         {
@@ -53,11 +60,24 @@ ForwardFrom.propTypes = {
   roomType: PropTypes.string,
 };
 
-const styles = StyleSheet.create({
-  text: {
-    color: primary,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        text: {
+          color: appTheme.primary,
+        },
+        normalText: {
+          color: appTheme.primaryText,
+        },
+      },
+    },
+  ],
+  true,
+];
 
 const mapStateToProps = (state, props) => {
   return {

@@ -6,7 +6,6 @@ import styleSheet from './index.styles';
 import {Button, Spinner, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import {textTitleStyle} from '../../../themes/default/index';
 import Clipboard from '../../../modules/Clipboard/index';
 
 class RoomInviteLinkComponent extends Component {
@@ -36,7 +35,7 @@ class RoomInviteLinkComponent extends Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomInviteLinkToolbarTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.roomInviteLinkToolbarTitle)}
         />
 
         <ScrollView style={styles.scroll}>

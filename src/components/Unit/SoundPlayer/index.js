@@ -5,14 +5,19 @@ import {Icon} from '../../../components/BaseUI';
 import {convertSecendToTime} from '../../../utils/filters';
 import {prependFileProtocol} from '../../../utils/core';
 import {SOUND_PLAYER_BOX_MESSAGE, SOUND_PLAYER_BOX_TOOLBAR} from '../../../constants/app';
-import styles from './index.styles';
+import styleSheet from './index.styles';
+import {appTheme} from '../../../themes/default/index';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 export default class SoundPlayerComponent extends React.PureComponent {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   renderMessage() {
     const {title, thumbnail, duration, currentTime, playing, togglePlay} = this.props;
     const thumbnailUri = prependFileProtocol(thumbnail);
-
+    const styles = this.getStyles();
     return (<TouchableWithoutFeedback onPress={togglePlay}>
       <View style={styles.fileWrap}>
         {thumbnailUri && (<View style={styles.thumbnail}>
@@ -23,7 +28,7 @@ export default class SoundPlayerComponent extends React.PureComponent {
             {title}
           </BaseText>
           <View style={styles.controlBox}>
-            {playing ? (<Icon name="stop"/>) : (<Icon name="play-arrow"/>)}
+            {playing ? (<Icon name="stop" color={appTheme.icon}/>) : (<Icon name="play-arrow" color={appTheme.icon}/>)}
             <BaseText style={styles.fileSize}>
               {convertSecendToTime(currentTime)} - {convertSecendToTime(duration)}
             </BaseText>
@@ -38,11 +43,12 @@ export default class SoundPlayerComponent extends React.PureComponent {
     if (!playing) {
       return null;
     }
+    const styles = this.getStyles();
     return (
       <TouchableWithoutFeedback onPress={togglePlay}>
         <View style={styles.headerWrap}>
           <View style={styles.headerSoundName}>
-            {playing ? (<Icon name="stop"/>) : (<Icon name="play-arrow"/>)}
+            {playing ? (<Icon name="stop" color={appTheme.icon}/>) : (<Icon name="play-arrow" color={appTheme.icon}/>)}
             <BaseText numberOfLines={1} style={styles.fileName}>
               {title}
             </BaseText>

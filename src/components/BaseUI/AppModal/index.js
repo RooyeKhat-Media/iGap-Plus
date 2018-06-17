@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {BackHandler, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
-import styles from './index.style';
+import styleSheet from './index.style';
 import {closeModal} from '../../../actions/modal';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class Modal extends Component {
   componentDidMount() {
@@ -26,8 +27,13 @@ class Modal extends Component {
     return false;
   };
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
     const {modals} = this.props;
+    const styles = this.getStyles();
     if (!modals || !modals.length) {
       return null;
     }

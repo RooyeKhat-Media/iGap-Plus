@@ -8,6 +8,7 @@ import style from './index.styles';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 import {BOX_TYPE_OWNER} from '../../../../modules/DimensionCalculator/index';
 import MessageStatus from '../../../../containers/Unit/MessageStatus';
+import {appTheme} from '../../../../themes/default/index';
 
 class OwnerBox extends Component {
 
@@ -35,7 +36,7 @@ class OwnerBox extends Component {
         </View>
         <View style={styles.footerWrapper}>
           <View style={styles.footerTimeWrap}>
-            {message.edited && (<Icon size={15} name="mode-edit"/>)}
+            {message.edited && (<Icon size={15} name="mode-edit" color={appTheme.icon}/>)}
             <AddonTime createTime={message.createTime}/>
           </View>
           <MessageStatus status={message.status} size={15}/>

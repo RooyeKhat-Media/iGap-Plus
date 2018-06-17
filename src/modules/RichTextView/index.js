@@ -2,9 +2,11 @@ import React, {PureComponent} from 'react';
 import {Text} from 'react-native';
 import SimpleMarkdown from 'simple-markdown';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import _, {uniqueId} from 'lodash';
 import rules from './rules';
 import {parse} from './util';
+import {appTheme} from '../../themes/default/index';
+import MemoizeResponsiveStyleSheet from '../Responsive/MemoizeResponsiveStyleSheet';
 
 export default class RichTextView extends PureComponent {
   _renderContent = (rawText) => {
@@ -25,20 +27,40 @@ export default class RichTextView extends PureComponent {
       return null;
     }
   };
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   render() {
+    const styles = this.getStyles();
     const {rawText} = this.props;
     if (!rawText) {
       return null;
     }
     return (
-      <Text>
+      <Text style={styles.textStyle}>
         {this._renderContent(rawText)}
       </Text>
     );
   }
 
 }
+
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        textStyle: {
+          color: appTheme.primaryText,
+        },
+      },
+    },
+  ],
+  true,
+];
 
 RichTextView.propTypes = {
   rawText: PropTypes.oneOfType([

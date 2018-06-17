@@ -1,26 +1,30 @@
 import {IRANSans_Medium} from '../../../constants/fonts/index';
+import {appTheme} from '../../../themes/default/index';
 
-export default {
-  divider: {
-    fontSize: 16,
-    ...IRANSans_Medium,
-    textAlign: 'right',
-    paddingRight: 15,
-    color: '#202020',
-    borderBottomColor: '#bababa',
-    borderBottomWidth: 1,
-  },
-  listItem: {
-    primaryText: {
-      ...IRANSans_Medium,
+import {uniqueId} from 'lodash';
+
+const uId = uniqueId();
+export default [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        divider: {
+          fontSize: 16,
+          ...IRANSans_Medium,
+          textAlign: 'right',
+          paddingRight: 15,
+          color: appTheme.titleText,
+          borderBottomColor: appTheme.border,
+          borderBottomWidth: 1,
+        },
+        selectedItem: {
+          container: {
+            backgroundColor: appTheme.wrapperBackground,
+          },
+        },
+      },
     },
-  },
-  selectedItem: {
-    container: {
-      backgroundColor: '#eee',
-    },
-    primaryText: {
-      ...IRANSans_Medium,
-    },
-  },
-};
+  ],
+];

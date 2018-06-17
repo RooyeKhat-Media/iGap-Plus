@@ -1,20 +1,28 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {Avatar, TextInput, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import Picker from '../../BaseUI/Picker/index';
-import {textTitleStyle} from '../../../themes/default/index';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class ContactFormComponent extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
-    const {intl, formData, handleFormData, formRules, goBack, countryList, onChangeCallingCode, onSelectCountry,
-      editMode, firstName, lastName, phone} = this.props;
+    const {
+      intl, formData, handleFormData, formRules, goBack, countryList, onChangeCallingCode, onSelectCountry,
+      editMode, firstName, lastName, phone,
+    } = this.props;
+    const styles = this.getStyles();
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.root}>
         <Toolbar
           leftElement="arrow-back"
           rightElement="check"
@@ -28,7 +36,7 @@ class ContactFormComponent extends React.Component {
               this.form.loadingOff();
             }
           }}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.contactFormTitleToolbar)}</Text>}
+          centerElement={intl.formatMessage(i18n.contactFormTitleToolbar)}
         />
         <View style={styles.container}>
 

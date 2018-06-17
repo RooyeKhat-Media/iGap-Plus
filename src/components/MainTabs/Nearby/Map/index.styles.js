@@ -1,15 +1,18 @@
 import {uniqueId} from 'lodash';
 import {StyleSheet} from 'react-native';
+import {appTheme} from '../../../../themes/default/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
         container: {
           flex: 1,
+          backgroundColor: appTheme.pageBackground,
         },
         mapBox: {
           ...StyleSheet.absoluteFillObject,

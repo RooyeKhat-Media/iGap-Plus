@@ -1,43 +1,23 @@
 import {uniqueId} from 'lodash';
-import {primary} from '../../../themes/default/index';
-import {IRANSans_Medium} from '../../../constants/fonts/index';
+import {appTheme} from '../../../themes/default/index';
 
 const id = uniqueId();
 
 export default [
-  id, [
+  id,
+  () => [
     {
       query: {},
       style: {
-        container: {
-          flex: 1,
-        },
         scroll: {
-          paddingBottom: 100,
+          padding: 20,
+          backgroundColor: appTheme.wrapperBackground,
         },
-        LinkWrap: {
-          backgroundColor: '#fff',
-          borderBottomWidth: 1,
-          borderBottomColor: '#eee',
-          borderTopWidth: 1,
-          borderTopColor: '#eee',
-          padding: 7,
+        text: {
+          color: appTheme.primaryText,
         },
-        inviteLinkWrap: {
-          flex: 1,
-        },
-        revokeWrap: {
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'flex-end',
-        },
-        inviteLinkLabel: {
-          ...IRANSans_Medium,
-          color: primary,
-        },
-        inviteLink: {
-          padding: 5,
-          paddingTop: 10,
+        piker: {
+          color: appTheme.primaryText,
         },
       },
     },

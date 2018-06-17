@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {Confirm, Toolbar, PopupMenu} from '../../BaseUI/index';
-import styles from './index.styles';
+import {Confirm, PopupMenu, Toolbar} from '../../BaseUI/index';
+import styleSheet from './index.styles';
 import SendBox from './SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
 import JoinBox from './JoinBox';
@@ -13,7 +13,7 @@ import i18n from '../../../i18n/en';
 import {Proto} from '../../../modules/Proto/index';
 import RoomActions from '../../../containers/Unit/RoomActions';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
-import {textTitleStyle} from '../../../themes/default/index';
+
 import {
   BOX_TYPE_CHANNEL,
   BOX_TYPE_CHAT,
@@ -26,8 +26,14 @@ import {
 import {getAuthorHash} from '../../../utils/app';
 import ScrollDown from './ScrollDown';
 import ReturnToCall from '../../Call/ReturnToCall';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class RoomHistoryComponent extends React.PureComponent {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
 
   _dataProvider = new DataProvider((r1, r2) => {
     return r1 !== r2 || this.prevSelectedList[r1] !== this.props.selectedList[r1];
@@ -85,6 +91,7 @@ class RoomHistoryComponent extends React.PureComponent {
 
   renderItem = (type, item) => {
     const {onMessagePress, onMessageLongPress, selectedList, roomType, roomId} = this.props;
+    const styles = this.getStyles();
     return (<View style={styles.messageWrap}>
       <RoomMessage
         roomId={roomId}
@@ -114,6 +121,7 @@ class RoomHistoryComponent extends React.PureComponent {
 
   render() {
     const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, conformControl, messageList} = this.props;
+    const styles = this.getStyles();
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
@@ -160,9 +168,10 @@ class RoomHistoryComponent extends React.PureComponent {
     return (<Toolbar
       leftElement="arrow-back"
       onLeftElementPress={goBack}
-      centerElement={<Text numberOfLines={1} style={textTitleStyle}>
-        {clientUpdating ? intl.formatMessage(i18n.clientUpdating) : roomTitle}</Text>}
-      rightElement={(<PopupMenu actionList={[intl.formatMessage(i18n.roomHistoryActionReport)]} type={APP_MODAL_ID_SECONDARY} onPress={onRoomHistoryMorePress}/>)}
+      centerElement={clientUpdating ? intl.formatMessage(i18n.clientUpdating) : roomTitle}
+      rightElement={(
+        <PopupMenu actionList={[intl.formatMessage(i18n.roomHistoryActionReport)]} type={APP_MODAL_ID_SECONDARY}
+          onPress={onRoomHistoryMorePress}/>)}
       onPress={goRoomInfoBtn}
     />);
   }
@@ -172,7 +181,7 @@ class RoomHistoryComponent extends React.PureComponent {
     return (<Toolbar
       leftElement="close"
       onLeftElementPress={cancelSelected}
-      centerElement={<Text style={textTitleStyle}>{selectedCount.toString()}</Text>}
+      centerElement={selectedCount.toString()}
       rightElement={toolbarActions}
       onRightElementPress={selectedMessageAction}
     />);

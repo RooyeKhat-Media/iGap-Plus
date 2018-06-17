@@ -5,10 +5,12 @@ import {fileManagerDownload} from '../../actions/fileManager';
 import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../constants/fileManager';
 import {Proto} from '../../modules/Proto/index';
 import {getDownloadedFile, getSmallThumbnailUri} from '../../selector/entities/roomMessage';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, View} from 'react-native';
+import {uniqueId} from 'lodash';
 import {prependFileProtocol} from '../../utils/core';
 import ProgressBar, {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../components/BaseUI/ProgressBar/index';
 import Device from '../../modules/Responsive/Device';
+import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 const {width} = Device.dimensions.window;
 
@@ -72,7 +74,12 @@ class AvatarBox extends Component {
     }
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {smallThumbnailUri, downloadedFile} = this.props;
     return (
       <View>
@@ -122,11 +129,21 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(AvatarBox);
 
-const styles = StyleSheet.create({
-  progressWrap: {
-    position: 'absolute',
-    top: 2,
-    left: 2,
-    right: 2,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        progressWrap: {
+          position: 'absolute',
+          top: 2,
+          left: 2,
+          right: 2,
+        },
+      },
+    },
+  ],
+  true,
+];

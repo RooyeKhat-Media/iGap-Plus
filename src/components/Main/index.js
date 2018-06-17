@@ -35,7 +35,7 @@ class MainComponent extends React.Component {
   }
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet());
+    return MemoizeResponsiveStyleSheet(styleSheet);
   }
 }
 

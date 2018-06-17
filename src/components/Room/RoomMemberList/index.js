@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {FlatList, IconToggle, ListItem, PopupMenu, Toolbar} from '../../BaseUI/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
@@ -8,13 +8,9 @@ import styleSheet from './index.styles';
 import i18n from '../../../i18n/index';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import Avatar from '../../../containers/Unit/Avatar';
-import {textTitleStyle} from '../../../themes/default/index';
+import {appTheme, golden} from '../../../themes/default/index';
 
 class RoomMemberListComponent extends React.Component {
-
-  static contextTypes = {
-    uiTheme: PropTypes.object.isRequired,
-  };
 
   constructor(props) {
     super(props);
@@ -27,13 +23,14 @@ class RoomMemberListComponent extends React.Component {
 
   _renderUser = ({user, item}) => {
     const {Role} = this.props;
-    const uiTheme = this.context.uiTheme.MemberList;
+
     const styles = this.getStyles();
 
+
     const colors = {
-      [Role.OWNER]: uiTheme.roleOwnerStarColor,
-      [Role.ADMIN]: uiTheme.roleAdminStarColor,
-      [Role.MODERATOR]: uiTheme.roleModeratorStarColor,
+      [Role.OWNER]: golden,
+      [Role.ADMIN]: appTheme.primary,
+      [Role.MODERATOR]: '#aaaaaa',
     };
     const {getActionList, doAction} = this.props;
     return (<ListItem
@@ -76,7 +73,7 @@ class RoomMemberListComponent extends React.Component {
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.roomMemberListToolbarTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.roomMemberListToolbarTitle)}
         />
         <View style={styles.container}>
 
@@ -93,7 +90,7 @@ class RoomMemberListComponent extends React.Component {
   }
 
   getStyles = () => {
-    return MemoizeResponsiveStyleSheet(styleSheet(this.context.uiTheme.MemberList));
+    return MemoizeResponsiveStyleSheet(styleSheet);
   };
 }
 

@@ -124,6 +124,7 @@ class UserVerifyDeleteScreen extends Component {
         resendDelay={this.state.resendDelay}
         resendCode={this.resendCode}
         defaultValue={this.state.defaultValue}
+        goBack={this.props.navigation.goBack}
       />
     );
   }
@@ -133,4 +134,8 @@ UserVerifyDeleteScreen.propTypes = {
   intl: intlShape.isRequired,
 };
 
-export default injectIntl(UserVerifyDeleteScreen);
+const UserVerifyDeleteScreenIntl = injectIntl(UserVerifyDeleteScreen);
+UserVerifyDeleteScreenIntl.navigationOptions = {
+  header: null,
+};
+export default UserVerifyDeleteScreenIntl;

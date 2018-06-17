@@ -7,19 +7,20 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNavigationHelpers, NavigationActions} from 'react-navigation';
 import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
-import {AppState, BackHandler, Platform, View, StyleSheet} from 'react-native';
-
-import {AppModal, StatusBar, SnackBar} from '../components/BaseUI';
+import {AppState, BackHandler, Platform, View} from 'react-native';
+import {uniqueId} from 'lodash';
+import {AppModal, SnackBar, StatusBar} from '../components/BaseUI';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
 import {appStateChange, loadAuthorHash, loadUserId, loadUserToken, setAppState} from '../utils/app';
 import {changeLocale, getUserLocale, loadUserLocale, LOCALE_DEFAULT} from '../utils/locale';
-import {getAppTheme} from '../themes';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
 import {APP_MODAL_ID_MAIN, APP_STATE_ACTIVE, APP_STATE_BACKGROUND, APP_STATE_INACTIVE} from '../constants/app';
 import {KeyboardAvoidingView} from '../components/BaseUI/index';
+import MemoizeResponsiveStyleSheet from '../modules/Responsive/MemoizeResponsiveStyleSheet';
+import uiTheme from '../themes/default/ui-theme';
 
 const addListener = createReduxBoundAddListener('app');
 
@@ -87,17 +88,20 @@ class App extends Component {
     dispatch(NavigationActions.back());
     return true;
   };
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   render() {
-    const {dispatch, nav, theme, app} = this.props;
-    const appTheme = getAppTheme(theme);
+    const styles = this.getStyles();
+    const {dispatch, nav, app} = this.props;
 
     if (!app.isEnable) {
       return null;
     }
 
     return (
-      <ThemeProvider uiTheme={appTheme}>
+      <ThemeProvider uiTheme={uiTheme()}>
         <View style={styles.root}>
           <View style={styles.content}>
             <KeyboardAvoidingView>
@@ -122,23 +126,32 @@ App.propTypes = {
 
 const mapStateToProps = state => ({
   nav: state.nav,
-  theme: state.theme,
   app: state.app,
 });
 
 export default connect(mapStateToProps)(App);
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    zIndex: 2,
-  },
-  contentKeyboard: {
-    flex: 1,
-    minWidth: 200,
-    minHeight: 200,
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        root: {
+          flex: 1,
+        },
+        content: {
+          flex: 1,
+          zIndex: 2,
+        },
+        contentKeyboard: {
+          flex: 1,
+          minWidth: 200,
+          minHeight: 200,
+        },
+      },
+    },
+  ],
+  true,
+];

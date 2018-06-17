@@ -7,7 +7,6 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import SubListComponent from './SubListComponent';
-import {textTitleStyle} from '../../../themes/default/index';
 
 class ActiveSessionComponent extends Component {
 
@@ -32,12 +31,12 @@ class ActiveSessionComponent extends Component {
     }
 
     return (
-      <ScrollView style={styles.scroll}>
+      <ScrollView style={styles.root}>
         <View>
           <Toolbar
             leftElement="arrow-back"
             onLeftElementPress={goBack}
-            centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.activeSessionActiveSession)}</Text>}
+            centerElement={intl.formatMessage(i18n.activeSessionActiveSession)}
           />
           {Object.keys(currentSession).length > 0 && <View>
             <Text style={styles.status}> {intl.formatMessage(i18n.activeSessionCurrentSession)} </Text>
@@ -64,7 +63,7 @@ class ActiveSessionComponent extends Component {
                 showTerminate={true}/>}
               keyExtractor={(item, index) => ('sh-' + index)}
             />
-            <View style={{backgroundColor: '#eee', padding: 10}}>
+            <View style={{padding: 10}}>
               <Text
                 style={styles.textLogsOut}> {intl.formatMessage(i18n.activeSessionTapOnSessionToTerminate)} </Text>
             </View>

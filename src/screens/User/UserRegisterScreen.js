@@ -27,6 +27,7 @@ import {
   ERROR_USER_REGISTER_MAX_TRY_LOCK,
 } from '../../modules/Api/errors/index';
 import {IRANSans_Medium} from '../../constants/fonts/index';
+import {appTheme} from '../../themes/default/index';
 
 const rules = {
   phoneNumber: [
@@ -78,7 +79,7 @@ class UserRegisterScreen extends Component {
         value: countryName,
         element: (<ListItem
           centerElement={{primaryText: countryName}}
-          rightElement={<Text>{countryCode}</Text>}
+          rightElement={<Text style={{color: appTheme.primaryText}}>{countryCode}</Text>}
           style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
         />),
         filter: countryName.toLowerCase() + ',' + countryCode,

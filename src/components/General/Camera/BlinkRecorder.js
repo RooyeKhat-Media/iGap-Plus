@@ -1,26 +1,38 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {toHHMMSS} from '../../../utils/core';
+import {uniqueId} from 'lodash';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-  },
-  textTimer: {
-    alignSelf: 'center',
-    minWidth: 40,
-    marginRight: 5,
-    fontSize: 16,
-  },
-  circle: {
-    width: 10,
-    height: 10,
-    margin: 5,
-    borderRadius: 5,
-    alignSelf: 'center',
-  },
-});
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        row: {
+          flexDirection: 'row',
+        },
+        textTimer: {
+          alignSelf: 'center',
+          minWidth: 40,
+          marginRight: 5,
+          fontSize: 16,
+        },
+        circle: {
+          width: 10,
+          height: 10,
+          margin: 5,
+          borderRadius: 5,
+          alignSelf: 'center',
+        },
+      },
+    },
+  ],
+  true,
+];
 
 class BlinkRecorder extends Component {
 
@@ -59,7 +71,12 @@ class BlinkRecorder extends Component {
     clearInterval(this.interval);
   }
 
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     return (
       <View style={styles.row}>
         {this.props.showCircle && <View

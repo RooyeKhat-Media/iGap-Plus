@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {FormattedRelative, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
 import {DialogModal, ListItem} from '../../BaseUI/index';
-import {black1, gray1, gray2, red} from '../../../themes/default/index';
+import {appTheme, red} from '../../../themes/default/index';
+import {uniqueId} from 'lodash';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
+import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class SubListComponent extends Component {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   render() {
     const {intl, terminateSession, item, showTerminate} = this.props;
-
+    const styles = this.getStyles();
     return (
       <View>
         <ListItem
@@ -65,37 +70,47 @@ class SubListComponent extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  section1: {
-    flex: 1,
-    marginTop: 10,
-  },
-  rowField: {
-    flexDirection: 'row',
-  },
-  underLine: {
-    borderBottomWidth: 1,
-    borderBottomColor: gray1,
-    marginTop: 10,
-  },
-  textStyle: {
-    color: black1,
-    ...IRANSans_Medium,
-  },
-  textStyleNormal: {
-    color: black1,
-  },
-  textStyleSub: {
-    color: gray2,
-  },
-  textTerminate: {
-    color: red,
-    flex: 1,
-    ...IRANSans_Medium,
-    textAlign: 'right',
-  },
+const uId = uniqueId();
+const styleSheet = [
+  uId,
+  () => [
+    {
+      query: {},
+      style: {
+        section1: {
+          flex: 1,
+          marginTop: 10,
+        },
+        rowField: {
+          flexDirection: 'row',
+        },
+        underLine: {
+          borderBottomWidth: 1,
+          borderBottomColor: appTheme.border,
+          marginTop: 10,
+        },
+        textStyle: {
+          color: appTheme.primaryText,
+          ...IRANSans_Medium,
+        },
+        textStyleNormal: {
+          color: appTheme.primaryText,
+        },
+        textStyleSub: {
+          color: appTheme.secondaryText,
+        },
+        textTerminate: {
+          color: red,
+          flex: 1,
+          ...IRANSans_Medium,
+          textAlign: 'right',
+        },
 
-});
+      },
+    },
+  ],
+  true,
+];
 SubListComponent.propTypes = {
   intl: intlShape.isRequired,
   terminateSession: PropTypes.func.isRequired,

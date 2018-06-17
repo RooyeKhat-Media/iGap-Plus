@@ -4,19 +4,23 @@ import {Text, View} from 'react-native';
 import {Button, Form, TextInputField, Toolbar} from '../../../BaseUI/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../../i18n/index';
-import {textTitleStyle} from '../../../../themes/default/index';
-import styles from './index.styles';
+import styleSheet from './index.styles';
+import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
 class UserTwoStepVerifyEmailComponent extends Component {
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
 
   render() {
     const {intl, formRules, resendEmail, onSubmit, passwordDetail, goBack} = this.props;
+    const styles = this.getStyles();
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.root}>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={goBack}
-          centerElement={<Text style={textTitleStyle}>{intl.formatMessage(i18n.twoStepVerifyEmailTitle)}</Text>}
+          centerElement={intl.formatMessage(i18n.twoStepVerifyEmailTitle)}
           rightElement="check"
           onRightElementPress={async () => {
             const data = await this.form.submit();

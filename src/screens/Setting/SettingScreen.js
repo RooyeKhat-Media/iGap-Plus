@@ -3,9 +3,8 @@ import SettingComponent from '../../components/Setting/index';
 import {USER_GET_DELETE_TOKEN} from '../../constants/methods/index';
 import Api from '../../modules/Api/index';
 import {UserGetDeleteToken} from '../../modules/Proto/index';
-import {goUserVerifyDeleteScreen} from '../../navigators/AppNavigator';
 import {logout} from '../../utils/app';
-import {goTowStepSetting} from '../../navigators/PrimaryNavigator';
+import {goTowStepSetting, goUserVerifyDeleteScreen} from '../../navigators/PrimaryNavigator';
 
 class SettingScreen extends Component {
 

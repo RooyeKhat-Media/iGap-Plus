@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import styles from './index.styles';
+import styleSheet from './index.styles';
 import {Text, View} from 'react-native';
 import {ActivityIndicator, Dialog, Modal} from '../index';
 import i18n from '../../../i18n';
 import {FormattedMessage} from 'react-intl';
 import {APP_MODAL_ID_MAIN} from '../../../constants/app';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class Spinner extends Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   constructor(props) {
     super(props);
     const {control} = props;
@@ -19,9 +25,11 @@ class Spinner extends Component {
       type: APP_MODAL_ID_MAIN,
     };
   }
+
   componentWillUnmount() {
     this.modal.close();
   }
+
   on = (modalId = APP_MODAL_ID_MAIN) => {
     this.setState({
       type: modalId,
@@ -41,6 +49,7 @@ class Spinner extends Component {
 
   render() {
     const {type} = this.state;
+    const styles = this.getStyles();
     let {title} = this.props;
     if (!title) {
       title = <FormattedMessage {...i18n.spinnerDefaultTitle} />;

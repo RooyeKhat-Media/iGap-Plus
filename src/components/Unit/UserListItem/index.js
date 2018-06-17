@@ -4,10 +4,17 @@ import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 import {ListItem as BaseListItem} from '../../BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
-import styles from './index.styles';
+import styleSheet from './index.styles';
+import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
 class UserListItem extends React.Component {
+
+  getStyles = () => {
+    return MemoizeResponsiveStyleSheet(styleSheet);
+  };
+
   render() {
+    const styles = this.getStyles();
     const {userId, divider, displayName, phoneNumber, selected, onPress} = this.props;
     return (<View>
       {divider ?
@@ -19,7 +26,7 @@ class UserListItem extends React.Component {
           primaryText: displayName,
           secondaryText: phoneNumber,
         }}
-        style={(selected ? styles.selectedItem : styles.listItem)}
+        style={(selected ? styles.selectedItem : {})}
       />
     </View>);
   }

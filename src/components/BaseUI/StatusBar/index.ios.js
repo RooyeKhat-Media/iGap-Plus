@@ -1,13 +1,13 @@
 import React from 'react';
 import {uniqueId} from 'lodash';
 import {View} from 'react-native';
-import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 import {ORIENTATION_PORTRAIT} from '../../../constants/screenBreakPoints';
-const id = uniqueId();
 
+const uId = uniqueId();
 const styleSheet = [
-  id,
-  [
+  uId,
+  () => [
     {
       query: ORIENTATION_PORTRAIT,
       style: {
@@ -18,6 +18,7 @@ const styleSheet = [
       },
     },
   ],
+  true,
 ];
 
 class StatusBar extends React.Component {

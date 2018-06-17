@@ -4,12 +4,12 @@ import styleSheet from './index.styles';
 import NearbyMapComponent from './Map';
 import NearbyListComponent from './List';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive/index';
-import {DialogModal, MCIcon, Switch, Toolbar, PopupMenu} from '../../BaseUI';
+import {DialogModal, MCIcon, PopupMenu, Switch, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import PropTypes from 'prop-types';
 import {APP_MODAL_ID_PRIMARY} from '../../../constants/app';
-import {textTitleStyle} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 
 class NearbyComponent extends Component {
 
@@ -59,13 +59,13 @@ class NearbyComponent extends Component {
       <View style={styles.container}>
         <Toolbar
           leftElement={
-            <Text style={[textTitleStyle, styles.titleText]}>
+            <Text style={styles.titleText}>
               {intl.formatMessage(mapView ? i18n.nearbyScreenMapTitle : i18n.nearbyScreenListTitle)}
             </Text>}
           centerElement={
             (isRegistered ?
               <TouchableOpacity onPress={registerSwitchChange}>
-                <MCIcon name="earth-off" size={28}/>
+                <MCIcon name="earth-off" size={28} color={appTheme.icon}/>
               </TouchableOpacity> : '')}
           rightElement={
             (<PopupMenu actionList={[
