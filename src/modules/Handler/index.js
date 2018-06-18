@@ -184,6 +184,7 @@ import PushRateSignaling from './Push/RateSignaling';
 import ClientMuteRoom from './Client/ClientMuteRoom';
 import ClientPinRoom from './Client/ClientPinRoom';
 import ClientRoomReport from './Client/ClientRoomReport';
+import RegisterDevice from './Client/RegisterDevice';
 
 
 export default {
@@ -337,6 +338,7 @@ export default {
   [methods.CLIENT_MUTE_ROOM_RESPONSE]: ClientMuteRoom,
   [methods.CLIENT_PIN_ROOM_RESPONSE]: ClientPinRoom,
   [methods.CLIENT_ROOM_REPORT_RESPONSE]: ClientRoomReport,
+  [methods.CLIENT_REGISTER_DEVICE_RESPONSE]: RegisterDevice,
 
   //File 7xx
   [methods.FILE_UPLOAD_OPTION_RESPONSE]: FileUploadOption,

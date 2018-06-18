@@ -10,10 +10,11 @@ import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
 import {AppState, BackHandler, Platform, View} from 'react-native';
 import {uniqueId} from 'lodash';
 import {AppModal, SnackBar, StatusBar} from '../components/BaseUI';
+import firebase from 'react-native-firebase';
 import AppNavigator, {goIntroScreen, goMainScreen, goUserRegisterScreen} from '../navigators/AppNavigator';
 import Api from '../modules/Api';
 import {migrate} from '../modules/Migration';
-import {appStateChange, loadAuthorHash, loadUserId, loadUserToken, setAppState} from '../utils/app';
+import {appStateChange, loadAuthorHash, loadUserId, loadUserToken, registerDevice, setAppState} from '../utils/app';
 import {changeLocale, getUserLocale, loadUserLocale, LOCALE_DEFAULT} from '../utils/locale';
 import ThemeProvider from '../modules/ThemeProvider';
 import {loadAppThemeName} from '../themes/index';
@@ -58,6 +59,8 @@ class App extends Component {
         }),
       ]);
     });
+    firebase.messaging().getToken().then(registerDevice);
+    this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(registerDevice);
   }
 
   componentWillMount() {
@@ -67,6 +70,7 @@ class App extends Component {
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
     AppState.removeEventListener('change', this._handleAppStateChange);
+    this.onTokenRefreshListener();
   }
 
   _handleAppStateChange = (nextAppState) => {

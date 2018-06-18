@@ -2,7 +2,14 @@ import MetaData from '../models/MetaData';
 import store from '../configureStore';
 import RNIGFileSystem from 'react-native-file-system';
 import Share from '../modules/Share/index';
-import {ChatGetRoom, SignalingGetConfiguration, UserContactsImport, UserLogin, UserSessionLogout, UserUpdateStatus,
+import {
+  ChatGetRoom,
+  ClientRegisterDevice,
+  SignalingGetConfiguration,
+  UserContactsImport,
+  UserLogin,
+  UserSessionLogout,
+  UserUpdateStatus,
 } from '../modules/Proto/index';
 import {Platform} from 'react-native';
 import {Proto} from '../modules/Proto';
@@ -10,6 +17,7 @@ import {APP_BUILD_VERSION, APP_ID, APP_NAME, APP_VERSION, GOOGLE_API_KEY} from '
 import {
   CHAT_GET_ROOM,
   CLIENT_CONDITION,
+  CLIENT_REGISTER_DEVICE,
   SIGNALING_GET_CONFIGURATION,
   USER_CONTACTS_IMPORT,
   USER_LOGIN,
@@ -476,6 +484,17 @@ export function getChatDeleteMessageForBothPeriod() {
  */
 export function setChatDeleteMessageForBothPeriod(time) {
   _chatDeleteMessageForBothPeriod = time;
+}
+
+/**
+ * Client Register Device
+ * @param token
+ * @returns {Promise}
+ */
+export function registerDevice(token) {
+  const registerDevice = new ClientRegisterDevice();
+  registerDevice.setToken(token);
+  return Api.invoke(CLIENT_REGISTER_DEVICE, registerDevice);
 }
 
 export function reloadApp() {
