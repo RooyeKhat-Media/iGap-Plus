@@ -65,7 +65,7 @@ class NearbyComponent extends Component {
           centerElement={
             (isRegistered ?
               <TouchableOpacity onPress={registerSwitchChange}>
-                <MCIcon name="earth-off" size={28} color={appTheme.icon}/>
+                <MCIcon name="earth-off" size={28} color={appTheme.toolbarIcon}/>
               </TouchableOpacity> : '')}
           rightElement={
             (<PopupMenu actionList={[

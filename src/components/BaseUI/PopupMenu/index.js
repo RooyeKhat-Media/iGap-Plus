@@ -4,6 +4,7 @@ import {TouchableOpacity, View} from 'react-native';
 import {IconToggle, ListItem, Modal} from '../../BaseUI/index';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 import {uniqueId} from 'lodash';
+import {appTheme} from '../../../themes/default/index';
 
 class PopupMenu extends Component {
 
@@ -26,7 +27,7 @@ class PopupMenu extends Component {
     const {button, onPress, actionList, type} = this.props;
     let element = null;
     if (typeof button === 'string') {
-      element = (<IconToggle onPress={this.onMenuPressed} name={button}/>);
+      element = (<IconToggle onPress={this.onMenuPressed} name={button} color={appTheme.toolbarIcon}/>);
     } else {
       element = (<TouchableOpacity onPress={this.onMenuPressed} activeOpacity={0.9}>{button}</TouchableOpacity>);
     }

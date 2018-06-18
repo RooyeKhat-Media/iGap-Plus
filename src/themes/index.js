@@ -5,6 +5,14 @@ import {reloadApp} from '../utils/app';
 
 import light from './light';
 import dark from './dark';
+import blue from './blue';
+import red from './red';
+import orange from './orange';
+import green from './green';
+import yellow from './yellow';
+import pink from './pink';
+import cyan from './cyan';
+import purple from './purple';
 
 export const themes = {
   light: {
@@ -16,6 +24,46 @@ export const themes = {
     name: 'Dark',
     theme: dark,
     colors: ['#000000', '#222222', '#232931'],
+  },
+  blue: {
+    name: 'Blue',
+    theme: blue,
+    colors: [blue.toolbar, blue.primary, blue.ownerBox],
+  },
+  red: {
+    name: 'Red',
+    theme: red,
+    colors: [red.toolbar, red.primary, red.ownerBox],
+  },
+  orange: {
+    name: 'orange',
+    theme: orange,
+    colors: [orange.toolbar, orange.primary, orange.ownerBox],
+  },
+  green: {
+    name: 'green',
+    theme: green,
+    colors: [green.toolbar, green.primary, green.ownerBox],
+  },
+  yellow: {
+    name: 'yellow',
+    theme: yellow,
+    colors: [yellow.toolbar, yellow.primary, yellow.ownerBox],
+  },
+  pink: {
+    name: 'pink',
+    theme: pink,
+    colors: [pink.toolbar, pink.primary, pink.ownerBox],
+  },
+  cyan: {
+    name: 'cyan',
+    theme: cyan,
+    colors: [cyan.toolbar, cyan.primary, cyan.ownerBox],
+  },
+  purple: {
+    name: 'purple',
+    theme: purple,
+    colors: [purple.toolbar, purple.primary, purple.ownerBox],
   },
 };
 

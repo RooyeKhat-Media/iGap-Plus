@@ -3,6 +3,8 @@ export default {
   pageBackground: '#ffffff',
   wrapperBackground: '#efefef',
   toolbar: '#fafafa',
+  toolbarText: '#202020',
+  toolbarIcon: '#7d7d7d',
   titleText: '#202020',
   primaryText: '#262626',
   secondaryText: '#7d7d80',

@@ -41,7 +41,7 @@ class ProfileComponent extends Component {
       <View style={styles.root}>
 
         <Toolbar
-          rightElement={<MCIcon name="dots-vertical" color={appTheme.icon} size={30} onPress={this.menuClick}/>}
+          rightElement={<MCIcon name="settings" color={appTheme.toolbarIcon} size={24} onPress={this.menuClick}/>}
           centerElement={(currentUser && currentUser.phone && currentUser.phone.toString())}/>
 
         <ReturnToCall/>

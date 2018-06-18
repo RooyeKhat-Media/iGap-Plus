@@ -12,7 +12,7 @@ import i18n from '../../../i18n';
 import {APP_MODAL_ID_PRIMARY, SOUND_PLAYER_BOX_TOOLBAR} from '../../../constants/app';
 import {getPrimaryWidth} from '../../../modules/DimensionCalculator';
 import ReturnToCall from '../../Call/ReturnToCall';
-import {gray100, gray1000, gray950} from '../../../themes/default/index';
+import {appTheme} from '../../../themes/default/index';
 import SoundPlayer from '../../../containers/Unit/SoundPlayer';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 import {Proto} from '../../../modules/Proto/index';
@@ -98,10 +98,10 @@ class RoomListComponent extends React.PureComponent {
             }
           />
           <MaterialTabs
-            barColor={gray100}
-            indicatorColor={gray950}
-            activeTextColor={gray1000}
-            inactiveTextColor={gray950}
+            barColor={appTheme.wrapperBackground}
+            indicatorColor={appTheme.border}
+            activeTextColor={appTheme.primaryText}
+            inactiveTextColor={appTheme.secondaryText}
             items={[
               intl.formatMessage(i18n.roomListFilterAll),
               intl.formatMessage(i18n.roomListFilterChat),

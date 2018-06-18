@@ -27,7 +27,7 @@ class PopupMenu extends Component {
     const {button} = this.props;
     let element = null;
     if (typeof button === 'string') {
-      element = (<IconToggle onPress={this.onMenuPressed} name="more-vert" color={appTheme.icon}/>);
+      element = (<IconToggle onPress={this.onMenuPressed} name="more-vert" color={appTheme.toolbarIcon}/>);
     } else {
       element = (<TouchableOpacity onPress={this.onMenuPressed} activeOpacity={0.9}>{button}</TouchableOpacity>);
     }

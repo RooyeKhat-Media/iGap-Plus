@@ -26,7 +26,7 @@ export default [
         },
         titleText: {
           marginLeft: 20,
-          color: appTheme.titleText,
+          color: appTheme.toolbarText,
           fontSize: 18,
           alignSelf: 'flex-start',
           ...IRANSans_Medium,

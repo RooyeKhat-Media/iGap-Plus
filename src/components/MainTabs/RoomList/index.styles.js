@@ -18,7 +18,7 @@ export default [
           flex: 1,
         },
         textTitle: {
-          color: appTheme.titleText,
+          color: appTheme.toolbarText,
           fontSize: 18,
           alignSelf: 'flex-start',
           ...Neuropolitical,

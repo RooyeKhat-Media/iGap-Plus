@@ -17,19 +17,16 @@ const uiTheme = () => {
         backgroundColor: appTheme.toolbar,
       },
       titleText: {
-        color: appTheme.titleText,
-      },
-      rightElement: {
-        color: appTheme.titleText,
-      },
-      leftElement: {
-        color: appTheme.titleText,
-      },
-      centerElement: {
-        color: appTheme.titleText,
+        color: appTheme.toolbarText,
         fontSize: 18,
         alignSelf: 'flex-start',
         ...IRANSans_Medium,
+      },
+      rightElement: {
+        color: appTheme.toolbarText,
+      },
+      leftElement: {
+        color: appTheme.toolbarText,
       },
     },
     button: {
