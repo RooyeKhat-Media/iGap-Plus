@@ -5,6 +5,7 @@ import {reloadApp} from '../utils/app';
 
 import light from './light';
 import dark from './dark';
+import blueDark from './blue-dark';
 import blue from './blue';
 import red from './red';
 import orange from './orange';
@@ -24,6 +25,11 @@ export const themes = {
     name: 'Dark',
     theme: dark,
     colors: ['#000000', '#222222', '#232931'],
+  },
+  blueDark: {
+    name: 'Blue Dark',
+    theme: blueDark,
+    colors: [blueDark.toolbar, blueDark.primary, blueDark.ownerBox],
   },
   blue: {
     name: 'Blue',

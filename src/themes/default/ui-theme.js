@@ -83,7 +83,7 @@ const uiTheme = () => {
       },
       icon: {
         fontSize: 30,
-        color: appTheme.icon,
+        color: appTheme.mainTabIcon,
       },
       iconActive: {
         color: appTheme.activeIcon,

@@ -10,6 +10,7 @@ export default {
   secondaryText: '#7d7d80',
   border: '#dbdbdb',
   icon: '#7d7d7d',
+  mainTabIcon: '#7d7d7d',
   activeIcon: '#222222',
   channelBox: '#f5f5f5',
   ownerBox: '#e9eaed',
