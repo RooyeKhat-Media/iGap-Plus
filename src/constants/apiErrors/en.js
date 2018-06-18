@@ -207,6 +207,11 @@ export default {
     defaultMessage: 'Your account is blocked',
     description,
   },
+  [errorI18nKey(errorCode.ERROR_USER_LOGIN_ALREADY_LOGGED_IN)]: {
+    id: errorI18nId(errorCode.ERROR_USER_LOGIN_ALREADY_LOGGED_IN),
+    defaultMessage: 'User Already LoggedIn',
+    description,
+  },
 
 
   [errorI18nKey(errorCode.ERROR_USER_PROFILE_SET_NICKNAME_BAD_PAYLOAD, 1)]: {
@@ -271,6 +276,11 @@ export default {
     description,
   },
 
+  [errorI18nKey(errorCode.ERROR_USER_CONTACTS_IMPORT_FORBIDDEN)]: {
+    id: errorI18nId(errorCode.ERROR_USER_CONTACTS_IMPORT_FORBIDDEN),
+    defaultMessage: 'Contact Import Forbidden',
+    description,
+  },
 
   [errorI18nKey(errorCode.ERROR_USER_CONTACTS_GET_LIST_BAD_PAYLOAD)]: {
     id: errorI18nId(errorCode.ERROR_USER_CONTACTS_GET_LIST_BAD_PAYLOAD),
@@ -2341,6 +2351,21 @@ export default {
     defaultMessage: 'You are forbidden to do the action',
     description,
   },
+  [errorI18nKey(errorCode.ERROR_GROUP_PIN_MESSAGE_BAD_PAYLOAD)]: {
+    id: errorI18nId(errorCode.ERROR_GROUP_PIN_MESSAGE_BAD_PAYLOAD),
+    defaultMessage: 'Pin Message Bad Payload',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_GROUP_PIN_MESSAGE_INTERNAL_SERVER_ERROR)]: {
+    id: errorI18nId(errorCode.ERROR_GROUP_PIN_MESSAGE_INTERNAL_SERVER_ERROR),
+    defaultMessage: 'Pin Message Internal Server Error',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_GROUP_PIN_MESSAGE_FORBIDDEN)]: {
+    id: errorI18nId(errorCode.ERROR_GROUP_PIN_MESSAGE_FORBIDDEN),
+    defaultMessage: 'Pin Message Forbidden',
+    description,
+  },
 
   // Channel room errors 4xx
 
@@ -3079,6 +3104,36 @@ export default {
     defaultMessage: 'You are forbidden to do the action',
     description,
   },
+  [errorI18nKey(errorCode.ERROR_CHANNEL_UPDATE_REACTION_STATUS_BAD_PAYLOAD)]: {
+    id: errorI18nId(errorCode.ERROR_CHANNEL_UPDATE_REACTION_STATUS_BAD_PAYLOAD),
+    defaultMessage: 'Update Reaction Bad Payload',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CHANNEL_UPDATE_REACTION_STATUS_INTERNAL_SERVER_ERROR)]: {
+    id: errorI18nId(errorCode.ERROR_CHANNEL_UPDATE_REACTION_STATUS_INTERNAL_SERVER_ERROR),
+    defaultMessage: 'Update Reaction Internal Server Error',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CHANNEL_UPDATE_REACTION_STATUS_FORBIDDEN)]: {
+    id: errorI18nId(errorCode.ERROR_CHANNEL_UPDATE_REACTION_STATUS_FORBIDDEN),
+    defaultMessage: 'Update Reaction Status Forbidden',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CHANNEL_PIN_MESSAGE_BAD_PAYLOAD)]: {
+    id: errorI18nId(errorCode.ERROR_CHANNEL_PIN_MESSAGE_BAD_PAYLOAD),
+    defaultMessage: 'Pin Message Bad Payload',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CHANNEL_PIN_MESSAGE_INTERNAL_SERVER_ERROR)]: {
+    id: errorI18nId(errorCode.ERROR_CHANNEL_PIN_MESSAGE_INTERNAL_SERVER_ERROR),
+    defaultMessage: 'Pin Message Internal Server Error',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CHANNEL_PIN_MESSAGE_FORBIDDEN)]: {
+    id: errorI18nId(errorCode.ERROR_CHANNEL_PIN_MESSAGE_FORBIDDEN),
+    defaultMessage: 'Pin Message Forbidden',
+    description,
+  },
 
   // Info errors 5xx
 
@@ -3608,6 +3663,21 @@ export default {
   [errorI18nKey(errorCode.ERROR_CLIENT_ROOM_REPORT_FORBIDDEN)]: {
     id: errorI18nId(errorCode.ERROR_CLIENT_ROOM_REPORT_FORBIDDEN),
     defaultMessage: 'You are forbidden to do the action',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CLIENT_REGISTER_DEVICE_BAD_PAYLOAD)]: {
+    id: errorI18nId(errorCode.ERROR_CLIENT_REGISTER_DEVICE_BAD_PAYLOAD),
+    defaultMessage: 'Register Device Bad Payload',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CLIENT_REGISTER_DEVICE_INTERNAL_SERVER_ERROR)]: {
+    id: errorI18nId(errorCode.ERROR_CLIENT_REGISTER_DEVICE_INTERNAL_SERVER_ERROR),
+    defaultMessage: 'Register Device Internal Server Error',
+    description,
+  },
+  [errorI18nKey(errorCode.ERROR_CLIENT_REGISTER_DEVICE_FORBIDDEN)]: {
+    id: errorI18nId(errorCode.ERROR_CLIENT_REGISTER_DEVICE_FORBIDDEN),
+    defaultMessage: 'Register Device Forbidden',
     description,
   },
 

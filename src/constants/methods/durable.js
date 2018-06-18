@@ -94,6 +94,7 @@ const durability = [
   methods.GROUP_REMOVE_USERNAME,
   methods.GROUP_REVOKE_LINK,
   methods.GROUP_EDIT_MESSAGE,
+  methods.GROUP_PIN_MESSAGE,
 
   //Channel 4xx
   methods.CHANNEL_CREATE,
@@ -122,6 +123,8 @@ const durability = [
   methods.CHANNEL_GET_MESSAGES_STATS,
   methods.CHANNEL_ADD_MESSAGE_REACTION,
   methods.CHANNEL_EDIT_MESSAGE,
+  methods.CHANNEL_UPDATE_REACTION_STATUS,
+  methods.CHANNEL_PIN_MESSAGE,
 
   //Info 5xx
   methods.INFO_LOCATION,
@@ -147,6 +150,7 @@ const durability = [
   methods.CLIENT_MUTE_ROOM,
   methods.CLIENT_PIN_ROOM,
   methods.CLIENT_ROOM_REPORT,
+  methods.CLIENT_REGISTER_DEVICE,
 
   //File 7xx
   methods.FILE_UPLOAD_OPTION,

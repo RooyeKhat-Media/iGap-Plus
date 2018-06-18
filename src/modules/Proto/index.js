@@ -904,6 +904,16 @@ export const GroupEditMessage = Proto.GroupEditMessage;
  **/
 export const GroupEditMessageResponse = Proto.GroupEditMessageResponse;
 
+/**
+ * @type ProtoGroupPinMessage
+ **/
+export const GroupPinMessage = Proto.GroupPinMessage;
+
+/**
+ * @type ProtoGroupPinMessageResponse
+ **/
+export const GroupPinMessageResponse = Proto.GroupPinMessageResponse;
+
 //Channel 4XX
 
 /**
@@ -1166,6 +1176,26 @@ export const ChannelEditMessage = Proto.ChannelEditMessage;
  **/
 export const ChannelEditMessageResponse = Proto.ChannelEditMessageResponse;
 
+/**
+ * @type ProtoChannelEditMessage
+ **/
+export const ChannelUpdateReactionStatus = Proto.ChannelUpdateReactionStatus;
+
+/**
+ * @type ProtoChannelEditMessageResponse
+ **/
+export const ChannelUpdateReactionStatusResponse = Proto.ChannelUpdateReactionStatusResponse;
+
+/**
+ * @type ProtoChannelEditMessage
+ **/
+export const ChannelPinMessage = Proto.ChannelPinMessage;
+
+/**
+ * @type ProtoChannelEditMessageResponse
+ **/
+export const ChannelPinMessageResponse = Proto.ChannelPinMessageResponse;
+
 //Info 5XX
 
 /**
@@ -1389,6 +1419,16 @@ export const ClientRoomReport = Proto.ClientRoomReport;
  * @type ProtoClientRoomReportResponse
  **/
 export const ClientRoomReportResponse = Proto.ClientRoomReportResponse;
+
+/**
+ * @type ProtoClientRegisterDevice
+ **/
+export const ClientRegisterDevice = Proto.ClientRegisterDevice;
+
+/**
+ * @type ProtoClientRegisterDeviceResponse
+ **/
+export const ClientRegisterDeviceResponse = Proto.ClientRegisterDeviceResponse;
 
 //File 7XX
 
@@ -1886,6 +1926,8 @@ export default {
   [methods.GROUP_REVOKE_LINK_RESPONSE]: GroupRevokeLinkResponse,
   [methods.GROUP_EDIT_MESSAGE]: GroupEditMessage,
   [methods.GROUP_EDIT_MESSAGE_RESPONSE]: GroupEditMessageResponse,
+  [methods.GROUP_PIN_MESSAGE]: GroupPinMessage,
+  [methods.GROUP_PIN_MESSAGE_RESPONSE]: GroupPinMessageResponse,
 
   //Channel 4XX
   [methods.CHANNEL_CREATE]: ChannelCreate,
@@ -1940,6 +1982,10 @@ export default {
   [methods.CHANNEL_ADD_MESSAGE_REACTION_RESPONSE]: ChannelAddMessageReactionResponse,
   [methods.CHANNEL_EDIT_MESSAGE]: ChannelEditMessage,
   [methods.CHANNEL_EDIT_MESSAGE_RESPONSE]: ChannelEditMessageResponse,
+  [methods.CHANNEL_UPDATE_REACTION_STATUS]: ChannelUpdateReactionStatus,
+  [methods.CHANNEL_UPDATE_REACTION_STATUS_RESPONSE]: ChannelUpdateReactionStatusResponse,
+  [methods.CHANNEL_PIN_MESSAGE]: ChannelPinMessage,
+  [methods.CHANNEL_PIN_MESSAGE_RESPONSE]: ChannelPinMessageResponse,
 
   //Info 5XX
   [methods.INFO_LOCATION]: InfoLocation,
@@ -1988,6 +2034,8 @@ export default {
   [methods.CLIENT_PIN_ROOM_RESPONSE]: ClientPinRoomResponse,
   [methods.CLIENT_ROOM_REPORT]: ClientRoomReport,
   [methods.CLIENT_ROOM_REPORT_RESPONSE]: ClientRoomReportResponse,
+  [methods.CLIENT_REGISTER_DEVICE]: ClientRegisterDevice,
+  [methods.CLIENT_REGISTER_DEVICE_RESPONSE]: ClientRegisterDeviceResponse,
 
   //File 7XX
   [methods.FILE_UPLOAD_OPTION]: FileUploadOption,

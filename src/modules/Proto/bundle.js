@@ -26,15 +26,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddAdmin.
          * @memberof proto
          * @interface IChannelAddAdmin
-         * @property {proto.Request} [request] ChannelAddAdmin request
-         * @property {Long} [roomId] ChannelAddAdmin roomId
-         * @property {Long} [memberId] ChannelAddAdmin memberId
+         * @property {proto.Request|null} [request] ChannelAddAdmin request
+         * @property {Long|null} [roomId] ChannelAddAdmin roomId
+         * @property {Long|null} [memberId] ChannelAddAdmin memberId
          */
 
     /**
          * Constructs a new ChannelAddAdmin.
          * @memberof proto
          * @classdesc Represents a ChannelAddAdmin.
+         * @implements IChannelAddAdmin
          * @constructor
          * @param {proto.IChannelAddAdmin=} [properties] Properties to set
          */
@@ -48,7 +49,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddAdmin request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAddAdmin
          * @instance
          */
@@ -56,7 +57,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddAdmin roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddAdmin
          * @instance
          */
@@ -64,7 +65,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddAdmin memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelAddAdmin
          * @instance
          */
@@ -165,15 +166,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddAdminResponse.
          * @memberof proto
          * @interface IChannelAddAdminResponse
-         * @property {proto.Response} [response] ChannelAddAdminResponse response
-         * @property {Long} [roomId] ChannelAddAdminResponse roomId
-         * @property {Long} [memberId] ChannelAddAdminResponse memberId
+         * @property {proto.Response|null} [response] ChannelAddAdminResponse response
+         * @property {Long|null} [roomId] ChannelAddAdminResponse roomId
+         * @property {Long|null} [memberId] ChannelAddAdminResponse memberId
          */
 
     /**
          * Constructs a new ChannelAddAdminResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAddAdminResponse.
+         * @implements IChannelAddAdminResponse
          * @constructor
          * @param {proto.IChannelAddAdminResponse=} [properties] Properties to set
          */
@@ -187,7 +189,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddAdminResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAddAdminResponse
          * @instance
          */
@@ -195,7 +197,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddAdminResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddAdminResponse
          * @instance
          */
@@ -203,7 +205,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddAdminResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelAddAdminResponse
          * @instance
          */
@@ -304,13 +306,14 @@ export const proto = $root.proto = (() => {
          * Properties of a Request.
          * @memberof proto
          * @interface IRequest
-         * @property {string} [id] Request id
+         * @property {string|null} [id] Request id
          */
 
     /**
          * Constructs a new Request.
          * @memberof proto
          * @classdesc Represents a Request.
+         * @implements IRequest
          * @constructor
          * @param {proto.IRequest=} [properties] Properties to set
          */
@@ -324,7 +327,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Request id.
-         * @member {string}id
+         * @member {string} id
          * @memberof proto.Request
          * @instance
          */
@@ -410,14 +413,15 @@ export const proto = $root.proto = (() => {
          * Properties of a Response.
          * @memberof proto
          * @interface IResponse
-         * @property {string} [id] Response id
-         * @property {number} [timestamp] Response timestamp
+         * @property {string|null} [id] Response id
+         * @property {number|null} [timestamp] Response timestamp
          */
 
     /**
          * Constructs a new Response.
          * @memberof proto
          * @classdesc Represents a Response.
+         * @implements IResponse
          * @constructor
          * @param {proto.IResponse=} [properties] Properties to set
          */
@@ -431,7 +435,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Response id.
-         * @member {string}id
+         * @member {string} id
          * @memberof proto.Response
          * @instance
          */
@@ -439,7 +443,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Response timestamp.
-         * @member {number}timestamp
+         * @member {number} timestamp
          * @memberof proto.Response
          * @instance
          */
@@ -532,15 +536,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddMember.
          * @memberof proto
          * @interface IChannelAddMember
-         * @property {proto.Request} [request] ChannelAddMember request
-         * @property {Long} [roomId] ChannelAddMember roomId
-         * @property {proto.ChannelAddMember.Member} [member] ChannelAddMember member
+         * @property {proto.Request|null} [request] ChannelAddMember request
+         * @property {Long|null} [roomId] ChannelAddMember roomId
+         * @property {proto.ChannelAddMember.Member|null} [member] ChannelAddMember member
          */
 
     /**
          * Constructs a new ChannelAddMember.
          * @memberof proto
          * @classdesc Represents a ChannelAddMember.
+         * @implements IChannelAddMember
          * @constructor
          * @param {proto.IChannelAddMember=} [properties] Properties to set
          */
@@ -554,7 +559,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMember request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAddMember
          * @instance
          */
@@ -562,7 +567,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMember roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddMember
          * @instance
          */
@@ -570,7 +575,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMember member.
-         * @member {(proto.ChannelAddMember.Member|null|undefined)}member
+         * @member {proto.ChannelAddMember.Member|null|undefined} member
          * @memberof proto.ChannelAddMember
          * @instance
          */
@@ -657,7 +662,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.member != null && message.hasOwnProperty('member')) {
-        error = $root.proto.ChannelAddMember.Member.verify(message.member);
+        let error = $root.proto.ChannelAddMember.Member.verify(message.member);
         if (error) {return 'member.' + error;}
       }
       return null;
@@ -669,13 +674,14 @@ export const proto = $root.proto = (() => {
              * Properties of a Member.
              * @memberof proto.ChannelAddMember
              * @interface IMember
-             * @property {Long} [userId] Member userId
+             * @property {Long|null} [userId] Member userId
              */
 
       /**
              * Constructs a new Member.
              * @memberof proto.ChannelAddMember
              * @classdesc Represents a Member.
+             * @implements IMember
              * @constructor
              * @param {proto.ChannelAddMember.IMember=} [properties] Properties to set
              */
@@ -689,7 +695,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.ChannelAddMember.Member
              * @instance
              */
@@ -778,16 +784,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddMemberResponse.
          * @memberof proto
          * @interface IChannelAddMemberResponse
-         * @property {proto.Response} [response] ChannelAddMemberResponse response
-         * @property {Long} [roomId] ChannelAddMemberResponse roomId
-         * @property {Long} [userId] ChannelAddMemberResponse userId
-         * @property {proto.ChannelRoom.Role} [role] ChannelAddMemberResponse role
+         * @property {proto.Response|null} [response] ChannelAddMemberResponse response
+         * @property {Long|null} [roomId] ChannelAddMemberResponse roomId
+         * @property {Long|null} [userId] ChannelAddMemberResponse userId
+         * @property {proto.ChannelRoom.Role|null} [role] ChannelAddMemberResponse role
          */
 
     /**
          * Constructs a new ChannelAddMemberResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAddMemberResponse.
+         * @implements IChannelAddMemberResponse
          * @constructor
          * @param {proto.IChannelAddMemberResponse=} [properties] Properties to set
          */
@@ -801,7 +808,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMemberResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAddMemberResponse
          * @instance
          */
@@ -809,7 +816,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMemberResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddMemberResponse
          * @instance
          */
@@ -817,7 +824,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMemberResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.ChannelAddMemberResponse
          * @instance
          */
@@ -825,7 +832,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMemberResponse role.
-         * @member {proto.ChannelRoom.Role}role
+         * @member {proto.ChannelRoom.Role} role
          * @memberof proto.ChannelAddMemberResponse
          * @instance
          */
@@ -937,6 +944,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * Gender enum.
+     * @name proto.Gender
      * @enum {string}
      * @property {number} UNKNOWN=0 UNKNOWN value
      * @property {number} MALE=1 MALE value
@@ -952,6 +960,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * Device enum.
+     * @name proto.Device
      * @enum {string}
      * @property {number} UNKNOWN_DEVICE=0 UNKNOWN_DEVICE value
      * @property {number} PC=1 PC value
@@ -969,6 +978,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * Platform enum.
+     * @name proto.Platform
      * @enum {string}
      * @property {number} UNKNOWN_PLATFORM=0 UNKNOWN_PLATFORM value
      * @property {number} ANDROID=1 ANDROID value
@@ -992,6 +1002,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * Language enum.
+     * @name proto.Language
      * @enum {string}
      * @property {number} EN_US=0 EN_US value
      * @property {number} FA_IR=1 FA_IR value
@@ -1005,6 +1016,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * RoomMessageType enum.
+     * @name proto.RoomMessageType
      * @enum {string}
      * @property {number} TEXT=0 TEXT value
      * @property {number} IMAGE=1 IMAGE value
@@ -1044,6 +1056,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * RoomMessageStatus enum.
+     * @name proto.RoomMessageStatus
      * @enum {string}
      * @property {number} FAILED=0 FAILED value
      * @property {number} SENDING=1 SENDING value
@@ -1065,6 +1078,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * RoomMessageReaction enum.
+     * @name proto.RoomMessageReaction
      * @enum {string}
      * @property {number} THUMBS_UP=0 THUMBS_UP value
      * @property {number} THUMBS_DOWN=1 THUMBS_DOWN value
@@ -1082,14 +1096,15 @@ export const proto = $root.proto = (() => {
          * Properties of a RoomMessageLocation.
          * @memberof proto
          * @interface IRoomMessageLocation
-         * @property {number} [lat] RoomMessageLocation lat
-         * @property {number} [lon] RoomMessageLocation lon
+         * @property {number|null} [lat] RoomMessageLocation lat
+         * @property {number|null} [lon] RoomMessageLocation lon
          */
 
     /**
          * Constructs a new RoomMessageLocation.
          * @memberof proto
          * @classdesc Represents a RoomMessageLocation.
+         * @implements IRoomMessageLocation
          * @constructor
          * @param {proto.IRoomMessageLocation=} [properties] Properties to set
          */
@@ -1103,7 +1118,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageLocation lat.
-         * @member {number}lat
+         * @member {number} lat
          * @memberof proto.RoomMessageLocation
          * @instance
          */
@@ -1111,7 +1126,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageLocation lon.
-         * @member {number}lon
+         * @member {number} lon
          * @memberof proto.RoomMessageLocation
          * @instance
          */
@@ -1204,15 +1219,16 @@ export const proto = $root.proto = (() => {
          * Properties of a RoomMessageLog.
          * @memberof proto
          * @interface IRoomMessageLog
-         * @property {proto.RoomMessageLog.Type} [type] RoomMessageLog type
-         * @property {proto.RoomMessageLog.ExtraType} [extraType] RoomMessageLog extraType
-         * @property {proto.RoomMessageLog.TargetUser} [targetUser] RoomMessageLog targetUser
+         * @property {proto.RoomMessageLog.Type|null} [type] RoomMessageLog type
+         * @property {proto.RoomMessageLog.ExtraType|null} [extraType] RoomMessageLog extraType
+         * @property {proto.RoomMessageLog.TargetUser|null} [targetUser] RoomMessageLog targetUser
          */
 
     /**
          * Constructs a new RoomMessageLog.
          * @memberof proto
          * @classdesc Represents a RoomMessageLog.
+         * @implements IRoomMessageLog
          * @constructor
          * @param {proto.IRoomMessageLog=} [properties] Properties to set
          */
@@ -1226,7 +1242,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageLog type.
-         * @member {proto.RoomMessageLog.Type}type
+         * @member {proto.RoomMessageLog.Type} type
          * @memberof proto.RoomMessageLog
          * @instance
          */
@@ -1234,7 +1250,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageLog extraType.
-         * @member {proto.RoomMessageLog.ExtraType}extraType
+         * @member {proto.RoomMessageLog.ExtraType} extraType
          * @memberof proto.RoomMessageLog
          * @instance
          */
@@ -1242,7 +1258,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageLog targetUser.
-         * @member {(proto.RoomMessageLog.TargetUser|null|undefined)}targetUser
+         * @member {proto.RoomMessageLog.TargetUser|null|undefined} targetUser
          * @memberof proto.RoomMessageLog
          * @instance
          */
@@ -1339,6 +1355,7 @@ export const proto = $root.proto = (() => {
           case 11:
           case 12:
           case 13:
+          case 14:
             break;
         }
       }
@@ -1360,6 +1377,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Type enum.
+         * @name proto.RoomMessageLog.Type
          * @enum {string}
          * @property {number} USER_JOINED=0 USER_JOINED value
          * @property {number} USER_DELETED=1 USER_DELETED value
@@ -1375,6 +1393,7 @@ export const proto = $root.proto = (() => {
          * @property {number} MISSED_VIDEO_CALL=11 MISSED_VIDEO_CALL value
          * @property {number} MISSED_SCREEN_SHARE=12 MISSED_SCREEN_SHARE value
          * @property {number} MISSED_SECRET_CHAT=13 MISSED_SECRET_CHAT value
+         * @property {number} PINNED_MESSAGE=14 PINNED_MESSAGE value
          */
     RoomMessageLog.Type = (function() {
       const valuesById = {}, values = Object.create(valuesById);
@@ -1392,11 +1411,13 @@ export const proto = $root.proto = (() => {
       values[valuesById[11] = 'MISSED_VIDEO_CALL'] = 11;
       values[valuesById[12] = 'MISSED_SCREEN_SHARE'] = 12;
       values[valuesById[13] = 'MISSED_SECRET_CHAT'] = 13;
+      values[valuesById[14] = 'PINNED_MESSAGE'] = 14;
       return values;
     })();
 
     /**
          * ExtraType enum.
+         * @name proto.RoomMessageLog.ExtraType
          * @enum {string}
          * @property {number} NO_EXTRA=0 NO_EXTRA value
          * @property {number} TARGET_USER=1 TARGET_USER value
@@ -1414,13 +1435,14 @@ export const proto = $root.proto = (() => {
              * Properties of a TargetUser.
              * @memberof proto.RoomMessageLog
              * @interface ITargetUser
-             * @property {Long} [id] TargetUser id
+             * @property {Long|null} [id] TargetUser id
              */
 
       /**
              * Constructs a new TargetUser.
              * @memberof proto.RoomMessageLog
              * @classdesc Represents a TargetUser.
+             * @implements ITargetUser
              * @constructor
              * @param {proto.RoomMessageLog.ITargetUser=} [properties] Properties to set
              */
@@ -1434,7 +1456,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * TargetUser id.
-             * @member {Long}id
+             * @member {Long} id
              * @memberof proto.RoomMessageLog.TargetUser
              * @instance
              */
@@ -1523,17 +1545,18 @@ export const proto = $root.proto = (() => {
          * Properties of a RoomMessageContact.
          * @memberof proto
          * @interface IRoomMessageContact
-         * @property {string} [firstName] RoomMessageContact firstName
-         * @property {string} [lastName] RoomMessageContact lastName
-         * @property {string} [nickname] RoomMessageContact nickname
-         * @property {Array.<string>} [phone] RoomMessageContact phone
-         * @property {Array.<string>} [email] RoomMessageContact email
+         * @property {string|null} [firstName] RoomMessageContact firstName
+         * @property {string|null} [lastName] RoomMessageContact lastName
+         * @property {string|null} [nickname] RoomMessageContact nickname
+         * @property {Array.<string>|null} [phone] RoomMessageContact phone
+         * @property {Array.<string>|null} [email] RoomMessageContact email
          */
 
     /**
          * Constructs a new RoomMessageContact.
          * @memberof proto
          * @classdesc Represents a RoomMessageContact.
+         * @implements IRoomMessageContact
          * @constructor
          * @param {proto.IRoomMessageContact=} [properties] Properties to set
          */
@@ -1549,7 +1572,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageContact firstName.
-         * @member {string}firstName
+         * @member {string} firstName
          * @memberof proto.RoomMessageContact
          * @instance
          */
@@ -1557,7 +1580,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageContact lastName.
-         * @member {string}lastName
+         * @member {string} lastName
          * @memberof proto.RoomMessageContact
          * @instance
          */
@@ -1565,7 +1588,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageContact nickname.
-         * @member {string}nickname
+         * @member {string} nickname
          * @memberof proto.RoomMessageContact
          * @instance
          */
@@ -1573,7 +1596,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageContact phone.
-         * @member {Array.<string>}phone
+         * @member {Array.<string>} phone
          * @memberof proto.RoomMessageContact
          * @instance
          */
@@ -1581,7 +1604,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageContact email.
-         * @member {Array.<string>}email
+         * @member {Array.<string>} email
          * @memberof proto.RoomMessageContact
          * @instance
          */
@@ -1707,14 +1730,15 @@ export const proto = $root.proto = (() => {
          * Properties of a RoomMessageForwardFrom.
          * @memberof proto
          * @interface IRoomMessageForwardFrom
-         * @property {Long} [roomId] RoomMessageForwardFrom roomId
-         * @property {Long} [messageId] RoomMessageForwardFrom messageId
+         * @property {Long|null} [roomId] RoomMessageForwardFrom roomId
+         * @property {Long|null} [messageId] RoomMessageForwardFrom messageId
          */
 
     /**
          * Constructs a new RoomMessageForwardFrom.
          * @memberof proto
          * @classdesc Represents a RoomMessageForwardFrom.
+         * @implements IRoomMessageForwardFrom
          * @constructor
          * @param {proto.IRoomMessageForwardFrom=} [properties] Properties to set
          */
@@ -1728,7 +1752,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageForwardFrom roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.RoomMessageForwardFrom
          * @instance
          */
@@ -1736,7 +1760,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessageForwardFrom messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.RoomMessageForwardFrom
          * @instance
          */
@@ -1829,28 +1853,30 @@ export const proto = $root.proto = (() => {
          * Properties of a RegisteredUser.
          * @memberof proto
          * @interface IRegisteredUser
-         * @property {Long} [id] RegisteredUser id
-         * @property {string} [username] RegisteredUser username
-         * @property {Long} [phone] RegisteredUser phone
-         * @property {string} [firstName] RegisteredUser firstName
-         * @property {string} [lastName] RegisteredUser lastName
-         * @property {string} [displayName] RegisteredUser displayName
-         * @property {string} [initials] RegisteredUser initials
-         * @property {string} [color] RegisteredUser color
-         * @property {proto.RegisteredUser.Status} [status] RegisteredUser status
-         * @property {number} [lastSeen] RegisteredUser lastSeen
-         * @property {number} [avatarCount] RegisteredUser avatarCount
-         * @property {proto.Avatar} [avatar] RegisteredUser avatar
-         * @property {boolean} [mutual] RegisteredUser mutual
-         * @property {boolean} [deleted] RegisteredUser deleted
-         * @property {string} [cacheId] RegisteredUser cacheId
-         * @property {string} [bio] RegisteredUser bio
+         * @property {Long|null} [id] RegisteredUser id
+         * @property {string|null} [username] RegisteredUser username
+         * @property {Long|null} [phone] RegisteredUser phone
+         * @property {string|null} [firstName] RegisteredUser firstName
+         * @property {string|null} [lastName] RegisteredUser lastName
+         * @property {string|null} [displayName] RegisteredUser displayName
+         * @property {string|null} [initials] RegisteredUser initials
+         * @property {string|null} [color] RegisteredUser color
+         * @property {proto.RegisteredUser.Status|null} [status] RegisteredUser status
+         * @property {number|null} [lastSeen] RegisteredUser lastSeen
+         * @property {number|null} [avatarCount] RegisteredUser avatarCount
+         * @property {proto.Avatar|null} [avatar] RegisteredUser avatar
+         * @property {boolean|null} [mutual] RegisteredUser mutual
+         * @property {boolean|null} [deleted] RegisteredUser deleted
+         * @property {string|null} [cacheId] RegisteredUser cacheId
+         * @property {string|null} [bio] RegisteredUser bio
+         * @property {boolean|null} [verified] RegisteredUser verified
          */
 
     /**
          * Constructs a new RegisteredUser.
          * @memberof proto
          * @classdesc Represents a RegisteredUser.
+         * @implements IRegisteredUser
          * @constructor
          * @param {proto.IRegisteredUser=} [properties] Properties to set
          */
@@ -1864,7 +1890,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1872,7 +1898,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1880,7 +1906,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser phone.
-         * @member {Long}phone
+         * @member {Long} phone
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1888,7 +1914,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser firstName.
-         * @member {string}firstName
+         * @member {string} firstName
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1896,7 +1922,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser lastName.
-         * @member {string}lastName
+         * @member {string} lastName
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1904,7 +1930,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser displayName.
-         * @member {string}displayName
+         * @member {string} displayName
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1912,7 +1938,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser initials.
-         * @member {string}initials
+         * @member {string} initials
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1920,7 +1946,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser color.
-         * @member {string}color
+         * @member {string} color
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1928,7 +1954,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser status.
-         * @member {proto.RegisteredUser.Status}status
+         * @member {proto.RegisteredUser.Status} status
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1936,7 +1962,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser lastSeen.
-         * @member {number}lastSeen
+         * @member {number} lastSeen
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1944,7 +1970,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser avatarCount.
-         * @member {number}avatarCount
+         * @member {number} avatarCount
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1952,7 +1978,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser avatar.
-         * @member {(proto.Avatar|null|undefined)}avatar
+         * @member {proto.Avatar|null|undefined} avatar
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1960,7 +1986,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser mutual.
-         * @member {boolean}mutual
+         * @member {boolean} mutual
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1968,7 +1994,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser deleted.
-         * @member {boolean}deleted
+         * @member {boolean} deleted
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1976,7 +2002,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser cacheId.
-         * @member {string}cacheId
+         * @member {string} cacheId
          * @memberof proto.RegisteredUser
          * @instance
          */
@@ -1984,11 +2010,19 @@ export const proto = $root.proto = (() => {
 
     /**
          * RegisteredUser bio.
-         * @member {string}bio
+         * @member {string} bio
          * @memberof proto.RegisteredUser
          * @instance
          */
     RegisteredUser.prototype.bio = '';
+
+    /**
+         * RegisteredUser verified.
+         * @member {boolean} verified
+         * @memberof proto.RegisteredUser
+         * @instance
+         */
+    RegisteredUser.prototype.verified = false;
 
     /**
          * Creates a new RegisteredUser instance using the specified properties.
@@ -2029,6 +2063,7 @@ export const proto = $root.proto = (() => {
       if (message.deleted != null && message.hasOwnProperty('deleted')) {writer.uint32(/* id 14, wireType 0 =*/112).bool(message.deleted);}
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {writer.uint32(/* id 15, wireType 2 =*/122).string(message.cacheId);}
       if (message.bio != null && message.hasOwnProperty('bio')) {writer.uint32(/* id 16, wireType 2 =*/130).string(message.bio);}
+      if (message.verified != null && message.hasOwnProperty('verified')) {writer.uint32(/* id 17, wireType 0 =*/136).bool(message.verified);}
       return writer;
     };
 
@@ -2096,6 +2131,9 @@ export const proto = $root.proto = (() => {
             break;
           case 16:
             message.bio = reader.string();
+            break;
+          case 17:
+            message.verified = reader.bool();
             break;
           default:
             reader.skipType(tag & 7);
@@ -2176,11 +2214,15 @@ export const proto = $root.proto = (() => {
       if (message.bio != null && message.hasOwnProperty('bio')) {
         if (!$util.isString(message.bio)) {return 'bio: string expected';}
       }
+      if (message.verified != null && message.hasOwnProperty('verified')) {
+        if (typeof message.verified !== 'boolean') {return 'verified: boolean expected';}
+      }
       return null;
     };
 
     /**
          * Status enum.
+         * @name proto.RegisteredUser.Status
          * @enum {string}
          * @property {number} LONG_TIME_AGO=0 LONG_TIME_AGO value
          * @property {number} LAST_MONTH=1 LAST_MONTH value
@@ -2209,6 +2251,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * ClientAction enum.
+     * @name proto.ClientAction
      * @enum {string}
      * @property {number} CANCEL=0 CANCEL value
      * @property {number} TYPING=1 TYPING value
@@ -2252,14 +2295,15 @@ export const proto = $root.proto = (() => {
          * Properties of an Avatar.
          * @memberof proto
          * @interface IAvatar
-         * @property {Long} [id] Avatar id
-         * @property {proto.File} [file] Avatar file
+         * @property {Long|null} [id] Avatar id
+         * @property {proto.File|null} [file] Avatar file
          */
 
     /**
          * Constructs a new Avatar.
          * @memberof proto
          * @classdesc Represents an Avatar.
+         * @implements IAvatar
          * @constructor
          * @param {proto.IAvatar=} [properties] Properties to set
          */
@@ -2273,7 +2317,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Avatar id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.Avatar
          * @instance
          */
@@ -2281,7 +2325,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Avatar file.
-         * @member {(proto.File|null|undefined)}file
+         * @member {proto.File|null|undefined} file
          * @memberof proto.Avatar
          * @instance
          */
@@ -2375,32 +2419,34 @@ export const proto = $root.proto = (() => {
          * Properties of a RoomMessage.
          * @memberof proto
          * @interface IRoomMessage
-         * @property {Long} [messageId] RoomMessage messageId
-         * @property {Long} [messageVersion] RoomMessage messageVersion
-         * @property {proto.RoomMessageStatus} [status] RoomMessage status
-         * @property {Long} [statusVersion] RoomMessage statusVersion
-         * @property {proto.RoomMessageType} [messageType] RoomMessage messageType
-         * @property {string} [message] RoomMessage message
-         * @property {proto.File} [attachment] RoomMessage attachment
-         * @property {proto.RoomMessage.Author} [author] RoomMessage author
-         * @property {proto.RoomMessageLocation} [location] RoomMessage location
-         * @property {proto.RoomMessageLog} [log] RoomMessage log
-         * @property {proto.RoomMessageContact} [contact] RoomMessage contact
-         * @property {boolean} [edited] RoomMessage edited
-         * @property {number} [createTime] RoomMessage createTime
-         * @property {number} [updateTime] RoomMessage updateTime
-         * @property {boolean} [deleted] RoomMessage deleted
-         * @property {proto.RoomMessage} [forwardFrom] RoomMessage forwardFrom
-         * @property {proto.RoomMessage} [replyTo] RoomMessage replyTo
-         * @property {Long} [previousMessageId] RoomMessage previousMessageId
-         * @property {proto.RoomMessage.ExtraType} [extraType] RoomMessage extraType
-         * @property {proto.RoomMessage.ChannelExtra} [channelExtra] RoomMessage channelExtra
+         * @property {Long|null} [messageId] RoomMessage messageId
+         * @property {Long|null} [messageVersion] RoomMessage messageVersion
+         * @property {proto.RoomMessageStatus|null} [status] RoomMessage status
+         * @property {Long|null} [statusVersion] RoomMessage statusVersion
+         * @property {proto.RoomMessageType|null} [messageType] RoomMessage messageType
+         * @property {string|null} [message] RoomMessage message
+         * @property {proto.File|null} [attachment] RoomMessage attachment
+         * @property {proto.RoomMessage.Author|null} [author] RoomMessage author
+         * @property {proto.RoomMessageLocation|null} [location] RoomMessage location
+         * @property {proto.RoomMessageLog|null} [log] RoomMessage log
+         * @property {proto.RoomMessageContact|null} [contact] RoomMessage contact
+         * @property {boolean|null} [edited] RoomMessage edited
+         * @property {number|null} [createTime] RoomMessage createTime
+         * @property {number|null} [updateTime] RoomMessage updateTime
+         * @property {boolean|null} [deleted] RoomMessage deleted
+         * @property {proto.RoomMessage|null} [forwardFrom] RoomMessage forwardFrom
+         * @property {proto.RoomMessage|null} [replyTo] RoomMessage replyTo
+         * @property {Long|null} [previousMessageId] RoomMessage previousMessageId
+         * @property {Long|null} [randomId] RoomMessage randomId
+         * @property {proto.RoomMessage.ExtraType|null} [extraType] RoomMessage extraType
+         * @property {proto.RoomMessage.ChannelExtra|null} [channelExtra] RoomMessage channelExtra
          */
 
     /**
          * Constructs a new RoomMessage.
          * @memberof proto
          * @classdesc Represents a RoomMessage.
+         * @implements IRoomMessage
          * @constructor
          * @param {proto.IRoomMessage=} [properties] Properties to set
          */
@@ -2414,7 +2460,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2422,7 +2468,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage messageVersion.
-         * @member {Long}messageVersion
+         * @member {Long} messageVersion
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2430,7 +2476,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage status.
-         * @member {proto.RoomMessageStatus}status
+         * @member {proto.RoomMessageStatus} status
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2438,7 +2484,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage statusVersion.
-         * @member {Long}statusVersion
+         * @member {Long} statusVersion
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2446,7 +2492,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2454,7 +2500,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2462,7 +2508,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage attachment.
-         * @member {(proto.File|null|undefined)}attachment
+         * @member {proto.File|null|undefined} attachment
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2470,7 +2516,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage author.
-         * @member {(proto.RoomMessage.Author|null|undefined)}author
+         * @member {proto.RoomMessage.Author|null|undefined} author
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2478,7 +2524,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage location.
-         * @member {(proto.RoomMessageLocation|null|undefined)}location
+         * @member {proto.RoomMessageLocation|null|undefined} location
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2486,7 +2532,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage log.
-         * @member {(proto.RoomMessageLog|null|undefined)}log
+         * @member {proto.RoomMessageLog|null|undefined} log
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2494,7 +2540,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage contact.
-         * @member {(proto.RoomMessageContact|null|undefined)}contact
+         * @member {proto.RoomMessageContact|null|undefined} contact
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2502,7 +2548,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage edited.
-         * @member {boolean}edited
+         * @member {boolean} edited
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2510,7 +2556,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage createTime.
-         * @member {number}createTime
+         * @member {number} createTime
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2518,7 +2564,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage updateTime.
-         * @member {number}updateTime
+         * @member {number} updateTime
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2526,7 +2572,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage deleted.
-         * @member {boolean}deleted
+         * @member {boolean} deleted
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2534,7 +2580,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage forwardFrom.
-         * @member {(proto.RoomMessage|null|undefined)}forwardFrom
+         * @member {proto.RoomMessage|null|undefined} forwardFrom
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2542,7 +2588,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage replyTo.
-         * @member {(proto.RoomMessage|null|undefined)}replyTo
+         * @member {proto.RoomMessage|null|undefined} replyTo
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2550,15 +2596,23 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage previousMessageId.
-         * @member {Long}previousMessageId
+         * @member {Long} previousMessageId
          * @memberof proto.RoomMessage
          * @instance
          */
     RoomMessage.prototype.previousMessageId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
     /**
+         * RoomMessage randomId.
+         * @member {Long} randomId
+         * @memberof proto.RoomMessage
+         * @instance
+         */
+    RoomMessage.prototype.randomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
          * RoomMessage extraType.
-         * @member {proto.RoomMessage.ExtraType}extraType
+         * @member {proto.RoomMessage.ExtraType} extraType
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2566,7 +2620,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomMessage channelExtra.
-         * @member {(proto.RoomMessage.ChannelExtra|null|undefined)}channelExtra
+         * @member {proto.RoomMessage.ChannelExtra|null|undefined} channelExtra
          * @memberof proto.RoomMessage
          * @instance
          */
@@ -2615,6 +2669,7 @@ export const proto = $root.proto = (() => {
       if (message.previousMessageId != null && message.hasOwnProperty('previousMessageId')) {writer.uint32(/* id 18, wireType 0 =*/144).uint64(message.previousMessageId);}
       if (message.extraType != null && message.hasOwnProperty('extraType')) {writer.uint32(/* id 19, wireType 0 =*/152).int32(message.extraType);}
       if (message.channelExtra != null && message.hasOwnProperty('channelExtra')) {$root.proto.RoomMessage.ChannelExtra.encode(message.channelExtra, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();}
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {writer.uint32(/* id 21, wireType 0 =*/168).uint64(message.randomId);}
       return writer;
     };
 
@@ -2688,6 +2743,9 @@ export const proto = $root.proto = (() => {
             break;
           case 18:
             message.previousMessageId = reader.uint64();
+            break;
+          case 21:
+            message.randomId = reader.uint64();
             break;
           case 19:
             message.extraType = reader.int32();
@@ -2765,19 +2823,19 @@ export const proto = $root.proto = (() => {
         if (error) {return 'attachment.' + error;}
       }
       if (message.author != null && message.hasOwnProperty('author')) {
-        error = $root.proto.RoomMessage.Author.verify(message.author);
+        let error = $root.proto.RoomMessage.Author.verify(message.author);
         if (error) {return 'author.' + error;}
       }
       if (message.location != null && message.hasOwnProperty('location')) {
-        error = $root.proto.RoomMessageLocation.verify(message.location);
+        let error = $root.proto.RoomMessageLocation.verify(message.location);
         if (error) {return 'location.' + error;}
       }
       if (message.log != null && message.hasOwnProperty('log')) {
-        error = $root.proto.RoomMessageLog.verify(message.log);
+        let error = $root.proto.RoomMessageLog.verify(message.log);
         if (error) {return 'log.' + error;}
       }
       if (message.contact != null && message.hasOwnProperty('contact')) {
-        error = $root.proto.RoomMessageContact.verify(message.contact);
+        let error = $root.proto.RoomMessageContact.verify(message.contact);
         if (error) {return 'contact.' + error;}
       }
       if (message.edited != null && message.hasOwnProperty('edited')) {
@@ -2793,15 +2851,18 @@ export const proto = $root.proto = (() => {
         if (typeof message.deleted !== 'boolean') {return 'deleted: boolean expected';}
       }
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {
-        error = $root.proto.RoomMessage.verify(message.forwardFrom);
+        let error = $root.proto.RoomMessage.verify(message.forwardFrom);
         if (error) {return 'forwardFrom.' + error;}
       }
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {
-        error = $root.proto.RoomMessage.verify(message.replyTo);
+        let error = $root.proto.RoomMessage.verify(message.replyTo);
         if (error) {return 'replyTo.' + error;}
       }
       if (message.previousMessageId != null && message.hasOwnProperty('previousMessageId')) {
         if (!$util.isInteger(message.previousMessageId) && !(message.previousMessageId && $util.isInteger(message.previousMessageId.low) && $util.isInteger(message.previousMessageId.high))) {return 'previousMessageId: integer|Long expected';}
+      }
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {
+        if (!$util.isInteger(message.randomId) && !(message.randomId && $util.isInteger(message.randomId.low) && $util.isInteger(message.randomId.high))) {return 'randomId: integer|Long expected';}
       }
       if (message.extraType != null && message.hasOwnProperty('extraType')) {
         switch (message.extraType) {
@@ -2813,7 +2874,7 @@ export const proto = $root.proto = (() => {
         }
       }
       if (message.channelExtra != null && message.hasOwnProperty('channelExtra')) {
-        error = $root.proto.RoomMessage.ChannelExtra.verify(message.channelExtra);
+        let error = $root.proto.RoomMessage.ChannelExtra.verify(message.channelExtra);
         if (error) {return 'channelExtra.' + error;}
       }
       return null;
@@ -2825,15 +2886,16 @@ export const proto = $root.proto = (() => {
              * Properties of an Author.
              * @memberof proto.RoomMessage
              * @interface IAuthor
-             * @property {string} [hash] Author hash
-             * @property {proto.RoomMessage.Author.User} [user] Author user
-             * @property {proto.RoomMessage.Author.Room} [room] Author room
+             * @property {string|null} [hash] Author hash
+             * @property {proto.RoomMessage.Author.User|null} [user] Author user
+             * @property {proto.RoomMessage.Author.Room|null} [room] Author room
              */
 
       /**
              * Constructs a new Author.
              * @memberof proto.RoomMessage
              * @classdesc Represents an Author.
+             * @implements IAuthor
              * @constructor
              * @param {proto.RoomMessage.IAuthor=} [properties] Properties to set
              */
@@ -2847,7 +2909,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Author hash.
-             * @member {string}hash
+             * @member {string} hash
              * @memberof proto.RoomMessage.Author
              * @instance
              */
@@ -2855,7 +2917,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Author user.
-             * @member {(proto.RoomMessage.Author.User|null|undefined)}user
+             * @member {proto.RoomMessage.Author.User|null|undefined} user
              * @memberof proto.RoomMessage.Author
              * @instance
              */
@@ -2863,7 +2925,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Author room.
-             * @member {(proto.RoomMessage.Author.Room|null|undefined)}room
+             * @member {proto.RoomMessage.Author.Room|null|undefined} room
              * @memberof proto.RoomMessage.Author
              * @instance
              */
@@ -2950,7 +3012,7 @@ export const proto = $root.proto = (() => {
           if (error) {return 'user.' + error;}
         }
         if (message.room != null && message.hasOwnProperty('room')) {
-          error = $root.proto.RoomMessage.Author.Room.verify(message.room);
+          let error = $root.proto.RoomMessage.Author.Room.verify(message.room);
           if (error) {return 'room.' + error;}
         }
         return null;
@@ -2962,14 +3024,15 @@ export const proto = $root.proto = (() => {
                  * Properties of a User.
                  * @memberof proto.RoomMessage.Author
                  * @interface IUser
-                 * @property {Long} [userId] User userId
-                 * @property {string} [cacheId] User cacheId
+                 * @property {Long|null} [userId] User userId
+                 * @property {string|null} [cacheId] User cacheId
                  */
 
         /**
                  * Constructs a new User.
                  * @memberof proto.RoomMessage.Author
                  * @classdesc Represents a User.
+                 * @implements IUser
                  * @constructor
                  * @param {proto.RoomMessage.Author.IUser=} [properties] Properties to set
                  */
@@ -2983,7 +3046,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * User userId.
-                 * @member {Long}userId
+                 * @member {Long} userId
                  * @memberof proto.RoomMessage.Author.User
                  * @instance
                  */
@@ -2991,7 +3054,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * User cacheId.
-                 * @member {string}cacheId
+                 * @member {string} cacheId
                  * @memberof proto.RoomMessage.Author.User
                  * @instance
                  */
@@ -3084,13 +3147,14 @@ export const proto = $root.proto = (() => {
                  * Properties of a Room.
                  * @memberof proto.RoomMessage.Author
                  * @interface IRoom
-                 * @property {Long} [roomId] Room roomId
+                 * @property {Long|null} [roomId] Room roomId
                  */
 
         /**
                  * Constructs a new Room.
                  * @memberof proto.RoomMessage.Author
                  * @classdesc Represents a Room.
+                 * @implements IRoom
                  * @constructor
                  * @param {proto.RoomMessage.Author.IRoom=} [properties] Properties to set
                  */
@@ -3104,7 +3168,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * Room roomId.
-                 * @member {Long}roomId
+                 * @member {Long} roomId
                  * @memberof proto.RoomMessage.Author.Room
                  * @instance
                  */
@@ -3189,6 +3253,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ExtraType enum.
+         * @name proto.RoomMessage.ExtraType
          * @enum {string}
          * @property {number} NO_EXTRA=0 NO_EXTRA value
          * @property {number} CHANNEL_EXTRA=1 CHANNEL_EXTRA value
@@ -3206,16 +3271,17 @@ export const proto = $root.proto = (() => {
              * Properties of a ChannelExtra.
              * @memberof proto.RoomMessage
              * @interface IChannelExtra
-             * @property {string} [signature] ChannelExtra signature
-             * @property {string} [viewsLabel] ChannelExtra viewsLabel
-             * @property {string} [thumbsUpLabel] ChannelExtra thumbsUpLabel
-             * @property {string} [thumbsDownLabel] ChannelExtra thumbsDownLabel
+             * @property {string|null} [signature] ChannelExtra signature
+             * @property {string|null} [viewsLabel] ChannelExtra viewsLabel
+             * @property {string|null} [thumbsUpLabel] ChannelExtra thumbsUpLabel
+             * @property {string|null} [thumbsDownLabel] ChannelExtra thumbsDownLabel
              */
 
       /**
              * Constructs a new ChannelExtra.
              * @memberof proto.RoomMessage
              * @classdesc Represents a ChannelExtra.
+             * @implements IChannelExtra
              * @constructor
              * @param {proto.RoomMessage.IChannelExtra=} [properties] Properties to set
              */
@@ -3229,7 +3295,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * ChannelExtra signature.
-             * @member {string}signature
+             * @member {string} signature
              * @memberof proto.RoomMessage.ChannelExtra
              * @instance
              */
@@ -3237,7 +3303,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * ChannelExtra viewsLabel.
-             * @member {string}viewsLabel
+             * @member {string} viewsLabel
              * @memberof proto.RoomMessage.ChannelExtra
              * @instance
              */
@@ -3245,7 +3311,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * ChannelExtra thumbsUpLabel.
-             * @member {string}thumbsUpLabel
+             * @member {string} thumbsUpLabel
              * @memberof proto.RoomMessage.ChannelExtra
              * @instance
              */
@@ -3253,7 +3319,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * ChannelExtra thumbsDownLabel.
-             * @member {string}thumbsDownLabel
+             * @member {string} thumbsDownLabel
              * @memberof proto.RoomMessage.ChannelExtra
              * @instance
              */
@@ -3363,14 +3429,15 @@ export const proto = $root.proto = (() => {
          * Properties of a RoomDraft.
          * @memberof proto
          * @interface IRoomDraft
-         * @property {string} [message] RoomDraft message
-         * @property {Long} [replyTo] RoomDraft replyTo
+         * @property {string|null} [message] RoomDraft message
+         * @property {Long|null} [replyTo] RoomDraft replyTo
          */
 
     /**
          * Constructs a new RoomDraft.
          * @memberof proto
          * @classdesc Represents a RoomDraft.
+         * @implements IRoomDraft
          * @constructor
          * @param {proto.IRoomDraft=} [properties] Properties to set
          */
@@ -3384,7 +3451,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomDraft message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.RoomDraft
          * @instance
          */
@@ -3392,7 +3459,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * RoomDraft replyTo.
-         * @member {Long}replyTo
+         * @member {Long} replyTo
          * @memberof proto.RoomDraft
          * @instance
          */
@@ -3481,6 +3548,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * RoomMute enum.
+     * @name proto.RoomMute
      * @enum {string}
      * @property {number} UNMUTE=0 UNMUTE value
      * @property {number} MUTE=1 MUTE value
@@ -3498,28 +3566,30 @@ export const proto = $root.proto = (() => {
          * Properties of a Room.
          * @memberof proto
          * @interface IRoom
-         * @property {Long} [id] Room id
-         * @property {proto.Room.Type} [type] Room type
-         * @property {string} [title] Room title
-         * @property {string} [initials] Room initials
-         * @property {string} [color] Room color
-         * @property {number} [unreadCount] Room unreadCount
-         * @property {proto.RoomMessage} [lastMessage] Room lastMessage
-         * @property {boolean} [readOnly] Room readOnly
-         * @property {boolean} [isParticipant] Room isParticipant
-         * @property {proto.RoomDraft} [draft] Room draft
-         * @property {proto.RoomMessage} [firstUnreadMessage] Room firstUnreadMessage
-         * @property {proto.RoomMute} [roomMute] Room roomMute
-         * @property {Long} [pinId] Room pinId
-         * @property {proto.ChatRoom} [chatRoomExtra] Room chatRoomExtra
-         * @property {proto.GroupRoom} [groupRoomExtra] Room groupRoomExtra
-         * @property {proto.ChannelRoom} [channelRoomExtra] Room channelRoomExtra
+         * @property {Long|null} [id] Room id
+         * @property {proto.Room.Type|null} [type] Room type
+         * @property {string|null} [title] Room title
+         * @property {string|null} [initials] Room initials
+         * @property {string|null} [color] Room color
+         * @property {number|null} [unreadCount] Room unreadCount
+         * @property {proto.RoomMessage|null} [lastMessage] Room lastMessage
+         * @property {boolean|null} [readOnly] Room readOnly
+         * @property {boolean|null} [isParticipant] Room isParticipant
+         * @property {proto.RoomDraft|null} [draft] Room draft
+         * @property {proto.RoomMessage|null} [firstUnreadMessage] Room firstUnreadMessage
+         * @property {proto.RoomMute|null} [roomMute] Room roomMute
+         * @property {Long|null} [pinId] Room pinId
+         * @property {proto.RoomMessage|null} [pinnedMessage] Room pinnedMessage
+         * @property {proto.ChatRoom|null} [chatRoomExtra] Room chatRoomExtra
+         * @property {proto.GroupRoom|null} [groupRoomExtra] Room groupRoomExtra
+         * @property {proto.ChannelRoom|null} [channelRoomExtra] Room channelRoomExtra
          */
 
     /**
          * Constructs a new Room.
          * @memberof proto
          * @classdesc Represents a Room.
+         * @implements IRoom
          * @constructor
          * @param {proto.IRoom=} [properties] Properties to set
          */
@@ -3533,7 +3603,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.Room
          * @instance
          */
@@ -3541,7 +3611,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room type.
-         * @member {proto.Room.Type}type
+         * @member {proto.Room.Type} type
          * @memberof proto.Room
          * @instance
          */
@@ -3549,7 +3619,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room title.
-         * @member {string}title
+         * @member {string} title
          * @memberof proto.Room
          * @instance
          */
@@ -3557,7 +3627,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room initials.
-         * @member {string}initials
+         * @member {string} initials
          * @memberof proto.Room
          * @instance
          */
@@ -3565,7 +3635,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room color.
-         * @member {string}color
+         * @member {string} color
          * @memberof proto.Room
          * @instance
          */
@@ -3573,7 +3643,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room unreadCount.
-         * @member {number}unreadCount
+         * @member {number} unreadCount
          * @memberof proto.Room
          * @instance
          */
@@ -3581,7 +3651,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room lastMessage.
-         * @member {(proto.RoomMessage|null|undefined)}lastMessage
+         * @member {proto.RoomMessage|null|undefined} lastMessage
          * @memberof proto.Room
          * @instance
          */
@@ -3589,7 +3659,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room readOnly.
-         * @member {boolean}readOnly
+         * @member {boolean} readOnly
          * @memberof proto.Room
          * @instance
          */
@@ -3597,7 +3667,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room isParticipant.
-         * @member {boolean}isParticipant
+         * @member {boolean} isParticipant
          * @memberof proto.Room
          * @instance
          */
@@ -3605,7 +3675,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.Room
          * @instance
          */
@@ -3613,7 +3683,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room firstUnreadMessage.
-         * @member {(proto.RoomMessage|null|undefined)}firstUnreadMessage
+         * @member {proto.RoomMessage|null|undefined} firstUnreadMessage
          * @memberof proto.Room
          * @instance
          */
@@ -3621,7 +3691,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room roomMute.
-         * @member {proto.RoomMute}roomMute
+         * @member {proto.RoomMute} roomMute
          * @memberof proto.Room
          * @instance
          */
@@ -3629,15 +3699,23 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room pinId.
-         * @member {Long}pinId
+         * @member {Long} pinId
          * @memberof proto.Room
          * @instance
          */
     Room.prototype.pinId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
     /**
+         * Room pinnedMessage.
+         * @member {proto.RoomMessage|null|undefined} pinnedMessage
+         * @memberof proto.Room
+         * @instance
+         */
+    Room.prototype.pinnedMessage = null;
+
+    /**
          * Room chatRoomExtra.
-         * @member {(proto.ChatRoom|null|undefined)}chatRoomExtra
+         * @member {proto.ChatRoom|null|undefined} chatRoomExtra
          * @memberof proto.Room
          * @instance
          */
@@ -3645,7 +3723,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room groupRoomExtra.
-         * @member {(proto.GroupRoom|null|undefined)}groupRoomExtra
+         * @member {proto.GroupRoom|null|undefined} groupRoomExtra
          * @memberof proto.Room
          * @instance
          */
@@ -3653,7 +3731,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Room channelRoomExtra.
-         * @member {(proto.ChannelRoom|null|undefined)}channelRoomExtra
+         * @member {proto.ChannelRoom|null|undefined} channelRoomExtra
          * @memberof proto.Room
          * @instance
          */
@@ -3698,6 +3776,7 @@ export const proto = $root.proto = (() => {
       if (message.firstUnreadMessage != null && message.hasOwnProperty('firstUnreadMessage')) {$root.proto.RoomMessage.encode(message.firstUnreadMessage, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();}
       if (message.roomMute != null && message.hasOwnProperty('roomMute')) {writer.uint32(/* id 15, wireType 0 =*/120).int32(message.roomMute);}
       if (message.pinId != null && message.hasOwnProperty('pinId')) {writer.uint32(/* id 16, wireType 0 =*/128).uint64(message.pinId);}
+      if (message.pinnedMessage != null && message.hasOwnProperty('pinnedMessage')) {$root.proto.RoomMessage.encode(message.pinnedMessage, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();}
       return writer;
     };
 
@@ -3756,6 +3835,9 @@ export const proto = $root.proto = (() => {
             break;
           case 16:
             message.pinId = reader.uint64();
+            break;
+          case 17:
+            message.pinnedMessage = $root.proto.RoomMessage.decode(reader, reader.uint32());
             break;
           case 11:
             message.chatRoomExtra = $root.proto.ChatRoom.decode(reader, reader.uint32());
@@ -3820,11 +3902,11 @@ export const proto = $root.proto = (() => {
         if (typeof message.isParticipant !== 'boolean') {return 'isParticipant: boolean expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       if (message.firstUnreadMessage != null && message.hasOwnProperty('firstUnreadMessage')) {
-        error = $root.proto.RoomMessage.verify(message.firstUnreadMessage);
+        let error = $root.proto.RoomMessage.verify(message.firstUnreadMessage);
         if (error) {return 'firstUnreadMessage.' + error;}
       }
       if (message.roomMute != null && message.hasOwnProperty('roomMute')) {
@@ -3839,16 +3921,20 @@ export const proto = $root.proto = (() => {
       if (message.pinId != null && message.hasOwnProperty('pinId')) {
         if (!$util.isInteger(message.pinId) && !(message.pinId && $util.isInteger(message.pinId.low) && $util.isInteger(message.pinId.high))) {return 'pinId: integer|Long expected';}
       }
+      if (message.pinnedMessage != null && message.hasOwnProperty('pinnedMessage')) {
+        let error = $root.proto.RoomMessage.verify(message.pinnedMessage);
+        if (error) {return 'pinnedMessage.' + error;}
+      }
       if (message.chatRoomExtra != null && message.hasOwnProperty('chatRoomExtra')) {
-        error = $root.proto.ChatRoom.verify(message.chatRoomExtra);
+        let error = $root.proto.ChatRoom.verify(message.chatRoomExtra);
         if (error) {return 'chatRoomExtra.' + error;}
       }
       if (message.groupRoomExtra != null && message.hasOwnProperty('groupRoomExtra')) {
-        error = $root.proto.GroupRoom.verify(message.groupRoomExtra);
+        let error = $root.proto.GroupRoom.verify(message.groupRoomExtra);
         if (error) {return 'groupRoomExtra.' + error;}
       }
       if (message.channelRoomExtra != null && message.hasOwnProperty('channelRoomExtra')) {
-        error = $root.proto.ChannelRoom.verify(message.channelRoomExtra);
+        let error = $root.proto.ChannelRoom.verify(message.channelRoomExtra);
         if (error) {return 'channelRoomExtra.' + error;}
       }
       return null;
@@ -3856,6 +3942,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Type enum.
+         * @name proto.Room.Type
          * @enum {string}
          * @property {number} CHAT=0 CHAT value
          * @property {number} GROUP=1 GROUP value
@@ -3878,13 +3965,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatRoom.
          * @memberof proto
          * @interface IChatRoom
-         * @property {proto.RegisteredUser} [peer] ChatRoom peer
+         * @property {proto.RegisteredUser|null} [peer] ChatRoom peer
          */
 
     /**
          * Constructs a new ChatRoom.
          * @memberof proto
          * @classdesc Represents a ChatRoom.
+         * @implements IChatRoom
          * @constructor
          * @param {proto.IChatRoom=} [properties] Properties to set
          */
@@ -3898,7 +3986,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatRoom peer.
-         * @member {(proto.RegisteredUser|null|undefined)}peer
+         * @member {proto.RegisteredUser|null|undefined} peer
          * @memberof proto.ChatRoom
          * @instance
          */
@@ -3985,23 +4073,24 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupRoom.
          * @memberof proto
          * @interface IGroupRoom
-         * @property {proto.GroupRoom.Type} [type] GroupRoom type
-         * @property {proto.GroupRoom.Role} [role] GroupRoom role
-         * @property {number} [participantsCount] GroupRoom participantsCount
-         * @property {string} [participantsCountLabel] GroupRoom participantsCountLabel
-         * @property {number} [participantsCountLimit] GroupRoom participantsCountLimit
-         * @property {string} [participantsCountLimitLabel] GroupRoom participantsCountLimitLabel
-         * @property {string} [description] GroupRoom description
-         * @property {number} [avatarCount] GroupRoom avatarCount
-         * @property {proto.Avatar} [avatar] GroupRoom avatar
-         * @property {proto.GroupRoom.PrivateExtra} [privateExtra] GroupRoom privateExtra
-         * @property {proto.GroupRoom.PublicExtra} [publicExtra] GroupRoom publicExtra
+         * @property {proto.GroupRoom.Type|null} [type] GroupRoom type
+         * @property {proto.GroupRoom.Role|null} [role] GroupRoom role
+         * @property {number|null} [participantsCount] GroupRoom participantsCount
+         * @property {string|null} [participantsCountLabel] GroupRoom participantsCountLabel
+         * @property {number|null} [participantsCountLimit] GroupRoom participantsCountLimit
+         * @property {string|null} [participantsCountLimitLabel] GroupRoom participantsCountLimitLabel
+         * @property {string|null} [description] GroupRoom description
+         * @property {number|null} [avatarCount] GroupRoom avatarCount
+         * @property {proto.Avatar|null} [avatar] GroupRoom avatar
+         * @property {proto.GroupRoom.PrivateExtra|null} [privateExtra] GroupRoom privateExtra
+         * @property {proto.GroupRoom.PublicExtra|null} [publicExtra] GroupRoom publicExtra
          */
 
     /**
          * Constructs a new GroupRoom.
          * @memberof proto
          * @classdesc Represents a GroupRoom.
+         * @implements IGroupRoom
          * @constructor
          * @param {proto.IGroupRoom=} [properties] Properties to set
          */
@@ -4015,7 +4104,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom type.
-         * @member {proto.GroupRoom.Type}type
+         * @member {proto.GroupRoom.Type} type
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4023,7 +4112,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom role.
-         * @member {proto.GroupRoom.Role}role
+         * @member {proto.GroupRoom.Role} role
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4031,7 +4120,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom participantsCount.
-         * @member {number}participantsCount
+         * @member {number} participantsCount
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4039,7 +4128,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom participantsCountLabel.
-         * @member {string}participantsCountLabel
+         * @member {string} participantsCountLabel
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4047,7 +4136,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom participantsCountLimit.
-         * @member {number}participantsCountLimit
+         * @member {number} participantsCountLimit
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4055,7 +4144,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom participantsCountLimitLabel.
-         * @member {string}participantsCountLimitLabel
+         * @member {string} participantsCountLimitLabel
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4063,7 +4152,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4071,7 +4160,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom avatarCount.
-         * @member {number}avatarCount
+         * @member {number} avatarCount
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4079,7 +4168,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom avatar.
-         * @member {(proto.Avatar|null|undefined)}avatar
+         * @member {proto.Avatar|null|undefined} avatar
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4087,7 +4176,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom privateExtra.
-         * @member {(proto.GroupRoom.PrivateExtra|null|undefined)}privateExtra
+         * @member {proto.GroupRoom.PrivateExtra|null|undefined} privateExtra
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4095,7 +4184,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRoom publicExtra.
-         * @member {(proto.GroupRoom.PublicExtra|null|undefined)}publicExtra
+         * @member {proto.GroupRoom.PublicExtra|null|undefined} publicExtra
          * @memberof proto.GroupRoom
          * @instance
          */
@@ -4249,11 +4338,11 @@ export const proto = $root.proto = (() => {
         if (error) {return 'avatar.' + error;}
       }
       if (message.privateExtra != null && message.hasOwnProperty('privateExtra')) {
-        error = $root.proto.GroupRoom.PrivateExtra.verify(message.privateExtra);
+        let error = $root.proto.GroupRoom.PrivateExtra.verify(message.privateExtra);
         if (error) {return 'privateExtra.' + error;}
       }
       if (message.publicExtra != null && message.hasOwnProperty('publicExtra')) {
-        error = $root.proto.GroupRoom.PublicExtra.verify(message.publicExtra);
+        let error = $root.proto.GroupRoom.PublicExtra.verify(message.publicExtra);
         if (error) {return 'publicExtra.' + error;}
       }
       return null;
@@ -4261,6 +4350,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Type enum.
+         * @name proto.GroupRoom.Type
          * @enum {string}
          * @property {number} PRIVATE_ROOM=0 PRIVATE_ROOM value
          * @property {number} PUBLIC_ROOM=1 PUBLIC_ROOM value
@@ -4274,6 +4364,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Role enum.
+         * @name proto.GroupRoom.Role
          * @enum {string}
          * @property {number} MEMBER=0 MEMBER value
          * @property {number} MODERATOR=1 MODERATOR value
@@ -4295,14 +4386,15 @@ export const proto = $root.proto = (() => {
              * Properties of a PrivateExtra.
              * @memberof proto.GroupRoom
              * @interface IPrivateExtra
-             * @property {string} [inviteLink] PrivateExtra inviteLink
-             * @property {string} [inviteToken] PrivateExtra inviteToken
+             * @property {string|null} [inviteLink] PrivateExtra inviteLink
+             * @property {string|null} [inviteToken] PrivateExtra inviteToken
              */
 
       /**
              * Constructs a new PrivateExtra.
              * @memberof proto.GroupRoom
              * @classdesc Represents a PrivateExtra.
+             * @implements IPrivateExtra
              * @constructor
              * @param {proto.GroupRoom.IPrivateExtra=} [properties] Properties to set
              */
@@ -4316,7 +4408,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * PrivateExtra inviteLink.
-             * @member {string}inviteLink
+             * @member {string} inviteLink
              * @memberof proto.GroupRoom.PrivateExtra
              * @instance
              */
@@ -4324,7 +4416,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * PrivateExtra inviteToken.
-             * @member {string}inviteToken
+             * @member {string} inviteToken
              * @memberof proto.GroupRoom.PrivateExtra
              * @instance
              */
@@ -4417,13 +4509,14 @@ export const proto = $root.proto = (() => {
              * Properties of a PublicExtra.
              * @memberof proto.GroupRoom
              * @interface IPublicExtra
-             * @property {string} [username] PublicExtra username
+             * @property {string|null} [username] PublicExtra username
              */
 
       /**
              * Constructs a new PublicExtra.
              * @memberof proto.GroupRoom
              * @classdesc Represents a PublicExtra.
+             * @implements IPublicExtra
              * @constructor
              * @param {proto.GroupRoom.IPublicExtra=} [properties] Properties to set
              */
@@ -4437,7 +4530,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * PublicExtra username.
-             * @member {string}username
+             * @member {string} username
              * @memberof proto.GroupRoom.PublicExtra
              * @instance
              */
@@ -4526,23 +4619,26 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelRoom.
          * @memberof proto
          * @interface IChannelRoom
-         * @property {proto.ChannelRoom.Type} [type] ChannelRoom type
-         * @property {proto.ChannelRoom.Role} [role] ChannelRoom role
-         * @property {number} [participantsCount] ChannelRoom participantsCount
-         * @property {string} [participantsCountLabel] ChannelRoom participantsCountLabel
-         * @property {string} [description] ChannelRoom description
-         * @property {number} [avatarCount] ChannelRoom avatarCount
-         * @property {proto.Avatar} [avatar] ChannelRoom avatar
-         * @property {proto.ChannelRoom.PrivateExtra} [privateExtra] ChannelRoom privateExtra
-         * @property {proto.ChannelRoom.PublicExtra} [publicExtra] ChannelRoom publicExtra
-         * @property {boolean} [signature] ChannelRoom signature
-         * @property {Long} [seenId] ChannelRoom seenId
+         * @property {proto.ChannelRoom.Type|null} [type] ChannelRoom type
+         * @property {proto.ChannelRoom.Role|null} [role] ChannelRoom role
+         * @property {number|null} [participantsCount] ChannelRoom participantsCount
+         * @property {string|null} [participantsCountLabel] ChannelRoom participantsCountLabel
+         * @property {string|null} [description] ChannelRoom description
+         * @property {number|null} [avatarCount] ChannelRoom avatarCount
+         * @property {proto.Avatar|null} [avatar] ChannelRoom avatar
+         * @property {proto.ChannelRoom.PrivateExtra|null} [privateExtra] ChannelRoom privateExtra
+         * @property {proto.ChannelRoom.PublicExtra|null} [publicExtra] ChannelRoom publicExtra
+         * @property {boolean|null} [signature] ChannelRoom signature
+         * @property {Long|null} [seenId] ChannelRoom seenId
+         * @property {boolean|null} [verified] ChannelRoom verified
+         * @property {boolean|null} [reactionStatus] ChannelRoom reactionStatus
          */
 
     /**
          * Constructs a new ChannelRoom.
          * @memberof proto
          * @classdesc Represents a ChannelRoom.
+         * @implements IChannelRoom
          * @constructor
          * @param {proto.IChannelRoom=} [properties] Properties to set
          */
@@ -4556,7 +4652,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom type.
-         * @member {proto.ChannelRoom.Type}type
+         * @member {proto.ChannelRoom.Type} type
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4564,7 +4660,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom role.
-         * @member {proto.ChannelRoom.Role}role
+         * @member {proto.ChannelRoom.Role} role
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4572,7 +4668,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom participantsCount.
-         * @member {number}participantsCount
+         * @member {number} participantsCount
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4580,7 +4676,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom participantsCountLabel.
-         * @member {string}participantsCountLabel
+         * @member {string} participantsCountLabel
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4588,7 +4684,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4596,7 +4692,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom avatarCount.
-         * @member {number}avatarCount
+         * @member {number} avatarCount
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4604,7 +4700,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom avatar.
-         * @member {(proto.Avatar|null|undefined)}avatar
+         * @member {proto.Avatar|null|undefined} avatar
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4612,7 +4708,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom privateExtra.
-         * @member {(proto.ChannelRoom.PrivateExtra|null|undefined)}privateExtra
+         * @member {proto.ChannelRoom.PrivateExtra|null|undefined} privateExtra
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4620,7 +4716,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom publicExtra.
-         * @member {(proto.ChannelRoom.PublicExtra|null|undefined)}publicExtra
+         * @member {proto.ChannelRoom.PublicExtra|null|undefined} publicExtra
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4628,7 +4724,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom signature.
-         * @member {boolean}signature
+         * @member {boolean} signature
          * @memberof proto.ChannelRoom
          * @instance
          */
@@ -4636,11 +4732,27 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRoom seenId.
-         * @member {Long}seenId
+         * @member {Long} seenId
          * @memberof proto.ChannelRoom
          * @instance
          */
     ChannelRoom.prototype.seenId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ChannelRoom verified.
+         * @member {boolean} verified
+         * @memberof proto.ChannelRoom
+         * @instance
+         */
+    ChannelRoom.prototype.verified = false;
+
+    /**
+         * ChannelRoom reactionStatus.
+         * @member {boolean} reactionStatus
+         * @memberof proto.ChannelRoom
+         * @instance
+         */
+    ChannelRoom.prototype.reactionStatus = false;
 
     /**
          * Creates a new ChannelRoom instance using the specified properties.
@@ -4676,6 +4788,8 @@ export const proto = $root.proto = (() => {
       if (message.publicExtra != null && message.hasOwnProperty('publicExtra')) {$root.proto.ChannelRoom.PublicExtra.encode(message.publicExtra, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();}
       if (message.signature != null && message.hasOwnProperty('signature')) {writer.uint32(/* id 10, wireType 0 =*/80).bool(message.signature);}
       if (message.seenId != null && message.hasOwnProperty('seenId')) {writer.uint32(/* id 11, wireType 0 =*/88).uint64(message.seenId);}
+      if (message.verified != null && message.hasOwnProperty('verified')) {writer.uint32(/* id 12, wireType 0 =*/96).bool(message.verified);}
+      if (message.reactionStatus != null && message.hasOwnProperty('reactionStatus')) {writer.uint32(/* id 13, wireType 0 =*/104).bool(message.reactionStatus);}
       return writer;
     };
 
@@ -4728,6 +4842,12 @@ export const proto = $root.proto = (() => {
             break;
           case 11:
             message.seenId = reader.uint64();
+            break;
+          case 12:
+            message.verified = reader.bool();
+            break;
+          case 13:
+            message.reactionStatus = reader.bool();
             break;
           default:
             reader.skipType(tag & 7);
@@ -4784,11 +4904,11 @@ export const proto = $root.proto = (() => {
         if (error) {return 'avatar.' + error;}
       }
       if (message.privateExtra != null && message.hasOwnProperty('privateExtra')) {
-        error = $root.proto.ChannelRoom.PrivateExtra.verify(message.privateExtra);
+        let error = $root.proto.ChannelRoom.PrivateExtra.verify(message.privateExtra);
         if (error) {return 'privateExtra.' + error;}
       }
       if (message.publicExtra != null && message.hasOwnProperty('publicExtra')) {
-        error = $root.proto.ChannelRoom.PublicExtra.verify(message.publicExtra);
+        let error = $root.proto.ChannelRoom.PublicExtra.verify(message.publicExtra);
         if (error) {return 'publicExtra.' + error;}
       }
       if (message.signature != null && message.hasOwnProperty('signature')) {
@@ -4797,11 +4917,18 @@ export const proto = $root.proto = (() => {
       if (message.seenId != null && message.hasOwnProperty('seenId')) {
         if (!$util.isInteger(message.seenId) && !(message.seenId && $util.isInteger(message.seenId.low) && $util.isInteger(message.seenId.high))) {return 'seenId: integer|Long expected';}
       }
+      if (message.verified != null && message.hasOwnProperty('verified')) {
+        if (typeof message.verified !== 'boolean') {return 'verified: boolean expected';}
+      }
+      if (message.reactionStatus != null && message.hasOwnProperty('reactionStatus')) {
+        if (typeof message.reactionStatus !== 'boolean') {return 'reactionStatus: boolean expected';}
+      }
       return null;
     };
 
     /**
          * Type enum.
+         * @name proto.ChannelRoom.Type
          * @enum {string}
          * @property {number} PRIVATE_ROOM=0 PRIVATE_ROOM value
          * @property {number} PUBLIC_ROOM=1 PUBLIC_ROOM value
@@ -4815,6 +4942,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Role enum.
+         * @name proto.ChannelRoom.Role
          * @enum {string}
          * @property {number} MEMBER=0 MEMBER value
          * @property {number} MODERATOR=1 MODERATOR value
@@ -4836,14 +4964,15 @@ export const proto = $root.proto = (() => {
              * Properties of a PrivateExtra.
              * @memberof proto.ChannelRoom
              * @interface IPrivateExtra
-             * @property {string} [inviteLink] PrivateExtra inviteLink
-             * @property {string} [inviteToken] PrivateExtra inviteToken
+             * @property {string|null} [inviteLink] PrivateExtra inviteLink
+             * @property {string|null} [inviteToken] PrivateExtra inviteToken
              */
 
       /**
              * Constructs a new PrivateExtra.
              * @memberof proto.ChannelRoom
              * @classdesc Represents a PrivateExtra.
+             * @implements IPrivateExtra
              * @constructor
              * @param {proto.ChannelRoom.IPrivateExtra=} [properties] Properties to set
              */
@@ -4857,7 +4986,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * PrivateExtra inviteLink.
-             * @member {string}inviteLink
+             * @member {string} inviteLink
              * @memberof proto.ChannelRoom.PrivateExtra
              * @instance
              */
@@ -4865,7 +4994,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * PrivateExtra inviteToken.
-             * @member {string}inviteToken
+             * @member {string} inviteToken
              * @memberof proto.ChannelRoom.PrivateExtra
              * @instance
              */
@@ -4958,13 +5087,14 @@ export const proto = $root.proto = (() => {
              * Properties of a PublicExtra.
              * @memberof proto.ChannelRoom
              * @interface IPublicExtra
-             * @property {string} [username] PublicExtra username
+             * @property {string|null} [username] PublicExtra username
              */
 
       /**
              * Constructs a new PublicExtra.
              * @memberof proto.ChannelRoom
              * @classdesc Represents a PublicExtra.
+             * @implements IPublicExtra
              * @constructor
              * @param {proto.ChannelRoom.IPublicExtra=} [properties] Properties to set
              */
@@ -4978,7 +5108,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * PublicExtra username.
-             * @member {string}username
+             * @member {string} username
              * @memberof proto.ChannelRoom.PublicExtra
              * @instance
              */
@@ -5067,18 +5197,19 @@ export const proto = $root.proto = (() => {
          * Properties of a Thumbnail.
          * @memberof proto
          * @interface IThumbnail
-         * @property {Long} [size] Thumbnail size
-         * @property {number} [width] Thumbnail width
-         * @property {number} [height] Thumbnail height
-         * @property {string} [cacheId] Thumbnail cacheId
-         * @property {string} [name] Thumbnail name
-         * @property {string} [mime] Thumbnail mime
+         * @property {Long|null} [size] Thumbnail size
+         * @property {number|null} [width] Thumbnail width
+         * @property {number|null} [height] Thumbnail height
+         * @property {string|null} [cacheId] Thumbnail cacheId
+         * @property {string|null} [name] Thumbnail name
+         * @property {string|null} [mime] Thumbnail mime
          */
 
     /**
          * Constructs a new Thumbnail.
          * @memberof proto
          * @classdesc Represents a Thumbnail.
+         * @implements IThumbnail
          * @constructor
          * @param {proto.IThumbnail=} [properties] Properties to set
          */
@@ -5092,7 +5223,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Thumbnail size.
-         * @member {Long}size
+         * @member {Long} size
          * @memberof proto.Thumbnail
          * @instance
          */
@@ -5100,7 +5231,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Thumbnail width.
-         * @member {number}width
+         * @member {number} width
          * @memberof proto.Thumbnail
          * @instance
          */
@@ -5108,7 +5239,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Thumbnail height.
-         * @member {number}height
+         * @member {number} height
          * @memberof proto.Thumbnail
          * @instance
          */
@@ -5116,7 +5247,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Thumbnail cacheId.
-         * @member {string}cacheId
+         * @member {string} cacheId
          * @memberof proto.Thumbnail
          * @instance
          */
@@ -5124,7 +5255,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Thumbnail name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.Thumbnail
          * @instance
          */
@@ -5132,7 +5263,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Thumbnail mime.
-         * @member {string}mime
+         * @member {string} mime
          * @memberof proto.Thumbnail
          * @instance
          */
@@ -5253,23 +5384,25 @@ export const proto = $root.proto = (() => {
          * Properties of a File.
          * @memberof proto
          * @interface IFile
-         * @property {string} [token] File token
-         * @property {string} [name] File name
-         * @property {Long} [size] File size
-         * @property {proto.Thumbnail} [largeThumbnail] File largeThumbnail
-         * @property {proto.Thumbnail} [smallThumbnail] File smallThumbnail
-         * @property {proto.Thumbnail} [waveformThumbnail] File waveformThumbnail
-         * @property {number} [width] File width
-         * @property {number} [height] File height
-         * @property {number} [duration] File duration
-         * @property {string} [cacheId] File cacheId
-         * @property {string} [mime] File mime
+         * @property {string|null} [token] File token
+         * @property {string|null} [name] File name
+         * @property {Long|null} [size] File size
+         * @property {proto.Thumbnail|null} [largeThumbnail] File largeThumbnail
+         * @property {proto.Thumbnail|null} [smallThumbnail] File smallThumbnail
+         * @property {proto.Thumbnail|null} [waveformThumbnail] File waveformThumbnail
+         * @property {number|null} [width] File width
+         * @property {number|null} [height] File height
+         * @property {number|null} [duration] File duration
+         * @property {string|null} [cacheId] File cacheId
+         * @property {string|null} [mime] File mime
+         * @property {string|null} [publicUrl] File publicUrl
          */
 
     /**
          * Constructs a new File.
          * @memberof proto
          * @classdesc Represents a File.
+         * @implements IFile
          * @constructor
          * @param {proto.IFile=} [properties] Properties to set
          */
@@ -5283,7 +5416,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.File
          * @instance
          */
@@ -5291,7 +5424,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.File
          * @instance
          */
@@ -5299,7 +5432,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File size.
-         * @member {Long}size
+         * @member {Long} size
          * @memberof proto.File
          * @instance
          */
@@ -5307,7 +5440,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File largeThumbnail.
-         * @member {(proto.Thumbnail|null|undefined)}largeThumbnail
+         * @member {proto.Thumbnail|null|undefined} largeThumbnail
          * @memberof proto.File
          * @instance
          */
@@ -5315,7 +5448,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File smallThumbnail.
-         * @member {(proto.Thumbnail|null|undefined)}smallThumbnail
+         * @member {proto.Thumbnail|null|undefined} smallThumbnail
          * @memberof proto.File
          * @instance
          */
@@ -5323,7 +5456,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File waveformThumbnail.
-         * @member {(proto.Thumbnail|null|undefined)}waveformThumbnail
+         * @member {proto.Thumbnail|null|undefined} waveformThumbnail
          * @memberof proto.File
          * @instance
          */
@@ -5331,7 +5464,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File width.
-         * @member {number}width
+         * @member {number} width
          * @memberof proto.File
          * @instance
          */
@@ -5339,7 +5472,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File height.
-         * @member {number}height
+         * @member {number} height
          * @memberof proto.File
          * @instance
          */
@@ -5347,7 +5480,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File duration.
-         * @member {number}duration
+         * @member {number} duration
          * @memberof proto.File
          * @instance
          */
@@ -5355,7 +5488,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * File cacheId.
-         * @member {string}cacheId
+         * @member {string} cacheId
          * @memberof proto.File
          * @instance
          */
@@ -5363,11 +5496,19 @@ export const proto = $root.proto = (() => {
 
     /**
          * File mime.
-         * @member {string}mime
+         * @member {string} mime
          * @memberof proto.File
          * @instance
          */
     File.prototype.mime = '';
+
+    /**
+         * File publicUrl.
+         * @member {string} publicUrl
+         * @memberof proto.File
+         * @instance
+         */
+    File.prototype.publicUrl = '';
 
     /**
          * Creates a new File instance using the specified properties.
@@ -5403,6 +5544,7 @@ export const proto = $root.proto = (() => {
       if (message.duration != null && message.hasOwnProperty('duration')) {writer.uint32(/* id 9, wireType 1 =*/73).double(message.duration);}
       if (message.cacheId != null && message.hasOwnProperty('cacheId')) {writer.uint32(/* id 10, wireType 2 =*/82).string(message.cacheId);}
       if (message.mime != null && message.hasOwnProperty('mime')) {writer.uint32(/* id 11, wireType 2 =*/90).string(message.mime);}
+      if (message.publicUrl != null && message.hasOwnProperty('publicUrl')) {writer.uint32(/* id 12, wireType 2 =*/98).string(message.publicUrl);}
       return writer;
     };
 
@@ -5456,6 +5598,9 @@ export const proto = $root.proto = (() => {
           case 11:
             message.mime = reader.string();
             break;
+          case 12:
+            message.publicUrl = reader.string();
+            break;
           default:
             reader.skipType(tag & 7);
             break;
@@ -5488,11 +5633,11 @@ export const proto = $root.proto = (() => {
         if (error) {return 'largeThumbnail.' + error;}
       }
       if (message.smallThumbnail != null && message.hasOwnProperty('smallThumbnail')) {
-        error = $root.proto.Thumbnail.verify(message.smallThumbnail);
+        let error = $root.proto.Thumbnail.verify(message.smallThumbnail);
         if (error) {return 'smallThumbnail.' + error;}
       }
       if (message.waveformThumbnail != null && message.hasOwnProperty('waveformThumbnail')) {
-        error = $root.proto.Thumbnail.verify(message.waveformThumbnail);
+        let error = $root.proto.Thumbnail.verify(message.waveformThumbnail);
         if (error) {return 'waveformThumbnail.' + error;}
       }
       if (message.width != null && message.hasOwnProperty('width')) {
@@ -5510,6 +5655,9 @@ export const proto = $root.proto = (() => {
       if (message.mime != null && message.hasOwnProperty('mime')) {
         if (!$util.isString(message.mime)) {return 'mime: string expected';}
       }
+      if (message.publicUrl != null && message.hasOwnProperty('publicUrl')) {
+        if (!$util.isString(message.publicUrl)) {return 'publicUrl: string expected';}
+      }
       return null;
     };
 
@@ -5518,6 +5666,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * PrivacyType enum.
+     * @name proto.PrivacyType
      * @enum {string}
      * @property {number} USER_STATUS=0 USER_STATUS value
      * @property {number} AVATAR=1 AVATAR value
@@ -5543,6 +5692,7 @@ export const proto = $root.proto = (() => {
 
   /**
      * PrivacyLevel enum.
+     * @name proto.PrivacyLevel
      * @enum {string}
      * @property {number} ALLOW_ALL=0 ALLOW_ALL value
      * @property {number} DENY_ALL=1 DENY_ALL value
@@ -5562,14 +5712,15 @@ export const proto = $root.proto = (() => {
          * Properties of a Wallpaper.
          * @memberof proto
          * @interface IWallpaper
-         * @property {proto.File} [file] Wallpaper file
-         * @property {string} [color] Wallpaper color
+         * @property {proto.File|null} [file] Wallpaper file
+         * @property {string|null} [color] Wallpaper color
          */
 
     /**
          * Constructs a new Wallpaper.
          * @memberof proto
          * @classdesc Represents a Wallpaper.
+         * @implements IWallpaper
          * @constructor
          * @param {proto.IWallpaper=} [properties] Properties to set
          */
@@ -5583,7 +5734,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Wallpaper file.
-         * @member {(proto.File|null|undefined)}file
+         * @member {proto.File|null|undefined} file
          * @memberof proto.Wallpaper
          * @instance
          */
@@ -5591,7 +5742,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Wallpaper color.
-         * @member {string}color
+         * @member {string} color
          * @memberof proto.Wallpaper
          * @instance
          */
@@ -5685,14 +5836,15 @@ export const proto = $root.proto = (() => {
          * Properties of a Pagination.
          * @memberof proto
          * @interface IPagination
-         * @property {number} [offset] Pagination offset
-         * @property {number} [limit] Pagination limit
+         * @property {number|null} [offset] Pagination offset
+         * @property {number|null} [limit] Pagination limit
          */
 
     /**
          * Constructs a new Pagination.
          * @memberof proto
          * @classdesc Represents a Pagination.
+         * @implements IPagination
          * @constructor
          * @param {proto.IPagination=} [properties] Properties to set
          */
@@ -5706,7 +5858,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Pagination offset.
-         * @member {number}offset
+         * @member {number} offset
          * @memberof proto.Pagination
          * @instance
          */
@@ -5714,7 +5866,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Pagination limit.
-         * @member {number}limit
+         * @member {number} limit
          * @memberof proto.Pagination
          * @instance
          */
@@ -5807,16 +5959,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddMessageReaction.
          * @memberof proto
          * @interface IChannelAddMessageReaction
-         * @property {proto.Request} [request] ChannelAddMessageReaction request
-         * @property {Long} [roomId] ChannelAddMessageReaction roomId
-         * @property {Long} [messageId] ChannelAddMessageReaction messageId
-         * @property {proto.RoomMessageReaction} [reaction] ChannelAddMessageReaction reaction
+         * @property {proto.Request|null} [request] ChannelAddMessageReaction request
+         * @property {Long|null} [roomId] ChannelAddMessageReaction roomId
+         * @property {Long|null} [messageId] ChannelAddMessageReaction messageId
+         * @property {proto.RoomMessageReaction|null} [reaction] ChannelAddMessageReaction reaction
          */
 
     /**
          * Constructs a new ChannelAddMessageReaction.
          * @memberof proto
          * @classdesc Represents a ChannelAddMessageReaction.
+         * @implements IChannelAddMessageReaction
          * @constructor
          * @param {proto.IChannelAddMessageReaction=} [properties] Properties to set
          */
@@ -5830,7 +5983,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMessageReaction request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAddMessageReaction
          * @instance
          */
@@ -5838,7 +5991,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMessageReaction roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddMessageReaction
          * @instance
          */
@@ -5846,7 +5999,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMessageReaction messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChannelAddMessageReaction
          * @instance
          */
@@ -5854,7 +6007,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMessageReaction reaction.
-         * @member {proto.RoomMessageReaction}reaction
+         * @member {proto.RoomMessageReaction} reaction
          * @memberof proto.ChannelAddMessageReaction
          * @instance
          */
@@ -5968,14 +6121,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddMessageReactionResponse.
          * @memberof proto
          * @interface IChannelAddMessageReactionResponse
-         * @property {proto.Response} [response] ChannelAddMessageReactionResponse response
-         * @property {string} [reactionCounterLabel] ChannelAddMessageReactionResponse reactionCounterLabel
+         * @property {proto.Response|null} [response] ChannelAddMessageReactionResponse response
+         * @property {string|null} [reactionCounterLabel] ChannelAddMessageReactionResponse reactionCounterLabel
          */
 
     /**
          * Constructs a new ChannelAddMessageReactionResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAddMessageReactionResponse.
+         * @implements IChannelAddMessageReactionResponse
          * @constructor
          * @param {proto.IChannelAddMessageReactionResponse=} [properties] Properties to set
          */
@@ -5989,7 +6143,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMessageReactionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAddMessageReactionResponse
          * @instance
          */
@@ -5997,7 +6151,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddMessageReactionResponse reactionCounterLabel.
-         * @member {string}reactionCounterLabel
+         * @member {string} reactionCounterLabel
          * @memberof proto.ChannelAddMessageReactionResponse
          * @instance
          */
@@ -6091,15 +6245,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddModerator.
          * @memberof proto
          * @interface IChannelAddModerator
-         * @property {proto.Request} [request] ChannelAddModerator request
-         * @property {Long} [roomId] ChannelAddModerator roomId
-         * @property {Long} [memberId] ChannelAddModerator memberId
+         * @property {proto.Request|null} [request] ChannelAddModerator request
+         * @property {Long|null} [roomId] ChannelAddModerator roomId
+         * @property {Long|null} [memberId] ChannelAddModerator memberId
          */
 
     /**
          * Constructs a new ChannelAddModerator.
          * @memberof proto
          * @classdesc Represents a ChannelAddModerator.
+         * @implements IChannelAddModerator
          * @constructor
          * @param {proto.IChannelAddModerator=} [properties] Properties to set
          */
@@ -6113,7 +6268,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddModerator request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAddModerator
          * @instance
          */
@@ -6121,7 +6276,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddModerator roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddModerator
          * @instance
          */
@@ -6129,7 +6284,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddModerator memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelAddModerator
          * @instance
          */
@@ -6230,15 +6385,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAddModeratorResponse.
          * @memberof proto
          * @interface IChannelAddModeratorResponse
-         * @property {proto.Response} [response] ChannelAddModeratorResponse response
-         * @property {Long} [roomId] ChannelAddModeratorResponse roomId
-         * @property {Long} [memberId] ChannelAddModeratorResponse memberId
+         * @property {proto.Response|null} [response] ChannelAddModeratorResponse response
+         * @property {Long|null} [roomId] ChannelAddModeratorResponse roomId
+         * @property {Long|null} [memberId] ChannelAddModeratorResponse memberId
          */
 
     /**
          * Constructs a new ChannelAddModeratorResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAddModeratorResponse.
+         * @implements IChannelAddModeratorResponse
          * @constructor
          * @param {proto.IChannelAddModeratorResponse=} [properties] Properties to set
          */
@@ -6252,7 +6408,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddModeratorResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAddModeratorResponse
          * @instance
          */
@@ -6260,7 +6416,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddModeratorResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAddModeratorResponse
          * @instance
          */
@@ -6268,7 +6424,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAddModeratorResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelAddModeratorResponse
          * @instance
          */
@@ -6369,15 +6525,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAvatarAdd.
          * @memberof proto
          * @interface IChannelAvatarAdd
-         * @property {proto.Request} [request] ChannelAvatarAdd request
-         * @property {string} [attachment] ChannelAvatarAdd attachment
-         * @property {Long} [roomId] ChannelAvatarAdd roomId
+         * @property {proto.Request|null} [request] ChannelAvatarAdd request
+         * @property {string|null} [attachment] ChannelAvatarAdd attachment
+         * @property {Long|null} [roomId] ChannelAvatarAdd roomId
          */
 
     /**
          * Constructs a new ChannelAvatarAdd.
          * @memberof proto
          * @classdesc Represents a ChannelAvatarAdd.
+         * @implements IChannelAvatarAdd
          * @constructor
          * @param {proto.IChannelAvatarAdd=} [properties] Properties to set
          */
@@ -6391,7 +6548,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarAdd request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAvatarAdd
          * @instance
          */
@@ -6399,7 +6556,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarAdd attachment.
-         * @member {string}attachment
+         * @member {string} attachment
          * @memberof proto.ChannelAvatarAdd
          * @instance
          */
@@ -6407,7 +6564,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarAdd roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAvatarAdd
          * @instance
          */
@@ -6508,15 +6665,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAvatarAddResponse.
          * @memberof proto
          * @interface IChannelAvatarAddResponse
-         * @property {proto.Response} [response] ChannelAvatarAddResponse response
-         * @property {proto.Avatar} [avatar] ChannelAvatarAddResponse avatar
-         * @property {Long} [roomId] ChannelAvatarAddResponse roomId
+         * @property {proto.Response|null} [response] ChannelAvatarAddResponse response
+         * @property {proto.Avatar|null} [avatar] ChannelAvatarAddResponse avatar
+         * @property {Long|null} [roomId] ChannelAvatarAddResponse roomId
          */
 
     /**
          * Constructs a new ChannelAvatarAddResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAvatarAddResponse.
+         * @implements IChannelAvatarAddResponse
          * @constructor
          * @param {proto.IChannelAvatarAddResponse=} [properties] Properties to set
          */
@@ -6530,7 +6688,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarAddResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAvatarAddResponse
          * @instance
          */
@@ -6538,7 +6696,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarAddResponse avatar.
-         * @member {(proto.Avatar|null|undefined)}avatar
+         * @member {proto.Avatar|null|undefined} avatar
          * @memberof proto.ChannelAvatarAddResponse
          * @instance
          */
@@ -6546,7 +6704,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarAddResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAvatarAddResponse
          * @instance
          */
@@ -6630,7 +6788,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.avatar != null && message.hasOwnProperty('avatar')) {
-        error = $root.proto.Avatar.verify(message.avatar);
+        let error = $root.proto.Avatar.verify(message.avatar);
         if (error) {return 'avatar.' + error;}
       }
       if (message.roomId != null && message.hasOwnProperty('roomId')) {
@@ -6648,15 +6806,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAvatarDelete.
          * @memberof proto
          * @interface IChannelAvatarDelete
-         * @property {proto.Request} [request] ChannelAvatarDelete request
-         * @property {Long} [id] ChannelAvatarDelete id
-         * @property {Long} [roomId] ChannelAvatarDelete roomId
+         * @property {proto.Request|null} [request] ChannelAvatarDelete request
+         * @property {Long|null} [id] ChannelAvatarDelete id
+         * @property {Long|null} [roomId] ChannelAvatarDelete roomId
          */
 
     /**
          * Constructs a new ChannelAvatarDelete.
          * @memberof proto
          * @classdesc Represents a ChannelAvatarDelete.
+         * @implements IChannelAvatarDelete
          * @constructor
          * @param {proto.IChannelAvatarDelete=} [properties] Properties to set
          */
@@ -6670,7 +6829,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAvatarDelete
          * @instance
          */
@@ -6678,7 +6837,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarDelete id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.ChannelAvatarDelete
          * @instance
          */
@@ -6686,7 +6845,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarDelete roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAvatarDelete
          * @instance
          */
@@ -6787,15 +6946,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAvatarDeleteResponse.
          * @memberof proto
          * @interface IChannelAvatarDeleteResponse
-         * @property {proto.Response} [response] ChannelAvatarDeleteResponse response
-         * @property {Long} [id] ChannelAvatarDeleteResponse id
-         * @property {Long} [roomId] ChannelAvatarDeleteResponse roomId
+         * @property {proto.Response|null} [response] ChannelAvatarDeleteResponse response
+         * @property {Long|null} [id] ChannelAvatarDeleteResponse id
+         * @property {Long|null} [roomId] ChannelAvatarDeleteResponse roomId
          */
 
     /**
          * Constructs a new ChannelAvatarDeleteResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAvatarDeleteResponse.
+         * @implements IChannelAvatarDeleteResponse
          * @constructor
          * @param {proto.IChannelAvatarDeleteResponse=} [properties] Properties to set
          */
@@ -6809,7 +6969,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAvatarDeleteResponse
          * @instance
          */
@@ -6817,7 +6977,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarDeleteResponse id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.ChannelAvatarDeleteResponse
          * @instance
          */
@@ -6825,7 +6985,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarDeleteResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAvatarDeleteResponse
          * @instance
          */
@@ -6926,14 +7086,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAvatarGetList.
          * @memberof proto
          * @interface IChannelAvatarGetList
-         * @property {proto.Request} [request] ChannelAvatarGetList request
-         * @property {Long} [roomId] ChannelAvatarGetList roomId
+         * @property {proto.Request|null} [request] ChannelAvatarGetList request
+         * @property {Long|null} [roomId] ChannelAvatarGetList roomId
          */
 
     /**
          * Constructs a new ChannelAvatarGetList.
          * @memberof proto
          * @classdesc Represents a ChannelAvatarGetList.
+         * @implements IChannelAvatarGetList
          * @constructor
          * @param {proto.IChannelAvatarGetList=} [properties] Properties to set
          */
@@ -6947,7 +7108,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarGetList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelAvatarGetList
          * @instance
          */
@@ -6955,7 +7116,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarGetList roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelAvatarGetList
          * @instance
          */
@@ -7049,14 +7210,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelAvatarGetListResponse.
          * @memberof proto
          * @interface IChannelAvatarGetListResponse
-         * @property {proto.Response} [response] ChannelAvatarGetListResponse response
-         * @property {Array.<proto.Avatar>} [avatar] ChannelAvatarGetListResponse avatar
+         * @property {proto.Response|null} [response] ChannelAvatarGetListResponse response
+         * @property {Array.<proto.Avatar>|null} [avatar] ChannelAvatarGetListResponse avatar
          */
 
     /**
          * Constructs a new ChannelAvatarGetListResponse.
          * @memberof proto
          * @classdesc Represents a ChannelAvatarGetListResponse.
+         * @implements IChannelAvatarGetListResponse
          * @constructor
          * @param {proto.IChannelAvatarGetListResponse=} [properties] Properties to set
          */
@@ -7071,7 +7233,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarGetListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelAvatarGetListResponse
          * @instance
          */
@@ -7079,7 +7241,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelAvatarGetListResponse avatar.
-         * @member {Array.<proto.Avatar>}avatar
+         * @member {Array.<proto.Avatar>} avatar
          * @memberof proto.ChannelAvatarGetListResponse
          * @instance
          */
@@ -7164,7 +7326,7 @@ export const proto = $root.proto = (() => {
       if (message.avatar != null && message.hasOwnProperty('avatar')) {
         if (!Array.isArray(message.avatar)) {return 'avatar: array expected';}
         for (let i = 0; i < message.avatar.length; ++i) {
-          error = $root.proto.Avatar.verify(message.avatar[i]);
+          let error = $root.proto.Avatar.verify(message.avatar[i]);
           if (error) {return 'avatar.' + error;}
         }
       }
@@ -7180,15 +7342,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelCheckUsername.
          * @memberof proto
          * @interface IChannelCheckUsername
-         * @property {proto.Request} [request] ChannelCheckUsername request
-         * @property {string} [username] ChannelCheckUsername username
-         * @property {Long} [roomId] ChannelCheckUsername roomId
+         * @property {proto.Request|null} [request] ChannelCheckUsername request
+         * @property {string|null} [username] ChannelCheckUsername username
+         * @property {Long|null} [roomId] ChannelCheckUsername roomId
          */
 
     /**
          * Constructs a new ChannelCheckUsername.
          * @memberof proto
          * @classdesc Represents a ChannelCheckUsername.
+         * @implements IChannelCheckUsername
          * @constructor
          * @param {proto.IChannelCheckUsername=} [properties] Properties to set
          */
@@ -7202,7 +7365,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCheckUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelCheckUsername
          * @instance
          */
@@ -7210,7 +7373,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCheckUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.ChannelCheckUsername
          * @instance
          */
@@ -7218,7 +7381,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCheckUsername roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelCheckUsername
          * @instance
          */
@@ -7319,14 +7482,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelCheckUsernameResponse.
          * @memberof proto
          * @interface IChannelCheckUsernameResponse
-         * @property {proto.Response} [response] ChannelCheckUsernameResponse response
-         * @property {proto.ChannelCheckUsernameResponse.Status} [status] ChannelCheckUsernameResponse status
+         * @property {proto.Response|null} [response] ChannelCheckUsernameResponse response
+         * @property {proto.ChannelCheckUsernameResponse.Status|null} [status] ChannelCheckUsernameResponse status
          */
 
     /**
          * Constructs a new ChannelCheckUsernameResponse.
          * @memberof proto
          * @classdesc Represents a ChannelCheckUsernameResponse.
+         * @implements IChannelCheckUsernameResponse
          * @constructor
          * @param {proto.IChannelCheckUsernameResponse=} [properties] Properties to set
          */
@@ -7340,7 +7504,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCheckUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelCheckUsernameResponse
          * @instance
          */
@@ -7348,7 +7512,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCheckUsernameResponse status.
-         * @member {proto.ChannelCheckUsernameResponse.Status}status
+         * @member {proto.ChannelCheckUsernameResponse.Status} status
          * @memberof proto.ChannelCheckUsernameResponse
          * @instance
          */
@@ -7443,6 +7607,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Status enum.
+         * @name proto.ChannelCheckUsernameResponse.Status
          * @enum {string}
          * @property {number} INVALID=0 INVALID value
          * @property {number} TAKEN=1 TAKEN value
@@ -7467,15 +7632,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelCreate.
          * @memberof proto
          * @interface IChannelCreate
-         * @property {proto.Request} [request] ChannelCreate request
-         * @property {string} [name] ChannelCreate name
-         * @property {string} [description] ChannelCreate description
+         * @property {proto.Request|null} [request] ChannelCreate request
+         * @property {string|null} [name] ChannelCreate name
+         * @property {string|null} [description] ChannelCreate description
          */
 
     /**
          * Constructs a new ChannelCreate.
          * @memberof proto
          * @classdesc Represents a ChannelCreate.
+         * @implements IChannelCreate
          * @constructor
          * @param {proto.IChannelCreate=} [properties] Properties to set
          */
@@ -7489,7 +7655,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCreate request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelCreate
          * @instance
          */
@@ -7497,7 +7663,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCreate name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.ChannelCreate
          * @instance
          */
@@ -7505,7 +7671,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCreate description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ChannelCreate
          * @instance
          */
@@ -7606,15 +7772,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelCreateResponse.
          * @memberof proto
          * @interface IChannelCreateResponse
-         * @property {proto.Response} [response] ChannelCreateResponse response
-         * @property {Long} [roomId] ChannelCreateResponse roomId
-         * @property {string} [inviteLink] ChannelCreateResponse inviteLink
+         * @property {proto.Response|null} [response] ChannelCreateResponse response
+         * @property {Long|null} [roomId] ChannelCreateResponse roomId
+         * @property {string|null} [inviteLink] ChannelCreateResponse inviteLink
          */
 
     /**
          * Constructs a new ChannelCreateResponse.
          * @memberof proto
          * @classdesc Represents a ChannelCreateResponse.
+         * @implements IChannelCreateResponse
          * @constructor
          * @param {proto.IChannelCreateResponse=} [properties] Properties to set
          */
@@ -7628,7 +7795,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCreateResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelCreateResponse
          * @instance
          */
@@ -7636,7 +7803,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCreateResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelCreateResponse
          * @instance
          */
@@ -7644,7 +7811,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelCreateResponse inviteLink.
-         * @member {string}inviteLink
+         * @member {string} inviteLink
          * @memberof proto.ChannelCreateResponse
          * @instance
          */
@@ -7745,14 +7912,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelDelete.
          * @memberof proto
          * @interface IChannelDelete
-         * @property {proto.Request} [request] ChannelDelete request
-         * @property {Long} [roomId] ChannelDelete roomId
+         * @property {proto.Request|null} [request] ChannelDelete request
+         * @property {Long|null} [roomId] ChannelDelete roomId
          */
 
     /**
          * Constructs a new ChannelDelete.
          * @memberof proto
          * @classdesc Represents a ChannelDelete.
+         * @implements IChannelDelete
          * @constructor
          * @param {proto.IChannelDelete=} [properties] Properties to set
          */
@@ -7766,7 +7934,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelDelete
          * @instance
          */
@@ -7774,7 +7942,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDelete roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelDelete
          * @instance
          */
@@ -7868,14 +8036,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelDeleteResponse.
          * @memberof proto
          * @interface IChannelDeleteResponse
-         * @property {proto.Response} [response] ChannelDeleteResponse response
-         * @property {Long} [roomId] ChannelDeleteResponse roomId
+         * @property {proto.Response|null} [response] ChannelDeleteResponse response
+         * @property {Long|null} [roomId] ChannelDeleteResponse roomId
          */
 
     /**
          * Constructs a new ChannelDeleteResponse.
          * @memberof proto
          * @classdesc Represents a ChannelDeleteResponse.
+         * @implements IChannelDeleteResponse
          * @constructor
          * @param {proto.IChannelDeleteResponse=} [properties] Properties to set
          */
@@ -7889,7 +8058,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelDeleteResponse
          * @instance
          */
@@ -7897,7 +8066,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelDeleteResponse
          * @instance
          */
@@ -7991,15 +8160,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelDeleteMessage.
          * @memberof proto
          * @interface IChannelDeleteMessage
-         * @property {proto.Request} [request] ChannelDeleteMessage request
-         * @property {Long} [roomId] ChannelDeleteMessage roomId
-         * @property {Long} [messageId] ChannelDeleteMessage messageId
+         * @property {proto.Request|null} [request] ChannelDeleteMessage request
+         * @property {Long|null} [roomId] ChannelDeleteMessage roomId
+         * @property {Long|null} [messageId] ChannelDeleteMessage messageId
          */
 
     /**
          * Constructs a new ChannelDeleteMessage.
          * @memberof proto
          * @classdesc Represents a ChannelDeleteMessage.
+         * @implements IChannelDeleteMessage
          * @constructor
          * @param {proto.IChannelDeleteMessage=} [properties] Properties to set
          */
@@ -8013,7 +8183,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelDeleteMessage
          * @instance
          */
@@ -8021,7 +8191,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelDeleteMessage
          * @instance
          */
@@ -8029,7 +8199,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChannelDeleteMessage
          * @instance
          */
@@ -8130,16 +8300,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelDeleteMessageResponse.
          * @memberof proto
          * @interface IChannelDeleteMessageResponse
-         * @property {proto.Response} [response] ChannelDeleteMessageResponse response
-         * @property {Long} [roomId] ChannelDeleteMessageResponse roomId
-         * @property {Long} [messageId] ChannelDeleteMessageResponse messageId
-         * @property {Long} [deleteVersion] ChannelDeleteMessageResponse deleteVersion
+         * @property {proto.Response|null} [response] ChannelDeleteMessageResponse response
+         * @property {Long|null} [roomId] ChannelDeleteMessageResponse roomId
+         * @property {Long|null} [messageId] ChannelDeleteMessageResponse messageId
+         * @property {Long|null} [deleteVersion] ChannelDeleteMessageResponse deleteVersion
          */
 
     /**
          * Constructs a new ChannelDeleteMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChannelDeleteMessageResponse.
+         * @implements IChannelDeleteMessageResponse
          * @constructor
          * @param {proto.IChannelDeleteMessageResponse=} [properties] Properties to set
          */
@@ -8153,7 +8324,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelDeleteMessageResponse
          * @instance
          */
@@ -8161,7 +8332,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelDeleteMessageResponse
          * @instance
          */
@@ -8169,7 +8340,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessageResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChannelDeleteMessageResponse
          * @instance
          */
@@ -8177,7 +8348,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelDeleteMessageResponse deleteVersion.
-         * @member {Long}deleteVersion
+         * @member {Long} deleteVersion
          * @memberof proto.ChannelDeleteMessageResponse
          * @instance
          */
@@ -8285,16 +8456,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelEdit.
          * @memberof proto
          * @interface IChannelEdit
-         * @property {proto.Request} [request] ChannelEdit request
-         * @property {Long} [roomId] ChannelEdit roomId
-         * @property {string} [name] ChannelEdit name
-         * @property {string} [description] ChannelEdit description
+         * @property {proto.Request|null} [request] ChannelEdit request
+         * @property {Long|null} [roomId] ChannelEdit roomId
+         * @property {string|null} [name] ChannelEdit name
+         * @property {string|null} [description] ChannelEdit description
          */
 
     /**
          * Constructs a new ChannelEdit.
          * @memberof proto
          * @classdesc Represents a ChannelEdit.
+         * @implements IChannelEdit
          * @constructor
          * @param {proto.IChannelEdit=} [properties] Properties to set
          */
@@ -8308,7 +8480,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEdit request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelEdit
          * @instance
          */
@@ -8316,7 +8488,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEdit roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelEdit
          * @instance
          */
@@ -8324,7 +8496,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEdit name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.ChannelEdit
          * @instance
          */
@@ -8332,7 +8504,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEdit description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ChannelEdit
          * @instance
          */
@@ -8440,16 +8612,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelEditResponse.
          * @memberof proto
          * @interface IChannelEditResponse
-         * @property {proto.Response} [response] ChannelEditResponse response
-         * @property {Long} [roomId] ChannelEditResponse roomId
-         * @property {string} [name] ChannelEditResponse name
-         * @property {string} [description] ChannelEditResponse description
+         * @property {proto.Response|null} [response] ChannelEditResponse response
+         * @property {Long|null} [roomId] ChannelEditResponse roomId
+         * @property {string|null} [name] ChannelEditResponse name
+         * @property {string|null} [description] ChannelEditResponse description
          */
 
     /**
          * Constructs a new ChannelEditResponse.
          * @memberof proto
          * @classdesc Represents a ChannelEditResponse.
+         * @implements IChannelEditResponse
          * @constructor
          * @param {proto.IChannelEditResponse=} [properties] Properties to set
          */
@@ -8463,7 +8636,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelEditResponse
          * @instance
          */
@@ -8471,7 +8644,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelEditResponse
          * @instance
          */
@@ -8479,7 +8652,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditResponse name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.ChannelEditResponse
          * @instance
          */
@@ -8487,7 +8660,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditResponse description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ChannelEditResponse
          * @instance
          */
@@ -8595,16 +8768,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelEditMessage.
          * @memberof proto
          * @interface IChannelEditMessage
-         * @property {proto.Request} [request] ChannelEditMessage request
-         * @property {Long} [roomId] ChannelEditMessage roomId
-         * @property {Long} [messageId] ChannelEditMessage messageId
-         * @property {string} [message] ChannelEditMessage message
+         * @property {proto.Request|null} [request] ChannelEditMessage request
+         * @property {Long|null} [roomId] ChannelEditMessage roomId
+         * @property {Long|null} [messageId] ChannelEditMessage messageId
+         * @property {string|null} [message] ChannelEditMessage message
          */
 
     /**
          * Constructs a new ChannelEditMessage.
          * @memberof proto
          * @classdesc Represents a ChannelEditMessage.
+         * @implements IChannelEditMessage
          * @constructor
          * @param {proto.IChannelEditMessage=} [properties] Properties to set
          */
@@ -8618,7 +8792,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelEditMessage
          * @instance
          */
@@ -8626,7 +8800,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelEditMessage
          * @instance
          */
@@ -8634,7 +8808,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChannelEditMessage
          * @instance
          */
@@ -8642,7 +8816,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ChannelEditMessage
          * @instance
          */
@@ -8750,18 +8924,19 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelEditMessageResponse.
          * @memberof proto
          * @interface IChannelEditMessageResponse
-         * @property {proto.Response} [response] ChannelEditMessageResponse response
-         * @property {Long} [roomId] ChannelEditMessageResponse roomId
-         * @property {Long} [messageId] ChannelEditMessageResponse messageId
-         * @property {Long} [messageVersion] ChannelEditMessageResponse messageVersion
-         * @property {string} [message] ChannelEditMessageResponse message
-         * @property {proto.RoomMessageType} [messageType] ChannelEditMessageResponse messageType
+         * @property {proto.Response|null} [response] ChannelEditMessageResponse response
+         * @property {Long|null} [roomId] ChannelEditMessageResponse roomId
+         * @property {Long|null} [messageId] ChannelEditMessageResponse messageId
+         * @property {Long|null} [messageVersion] ChannelEditMessageResponse messageVersion
+         * @property {string|null} [message] ChannelEditMessageResponse message
+         * @property {proto.RoomMessageType|null} [messageType] ChannelEditMessageResponse messageType
          */
 
     /**
          * Constructs a new ChannelEditMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChannelEditMessageResponse.
+         * @implements IChannelEditMessageResponse
          * @constructor
          * @param {proto.IChannelEditMessageResponse=} [properties] Properties to set
          */
@@ -8775,7 +8950,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelEditMessageResponse
          * @instance
          */
@@ -8783,7 +8958,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelEditMessageResponse
          * @instance
          */
@@ -8791,7 +8966,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessageResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChannelEditMessageResponse
          * @instance
          */
@@ -8799,7 +8974,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessageResponse messageVersion.
-         * @member {Long}messageVersion
+         * @member {Long} messageVersion
          * @memberof proto.ChannelEditMessageResponse
          * @instance
          */
@@ -8807,7 +8982,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessageResponse message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ChannelEditMessageResponse
          * @instance
          */
@@ -8815,7 +8990,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelEditMessageResponse messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.ChannelEditMessageResponse
          * @instance
          */
@@ -8956,14 +9131,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelGetDraft.
          * @memberof proto
          * @interface IChannelGetDraft
-         * @property {proto.Request} [request] ChannelGetDraft request
-         * @property {Long} [roomId] ChannelGetDraft roomId
+         * @property {proto.Request|null} [request] ChannelGetDraft request
+         * @property {Long|null} [roomId] ChannelGetDraft roomId
          */
 
     /**
          * Constructs a new ChannelGetDraft.
          * @memberof proto
          * @classdesc Represents a ChannelGetDraft.
+         * @implements IChannelGetDraft
          * @constructor
          * @param {proto.IChannelGetDraft=} [properties] Properties to set
          */
@@ -8977,7 +9153,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetDraft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelGetDraft
          * @instance
          */
@@ -8985,7 +9161,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetDraft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelGetDraft
          * @instance
          */
@@ -9079,14 +9255,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelGetDraftResponse.
          * @memberof proto
          * @interface IChannelGetDraftResponse
-         * @property {proto.Response} [response] ChannelGetDraftResponse response
-         * @property {proto.RoomDraft} [draft] ChannelGetDraftResponse draft
+         * @property {proto.Response|null} [response] ChannelGetDraftResponse response
+         * @property {proto.RoomDraft|null} [draft] ChannelGetDraftResponse draft
          */
 
     /**
          * Constructs a new ChannelGetDraftResponse.
          * @memberof proto
          * @classdesc Represents a ChannelGetDraftResponse.
+         * @implements IChannelGetDraftResponse
          * @constructor
          * @param {proto.IChannelGetDraftResponse=} [properties] Properties to set
          */
@@ -9100,7 +9277,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetDraftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelGetDraftResponse
          * @instance
          */
@@ -9108,7 +9285,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetDraftResponse draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.ChannelGetDraftResponse
          * @instance
          */
@@ -9188,7 +9365,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -9203,16 +9380,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelGetMemberList.
          * @memberof proto
          * @interface IChannelGetMemberList
-         * @property {proto.Request} [request] ChannelGetMemberList request
-         * @property {Long} [roomId] ChannelGetMemberList roomId
-         * @property {proto.ChannelGetMemberList.FilterRole} [filterRole] ChannelGetMemberList filterRole
-         * @property {proto.Pagination} [pagination] ChannelGetMemberList pagination
+         * @property {proto.Request|null} [request] ChannelGetMemberList request
+         * @property {Long|null} [roomId] ChannelGetMemberList roomId
+         * @property {proto.ChannelGetMemberList.FilterRole|null} [filterRole] ChannelGetMemberList filterRole
+         * @property {proto.Pagination|null} [pagination] ChannelGetMemberList pagination
          */
 
     /**
          * Constructs a new ChannelGetMemberList.
          * @memberof proto
          * @classdesc Represents a ChannelGetMemberList.
+         * @implements IChannelGetMemberList
          * @constructor
          * @param {proto.IChannelGetMemberList=} [properties] Properties to set
          */
@@ -9226,7 +9404,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMemberList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelGetMemberList
          * @instance
          */
@@ -9234,7 +9412,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMemberList roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelGetMemberList
          * @instance
          */
@@ -9242,7 +9420,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMemberList filterRole.
-         * @member {proto.ChannelGetMemberList.FilterRole}filterRole
+         * @member {proto.ChannelGetMemberList.FilterRole} filterRole
          * @memberof proto.ChannelGetMemberList
          * @instance
          */
@@ -9250,7 +9428,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMemberList pagination.
-         * @member {(proto.Pagination|null|undefined)}pagination
+         * @member {proto.Pagination|null|undefined} pagination
          * @memberof proto.ChannelGetMemberList
          * @instance
          */
@@ -9352,7 +9530,7 @@ export const proto = $root.proto = (() => {
         }
       }
       if (message.pagination != null && message.hasOwnProperty('pagination')) {
-        error = $root.proto.Pagination.verify(message.pagination);
+        let error = $root.proto.Pagination.verify(message.pagination);
         if (error) {return 'pagination.' + error;}
       }
       return null;
@@ -9360,6 +9538,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FilterRole enum.
+         * @name proto.ChannelGetMemberList.FilterRole
          * @enum {string}
          * @property {number} ALL=0 ALL value
          * @property {number} MEMBER=1 MEMBER value
@@ -9384,14 +9563,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelGetMemberListResponse.
          * @memberof proto
          * @interface IChannelGetMemberListResponse
-         * @property {proto.Response} [response] ChannelGetMemberListResponse response
-         * @property {Array.<proto.ChannelGetMemberListResponse.Member>} [member] ChannelGetMemberListResponse member
+         * @property {proto.Response|null} [response] ChannelGetMemberListResponse response
+         * @property {Array.<proto.ChannelGetMemberListResponse.Member>|null} [member] ChannelGetMemberListResponse member
          */
 
     /**
          * Constructs a new ChannelGetMemberListResponse.
          * @memberof proto
          * @classdesc Represents a ChannelGetMemberListResponse.
+         * @implements IChannelGetMemberListResponse
          * @constructor
          * @param {proto.IChannelGetMemberListResponse=} [properties] Properties to set
          */
@@ -9406,7 +9586,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMemberListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelGetMemberListResponse
          * @instance
          */
@@ -9414,7 +9594,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMemberListResponse member.
-         * @member {Array.<proto.ChannelGetMemberListResponse.Member>}member
+         * @member {Array.<proto.ChannelGetMemberListResponse.Member>} member
          * @memberof proto.ChannelGetMemberListResponse
          * @instance
          */
@@ -9499,7 +9679,7 @@ export const proto = $root.proto = (() => {
       if (message.member != null && message.hasOwnProperty('member')) {
         if (!Array.isArray(message.member)) {return 'member: array expected';}
         for (let i = 0; i < message.member.length; ++i) {
-          error = $root.proto.ChannelGetMemberListResponse.Member.verify(message.member[i]);
+          let error = $root.proto.ChannelGetMemberListResponse.Member.verify(message.member[i]);
           if (error) {return 'member.' + error;}
         }
       }
@@ -9512,14 +9692,15 @@ export const proto = $root.proto = (() => {
              * Properties of a Member.
              * @memberof proto.ChannelGetMemberListResponse
              * @interface IMember
-             * @property {Long} [userId] Member userId
-             * @property {proto.ChannelRoom.Role} [role] Member role
+             * @property {Long|null} [userId] Member userId
+             * @property {proto.ChannelRoom.Role|null} [role] Member role
              */
 
       /**
              * Constructs a new Member.
              * @memberof proto.ChannelGetMemberListResponse
              * @classdesc Represents a Member.
+             * @implements IMember
              * @constructor
              * @param {proto.ChannelGetMemberListResponse.IMember=} [properties] Properties to set
              */
@@ -9533,7 +9714,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.ChannelGetMemberListResponse.Member
              * @instance
              */
@@ -9541,7 +9722,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member role.
-             * @member {proto.ChannelRoom.Role}role
+             * @member {proto.ChannelRoom.Role} role
              * @memberof proto.ChannelGetMemberListResponse.Member
              * @instance
              */
@@ -9645,15 +9826,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelGetMessagesStats.
          * @memberof proto
          * @interface IChannelGetMessagesStats
-         * @property {proto.Request} [request] ChannelGetMessagesStats request
-         * @property {Long} [roomId] ChannelGetMessagesStats roomId
-         * @property {Array.<Long>} [messageId] ChannelGetMessagesStats messageId
+         * @property {proto.Request|null} [request] ChannelGetMessagesStats request
+         * @property {Long|null} [roomId] ChannelGetMessagesStats roomId
+         * @property {Array.<Long>|null} [messageId] ChannelGetMessagesStats messageId
          */
 
     /**
          * Constructs a new ChannelGetMessagesStats.
          * @memberof proto
          * @classdesc Represents a ChannelGetMessagesStats.
+         * @implements IChannelGetMessagesStats
          * @constructor
          * @param {proto.IChannelGetMessagesStats=} [properties] Properties to set
          */
@@ -9668,7 +9850,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMessagesStats request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelGetMessagesStats
          * @instance
          */
@@ -9676,7 +9858,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMessagesStats roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelGetMessagesStats
          * @instance
          */
@@ -9684,7 +9866,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMessagesStats messageId.
-         * @member {Array.<Long>}messageId
+         * @member {Array.<Long>} messageId
          * @memberof proto.ChannelGetMessagesStats
          * @instance
          */
@@ -9796,14 +9978,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelGetMessagesStatsResponse.
          * @memberof proto
          * @interface IChannelGetMessagesStatsResponse
-         * @property {proto.Response} [response] ChannelGetMessagesStatsResponse response
-         * @property {Array.<proto.ChannelGetMessagesStatsResponse.Stats>} [stats] ChannelGetMessagesStatsResponse stats
+         * @property {proto.Response|null} [response] ChannelGetMessagesStatsResponse response
+         * @property {Array.<proto.ChannelGetMessagesStatsResponse.Stats>|null} [stats] ChannelGetMessagesStatsResponse stats
          */
 
     /**
          * Constructs a new ChannelGetMessagesStatsResponse.
          * @memberof proto
          * @classdesc Represents a ChannelGetMessagesStatsResponse.
+         * @implements IChannelGetMessagesStatsResponse
          * @constructor
          * @param {proto.IChannelGetMessagesStatsResponse=} [properties] Properties to set
          */
@@ -9818,7 +10001,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMessagesStatsResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelGetMessagesStatsResponse
          * @instance
          */
@@ -9826,7 +10009,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelGetMessagesStatsResponse stats.
-         * @member {Array.<proto.ChannelGetMessagesStatsResponse.Stats>}stats
+         * @member {Array.<proto.ChannelGetMessagesStatsResponse.Stats>} stats
          * @memberof proto.ChannelGetMessagesStatsResponse
          * @instance
          */
@@ -9911,7 +10094,7 @@ export const proto = $root.proto = (() => {
       if (message.stats != null && message.hasOwnProperty('stats')) {
         if (!Array.isArray(message.stats)) {return 'stats: array expected';}
         for (let i = 0; i < message.stats.length; ++i) {
-          error = $root.proto.ChannelGetMessagesStatsResponse.Stats.verify(message.stats[i]);
+          let error = $root.proto.ChannelGetMessagesStatsResponse.Stats.verify(message.stats[i]);
           if (error) {return 'stats.' + error;}
         }
       }
@@ -9924,16 +10107,17 @@ export const proto = $root.proto = (() => {
              * Properties of a Stats.
              * @memberof proto.ChannelGetMessagesStatsResponse
              * @interface IStats
-             * @property {Long} [messageId] Stats messageId
-             * @property {string} [viewsLabel] Stats viewsLabel
-             * @property {string} [thumbsUpLabel] Stats thumbsUpLabel
-             * @property {string} [thumbsDownLabel] Stats thumbsDownLabel
+             * @property {Long|null} [messageId] Stats messageId
+             * @property {string|null} [viewsLabel] Stats viewsLabel
+             * @property {string|null} [thumbsUpLabel] Stats thumbsUpLabel
+             * @property {string|null} [thumbsDownLabel] Stats thumbsDownLabel
              */
 
       /**
              * Constructs a new Stats.
              * @memberof proto.ChannelGetMessagesStatsResponse
              * @classdesc Represents a Stats.
+             * @implements IStats
              * @constructor
              * @param {proto.ChannelGetMessagesStatsResponse.IStats=} [properties] Properties to set
              */
@@ -9947,7 +10131,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Stats messageId.
-             * @member {Long}messageId
+             * @member {Long} messageId
              * @memberof proto.ChannelGetMessagesStatsResponse.Stats
              * @instance
              */
@@ -9955,7 +10139,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Stats viewsLabel.
-             * @member {string}viewsLabel
+             * @member {string} viewsLabel
              * @memberof proto.ChannelGetMessagesStatsResponse.Stats
              * @instance
              */
@@ -9963,7 +10147,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Stats thumbsUpLabel.
-             * @member {string}thumbsUpLabel
+             * @member {string} thumbsUpLabel
              * @memberof proto.ChannelGetMessagesStatsResponse.Stats
              * @instance
              */
@@ -9971,7 +10155,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Stats thumbsDownLabel.
-             * @member {string}thumbsDownLabel
+             * @member {string} thumbsDownLabel
              * @memberof proto.ChannelGetMessagesStatsResponse.Stats
              * @instance
              */
@@ -10081,15 +10265,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelKickAdmin.
          * @memberof proto
          * @interface IChannelKickAdmin
-         * @property {proto.Request} [request] ChannelKickAdmin request
-         * @property {Long} [roomId] ChannelKickAdmin roomId
-         * @property {Long} [memberId] ChannelKickAdmin memberId
+         * @property {proto.Request|null} [request] ChannelKickAdmin request
+         * @property {Long|null} [roomId] ChannelKickAdmin roomId
+         * @property {Long|null} [memberId] ChannelKickAdmin memberId
          */
 
     /**
          * Constructs a new ChannelKickAdmin.
          * @memberof proto
          * @classdesc Represents a ChannelKickAdmin.
+         * @implements IChannelKickAdmin
          * @constructor
          * @param {proto.IChannelKickAdmin=} [properties] Properties to set
          */
@@ -10103,7 +10288,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickAdmin request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelKickAdmin
          * @instance
          */
@@ -10111,7 +10296,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickAdmin roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelKickAdmin
          * @instance
          */
@@ -10119,7 +10304,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickAdmin memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelKickAdmin
          * @instance
          */
@@ -10220,15 +10405,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelKickAdminResponse.
          * @memberof proto
          * @interface IChannelKickAdminResponse
-         * @property {proto.Response} [response] ChannelKickAdminResponse response
-         * @property {Long} [roomId] ChannelKickAdminResponse roomId
-         * @property {Long} [memberId] ChannelKickAdminResponse memberId
+         * @property {proto.Response|null} [response] ChannelKickAdminResponse response
+         * @property {Long|null} [roomId] ChannelKickAdminResponse roomId
+         * @property {Long|null} [memberId] ChannelKickAdminResponse memberId
          */
 
     /**
          * Constructs a new ChannelKickAdminResponse.
          * @memberof proto
          * @classdesc Represents a ChannelKickAdminResponse.
+         * @implements IChannelKickAdminResponse
          * @constructor
          * @param {proto.IChannelKickAdminResponse=} [properties] Properties to set
          */
@@ -10242,7 +10428,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickAdminResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelKickAdminResponse
          * @instance
          */
@@ -10250,7 +10436,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickAdminResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelKickAdminResponse
          * @instance
          */
@@ -10258,7 +10444,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickAdminResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelKickAdminResponse
          * @instance
          */
@@ -10359,15 +10545,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelKickMember.
          * @memberof proto
          * @interface IChannelKickMember
-         * @property {proto.Request} [request] ChannelKickMember request
-         * @property {Long} [roomId] ChannelKickMember roomId
-         * @property {Long} [memberId] ChannelKickMember memberId
+         * @property {proto.Request|null} [request] ChannelKickMember request
+         * @property {Long|null} [roomId] ChannelKickMember roomId
+         * @property {Long|null} [memberId] ChannelKickMember memberId
          */
 
     /**
          * Constructs a new ChannelKickMember.
          * @memberof proto
          * @classdesc Represents a ChannelKickMember.
+         * @implements IChannelKickMember
          * @constructor
          * @param {proto.IChannelKickMember=} [properties] Properties to set
          */
@@ -10381,7 +10568,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickMember request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelKickMember
          * @instance
          */
@@ -10389,7 +10576,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickMember roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelKickMember
          * @instance
          */
@@ -10397,7 +10584,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickMember memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelKickMember
          * @instance
          */
@@ -10498,15 +10685,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelKickMemberResponse.
          * @memberof proto
          * @interface IChannelKickMemberResponse
-         * @property {proto.Response} [response] ChannelKickMemberResponse response
-         * @property {Long} [roomId] ChannelKickMemberResponse roomId
-         * @property {Long} [memberId] ChannelKickMemberResponse memberId
+         * @property {proto.Response|null} [response] ChannelKickMemberResponse response
+         * @property {Long|null} [roomId] ChannelKickMemberResponse roomId
+         * @property {Long|null} [memberId] ChannelKickMemberResponse memberId
          */
 
     /**
          * Constructs a new ChannelKickMemberResponse.
          * @memberof proto
          * @classdesc Represents a ChannelKickMemberResponse.
+         * @implements IChannelKickMemberResponse
          * @constructor
          * @param {proto.IChannelKickMemberResponse=} [properties] Properties to set
          */
@@ -10520,7 +10708,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickMemberResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelKickMemberResponse
          * @instance
          */
@@ -10528,7 +10716,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickMemberResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelKickMemberResponse
          * @instance
          */
@@ -10536,7 +10724,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickMemberResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelKickMemberResponse
          * @instance
          */
@@ -10637,15 +10825,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelKickModerator.
          * @memberof proto
          * @interface IChannelKickModerator
-         * @property {proto.Request} [request] ChannelKickModerator request
-         * @property {Long} [roomId] ChannelKickModerator roomId
-         * @property {Long} [memberId] ChannelKickModerator memberId
+         * @property {proto.Request|null} [request] ChannelKickModerator request
+         * @property {Long|null} [roomId] ChannelKickModerator roomId
+         * @property {Long|null} [memberId] ChannelKickModerator memberId
          */
 
     /**
          * Constructs a new ChannelKickModerator.
          * @memberof proto
          * @classdesc Represents a ChannelKickModerator.
+         * @implements IChannelKickModerator
          * @constructor
          * @param {proto.IChannelKickModerator=} [properties] Properties to set
          */
@@ -10659,7 +10848,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickModerator request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelKickModerator
          * @instance
          */
@@ -10667,7 +10856,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickModerator roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelKickModerator
          * @instance
          */
@@ -10675,7 +10864,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickModerator memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelKickModerator
          * @instance
          */
@@ -10776,15 +10965,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelKickModeratorResponse.
          * @memberof proto
          * @interface IChannelKickModeratorResponse
-         * @property {proto.Response} [response] ChannelKickModeratorResponse response
-         * @property {Long} [roomId] ChannelKickModeratorResponse roomId
-         * @property {Long} [memberId] ChannelKickModeratorResponse memberId
+         * @property {proto.Response|null} [response] ChannelKickModeratorResponse response
+         * @property {Long|null} [roomId] ChannelKickModeratorResponse roomId
+         * @property {Long|null} [memberId] ChannelKickModeratorResponse memberId
          */
 
     /**
          * Constructs a new ChannelKickModeratorResponse.
          * @memberof proto
          * @classdesc Represents a ChannelKickModeratorResponse.
+         * @implements IChannelKickModeratorResponse
          * @constructor
          * @param {proto.IChannelKickModeratorResponse=} [properties] Properties to set
          */
@@ -10798,7 +10988,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickModeratorResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelKickModeratorResponse
          * @instance
          */
@@ -10806,7 +10996,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickModeratorResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelKickModeratorResponse
          * @instance
          */
@@ -10814,7 +11004,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelKickModeratorResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelKickModeratorResponse
          * @instance
          */
@@ -10915,14 +11105,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelLeft.
          * @memberof proto
          * @interface IChannelLeft
-         * @property {proto.Request} [request] ChannelLeft request
-         * @property {Long} [roomId] ChannelLeft roomId
+         * @property {proto.Request|null} [request] ChannelLeft request
+         * @property {Long|null} [roomId] ChannelLeft roomId
          */
 
     /**
          * Constructs a new ChannelLeft.
          * @memberof proto
          * @classdesc Represents a ChannelLeft.
+         * @implements IChannelLeft
          * @constructor
          * @param {proto.IChannelLeft=} [properties] Properties to set
          */
@@ -10936,7 +11127,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelLeft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelLeft
          * @instance
          */
@@ -10944,7 +11135,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelLeft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelLeft
          * @instance
          */
@@ -11038,15 +11229,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelLeftResponse.
          * @memberof proto
          * @interface IChannelLeftResponse
-         * @property {proto.Response} [response] ChannelLeftResponse response
-         * @property {Long} [roomId] ChannelLeftResponse roomId
-         * @property {Long} [memberId] ChannelLeftResponse memberId
+         * @property {proto.Response|null} [response] ChannelLeftResponse response
+         * @property {Long|null} [roomId] ChannelLeftResponse roomId
+         * @property {Long|null} [memberId] ChannelLeftResponse memberId
          */
 
     /**
          * Constructs a new ChannelLeftResponse.
          * @memberof proto
          * @classdesc Represents a ChannelLeftResponse.
+         * @implements IChannelLeftResponse
          * @constructor
          * @param {proto.IChannelLeftResponse=} [properties] Properties to set
          */
@@ -11060,7 +11252,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelLeftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelLeftResponse
          * @instance
          */
@@ -11068,7 +11260,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelLeftResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelLeftResponse
          * @instance
          */
@@ -11076,7 +11268,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelLeftResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.ChannelLeftResponse
          * @instance
          */
@@ -11171,20 +11363,302 @@ export const proto = $root.proto = (() => {
     return ChannelLeftResponse;
   })();
 
+  proto.ChannelPinMessage = (function() {
+
+    /**
+         * Properties of a ChannelPinMessage.
+         * @memberof proto
+         * @interface IChannelPinMessage
+         * @property {proto.Request|null} [request] ChannelPinMessage request
+         * @property {Long|null} [roomId] ChannelPinMessage roomId
+         * @property {Long|null} [messageId] ChannelPinMessage messageId
+         */
+
+    /**
+         * Constructs a new ChannelPinMessage.
+         * @memberof proto
+         * @classdesc Represents a ChannelPinMessage.
+         * @implements IChannelPinMessage
+         * @constructor
+         * @param {proto.IChannelPinMessage=} [properties] Properties to set
+         */
+    function ChannelPinMessage(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ChannelPinMessage request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.ChannelPinMessage
+         * @instance
+         */
+    ChannelPinMessage.prototype.request = null;
+
+    /**
+         * ChannelPinMessage roomId.
+         * @member {Long} roomId
+         * @memberof proto.ChannelPinMessage
+         * @instance
+         */
+    ChannelPinMessage.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ChannelPinMessage messageId.
+         * @member {Long} messageId
+         * @memberof proto.ChannelPinMessage
+         * @instance
+         */
+    ChannelPinMessage.prototype.messageId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * Creates a new ChannelPinMessage instance using the specified properties.
+         * @function create
+         * @memberof proto.ChannelPinMessage
+         * @static
+         * @param {proto.IChannelPinMessage=} [properties] Properties to set
+         * @returns {proto.ChannelPinMessage} ChannelPinMessage instance
+         */
+    ChannelPinMessage.create = function create(properties) {
+      return new ChannelPinMessage(properties);
+    };
+
+    /**
+         * Encodes the specified ChannelPinMessage message. Does not implicitly {@link proto.ChannelPinMessage.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ChannelPinMessage
+         * @static
+         * @param {proto.ChannelPinMessage} message ChannelPinMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ChannelPinMessage.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.messageId != null && message.hasOwnProperty('messageId')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.messageId);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ChannelPinMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ChannelPinMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ChannelPinMessage} ChannelPinMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ChannelPinMessage.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ChannelPinMessage();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.messageId = reader.uint64();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ChannelPinMessage message.
+         * @function verify
+         * @memberof proto.ChannelPinMessage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ChannelPinMessage.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.messageId != null && message.hasOwnProperty('messageId')) {
+        if (!$util.isInteger(message.messageId) && !(message.messageId && $util.isInteger(message.messageId.low) && $util.isInteger(message.messageId.high))) {return 'messageId: integer|Long expected';}
+      }
+      return null;
+    };
+
+    return ChannelPinMessage;
+  })();
+
+  proto.ChannelPinMessageResponse = (function() {
+
+    /**
+         * Properties of a ChannelPinMessageResponse.
+         * @memberof proto
+         * @interface IChannelPinMessageResponse
+         * @property {proto.Response|null} [response] ChannelPinMessageResponse response
+         * @property {Long|null} [roomId] ChannelPinMessageResponse roomId
+         * @property {proto.RoomMessage|null} [pinnedMessage] ChannelPinMessageResponse pinnedMessage
+         */
+
+    /**
+         * Constructs a new ChannelPinMessageResponse.
+         * @memberof proto
+         * @classdesc Represents a ChannelPinMessageResponse.
+         * @implements IChannelPinMessageResponse
+         * @constructor
+         * @param {proto.IChannelPinMessageResponse=} [properties] Properties to set
+         */
+    function ChannelPinMessageResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ChannelPinMessageResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.ChannelPinMessageResponse
+         * @instance
+         */
+    ChannelPinMessageResponse.prototype.response = null;
+
+    /**
+         * ChannelPinMessageResponse roomId.
+         * @member {Long} roomId
+         * @memberof proto.ChannelPinMessageResponse
+         * @instance
+         */
+    ChannelPinMessageResponse.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ChannelPinMessageResponse pinnedMessage.
+         * @member {proto.RoomMessage|null|undefined} pinnedMessage
+         * @memberof proto.ChannelPinMessageResponse
+         * @instance
+         */
+    ChannelPinMessageResponse.prototype.pinnedMessage = null;
+
+    /**
+         * Creates a new ChannelPinMessageResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.ChannelPinMessageResponse
+         * @static
+         * @param {proto.IChannelPinMessageResponse=} [properties] Properties to set
+         * @returns {proto.ChannelPinMessageResponse} ChannelPinMessageResponse instance
+         */
+    ChannelPinMessageResponse.create = function create(properties) {
+      return new ChannelPinMessageResponse(properties);
+    };
+
+    /**
+         * Encodes the specified ChannelPinMessageResponse message. Does not implicitly {@link proto.ChannelPinMessageResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ChannelPinMessageResponse
+         * @static
+         * @param {proto.ChannelPinMessageResponse} message ChannelPinMessageResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ChannelPinMessageResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.pinnedMessage != null && message.hasOwnProperty('pinnedMessage')) {$root.proto.RoomMessage.encode(message.pinnedMessage, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a ChannelPinMessageResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ChannelPinMessageResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ChannelPinMessageResponse} ChannelPinMessageResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ChannelPinMessageResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ChannelPinMessageResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.pinnedMessage = $root.proto.RoomMessage.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ChannelPinMessageResponse message.
+         * @function verify
+         * @memberof proto.ChannelPinMessageResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ChannelPinMessageResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.pinnedMessage != null && message.hasOwnProperty('pinnedMessage')) {
+        let error = $root.proto.RoomMessage.verify(message.pinnedMessage);
+        if (error) {return 'pinnedMessage.' + error;}
+      }
+      return null;
+    };
+
+    return ChannelPinMessageResponse;
+  })();
+
   proto.ChannelRemoveUsername = (function() {
 
     /**
          * Properties of a ChannelRemoveUsername.
          * @memberof proto
          * @interface IChannelRemoveUsername
-         * @property {proto.Request} [request] ChannelRemoveUsername request
-         * @property {Long} [roomId] ChannelRemoveUsername roomId
+         * @property {proto.Request|null} [request] ChannelRemoveUsername request
+         * @property {Long|null} [roomId] ChannelRemoveUsername roomId
          */
 
     /**
          * Constructs a new ChannelRemoveUsername.
          * @memberof proto
          * @classdesc Represents a ChannelRemoveUsername.
+         * @implements IChannelRemoveUsername
          * @constructor
          * @param {proto.IChannelRemoveUsername=} [properties] Properties to set
          */
@@ -11198,7 +11672,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRemoveUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelRemoveUsername
          * @instance
          */
@@ -11206,7 +11680,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRemoveUsername roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelRemoveUsername
          * @instance
          */
@@ -11300,14 +11774,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelRemoveUsernameResponse.
          * @memberof proto
          * @interface IChannelRemoveUsernameResponse
-         * @property {proto.Response} [response] ChannelRemoveUsernameResponse response
-         * @property {Long} [roomId] ChannelRemoveUsernameResponse roomId
+         * @property {proto.Response|null} [response] ChannelRemoveUsernameResponse response
+         * @property {Long|null} [roomId] ChannelRemoveUsernameResponse roomId
          */
 
     /**
          * Constructs a new ChannelRemoveUsernameResponse.
          * @memberof proto
          * @classdesc Represents a ChannelRemoveUsernameResponse.
+         * @implements IChannelRemoveUsernameResponse
          * @constructor
          * @param {proto.IChannelRemoveUsernameResponse=} [properties] Properties to set
          */
@@ -11321,7 +11796,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRemoveUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelRemoveUsernameResponse
          * @instance
          */
@@ -11329,7 +11804,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRemoveUsernameResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelRemoveUsernameResponse
          * @instance
          */
@@ -11423,14 +11898,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelRevokeLink.
          * @memberof proto
          * @interface IChannelRevokeLink
-         * @property {proto.Request} [request] ChannelRevokeLink request
-         * @property {Long} [roomId] ChannelRevokeLink roomId
+         * @property {proto.Request|null} [request] ChannelRevokeLink request
+         * @property {Long|null} [roomId] ChannelRevokeLink roomId
          */
 
     /**
          * Constructs a new ChannelRevokeLink.
          * @memberof proto
          * @classdesc Represents a ChannelRevokeLink.
+         * @implements IChannelRevokeLink
          * @constructor
          * @param {proto.IChannelRevokeLink=} [properties] Properties to set
          */
@@ -11444,7 +11920,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRevokeLink request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelRevokeLink
          * @instance
          */
@@ -11452,7 +11928,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRevokeLink roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelRevokeLink
          * @instance
          */
@@ -11546,16 +12022,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelRevokeLinkResponse.
          * @memberof proto
          * @interface IChannelRevokeLinkResponse
-         * @property {proto.Response} [response] ChannelRevokeLinkResponse response
-         * @property {Long} [roomId] ChannelRevokeLinkResponse roomId
-         * @property {string} [inviteLink] ChannelRevokeLinkResponse inviteLink
-         * @property {string} [inviteToken] ChannelRevokeLinkResponse inviteToken
+         * @property {proto.Response|null} [response] ChannelRevokeLinkResponse response
+         * @property {Long|null} [roomId] ChannelRevokeLinkResponse roomId
+         * @property {string|null} [inviteLink] ChannelRevokeLinkResponse inviteLink
+         * @property {string|null} [inviteToken] ChannelRevokeLinkResponse inviteToken
          */
 
     /**
          * Constructs a new ChannelRevokeLinkResponse.
          * @memberof proto
          * @classdesc Represents a ChannelRevokeLinkResponse.
+         * @implements IChannelRevokeLinkResponse
          * @constructor
          * @param {proto.IChannelRevokeLinkResponse=} [properties] Properties to set
          */
@@ -11569,7 +12046,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRevokeLinkResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelRevokeLinkResponse
          * @instance
          */
@@ -11577,7 +12054,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRevokeLinkResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelRevokeLinkResponse
          * @instance
          */
@@ -11585,7 +12062,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRevokeLinkResponse inviteLink.
-         * @member {string}inviteLink
+         * @member {string} inviteLink
          * @memberof proto.ChannelRevokeLinkResponse
          * @instance
          */
@@ -11593,7 +12070,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelRevokeLinkResponse inviteToken.
-         * @member {string}inviteToken
+         * @member {string} inviteToken
          * @memberof proto.ChannelRevokeLinkResponse
          * @instance
          */
@@ -11701,21 +12178,23 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelSendMessage.
          * @memberof proto
          * @interface IChannelSendMessage
-         * @property {proto.Request} [request] ChannelSendMessage request
-         * @property {proto.RoomMessageType} [messageType] ChannelSendMessage messageType
-         * @property {Long} [roomId] ChannelSendMessage roomId
-         * @property {string} [message] ChannelSendMessage message
-         * @property {string} [attachment] ChannelSendMessage attachment
-         * @property {proto.RoomMessageLocation} [location] ChannelSendMessage location
-         * @property {proto.RoomMessageContact} [contact] ChannelSendMessage contact
-         * @property {Long} [replyTo] ChannelSendMessage replyTo
-         * @property {proto.RoomMessageForwardFrom} [forwardFrom] ChannelSendMessage forwardFrom
+         * @property {proto.Request|null} [request] ChannelSendMessage request
+         * @property {proto.RoomMessageType|null} [messageType] ChannelSendMessage messageType
+         * @property {Long|null} [roomId] ChannelSendMessage roomId
+         * @property {string|null} [message] ChannelSendMessage message
+         * @property {string|null} [attachment] ChannelSendMessage attachment
+         * @property {proto.RoomMessageLocation|null} [location] ChannelSendMessage location
+         * @property {proto.RoomMessageContact|null} [contact] ChannelSendMessage contact
+         * @property {Long|null} [replyTo] ChannelSendMessage replyTo
+         * @property {proto.RoomMessageForwardFrom|null} [forwardFrom] ChannelSendMessage forwardFrom
+         * @property {Long|null} [randomId] ChannelSendMessage randomId
          */
 
     /**
          * Constructs a new ChannelSendMessage.
          * @memberof proto
          * @classdesc Represents a ChannelSendMessage.
+         * @implements IChannelSendMessage
          * @constructor
          * @param {proto.IChannelSendMessage=} [properties] Properties to set
          */
@@ -11729,7 +12208,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11737,7 +12216,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11745,7 +12224,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11753,7 +12232,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11761,7 +12240,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage attachment.
-         * @member {string}attachment
+         * @member {string} attachment
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11769,7 +12248,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage location.
-         * @member {(proto.RoomMessageLocation|null|undefined)}location
+         * @member {proto.RoomMessageLocation|null|undefined} location
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11777,7 +12256,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage contact.
-         * @member {(proto.RoomMessageContact|null|undefined)}contact
+         * @member {proto.RoomMessageContact|null|undefined} contact
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11785,7 +12264,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage replyTo.
-         * @member {Long}replyTo
+         * @member {Long} replyTo
          * @memberof proto.ChannelSendMessage
          * @instance
          */
@@ -11793,11 +12272,19 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessage forwardFrom.
-         * @member {(proto.RoomMessageForwardFrom|null|undefined)}forwardFrom
+         * @member {proto.RoomMessageForwardFrom|null|undefined} forwardFrom
          * @memberof proto.ChannelSendMessage
          * @instance
          */
     ChannelSendMessage.prototype.forwardFrom = null;
+
+    /**
+         * ChannelSendMessage randomId.
+         * @member {Long} randomId
+         * @memberof proto.ChannelSendMessage
+         * @instance
+         */
+    ChannelSendMessage.prototype.randomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
     /**
          * Creates a new ChannelSendMessage instance using the specified properties.
@@ -11831,6 +12318,7 @@ export const proto = $root.proto = (() => {
       if (message.contact != null && message.hasOwnProperty('contact')) {$root.proto.RoomMessageContact.encode(message.contact, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();}
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {writer.uint32(/* id 8, wireType 0 =*/64).uint64(message.replyTo);}
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {$root.proto.RoomMessageForwardFrom.encode(message.forwardFrom, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();}
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {writer.uint32(/* id 10, wireType 0 =*/80).uint64(message.randomId);}
       return writer;
     };
 
@@ -11877,6 +12365,9 @@ export const proto = $root.proto = (() => {
             break;
           case 9:
             message.forwardFrom = $root.proto.RoomMessageForwardFrom.decode(reader, reader.uint32());
+            break;
+          case 10:
+            message.randomId = reader.uint64();
             break;
           default:
             reader.skipType(tag & 7);
@@ -11932,19 +12423,22 @@ export const proto = $root.proto = (() => {
         if (!$util.isString(message.attachment)) {return 'attachment: string expected';}
       }
       if (message.location != null && message.hasOwnProperty('location')) {
-        error = $root.proto.RoomMessageLocation.verify(message.location);
+        let error = $root.proto.RoomMessageLocation.verify(message.location);
         if (error) {return 'location.' + error;}
       }
       if (message.contact != null && message.hasOwnProperty('contact')) {
-        error = $root.proto.RoomMessageContact.verify(message.contact);
+        let error = $root.proto.RoomMessageContact.verify(message.contact);
         if (error) {return 'contact.' + error;}
       }
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {
         if (!$util.isInteger(message.replyTo) && !(message.replyTo && $util.isInteger(message.replyTo.low) && $util.isInteger(message.replyTo.high))) {return 'replyTo: integer|Long expected';}
       }
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {
-        error = $root.proto.RoomMessageForwardFrom.verify(message.forwardFrom);
+        let error = $root.proto.RoomMessageForwardFrom.verify(message.forwardFrom);
         if (error) {return 'forwardFrom.' + error;}
+      }
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {
+        if (!$util.isInteger(message.randomId) && !(message.randomId && $util.isInteger(message.randomId.low) && $util.isInteger(message.randomId.high))) {return 'randomId: integer|Long expected';}
       }
       return null;
     };
@@ -11958,15 +12452,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelSendMessageResponse.
          * @memberof proto
          * @interface IChannelSendMessageResponse
-         * @property {proto.Response} [response] ChannelSendMessageResponse response
-         * @property {Long} [roomId] ChannelSendMessageResponse roomId
-         * @property {proto.RoomMessage} [roomMessage] ChannelSendMessageResponse roomMessage
+         * @property {proto.Response|null} [response] ChannelSendMessageResponse response
+         * @property {Long|null} [roomId] ChannelSendMessageResponse roomId
+         * @property {proto.RoomMessage|null} [roomMessage] ChannelSendMessageResponse roomMessage
          */
 
     /**
          * Constructs a new ChannelSendMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChannelSendMessageResponse.
+         * @implements IChannelSendMessageResponse
          * @constructor
          * @param {proto.IChannelSendMessageResponse=} [properties] Properties to set
          */
@@ -11980,7 +12475,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelSendMessageResponse
          * @instance
          */
@@ -11988,7 +12483,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelSendMessageResponse
          * @instance
          */
@@ -11996,7 +12491,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSendMessageResponse roomMessage.
-         * @member {(proto.RoomMessage|null|undefined)}roomMessage
+         * @member {proto.RoomMessage|null|undefined} roomMessage
          * @memberof proto.ChannelSendMessageResponse
          * @instance
          */
@@ -12083,7 +12578,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.roomMessage != null && message.hasOwnProperty('roomMessage')) {
-        error = $root.proto.RoomMessage.verify(message.roomMessage);
+        let error = $root.proto.RoomMessage.verify(message.roomMessage);
         if (error) {return 'roomMessage.' + error;}
       }
       return null;
@@ -12098,16 +12593,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelSetAction.
          * @memberof proto
          * @interface IChannelSetAction
-         * @property {proto.Request} [request] ChannelSetAction request
-         * @property {Long} [roomId] ChannelSetAction roomId
-         * @property {proto.ClientAction} [action] ChannelSetAction action
-         * @property {number} [actionId] ChannelSetAction actionId
+         * @property {proto.Request|null} [request] ChannelSetAction request
+         * @property {Long|null} [roomId] ChannelSetAction roomId
+         * @property {proto.ClientAction|null} [action] ChannelSetAction action
+         * @property {number|null} [actionId] ChannelSetAction actionId
          */
 
     /**
          * Constructs a new ChannelSetAction.
          * @memberof proto
          * @classdesc Represents a ChannelSetAction.
+         * @implements IChannelSetAction
          * @constructor
          * @param {proto.IChannelSetAction=} [properties] Properties to set
          */
@@ -12121,7 +12617,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetAction request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelSetAction
          * @instance
          */
@@ -12129,7 +12625,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetAction roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelSetAction
          * @instance
          */
@@ -12137,7 +12633,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetAction action.
-         * @member {proto.ClientAction}action
+         * @member {proto.ClientAction} action
          * @memberof proto.ChannelSetAction
          * @instance
          */
@@ -12145,7 +12641,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetAction actionId.
-         * @member {number}actionId
+         * @member {number} actionId
          * @memberof proto.ChannelSetAction
          * @instance
          */
@@ -12272,16 +12768,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelSetActionResponse.
          * @memberof proto
          * @interface IChannelSetActionResponse
-         * @property {proto.Response} [response] ChannelSetActionResponse response
-         * @property {Long} [roomId] ChannelSetActionResponse roomId
-         * @property {proto.ClientAction} [action] ChannelSetActionResponse action
-         * @property {Long} [userId] ChannelSetActionResponse userId
+         * @property {proto.Response|null} [response] ChannelSetActionResponse response
+         * @property {Long|null} [roomId] ChannelSetActionResponse roomId
+         * @property {proto.ClientAction|null} [action] ChannelSetActionResponse action
+         * @property {Long|null} [userId] ChannelSetActionResponse userId
          */
 
     /**
          * Constructs a new ChannelSetActionResponse.
          * @memberof proto
          * @classdesc Represents a ChannelSetActionResponse.
+         * @implements IChannelSetActionResponse
          * @constructor
          * @param {proto.IChannelSetActionResponse=} [properties] Properties to set
          */
@@ -12295,7 +12792,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetActionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelSetActionResponse
          * @instance
          */
@@ -12303,7 +12800,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetActionResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelSetActionResponse
          * @instance
          */
@@ -12311,7 +12808,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetActionResponse action.
-         * @member {proto.ClientAction}action
+         * @member {proto.ClientAction} action
          * @memberof proto.ChannelSetActionResponse
          * @instance
          */
@@ -12319,7 +12816,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelSetActionResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.ChannelSetActionResponse
          * @instance
          */
@@ -12446,15 +12943,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelUpdateDraft.
          * @memberof proto
          * @interface IChannelUpdateDraft
-         * @property {proto.Request} [request] ChannelUpdateDraft request
-         * @property {Long} [roomId] ChannelUpdateDraft roomId
-         * @property {proto.RoomDraft} [draft] ChannelUpdateDraft draft
+         * @property {proto.Request|null} [request] ChannelUpdateDraft request
+         * @property {Long|null} [roomId] ChannelUpdateDraft roomId
+         * @property {proto.RoomDraft|null} [draft] ChannelUpdateDraft draft
          */
 
     /**
          * Constructs a new ChannelUpdateDraft.
          * @memberof proto
          * @classdesc Represents a ChannelUpdateDraft.
+         * @implements IChannelUpdateDraft
          * @constructor
          * @param {proto.IChannelUpdateDraft=} [properties] Properties to set
          */
@@ -12468,7 +12966,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateDraft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelUpdateDraft
          * @instance
          */
@@ -12476,7 +12974,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateDraft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelUpdateDraft
          * @instance
          */
@@ -12484,7 +12982,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateDraft draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.ChannelUpdateDraft
          * @instance
          */
@@ -12571,7 +13069,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -12586,15 +13084,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelUpdateDraftResponse.
          * @memberof proto
          * @interface IChannelUpdateDraftResponse
-         * @property {proto.Response} [response] ChannelUpdateDraftResponse response
-         * @property {Long} [roomId] ChannelUpdateDraftResponse roomId
-         * @property {proto.RoomDraft} [draft] ChannelUpdateDraftResponse draft
+         * @property {proto.Response|null} [response] ChannelUpdateDraftResponse response
+         * @property {Long|null} [roomId] ChannelUpdateDraftResponse roomId
+         * @property {proto.RoomDraft|null} [draft] ChannelUpdateDraftResponse draft
          */
 
     /**
          * Constructs a new ChannelUpdateDraftResponse.
          * @memberof proto
          * @classdesc Represents a ChannelUpdateDraftResponse.
+         * @implements IChannelUpdateDraftResponse
          * @constructor
          * @param {proto.IChannelUpdateDraftResponse=} [properties] Properties to set
          */
@@ -12608,7 +13107,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateDraftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelUpdateDraftResponse
          * @instance
          */
@@ -12616,7 +13115,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateDraftResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelUpdateDraftResponse
          * @instance
          */
@@ -12624,7 +13123,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateDraftResponse draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.ChannelUpdateDraftResponse
          * @instance
          */
@@ -12711,7 +13210,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -12720,21 +13219,302 @@ export const proto = $root.proto = (() => {
     return ChannelUpdateDraftResponse;
   })();
 
+  proto.ChannelUpdateReactionStatus = (function() {
+
+    /**
+         * Properties of a ChannelUpdateReactionStatus.
+         * @memberof proto
+         * @interface IChannelUpdateReactionStatus
+         * @property {proto.Request|null} [request] ChannelUpdateReactionStatus request
+         * @property {Long|null} [roomId] ChannelUpdateReactionStatus roomId
+         * @property {boolean|null} [reactionStatus] ChannelUpdateReactionStatus reactionStatus
+         */
+
+    /**
+         * Constructs a new ChannelUpdateReactionStatus.
+         * @memberof proto
+         * @classdesc Represents a ChannelUpdateReactionStatus.
+         * @implements IChannelUpdateReactionStatus
+         * @constructor
+         * @param {proto.IChannelUpdateReactionStatus=} [properties] Properties to set
+         */
+    function ChannelUpdateReactionStatus(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ChannelUpdateReactionStatus request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @instance
+         */
+    ChannelUpdateReactionStatus.prototype.request = null;
+
+    /**
+         * ChannelUpdateReactionStatus roomId.
+         * @member {Long} roomId
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @instance
+         */
+    ChannelUpdateReactionStatus.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ChannelUpdateReactionStatus reactionStatus.
+         * @member {boolean} reactionStatus
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @instance
+         */
+    ChannelUpdateReactionStatus.prototype.reactionStatus = false;
+
+    /**
+         * Creates a new ChannelUpdateReactionStatus instance using the specified properties.
+         * @function create
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @static
+         * @param {proto.IChannelUpdateReactionStatus=} [properties] Properties to set
+         * @returns {proto.ChannelUpdateReactionStatus} ChannelUpdateReactionStatus instance
+         */
+    ChannelUpdateReactionStatus.create = function create(properties) {
+      return new ChannelUpdateReactionStatus(properties);
+    };
+
+    /**
+         * Encodes the specified ChannelUpdateReactionStatus message. Does not implicitly {@link proto.ChannelUpdateReactionStatus.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @static
+         * @param {proto.ChannelUpdateReactionStatus} message ChannelUpdateReactionStatus message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ChannelUpdateReactionStatus.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.reactionStatus != null && message.hasOwnProperty('reactionStatus')) {writer.uint32(/* id 3, wireType 0 =*/24).bool(message.reactionStatus);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ChannelUpdateReactionStatus message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ChannelUpdateReactionStatus} ChannelUpdateReactionStatus
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ChannelUpdateReactionStatus.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ChannelUpdateReactionStatus();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.reactionStatus = reader.bool();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ChannelUpdateReactionStatus message.
+         * @function verify
+         * @memberof proto.ChannelUpdateReactionStatus
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ChannelUpdateReactionStatus.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.reactionStatus != null && message.hasOwnProperty('reactionStatus')) {
+        if (typeof message.reactionStatus !== 'boolean') {return 'reactionStatus: boolean expected';}
+      }
+      return null;
+    };
+
+    return ChannelUpdateReactionStatus;
+  })();
+
+  proto.ChannelUpdateReactionStatusResponse = (function() {
+
+    /**
+         * Properties of a ChannelUpdateReactionStatusResponse.
+         * @memberof proto
+         * @interface IChannelUpdateReactionStatusResponse
+         * @property {proto.Response|null} [response] ChannelUpdateReactionStatusResponse response
+         * @property {Long|null} [roomId] ChannelUpdateReactionStatusResponse roomId
+         * @property {boolean|null} [reactionStatus] ChannelUpdateReactionStatusResponse reactionStatus
+         */
+
+    /**
+         * Constructs a new ChannelUpdateReactionStatusResponse.
+         * @memberof proto
+         * @classdesc Represents a ChannelUpdateReactionStatusResponse.
+         * @implements IChannelUpdateReactionStatusResponse
+         * @constructor
+         * @param {proto.IChannelUpdateReactionStatusResponse=} [properties] Properties to set
+         */
+    function ChannelUpdateReactionStatusResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ChannelUpdateReactionStatusResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @instance
+         */
+    ChannelUpdateReactionStatusResponse.prototype.response = null;
+
+    /**
+         * ChannelUpdateReactionStatusResponse roomId.
+         * @member {Long} roomId
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @instance
+         */
+    ChannelUpdateReactionStatusResponse.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * ChannelUpdateReactionStatusResponse reactionStatus.
+         * @member {boolean} reactionStatus
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @instance
+         */
+    ChannelUpdateReactionStatusResponse.prototype.reactionStatus = false;
+
+    /**
+         * Creates a new ChannelUpdateReactionStatusResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @static
+         * @param {proto.IChannelUpdateReactionStatusResponse=} [properties] Properties to set
+         * @returns {proto.ChannelUpdateReactionStatusResponse} ChannelUpdateReactionStatusResponse instance
+         */
+    ChannelUpdateReactionStatusResponse.create = function create(properties) {
+      return new ChannelUpdateReactionStatusResponse(properties);
+    };
+
+    /**
+         * Encodes the specified ChannelUpdateReactionStatusResponse message. Does not implicitly {@link proto.ChannelUpdateReactionStatusResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @static
+         * @param {proto.ChannelUpdateReactionStatusResponse} message ChannelUpdateReactionStatusResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ChannelUpdateReactionStatusResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.reactionStatus != null && message.hasOwnProperty('reactionStatus')) {writer.uint32(/* id 3, wireType 0 =*/24).bool(message.reactionStatus);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ChannelUpdateReactionStatusResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ChannelUpdateReactionStatusResponse} ChannelUpdateReactionStatusResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ChannelUpdateReactionStatusResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ChannelUpdateReactionStatusResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.reactionStatus = reader.bool();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ChannelUpdateReactionStatusResponse message.
+         * @function verify
+         * @memberof proto.ChannelUpdateReactionStatusResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ChannelUpdateReactionStatusResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.reactionStatus != null && message.hasOwnProperty('reactionStatus')) {
+        if (typeof message.reactionStatus !== 'boolean') {return 'reactionStatus: boolean expected';}
+      }
+      return null;
+    };
+
+    return ChannelUpdateReactionStatusResponse;
+  })();
+
   proto.ChannelUpdateSignature = (function() {
 
     /**
          * Properties of a ChannelUpdateSignature.
          * @memberof proto
          * @interface IChannelUpdateSignature
-         * @property {proto.Request} [request] ChannelUpdateSignature request
-         * @property {Long} [roomId] ChannelUpdateSignature roomId
-         * @property {boolean} [signature] ChannelUpdateSignature signature
+         * @property {proto.Request|null} [request] ChannelUpdateSignature request
+         * @property {Long|null} [roomId] ChannelUpdateSignature roomId
+         * @property {boolean|null} [signature] ChannelUpdateSignature signature
          */
 
     /**
          * Constructs a new ChannelUpdateSignature.
          * @memberof proto
          * @classdesc Represents a ChannelUpdateSignature.
+         * @implements IChannelUpdateSignature
          * @constructor
          * @param {proto.IChannelUpdateSignature=} [properties] Properties to set
          */
@@ -12748,7 +13528,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateSignature request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelUpdateSignature
          * @instance
          */
@@ -12756,7 +13536,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateSignature roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelUpdateSignature
          * @instance
          */
@@ -12764,7 +13544,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateSignature signature.
-         * @member {boolean}signature
+         * @member {boolean} signature
          * @memberof proto.ChannelUpdateSignature
          * @instance
          */
@@ -12865,15 +13645,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelUpdateSignatureResponse.
          * @memberof proto
          * @interface IChannelUpdateSignatureResponse
-         * @property {proto.Response} [response] ChannelUpdateSignatureResponse response
-         * @property {Long} [roomId] ChannelUpdateSignatureResponse roomId
-         * @property {boolean} [signature] ChannelUpdateSignatureResponse signature
+         * @property {proto.Response|null} [response] ChannelUpdateSignatureResponse response
+         * @property {Long|null} [roomId] ChannelUpdateSignatureResponse roomId
+         * @property {boolean|null} [signature] ChannelUpdateSignatureResponse signature
          */
 
     /**
          * Constructs a new ChannelUpdateSignatureResponse.
          * @memberof proto
          * @classdesc Represents a ChannelUpdateSignatureResponse.
+         * @implements IChannelUpdateSignatureResponse
          * @constructor
          * @param {proto.IChannelUpdateSignatureResponse=} [properties] Properties to set
          */
@@ -12887,7 +13668,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateSignatureResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelUpdateSignatureResponse
          * @instance
          */
@@ -12895,7 +13676,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateSignatureResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelUpdateSignatureResponse
          * @instance
          */
@@ -12903,7 +13684,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateSignatureResponse signature.
-         * @member {boolean}signature
+         * @member {boolean} signature
          * @memberof proto.ChannelUpdateSignatureResponse
          * @instance
          */
@@ -13004,15 +13785,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelUpdateUsername.
          * @memberof proto
          * @interface IChannelUpdateUsername
-         * @property {proto.Request} [request] ChannelUpdateUsername request
-         * @property {string} [username] ChannelUpdateUsername username
-         * @property {Long} [roomId] ChannelUpdateUsername roomId
+         * @property {proto.Request|null} [request] ChannelUpdateUsername request
+         * @property {string|null} [username] ChannelUpdateUsername username
+         * @property {Long|null} [roomId] ChannelUpdateUsername roomId
          */
 
     /**
          * Constructs a new ChannelUpdateUsername.
          * @memberof proto
          * @classdesc Represents a ChannelUpdateUsername.
+         * @implements IChannelUpdateUsername
          * @constructor
          * @param {proto.IChannelUpdateUsername=} [properties] Properties to set
          */
@@ -13026,7 +13808,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChannelUpdateUsername
          * @instance
          */
@@ -13034,7 +13816,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.ChannelUpdateUsername
          * @instance
          */
@@ -13042,7 +13824,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateUsername roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelUpdateUsername
          * @instance
          */
@@ -13143,15 +13925,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChannelUpdateUsernameResponse.
          * @memberof proto
          * @interface IChannelUpdateUsernameResponse
-         * @property {proto.Response} [response] ChannelUpdateUsernameResponse response
-         * @property {string} [username] ChannelUpdateUsernameResponse username
-         * @property {Long} [roomId] ChannelUpdateUsernameResponse roomId
+         * @property {proto.Response|null} [response] ChannelUpdateUsernameResponse response
+         * @property {string|null} [username] ChannelUpdateUsernameResponse username
+         * @property {Long|null} [roomId] ChannelUpdateUsernameResponse roomId
          */
 
     /**
          * Constructs a new ChannelUpdateUsernameResponse.
          * @memberof proto
          * @classdesc Represents a ChannelUpdateUsernameResponse.
+         * @implements IChannelUpdateUsernameResponse
          * @constructor
          * @param {proto.IChannelUpdateUsernameResponse=} [properties] Properties to set
          */
@@ -13165,7 +13948,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChannelUpdateUsernameResponse
          * @instance
          */
@@ -13173,7 +13956,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateUsernameResponse username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.ChannelUpdateUsernameResponse
          * @instance
          */
@@ -13181,7 +13964,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChannelUpdateUsernameResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChannelUpdateUsernameResponse
          * @instance
          */
@@ -13282,15 +14065,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatClearMessage.
          * @memberof proto
          * @interface IChatClearMessage
-         * @property {proto.Request} [request] ChatClearMessage request
-         * @property {Long} [roomId] ChatClearMessage roomId
-         * @property {Long} [clearId] ChatClearMessage clearId
+         * @property {proto.Request|null} [request] ChatClearMessage request
+         * @property {Long|null} [roomId] ChatClearMessage roomId
+         * @property {Long|null} [clearId] ChatClearMessage clearId
          */
 
     /**
          * Constructs a new ChatClearMessage.
          * @memberof proto
          * @classdesc Represents a ChatClearMessage.
+         * @implements IChatClearMessage
          * @constructor
          * @param {proto.IChatClearMessage=} [properties] Properties to set
          */
@@ -13304,7 +14088,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatClearMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatClearMessage
          * @instance
          */
@@ -13312,7 +14096,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatClearMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatClearMessage
          * @instance
          */
@@ -13320,7 +14104,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatClearMessage clearId.
-         * @member {Long}clearId
+         * @member {Long} clearId
          * @memberof proto.ChatClearMessage
          * @instance
          */
@@ -13421,15 +14205,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatClearMessageResponse.
          * @memberof proto
          * @interface IChatClearMessageResponse
-         * @property {proto.Response} [response] ChatClearMessageResponse response
-         * @property {Long} [roomId] ChatClearMessageResponse roomId
-         * @property {Long} [clearId] ChatClearMessageResponse clearId
+         * @property {proto.Response|null} [response] ChatClearMessageResponse response
+         * @property {Long|null} [roomId] ChatClearMessageResponse roomId
+         * @property {Long|null} [clearId] ChatClearMessageResponse clearId
          */
 
     /**
          * Constructs a new ChatClearMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChatClearMessageResponse.
+         * @implements IChatClearMessageResponse
          * @constructor
          * @param {proto.IChatClearMessageResponse=} [properties] Properties to set
          */
@@ -13443,7 +14228,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatClearMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatClearMessageResponse
          * @instance
          */
@@ -13451,7 +14236,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatClearMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatClearMessageResponse
          * @instance
          */
@@ -13459,7 +14244,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatClearMessageResponse clearId.
-         * @member {Long}clearId
+         * @member {Long} clearId
          * @memberof proto.ChatClearMessageResponse
          * @instance
          */
@@ -13560,16 +14345,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatConvertToGroup.
          * @memberof proto
          * @interface IChatConvertToGroup
-         * @property {proto.Request} [request] ChatConvertToGroup request
-         * @property {Long} [roomId] ChatConvertToGroup roomId
-         * @property {string} [name] ChatConvertToGroup name
-         * @property {string} [description] ChatConvertToGroup description
+         * @property {proto.Request|null} [request] ChatConvertToGroup request
+         * @property {Long|null} [roomId] ChatConvertToGroup roomId
+         * @property {string|null} [name] ChatConvertToGroup name
+         * @property {string|null} [description] ChatConvertToGroup description
          */
 
     /**
          * Constructs a new ChatConvertToGroup.
          * @memberof proto
          * @classdesc Represents a ChatConvertToGroup.
+         * @implements IChatConvertToGroup
          * @constructor
          * @param {proto.IChatConvertToGroup=} [properties] Properties to set
          */
@@ -13583,7 +14369,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroup request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatConvertToGroup
          * @instance
          */
@@ -13591,7 +14377,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroup roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatConvertToGroup
          * @instance
          */
@@ -13599,7 +14385,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroup name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.ChatConvertToGroup
          * @instance
          */
@@ -13607,7 +14393,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroup description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ChatConvertToGroup
          * @instance
          */
@@ -13715,17 +14501,18 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatConvertToGroupResponse.
          * @memberof proto
          * @interface IChatConvertToGroupResponse
-         * @property {proto.Response} [response] ChatConvertToGroupResponse response
-         * @property {Long} [roomId] ChatConvertToGroupResponse roomId
-         * @property {string} [name] ChatConvertToGroupResponse name
-         * @property {string} [description] ChatConvertToGroupResponse description
-         * @property {proto.GroupRoom.Role} [role] ChatConvertToGroupResponse role
+         * @property {proto.Response|null} [response] ChatConvertToGroupResponse response
+         * @property {Long|null} [roomId] ChatConvertToGroupResponse roomId
+         * @property {string|null} [name] ChatConvertToGroupResponse name
+         * @property {string|null} [description] ChatConvertToGroupResponse description
+         * @property {proto.GroupRoom.Role|null} [role] ChatConvertToGroupResponse role
          */
 
     /**
          * Constructs a new ChatConvertToGroupResponse.
          * @memberof proto
          * @classdesc Represents a ChatConvertToGroupResponse.
+         * @implements IChatConvertToGroupResponse
          * @constructor
          * @param {proto.IChatConvertToGroupResponse=} [properties] Properties to set
          */
@@ -13739,7 +14526,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroupResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatConvertToGroupResponse
          * @instance
          */
@@ -13747,7 +14534,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroupResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatConvertToGroupResponse
          * @instance
          */
@@ -13755,7 +14542,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroupResponse name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.ChatConvertToGroupResponse
          * @instance
          */
@@ -13763,7 +14550,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroupResponse description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ChatConvertToGroupResponse
          * @instance
          */
@@ -13771,7 +14558,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatConvertToGroupResponse role.
-         * @member {proto.GroupRoom.Role}role
+         * @member {proto.GroupRoom.Role} role
          * @memberof proto.ChatConvertToGroupResponse
          * @instance
          */
@@ -13894,14 +14681,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatDelete.
          * @memberof proto
          * @interface IChatDelete
-         * @property {proto.Request} [request] ChatDelete request
-         * @property {Long} [roomId] ChatDelete roomId
+         * @property {proto.Request|null} [request] ChatDelete request
+         * @property {Long|null} [roomId] ChatDelete roomId
          */
 
     /**
          * Constructs a new ChatDelete.
          * @memberof proto
          * @classdesc Represents a ChatDelete.
+         * @implements IChatDelete
          * @constructor
          * @param {proto.IChatDelete=} [properties] Properties to set
          */
@@ -13915,7 +14703,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatDelete
          * @instance
          */
@@ -13923,7 +14711,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDelete roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatDelete
          * @instance
          */
@@ -14017,14 +14805,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatDeleteResponse.
          * @memberof proto
          * @interface IChatDeleteResponse
-         * @property {proto.Response} [response] ChatDeleteResponse response
-         * @property {Long} [roomId] ChatDeleteResponse roomId
+         * @property {proto.Response|null} [response] ChatDeleteResponse response
+         * @property {Long|null} [roomId] ChatDeleteResponse roomId
          */
 
     /**
          * Constructs a new ChatDeleteResponse.
          * @memberof proto
          * @classdesc Represents a ChatDeleteResponse.
+         * @implements IChatDeleteResponse
          * @constructor
          * @param {proto.IChatDeleteResponse=} [properties] Properties to set
          */
@@ -14038,7 +14827,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatDeleteResponse
          * @instance
          */
@@ -14046,7 +14835,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatDeleteResponse
          * @instance
          */
@@ -14140,16 +14929,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatDeleteMessage.
          * @memberof proto
          * @interface IChatDeleteMessage
-         * @property {proto.Request} [request] ChatDeleteMessage request
-         * @property {Long} [roomId] ChatDeleteMessage roomId
-         * @property {Long} [messageId] ChatDeleteMessage messageId
-         * @property {boolean} [both] ChatDeleteMessage both
+         * @property {proto.Request|null} [request] ChatDeleteMessage request
+         * @property {Long|null} [roomId] ChatDeleteMessage roomId
+         * @property {Long|null} [messageId] ChatDeleteMessage messageId
+         * @property {boolean|null} [both] ChatDeleteMessage both
          */
 
     /**
          * Constructs a new ChatDeleteMessage.
          * @memberof proto
          * @classdesc Represents a ChatDeleteMessage.
+         * @implements IChatDeleteMessage
          * @constructor
          * @param {proto.IChatDeleteMessage=} [properties] Properties to set
          */
@@ -14163,7 +14953,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatDeleteMessage
          * @instance
          */
@@ -14171,7 +14961,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatDeleteMessage
          * @instance
          */
@@ -14179,7 +14969,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChatDeleteMessage
          * @instance
          */
@@ -14187,7 +14977,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessage both.
-         * @member {boolean}both
+         * @member {boolean} both
          * @memberof proto.ChatDeleteMessage
          * @instance
          */
@@ -14295,16 +15085,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatDeleteMessageResponse.
          * @memberof proto
          * @interface IChatDeleteMessageResponse
-         * @property {proto.Response} [response] ChatDeleteMessageResponse response
-         * @property {Long} [roomId] ChatDeleteMessageResponse roomId
-         * @property {Long} [messageId] ChatDeleteMessageResponse messageId
-         * @property {Long} [deleteVersion] ChatDeleteMessageResponse deleteVersion
+         * @property {proto.Response|null} [response] ChatDeleteMessageResponse response
+         * @property {Long|null} [roomId] ChatDeleteMessageResponse roomId
+         * @property {Long|null} [messageId] ChatDeleteMessageResponse messageId
+         * @property {Long|null} [deleteVersion] ChatDeleteMessageResponse deleteVersion
          */
 
     /**
          * Constructs a new ChatDeleteMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChatDeleteMessageResponse.
+         * @implements IChatDeleteMessageResponse
          * @constructor
          * @param {proto.IChatDeleteMessageResponse=} [properties] Properties to set
          */
@@ -14318,7 +15109,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatDeleteMessageResponse
          * @instance
          */
@@ -14326,7 +15117,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatDeleteMessageResponse
          * @instance
          */
@@ -14334,7 +15125,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessageResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChatDeleteMessageResponse
          * @instance
          */
@@ -14342,7 +15133,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatDeleteMessageResponse deleteVersion.
-         * @member {Long}deleteVersion
+         * @member {Long} deleteVersion
          * @memberof proto.ChatDeleteMessageResponse
          * @instance
          */
@@ -14450,16 +15241,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatEditMessage.
          * @memberof proto
          * @interface IChatEditMessage
-         * @property {proto.Request} [request] ChatEditMessage request
-         * @property {Long} [roomId] ChatEditMessage roomId
-         * @property {Long} [messageId] ChatEditMessage messageId
-         * @property {string} [message] ChatEditMessage message
+         * @property {proto.Request|null} [request] ChatEditMessage request
+         * @property {Long|null} [roomId] ChatEditMessage roomId
+         * @property {Long|null} [messageId] ChatEditMessage messageId
+         * @property {string|null} [message] ChatEditMessage message
          */
 
     /**
          * Constructs a new ChatEditMessage.
          * @memberof proto
          * @classdesc Represents a ChatEditMessage.
+         * @implements IChatEditMessage
          * @constructor
          * @param {proto.IChatEditMessage=} [properties] Properties to set
          */
@@ -14473,7 +15265,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatEditMessage
          * @instance
          */
@@ -14481,7 +15273,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatEditMessage
          * @instance
          */
@@ -14489,7 +15281,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChatEditMessage
          * @instance
          */
@@ -14497,7 +15289,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ChatEditMessage
          * @instance
          */
@@ -14605,18 +15397,19 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatEditMessageResponse.
          * @memberof proto
          * @interface IChatEditMessageResponse
-         * @property {proto.Response} [response] ChatEditMessageResponse response
-         * @property {Long} [roomId] ChatEditMessageResponse roomId
-         * @property {Long} [messageId] ChatEditMessageResponse messageId
-         * @property {Long} [messageVersion] ChatEditMessageResponse messageVersion
-         * @property {string} [message] ChatEditMessageResponse message
-         * @property {proto.RoomMessageType} [messageType] ChatEditMessageResponse messageType
+         * @property {proto.Response|null} [response] ChatEditMessageResponse response
+         * @property {Long|null} [roomId] ChatEditMessageResponse roomId
+         * @property {Long|null} [messageId] ChatEditMessageResponse messageId
+         * @property {Long|null} [messageVersion] ChatEditMessageResponse messageVersion
+         * @property {string|null} [message] ChatEditMessageResponse message
+         * @property {proto.RoomMessageType|null} [messageType] ChatEditMessageResponse messageType
          */
 
     /**
          * Constructs a new ChatEditMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChatEditMessageResponse.
+         * @implements IChatEditMessageResponse
          * @constructor
          * @param {proto.IChatEditMessageResponse=} [properties] Properties to set
          */
@@ -14630,7 +15423,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatEditMessageResponse
          * @instance
          */
@@ -14638,7 +15431,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatEditMessageResponse
          * @instance
          */
@@ -14646,7 +15439,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessageResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChatEditMessageResponse
          * @instance
          */
@@ -14654,7 +15447,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessageResponse messageVersion.
-         * @member {Long}messageVersion
+         * @member {Long} messageVersion
          * @memberof proto.ChatEditMessageResponse
          * @instance
          */
@@ -14662,7 +15455,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessageResponse message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ChatEditMessageResponse
          * @instance
          */
@@ -14670,7 +15463,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatEditMessageResponse messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.ChatEditMessageResponse
          * @instance
          */
@@ -14811,14 +15604,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatGetDraft.
          * @memberof proto
          * @interface IChatGetDraft
-         * @property {proto.Request} [request] ChatGetDraft request
-         * @property {Long} [roomId] ChatGetDraft roomId
+         * @property {proto.Request|null} [request] ChatGetDraft request
+         * @property {Long|null} [roomId] ChatGetDraft roomId
          */
 
     /**
          * Constructs a new ChatGetDraft.
          * @memberof proto
          * @classdesc Represents a ChatGetDraft.
+         * @implements IChatGetDraft
          * @constructor
          * @param {proto.IChatGetDraft=} [properties] Properties to set
          */
@@ -14832,7 +15626,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetDraft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatGetDraft
          * @instance
          */
@@ -14840,7 +15634,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetDraft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatGetDraft
          * @instance
          */
@@ -14934,14 +15728,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatGetDraftResponse.
          * @memberof proto
          * @interface IChatGetDraftResponse
-         * @property {proto.Response} [response] ChatGetDraftResponse response
-         * @property {proto.RoomDraft} [draft] ChatGetDraftResponse draft
+         * @property {proto.Response|null} [response] ChatGetDraftResponse response
+         * @property {proto.RoomDraft|null} [draft] ChatGetDraftResponse draft
          */
 
     /**
          * Constructs a new ChatGetDraftResponse.
          * @memberof proto
          * @classdesc Represents a ChatGetDraftResponse.
+         * @implements IChatGetDraftResponse
          * @constructor
          * @param {proto.IChatGetDraftResponse=} [properties] Properties to set
          */
@@ -14955,7 +15750,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetDraftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatGetDraftResponse
          * @instance
          */
@@ -14963,7 +15758,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetDraftResponse draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.ChatGetDraftResponse
          * @instance
          */
@@ -15043,7 +15838,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -15058,14 +15853,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatGetRoom.
          * @memberof proto
          * @interface IChatGetRoom
-         * @property {proto.Request} [request] ChatGetRoom request
-         * @property {Long} [peerId] ChatGetRoom peerId
+         * @property {proto.Request|null} [request] ChatGetRoom request
+         * @property {Long|null} [peerId] ChatGetRoom peerId
          */
 
     /**
          * Constructs a new ChatGetRoom.
          * @memberof proto
          * @classdesc Represents a ChatGetRoom.
+         * @implements IChatGetRoom
          * @constructor
          * @param {proto.IChatGetRoom=} [properties] Properties to set
          */
@@ -15079,7 +15875,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetRoom request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatGetRoom
          * @instance
          */
@@ -15087,7 +15883,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetRoom peerId.
-         * @member {Long}peerId
+         * @member {Long} peerId
          * @memberof proto.ChatGetRoom
          * @instance
          */
@@ -15181,14 +15977,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatGetRoomResponse.
          * @memberof proto
          * @interface IChatGetRoomResponse
-         * @property {proto.Response} [response] ChatGetRoomResponse response
-         * @property {proto.Room} [room] ChatGetRoomResponse room
+         * @property {proto.Response|null} [response] ChatGetRoomResponse response
+         * @property {proto.Room|null} [room] ChatGetRoomResponse room
          */
 
     /**
          * Constructs a new ChatGetRoomResponse.
          * @memberof proto
          * @classdesc Represents a ChatGetRoomResponse.
+         * @implements IChatGetRoomResponse
          * @constructor
          * @param {proto.IChatGetRoomResponse=} [properties] Properties to set
          */
@@ -15202,7 +15999,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetRoomResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatGetRoomResponse
          * @instance
          */
@@ -15210,7 +16007,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatGetRoomResponse room.
-         * @member {(proto.Room|null|undefined)}room
+         * @member {proto.Room|null|undefined} room
          * @memberof proto.ChatGetRoomResponse
          * @instance
          */
@@ -15290,7 +16087,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.room != null && message.hasOwnProperty('room')) {
-        error = $root.proto.Room.verify(message.room);
+        let error = $root.proto.Room.verify(message.room);
         if (error) {return 'room.' + error;}
       }
       return null;
@@ -15305,21 +16102,23 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatSendMessage.
          * @memberof proto
          * @interface IChatSendMessage
-         * @property {proto.Request} [request] ChatSendMessage request
-         * @property {proto.RoomMessageType} [messageType] ChatSendMessage messageType
-         * @property {Long} [roomId] ChatSendMessage roomId
-         * @property {string} [message] ChatSendMessage message
-         * @property {string} [attachment] ChatSendMessage attachment
-         * @property {proto.RoomMessageLocation} [location] ChatSendMessage location
-         * @property {proto.RoomMessageContact} [contact] ChatSendMessage contact
-         * @property {Long} [replyTo] ChatSendMessage replyTo
-         * @property {proto.RoomMessageForwardFrom} [forwardFrom] ChatSendMessage forwardFrom
+         * @property {proto.Request|null} [request] ChatSendMessage request
+         * @property {proto.RoomMessageType|null} [messageType] ChatSendMessage messageType
+         * @property {Long|null} [roomId] ChatSendMessage roomId
+         * @property {string|null} [message] ChatSendMessage message
+         * @property {string|null} [attachment] ChatSendMessage attachment
+         * @property {proto.RoomMessageLocation|null} [location] ChatSendMessage location
+         * @property {proto.RoomMessageContact|null} [contact] ChatSendMessage contact
+         * @property {Long|null} [replyTo] ChatSendMessage replyTo
+         * @property {proto.RoomMessageForwardFrom|null} [forwardFrom] ChatSendMessage forwardFrom
+         * @property {Long|null} [randomId] ChatSendMessage randomId
          */
 
     /**
          * Constructs a new ChatSendMessage.
          * @memberof proto
          * @classdesc Represents a ChatSendMessage.
+         * @implements IChatSendMessage
          * @constructor
          * @param {proto.IChatSendMessage=} [properties] Properties to set
          */
@@ -15333,7 +16132,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15341,7 +16140,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15349,7 +16148,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15357,7 +16156,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15365,7 +16164,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage attachment.
-         * @member {string}attachment
+         * @member {string} attachment
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15373,7 +16172,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage location.
-         * @member {(proto.RoomMessageLocation|null|undefined)}location
+         * @member {proto.RoomMessageLocation|null|undefined} location
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15381,7 +16180,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage contact.
-         * @member {(proto.RoomMessageContact|null|undefined)}contact
+         * @member {proto.RoomMessageContact|null|undefined} contact
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15389,7 +16188,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage replyTo.
-         * @member {Long}replyTo
+         * @member {Long} replyTo
          * @memberof proto.ChatSendMessage
          * @instance
          */
@@ -15397,11 +16196,19 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessage forwardFrom.
-         * @member {(proto.RoomMessageForwardFrom|null|undefined)}forwardFrom
+         * @member {proto.RoomMessageForwardFrom|null|undefined} forwardFrom
          * @memberof proto.ChatSendMessage
          * @instance
          */
     ChatSendMessage.prototype.forwardFrom = null;
+
+    /**
+         * ChatSendMessage randomId.
+         * @member {Long} randomId
+         * @memberof proto.ChatSendMessage
+         * @instance
+         */
+    ChatSendMessage.prototype.randomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
     /**
          * Creates a new ChatSendMessage instance using the specified properties.
@@ -15435,6 +16242,7 @@ export const proto = $root.proto = (() => {
       if (message.contact != null && message.hasOwnProperty('contact')) {$root.proto.RoomMessageContact.encode(message.contact, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();}
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {writer.uint32(/* id 8, wireType 0 =*/64).uint64(message.replyTo);}
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {$root.proto.RoomMessageForwardFrom.encode(message.forwardFrom, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();}
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {writer.uint32(/* id 10, wireType 0 =*/80).uint64(message.randomId);}
       return writer;
     };
 
@@ -15481,6 +16289,9 @@ export const proto = $root.proto = (() => {
             break;
           case 9:
             message.forwardFrom = $root.proto.RoomMessageForwardFrom.decode(reader, reader.uint32());
+            break;
+          case 10:
+            message.randomId = reader.uint64();
             break;
           default:
             reader.skipType(tag & 7);
@@ -15536,19 +16347,22 @@ export const proto = $root.proto = (() => {
         if (!$util.isString(message.attachment)) {return 'attachment: string expected';}
       }
       if (message.location != null && message.hasOwnProperty('location')) {
-        error = $root.proto.RoomMessageLocation.verify(message.location);
+        let error = $root.proto.RoomMessageLocation.verify(message.location);
         if (error) {return 'location.' + error;}
       }
       if (message.contact != null && message.hasOwnProperty('contact')) {
-        error = $root.proto.RoomMessageContact.verify(message.contact);
+        let error = $root.proto.RoomMessageContact.verify(message.contact);
         if (error) {return 'contact.' + error;}
       }
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {
         if (!$util.isInteger(message.replyTo) && !(message.replyTo && $util.isInteger(message.replyTo.low) && $util.isInteger(message.replyTo.high))) {return 'replyTo: integer|Long expected';}
       }
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {
-        error = $root.proto.RoomMessageForwardFrom.verify(message.forwardFrom);
+        let error = $root.proto.RoomMessageForwardFrom.verify(message.forwardFrom);
         if (error) {return 'forwardFrom.' + error;}
+      }
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {
+        if (!$util.isInteger(message.randomId) && !(message.randomId && $util.isInteger(message.randomId.low) && $util.isInteger(message.randomId.high))) {return 'randomId: integer|Long expected';}
       }
       return null;
     };
@@ -15562,15 +16376,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatSendMessageResponse.
          * @memberof proto
          * @interface IChatSendMessageResponse
-         * @property {proto.Response} [response] ChatSendMessageResponse response
-         * @property {Long} [roomId] ChatSendMessageResponse roomId
-         * @property {proto.RoomMessage} [roomMessage] ChatSendMessageResponse roomMessage
+         * @property {proto.Response|null} [response] ChatSendMessageResponse response
+         * @property {Long|null} [roomId] ChatSendMessageResponse roomId
+         * @property {proto.RoomMessage|null} [roomMessage] ChatSendMessageResponse roomMessage
          */
 
     /**
          * Constructs a new ChatSendMessageResponse.
          * @memberof proto
          * @classdesc Represents a ChatSendMessageResponse.
+         * @implements IChatSendMessageResponse
          * @constructor
          * @param {proto.IChatSendMessageResponse=} [properties] Properties to set
          */
@@ -15584,7 +16399,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatSendMessageResponse
          * @instance
          */
@@ -15592,7 +16407,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatSendMessageResponse
          * @instance
          */
@@ -15600,7 +16415,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSendMessageResponse roomMessage.
-         * @member {(proto.RoomMessage|null|undefined)}roomMessage
+         * @member {proto.RoomMessage|null|undefined} roomMessage
          * @memberof proto.ChatSendMessageResponse
          * @instance
          */
@@ -15687,7 +16502,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.roomMessage != null && message.hasOwnProperty('roomMessage')) {
-        error = $root.proto.RoomMessage.verify(message.roomMessage);
+        let error = $root.proto.RoomMessage.verify(message.roomMessage);
         if (error) {return 'roomMessage.' + error;}
       }
       return null;
@@ -15702,16 +16517,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatSetAction.
          * @memberof proto
          * @interface IChatSetAction
-         * @property {proto.Request} [request] ChatSetAction request
-         * @property {Long} [roomId] ChatSetAction roomId
-         * @property {proto.ClientAction} [action] ChatSetAction action
-         * @property {number} [actionId] ChatSetAction actionId
+         * @property {proto.Request|null} [request] ChatSetAction request
+         * @property {Long|null} [roomId] ChatSetAction roomId
+         * @property {proto.ClientAction|null} [action] ChatSetAction action
+         * @property {number|null} [actionId] ChatSetAction actionId
          */
 
     /**
          * Constructs a new ChatSetAction.
          * @memberof proto
          * @classdesc Represents a ChatSetAction.
+         * @implements IChatSetAction
          * @constructor
          * @param {proto.IChatSetAction=} [properties] Properties to set
          */
@@ -15725,7 +16541,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetAction request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatSetAction
          * @instance
          */
@@ -15733,7 +16549,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetAction roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatSetAction
          * @instance
          */
@@ -15741,7 +16557,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetAction action.
-         * @member {proto.ClientAction}action
+         * @member {proto.ClientAction} action
          * @memberof proto.ChatSetAction
          * @instance
          */
@@ -15749,7 +16565,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetAction actionId.
-         * @member {number}actionId
+         * @member {number} actionId
          * @memberof proto.ChatSetAction
          * @instance
          */
@@ -15876,16 +16692,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatSetActionResponse.
          * @memberof proto
          * @interface IChatSetActionResponse
-         * @property {proto.Response} [response] ChatSetActionResponse response
-         * @property {Long} [roomId] ChatSetActionResponse roomId
-         * @property {proto.ClientAction} [action] ChatSetActionResponse action
-         * @property {Long} [userId] ChatSetActionResponse userId
+         * @property {proto.Response|null} [response] ChatSetActionResponse response
+         * @property {Long|null} [roomId] ChatSetActionResponse roomId
+         * @property {proto.ClientAction|null} [action] ChatSetActionResponse action
+         * @property {Long|null} [userId] ChatSetActionResponse userId
          */
 
     /**
          * Constructs a new ChatSetActionResponse.
          * @memberof proto
          * @classdesc Represents a ChatSetActionResponse.
+         * @implements IChatSetActionResponse
          * @constructor
          * @param {proto.IChatSetActionResponse=} [properties] Properties to set
          */
@@ -15899,7 +16716,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetActionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatSetActionResponse
          * @instance
          */
@@ -15907,7 +16724,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetActionResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatSetActionResponse
          * @instance
          */
@@ -15915,7 +16732,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetActionResponse action.
-         * @member {proto.ClientAction}action
+         * @member {proto.ClientAction} action
          * @memberof proto.ChatSetActionResponse
          * @instance
          */
@@ -15923,7 +16740,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatSetActionResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.ChatSetActionResponse
          * @instance
          */
@@ -16050,15 +16867,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatUpdateDraft.
          * @memberof proto
          * @interface IChatUpdateDraft
-         * @property {proto.Request} [request] ChatUpdateDraft request
-         * @property {Long} [roomId] ChatUpdateDraft roomId
-         * @property {proto.RoomDraft} [draft] ChatUpdateDraft draft
+         * @property {proto.Request|null} [request] ChatUpdateDraft request
+         * @property {Long|null} [roomId] ChatUpdateDraft roomId
+         * @property {proto.RoomDraft|null} [draft] ChatUpdateDraft draft
          */
 
     /**
          * Constructs a new ChatUpdateDraft.
          * @memberof proto
          * @classdesc Represents a ChatUpdateDraft.
+         * @implements IChatUpdateDraft
          * @constructor
          * @param {proto.IChatUpdateDraft=} [properties] Properties to set
          */
@@ -16072,7 +16890,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateDraft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatUpdateDraft
          * @instance
          */
@@ -16080,7 +16898,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateDraft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatUpdateDraft
          * @instance
          */
@@ -16088,7 +16906,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateDraft draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.ChatUpdateDraft
          * @instance
          */
@@ -16175,7 +16993,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -16190,15 +17008,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatUpdateDraftResponse.
          * @memberof proto
          * @interface IChatUpdateDraftResponse
-         * @property {proto.Response} [response] ChatUpdateDraftResponse response
-         * @property {Long} [roomId] ChatUpdateDraftResponse roomId
-         * @property {proto.RoomDraft} [draft] ChatUpdateDraftResponse draft
+         * @property {proto.Response|null} [response] ChatUpdateDraftResponse response
+         * @property {Long|null} [roomId] ChatUpdateDraftResponse roomId
+         * @property {proto.RoomDraft|null} [draft] ChatUpdateDraftResponse draft
          */
 
     /**
          * Constructs a new ChatUpdateDraftResponse.
          * @memberof proto
          * @classdesc Represents a ChatUpdateDraftResponse.
+         * @implements IChatUpdateDraftResponse
          * @constructor
          * @param {proto.IChatUpdateDraftResponse=} [properties] Properties to set
          */
@@ -16212,7 +17031,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateDraftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatUpdateDraftResponse
          * @instance
          */
@@ -16220,7 +17039,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateDraftResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatUpdateDraftResponse
          * @instance
          */
@@ -16228,7 +17047,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateDraftResponse draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.ChatUpdateDraftResponse
          * @instance
          */
@@ -16315,7 +17134,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -16330,16 +17149,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatUpdateStatus.
          * @memberof proto
          * @interface IChatUpdateStatus
-         * @property {proto.Request} [request] ChatUpdateStatus request
-         * @property {Long} [roomId] ChatUpdateStatus roomId
-         * @property {Long} [messageId] ChatUpdateStatus messageId
-         * @property {proto.RoomMessageStatus} [status] ChatUpdateStatus status
+         * @property {proto.Request|null} [request] ChatUpdateStatus request
+         * @property {Long|null} [roomId] ChatUpdateStatus roomId
+         * @property {Long|null} [messageId] ChatUpdateStatus messageId
+         * @property {proto.RoomMessageStatus|null} [status] ChatUpdateStatus status
          */
 
     /**
          * Constructs a new ChatUpdateStatus.
          * @memberof proto
          * @classdesc Represents a ChatUpdateStatus.
+         * @implements IChatUpdateStatus
          * @constructor
          * @param {proto.IChatUpdateStatus=} [properties] Properties to set
          */
@@ -16353,7 +17173,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatus request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ChatUpdateStatus
          * @instance
          */
@@ -16361,7 +17181,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatus roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatUpdateStatus
          * @instance
          */
@@ -16369,7 +17189,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatus messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChatUpdateStatus
          * @instance
          */
@@ -16377,7 +17197,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatus status.
-         * @member {proto.RoomMessageStatus}status
+         * @member {proto.RoomMessageStatus} status
          * @memberof proto.ChatUpdateStatus
          * @instance
          */
@@ -16495,18 +17315,19 @@ export const proto = $root.proto = (() => {
          * Properties of a ChatUpdateStatusResponse.
          * @memberof proto
          * @interface IChatUpdateStatusResponse
-         * @property {proto.Response} [response] ChatUpdateStatusResponse response
-         * @property {Long} [roomId] ChatUpdateStatusResponse roomId
-         * @property {Long} [messageId] ChatUpdateStatusResponse messageId
-         * @property {proto.RoomMessageStatus} [status] ChatUpdateStatusResponse status
-         * @property {Long} [statusVersion] ChatUpdateStatusResponse statusVersion
-         * @property {string} [updaterAuthorHash] ChatUpdateStatusResponse updaterAuthorHash
+         * @property {proto.Response|null} [response] ChatUpdateStatusResponse response
+         * @property {Long|null} [roomId] ChatUpdateStatusResponse roomId
+         * @property {Long|null} [messageId] ChatUpdateStatusResponse messageId
+         * @property {proto.RoomMessageStatus|null} [status] ChatUpdateStatusResponse status
+         * @property {Long|null} [statusVersion] ChatUpdateStatusResponse statusVersion
+         * @property {string|null} [updaterAuthorHash] ChatUpdateStatusResponse updaterAuthorHash
          */
 
     /**
          * Constructs a new ChatUpdateStatusResponse.
          * @memberof proto
          * @classdesc Represents a ChatUpdateStatusResponse.
+         * @implements IChatUpdateStatusResponse
          * @constructor
          * @param {proto.IChatUpdateStatusResponse=} [properties] Properties to set
          */
@@ -16520,7 +17341,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatusResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ChatUpdateStatusResponse
          * @instance
          */
@@ -16528,7 +17349,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatusResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ChatUpdateStatusResponse
          * @instance
          */
@@ -16536,7 +17357,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatusResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ChatUpdateStatusResponse
          * @instance
          */
@@ -16544,7 +17365,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatusResponse status.
-         * @member {proto.RoomMessageStatus}status
+         * @member {proto.RoomMessageStatus} status
          * @memberof proto.ChatUpdateStatusResponse
          * @instance
          */
@@ -16552,7 +17373,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatusResponse statusVersion.
-         * @member {Long}statusVersion
+         * @member {Long} statusVersion
          * @memberof proto.ChatUpdateStatusResponse
          * @instance
          */
@@ -16560,7 +17381,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ChatUpdateStatusResponse updaterAuthorHash.
-         * @member {string}updaterAuthorHash
+         * @member {string} updaterAuthorHash
          * @memberof proto.ChatUpdateStatusResponse
          * @instance
          */
@@ -16692,14 +17513,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientCheckInviteLink.
          * @memberof proto
          * @interface IClientCheckInviteLink
-         * @property {proto.Request} [request] ClientCheckInviteLink request
-         * @property {string} [inviteToken] ClientCheckInviteLink inviteToken
+         * @property {proto.Request|null} [request] ClientCheckInviteLink request
+         * @property {string|null} [inviteToken] ClientCheckInviteLink inviteToken
          */
 
     /**
          * Constructs a new ClientCheckInviteLink.
          * @memberof proto
          * @classdesc Represents a ClientCheckInviteLink.
+         * @implements IClientCheckInviteLink
          * @constructor
          * @param {proto.IClientCheckInviteLink=} [properties] Properties to set
          */
@@ -16713,7 +17535,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCheckInviteLink request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientCheckInviteLink
          * @instance
          */
@@ -16721,7 +17543,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCheckInviteLink inviteToken.
-         * @member {string}inviteToken
+         * @member {string} inviteToken
          * @memberof proto.ClientCheckInviteLink
          * @instance
          */
@@ -16815,14 +17637,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientCheckInviteLinkResponse.
          * @memberof proto
          * @interface IClientCheckInviteLinkResponse
-         * @property {proto.Response} [response] ClientCheckInviteLinkResponse response
-         * @property {proto.Room} [room] ClientCheckInviteLinkResponse room
+         * @property {proto.Response|null} [response] ClientCheckInviteLinkResponse response
+         * @property {proto.Room|null} [room] ClientCheckInviteLinkResponse room
          */
 
     /**
          * Constructs a new ClientCheckInviteLinkResponse.
          * @memberof proto
          * @classdesc Represents a ClientCheckInviteLinkResponse.
+         * @implements IClientCheckInviteLinkResponse
          * @constructor
          * @param {proto.IClientCheckInviteLinkResponse=} [properties] Properties to set
          */
@@ -16836,7 +17659,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCheckInviteLinkResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientCheckInviteLinkResponse
          * @instance
          */
@@ -16844,7 +17667,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCheckInviteLinkResponse room.
-         * @member {(proto.Room|null|undefined)}room
+         * @member {proto.Room|null|undefined} room
          * @memberof proto.ClientCheckInviteLinkResponse
          * @instance
          */
@@ -16924,7 +17747,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.room != null && message.hasOwnProperty('room')) {
-        error = $root.proto.Room.verify(message.room);
+        let error = $root.proto.Room.verify(message.room);
         if (error) {return 'room.' + error;}
       }
       return null;
@@ -16939,14 +17762,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientCondition.
          * @memberof proto
          * @interface IClientCondition
-         * @property {proto.Request} [request] ClientCondition request
-         * @property {Array.<proto.ClientCondition.Room>} [rooms] ClientCondition rooms
+         * @property {proto.Request|null} [request] ClientCondition request
+         * @property {Array.<proto.ClientCondition.Room>|null} [rooms] ClientCondition rooms
          */
 
     /**
          * Constructs a new ClientCondition.
          * @memberof proto
          * @classdesc Represents a ClientCondition.
+         * @implements IClientCondition
          * @constructor
          * @param {proto.IClientCondition=} [properties] Properties to set
          */
@@ -16961,7 +17785,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCondition request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientCondition
          * @instance
          */
@@ -16969,7 +17793,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCondition rooms.
-         * @member {Array.<proto.ClientCondition.Room>}rooms
+         * @member {Array.<proto.ClientCondition.Room>} rooms
          * @memberof proto.ClientCondition
          * @instance
          */
@@ -17054,7 +17878,7 @@ export const proto = $root.proto = (() => {
       if (message.rooms != null && message.hasOwnProperty('rooms')) {
         if (!Array.isArray(message.rooms)) {return 'rooms: array expected';}
         for (let i = 0; i < message.rooms.length; ++i) {
-          error = $root.proto.ClientCondition.Room.verify(message.rooms[i]);
+          let error = $root.proto.ClientCondition.Room.verify(message.rooms[i]);
           if (error) {return 'rooms.' + error;}
         }
       }
@@ -17067,25 +17891,26 @@ export const proto = $root.proto = (() => {
              * Properties of a Room.
              * @memberof proto.ClientCondition
              * @interface IRoom
-             * @property {Long} [roomId] Room roomId
-             * @property {Long} [messageVersion] Room messageVersion
-             * @property {Long} [statusVersion] Room statusVersion
-             * @property {Long} [deleteVersion] Room deleteVersion
-             * @property {Array.<Long>} [offlineDeletedDeprecated] Room offlineDeletedDeprecated
-             * @property {Array.<proto.ClientCondition.Room.OfflineEdited>} [offlineEdited] Room offlineEdited
-             * @property {Array.<Long>} [offlineSeen] Room offlineSeen
-             * @property {Long} [clearId] Room clearId
-             * @property {Long} [cacheStartId] Room cacheStartId
-             * @property {Long} [cacheEndId] Room cacheEndId
-             * @property {proto.ClientCondition.Room.OfflineMute} [offlineMute] Room offlineMute
-             * @property {Array.<Long>} [offlineListened] Room offlineListened
-             * @property {Array.<proto.ClientCondition.Room.OfflineDeleted>} [offlineDeleted] Room offlineDeleted
+             * @property {Long|null} [roomId] Room roomId
+             * @property {Long|null} [messageVersion] Room messageVersion
+             * @property {Long|null} [statusVersion] Room statusVersion
+             * @property {Long|null} [deleteVersion] Room deleteVersion
+             * @property {Array.<Long>|null} [offlineDeletedDeprecated] Room offlineDeletedDeprecated
+             * @property {Array.<proto.ClientCondition.Room.OfflineEdited>|null} [offlineEdited] Room offlineEdited
+             * @property {Array.<Long>|null} [offlineSeen] Room offlineSeen
+             * @property {Long|null} [clearId] Room clearId
+             * @property {Long|null} [cacheStartId] Room cacheStartId
+             * @property {Long|null} [cacheEndId] Room cacheEndId
+             * @property {proto.ClientCondition.Room.OfflineMute|null} [offlineMute] Room offlineMute
+             * @property {Array.<Long>|null} [offlineListened] Room offlineListened
+             * @property {Array.<proto.ClientCondition.Room.OfflineDeleted>|null} [offlineDeleted] Room offlineDeleted
              */
 
       /**
              * Constructs a new Room.
              * @memberof proto.ClientCondition
              * @classdesc Represents a Room.
+             * @implements IRoom
              * @constructor
              * @param {proto.ClientCondition.IRoom=} [properties] Properties to set
              */
@@ -17104,7 +17929,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room roomId.
-             * @member {Long}roomId
+             * @member {Long} roomId
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17112,7 +17937,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room messageVersion.
-             * @member {Long}messageVersion
+             * @member {Long} messageVersion
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17120,7 +17945,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room statusVersion.
-             * @member {Long}statusVersion
+             * @member {Long} statusVersion
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17128,7 +17953,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room deleteVersion.
-             * @member {Long}deleteVersion
+             * @member {Long} deleteVersion
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17136,7 +17961,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room offlineDeletedDeprecated.
-             * @member {Array.<Long>}offlineDeletedDeprecated
+             * @member {Array.<Long>} offlineDeletedDeprecated
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17144,7 +17969,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room offlineEdited.
-             * @member {Array.<proto.ClientCondition.Room.OfflineEdited>}offlineEdited
+             * @member {Array.<proto.ClientCondition.Room.OfflineEdited>} offlineEdited
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17152,7 +17977,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room offlineSeen.
-             * @member {Array.<Long>}offlineSeen
+             * @member {Array.<Long>} offlineSeen
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17160,7 +17985,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room clearId.
-             * @member {Long}clearId
+             * @member {Long} clearId
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17168,7 +17993,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room cacheStartId.
-             * @member {Long}cacheStartId
+             * @member {Long} cacheStartId
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17176,7 +18001,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room cacheEndId.
-             * @member {Long}cacheEndId
+             * @member {Long} cacheEndId
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17184,7 +18009,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room offlineMute.
-             * @member {proto.ClientCondition.Room.OfflineMute}offlineMute
+             * @member {proto.ClientCondition.Room.OfflineMute} offlineMute
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17192,7 +18017,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room offlineListened.
-             * @member {Array.<Long>}offlineListened
+             * @member {Array.<Long>} offlineListened
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17200,7 +18025,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Room offlineDeleted.
-             * @member {Array.<proto.ClientCondition.Room.OfflineDeleted>}offlineDeleted
+             * @member {Array.<proto.ClientCondition.Room.OfflineDeleted>} offlineDeleted
              * @memberof proto.ClientCondition.Room
              * @instance
              */
@@ -17408,7 +18233,7 @@ export const proto = $root.proto = (() => {
         if (message.offlineDeleted != null && message.hasOwnProperty('offlineDeleted')) {
           if (!Array.isArray(message.offlineDeleted)) {return 'offlineDeleted: array expected';}
           for (let i = 0; i < message.offlineDeleted.length; ++i) {
-            error = $root.proto.ClientCondition.Room.OfflineDeleted.verify(message.offlineDeleted[i]);
+            let error = $root.proto.ClientCondition.Room.OfflineDeleted.verify(message.offlineDeleted[i]);
             if (error) {return 'offlineDeleted.' + error;}
           }
         }
@@ -17421,14 +18246,15 @@ export const proto = $root.proto = (() => {
                  * Properties of an OfflineEdited.
                  * @memberof proto.ClientCondition.Room
                  * @interface IOfflineEdited
-                 * @property {Long} [messageId] OfflineEdited messageId
-                 * @property {string} [message] OfflineEdited message
+                 * @property {Long|null} [messageId] OfflineEdited messageId
+                 * @property {string|null} [message] OfflineEdited message
                  */
 
         /**
                  * Constructs a new OfflineEdited.
                  * @memberof proto.ClientCondition.Room
                  * @classdesc Represents an OfflineEdited.
+                 * @implements IOfflineEdited
                  * @constructor
                  * @param {proto.ClientCondition.Room.IOfflineEdited=} [properties] Properties to set
                  */
@@ -17442,7 +18268,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * OfflineEdited messageId.
-                 * @member {Long}messageId
+                 * @member {Long} messageId
                  * @memberof proto.ClientCondition.Room.OfflineEdited
                  * @instance
                  */
@@ -17450,7 +18276,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * OfflineEdited message.
-                 * @member {string}message
+                 * @member {string} message
                  * @memberof proto.ClientCondition.Room.OfflineEdited
                  * @instance
                  */
@@ -17539,6 +18365,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * OfflineMute enum.
+             * @name proto.ClientCondition.Room.OfflineMute
              * @enum {string}
              * @property {number} UNCHANGED=0 UNCHANGED value
              * @property {number} MUTED=1 MUTED value
@@ -17558,14 +18385,15 @@ export const proto = $root.proto = (() => {
                  * Properties of an OfflineDeleted.
                  * @memberof proto.ClientCondition.Room
                  * @interface IOfflineDeleted
-                 * @property {Long} [messageId] OfflineDeleted messageId
-                 * @property {boolean} [both] OfflineDeleted both
+                 * @property {Long|null} [messageId] OfflineDeleted messageId
+                 * @property {boolean|null} [both] OfflineDeleted both
                  */
 
         /**
                  * Constructs a new OfflineDeleted.
                  * @memberof proto.ClientCondition.Room
                  * @classdesc Represents an OfflineDeleted.
+                 * @implements IOfflineDeleted
                  * @constructor
                  * @param {proto.ClientCondition.Room.IOfflineDeleted=} [properties] Properties to set
                  */
@@ -17579,7 +18407,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * OfflineDeleted messageId.
-                 * @member {Long}messageId
+                 * @member {Long} messageId
                  * @memberof proto.ClientCondition.Room.OfflineDeleted
                  * @instance
                  */
@@ -17587,7 +18415,7 @@ export const proto = $root.proto = (() => {
 
         /**
                  * OfflineDeleted both.
-                 * @member {boolean}both
+                 * @member {boolean} both
                  * @memberof proto.ClientCondition.Room.OfflineDeleted
                  * @instance
                  */
@@ -17686,13 +18514,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientConditionResponse.
          * @memberof proto
          * @interface IClientConditionResponse
-         * @property {proto.Response} [response] ClientConditionResponse response
+         * @property {proto.Response|null} [response] ClientConditionResponse response
          */
 
     /**
          * Constructs a new ClientConditionResponse.
          * @memberof proto
          * @classdesc Represents a ClientConditionResponse.
+         * @implements IClientConditionResponse
          * @constructor
          * @param {proto.IClientConditionResponse=} [properties] Properties to set
          */
@@ -17706,7 +18535,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientConditionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientConditionResponse
          * @instance
          */
@@ -17793,14 +18622,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientCountRoomHistory.
          * @memberof proto
          * @interface IClientCountRoomHistory
-         * @property {proto.Request} [request] ClientCountRoomHistory request
-         * @property {Long} [roomId] ClientCountRoomHistory roomId
+         * @property {proto.Request|null} [request] ClientCountRoomHistory request
+         * @property {Long|null} [roomId] ClientCountRoomHistory roomId
          */
 
     /**
          * Constructs a new ClientCountRoomHistory.
          * @memberof proto
          * @classdesc Represents a ClientCountRoomHistory.
+         * @implements IClientCountRoomHistory
          * @constructor
          * @param {proto.IClientCountRoomHistory=} [properties] Properties to set
          */
@@ -17814,7 +18644,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistory request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientCountRoomHistory
          * @instance
          */
@@ -17822,7 +18652,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistory roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientCountRoomHistory
          * @instance
          */
@@ -17916,21 +18746,22 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientCountRoomHistoryResponse.
          * @memberof proto
          * @interface IClientCountRoomHistoryResponse
-         * @property {proto.Response} [response] ClientCountRoomHistoryResponse response
-         * @property {number} [media] ClientCountRoomHistoryResponse media
-         * @property {number} [image] ClientCountRoomHistoryResponse image
-         * @property {number} [video] ClientCountRoomHistoryResponse video
-         * @property {number} [audio] ClientCountRoomHistoryResponse audio
-         * @property {number} [voice] ClientCountRoomHistoryResponse voice
-         * @property {number} [gif] ClientCountRoomHistoryResponse gif
-         * @property {number} [file] ClientCountRoomHistoryResponse file
-         * @property {number} [url] ClientCountRoomHistoryResponse url
+         * @property {proto.Response|null} [response] ClientCountRoomHistoryResponse response
+         * @property {number|null} [media] ClientCountRoomHistoryResponse media
+         * @property {number|null} [image] ClientCountRoomHistoryResponse image
+         * @property {number|null} [video] ClientCountRoomHistoryResponse video
+         * @property {number|null} [audio] ClientCountRoomHistoryResponse audio
+         * @property {number|null} [voice] ClientCountRoomHistoryResponse voice
+         * @property {number|null} [gif] ClientCountRoomHistoryResponse gif
+         * @property {number|null} [file] ClientCountRoomHistoryResponse file
+         * @property {number|null} [url] ClientCountRoomHistoryResponse url
          */
 
     /**
          * Constructs a new ClientCountRoomHistoryResponse.
          * @memberof proto
          * @classdesc Represents a ClientCountRoomHistoryResponse.
+         * @implements IClientCountRoomHistoryResponse
          * @constructor
          * @param {proto.IClientCountRoomHistoryResponse=} [properties] Properties to set
          */
@@ -17944,7 +18775,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -17952,7 +18783,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse media.
-         * @member {number}media
+         * @member {number} media
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -17960,7 +18791,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse image.
-         * @member {number}image
+         * @member {number} image
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -17968,7 +18799,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse video.
-         * @member {number}video
+         * @member {number} video
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -17976,7 +18807,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse audio.
-         * @member {number}audio
+         * @member {number} audio
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -17984,7 +18815,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse voice.
-         * @member {number}voice
+         * @member {number} voice
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -17992,7 +18823,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse gif.
-         * @member {number}gif
+         * @member {number} gif
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -18000,7 +18831,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse file.
-         * @member {number}file
+         * @member {number} file
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -18008,7 +18839,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientCountRoomHistoryResponse url.
-         * @member {number}url
+         * @member {number} url
          * @memberof proto.ClientCountRoomHistoryResponse
          * @instance
          */
@@ -18151,14 +18982,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoom.
          * @memberof proto
          * @interface IClientGetRoom
-         * @property {proto.Request} [request] ClientGetRoom request
-         * @property {Long} [roomId] ClientGetRoom roomId
+         * @property {proto.Request|null} [request] ClientGetRoom request
+         * @property {Long|null} [roomId] ClientGetRoom roomId
          */
 
     /**
          * Constructs a new ClientGetRoom.
          * @memberof proto
          * @classdesc Represents a ClientGetRoom.
+         * @implements IClientGetRoom
          * @constructor
          * @param {proto.IClientGetRoom=} [properties] Properties to set
          */
@@ -18172,7 +19004,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoom request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientGetRoom
          * @instance
          */
@@ -18180,7 +19012,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoom roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientGetRoom
          * @instance
          */
@@ -18274,14 +19106,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomResponse.
          * @memberof proto
          * @interface IClientGetRoomResponse
-         * @property {proto.Response} [response] ClientGetRoomResponse response
-         * @property {proto.Room} [room] ClientGetRoomResponse room
+         * @property {proto.Response|null} [response] ClientGetRoomResponse response
+         * @property {proto.Room|null} [room] ClientGetRoomResponse room
          */
 
     /**
          * Constructs a new ClientGetRoomResponse.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomResponse.
+         * @implements IClientGetRoomResponse
          * @constructor
          * @param {proto.IClientGetRoomResponse=} [properties] Properties to set
          */
@@ -18295,7 +19128,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientGetRoomResponse
          * @instance
          */
@@ -18303,7 +19136,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomResponse room.
-         * @member {(proto.Room|null|undefined)}room
+         * @member {proto.Room|null|undefined} room
          * @memberof proto.ClientGetRoomResponse
          * @instance
          */
@@ -18383,7 +19216,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.room != null && message.hasOwnProperty('room')) {
-        error = $root.proto.Room.verify(message.room);
+        let error = $root.proto.Room.verify(message.room);
         if (error) {return 'room.' + error;}
       }
       return null;
@@ -18398,17 +19231,18 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomHistory.
          * @memberof proto
          * @interface IClientGetRoomHistory
-         * @property {proto.Request} [request] ClientGetRoomHistory request
-         * @property {Long} [roomId] ClientGetRoomHistory roomId
-         * @property {Long} [firstMessageId] ClientGetRoomHistory firstMessageId
-         * @property {proto.ClientGetRoomHistory.Direction} [direction] ClientGetRoomHistory direction
-         * @property {number} [limit] ClientGetRoomHistory limit
+         * @property {proto.Request|null} [request] ClientGetRoomHistory request
+         * @property {Long|null} [roomId] ClientGetRoomHistory roomId
+         * @property {Long|null} [firstMessageId] ClientGetRoomHistory firstMessageId
+         * @property {proto.ClientGetRoomHistory.Direction|null} [direction] ClientGetRoomHistory direction
+         * @property {number|null} [limit] ClientGetRoomHistory limit
          */
 
     /**
          * Constructs a new ClientGetRoomHistory.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomHistory.
+         * @implements IClientGetRoomHistory
          * @constructor
          * @param {proto.IClientGetRoomHistory=} [properties] Properties to set
          */
@@ -18422,7 +19256,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistory request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientGetRoomHistory
          * @instance
          */
@@ -18430,7 +19264,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistory roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientGetRoomHistory
          * @instance
          */
@@ -18438,7 +19272,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistory firstMessageId.
-         * @member {Long}firstMessageId
+         * @member {Long} firstMessageId
          * @memberof proto.ClientGetRoomHistory
          * @instance
          */
@@ -18446,7 +19280,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistory direction.
-         * @member {proto.ClientGetRoomHistory.Direction}direction
+         * @member {proto.ClientGetRoomHistory.Direction} direction
          * @memberof proto.ClientGetRoomHistory
          * @instance
          */
@@ -18454,7 +19288,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistory limit.
-         * @member {number}limit
+         * @member {number} limit
          * @memberof proto.ClientGetRoomHistory
          * @instance
          */
@@ -18568,6 +19402,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Direction enum.
+         * @name proto.ClientGetRoomHistory.Direction
          * @enum {string}
          * @property {number} UP=0 UP value
          * @property {number} DOWN=1 DOWN value
@@ -18588,14 +19423,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomHistoryResponse.
          * @memberof proto
          * @interface IClientGetRoomHistoryResponse
-         * @property {proto.Response} [response] ClientGetRoomHistoryResponse response
-         * @property {Array.<proto.RoomMessage>} [message] ClientGetRoomHistoryResponse message
+         * @property {proto.Response|null} [response] ClientGetRoomHistoryResponse response
+         * @property {Array.<proto.RoomMessage>|null} [message] ClientGetRoomHistoryResponse message
          */
 
     /**
          * Constructs a new ClientGetRoomHistoryResponse.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomHistoryResponse.
+         * @implements IClientGetRoomHistoryResponse
          * @constructor
          * @param {proto.IClientGetRoomHistoryResponse=} [properties] Properties to set
          */
@@ -18610,7 +19446,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistoryResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientGetRoomHistoryResponse
          * @instance
          */
@@ -18618,7 +19454,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomHistoryResponse message.
-         * @member {Array.<proto.RoomMessage>}message
+         * @member {Array.<proto.RoomMessage>} message
          * @memberof proto.ClientGetRoomHistoryResponse
          * @instance
          */
@@ -18703,7 +19539,7 @@ export const proto = $root.proto = (() => {
       if (message.message != null && message.hasOwnProperty('message')) {
         if (!Array.isArray(message.message)) {return 'message: array expected';}
         for (let i = 0; i < message.message.length; ++i) {
-          error = $root.proto.RoomMessage.verify(message.message[i]);
+          let error = $root.proto.RoomMessage.verify(message.message[i]);
           if (error) {return 'message.' + error;}
         }
       }
@@ -18719,14 +19555,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomList.
          * @memberof proto
          * @interface IClientGetRoomList
-         * @property {proto.Request} [request] ClientGetRoomList request
-         * @property {proto.Pagination} [pagination] ClientGetRoomList pagination
+         * @property {proto.Request|null} [request] ClientGetRoomList request
+         * @property {proto.Pagination|null} [pagination] ClientGetRoomList pagination
          */
 
     /**
          * Constructs a new ClientGetRoomList.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomList.
+         * @implements IClientGetRoomList
          * @constructor
          * @param {proto.IClientGetRoomList=} [properties] Properties to set
          */
@@ -18740,7 +19577,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientGetRoomList
          * @instance
          */
@@ -18748,7 +19585,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomList pagination.
-         * @member {(proto.Pagination|null|undefined)}pagination
+         * @member {proto.Pagination|null|undefined} pagination
          * @memberof proto.ClientGetRoomList
          * @instance
          */
@@ -18828,7 +19665,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'request.' + error;}
       }
       if (message.pagination != null && message.hasOwnProperty('pagination')) {
-        error = $root.proto.Pagination.verify(message.pagination);
+        let error = $root.proto.Pagination.verify(message.pagination);
         if (error) {return 'pagination.' + error;}
       }
       return null;
@@ -18843,14 +19680,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomListResponse.
          * @memberof proto
          * @interface IClientGetRoomListResponse
-         * @property {proto.Response} [response] ClientGetRoomListResponse response
-         * @property {Array.<proto.Room>} [rooms] ClientGetRoomListResponse rooms
+         * @property {proto.Response|null} [response] ClientGetRoomListResponse response
+         * @property {Array.<proto.Room>|null} [rooms] ClientGetRoomListResponse rooms
          */
 
     /**
          * Constructs a new ClientGetRoomListResponse.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomListResponse.
+         * @implements IClientGetRoomListResponse
          * @constructor
          * @param {proto.IClientGetRoomListResponse=} [properties] Properties to set
          */
@@ -18865,7 +19703,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientGetRoomListResponse
          * @instance
          */
@@ -18873,7 +19711,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomListResponse rooms.
-         * @member {Array.<proto.Room>}rooms
+         * @member {Array.<proto.Room>} rooms
          * @memberof proto.ClientGetRoomListResponse
          * @instance
          */
@@ -18958,7 +19796,7 @@ export const proto = $root.proto = (() => {
       if (message.rooms != null && message.hasOwnProperty('rooms')) {
         if (!Array.isArray(message.rooms)) {return 'rooms: array expected';}
         for (let i = 0; i < message.rooms.length; ++i) {
-          error = $root.proto.Room.verify(message.rooms[i]);
+          let error = $root.proto.Room.verify(message.rooms[i]);
           if (error) {return 'rooms.' + error;}
         }
       }
@@ -18974,15 +19812,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomMessage.
          * @memberof proto
          * @interface IClientGetRoomMessage
-         * @property {proto.Request} [request] ClientGetRoomMessage request
-         * @property {Long} [roomId] ClientGetRoomMessage roomId
-         * @property {Long} [messageId] ClientGetRoomMessage messageId
+         * @property {proto.Request|null} [request] ClientGetRoomMessage request
+         * @property {Long|null} [roomId] ClientGetRoomMessage roomId
+         * @property {Long|null} [messageId] ClientGetRoomMessage messageId
          */
 
     /**
          * Constructs a new ClientGetRoomMessage.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomMessage.
+         * @implements IClientGetRoomMessage
          * @constructor
          * @param {proto.IClientGetRoomMessage=} [properties] Properties to set
          */
@@ -18996,7 +19835,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientGetRoomMessage
          * @instance
          */
@@ -19004,7 +19843,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientGetRoomMessage
          * @instance
          */
@@ -19012,7 +19851,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ClientGetRoomMessage
          * @instance
          */
@@ -19113,14 +19952,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientGetRoomMessageResponse.
          * @memberof proto
          * @interface IClientGetRoomMessageResponse
-         * @property {proto.Response} [response] ClientGetRoomMessageResponse response
-         * @property {proto.RoomMessage} [message] ClientGetRoomMessageResponse message
+         * @property {proto.Response|null} [response] ClientGetRoomMessageResponse response
+         * @property {proto.RoomMessage|null} [message] ClientGetRoomMessageResponse message
          */
 
     /**
          * Constructs a new ClientGetRoomMessageResponse.
          * @memberof proto
          * @classdesc Represents a ClientGetRoomMessageResponse.
+         * @implements IClientGetRoomMessageResponse
          * @constructor
          * @param {proto.IClientGetRoomMessageResponse=} [properties] Properties to set
          */
@@ -19134,7 +19974,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientGetRoomMessageResponse
          * @instance
          */
@@ -19142,7 +19982,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientGetRoomMessageResponse message.
-         * @member {(proto.RoomMessage|null|undefined)}message
+         * @member {proto.RoomMessage|null|undefined} message
          * @memberof proto.ClientGetRoomMessageResponse
          * @instance
          */
@@ -19222,7 +20062,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.message != null && message.hasOwnProperty('message')) {
-        error = $root.proto.RoomMessage.verify(message.message);
+        let error = $root.proto.RoomMessage.verify(message.message);
         if (error) {return 'message.' + error;}
       }
       return null;
@@ -19237,14 +20077,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientJoinByInviteLink.
          * @memberof proto
          * @interface IClientJoinByInviteLink
-         * @property {proto.Request} [request] ClientJoinByInviteLink request
-         * @property {string} [inviteToken] ClientJoinByInviteLink inviteToken
+         * @property {proto.Request|null} [request] ClientJoinByInviteLink request
+         * @property {string|null} [inviteToken] ClientJoinByInviteLink inviteToken
          */
 
     /**
          * Constructs a new ClientJoinByInviteLink.
          * @memberof proto
          * @classdesc Represents a ClientJoinByInviteLink.
+         * @implements IClientJoinByInviteLink
          * @constructor
          * @param {proto.IClientJoinByInviteLink=} [properties] Properties to set
          */
@@ -19258,7 +20099,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientJoinByInviteLink request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientJoinByInviteLink
          * @instance
          */
@@ -19266,7 +20107,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientJoinByInviteLink inviteToken.
-         * @member {string}inviteToken
+         * @member {string} inviteToken
          * @memberof proto.ClientJoinByInviteLink
          * @instance
          */
@@ -19360,13 +20201,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientJoinByInviteLinkResponse.
          * @memberof proto
          * @interface IClientJoinByInviteLinkResponse
-         * @property {proto.Response} [response] ClientJoinByInviteLinkResponse response
+         * @property {proto.Response|null} [response] ClientJoinByInviteLinkResponse response
          */
 
     /**
          * Constructs a new ClientJoinByInviteLinkResponse.
          * @memberof proto
          * @classdesc Represents a ClientJoinByInviteLinkResponse.
+         * @implements IClientJoinByInviteLinkResponse
          * @constructor
          * @param {proto.IClientJoinByInviteLinkResponse=} [properties] Properties to set
          */
@@ -19380,7 +20222,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientJoinByInviteLinkResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientJoinByInviteLinkResponse
          * @instance
          */
@@ -19467,14 +20309,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientJoinByUsername.
          * @memberof proto
          * @interface IClientJoinByUsername
-         * @property {proto.Request} [request] ClientJoinByUsername request
-         * @property {string} [username] ClientJoinByUsername username
+         * @property {proto.Request|null} [request] ClientJoinByUsername request
+         * @property {string|null} [username] ClientJoinByUsername username
          */
 
     /**
          * Constructs a new ClientJoinByUsername.
          * @memberof proto
          * @classdesc Represents a ClientJoinByUsername.
+         * @implements IClientJoinByUsername
          * @constructor
          * @param {proto.IClientJoinByUsername=} [properties] Properties to set
          */
@@ -19488,7 +20331,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientJoinByUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientJoinByUsername
          * @instance
          */
@@ -19496,7 +20339,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientJoinByUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.ClientJoinByUsername
          * @instance
          */
@@ -19590,13 +20433,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientJoinByUsernameResponse.
          * @memberof proto
          * @interface IClientJoinByUsernameResponse
-         * @property {proto.Response} [response] ClientJoinByUsernameResponse response
+         * @property {proto.Response|null} [response] ClientJoinByUsernameResponse response
          */
 
     /**
          * Constructs a new ClientJoinByUsernameResponse.
          * @memberof proto
          * @classdesc Represents a ClientJoinByUsernameResponse.
+         * @implements IClientJoinByUsernameResponse
          * @constructor
          * @param {proto.IClientJoinByUsernameResponse=} [properties] Properties to set
          */
@@ -19610,7 +20454,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientJoinByUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientJoinByUsernameResponse
          * @instance
          */
@@ -19697,15 +20541,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientMuteRoom.
          * @memberof proto
          * @interface IClientMuteRoom
-         * @property {proto.Request} [request] ClientMuteRoom request
-         * @property {Long} [roomId] ClientMuteRoom roomId
-         * @property {proto.RoomMute} [roomMute] ClientMuteRoom roomMute
+         * @property {proto.Request|null} [request] ClientMuteRoom request
+         * @property {Long|null} [roomId] ClientMuteRoom roomId
+         * @property {proto.RoomMute|null} [roomMute] ClientMuteRoom roomMute
          */
 
     /**
          * Constructs a new ClientMuteRoom.
          * @memberof proto
          * @classdesc Represents a ClientMuteRoom.
+         * @implements IClientMuteRoom
          * @constructor
          * @param {proto.IClientMuteRoom=} [properties] Properties to set
          */
@@ -19719,7 +20564,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientMuteRoom request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientMuteRoom
          * @instance
          */
@@ -19727,7 +20572,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientMuteRoom roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientMuteRoom
          * @instance
          */
@@ -19735,7 +20580,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientMuteRoom roomMute.
-         * @member {proto.RoomMute}roomMute
+         * @member {proto.RoomMute} roomMute
          * @memberof proto.ClientMuteRoom
          * @instance
          */
@@ -19842,15 +20687,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientMuteRoomResponse.
          * @memberof proto
          * @interface IClientMuteRoomResponse
-         * @property {proto.Response} [response] ClientMuteRoomResponse response
-         * @property {Long} [roomId] ClientMuteRoomResponse roomId
-         * @property {proto.RoomMute} [roomMute] ClientMuteRoomResponse roomMute
+         * @property {proto.Response|null} [response] ClientMuteRoomResponse response
+         * @property {Long|null} [roomId] ClientMuteRoomResponse roomId
+         * @property {proto.RoomMute|null} [roomMute] ClientMuteRoomResponse roomMute
          */
 
     /**
          * Constructs a new ClientMuteRoomResponse.
          * @memberof proto
          * @classdesc Represents a ClientMuteRoomResponse.
+         * @implements IClientMuteRoomResponse
          * @constructor
          * @param {proto.IClientMuteRoomResponse=} [properties] Properties to set
          */
@@ -19864,7 +20710,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientMuteRoomResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientMuteRoomResponse
          * @instance
          */
@@ -19872,7 +20718,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientMuteRoomResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientMuteRoomResponse
          * @instance
          */
@@ -19880,7 +20726,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientMuteRoomResponse roomMute.
-         * @member {proto.RoomMute}roomMute
+         * @member {proto.RoomMute} roomMute
          * @memberof proto.ClientMuteRoomResponse
          * @instance
          */
@@ -19987,15 +20833,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientPinRoom.
          * @memberof proto
          * @interface IClientPinRoom
-         * @property {proto.Request} [request] ClientPinRoom request
-         * @property {Long} [roomId] ClientPinRoom roomId
-         * @property {boolean} [pin] ClientPinRoom pin
+         * @property {proto.Request|null} [request] ClientPinRoom request
+         * @property {Long|null} [roomId] ClientPinRoom roomId
+         * @property {boolean|null} [pin] ClientPinRoom pin
          */
 
     /**
          * Constructs a new ClientPinRoom.
          * @memberof proto
          * @classdesc Represents a ClientPinRoom.
+         * @implements IClientPinRoom
          * @constructor
          * @param {proto.IClientPinRoom=} [properties] Properties to set
          */
@@ -20009,7 +20856,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientPinRoom request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientPinRoom
          * @instance
          */
@@ -20017,7 +20864,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientPinRoom roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientPinRoom
          * @instance
          */
@@ -20025,7 +20872,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientPinRoom pin.
-         * @member {boolean}pin
+         * @member {boolean} pin
          * @memberof proto.ClientPinRoom
          * @instance
          */
@@ -20126,15 +20973,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientPinRoomResponse.
          * @memberof proto
          * @interface IClientPinRoomResponse
-         * @property {proto.Response} [response] ClientPinRoomResponse response
-         * @property {Long} [roomId] ClientPinRoomResponse roomId
-         * @property {Long} [pinId] ClientPinRoomResponse pinId
+         * @property {proto.Response|null} [response] ClientPinRoomResponse response
+         * @property {Long|null} [roomId] ClientPinRoomResponse roomId
+         * @property {Long|null} [pinId] ClientPinRoomResponse pinId
          */
 
     /**
          * Constructs a new ClientPinRoomResponse.
          * @memberof proto
          * @classdesc Represents a ClientPinRoomResponse.
+         * @implements IClientPinRoomResponse
          * @constructor
          * @param {proto.IClientPinRoomResponse=} [properties] Properties to set
          */
@@ -20148,7 +20996,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientPinRoomResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientPinRoomResponse
          * @instance
          */
@@ -20156,7 +21004,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientPinRoomResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientPinRoomResponse
          * @instance
          */
@@ -20164,7 +21012,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientPinRoomResponse pinId.
-         * @member {Long}pinId
+         * @member {Long} pinId
          * @memberof proto.ClientPinRoomResponse
          * @instance
          */
@@ -20259,20 +21107,253 @@ export const proto = $root.proto = (() => {
     return ClientPinRoomResponse;
   })();
 
+  proto.ClientRegisterDevice = (function() {
+
+    /**
+         * Properties of a ClientRegisterDevice.
+         * @memberof proto
+         * @interface IClientRegisterDevice
+         * @property {proto.Request|null} [request] ClientRegisterDevice request
+         * @property {string|null} [token] ClientRegisterDevice token
+         */
+
+    /**
+         * Constructs a new ClientRegisterDevice.
+         * @memberof proto
+         * @classdesc Represents a ClientRegisterDevice.
+         * @implements IClientRegisterDevice
+         * @constructor
+         * @param {proto.IClientRegisterDevice=} [properties] Properties to set
+         */
+    function ClientRegisterDevice(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientRegisterDevice request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.ClientRegisterDevice
+         * @instance
+         */
+    ClientRegisterDevice.prototype.request = null;
+
+    /**
+         * ClientRegisterDevice token.
+         * @member {string} token
+         * @memberof proto.ClientRegisterDevice
+         * @instance
+         */
+    ClientRegisterDevice.prototype.token = '';
+
+    /**
+         * Creates a new ClientRegisterDevice instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientRegisterDevice
+         * @static
+         * @param {proto.IClientRegisterDevice=} [properties] Properties to set
+         * @returns {proto.ClientRegisterDevice} ClientRegisterDevice instance
+         */
+    ClientRegisterDevice.create = function create(properties) {
+      return new ClientRegisterDevice(properties);
+    };
+
+    /**
+         * Encodes the specified ClientRegisterDevice message. Does not implicitly {@link proto.ClientRegisterDevice.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientRegisterDevice
+         * @static
+         * @param {proto.ClientRegisterDevice} message ClientRegisterDevice message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientRegisterDevice.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.token != null && message.hasOwnProperty('token')) {writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientRegisterDevice message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientRegisterDevice
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientRegisterDevice} ClientRegisterDevice
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientRegisterDevice.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientRegisterDevice();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.token = reader.string();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientRegisterDevice message.
+         * @function verify
+         * @memberof proto.ClientRegisterDevice
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientRegisterDevice.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) {return 'token: string expected';}
+      }
+      return null;
+    };
+
+    return ClientRegisterDevice;
+  })();
+
+  proto.ClientRegisterDeviceResponse = (function() {
+
+    /**
+         * Properties of a ClientRegisterDeviceResponse.
+         * @memberof proto
+         * @interface IClientRegisterDeviceResponse
+         * @property {proto.Response|null} [response] ClientRegisterDeviceResponse response
+         */
+
+    /**
+         * Constructs a new ClientRegisterDeviceResponse.
+         * @memberof proto
+         * @classdesc Represents a ClientRegisterDeviceResponse.
+         * @implements IClientRegisterDeviceResponse
+         * @constructor
+         * @param {proto.IClientRegisterDeviceResponse=} [properties] Properties to set
+         */
+    function ClientRegisterDeviceResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * ClientRegisterDeviceResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.ClientRegisterDeviceResponse
+         * @instance
+         */
+    ClientRegisterDeviceResponse.prototype.response = null;
+
+    /**
+         * Creates a new ClientRegisterDeviceResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.ClientRegisterDeviceResponse
+         * @static
+         * @param {proto.IClientRegisterDeviceResponse=} [properties] Properties to set
+         * @returns {proto.ClientRegisterDeviceResponse} ClientRegisterDeviceResponse instance
+         */
+    ClientRegisterDeviceResponse.create = function create(properties) {
+      return new ClientRegisterDeviceResponse(properties);
+    };
+
+    /**
+         * Encodes the specified ClientRegisterDeviceResponse message. Does not implicitly {@link proto.ClientRegisterDeviceResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.ClientRegisterDeviceResponse
+         * @static
+         * @param {proto.ClientRegisterDeviceResponse} message ClientRegisterDeviceResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    ClientRegisterDeviceResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a ClientRegisterDeviceResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.ClientRegisterDeviceResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.ClientRegisterDeviceResponse} ClientRegisterDeviceResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    ClientRegisterDeviceResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ClientRegisterDeviceResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a ClientRegisterDeviceResponse message.
+         * @function verify
+         * @memberof proto.ClientRegisterDeviceResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    ClientRegisterDeviceResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      return null;
+    };
+
+    return ClientRegisterDeviceResponse;
+  })();
+
   proto.ClientResolveUsername = (function() {
 
     /**
          * Properties of a ClientResolveUsername.
          * @memberof proto
          * @interface IClientResolveUsername
-         * @property {proto.Request} [request] ClientResolveUsername request
-         * @property {string} [username] ClientResolveUsername username
+         * @property {proto.Request|null} [request] ClientResolveUsername request
+         * @property {string|null} [username] ClientResolveUsername username
          */
 
     /**
          * Constructs a new ClientResolveUsername.
          * @memberof proto
          * @classdesc Represents a ClientResolveUsername.
+         * @implements IClientResolveUsername
          * @constructor
          * @param {proto.IClientResolveUsername=} [properties] Properties to set
          */
@@ -20286,7 +21367,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientResolveUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientResolveUsername
          * @instance
          */
@@ -20294,7 +21375,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientResolveUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.ClientResolveUsername
          * @instance
          */
@@ -20388,16 +21469,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientResolveUsernameResponse.
          * @memberof proto
          * @interface IClientResolveUsernameResponse
-         * @property {proto.Response} [response] ClientResolveUsernameResponse response
-         * @property {proto.ClientResolveUsernameResponse.Type} [type] ClientResolveUsernameResponse type
-         * @property {proto.RegisteredUser} [user] ClientResolveUsernameResponse user
-         * @property {proto.Room} [room] ClientResolveUsernameResponse room
+         * @property {proto.Response|null} [response] ClientResolveUsernameResponse response
+         * @property {proto.ClientResolveUsernameResponse.Type|null} [type] ClientResolveUsernameResponse type
+         * @property {proto.RegisteredUser|null} [user] ClientResolveUsernameResponse user
+         * @property {proto.Room|null} [room] ClientResolveUsernameResponse room
          */
 
     /**
          * Constructs a new ClientResolveUsernameResponse.
          * @memberof proto
          * @classdesc Represents a ClientResolveUsernameResponse.
+         * @implements IClientResolveUsernameResponse
          * @constructor
          * @param {proto.IClientResolveUsernameResponse=} [properties] Properties to set
          */
@@ -20411,7 +21493,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientResolveUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientResolveUsernameResponse
          * @instance
          */
@@ -20419,7 +21501,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientResolveUsernameResponse type.
-         * @member {proto.ClientResolveUsernameResponse.Type}type
+         * @member {proto.ClientResolveUsernameResponse.Type} type
          * @memberof proto.ClientResolveUsernameResponse
          * @instance
          */
@@ -20427,7 +21509,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientResolveUsernameResponse user.
-         * @member {(proto.RegisteredUser|null|undefined)}user
+         * @member {proto.RegisteredUser|null|undefined} user
          * @memberof proto.ClientResolveUsernameResponse
          * @instance
          */
@@ -20435,7 +21517,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientResolveUsernameResponse room.
-         * @member {(proto.Room|null|undefined)}room
+         * @member {proto.Room|null|undefined} room
          * @memberof proto.ClientResolveUsernameResponse
          * @instance
          */
@@ -20532,11 +21614,11 @@ export const proto = $root.proto = (() => {
         }
       }
       if (message.user != null && message.hasOwnProperty('user')) {
-        error = $root.proto.RegisteredUser.verify(message.user);
+        let error = $root.proto.RegisteredUser.verify(message.user);
         if (error) {return 'user.' + error;}
       }
       if (message.room != null && message.hasOwnProperty('room')) {
-        error = $root.proto.Room.verify(message.room);
+        let error = $root.proto.Room.verify(message.room);
         if (error) {return 'room.' + error;}
       }
       return null;
@@ -20544,6 +21626,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Type enum.
+         * @name proto.ClientResolveUsernameResponse.Type
          * @enum {string}
          * @property {number} USER=0 USER value
          * @property {number} ROOM=1 ROOM value
@@ -20564,17 +21647,18 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientRoomReport.
          * @memberof proto
          * @interface IClientRoomReport
-         * @property {proto.Request} [request] ClientRoomReport request
-         * @property {Long} [roomId] ClientRoomReport roomId
-         * @property {Long} [messageId] ClientRoomReport messageId
-         * @property {proto.ClientRoomReport.Reason} [reason] ClientRoomReport reason
-         * @property {string} [description] ClientRoomReport description
+         * @property {proto.Request|null} [request] ClientRoomReport request
+         * @property {Long|null} [roomId] ClientRoomReport roomId
+         * @property {Long|null} [messageId] ClientRoomReport messageId
+         * @property {proto.ClientRoomReport.Reason|null} [reason] ClientRoomReport reason
+         * @property {string|null} [description] ClientRoomReport description
          */
 
     /**
          * Constructs a new ClientRoomReport.
          * @memberof proto
          * @classdesc Represents a ClientRoomReport.
+         * @implements IClientRoomReport
          * @constructor
          * @param {proto.IClientRoomReport=} [properties] Properties to set
          */
@@ -20588,7 +21672,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientRoomReport request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientRoomReport
          * @instance
          */
@@ -20596,7 +21680,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientRoomReport roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientRoomReport
          * @instance
          */
@@ -20604,7 +21688,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientRoomReport messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.ClientRoomReport
          * @instance
          */
@@ -20612,7 +21696,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientRoomReport reason.
-         * @member {proto.ClientRoomReport.Reason}reason
+         * @member {proto.ClientRoomReport.Reason} reason
          * @memberof proto.ClientRoomReport
          * @instance
          */
@@ -20620,7 +21704,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientRoomReport description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.ClientRoomReport
          * @instance
          */
@@ -20737,6 +21821,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Reason enum.
+         * @name proto.ClientRoomReport.Reason
          * @enum {string}
          * @property {number} OTHER=0 OTHER value
          * @property {number} SPAM=1 SPAM value
@@ -20763,13 +21848,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientRoomReportResponse.
          * @memberof proto
          * @interface IClientRoomReportResponse
-         * @property {proto.Response} [response] ClientRoomReportResponse response
+         * @property {proto.Response|null} [response] ClientRoomReportResponse response
          */
 
     /**
          * Constructs a new ClientRoomReportResponse.
          * @memberof proto
          * @classdesc Represents a ClientRoomReportResponse.
+         * @implements IClientRoomReportResponse
          * @constructor
          * @param {proto.IClientRoomReportResponse=} [properties] Properties to set
          */
@@ -20783,7 +21869,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientRoomReportResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientRoomReportResponse
          * @instance
          */
@@ -20870,17 +21956,18 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientSearchRoomHistory.
          * @memberof proto
          * @interface IClientSearchRoomHistory
-         * @property {proto.Request} [request] ClientSearchRoomHistory request
-         * @property {Long} [roomId] ClientSearchRoomHistory roomId
-         * @property {number} [offset] ClientSearchRoomHistory offset
-         * @property {proto.ClientSearchRoomHistory.Filter} [filter] ClientSearchRoomHistory filter
-         * @property {Long} [offsetMessageId] ClientSearchRoomHistory offsetMessageId
+         * @property {proto.Request|null} [request] ClientSearchRoomHistory request
+         * @property {Long|null} [roomId] ClientSearchRoomHistory roomId
+         * @property {number|null} [offset] ClientSearchRoomHistory offset
+         * @property {proto.ClientSearchRoomHistory.Filter|null} [filter] ClientSearchRoomHistory filter
+         * @property {Long|null} [offsetMessageId] ClientSearchRoomHistory offsetMessageId
          */
 
     /**
          * Constructs a new ClientSearchRoomHistory.
          * @memberof proto
          * @classdesc Represents a ClientSearchRoomHistory.
+         * @implements IClientSearchRoomHistory
          * @constructor
          * @param {proto.IClientSearchRoomHistory=} [properties] Properties to set
          */
@@ -20894,7 +21981,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistory request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientSearchRoomHistory
          * @instance
          */
@@ -20902,7 +21989,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistory roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientSearchRoomHistory
          * @instance
          */
@@ -20910,7 +21997,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistory offset.
-         * @member {number}offset
+         * @member {number} offset
          * @memberof proto.ClientSearchRoomHistory
          * @instance
          */
@@ -20918,7 +22005,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistory filter.
-         * @member {proto.ClientSearchRoomHistory.Filter}filter
+         * @member {proto.ClientSearchRoomHistory.Filter} filter
          * @memberof proto.ClientSearchRoomHistory
          * @instance
          */
@@ -20926,7 +22013,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistory offsetMessageId.
-         * @member {Long}offsetMessageId
+         * @member {Long} offsetMessageId
          * @memberof proto.ClientSearchRoomHistory
          * @instance
          */
@@ -21045,6 +22132,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Filter enum.
+         * @name proto.ClientSearchRoomHistory.Filter
          * @enum {string}
          * @property {number} IMAGE=0 IMAGE value
          * @property {number} VIDEO=1 VIDEO value
@@ -21075,16 +22163,17 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientSearchRoomHistoryResponse.
          * @memberof proto
          * @interface IClientSearchRoomHistoryResponse
-         * @property {proto.Response} [response] ClientSearchRoomHistoryResponse response
-         * @property {number} [totalCount] ClientSearchRoomHistoryResponse totalCount
-         * @property {number} [notDeletedCount] ClientSearchRoomHistoryResponse notDeletedCount
-         * @property {Array.<proto.RoomMessage>} [result] ClientSearchRoomHistoryResponse result
+         * @property {proto.Response|null} [response] ClientSearchRoomHistoryResponse response
+         * @property {number|null} [totalCount] ClientSearchRoomHistoryResponse totalCount
+         * @property {number|null} [notDeletedCount] ClientSearchRoomHistoryResponse notDeletedCount
+         * @property {Array.<proto.RoomMessage>|null} [result] ClientSearchRoomHistoryResponse result
          */
 
     /**
          * Constructs a new ClientSearchRoomHistoryResponse.
          * @memberof proto
          * @classdesc Represents a ClientSearchRoomHistoryResponse.
+         * @implements IClientSearchRoomHistoryResponse
          * @constructor
          * @param {proto.IClientSearchRoomHistoryResponse=} [properties] Properties to set
          */
@@ -21099,7 +22188,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistoryResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientSearchRoomHistoryResponse
          * @instance
          */
@@ -21107,7 +22196,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistoryResponse totalCount.
-         * @member {number}totalCount
+         * @member {number} totalCount
          * @memberof proto.ClientSearchRoomHistoryResponse
          * @instance
          */
@@ -21115,7 +22204,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistoryResponse notDeletedCount.
-         * @member {number}notDeletedCount
+         * @member {number} notDeletedCount
          * @memberof proto.ClientSearchRoomHistoryResponse
          * @instance
          */
@@ -21123,7 +22212,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchRoomHistoryResponse result.
-         * @member {Array.<proto.RoomMessage>}result
+         * @member {Array.<proto.RoomMessage>} result
          * @memberof proto.ClientSearchRoomHistoryResponse
          * @instance
          */
@@ -21222,7 +22311,7 @@ export const proto = $root.proto = (() => {
       if (message.result != null && message.hasOwnProperty('result')) {
         if (!Array.isArray(message.result)) {return 'result: array expected';}
         for (let i = 0; i < message.result.length; ++i) {
-          error = $root.proto.RoomMessage.verify(message.result[i]);
+          let error = $root.proto.RoomMessage.verify(message.result[i]);
           if (error) {return 'result.' + error;}
         }
       }
@@ -21238,14 +22327,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientSearchUsername.
          * @memberof proto
          * @interface IClientSearchUsername
-         * @property {proto.Request} [request] ClientSearchUsername request
-         * @property {string} [query] ClientSearchUsername query
+         * @property {proto.Request|null} [request] ClientSearchUsername request
+         * @property {string|null} [query] ClientSearchUsername query
          */
 
     /**
          * Constructs a new ClientSearchUsername.
          * @memberof proto
          * @classdesc Represents a ClientSearchUsername.
+         * @implements IClientSearchUsername
          * @constructor
          * @param {proto.IClientSearchUsername=} [properties] Properties to set
          */
@@ -21259,7 +22349,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientSearchUsername
          * @instance
          */
@@ -21267,7 +22357,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchUsername query.
-         * @member {string}query
+         * @member {string} query
          * @memberof proto.ClientSearchUsername
          * @instance
          */
@@ -21361,14 +22451,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientSearchUsernameResponse.
          * @memberof proto
          * @interface IClientSearchUsernameResponse
-         * @property {proto.Response} [response] ClientSearchUsernameResponse response
-         * @property {Array.<proto.ClientSearchUsernameResponse.Result>} [result] ClientSearchUsernameResponse result
+         * @property {proto.Response|null} [response] ClientSearchUsernameResponse response
+         * @property {Array.<proto.ClientSearchUsernameResponse.Result>|null} [result] ClientSearchUsernameResponse result
          */
 
     /**
          * Constructs a new ClientSearchUsernameResponse.
          * @memberof proto
          * @classdesc Represents a ClientSearchUsernameResponse.
+         * @implements IClientSearchUsernameResponse
          * @constructor
          * @param {proto.IClientSearchUsernameResponse=} [properties] Properties to set
          */
@@ -21383,7 +22474,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientSearchUsernameResponse
          * @instance
          */
@@ -21391,7 +22482,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSearchUsernameResponse result.
-         * @member {Array.<proto.ClientSearchUsernameResponse.Result>}result
+         * @member {Array.<proto.ClientSearchUsernameResponse.Result>} result
          * @memberof proto.ClientSearchUsernameResponse
          * @instance
          */
@@ -21476,7 +22567,7 @@ export const proto = $root.proto = (() => {
       if (message.result != null && message.hasOwnProperty('result')) {
         if (!Array.isArray(message.result)) {return 'result: array expected';}
         for (let i = 0; i < message.result.length; ++i) {
-          error = $root.proto.ClientSearchUsernameResponse.Result.verify(message.result[i]);
+          let error = $root.proto.ClientSearchUsernameResponse.Result.verify(message.result[i]);
           if (error) {return 'result.' + error;}
         }
       }
@@ -21489,16 +22580,17 @@ export const proto = $root.proto = (() => {
              * Properties of a Result.
              * @memberof proto.ClientSearchUsernameResponse
              * @interface IResult
-             * @property {proto.ClientSearchUsernameResponse.Result.Type} [type] Result type
-             * @property {boolean} [exactMatch] Result exactMatch
-             * @property {proto.RegisteredUser} [user] Result user
-             * @property {proto.Room} [room] Result room
+             * @property {proto.ClientSearchUsernameResponse.Result.Type|null} [type] Result type
+             * @property {boolean|null} [exactMatch] Result exactMatch
+             * @property {proto.RegisteredUser|null} [user] Result user
+             * @property {proto.Room|null} [room] Result room
              */
 
       /**
              * Constructs a new Result.
              * @memberof proto.ClientSearchUsernameResponse
              * @classdesc Represents a Result.
+             * @implements IResult
              * @constructor
              * @param {proto.ClientSearchUsernameResponse.IResult=} [properties] Properties to set
              */
@@ -21512,7 +22604,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result type.
-             * @member {proto.ClientSearchUsernameResponse.Result.Type}type
+             * @member {proto.ClientSearchUsernameResponse.Result.Type} type
              * @memberof proto.ClientSearchUsernameResponse.Result
              * @instance
              */
@@ -21520,7 +22612,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result exactMatch.
-             * @member {boolean}exactMatch
+             * @member {boolean} exactMatch
              * @memberof proto.ClientSearchUsernameResponse.Result
              * @instance
              */
@@ -21528,7 +22620,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result user.
-             * @member {(proto.RegisteredUser|null|undefined)}user
+             * @member {proto.RegisteredUser|null|undefined} user
              * @memberof proto.ClientSearchUsernameResponse.Result
              * @instance
              */
@@ -21536,7 +22628,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result room.
-             * @member {(proto.Room|null|undefined)}room
+             * @member {proto.Room|null|undefined} room
              * @memberof proto.ClientSearchUsernameResponse.Result
              * @instance
              */
@@ -21636,7 +22728,7 @@ export const proto = $root.proto = (() => {
           if (error) {return 'user.' + error;}
         }
         if (message.room != null && message.hasOwnProperty('room')) {
-          error = $root.proto.Room.verify(message.room);
+          let error = $root.proto.Room.verify(message.room);
           if (error) {return 'room.' + error;}
         }
         return null;
@@ -21644,6 +22736,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Type enum.
+             * @name proto.ClientSearchUsernameResponse.Result.Type
              * @enum {string}
              * @property {number} USER=0 USER value
              * @property {number} ROOM=1 ROOM value
@@ -21667,14 +22760,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientSubscribeToRoom.
          * @memberof proto
          * @interface IClientSubscribeToRoom
-         * @property {proto.Request} [request] ClientSubscribeToRoom request
-         * @property {Long} [roomId] ClientSubscribeToRoom roomId
+         * @property {proto.Request|null} [request] ClientSubscribeToRoom request
+         * @property {Long|null} [roomId] ClientSubscribeToRoom roomId
          */
 
     /**
          * Constructs a new ClientSubscribeToRoom.
          * @memberof proto
          * @classdesc Represents a ClientSubscribeToRoom.
+         * @implements IClientSubscribeToRoom
          * @constructor
          * @param {proto.IClientSubscribeToRoom=} [properties] Properties to set
          */
@@ -21688,7 +22782,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSubscribeToRoom request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientSubscribeToRoom
          * @instance
          */
@@ -21696,7 +22790,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSubscribeToRoom roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientSubscribeToRoom
          * @instance
          */
@@ -21790,13 +22884,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientSubscribeToRoomResponse.
          * @memberof proto
          * @interface IClientSubscribeToRoomResponse
-         * @property {proto.Response} [response] ClientSubscribeToRoomResponse response
+         * @property {proto.Response|null} [response] ClientSubscribeToRoomResponse response
          */
 
     /**
          * Constructs a new ClientSubscribeToRoomResponse.
          * @memberof proto
          * @classdesc Represents a ClientSubscribeToRoomResponse.
+         * @implements IClientSubscribeToRoomResponse
          * @constructor
          * @param {proto.IClientSubscribeToRoomResponse=} [properties] Properties to set
          */
@@ -21810,7 +22905,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientSubscribeToRoomResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientSubscribeToRoomResponse
          * @instance
          */
@@ -21897,14 +22992,15 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientUnsubscribeFromRoom.
          * @memberof proto
          * @interface IClientUnsubscribeFromRoom
-         * @property {proto.Request} [request] ClientUnsubscribeFromRoom request
-         * @property {Long} [roomId] ClientUnsubscribeFromRoom roomId
+         * @property {proto.Request|null} [request] ClientUnsubscribeFromRoom request
+         * @property {Long|null} [roomId] ClientUnsubscribeFromRoom roomId
          */
 
     /**
          * Constructs a new ClientUnsubscribeFromRoom.
          * @memberof proto
          * @classdesc Represents a ClientUnsubscribeFromRoom.
+         * @implements IClientUnsubscribeFromRoom
          * @constructor
          * @param {proto.IClientUnsubscribeFromRoom=} [properties] Properties to set
          */
@@ -21918,7 +23014,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientUnsubscribeFromRoom request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ClientUnsubscribeFromRoom
          * @instance
          */
@@ -21926,7 +23022,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientUnsubscribeFromRoom roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.ClientUnsubscribeFromRoom
          * @instance
          */
@@ -22020,13 +23116,14 @@ export const proto = $root.proto = (() => {
          * Properties of a ClientUnsubscribeFromRoomResponse.
          * @memberof proto
          * @interface IClientUnsubscribeFromRoomResponse
-         * @property {proto.Response} [response] ClientUnsubscribeFromRoomResponse response
+         * @property {proto.Response|null} [response] ClientUnsubscribeFromRoomResponse response
          */
 
     /**
          * Constructs a new ClientUnsubscribeFromRoomResponse.
          * @memberof proto
          * @classdesc Represents a ClientUnsubscribeFromRoomResponse.
+         * @implements IClientUnsubscribeFromRoomResponse
          * @constructor
          * @param {proto.IClientUnsubscribeFromRoomResponse=} [properties] Properties to set
          */
@@ -22040,7 +23137,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ClientUnsubscribeFromRoomResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ClientUnsubscribeFromRoomResponse
          * @instance
          */
@@ -22127,18 +23224,19 @@ export const proto = $root.proto = (() => {
          * Properties of a ConnectionSecuringResponse.
          * @memberof proto
          * @interface IConnectionSecuringResponse
-         * @property {proto.Response} [response] ConnectionSecuringResponse response
-         * @property {string} [publicKey] ConnectionSecuringResponse publicKey
-         * @property {number} [symmetricKeyLength] ConnectionSecuringResponse symmetricKeyLength
-         * @property {number} [heartbeatInterval] ConnectionSecuringResponse heartbeatInterval
-         * @property {string} [primaryNodeName] ConnectionSecuringResponse primaryNodeName
-         * @property {number} [secondaryChunkSize] ConnectionSecuringResponse secondaryChunkSize
+         * @property {proto.Response|null} [response] ConnectionSecuringResponse response
+         * @property {string|null} [publicKey] ConnectionSecuringResponse publicKey
+         * @property {number|null} [symmetricKeyLength] ConnectionSecuringResponse symmetricKeyLength
+         * @property {number|null} [heartbeatInterval] ConnectionSecuringResponse heartbeatInterval
+         * @property {string|null} [primaryNodeName] ConnectionSecuringResponse primaryNodeName
+         * @property {number|null} [secondaryChunkSize] ConnectionSecuringResponse secondaryChunkSize
          */
 
     /**
          * Constructs a new ConnectionSecuringResponse.
          * @memberof proto
          * @classdesc Represents a ConnectionSecuringResponse.
+         * @implements IConnectionSecuringResponse
          * @constructor
          * @param {proto.IConnectionSecuringResponse=} [properties] Properties to set
          */
@@ -22152,7 +23250,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSecuringResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ConnectionSecuringResponse
          * @instance
          */
@@ -22160,7 +23258,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSecuringResponse publicKey.
-         * @member {string}publicKey
+         * @member {string} publicKey
          * @memberof proto.ConnectionSecuringResponse
          * @instance
          */
@@ -22168,7 +23266,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSecuringResponse symmetricKeyLength.
-         * @member {number}symmetricKeyLength
+         * @member {number} symmetricKeyLength
          * @memberof proto.ConnectionSecuringResponse
          * @instance
          */
@@ -22176,7 +23274,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSecuringResponse heartbeatInterval.
-         * @member {number}heartbeatInterval
+         * @member {number} heartbeatInterval
          * @memberof proto.ConnectionSecuringResponse
          * @instance
          */
@@ -22184,7 +23282,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSecuringResponse primaryNodeName.
-         * @member {string}primaryNodeName
+         * @member {string} primaryNodeName
          * @memberof proto.ConnectionSecuringResponse
          * @instance
          */
@@ -22192,7 +23290,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSecuringResponse secondaryChunkSize.
-         * @member {number}secondaryChunkSize
+         * @member {number} secondaryChunkSize
          * @memberof proto.ConnectionSecuringResponse
          * @instance
          */
@@ -22314,15 +23412,16 @@ export const proto = $root.proto = (() => {
          * Properties of a ConnectionSymmetricKey.
          * @memberof proto
          * @interface IConnectionSymmetricKey
-         * @property {proto.Request} [request] ConnectionSymmetricKey request
-         * @property {Uint8Array} [symmetricKey] ConnectionSymmetricKey symmetricKey
-         * @property {number} [version] ConnectionSymmetricKey version
+         * @property {proto.Request|null} [request] ConnectionSymmetricKey request
+         * @property {Uint8Array|null} [symmetricKey] ConnectionSymmetricKey symmetricKey
+         * @property {number|null} [version] ConnectionSymmetricKey version
          */
 
     /**
          * Constructs a new ConnectionSymmetricKey.
          * @memberof proto
          * @classdesc Represents a ConnectionSymmetricKey.
+         * @implements IConnectionSymmetricKey
          * @constructor
          * @param {proto.IConnectionSymmetricKey=} [properties] Properties to set
          */
@@ -22336,7 +23435,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKey request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.ConnectionSymmetricKey
          * @instance
          */
@@ -22344,7 +23443,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKey symmetricKey.
-         * @member {Uint8Array}symmetricKey
+         * @member {Uint8Array} symmetricKey
          * @memberof proto.ConnectionSymmetricKey
          * @instance
          */
@@ -22352,7 +23451,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKey version.
-         * @member {number}version
+         * @member {number} version
          * @memberof proto.ConnectionSymmetricKey
          * @instance
          */
@@ -22453,17 +23552,18 @@ export const proto = $root.proto = (() => {
          * Properties of a ConnectionSymmetricKeyResponse.
          * @memberof proto
          * @interface IConnectionSymmetricKeyResponse
-         * @property {proto.Response} [response] ConnectionSymmetricKeyResponse response
-         * @property {proto.ConnectionSymmetricKeyResponse.Status} [status] ConnectionSymmetricKeyResponse status
-         * @property {string} [symmetricMethod] ConnectionSymmetricKeyResponse symmetricMethod
-         * @property {number} [symmetricIvSize] ConnectionSymmetricKeyResponse symmetricIvSize
-         * @property {boolean} [securityIssue] ConnectionSymmetricKeyResponse securityIssue
+         * @property {proto.Response|null} [response] ConnectionSymmetricKeyResponse response
+         * @property {proto.ConnectionSymmetricKeyResponse.Status|null} [status] ConnectionSymmetricKeyResponse status
+         * @property {string|null} [symmetricMethod] ConnectionSymmetricKeyResponse symmetricMethod
+         * @property {number|null} [symmetricIvSize] ConnectionSymmetricKeyResponse symmetricIvSize
+         * @property {boolean|null} [securityIssue] ConnectionSymmetricKeyResponse securityIssue
          */
 
     /**
          * Constructs a new ConnectionSymmetricKeyResponse.
          * @memberof proto
          * @classdesc Represents a ConnectionSymmetricKeyResponse.
+         * @implements IConnectionSymmetricKeyResponse
          * @constructor
          * @param {proto.IConnectionSymmetricKeyResponse=} [properties] Properties to set
          */
@@ -22477,7 +23577,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKeyResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ConnectionSymmetricKeyResponse
          * @instance
          */
@@ -22485,7 +23585,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKeyResponse status.
-         * @member {proto.ConnectionSymmetricKeyResponse.Status}status
+         * @member {proto.ConnectionSymmetricKeyResponse.Status} status
          * @memberof proto.ConnectionSymmetricKeyResponse
          * @instance
          */
@@ -22493,7 +23593,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKeyResponse symmetricMethod.
-         * @member {string}symmetricMethod
+         * @member {string} symmetricMethod
          * @memberof proto.ConnectionSymmetricKeyResponse
          * @instance
          */
@@ -22501,7 +23601,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKeyResponse symmetricIvSize.
-         * @member {number}symmetricIvSize
+         * @member {number} symmetricIvSize
          * @memberof proto.ConnectionSymmetricKeyResponse
          * @instance
          */
@@ -22509,7 +23609,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ConnectionSymmetricKeyResponse securityIssue.
-         * @member {boolean}securityIssue
+         * @member {boolean} securityIssue
          * @memberof proto.ConnectionSymmetricKeyResponse
          * @instance
          */
@@ -22623,6 +23723,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Status enum.
+         * @name proto.ConnectionSymmetricKeyResponse.Status
          * @enum {string}
          * @property {number} REJECTED=0 REJECTED value
          * @property {number} ACCEPTED=1 ACCEPTED value
@@ -22643,17 +23744,18 @@ export const proto = $root.proto = (() => {
          * Properties of an ErrorResponse.
          * @memberof proto
          * @interface IErrorResponse
-         * @property {proto.Response} [response] ErrorResponse response
-         * @property {number} [majorCode] ErrorResponse majorCode
-         * @property {number} [minorCode] ErrorResponse minorCode
-         * @property {number} [wait] ErrorResponse wait
-         * @property {string} [message] ErrorResponse message
+         * @property {proto.Response|null} [response] ErrorResponse response
+         * @property {number|null} [majorCode] ErrorResponse majorCode
+         * @property {number|null} [minorCode] ErrorResponse minorCode
+         * @property {number|null} [wait] ErrorResponse wait
+         * @property {string|null} [message] ErrorResponse message
          */
 
     /**
          * Constructs a new ErrorResponse.
          * @memberof proto
          * @classdesc Represents an ErrorResponse.
+         * @implements IErrorResponse
          * @constructor
          * @param {proto.IErrorResponse=} [properties] Properties to set
          */
@@ -22667,7 +23769,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ErrorResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.ErrorResponse
          * @instance
          */
@@ -22675,7 +23777,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ErrorResponse majorCode.
-         * @member {number}majorCode
+         * @member {number} majorCode
          * @memberof proto.ErrorResponse
          * @instance
          */
@@ -22683,7 +23785,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ErrorResponse minorCode.
-         * @member {number}minorCode
+         * @member {number} minorCode
          * @memberof proto.ErrorResponse
          * @instance
          */
@@ -22691,7 +23793,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ErrorResponse wait.
-         * @member {number}wait
+         * @member {number} wait
          * @memberof proto.ErrorResponse
          * @instance
          */
@@ -22699,7 +23801,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * ErrorResponse message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.ErrorResponse
          * @instance
          */
@@ -22814,17 +23916,18 @@ export const proto = $root.proto = (() => {
          * Properties of a FileDownload.
          * @memberof proto
          * @interface IFileDownload
-         * @property {proto.Request} [request] FileDownload request
-         * @property {string} [token] FileDownload token
-         * @property {Long} [offset] FileDownload offset
-         * @property {number} [maxLimit] FileDownload maxLimit
-         * @property {proto.FileDownload.Selector} [selector] FileDownload selector
+         * @property {proto.Request|null} [request] FileDownload request
+         * @property {string|null} [token] FileDownload token
+         * @property {Long|null} [offset] FileDownload offset
+         * @property {number|null} [maxLimit] FileDownload maxLimit
+         * @property {proto.FileDownload.Selector|null} [selector] FileDownload selector
          */
 
     /**
          * Constructs a new FileDownload.
          * @memberof proto
          * @classdesc Represents a FileDownload.
+         * @implements IFileDownload
          * @constructor
          * @param {proto.IFileDownload=} [properties] Properties to set
          */
@@ -22838,7 +23941,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownload request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.FileDownload
          * @instance
          */
@@ -22846,7 +23949,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownload token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.FileDownload
          * @instance
          */
@@ -22854,7 +23957,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownload offset.
-         * @member {Long}offset
+         * @member {Long} offset
          * @memberof proto.FileDownload
          * @instance
          */
@@ -22862,7 +23965,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownload maxLimit.
-         * @member {number}maxLimit
+         * @member {number} maxLimit
          * @memberof proto.FileDownload
          * @instance
          */
@@ -22870,7 +23973,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownload selector.
-         * @member {proto.FileDownload.Selector}selector
+         * @member {proto.FileDownload.Selector} selector
          * @memberof proto.FileDownload
          * @instance
          */
@@ -22986,6 +24089,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Selector enum.
+         * @name proto.FileDownload.Selector
          * @enum {string}
          * @property {number} FILE=0 FILE value
          * @property {number} SMALL_THUMBNAIL=1 SMALL_THUMBNAIL value
@@ -23010,14 +24114,15 @@ export const proto = $root.proto = (() => {
          * Properties of a FileDownloadResponse.
          * @memberof proto
          * @interface IFileDownloadResponse
-         * @property {proto.Response} [response] FileDownloadResponse response
-         * @property {Uint8Array} [bytes] FileDownloadResponse bytes
+         * @property {proto.Response|null} [response] FileDownloadResponse response
+         * @property {Uint8Array|null} [bytes] FileDownloadResponse bytes
          */
 
     /**
          * Constructs a new FileDownloadResponse.
          * @memberof proto
          * @classdesc Represents a FileDownloadResponse.
+         * @implements IFileDownloadResponse
          * @constructor
          * @param {proto.IFileDownloadResponse=} [properties] Properties to set
          */
@@ -23031,7 +24136,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownloadResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.FileDownloadResponse
          * @instance
          */
@@ -23039,7 +24144,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileDownloadResponse bytes.
-         * @member {Uint8Array}bytes
+         * @member {Uint8Array} bytes
          * @memberof proto.FileDownloadResponse
          * @instance
          */
@@ -23133,14 +24238,15 @@ export const proto = $root.proto = (() => {
          * Properties of a FileInfo.
          * @memberof proto
          * @interface IFileInfo
-         * @property {proto.Request} [request] FileInfo request
-         * @property {string} [token] FileInfo token
+         * @property {proto.Request|null} [request] FileInfo request
+         * @property {string|null} [token] FileInfo token
          */
 
     /**
          * Constructs a new FileInfo.
          * @memberof proto
          * @classdesc Represents a FileInfo.
+         * @implements IFileInfo
          * @constructor
          * @param {proto.IFileInfo=} [properties] Properties to set
          */
@@ -23154,7 +24260,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileInfo request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.FileInfo
          * @instance
          */
@@ -23162,7 +24268,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileInfo token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.FileInfo
          * @instance
          */
@@ -23256,14 +24362,15 @@ export const proto = $root.proto = (() => {
          * Properties of a FileInfoResponse.
          * @memberof proto
          * @interface IFileInfoResponse
-         * @property {proto.Response} [response] FileInfoResponse response
-         * @property {proto.File} [file] FileInfoResponse file
+         * @property {proto.Response|null} [response] FileInfoResponse response
+         * @property {proto.File|null} [file] FileInfoResponse file
          */
 
     /**
          * Constructs a new FileInfoResponse.
          * @memberof proto
          * @classdesc Represents a FileInfoResponse.
+         * @implements IFileInfoResponse
          * @constructor
          * @param {proto.IFileInfoResponse=} [properties] Properties to set
          */
@@ -23277,7 +24384,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileInfoResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.FileInfoResponse
          * @instance
          */
@@ -23285,7 +24392,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileInfoResponse file.
-         * @member {(proto.File|null|undefined)}file
+         * @member {proto.File|null|undefined} file
          * @memberof proto.FileInfoResponse
          * @instance
          */
@@ -23365,7 +24472,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.file != null && message.hasOwnProperty('file')) {
-        error = $root.proto.File.verify(message.file);
+        let error = $root.proto.File.verify(message.file);
         if (error) {return 'file.' + error;}
       }
       return null;
@@ -23380,16 +24487,17 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUpload.
          * @memberof proto
          * @interface IFileUpload
-         * @property {proto.Request} [request] FileUpload request
-         * @property {string} [token] FileUpload token
-         * @property {Long} [offset] FileUpload offset
-         * @property {Uint8Array} [bytes] FileUpload bytes
+         * @property {proto.Request|null} [request] FileUpload request
+         * @property {string|null} [token] FileUpload token
+         * @property {Long|null} [offset] FileUpload offset
+         * @property {Uint8Array|null} [bytes] FileUpload bytes
          */
 
     /**
          * Constructs a new FileUpload.
          * @memberof proto
          * @classdesc Represents a FileUpload.
+         * @implements IFileUpload
          * @constructor
          * @param {proto.IFileUpload=} [properties] Properties to set
          */
@@ -23403,7 +24511,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUpload request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.FileUpload
          * @instance
          */
@@ -23411,7 +24519,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUpload token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.FileUpload
          * @instance
          */
@@ -23419,7 +24527,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUpload offset.
-         * @member {Long}offset
+         * @member {Long} offset
          * @memberof proto.FileUpload
          * @instance
          */
@@ -23427,7 +24535,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUpload bytes.
-         * @member {Uint8Array}bytes
+         * @member {Uint8Array} bytes
          * @memberof proto.FileUpload
          * @instance
          */
@@ -23535,16 +24643,17 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadResponse.
          * @memberof proto
          * @interface IFileUploadResponse
-         * @property {proto.Response} [response] FileUploadResponse response
-         * @property {number} [progress] FileUploadResponse progress
-         * @property {Long} [nextOffset] FileUploadResponse nextOffset
-         * @property {number} [nextLimit] FileUploadResponse nextLimit
+         * @property {proto.Response|null} [response] FileUploadResponse response
+         * @property {number|null} [progress] FileUploadResponse progress
+         * @property {Long|null} [nextOffset] FileUploadResponse nextOffset
+         * @property {number|null} [nextLimit] FileUploadResponse nextLimit
          */
 
     /**
          * Constructs a new FileUploadResponse.
          * @memberof proto
          * @classdesc Represents a FileUploadResponse.
+         * @implements IFileUploadResponse
          * @constructor
          * @param {proto.IFileUploadResponse=} [properties] Properties to set
          */
@@ -23558,7 +24667,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.FileUploadResponse
          * @instance
          */
@@ -23566,7 +24675,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadResponse progress.
-         * @member {number}progress
+         * @member {number} progress
          * @memberof proto.FileUploadResponse
          * @instance
          */
@@ -23574,7 +24683,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadResponse nextOffset.
-         * @member {Long}nextOffset
+         * @member {Long} nextOffset
          * @memberof proto.FileUploadResponse
          * @instance
          */
@@ -23582,7 +24691,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadResponse nextLimit.
-         * @member {number}nextLimit
+         * @member {number} nextLimit
          * @memberof proto.FileUploadResponse
          * @instance
          */
@@ -23690,18 +24799,19 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadInit.
          * @memberof proto
          * @interface IFileUploadInit
-         * @property {proto.Request} [request] FileUploadInit request
-         * @property {Uint8Array} [firstBytes] FileUploadInit firstBytes
-         * @property {Uint8Array} [lastBytes] FileUploadInit lastBytes
-         * @property {Long} [size] FileUploadInit size
-         * @property {Uint8Array} [fileHash] FileUploadInit fileHash
-         * @property {string} [fileName] FileUploadInit fileName
+         * @property {proto.Request|null} [request] FileUploadInit request
+         * @property {Uint8Array|null} [firstBytes] FileUploadInit firstBytes
+         * @property {Uint8Array|null} [lastBytes] FileUploadInit lastBytes
+         * @property {Long|null} [size] FileUploadInit size
+         * @property {Uint8Array|null} [fileHash] FileUploadInit fileHash
+         * @property {string|null} [fileName] FileUploadInit fileName
          */
 
     /**
          * Constructs a new FileUploadInit.
          * @memberof proto
          * @classdesc Represents a FileUploadInit.
+         * @implements IFileUploadInit
          * @constructor
          * @param {proto.IFileUploadInit=} [properties] Properties to set
          */
@@ -23715,7 +24825,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInit request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.FileUploadInit
          * @instance
          */
@@ -23723,7 +24833,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInit firstBytes.
-         * @member {Uint8Array}firstBytes
+         * @member {Uint8Array} firstBytes
          * @memberof proto.FileUploadInit
          * @instance
          */
@@ -23731,7 +24841,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInit lastBytes.
-         * @member {Uint8Array}lastBytes
+         * @member {Uint8Array} lastBytes
          * @memberof proto.FileUploadInit
          * @instance
          */
@@ -23739,7 +24849,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInit size.
-         * @member {Long}size
+         * @member {Long} size
          * @memberof proto.FileUploadInit
          * @instance
          */
@@ -23747,7 +24857,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInit fileHash.
-         * @member {Uint8Array}fileHash
+         * @member {Uint8Array} fileHash
          * @memberof proto.FileUploadInit
          * @instance
          */
@@ -23755,7 +24865,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInit fileName.
-         * @member {string}fileName
+         * @member {string} fileName
          * @memberof proto.FileUploadInit
          * @instance
          */
@@ -23877,17 +24987,18 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadInitResponse.
          * @memberof proto
          * @interface IFileUploadInitResponse
-         * @property {proto.Response} [response] FileUploadInitResponse response
-         * @property {string} [token] FileUploadInitResponse token
-         * @property {number} [progress] FileUploadInitResponse progress
-         * @property {Long} [offset] FileUploadInitResponse offset
-         * @property {number} [limit] FileUploadInitResponse limit
+         * @property {proto.Response|null} [response] FileUploadInitResponse response
+         * @property {string|null} [token] FileUploadInitResponse token
+         * @property {number|null} [progress] FileUploadInitResponse progress
+         * @property {Long|null} [offset] FileUploadInitResponse offset
+         * @property {number|null} [limit] FileUploadInitResponse limit
          */
 
     /**
          * Constructs a new FileUploadInitResponse.
          * @memberof proto
          * @classdesc Represents a FileUploadInitResponse.
+         * @implements IFileUploadInitResponse
          * @constructor
          * @param {proto.IFileUploadInitResponse=} [properties] Properties to set
          */
@@ -23901,7 +25012,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInitResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.FileUploadInitResponse
          * @instance
          */
@@ -23909,7 +25020,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInitResponse token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.FileUploadInitResponse
          * @instance
          */
@@ -23917,7 +25028,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInitResponse progress.
-         * @member {number}progress
+         * @member {number} progress
          * @memberof proto.FileUploadInitResponse
          * @instance
          */
@@ -23925,7 +25036,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInitResponse offset.
-         * @member {Long}offset
+         * @member {Long} offset
          * @memberof proto.FileUploadInitResponse
          * @instance
          */
@@ -23933,7 +25044,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadInitResponse limit.
-         * @member {number}limit
+         * @member {number} limit
          * @memberof proto.FileUploadInitResponse
          * @instance
          */
@@ -24048,14 +25159,15 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadOption.
          * @memberof proto
          * @interface IFileUploadOption
-         * @property {proto.Request} [request] FileUploadOption request
-         * @property {Long} [size] FileUploadOption size
+         * @property {proto.Request|null} [request] FileUploadOption request
+         * @property {Long|null} [size] FileUploadOption size
          */
 
     /**
          * Constructs a new FileUploadOption.
          * @memberof proto
          * @classdesc Represents a FileUploadOption.
+         * @implements IFileUploadOption
          * @constructor
          * @param {proto.IFileUploadOption=} [properties] Properties to set
          */
@@ -24069,7 +25181,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadOption request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.FileUploadOption
          * @instance
          */
@@ -24077,7 +25189,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadOption size.
-         * @member {Long}size
+         * @member {Long} size
          * @memberof proto.FileUploadOption
          * @instance
          */
@@ -24171,16 +25283,17 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadOptionResponse.
          * @memberof proto
          * @interface IFileUploadOptionResponse
-         * @property {proto.Response} [response] FileUploadOptionResponse response
-         * @property {number} [firstBytesLimit] FileUploadOptionResponse firstBytesLimit
-         * @property {number} [lastBytesLimit] FileUploadOptionResponse lastBytesLimit
-         * @property {number} [maxConnection] FileUploadOptionResponse maxConnection
+         * @property {proto.Response|null} [response] FileUploadOptionResponse response
+         * @property {number|null} [firstBytesLimit] FileUploadOptionResponse firstBytesLimit
+         * @property {number|null} [lastBytesLimit] FileUploadOptionResponse lastBytesLimit
+         * @property {number|null} [maxConnection] FileUploadOptionResponse maxConnection
          */
 
     /**
          * Constructs a new FileUploadOptionResponse.
          * @memberof proto
          * @classdesc Represents a FileUploadOptionResponse.
+         * @implements IFileUploadOptionResponse
          * @constructor
          * @param {proto.IFileUploadOptionResponse=} [properties] Properties to set
          */
@@ -24194,7 +25307,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadOptionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.FileUploadOptionResponse
          * @instance
          */
@@ -24202,7 +25315,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadOptionResponse firstBytesLimit.
-         * @member {number}firstBytesLimit
+         * @member {number} firstBytesLimit
          * @memberof proto.FileUploadOptionResponse
          * @instance
          */
@@ -24210,7 +25323,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadOptionResponse lastBytesLimit.
-         * @member {number}lastBytesLimit
+         * @member {number} lastBytesLimit
          * @memberof proto.FileUploadOptionResponse
          * @instance
          */
@@ -24218,7 +25331,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadOptionResponse maxConnection.
-         * @member {number}maxConnection
+         * @member {number} maxConnection
          * @memberof proto.FileUploadOptionResponse
          * @instance
          */
@@ -24326,14 +25439,15 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadStatus.
          * @memberof proto
          * @interface IFileUploadStatus
-         * @property {proto.Request} [request] FileUploadStatus request
-         * @property {string} [token] FileUploadStatus token
+         * @property {proto.Request|null} [request] FileUploadStatus request
+         * @property {string|null} [token] FileUploadStatus token
          */
 
     /**
          * Constructs a new FileUploadStatus.
          * @memberof proto
          * @classdesc Represents a FileUploadStatus.
+         * @implements IFileUploadStatus
          * @constructor
          * @param {proto.IFileUploadStatus=} [properties] Properties to set
          */
@@ -24347,7 +25461,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadStatus request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.FileUploadStatus
          * @instance
          */
@@ -24355,7 +25469,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadStatus token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.FileUploadStatus
          * @instance
          */
@@ -24449,16 +25563,17 @@ export const proto = $root.proto = (() => {
          * Properties of a FileUploadStatusResponse.
          * @memberof proto
          * @interface IFileUploadStatusResponse
-         * @property {proto.Response} [response] FileUploadStatusResponse response
-         * @property {proto.FileUploadStatusResponse.Status} [status] FileUploadStatusResponse status
-         * @property {number} [progress] FileUploadStatusResponse progress
-         * @property {number} [recheckDelayMs] FileUploadStatusResponse recheckDelayMs
+         * @property {proto.Response|null} [response] FileUploadStatusResponse response
+         * @property {proto.FileUploadStatusResponse.Status|null} [status] FileUploadStatusResponse status
+         * @property {number|null} [progress] FileUploadStatusResponse progress
+         * @property {number|null} [recheckDelayMs] FileUploadStatusResponse recheckDelayMs
          */
 
     /**
          * Constructs a new FileUploadStatusResponse.
          * @memberof proto
          * @classdesc Represents a FileUploadStatusResponse.
+         * @implements IFileUploadStatusResponse
          * @constructor
          * @param {proto.IFileUploadStatusResponse=} [properties] Properties to set
          */
@@ -24472,7 +25587,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadStatusResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.FileUploadStatusResponse
          * @instance
          */
@@ -24480,7 +25595,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadStatusResponse status.
-         * @member {proto.FileUploadStatusResponse.Status}status
+         * @member {proto.FileUploadStatusResponse.Status} status
          * @memberof proto.FileUploadStatusResponse
          * @instance
          */
@@ -24488,7 +25603,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadStatusResponse progress.
-         * @member {number}progress
+         * @member {number} progress
          * @memberof proto.FileUploadStatusResponse
          * @instance
          */
@@ -24496,7 +25611,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FileUploadStatusResponse recheckDelayMs.
-         * @member {number}recheckDelayMs
+         * @member {number} recheckDelayMs
          * @memberof proto.FileUploadStatusResponse
          * @instance
          */
@@ -24605,6 +25720,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Status enum.
+         * @name proto.FileUploadStatusResponse.Status
          * @enum {string}
          * @property {number} UPLOADING=0 UPLOADING value
          * @property {number} PROCESSING=1 PROCESSING value
@@ -24629,14 +25745,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetComment.
          * @memberof proto
          * @interface IGeoGetComment
-         * @property {proto.Request} [request] GeoGetComment request
-         * @property {Long} [userId] GeoGetComment userId
+         * @property {proto.Request|null} [request] GeoGetComment request
+         * @property {Long|null} [userId] GeoGetComment userId
          */
 
     /**
          * Constructs a new GeoGetComment.
          * @memberof proto
          * @classdesc Represents a GeoGetComment.
+         * @implements IGeoGetComment
          * @constructor
          * @param {proto.IGeoGetComment=} [properties] Properties to set
          */
@@ -24650,7 +25767,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetComment request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoGetComment
          * @instance
          */
@@ -24658,7 +25775,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetComment userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.GeoGetComment
          * @instance
          */
@@ -24752,14 +25869,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetCommentResponse.
          * @memberof proto
          * @interface IGeoGetCommentResponse
-         * @property {proto.Response} [response] GeoGetCommentResponse response
-         * @property {string} [comment] GeoGetCommentResponse comment
+         * @property {proto.Response|null} [response] GeoGetCommentResponse response
+         * @property {string|null} [comment] GeoGetCommentResponse comment
          */
 
     /**
          * Constructs a new GeoGetCommentResponse.
          * @memberof proto
          * @classdesc Represents a GeoGetCommentResponse.
+         * @implements IGeoGetCommentResponse
          * @constructor
          * @param {proto.IGeoGetCommentResponse=} [properties] Properties to set
          */
@@ -24773,7 +25891,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetCommentResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoGetCommentResponse
          * @instance
          */
@@ -24781,7 +25899,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetCommentResponse comment.
-         * @member {string}comment
+         * @member {string} comment
          * @memberof proto.GeoGetCommentResponse
          * @instance
          */
@@ -24875,13 +25993,14 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetConfiguration.
          * @memberof proto
          * @interface IGeoGetConfiguration
-         * @property {proto.Request} [request] GeoGetConfiguration request
+         * @property {proto.Request|null} [request] GeoGetConfiguration request
          */
 
     /**
          * Constructs a new GeoGetConfiguration.
          * @memberof proto
          * @classdesc Represents a GeoGetConfiguration.
+         * @implements IGeoGetConfiguration
          * @constructor
          * @param {proto.IGeoGetConfiguration=} [properties] Properties to set
          */
@@ -24895,7 +26014,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetConfiguration request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoGetConfiguration
          * @instance
          */
@@ -24982,15 +26101,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetConfigurationResponse.
          * @memberof proto
          * @interface IGeoGetConfigurationResponse
-         * @property {proto.Response} [response] GeoGetConfigurationResponse response
-         * @property {Array.<proto.GeoGetConfigurationResponse.TileServer>} [tileServer] GeoGetConfigurationResponse tileServer
-         * @property {string} [cacheId] GeoGetConfigurationResponse cacheId
+         * @property {proto.Response|null} [response] GeoGetConfigurationResponse response
+         * @property {Array.<proto.GeoGetConfigurationResponse.TileServer>|null} [tileServer] GeoGetConfigurationResponse tileServer
+         * @property {string|null} [cacheId] GeoGetConfigurationResponse cacheId
          */
 
     /**
          * Constructs a new GeoGetConfigurationResponse.
          * @memberof proto
          * @classdesc Represents a GeoGetConfigurationResponse.
+         * @implements IGeoGetConfigurationResponse
          * @constructor
          * @param {proto.IGeoGetConfigurationResponse=} [properties] Properties to set
          */
@@ -25005,7 +26125,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetConfigurationResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoGetConfigurationResponse
          * @instance
          */
@@ -25013,7 +26133,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetConfigurationResponse tileServer.
-         * @member {Array.<proto.GeoGetConfigurationResponse.TileServer>}tileServer
+         * @member {Array.<proto.GeoGetConfigurationResponse.TileServer>} tileServer
          * @memberof proto.GeoGetConfigurationResponse
          * @instance
          */
@@ -25021,7 +26141,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetConfigurationResponse cacheId.
-         * @member {string}cacheId
+         * @member {string} cacheId
          * @memberof proto.GeoGetConfigurationResponse
          * @instance
          */
@@ -25110,7 +26230,7 @@ export const proto = $root.proto = (() => {
       if (message.tileServer != null && message.hasOwnProperty('tileServer')) {
         if (!Array.isArray(message.tileServer)) {return 'tileServer: array expected';}
         for (let i = 0; i < message.tileServer.length; ++i) {
-          error = $root.proto.GeoGetConfigurationResponse.TileServer.verify(message.tileServer[i]);
+          let error = $root.proto.GeoGetConfigurationResponse.TileServer.verify(message.tileServer[i]);
           if (error) {return 'tileServer.' + error;}
         }
       }
@@ -25126,13 +26246,14 @@ export const proto = $root.proto = (() => {
              * Properties of a TileServer.
              * @memberof proto.GeoGetConfigurationResponse
              * @interface ITileServer
-             * @property {string} [baseUrl] TileServer baseUrl
+             * @property {string|null} [baseUrl] TileServer baseUrl
              */
 
       /**
              * Constructs a new TileServer.
              * @memberof proto.GeoGetConfigurationResponse
              * @classdesc Represents a TileServer.
+             * @implements ITileServer
              * @constructor
              * @param {proto.GeoGetConfigurationResponse.ITileServer=} [properties] Properties to set
              */
@@ -25146,7 +26267,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * TileServer baseUrl.
-             * @member {string}baseUrl
+             * @member {string} baseUrl
              * @memberof proto.GeoGetConfigurationResponse.TileServer
              * @instance
              */
@@ -25235,15 +26356,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetNearbyCoordinate.
          * @memberof proto
          * @interface IGeoGetNearbyCoordinate
-         * @property {proto.Request} [request] GeoGetNearbyCoordinate request
-         * @property {number} [lat] GeoGetNearbyCoordinate lat
-         * @property {number} [lon] GeoGetNearbyCoordinate lon
+         * @property {proto.Request|null} [request] GeoGetNearbyCoordinate request
+         * @property {number|null} [lat] GeoGetNearbyCoordinate lat
+         * @property {number|null} [lon] GeoGetNearbyCoordinate lon
          */
 
     /**
          * Constructs a new GeoGetNearbyCoordinate.
          * @memberof proto
          * @classdesc Represents a GeoGetNearbyCoordinate.
+         * @implements IGeoGetNearbyCoordinate
          * @constructor
          * @param {proto.IGeoGetNearbyCoordinate=} [properties] Properties to set
          */
@@ -25257,7 +26379,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyCoordinate request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoGetNearbyCoordinate
          * @instance
          */
@@ -25265,7 +26387,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyCoordinate lat.
-         * @member {number}lat
+         * @member {number} lat
          * @memberof proto.GeoGetNearbyCoordinate
          * @instance
          */
@@ -25273,7 +26395,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyCoordinate lon.
-         * @member {number}lon
+         * @member {number} lon
          * @memberof proto.GeoGetNearbyCoordinate
          * @instance
          */
@@ -25374,14 +26496,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetNearbyCoordinateResponse.
          * @memberof proto
          * @interface IGeoGetNearbyCoordinateResponse
-         * @property {proto.Response} [response] GeoGetNearbyCoordinateResponse response
-         * @property {Array.<proto.GeoGetNearbyCoordinateResponse.Result>} [result] GeoGetNearbyCoordinateResponse result
+         * @property {proto.Response|null} [response] GeoGetNearbyCoordinateResponse response
+         * @property {Array.<proto.GeoGetNearbyCoordinateResponse.Result>|null} [result] GeoGetNearbyCoordinateResponse result
          */
 
     /**
          * Constructs a new GeoGetNearbyCoordinateResponse.
          * @memberof proto
          * @classdesc Represents a GeoGetNearbyCoordinateResponse.
+         * @implements IGeoGetNearbyCoordinateResponse
          * @constructor
          * @param {proto.IGeoGetNearbyCoordinateResponse=} [properties] Properties to set
          */
@@ -25396,7 +26519,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyCoordinateResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoGetNearbyCoordinateResponse
          * @instance
          */
@@ -25404,7 +26527,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyCoordinateResponse result.
-         * @member {Array.<proto.GeoGetNearbyCoordinateResponse.Result>}result
+         * @member {Array.<proto.GeoGetNearbyCoordinateResponse.Result>} result
          * @memberof proto.GeoGetNearbyCoordinateResponse
          * @instance
          */
@@ -25489,7 +26612,7 @@ export const proto = $root.proto = (() => {
       if (message.result != null && message.hasOwnProperty('result')) {
         if (!Array.isArray(message.result)) {return 'result: array expected';}
         for (let i = 0; i < message.result.length; ++i) {
-          error = $root.proto.GeoGetNearbyCoordinateResponse.Result.verify(message.result[i]);
+          let error = $root.proto.GeoGetNearbyCoordinateResponse.Result.verify(message.result[i]);
           if (error) {return 'result.' + error;}
         }
       }
@@ -25502,16 +26625,17 @@ export const proto = $root.proto = (() => {
              * Properties of a Result.
              * @memberof proto.GeoGetNearbyCoordinateResponse
              * @interface IResult
-             * @property {Long} [userId] Result userId
-             * @property {boolean} [hasComment] Result hasComment
-             * @property {number} [lat] Result lat
-             * @property {number} [lon] Result lon
+             * @property {Long|null} [userId] Result userId
+             * @property {boolean|null} [hasComment] Result hasComment
+             * @property {number|null} [lat] Result lat
+             * @property {number|null} [lon] Result lon
              */
 
       /**
              * Constructs a new Result.
              * @memberof proto.GeoGetNearbyCoordinateResponse
              * @classdesc Represents a Result.
+             * @implements IResult
              * @constructor
              * @param {proto.GeoGetNearbyCoordinateResponse.IResult=} [properties] Properties to set
              */
@@ -25525,7 +26649,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.GeoGetNearbyCoordinateResponse.Result
              * @instance
              */
@@ -25533,7 +26657,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result hasComment.
-             * @member {boolean}hasComment
+             * @member {boolean} hasComment
              * @memberof proto.GeoGetNearbyCoordinateResponse.Result
              * @instance
              */
@@ -25541,7 +26665,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result lat.
-             * @member {number}lat
+             * @member {number} lat
              * @memberof proto.GeoGetNearbyCoordinateResponse.Result
              * @instance
              */
@@ -25549,7 +26673,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result lon.
-             * @member {number}lon
+             * @member {number} lon
              * @memberof proto.GeoGetNearbyCoordinateResponse.Result
              * @instance
              */
@@ -25659,15 +26783,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetNearbyDistance.
          * @memberof proto
          * @interface IGeoGetNearbyDistance
-         * @property {proto.Request} [request] GeoGetNearbyDistance request
-         * @property {number} [lat] GeoGetNearbyDistance lat
-         * @property {number} [lon] GeoGetNearbyDistance lon
+         * @property {proto.Request|null} [request] GeoGetNearbyDistance request
+         * @property {number|null} [lat] GeoGetNearbyDistance lat
+         * @property {number|null} [lon] GeoGetNearbyDistance lon
          */
 
     /**
          * Constructs a new GeoGetNearbyDistance.
          * @memberof proto
          * @classdesc Represents a GeoGetNearbyDistance.
+         * @implements IGeoGetNearbyDistance
          * @constructor
          * @param {proto.IGeoGetNearbyDistance=} [properties] Properties to set
          */
@@ -25681,7 +26806,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyDistance request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoGetNearbyDistance
          * @instance
          */
@@ -25689,7 +26814,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyDistance lat.
-         * @member {number}lat
+         * @member {number} lat
          * @memberof proto.GeoGetNearbyDistance
          * @instance
          */
@@ -25697,7 +26822,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyDistance lon.
-         * @member {number}lon
+         * @member {number} lon
          * @memberof proto.GeoGetNearbyDistance
          * @instance
          */
@@ -25798,14 +26923,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetNearbyDistanceResponse.
          * @memberof proto
          * @interface IGeoGetNearbyDistanceResponse
-         * @property {proto.Response} [response] GeoGetNearbyDistanceResponse response
-         * @property {Array.<proto.GeoGetNearbyDistanceResponse.Result>} [result] GeoGetNearbyDistanceResponse result
+         * @property {proto.Response|null} [response] GeoGetNearbyDistanceResponse response
+         * @property {Array.<proto.GeoGetNearbyDistanceResponse.Result>|null} [result] GeoGetNearbyDistanceResponse result
          */
 
     /**
          * Constructs a new GeoGetNearbyDistanceResponse.
          * @memberof proto
          * @classdesc Represents a GeoGetNearbyDistanceResponse.
+         * @implements IGeoGetNearbyDistanceResponse
          * @constructor
          * @param {proto.IGeoGetNearbyDistanceResponse=} [properties] Properties to set
          */
@@ -25820,7 +26946,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyDistanceResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoGetNearbyDistanceResponse
          * @instance
          */
@@ -25828,7 +26954,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetNearbyDistanceResponse result.
-         * @member {Array.<proto.GeoGetNearbyDistanceResponse.Result>}result
+         * @member {Array.<proto.GeoGetNearbyDistanceResponse.Result>} result
          * @memberof proto.GeoGetNearbyDistanceResponse
          * @instance
          */
@@ -25913,7 +27039,7 @@ export const proto = $root.proto = (() => {
       if (message.result != null && message.hasOwnProperty('result')) {
         if (!Array.isArray(message.result)) {return 'result: array expected';}
         for (let i = 0; i < message.result.length; ++i) {
-          error = $root.proto.GeoGetNearbyDistanceResponse.Result.verify(message.result[i]);
+          let error = $root.proto.GeoGetNearbyDistanceResponse.Result.verify(message.result[i]);
           if (error) {return 'result.' + error;}
         }
       }
@@ -25926,15 +27052,16 @@ export const proto = $root.proto = (() => {
              * Properties of a Result.
              * @memberof proto.GeoGetNearbyDistanceResponse
              * @interface IResult
-             * @property {Long} [userId] Result userId
-             * @property {boolean} [hasComment] Result hasComment
-             * @property {number} [distance] Result distance
+             * @property {Long|null} [userId] Result userId
+             * @property {boolean|null} [hasComment] Result hasComment
+             * @property {number|null} [distance] Result distance
              */
 
       /**
              * Constructs a new Result.
              * @memberof proto.GeoGetNearbyDistanceResponse
              * @classdesc Represents a Result.
+             * @implements IResult
              * @constructor
              * @param {proto.GeoGetNearbyDistanceResponse.IResult=} [properties] Properties to set
              */
@@ -25948,7 +27075,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.GeoGetNearbyDistanceResponse.Result
              * @instance
              */
@@ -25956,7 +27083,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result hasComment.
-             * @member {boolean}hasComment
+             * @member {boolean} hasComment
              * @memberof proto.GeoGetNearbyDistanceResponse.Result
              * @instance
              */
@@ -25964,7 +27091,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Result distance.
-             * @member {number}distance
+             * @member {number} distance
              * @memberof proto.GeoGetNearbyDistanceResponse.Result
              * @instance
              */
@@ -26067,13 +27194,14 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetRegisterStatus.
          * @memberof proto
          * @interface IGeoGetRegisterStatus
-         * @property {proto.Request} [request] GeoGetRegisterStatus request
+         * @property {proto.Request|null} [request] GeoGetRegisterStatus request
          */
 
     /**
          * Constructs a new GeoGetRegisterStatus.
          * @memberof proto
          * @classdesc Represents a GeoGetRegisterStatus.
+         * @implements IGeoGetRegisterStatus
          * @constructor
          * @param {proto.IGeoGetRegisterStatus=} [properties] Properties to set
          */
@@ -26087,7 +27215,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetRegisterStatus request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoGetRegisterStatus
          * @instance
          */
@@ -26174,14 +27302,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoGetRegisterStatusResponse.
          * @memberof proto
          * @interface IGeoGetRegisterStatusResponse
-         * @property {proto.Response} [response] GeoGetRegisterStatusResponse response
-         * @property {boolean} [enable] GeoGetRegisterStatusResponse enable
+         * @property {proto.Response|null} [response] GeoGetRegisterStatusResponse response
+         * @property {boolean|null} [enable] GeoGetRegisterStatusResponse enable
          */
 
     /**
          * Constructs a new GeoGetRegisterStatusResponse.
          * @memberof proto
          * @classdesc Represents a GeoGetRegisterStatusResponse.
+         * @implements IGeoGetRegisterStatusResponse
          * @constructor
          * @param {proto.IGeoGetRegisterStatusResponse=} [properties] Properties to set
          */
@@ -26195,7 +27324,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetRegisterStatusResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoGetRegisterStatusResponse
          * @instance
          */
@@ -26203,7 +27332,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoGetRegisterStatusResponse enable.
-         * @member {boolean}enable
+         * @member {boolean} enable
          * @memberof proto.GeoGetRegisterStatusResponse
          * @instance
          */
@@ -26297,14 +27426,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoRegister.
          * @memberof proto
          * @interface IGeoRegister
-         * @property {proto.Request} [request] GeoRegister request
-         * @property {boolean} [enable] GeoRegister enable
+         * @property {proto.Request|null} [request] GeoRegister request
+         * @property {boolean|null} [enable] GeoRegister enable
          */
 
     /**
          * Constructs a new GeoRegister.
          * @memberof proto
          * @classdesc Represents a GeoRegister.
+         * @implements IGeoRegister
          * @constructor
          * @param {proto.IGeoRegister=} [properties] Properties to set
          */
@@ -26318,7 +27448,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoRegister request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoRegister
          * @instance
          */
@@ -26326,7 +27456,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoRegister enable.
-         * @member {boolean}enable
+         * @member {boolean} enable
          * @memberof proto.GeoRegister
          * @instance
          */
@@ -26420,14 +27550,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoRegisterResponse.
          * @memberof proto
          * @interface IGeoRegisterResponse
-         * @property {proto.Response} [response] GeoRegisterResponse response
-         * @property {boolean} [enable] GeoRegisterResponse enable
+         * @property {proto.Response|null} [response] GeoRegisterResponse response
+         * @property {boolean|null} [enable] GeoRegisterResponse enable
          */
 
     /**
          * Constructs a new GeoRegisterResponse.
          * @memberof proto
          * @classdesc Represents a GeoRegisterResponse.
+         * @implements IGeoRegisterResponse
          * @constructor
          * @param {proto.IGeoRegisterResponse=} [properties] Properties to set
          */
@@ -26441,7 +27572,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoRegisterResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoRegisterResponse
          * @instance
          */
@@ -26449,7 +27580,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoRegisterResponse enable.
-         * @member {boolean}enable
+         * @member {boolean} enable
          * @memberof proto.GeoRegisterResponse
          * @instance
          */
@@ -26543,14 +27674,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoUpdateComment.
          * @memberof proto
          * @interface IGeoUpdateComment
-         * @property {proto.Request} [request] GeoUpdateComment request
-         * @property {string} [comment] GeoUpdateComment comment
+         * @property {proto.Request|null} [request] GeoUpdateComment request
+         * @property {string|null} [comment] GeoUpdateComment comment
          */
 
     /**
          * Constructs a new GeoUpdateComment.
          * @memberof proto
          * @classdesc Represents a GeoUpdateComment.
+         * @implements IGeoUpdateComment
          * @constructor
          * @param {proto.IGeoUpdateComment=} [properties] Properties to set
          */
@@ -26564,7 +27696,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdateComment request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoUpdateComment
          * @instance
          */
@@ -26572,7 +27704,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdateComment comment.
-         * @member {string}comment
+         * @member {string} comment
          * @memberof proto.GeoUpdateComment
          * @instance
          */
@@ -26666,14 +27798,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoUpdateCommentResponse.
          * @memberof proto
          * @interface IGeoUpdateCommentResponse
-         * @property {proto.Response} [response] GeoUpdateCommentResponse response
-         * @property {string} [comment] GeoUpdateCommentResponse comment
+         * @property {proto.Response|null} [response] GeoUpdateCommentResponse response
+         * @property {string|null} [comment] GeoUpdateCommentResponse comment
          */
 
     /**
          * Constructs a new GeoUpdateCommentResponse.
          * @memberof proto
          * @classdesc Represents a GeoUpdateCommentResponse.
+         * @implements IGeoUpdateCommentResponse
          * @constructor
          * @param {proto.IGeoUpdateCommentResponse=} [properties] Properties to set
          */
@@ -26687,7 +27820,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdateCommentResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoUpdateCommentResponse
          * @instance
          */
@@ -26695,7 +27828,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdateCommentResponse comment.
-         * @member {string}comment
+         * @member {string} comment
          * @memberof proto.GeoUpdateCommentResponse
          * @instance
          */
@@ -26789,15 +27922,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoUpdatePosition.
          * @memberof proto
          * @interface IGeoUpdatePosition
-         * @property {proto.Request} [request] GeoUpdatePosition request
-         * @property {number} [lat] GeoUpdatePosition lat
-         * @property {number} [lon] GeoUpdatePosition lon
+         * @property {proto.Request|null} [request] GeoUpdatePosition request
+         * @property {number|null} [lat] GeoUpdatePosition lat
+         * @property {number|null} [lon] GeoUpdatePosition lon
          */
 
     /**
          * Constructs a new GeoUpdatePosition.
          * @memberof proto
          * @classdesc Represents a GeoUpdatePosition.
+         * @implements IGeoUpdatePosition
          * @constructor
          * @param {proto.IGeoUpdatePosition=} [properties] Properties to set
          */
@@ -26811,7 +27945,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdatePosition request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GeoUpdatePosition
          * @instance
          */
@@ -26819,7 +27953,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdatePosition lat.
-         * @member {number}lat
+         * @member {number} lat
          * @memberof proto.GeoUpdatePosition
          * @instance
          */
@@ -26827,7 +27961,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdatePosition lon.
-         * @member {number}lon
+         * @member {number} lon
          * @memberof proto.GeoUpdatePosition
          * @instance
          */
@@ -26928,13 +28062,14 @@ export const proto = $root.proto = (() => {
          * Properties of a GeoUpdatePositionResponse.
          * @memberof proto
          * @interface IGeoUpdatePositionResponse
-         * @property {proto.Response} [response] GeoUpdatePositionResponse response
+         * @property {proto.Response|null} [response] GeoUpdatePositionResponse response
          */
 
     /**
          * Constructs a new GeoUpdatePositionResponse.
          * @memberof proto
          * @classdesc Represents a GeoUpdatePositionResponse.
+         * @implements IGeoUpdatePositionResponse
          * @constructor
          * @param {proto.IGeoUpdatePositionResponse=} [properties] Properties to set
          */
@@ -26948,7 +28083,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GeoUpdatePositionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GeoUpdatePositionResponse
          * @instance
          */
@@ -27035,15 +28170,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAddAdmin.
          * @memberof proto
          * @interface IGroupAddAdmin
-         * @property {proto.Request} [request] GroupAddAdmin request
-         * @property {Long} [roomId] GroupAddAdmin roomId
-         * @property {Long} [memberId] GroupAddAdmin memberId
+         * @property {proto.Request|null} [request] GroupAddAdmin request
+         * @property {Long|null} [roomId] GroupAddAdmin roomId
+         * @property {Long|null} [memberId] GroupAddAdmin memberId
          */
 
     /**
          * Constructs a new GroupAddAdmin.
          * @memberof proto
          * @classdesc Represents a GroupAddAdmin.
+         * @implements IGroupAddAdmin
          * @constructor
          * @param {proto.IGroupAddAdmin=} [properties] Properties to set
          */
@@ -27057,7 +28193,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddAdmin request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupAddAdmin
          * @instance
          */
@@ -27065,7 +28201,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddAdmin roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAddAdmin
          * @instance
          */
@@ -27073,7 +28209,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddAdmin memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupAddAdmin
          * @instance
          */
@@ -27174,15 +28310,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAddAdminResponse.
          * @memberof proto
          * @interface IGroupAddAdminResponse
-         * @property {proto.Response} [response] GroupAddAdminResponse response
-         * @property {Long} [roomId] GroupAddAdminResponse roomId
-         * @property {Long} [memberId] GroupAddAdminResponse memberId
+         * @property {proto.Response|null} [response] GroupAddAdminResponse response
+         * @property {Long|null} [roomId] GroupAddAdminResponse roomId
+         * @property {Long|null} [memberId] GroupAddAdminResponse memberId
          */
 
     /**
          * Constructs a new GroupAddAdminResponse.
          * @memberof proto
          * @classdesc Represents a GroupAddAdminResponse.
+         * @implements IGroupAddAdminResponse
          * @constructor
          * @param {proto.IGroupAddAdminResponse=} [properties] Properties to set
          */
@@ -27196,7 +28333,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddAdminResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupAddAdminResponse
          * @instance
          */
@@ -27204,7 +28341,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddAdminResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAddAdminResponse
          * @instance
          */
@@ -27212,7 +28349,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddAdminResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupAddAdminResponse
          * @instance
          */
@@ -27313,15 +28450,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAddMember.
          * @memberof proto
          * @interface IGroupAddMember
-         * @property {proto.Request} [request] GroupAddMember request
-         * @property {Long} [roomId] GroupAddMember roomId
-         * @property {proto.GroupAddMember.Member} [member] GroupAddMember member
+         * @property {proto.Request|null} [request] GroupAddMember request
+         * @property {Long|null} [roomId] GroupAddMember roomId
+         * @property {proto.GroupAddMember.Member|null} [member] GroupAddMember member
          */
 
     /**
          * Constructs a new GroupAddMember.
          * @memberof proto
          * @classdesc Represents a GroupAddMember.
+         * @implements IGroupAddMember
          * @constructor
          * @param {proto.IGroupAddMember=} [properties] Properties to set
          */
@@ -27335,7 +28473,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMember request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupAddMember
          * @instance
          */
@@ -27343,7 +28481,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMember roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAddMember
          * @instance
          */
@@ -27351,7 +28489,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMember member.
-         * @member {(proto.GroupAddMember.Member|null|undefined)}member
+         * @member {proto.GroupAddMember.Member|null|undefined} member
          * @memberof proto.GroupAddMember
          * @instance
          */
@@ -27438,7 +28576,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.member != null && message.hasOwnProperty('member')) {
-        error = $root.proto.GroupAddMember.Member.verify(message.member);
+        let error = $root.proto.GroupAddMember.Member.verify(message.member);
         if (error) {return 'member.' + error;}
       }
       return null;
@@ -27450,14 +28588,15 @@ export const proto = $root.proto = (() => {
              * Properties of a Member.
              * @memberof proto.GroupAddMember
              * @interface IMember
-             * @property {Long} [userId] Member userId
-             * @property {Long} [startMessageId] Member startMessageId
+             * @property {Long|null} [userId] Member userId
+             * @property {Long|null} [startMessageId] Member startMessageId
              */
 
       /**
              * Constructs a new Member.
              * @memberof proto.GroupAddMember
              * @classdesc Represents a Member.
+             * @implements IMember
              * @constructor
              * @param {proto.GroupAddMember.IMember=} [properties] Properties to set
              */
@@ -27471,7 +28610,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.GroupAddMember.Member
              * @instance
              */
@@ -27479,7 +28618,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member startMessageId.
-             * @member {Long}startMessageId
+             * @member {Long} startMessageId
              * @memberof proto.GroupAddMember.Member
              * @instance
              */
@@ -27575,16 +28714,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAddMemberResponse.
          * @memberof proto
          * @interface IGroupAddMemberResponse
-         * @property {proto.Response} [response] GroupAddMemberResponse response
-         * @property {Long} [roomId] GroupAddMemberResponse roomId
-         * @property {Long} [userId] GroupAddMemberResponse userId
-         * @property {proto.GroupRoom.Role} [role] GroupAddMemberResponse role
+         * @property {proto.Response|null} [response] GroupAddMemberResponse response
+         * @property {Long|null} [roomId] GroupAddMemberResponse roomId
+         * @property {Long|null} [userId] GroupAddMemberResponse userId
+         * @property {proto.GroupRoom.Role|null} [role] GroupAddMemberResponse role
          */
 
     /**
          * Constructs a new GroupAddMemberResponse.
          * @memberof proto
          * @classdesc Represents a GroupAddMemberResponse.
+         * @implements IGroupAddMemberResponse
          * @constructor
          * @param {proto.IGroupAddMemberResponse=} [properties] Properties to set
          */
@@ -27598,7 +28738,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMemberResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupAddMemberResponse
          * @instance
          */
@@ -27606,7 +28746,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMemberResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAddMemberResponse
          * @instance
          */
@@ -27614,7 +28754,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMemberResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.GroupAddMemberResponse
          * @instance
          */
@@ -27622,7 +28762,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddMemberResponse role.
-         * @member {proto.GroupRoom.Role}role
+         * @member {proto.GroupRoom.Role} role
          * @memberof proto.GroupAddMemberResponse
          * @instance
          */
@@ -27738,15 +28878,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAddModerator.
          * @memberof proto
          * @interface IGroupAddModerator
-         * @property {proto.Request} [request] GroupAddModerator request
-         * @property {Long} [roomId] GroupAddModerator roomId
-         * @property {Long} [memberId] GroupAddModerator memberId
+         * @property {proto.Request|null} [request] GroupAddModerator request
+         * @property {Long|null} [roomId] GroupAddModerator roomId
+         * @property {Long|null} [memberId] GroupAddModerator memberId
          */
 
     /**
          * Constructs a new GroupAddModerator.
          * @memberof proto
          * @classdesc Represents a GroupAddModerator.
+         * @implements IGroupAddModerator
          * @constructor
          * @param {proto.IGroupAddModerator=} [properties] Properties to set
          */
@@ -27760,7 +28901,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddModerator request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupAddModerator
          * @instance
          */
@@ -27768,7 +28909,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddModerator roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAddModerator
          * @instance
          */
@@ -27776,7 +28917,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddModerator memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupAddModerator
          * @instance
          */
@@ -27877,15 +29018,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAddModeratorResponse.
          * @memberof proto
          * @interface IGroupAddModeratorResponse
-         * @property {proto.Response} [response] GroupAddModeratorResponse response
-         * @property {Long} [roomId] GroupAddModeratorResponse roomId
-         * @property {Long} [memberId] GroupAddModeratorResponse memberId
+         * @property {proto.Response|null} [response] GroupAddModeratorResponse response
+         * @property {Long|null} [roomId] GroupAddModeratorResponse roomId
+         * @property {Long|null} [memberId] GroupAddModeratorResponse memberId
          */
 
     /**
          * Constructs a new GroupAddModeratorResponse.
          * @memberof proto
          * @classdesc Represents a GroupAddModeratorResponse.
+         * @implements IGroupAddModeratorResponse
          * @constructor
          * @param {proto.IGroupAddModeratorResponse=} [properties] Properties to set
          */
@@ -27899,7 +29041,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddModeratorResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupAddModeratorResponse
          * @instance
          */
@@ -27907,7 +29049,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddModeratorResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAddModeratorResponse
          * @instance
          */
@@ -27915,7 +29057,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAddModeratorResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupAddModeratorResponse
          * @instance
          */
@@ -28016,15 +29158,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAvatarAdd.
          * @memberof proto
          * @interface IGroupAvatarAdd
-         * @property {proto.Request} [request] GroupAvatarAdd request
-         * @property {string} [attachment] GroupAvatarAdd attachment
-         * @property {Long} [roomId] GroupAvatarAdd roomId
+         * @property {proto.Request|null} [request] GroupAvatarAdd request
+         * @property {string|null} [attachment] GroupAvatarAdd attachment
+         * @property {Long|null} [roomId] GroupAvatarAdd roomId
          */
 
     /**
          * Constructs a new GroupAvatarAdd.
          * @memberof proto
          * @classdesc Represents a GroupAvatarAdd.
+         * @implements IGroupAvatarAdd
          * @constructor
          * @param {proto.IGroupAvatarAdd=} [properties] Properties to set
          */
@@ -28038,7 +29181,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarAdd request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupAvatarAdd
          * @instance
          */
@@ -28046,7 +29189,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarAdd attachment.
-         * @member {string}attachment
+         * @member {string} attachment
          * @memberof proto.GroupAvatarAdd
          * @instance
          */
@@ -28054,7 +29197,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarAdd roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAvatarAdd
          * @instance
          */
@@ -28155,15 +29298,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAvatarAddResponse.
          * @memberof proto
          * @interface IGroupAvatarAddResponse
-         * @property {proto.Response} [response] GroupAvatarAddResponse response
-         * @property {proto.Avatar} [avatar] GroupAvatarAddResponse avatar
-         * @property {Long} [roomId] GroupAvatarAddResponse roomId
+         * @property {proto.Response|null} [response] GroupAvatarAddResponse response
+         * @property {proto.Avatar|null} [avatar] GroupAvatarAddResponse avatar
+         * @property {Long|null} [roomId] GroupAvatarAddResponse roomId
          */
 
     /**
          * Constructs a new GroupAvatarAddResponse.
          * @memberof proto
          * @classdesc Represents a GroupAvatarAddResponse.
+         * @implements IGroupAvatarAddResponse
          * @constructor
          * @param {proto.IGroupAvatarAddResponse=} [properties] Properties to set
          */
@@ -28177,7 +29321,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarAddResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupAvatarAddResponse
          * @instance
          */
@@ -28185,7 +29329,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarAddResponse avatar.
-         * @member {(proto.Avatar|null|undefined)}avatar
+         * @member {proto.Avatar|null|undefined} avatar
          * @memberof proto.GroupAvatarAddResponse
          * @instance
          */
@@ -28193,7 +29337,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarAddResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAvatarAddResponse
          * @instance
          */
@@ -28277,7 +29421,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.avatar != null && message.hasOwnProperty('avatar')) {
-        error = $root.proto.Avatar.verify(message.avatar);
+        let error = $root.proto.Avatar.verify(message.avatar);
         if (error) {return 'avatar.' + error;}
       }
       if (message.roomId != null && message.hasOwnProperty('roomId')) {
@@ -28295,15 +29439,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAvatarDelete.
          * @memberof proto
          * @interface IGroupAvatarDelete
-         * @property {proto.Request} [request] GroupAvatarDelete request
-         * @property {Long} [id] GroupAvatarDelete id
-         * @property {Long} [roomId] GroupAvatarDelete roomId
+         * @property {proto.Request|null} [request] GroupAvatarDelete request
+         * @property {Long|null} [id] GroupAvatarDelete id
+         * @property {Long|null} [roomId] GroupAvatarDelete roomId
          */
 
     /**
          * Constructs a new GroupAvatarDelete.
          * @memberof proto
          * @classdesc Represents a GroupAvatarDelete.
+         * @implements IGroupAvatarDelete
          * @constructor
          * @param {proto.IGroupAvatarDelete=} [properties] Properties to set
          */
@@ -28317,7 +29462,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupAvatarDelete
          * @instance
          */
@@ -28325,7 +29470,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarDelete id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.GroupAvatarDelete
          * @instance
          */
@@ -28333,7 +29478,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarDelete roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAvatarDelete
          * @instance
          */
@@ -28434,15 +29579,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAvatarDeleteResponse.
          * @memberof proto
          * @interface IGroupAvatarDeleteResponse
-         * @property {proto.Response} [response] GroupAvatarDeleteResponse response
-         * @property {Long} [id] GroupAvatarDeleteResponse id
-         * @property {Long} [roomId] GroupAvatarDeleteResponse roomId
+         * @property {proto.Response|null} [response] GroupAvatarDeleteResponse response
+         * @property {Long|null} [id] GroupAvatarDeleteResponse id
+         * @property {Long|null} [roomId] GroupAvatarDeleteResponse roomId
          */
 
     /**
          * Constructs a new GroupAvatarDeleteResponse.
          * @memberof proto
          * @classdesc Represents a GroupAvatarDeleteResponse.
+         * @implements IGroupAvatarDeleteResponse
          * @constructor
          * @param {proto.IGroupAvatarDeleteResponse=} [properties] Properties to set
          */
@@ -28456,7 +29602,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupAvatarDeleteResponse
          * @instance
          */
@@ -28464,7 +29610,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarDeleteResponse id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.GroupAvatarDeleteResponse
          * @instance
          */
@@ -28472,7 +29618,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarDeleteResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAvatarDeleteResponse
          * @instance
          */
@@ -28573,14 +29719,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAvatarGetList.
          * @memberof proto
          * @interface IGroupAvatarGetList
-         * @property {proto.Request} [request] GroupAvatarGetList request
-         * @property {Long} [roomId] GroupAvatarGetList roomId
+         * @property {proto.Request|null} [request] GroupAvatarGetList request
+         * @property {Long|null} [roomId] GroupAvatarGetList roomId
          */
 
     /**
          * Constructs a new GroupAvatarGetList.
          * @memberof proto
          * @classdesc Represents a GroupAvatarGetList.
+         * @implements IGroupAvatarGetList
          * @constructor
          * @param {proto.IGroupAvatarGetList=} [properties] Properties to set
          */
@@ -28594,7 +29741,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarGetList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupAvatarGetList
          * @instance
          */
@@ -28602,7 +29749,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarGetList roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupAvatarGetList
          * @instance
          */
@@ -28696,14 +29843,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupAvatarGetListResponse.
          * @memberof proto
          * @interface IGroupAvatarGetListResponse
-         * @property {proto.Response} [response] GroupAvatarGetListResponse response
-         * @property {Array.<proto.Avatar>} [avatar] GroupAvatarGetListResponse avatar
+         * @property {proto.Response|null} [response] GroupAvatarGetListResponse response
+         * @property {Array.<proto.Avatar>|null} [avatar] GroupAvatarGetListResponse avatar
          */
 
     /**
          * Constructs a new GroupAvatarGetListResponse.
          * @memberof proto
          * @classdesc Represents a GroupAvatarGetListResponse.
+         * @implements IGroupAvatarGetListResponse
          * @constructor
          * @param {proto.IGroupAvatarGetListResponse=} [properties] Properties to set
          */
@@ -28718,7 +29866,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarGetListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupAvatarGetListResponse
          * @instance
          */
@@ -28726,7 +29874,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupAvatarGetListResponse avatar.
-         * @member {Array.<proto.Avatar>}avatar
+         * @member {Array.<proto.Avatar>} avatar
          * @memberof proto.GroupAvatarGetListResponse
          * @instance
          */
@@ -28811,7 +29959,7 @@ export const proto = $root.proto = (() => {
       if (message.avatar != null && message.hasOwnProperty('avatar')) {
         if (!Array.isArray(message.avatar)) {return 'avatar: array expected';}
         for (let i = 0; i < message.avatar.length; ++i) {
-          error = $root.proto.Avatar.verify(message.avatar[i]);
+          let error = $root.proto.Avatar.verify(message.avatar[i]);
           if (error) {return 'avatar.' + error;}
         }
       }
@@ -28827,15 +29975,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupCheckUsername.
          * @memberof proto
          * @interface IGroupCheckUsername
-         * @property {proto.Request} [request] GroupCheckUsername request
-         * @property {string} [username] GroupCheckUsername username
-         * @property {Long} [roomId] GroupCheckUsername roomId
+         * @property {proto.Request|null} [request] GroupCheckUsername request
+         * @property {string|null} [username] GroupCheckUsername username
+         * @property {Long|null} [roomId] GroupCheckUsername roomId
          */
 
     /**
          * Constructs a new GroupCheckUsername.
          * @memberof proto
          * @classdesc Represents a GroupCheckUsername.
+         * @implements IGroupCheckUsername
          * @constructor
          * @param {proto.IGroupCheckUsername=} [properties] Properties to set
          */
@@ -28849,7 +29998,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCheckUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupCheckUsername
          * @instance
          */
@@ -28857,7 +30006,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCheckUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.GroupCheckUsername
          * @instance
          */
@@ -28865,7 +30014,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCheckUsername roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupCheckUsername
          * @instance
          */
@@ -28966,14 +30115,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupCheckUsernameResponse.
          * @memberof proto
          * @interface IGroupCheckUsernameResponse
-         * @property {proto.Response} [response] GroupCheckUsernameResponse response
-         * @property {proto.GroupCheckUsernameResponse.Status} [status] GroupCheckUsernameResponse status
+         * @property {proto.Response|null} [response] GroupCheckUsernameResponse response
+         * @property {proto.GroupCheckUsernameResponse.Status|null} [status] GroupCheckUsernameResponse status
          */
 
     /**
          * Constructs a new GroupCheckUsernameResponse.
          * @memberof proto
          * @classdesc Represents a GroupCheckUsernameResponse.
+         * @implements IGroupCheckUsernameResponse
          * @constructor
          * @param {proto.IGroupCheckUsernameResponse=} [properties] Properties to set
          */
@@ -28987,7 +30137,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCheckUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupCheckUsernameResponse
          * @instance
          */
@@ -28995,7 +30145,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCheckUsernameResponse status.
-         * @member {proto.GroupCheckUsernameResponse.Status}status
+         * @member {proto.GroupCheckUsernameResponse.Status} status
          * @memberof proto.GroupCheckUsernameResponse
          * @instance
          */
@@ -29090,6 +30240,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Status enum.
+         * @name proto.GroupCheckUsernameResponse.Status
          * @enum {string}
          * @property {number} INVALID=0 INVALID value
          * @property {number} TAKEN=1 TAKEN value
@@ -29114,15 +30265,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupClearMessage.
          * @memberof proto
          * @interface IGroupClearMessage
-         * @property {proto.Request} [request] GroupClearMessage request
-         * @property {Long} [roomId] GroupClearMessage roomId
-         * @property {Long} [clearId] GroupClearMessage clearId
+         * @property {proto.Request|null} [request] GroupClearMessage request
+         * @property {Long|null} [roomId] GroupClearMessage roomId
+         * @property {Long|null} [clearId] GroupClearMessage clearId
          */
 
     /**
          * Constructs a new GroupClearMessage.
          * @memberof proto
          * @classdesc Represents a GroupClearMessage.
+         * @implements IGroupClearMessage
          * @constructor
          * @param {proto.IGroupClearMessage=} [properties] Properties to set
          */
@@ -29136,7 +30288,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupClearMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupClearMessage
          * @instance
          */
@@ -29144,7 +30296,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupClearMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupClearMessage
          * @instance
          */
@@ -29152,7 +30304,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupClearMessage clearId.
-         * @member {Long}clearId
+         * @member {Long} clearId
          * @memberof proto.GroupClearMessage
          * @instance
          */
@@ -29253,15 +30405,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupClearMessageResponse.
          * @memberof proto
          * @interface IGroupClearMessageResponse
-         * @property {proto.Response} [response] GroupClearMessageResponse response
-         * @property {Long} [roomId] GroupClearMessageResponse roomId
-         * @property {Long} [clearId] GroupClearMessageResponse clearId
+         * @property {proto.Response|null} [response] GroupClearMessageResponse response
+         * @property {Long|null} [roomId] GroupClearMessageResponse roomId
+         * @property {Long|null} [clearId] GroupClearMessageResponse clearId
          */
 
     /**
          * Constructs a new GroupClearMessageResponse.
          * @memberof proto
          * @classdesc Represents a GroupClearMessageResponse.
+         * @implements IGroupClearMessageResponse
          * @constructor
          * @param {proto.IGroupClearMessageResponse=} [properties] Properties to set
          */
@@ -29275,7 +30428,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupClearMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupClearMessageResponse
          * @instance
          */
@@ -29283,7 +30436,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupClearMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupClearMessageResponse
          * @instance
          */
@@ -29291,7 +30444,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupClearMessageResponse clearId.
-         * @member {Long}clearId
+         * @member {Long} clearId
          * @memberof proto.GroupClearMessageResponse
          * @instance
          */
@@ -29392,15 +30545,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupCreate.
          * @memberof proto
          * @interface IGroupCreate
-         * @property {proto.Request} [request] GroupCreate request
-         * @property {string} [name] GroupCreate name
-         * @property {string} [description] GroupCreate description
+         * @property {proto.Request|null} [request] GroupCreate request
+         * @property {string|null} [name] GroupCreate name
+         * @property {string|null} [description] GroupCreate description
          */
 
     /**
          * Constructs a new GroupCreate.
          * @memberof proto
          * @classdesc Represents a GroupCreate.
+         * @implements IGroupCreate
          * @constructor
          * @param {proto.IGroupCreate=} [properties] Properties to set
          */
@@ -29414,7 +30568,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCreate request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupCreate
          * @instance
          */
@@ -29422,7 +30576,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCreate name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.GroupCreate
          * @instance
          */
@@ -29430,7 +30584,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCreate description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.GroupCreate
          * @instance
          */
@@ -29531,15 +30685,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupCreateResponse.
          * @memberof proto
          * @interface IGroupCreateResponse
-         * @property {proto.Response} [response] GroupCreateResponse response
-         * @property {Long} [roomId] GroupCreateResponse roomId
-         * @property {string} [inviteLink] GroupCreateResponse inviteLink
+         * @property {proto.Response|null} [response] GroupCreateResponse response
+         * @property {Long|null} [roomId] GroupCreateResponse roomId
+         * @property {string|null} [inviteLink] GroupCreateResponse inviteLink
          */
 
     /**
          * Constructs a new GroupCreateResponse.
          * @memberof proto
          * @classdesc Represents a GroupCreateResponse.
+         * @implements IGroupCreateResponse
          * @constructor
          * @param {proto.IGroupCreateResponse=} [properties] Properties to set
          */
@@ -29553,7 +30708,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCreateResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupCreateResponse
          * @instance
          */
@@ -29561,7 +30716,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCreateResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupCreateResponse
          * @instance
          */
@@ -29569,7 +30724,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupCreateResponse inviteLink.
-         * @member {string}inviteLink
+         * @member {string} inviteLink
          * @memberof proto.GroupCreateResponse
          * @instance
          */
@@ -29670,14 +30825,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupDelete.
          * @memberof proto
          * @interface IGroupDelete
-         * @property {proto.Request} [request] GroupDelete request
-         * @property {Long} [roomId] GroupDelete roomId
+         * @property {proto.Request|null} [request] GroupDelete request
+         * @property {Long|null} [roomId] GroupDelete roomId
          */
 
     /**
          * Constructs a new GroupDelete.
          * @memberof proto
          * @classdesc Represents a GroupDelete.
+         * @implements IGroupDelete
          * @constructor
          * @param {proto.IGroupDelete=} [properties] Properties to set
          */
@@ -29691,7 +30847,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupDelete
          * @instance
          */
@@ -29699,7 +30855,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDelete roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupDelete
          * @instance
          */
@@ -29793,14 +30949,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupDeleteResponse.
          * @memberof proto
          * @interface IGroupDeleteResponse
-         * @property {proto.Response} [response] GroupDeleteResponse response
-         * @property {Long} [roomId] GroupDeleteResponse roomId
+         * @property {proto.Response|null} [response] GroupDeleteResponse response
+         * @property {Long|null} [roomId] GroupDeleteResponse roomId
          */
 
     /**
          * Constructs a new GroupDeleteResponse.
          * @memberof proto
          * @classdesc Represents a GroupDeleteResponse.
+         * @implements IGroupDeleteResponse
          * @constructor
          * @param {proto.IGroupDeleteResponse=} [properties] Properties to set
          */
@@ -29814,7 +30971,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupDeleteResponse
          * @instance
          */
@@ -29822,7 +30979,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupDeleteResponse
          * @instance
          */
@@ -29916,15 +31073,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupDeleteMessage.
          * @memberof proto
          * @interface IGroupDeleteMessage
-         * @property {proto.Request} [request] GroupDeleteMessage request
-         * @property {Long} [roomId] GroupDeleteMessage roomId
-         * @property {Long} [messageId] GroupDeleteMessage messageId
+         * @property {proto.Request|null} [request] GroupDeleteMessage request
+         * @property {Long|null} [roomId] GroupDeleteMessage roomId
+         * @property {Long|null} [messageId] GroupDeleteMessage messageId
          */
 
     /**
          * Constructs a new GroupDeleteMessage.
          * @memberof proto
          * @classdesc Represents a GroupDeleteMessage.
+         * @implements IGroupDeleteMessage
          * @constructor
          * @param {proto.IGroupDeleteMessage=} [properties] Properties to set
          */
@@ -29938,7 +31096,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupDeleteMessage
          * @instance
          */
@@ -29946,7 +31104,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupDeleteMessage
          * @instance
          */
@@ -29954,7 +31112,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.GroupDeleteMessage
          * @instance
          */
@@ -30055,16 +31213,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupDeleteMessageResponse.
          * @memberof proto
          * @interface IGroupDeleteMessageResponse
-         * @property {proto.Response} [response] GroupDeleteMessageResponse response
-         * @property {Long} [roomId] GroupDeleteMessageResponse roomId
-         * @property {Long} [messageId] GroupDeleteMessageResponse messageId
-         * @property {Long} [deleteVersion] GroupDeleteMessageResponse deleteVersion
+         * @property {proto.Response|null} [response] GroupDeleteMessageResponse response
+         * @property {Long|null} [roomId] GroupDeleteMessageResponse roomId
+         * @property {Long|null} [messageId] GroupDeleteMessageResponse messageId
+         * @property {Long|null} [deleteVersion] GroupDeleteMessageResponse deleteVersion
          */
 
     /**
          * Constructs a new GroupDeleteMessageResponse.
          * @memberof proto
          * @classdesc Represents a GroupDeleteMessageResponse.
+         * @implements IGroupDeleteMessageResponse
          * @constructor
          * @param {proto.IGroupDeleteMessageResponse=} [properties] Properties to set
          */
@@ -30078,7 +31237,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupDeleteMessageResponse
          * @instance
          */
@@ -30086,7 +31245,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupDeleteMessageResponse
          * @instance
          */
@@ -30094,7 +31253,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessageResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.GroupDeleteMessageResponse
          * @instance
          */
@@ -30102,7 +31261,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupDeleteMessageResponse deleteVersion.
-         * @member {Long}deleteVersion
+         * @member {Long} deleteVersion
          * @memberof proto.GroupDeleteMessageResponse
          * @instance
          */
@@ -30210,16 +31369,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupEdit.
          * @memberof proto
          * @interface IGroupEdit
-         * @property {proto.Request} [request] GroupEdit request
-         * @property {Long} [roomId] GroupEdit roomId
-         * @property {string} [name] GroupEdit name
-         * @property {string} [description] GroupEdit description
+         * @property {proto.Request|null} [request] GroupEdit request
+         * @property {Long|null} [roomId] GroupEdit roomId
+         * @property {string|null} [name] GroupEdit name
+         * @property {string|null} [description] GroupEdit description
          */
 
     /**
          * Constructs a new GroupEdit.
          * @memberof proto
          * @classdesc Represents a GroupEdit.
+         * @implements IGroupEdit
          * @constructor
          * @param {proto.IGroupEdit=} [properties] Properties to set
          */
@@ -30233,7 +31393,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEdit request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupEdit
          * @instance
          */
@@ -30241,7 +31401,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEdit roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupEdit
          * @instance
          */
@@ -30249,7 +31409,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEdit name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.GroupEdit
          * @instance
          */
@@ -30257,7 +31417,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEdit description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.GroupEdit
          * @instance
          */
@@ -30365,16 +31525,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupEditResponse.
          * @memberof proto
          * @interface IGroupEditResponse
-         * @property {proto.Response} [response] GroupEditResponse response
-         * @property {Long} [roomId] GroupEditResponse roomId
-         * @property {string} [name] GroupEditResponse name
-         * @property {string} [description] GroupEditResponse description
+         * @property {proto.Response|null} [response] GroupEditResponse response
+         * @property {Long|null} [roomId] GroupEditResponse roomId
+         * @property {string|null} [name] GroupEditResponse name
+         * @property {string|null} [description] GroupEditResponse description
          */
 
     /**
          * Constructs a new GroupEditResponse.
          * @memberof proto
          * @classdesc Represents a GroupEditResponse.
+         * @implements IGroupEditResponse
          * @constructor
          * @param {proto.IGroupEditResponse=} [properties] Properties to set
          */
@@ -30388,7 +31549,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupEditResponse
          * @instance
          */
@@ -30396,7 +31557,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupEditResponse
          * @instance
          */
@@ -30404,7 +31565,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditResponse name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.GroupEditResponse
          * @instance
          */
@@ -30412,7 +31573,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditResponse description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.GroupEditResponse
          * @instance
          */
@@ -30520,16 +31681,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupEditMessage.
          * @memberof proto
          * @interface IGroupEditMessage
-         * @property {proto.Request} [request] GroupEditMessage request
-         * @property {Long} [roomId] GroupEditMessage roomId
-         * @property {Long} [messageId] GroupEditMessage messageId
-         * @property {string} [message] GroupEditMessage message
+         * @property {proto.Request|null} [request] GroupEditMessage request
+         * @property {Long|null} [roomId] GroupEditMessage roomId
+         * @property {Long|null} [messageId] GroupEditMessage messageId
+         * @property {string|null} [message] GroupEditMessage message
          */
 
     /**
          * Constructs a new GroupEditMessage.
          * @memberof proto
          * @classdesc Represents a GroupEditMessage.
+         * @implements IGroupEditMessage
          * @constructor
          * @param {proto.IGroupEditMessage=} [properties] Properties to set
          */
@@ -30543,7 +31705,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupEditMessage
          * @instance
          */
@@ -30551,7 +31713,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupEditMessage
          * @instance
          */
@@ -30559,7 +31721,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessage messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.GroupEditMessage
          * @instance
          */
@@ -30567,7 +31729,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.GroupEditMessage
          * @instance
          */
@@ -30675,18 +31837,19 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupEditMessageResponse.
          * @memberof proto
          * @interface IGroupEditMessageResponse
-         * @property {proto.Response} [response] GroupEditMessageResponse response
-         * @property {Long} [roomId] GroupEditMessageResponse roomId
-         * @property {Long} [messageId] GroupEditMessageResponse messageId
-         * @property {Long} [messageVersion] GroupEditMessageResponse messageVersion
-         * @property {string} [message] GroupEditMessageResponse message
-         * @property {proto.RoomMessageType} [messageType] GroupEditMessageResponse messageType
+         * @property {proto.Response|null} [response] GroupEditMessageResponse response
+         * @property {Long|null} [roomId] GroupEditMessageResponse roomId
+         * @property {Long|null} [messageId] GroupEditMessageResponse messageId
+         * @property {Long|null} [messageVersion] GroupEditMessageResponse messageVersion
+         * @property {string|null} [message] GroupEditMessageResponse message
+         * @property {proto.RoomMessageType|null} [messageType] GroupEditMessageResponse messageType
          */
 
     /**
          * Constructs a new GroupEditMessageResponse.
          * @memberof proto
          * @classdesc Represents a GroupEditMessageResponse.
+         * @implements IGroupEditMessageResponse
          * @constructor
          * @param {proto.IGroupEditMessageResponse=} [properties] Properties to set
          */
@@ -30700,7 +31863,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupEditMessageResponse
          * @instance
          */
@@ -30708,7 +31871,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupEditMessageResponse
          * @instance
          */
@@ -30716,7 +31879,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessageResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.GroupEditMessageResponse
          * @instance
          */
@@ -30724,7 +31887,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessageResponse messageVersion.
-         * @member {Long}messageVersion
+         * @member {Long} messageVersion
          * @memberof proto.GroupEditMessageResponse
          * @instance
          */
@@ -30732,7 +31895,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessageResponse message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.GroupEditMessageResponse
          * @instance
          */
@@ -30740,7 +31903,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupEditMessageResponse messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.GroupEditMessageResponse
          * @instance
          */
@@ -30881,14 +32044,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupGetDraft.
          * @memberof proto
          * @interface IGroupGetDraft
-         * @property {proto.Request} [request] GroupGetDraft request
-         * @property {Long} [roomId] GroupGetDraft roomId
+         * @property {proto.Request|null} [request] GroupGetDraft request
+         * @property {Long|null} [roomId] GroupGetDraft roomId
          */
 
     /**
          * Constructs a new GroupGetDraft.
          * @memberof proto
          * @classdesc Represents a GroupGetDraft.
+         * @implements IGroupGetDraft
          * @constructor
          * @param {proto.IGroupGetDraft=} [properties] Properties to set
          */
@@ -30902,7 +32066,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetDraft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupGetDraft
          * @instance
          */
@@ -30910,7 +32074,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetDraft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupGetDraft
          * @instance
          */
@@ -31004,14 +32168,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupGetDraftResponse.
          * @memberof proto
          * @interface IGroupGetDraftResponse
-         * @property {proto.Response} [response] GroupGetDraftResponse response
-         * @property {proto.RoomDraft} [draft] GroupGetDraftResponse draft
+         * @property {proto.Response|null} [response] GroupGetDraftResponse response
+         * @property {proto.RoomDraft|null} [draft] GroupGetDraftResponse draft
          */
 
     /**
          * Constructs a new GroupGetDraftResponse.
          * @memberof proto
          * @classdesc Represents a GroupGetDraftResponse.
+         * @implements IGroupGetDraftResponse
          * @constructor
          * @param {proto.IGroupGetDraftResponse=} [properties] Properties to set
          */
@@ -31025,7 +32190,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetDraftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupGetDraftResponse
          * @instance
          */
@@ -31033,7 +32198,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetDraftResponse draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.GroupGetDraftResponse
          * @instance
          */
@@ -31113,7 +32278,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -31128,16 +32293,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupGetMemberList.
          * @memberof proto
          * @interface IGroupGetMemberList
-         * @property {proto.Request} [request] GroupGetMemberList request
-         * @property {Long} [roomId] GroupGetMemberList roomId
-         * @property {proto.GroupGetMemberList.FilterRole} [filterRole] GroupGetMemberList filterRole
-         * @property {proto.Pagination} [pagination] GroupGetMemberList pagination
+         * @property {proto.Request|null} [request] GroupGetMemberList request
+         * @property {Long|null} [roomId] GroupGetMemberList roomId
+         * @property {proto.GroupGetMemberList.FilterRole|null} [filterRole] GroupGetMemberList filterRole
+         * @property {proto.Pagination|null} [pagination] GroupGetMemberList pagination
          */
 
     /**
          * Constructs a new GroupGetMemberList.
          * @memberof proto
          * @classdesc Represents a GroupGetMemberList.
+         * @implements IGroupGetMemberList
          * @constructor
          * @param {proto.IGroupGetMemberList=} [properties] Properties to set
          */
@@ -31151,7 +32317,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetMemberList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupGetMemberList
          * @instance
          */
@@ -31159,7 +32325,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetMemberList roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupGetMemberList
          * @instance
          */
@@ -31167,7 +32333,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetMemberList filterRole.
-         * @member {proto.GroupGetMemberList.FilterRole}filterRole
+         * @member {proto.GroupGetMemberList.FilterRole} filterRole
          * @memberof proto.GroupGetMemberList
          * @instance
          */
@@ -31175,7 +32341,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetMemberList pagination.
-         * @member {(proto.Pagination|null|undefined)}pagination
+         * @member {proto.Pagination|null|undefined} pagination
          * @memberof proto.GroupGetMemberList
          * @instance
          */
@@ -31277,7 +32443,7 @@ export const proto = $root.proto = (() => {
         }
       }
       if (message.pagination != null && message.hasOwnProperty('pagination')) {
-        error = $root.proto.Pagination.verify(message.pagination);
+        let error = $root.proto.Pagination.verify(message.pagination);
         if (error) {return 'pagination.' + error;}
       }
       return null;
@@ -31285,6 +32451,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * FilterRole enum.
+         * @name proto.GroupGetMemberList.FilterRole
          * @enum {string}
          * @property {number} ALL=0 ALL value
          * @property {number} MEMBER=1 MEMBER value
@@ -31309,14 +32476,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupGetMemberListResponse.
          * @memberof proto
          * @interface IGroupGetMemberListResponse
-         * @property {proto.Response} [response] GroupGetMemberListResponse response
-         * @property {Array.<proto.GroupGetMemberListResponse.Member>} [member] GroupGetMemberListResponse member
+         * @property {proto.Response|null} [response] GroupGetMemberListResponse response
+         * @property {Array.<proto.GroupGetMemberListResponse.Member>|null} [member] GroupGetMemberListResponse member
          */
 
     /**
          * Constructs a new GroupGetMemberListResponse.
          * @memberof proto
          * @classdesc Represents a GroupGetMemberListResponse.
+         * @implements IGroupGetMemberListResponse
          * @constructor
          * @param {proto.IGroupGetMemberListResponse=} [properties] Properties to set
          */
@@ -31331,7 +32499,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetMemberListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupGetMemberListResponse
          * @instance
          */
@@ -31339,7 +32507,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupGetMemberListResponse member.
-         * @member {Array.<proto.GroupGetMemberListResponse.Member>}member
+         * @member {Array.<proto.GroupGetMemberListResponse.Member>} member
          * @memberof proto.GroupGetMemberListResponse
          * @instance
          */
@@ -31424,7 +32592,7 @@ export const proto = $root.proto = (() => {
       if (message.member != null && message.hasOwnProperty('member')) {
         if (!Array.isArray(message.member)) {return 'member: array expected';}
         for (let i = 0; i < message.member.length; ++i) {
-          error = $root.proto.GroupGetMemberListResponse.Member.verify(message.member[i]);
+          let error = $root.proto.GroupGetMemberListResponse.Member.verify(message.member[i]);
           if (error) {return 'member.' + error;}
         }
       }
@@ -31437,14 +32605,15 @@ export const proto = $root.proto = (() => {
              * Properties of a Member.
              * @memberof proto.GroupGetMemberListResponse
              * @interface IMember
-             * @property {Long} [userId] Member userId
-             * @property {proto.GroupRoom.Role} [role] Member role
+             * @property {Long|null} [userId] Member userId
+             * @property {proto.GroupRoom.Role|null} [role] Member role
              */
 
       /**
              * Constructs a new Member.
              * @memberof proto.GroupGetMemberListResponse
              * @classdesc Represents a Member.
+             * @implements IMember
              * @constructor
              * @param {proto.GroupGetMemberListResponse.IMember=} [properties] Properties to set
              */
@@ -31458,7 +32627,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.GroupGetMemberListResponse.Member
              * @instance
              */
@@ -31466,7 +32635,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Member role.
-             * @member {proto.GroupRoom.Role}role
+             * @member {proto.GroupRoom.Role} role
              * @memberof proto.GroupGetMemberListResponse.Member
              * @instance
              */
@@ -31570,15 +32739,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupKickAdmin.
          * @memberof proto
          * @interface IGroupKickAdmin
-         * @property {proto.Request} [request] GroupKickAdmin request
-         * @property {Long} [roomId] GroupKickAdmin roomId
-         * @property {Long} [memberId] GroupKickAdmin memberId
+         * @property {proto.Request|null} [request] GroupKickAdmin request
+         * @property {Long|null} [roomId] GroupKickAdmin roomId
+         * @property {Long|null} [memberId] GroupKickAdmin memberId
          */
 
     /**
          * Constructs a new GroupKickAdmin.
          * @memberof proto
          * @classdesc Represents a GroupKickAdmin.
+         * @implements IGroupKickAdmin
          * @constructor
          * @param {proto.IGroupKickAdmin=} [properties] Properties to set
          */
@@ -31592,7 +32762,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickAdmin request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupKickAdmin
          * @instance
          */
@@ -31600,7 +32770,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickAdmin roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupKickAdmin
          * @instance
          */
@@ -31608,7 +32778,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickAdmin memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupKickAdmin
          * @instance
          */
@@ -31709,15 +32879,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupKickAdminResponse.
          * @memberof proto
          * @interface IGroupKickAdminResponse
-         * @property {proto.Response} [response] GroupKickAdminResponse response
-         * @property {Long} [roomId] GroupKickAdminResponse roomId
-         * @property {Long} [memberId] GroupKickAdminResponse memberId
+         * @property {proto.Response|null} [response] GroupKickAdminResponse response
+         * @property {Long|null} [roomId] GroupKickAdminResponse roomId
+         * @property {Long|null} [memberId] GroupKickAdminResponse memberId
          */
 
     /**
          * Constructs a new GroupKickAdminResponse.
          * @memberof proto
          * @classdesc Represents a GroupKickAdminResponse.
+         * @implements IGroupKickAdminResponse
          * @constructor
          * @param {proto.IGroupKickAdminResponse=} [properties] Properties to set
          */
@@ -31731,7 +32902,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickAdminResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupKickAdminResponse
          * @instance
          */
@@ -31739,7 +32910,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickAdminResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupKickAdminResponse
          * @instance
          */
@@ -31747,7 +32918,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickAdminResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupKickAdminResponse
          * @instance
          */
@@ -31848,15 +33019,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupKickMember.
          * @memberof proto
          * @interface IGroupKickMember
-         * @property {proto.Request} [request] GroupKickMember request
-         * @property {Long} [roomId] GroupKickMember roomId
-         * @property {Long} [memberId] GroupKickMember memberId
+         * @property {proto.Request|null} [request] GroupKickMember request
+         * @property {Long|null} [roomId] GroupKickMember roomId
+         * @property {Long|null} [memberId] GroupKickMember memberId
          */
 
     /**
          * Constructs a new GroupKickMember.
          * @memberof proto
          * @classdesc Represents a GroupKickMember.
+         * @implements IGroupKickMember
          * @constructor
          * @param {proto.IGroupKickMember=} [properties] Properties to set
          */
@@ -31870,7 +33042,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickMember request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupKickMember
          * @instance
          */
@@ -31878,7 +33050,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickMember roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupKickMember
          * @instance
          */
@@ -31886,7 +33058,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickMember memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupKickMember
          * @instance
          */
@@ -31987,15 +33159,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupKickMemberResponse.
          * @memberof proto
          * @interface IGroupKickMemberResponse
-         * @property {proto.Response} [response] GroupKickMemberResponse response
-         * @property {Long} [roomId] GroupKickMemberResponse roomId
-         * @property {Long} [memberId] GroupKickMemberResponse memberId
+         * @property {proto.Response|null} [response] GroupKickMemberResponse response
+         * @property {Long|null} [roomId] GroupKickMemberResponse roomId
+         * @property {Long|null} [memberId] GroupKickMemberResponse memberId
          */
 
     /**
          * Constructs a new GroupKickMemberResponse.
          * @memberof proto
          * @classdesc Represents a GroupKickMemberResponse.
+         * @implements IGroupKickMemberResponse
          * @constructor
          * @param {proto.IGroupKickMemberResponse=} [properties] Properties to set
          */
@@ -32009,7 +33182,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickMemberResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupKickMemberResponse
          * @instance
          */
@@ -32017,7 +33190,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickMemberResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupKickMemberResponse
          * @instance
          */
@@ -32025,7 +33198,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickMemberResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupKickMemberResponse
          * @instance
          */
@@ -32126,15 +33299,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupKickModerator.
          * @memberof proto
          * @interface IGroupKickModerator
-         * @property {proto.Request} [request] GroupKickModerator request
-         * @property {Long} [roomId] GroupKickModerator roomId
-         * @property {Long} [memberId] GroupKickModerator memberId
+         * @property {proto.Request|null} [request] GroupKickModerator request
+         * @property {Long|null} [roomId] GroupKickModerator roomId
+         * @property {Long|null} [memberId] GroupKickModerator memberId
          */
 
     /**
          * Constructs a new GroupKickModerator.
          * @memberof proto
          * @classdesc Represents a GroupKickModerator.
+         * @implements IGroupKickModerator
          * @constructor
          * @param {proto.IGroupKickModerator=} [properties] Properties to set
          */
@@ -32148,7 +33322,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickModerator request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupKickModerator
          * @instance
          */
@@ -32156,7 +33330,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickModerator roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupKickModerator
          * @instance
          */
@@ -32164,7 +33338,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickModerator memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupKickModerator
          * @instance
          */
@@ -32265,15 +33439,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupKickModeratorResponse.
          * @memberof proto
          * @interface IGroupKickModeratorResponse
-         * @property {proto.Response} [response] GroupKickModeratorResponse response
-         * @property {Long} [roomId] GroupKickModeratorResponse roomId
-         * @property {Long} [memberId] GroupKickModeratorResponse memberId
+         * @property {proto.Response|null} [response] GroupKickModeratorResponse response
+         * @property {Long|null} [roomId] GroupKickModeratorResponse roomId
+         * @property {Long|null} [memberId] GroupKickModeratorResponse memberId
          */
 
     /**
          * Constructs a new GroupKickModeratorResponse.
          * @memberof proto
          * @classdesc Represents a GroupKickModeratorResponse.
+         * @implements IGroupKickModeratorResponse
          * @constructor
          * @param {proto.IGroupKickModeratorResponse=} [properties] Properties to set
          */
@@ -32287,7 +33462,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickModeratorResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupKickModeratorResponse
          * @instance
          */
@@ -32295,7 +33470,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickModeratorResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupKickModeratorResponse
          * @instance
          */
@@ -32303,7 +33478,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupKickModeratorResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupKickModeratorResponse
          * @instance
          */
@@ -32404,14 +33579,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupLeft.
          * @memberof proto
          * @interface IGroupLeft
-         * @property {proto.Request} [request] GroupLeft request
-         * @property {Long} [roomId] GroupLeft roomId
+         * @property {proto.Request|null} [request] GroupLeft request
+         * @property {Long|null} [roomId] GroupLeft roomId
          */
 
     /**
          * Constructs a new GroupLeft.
          * @memberof proto
          * @classdesc Represents a GroupLeft.
+         * @implements IGroupLeft
          * @constructor
          * @param {proto.IGroupLeft=} [properties] Properties to set
          */
@@ -32425,7 +33601,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupLeft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupLeft
          * @instance
          */
@@ -32433,7 +33609,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupLeft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupLeft
          * @instance
          */
@@ -32527,15 +33703,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupLeftResponse.
          * @memberof proto
          * @interface IGroupLeftResponse
-         * @property {proto.Response} [response] GroupLeftResponse response
-         * @property {Long} [roomId] GroupLeftResponse roomId
-         * @property {Long} [memberId] GroupLeftResponse memberId
+         * @property {proto.Response|null} [response] GroupLeftResponse response
+         * @property {Long|null} [roomId] GroupLeftResponse roomId
+         * @property {Long|null} [memberId] GroupLeftResponse memberId
          */
 
     /**
          * Constructs a new GroupLeftResponse.
          * @memberof proto
          * @classdesc Represents a GroupLeftResponse.
+         * @implements IGroupLeftResponse
          * @constructor
          * @param {proto.IGroupLeftResponse=} [properties] Properties to set
          */
@@ -32549,7 +33726,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupLeftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupLeftResponse
          * @instance
          */
@@ -32557,7 +33734,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupLeftResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupLeftResponse
          * @instance
          */
@@ -32565,7 +33742,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupLeftResponse memberId.
-         * @member {Long}memberId
+         * @member {Long} memberId
          * @memberof proto.GroupLeftResponse
          * @instance
          */
@@ -32660,20 +33837,302 @@ export const proto = $root.proto = (() => {
     return GroupLeftResponse;
   })();
 
+  proto.GroupPinMessage = (function() {
+
+    /**
+         * Properties of a GroupPinMessage.
+         * @memberof proto
+         * @interface IGroupPinMessage
+         * @property {proto.Request|null} [request] GroupPinMessage request
+         * @property {Long|null} [roomId] GroupPinMessage roomId
+         * @property {Long|null} [messageId] GroupPinMessage messageId
+         */
+
+    /**
+         * Constructs a new GroupPinMessage.
+         * @memberof proto
+         * @classdesc Represents a GroupPinMessage.
+         * @implements IGroupPinMessage
+         * @constructor
+         * @param {proto.IGroupPinMessage=} [properties] Properties to set
+         */
+    function GroupPinMessage(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * GroupPinMessage request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.GroupPinMessage
+         * @instance
+         */
+    GroupPinMessage.prototype.request = null;
+
+    /**
+         * GroupPinMessage roomId.
+         * @member {Long} roomId
+         * @memberof proto.GroupPinMessage
+         * @instance
+         */
+    GroupPinMessage.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * GroupPinMessage messageId.
+         * @member {Long} messageId
+         * @memberof proto.GroupPinMessage
+         * @instance
+         */
+    GroupPinMessage.prototype.messageId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * Creates a new GroupPinMessage instance using the specified properties.
+         * @function create
+         * @memberof proto.GroupPinMessage
+         * @static
+         * @param {proto.IGroupPinMessage=} [properties] Properties to set
+         * @returns {proto.GroupPinMessage} GroupPinMessage instance
+         */
+    GroupPinMessage.create = function create(properties) {
+      return new GroupPinMessage(properties);
+    };
+
+    /**
+         * Encodes the specified GroupPinMessage message. Does not implicitly {@link proto.GroupPinMessage.verify|verify} messages.
+         * @function encode
+         * @memberof proto.GroupPinMessage
+         * @static
+         * @param {proto.GroupPinMessage} message GroupPinMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    GroupPinMessage.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.messageId != null && message.hasOwnProperty('messageId')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.messageId);}
+      return writer;
+    };
+
+    /**
+         * Decodes a GroupPinMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.GroupPinMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.GroupPinMessage} GroupPinMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    GroupPinMessage.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.GroupPinMessage();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.messageId = reader.uint64();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a GroupPinMessage message.
+         * @function verify
+         * @memberof proto.GroupPinMessage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    GroupPinMessage.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.messageId != null && message.hasOwnProperty('messageId')) {
+        if (!$util.isInteger(message.messageId) && !(message.messageId && $util.isInteger(message.messageId.low) && $util.isInteger(message.messageId.high))) {return 'messageId: integer|Long expected';}
+      }
+      return null;
+    };
+
+    return GroupPinMessage;
+  })();
+
+  proto.GroupPinMessageResponse = (function() {
+
+    /**
+         * Properties of a GroupPinMessageResponse.
+         * @memberof proto
+         * @interface IGroupPinMessageResponse
+         * @property {proto.Response|null} [response] GroupPinMessageResponse response
+         * @property {Long|null} [roomId] GroupPinMessageResponse roomId
+         * @property {proto.RoomMessage|null} [pinnedMessage] GroupPinMessageResponse pinnedMessage
+         */
+
+    /**
+         * Constructs a new GroupPinMessageResponse.
+         * @memberof proto
+         * @classdesc Represents a GroupPinMessageResponse.
+         * @implements IGroupPinMessageResponse
+         * @constructor
+         * @param {proto.IGroupPinMessageResponse=} [properties] Properties to set
+         */
+    function GroupPinMessageResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * GroupPinMessageResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.GroupPinMessageResponse
+         * @instance
+         */
+    GroupPinMessageResponse.prototype.response = null;
+
+    /**
+         * GroupPinMessageResponse roomId.
+         * @member {Long} roomId
+         * @memberof proto.GroupPinMessageResponse
+         * @instance
+         */
+    GroupPinMessageResponse.prototype.roomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * GroupPinMessageResponse pinnedMessage.
+         * @member {proto.RoomMessage|null|undefined} pinnedMessage
+         * @memberof proto.GroupPinMessageResponse
+         * @instance
+         */
+    GroupPinMessageResponse.prototype.pinnedMessage = null;
+
+    /**
+         * Creates a new GroupPinMessageResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.GroupPinMessageResponse
+         * @static
+         * @param {proto.IGroupPinMessageResponse=} [properties] Properties to set
+         * @returns {proto.GroupPinMessageResponse} GroupPinMessageResponse instance
+         */
+    GroupPinMessageResponse.create = function create(properties) {
+      return new GroupPinMessageResponse(properties);
+    };
+
+    /**
+         * Encodes the specified GroupPinMessageResponse message. Does not implicitly {@link proto.GroupPinMessageResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.GroupPinMessageResponse
+         * @static
+         * @param {proto.GroupPinMessageResponse} message GroupPinMessageResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    GroupPinMessageResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.roomId);}
+      if (message.pinnedMessage != null && message.hasOwnProperty('pinnedMessage')) {$root.proto.RoomMessage.encode(message.pinnedMessage, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a GroupPinMessageResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.GroupPinMessageResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.GroupPinMessageResponse} GroupPinMessageResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    GroupPinMessageResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.GroupPinMessageResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.roomId = reader.uint64();
+            break;
+          case 3:
+            message.pinnedMessage = $root.proto.RoomMessage.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a GroupPinMessageResponse message.
+         * @function verify
+         * @memberof proto.GroupPinMessageResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    GroupPinMessageResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.roomId != null && message.hasOwnProperty('roomId')) {
+        if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
+      }
+      if (message.pinnedMessage != null && message.hasOwnProperty('pinnedMessage')) {
+        let error = $root.proto.RoomMessage.verify(message.pinnedMessage);
+        if (error) {return 'pinnedMessage.' + error;}
+      }
+      return null;
+    };
+
+    return GroupPinMessageResponse;
+  })();
+
   proto.GroupRemoveUsername = (function() {
 
     /**
          * Properties of a GroupRemoveUsername.
          * @memberof proto
          * @interface IGroupRemoveUsername
-         * @property {proto.Request} [request] GroupRemoveUsername request
-         * @property {Long} [roomId] GroupRemoveUsername roomId
+         * @property {proto.Request|null} [request] GroupRemoveUsername request
+         * @property {Long|null} [roomId] GroupRemoveUsername roomId
          */
 
     /**
          * Constructs a new GroupRemoveUsername.
          * @memberof proto
          * @classdesc Represents a GroupRemoveUsername.
+         * @implements IGroupRemoveUsername
          * @constructor
          * @param {proto.IGroupRemoveUsername=} [properties] Properties to set
          */
@@ -32687,7 +34146,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRemoveUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupRemoveUsername
          * @instance
          */
@@ -32695,7 +34154,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRemoveUsername roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupRemoveUsername
          * @instance
          */
@@ -32789,14 +34248,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupRemoveUsernameResponse.
          * @memberof proto
          * @interface IGroupRemoveUsernameResponse
-         * @property {proto.Response} [response] GroupRemoveUsernameResponse response
-         * @property {Long} [roomId] GroupRemoveUsernameResponse roomId
+         * @property {proto.Response|null} [response] GroupRemoveUsernameResponse response
+         * @property {Long|null} [roomId] GroupRemoveUsernameResponse roomId
          */
 
     /**
          * Constructs a new GroupRemoveUsernameResponse.
          * @memberof proto
          * @classdesc Represents a GroupRemoveUsernameResponse.
+         * @implements IGroupRemoveUsernameResponse
          * @constructor
          * @param {proto.IGroupRemoveUsernameResponse=} [properties] Properties to set
          */
@@ -32810,7 +34270,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRemoveUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupRemoveUsernameResponse
          * @instance
          */
@@ -32818,7 +34278,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRemoveUsernameResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupRemoveUsernameResponse
          * @instance
          */
@@ -32912,14 +34372,15 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupRevokeLink.
          * @memberof proto
          * @interface IGroupRevokeLink
-         * @property {proto.Request} [request] GroupRevokeLink request
-         * @property {Long} [roomId] GroupRevokeLink roomId
+         * @property {proto.Request|null} [request] GroupRevokeLink request
+         * @property {Long|null} [roomId] GroupRevokeLink roomId
          */
 
     /**
          * Constructs a new GroupRevokeLink.
          * @memberof proto
          * @classdesc Represents a GroupRevokeLink.
+         * @implements IGroupRevokeLink
          * @constructor
          * @param {proto.IGroupRevokeLink=} [properties] Properties to set
          */
@@ -32933,7 +34394,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRevokeLink request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupRevokeLink
          * @instance
          */
@@ -32941,7 +34402,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRevokeLink roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupRevokeLink
          * @instance
          */
@@ -33035,16 +34496,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupRevokeLinkResponse.
          * @memberof proto
          * @interface IGroupRevokeLinkResponse
-         * @property {proto.Response} [response] GroupRevokeLinkResponse response
-         * @property {Long} [roomId] GroupRevokeLinkResponse roomId
-         * @property {string} [inviteLink] GroupRevokeLinkResponse inviteLink
-         * @property {string} [inviteToken] GroupRevokeLinkResponse inviteToken
+         * @property {proto.Response|null} [response] GroupRevokeLinkResponse response
+         * @property {Long|null} [roomId] GroupRevokeLinkResponse roomId
+         * @property {string|null} [inviteLink] GroupRevokeLinkResponse inviteLink
+         * @property {string|null} [inviteToken] GroupRevokeLinkResponse inviteToken
          */
 
     /**
          * Constructs a new GroupRevokeLinkResponse.
          * @memberof proto
          * @classdesc Represents a GroupRevokeLinkResponse.
+         * @implements IGroupRevokeLinkResponse
          * @constructor
          * @param {proto.IGroupRevokeLinkResponse=} [properties] Properties to set
          */
@@ -33058,7 +34520,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRevokeLinkResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupRevokeLinkResponse
          * @instance
          */
@@ -33066,7 +34528,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRevokeLinkResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupRevokeLinkResponse
          * @instance
          */
@@ -33074,7 +34536,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRevokeLinkResponse inviteLink.
-         * @member {string}inviteLink
+         * @member {string} inviteLink
          * @memberof proto.GroupRevokeLinkResponse
          * @instance
          */
@@ -33082,7 +34544,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupRevokeLinkResponse inviteToken.
-         * @member {string}inviteToken
+         * @member {string} inviteToken
          * @memberof proto.GroupRevokeLinkResponse
          * @instance
          */
@@ -33190,21 +34652,23 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupSendMessage.
          * @memberof proto
          * @interface IGroupSendMessage
-         * @property {proto.Request} [request] GroupSendMessage request
-         * @property {proto.RoomMessageType} [messageType] GroupSendMessage messageType
-         * @property {Long} [roomId] GroupSendMessage roomId
-         * @property {string} [message] GroupSendMessage message
-         * @property {string} [attachment] GroupSendMessage attachment
-         * @property {proto.RoomMessageLocation} [location] GroupSendMessage location
-         * @property {proto.RoomMessageContact} [contact] GroupSendMessage contact
-         * @property {Long} [replyTo] GroupSendMessage replyTo
-         * @property {proto.RoomMessageForwardFrom} [forwardFrom] GroupSendMessage forwardFrom
+         * @property {proto.Request|null} [request] GroupSendMessage request
+         * @property {proto.RoomMessageType|null} [messageType] GroupSendMessage messageType
+         * @property {Long|null} [roomId] GroupSendMessage roomId
+         * @property {string|null} [message] GroupSendMessage message
+         * @property {string|null} [attachment] GroupSendMessage attachment
+         * @property {proto.RoomMessageLocation|null} [location] GroupSendMessage location
+         * @property {proto.RoomMessageContact|null} [contact] GroupSendMessage contact
+         * @property {Long|null} [replyTo] GroupSendMessage replyTo
+         * @property {proto.RoomMessageForwardFrom|null} [forwardFrom] GroupSendMessage forwardFrom
+         * @property {Long|null} [randomId] GroupSendMessage randomId
          */
 
     /**
          * Constructs a new GroupSendMessage.
          * @memberof proto
          * @classdesc Represents a GroupSendMessage.
+         * @implements IGroupSendMessage
          * @constructor
          * @param {proto.IGroupSendMessage=} [properties] Properties to set
          */
@@ -33218,7 +34682,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33226,7 +34690,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage messageType.
-         * @member {proto.RoomMessageType}messageType
+         * @member {proto.RoomMessageType} messageType
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33234,7 +34698,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33242,7 +34706,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage message.
-         * @member {string}message
+         * @member {string} message
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33250,7 +34714,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage attachment.
-         * @member {string}attachment
+         * @member {string} attachment
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33258,7 +34722,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage location.
-         * @member {(proto.RoomMessageLocation|null|undefined)}location
+         * @member {proto.RoomMessageLocation|null|undefined} location
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33266,7 +34730,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage contact.
-         * @member {(proto.RoomMessageContact|null|undefined)}contact
+         * @member {proto.RoomMessageContact|null|undefined} contact
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33274,7 +34738,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage replyTo.
-         * @member {Long}replyTo
+         * @member {Long} replyTo
          * @memberof proto.GroupSendMessage
          * @instance
          */
@@ -33282,11 +34746,19 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessage forwardFrom.
-         * @member {(proto.RoomMessageForwardFrom|null|undefined)}forwardFrom
+         * @member {proto.RoomMessageForwardFrom|null|undefined} forwardFrom
          * @memberof proto.GroupSendMessage
          * @instance
          */
     GroupSendMessage.prototype.forwardFrom = null;
+
+    /**
+         * GroupSendMessage randomId.
+         * @member {Long} randomId
+         * @memberof proto.GroupSendMessage
+         * @instance
+         */
+    GroupSendMessage.prototype.randomId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
 
     /**
          * Creates a new GroupSendMessage instance using the specified properties.
@@ -33320,6 +34792,7 @@ export const proto = $root.proto = (() => {
       if (message.contact != null && message.hasOwnProperty('contact')) {$root.proto.RoomMessageContact.encode(message.contact, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();}
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {writer.uint32(/* id 8, wireType 0 =*/64).uint64(message.replyTo);}
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {$root.proto.RoomMessageForwardFrom.encode(message.forwardFrom, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();}
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {writer.uint32(/* id 10, wireType 0 =*/80).uint64(message.randomId);}
       return writer;
     };
 
@@ -33366,6 +34839,9 @@ export const proto = $root.proto = (() => {
             break;
           case 9:
             message.forwardFrom = $root.proto.RoomMessageForwardFrom.decode(reader, reader.uint32());
+            break;
+          case 10:
+            message.randomId = reader.uint64();
             break;
           default:
             reader.skipType(tag & 7);
@@ -33421,19 +34897,22 @@ export const proto = $root.proto = (() => {
         if (!$util.isString(message.attachment)) {return 'attachment: string expected';}
       }
       if (message.location != null && message.hasOwnProperty('location')) {
-        error = $root.proto.RoomMessageLocation.verify(message.location);
+        let error = $root.proto.RoomMessageLocation.verify(message.location);
         if (error) {return 'location.' + error;}
       }
       if (message.contact != null && message.hasOwnProperty('contact')) {
-        error = $root.proto.RoomMessageContact.verify(message.contact);
+        let error = $root.proto.RoomMessageContact.verify(message.contact);
         if (error) {return 'contact.' + error;}
       }
       if (message.replyTo != null && message.hasOwnProperty('replyTo')) {
         if (!$util.isInteger(message.replyTo) && !(message.replyTo && $util.isInteger(message.replyTo.low) && $util.isInteger(message.replyTo.high))) {return 'replyTo: integer|Long expected';}
       }
       if (message.forwardFrom != null && message.hasOwnProperty('forwardFrom')) {
-        error = $root.proto.RoomMessageForwardFrom.verify(message.forwardFrom);
+        let error = $root.proto.RoomMessageForwardFrom.verify(message.forwardFrom);
         if (error) {return 'forwardFrom.' + error;}
+      }
+      if (message.randomId != null && message.hasOwnProperty('randomId')) {
+        if (!$util.isInteger(message.randomId) && !(message.randomId && $util.isInteger(message.randomId.low) && $util.isInteger(message.randomId.high))) {return 'randomId: integer|Long expected';}
       }
       return null;
     };
@@ -33447,15 +34926,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupSendMessageResponse.
          * @memberof proto
          * @interface IGroupSendMessageResponse
-         * @property {proto.Response} [response] GroupSendMessageResponse response
-         * @property {Long} [roomId] GroupSendMessageResponse roomId
-         * @property {proto.RoomMessage} [roomMessage] GroupSendMessageResponse roomMessage
+         * @property {proto.Response|null} [response] GroupSendMessageResponse response
+         * @property {Long|null} [roomId] GroupSendMessageResponse roomId
+         * @property {proto.RoomMessage|null} [roomMessage] GroupSendMessageResponse roomMessage
          */
 
     /**
          * Constructs a new GroupSendMessageResponse.
          * @memberof proto
          * @classdesc Represents a GroupSendMessageResponse.
+         * @implements IGroupSendMessageResponse
          * @constructor
          * @param {proto.IGroupSendMessageResponse=} [properties] Properties to set
          */
@@ -33469,7 +34949,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupSendMessageResponse
          * @instance
          */
@@ -33477,7 +34957,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessageResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupSendMessageResponse
          * @instance
          */
@@ -33485,7 +34965,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSendMessageResponse roomMessage.
-         * @member {(proto.RoomMessage|null|undefined)}roomMessage
+         * @member {proto.RoomMessage|null|undefined} roomMessage
          * @memberof proto.GroupSendMessageResponse
          * @instance
          */
@@ -33572,7 +35052,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.roomMessage != null && message.hasOwnProperty('roomMessage')) {
-        error = $root.proto.RoomMessage.verify(message.roomMessage);
+        let error = $root.proto.RoomMessage.verify(message.roomMessage);
         if (error) {return 'roomMessage.' + error;}
       }
       return null;
@@ -33587,16 +35067,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupSetAction.
          * @memberof proto
          * @interface IGroupSetAction
-         * @property {proto.Request} [request] GroupSetAction request
-         * @property {Long} [roomId] GroupSetAction roomId
-         * @property {proto.ClientAction} [action] GroupSetAction action
-         * @property {number} [actionId] GroupSetAction actionId
+         * @property {proto.Request|null} [request] GroupSetAction request
+         * @property {Long|null} [roomId] GroupSetAction roomId
+         * @property {proto.ClientAction|null} [action] GroupSetAction action
+         * @property {number|null} [actionId] GroupSetAction actionId
          */
 
     /**
          * Constructs a new GroupSetAction.
          * @memberof proto
          * @classdesc Represents a GroupSetAction.
+         * @implements IGroupSetAction
          * @constructor
          * @param {proto.IGroupSetAction=} [properties] Properties to set
          */
@@ -33610,7 +35091,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetAction request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupSetAction
          * @instance
          */
@@ -33618,7 +35099,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetAction roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupSetAction
          * @instance
          */
@@ -33626,7 +35107,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetAction action.
-         * @member {proto.ClientAction}action
+         * @member {proto.ClientAction} action
          * @memberof proto.GroupSetAction
          * @instance
          */
@@ -33634,7 +35115,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetAction actionId.
-         * @member {number}actionId
+         * @member {number} actionId
          * @memberof proto.GroupSetAction
          * @instance
          */
@@ -33761,16 +35242,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupSetActionResponse.
          * @memberof proto
          * @interface IGroupSetActionResponse
-         * @property {proto.Response} [response] GroupSetActionResponse response
-         * @property {Long} [roomId] GroupSetActionResponse roomId
-         * @property {proto.ClientAction} [action] GroupSetActionResponse action
-         * @property {Long} [userId] GroupSetActionResponse userId
+         * @property {proto.Response|null} [response] GroupSetActionResponse response
+         * @property {Long|null} [roomId] GroupSetActionResponse roomId
+         * @property {proto.ClientAction|null} [action] GroupSetActionResponse action
+         * @property {Long|null} [userId] GroupSetActionResponse userId
          */
 
     /**
          * Constructs a new GroupSetActionResponse.
          * @memberof proto
          * @classdesc Represents a GroupSetActionResponse.
+         * @implements IGroupSetActionResponse
          * @constructor
          * @param {proto.IGroupSetActionResponse=} [properties] Properties to set
          */
@@ -33784,7 +35266,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetActionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupSetActionResponse
          * @instance
          */
@@ -33792,7 +35274,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetActionResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupSetActionResponse
          * @instance
          */
@@ -33800,7 +35282,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetActionResponse action.
-         * @member {proto.ClientAction}action
+         * @member {proto.ClientAction} action
          * @memberof proto.GroupSetActionResponse
          * @instance
          */
@@ -33808,7 +35290,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupSetActionResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.GroupSetActionResponse
          * @instance
          */
@@ -33935,15 +35417,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupUpdateDraft.
          * @memberof proto
          * @interface IGroupUpdateDraft
-         * @property {proto.Request} [request] GroupUpdateDraft request
-         * @property {Long} [roomId] GroupUpdateDraft roomId
-         * @property {proto.RoomDraft} [draft] GroupUpdateDraft draft
+         * @property {proto.Request|null} [request] GroupUpdateDraft request
+         * @property {Long|null} [roomId] GroupUpdateDraft roomId
+         * @property {proto.RoomDraft|null} [draft] GroupUpdateDraft draft
          */
 
     /**
          * Constructs a new GroupUpdateDraft.
          * @memberof proto
          * @classdesc Represents a GroupUpdateDraft.
+         * @implements IGroupUpdateDraft
          * @constructor
          * @param {proto.IGroupUpdateDraft=} [properties] Properties to set
          */
@@ -33957,7 +35440,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateDraft request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupUpdateDraft
          * @instance
          */
@@ -33965,7 +35448,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateDraft roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupUpdateDraft
          * @instance
          */
@@ -33973,7 +35456,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateDraft draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.GroupUpdateDraft
          * @instance
          */
@@ -34060,7 +35543,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -34075,15 +35558,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupUpdateDraftResponse.
          * @memberof proto
          * @interface IGroupUpdateDraftResponse
-         * @property {proto.Response} [response] GroupUpdateDraftResponse response
-         * @property {Long} [roomId] GroupUpdateDraftResponse roomId
-         * @property {proto.RoomDraft} [draft] GroupUpdateDraftResponse draft
+         * @property {proto.Response|null} [response] GroupUpdateDraftResponse response
+         * @property {Long|null} [roomId] GroupUpdateDraftResponse roomId
+         * @property {proto.RoomDraft|null} [draft] GroupUpdateDraftResponse draft
          */
 
     /**
          * Constructs a new GroupUpdateDraftResponse.
          * @memberof proto
          * @classdesc Represents a GroupUpdateDraftResponse.
+         * @implements IGroupUpdateDraftResponse
          * @constructor
          * @param {proto.IGroupUpdateDraftResponse=} [properties] Properties to set
          */
@@ -34097,7 +35581,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateDraftResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupUpdateDraftResponse
          * @instance
          */
@@ -34105,7 +35589,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateDraftResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupUpdateDraftResponse
          * @instance
          */
@@ -34113,7 +35597,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateDraftResponse draft.
-         * @member {(proto.RoomDraft|null|undefined)}draft
+         * @member {proto.RoomDraft|null|undefined} draft
          * @memberof proto.GroupUpdateDraftResponse
          * @instance
          */
@@ -34200,7 +35684,7 @@ export const proto = $root.proto = (() => {
         if (!$util.isInteger(message.roomId) && !(message.roomId && $util.isInteger(message.roomId.low) && $util.isInteger(message.roomId.high))) {return 'roomId: integer|Long expected';}
       }
       if (message.draft != null && message.hasOwnProperty('draft')) {
-        error = $root.proto.RoomDraft.verify(message.draft);
+        let error = $root.proto.RoomDraft.verify(message.draft);
         if (error) {return 'draft.' + error;}
       }
       return null;
@@ -34215,16 +35699,17 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupUpdateStatus.
          * @memberof proto
          * @interface IGroupUpdateStatus
-         * @property {proto.Request} [request] GroupUpdateStatus request
-         * @property {Long} [roomId] GroupUpdateStatus roomId
-         * @property {Long} [messageId] GroupUpdateStatus messageId
-         * @property {proto.RoomMessageStatus} [status] GroupUpdateStatus status
+         * @property {proto.Request|null} [request] GroupUpdateStatus request
+         * @property {Long|null} [roomId] GroupUpdateStatus roomId
+         * @property {Long|null} [messageId] GroupUpdateStatus messageId
+         * @property {proto.RoomMessageStatus|null} [status] GroupUpdateStatus status
          */
 
     /**
          * Constructs a new GroupUpdateStatus.
          * @memberof proto
          * @classdesc Represents a GroupUpdateStatus.
+         * @implements IGroupUpdateStatus
          * @constructor
          * @param {proto.IGroupUpdateStatus=} [properties] Properties to set
          */
@@ -34238,7 +35723,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatus request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupUpdateStatus
          * @instance
          */
@@ -34246,7 +35731,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatus roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupUpdateStatus
          * @instance
          */
@@ -34254,7 +35739,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatus messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.GroupUpdateStatus
          * @instance
          */
@@ -34262,7 +35747,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatus status.
-         * @member {proto.RoomMessageStatus}status
+         * @member {proto.RoomMessageStatus} status
          * @memberof proto.GroupUpdateStatus
          * @instance
          */
@@ -34380,18 +35865,19 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupUpdateStatusResponse.
          * @memberof proto
          * @interface IGroupUpdateStatusResponse
-         * @property {proto.Response} [response] GroupUpdateStatusResponse response
-         * @property {Long} [roomId] GroupUpdateStatusResponse roomId
-         * @property {Long} [messageId] GroupUpdateStatusResponse messageId
-         * @property {proto.RoomMessageStatus} [status] GroupUpdateStatusResponse status
-         * @property {Long} [statusVersion] GroupUpdateStatusResponse statusVersion
-         * @property {string} [updaterAuthorHash] GroupUpdateStatusResponse updaterAuthorHash
+         * @property {proto.Response|null} [response] GroupUpdateStatusResponse response
+         * @property {Long|null} [roomId] GroupUpdateStatusResponse roomId
+         * @property {Long|null} [messageId] GroupUpdateStatusResponse messageId
+         * @property {proto.RoomMessageStatus|null} [status] GroupUpdateStatusResponse status
+         * @property {Long|null} [statusVersion] GroupUpdateStatusResponse statusVersion
+         * @property {string|null} [updaterAuthorHash] GroupUpdateStatusResponse updaterAuthorHash
          */
 
     /**
          * Constructs a new GroupUpdateStatusResponse.
          * @memberof proto
          * @classdesc Represents a GroupUpdateStatusResponse.
+         * @implements IGroupUpdateStatusResponse
          * @constructor
          * @param {proto.IGroupUpdateStatusResponse=} [properties] Properties to set
          */
@@ -34405,7 +35891,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatusResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupUpdateStatusResponse
          * @instance
          */
@@ -34413,7 +35899,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatusResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupUpdateStatusResponse
          * @instance
          */
@@ -34421,7 +35907,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatusResponse messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.GroupUpdateStatusResponse
          * @instance
          */
@@ -34429,7 +35915,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatusResponse status.
-         * @member {proto.RoomMessageStatus}status
+         * @member {proto.RoomMessageStatus} status
          * @memberof proto.GroupUpdateStatusResponse
          * @instance
          */
@@ -34437,7 +35923,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatusResponse statusVersion.
-         * @member {Long}statusVersion
+         * @member {Long} statusVersion
          * @memberof proto.GroupUpdateStatusResponse
          * @instance
          */
@@ -34445,7 +35931,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateStatusResponse updaterAuthorHash.
-         * @member {string}updaterAuthorHash
+         * @member {string} updaterAuthorHash
          * @memberof proto.GroupUpdateStatusResponse
          * @instance
          */
@@ -34577,15 +36063,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupUpdateUsername.
          * @memberof proto
          * @interface IGroupUpdateUsername
-         * @property {proto.Request} [request] GroupUpdateUsername request
-         * @property {string} [username] GroupUpdateUsername username
-         * @property {Long} [roomId] GroupUpdateUsername roomId
+         * @property {proto.Request|null} [request] GroupUpdateUsername request
+         * @property {string|null} [username] GroupUpdateUsername username
+         * @property {Long|null} [roomId] GroupUpdateUsername roomId
          */
 
     /**
          * Constructs a new GroupUpdateUsername.
          * @memberof proto
          * @classdesc Represents a GroupUpdateUsername.
+         * @implements IGroupUpdateUsername
          * @constructor
          * @param {proto.IGroupUpdateUsername=} [properties] Properties to set
          */
@@ -34599,7 +36086,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.GroupUpdateUsername
          * @instance
          */
@@ -34607,7 +36094,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.GroupUpdateUsername
          * @instance
          */
@@ -34615,7 +36102,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateUsername roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupUpdateUsername
          * @instance
          */
@@ -34716,15 +36203,16 @@ export const proto = $root.proto = (() => {
          * Properties of a GroupUpdateUsernameResponse.
          * @memberof proto
          * @interface IGroupUpdateUsernameResponse
-         * @property {proto.Response} [response] GroupUpdateUsernameResponse response
-         * @property {string} [username] GroupUpdateUsernameResponse username
-         * @property {Long} [roomId] GroupUpdateUsernameResponse roomId
+         * @property {proto.Response|null} [response] GroupUpdateUsernameResponse response
+         * @property {string|null} [username] GroupUpdateUsernameResponse username
+         * @property {Long|null} [roomId] GroupUpdateUsernameResponse roomId
          */
 
     /**
          * Constructs a new GroupUpdateUsernameResponse.
          * @memberof proto
          * @classdesc Represents a GroupUpdateUsernameResponse.
+         * @implements IGroupUpdateUsernameResponse
          * @constructor
          * @param {proto.IGroupUpdateUsernameResponse=} [properties] Properties to set
          */
@@ -34738,7 +36226,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.GroupUpdateUsernameResponse
          * @instance
          */
@@ -34746,7 +36234,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateUsernameResponse username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.GroupUpdateUsernameResponse
          * @instance
          */
@@ -34754,7 +36242,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * GroupUpdateUsernameResponse roomId.
-         * @member {Long}roomId
+         * @member {Long} roomId
          * @memberof proto.GroupUpdateUsernameResponse
          * @instance
          */
@@ -34855,13 +36343,14 @@ export const proto = $root.proto = (() => {
          * Properties of a Heartbeat.
          * @memberof proto
          * @interface IHeartbeat
-         * @property {proto.Request} [request] Heartbeat request
+         * @property {proto.Request|null} [request] Heartbeat request
          */
 
     /**
          * Constructs a new Heartbeat.
          * @memberof proto
          * @classdesc Represents a Heartbeat.
+         * @implements IHeartbeat
          * @constructor
          * @param {proto.IHeartbeat=} [properties] Properties to set
          */
@@ -34875,7 +36364,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Heartbeat request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.Heartbeat
          * @instance
          */
@@ -34962,13 +36451,14 @@ export const proto = $root.proto = (() => {
          * Properties of a HeartbeatResponse.
          * @memberof proto
          * @interface IHeartbeatResponse
-         * @property {proto.Response} [response] HeartbeatResponse response
+         * @property {proto.Response|null} [response] HeartbeatResponse response
          */
 
     /**
          * Constructs a new HeartbeatResponse.
          * @memberof proto
          * @classdesc Represents a HeartbeatResponse.
+         * @implements IHeartbeatResponse
          * @constructor
          * @param {proto.IHeartbeatResponse=} [properties] Properties to set
          */
@@ -34982,7 +36472,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * HeartbeatResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.HeartbeatResponse
          * @instance
          */
@@ -35069,14 +36559,15 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoCountry.
          * @memberof proto
          * @interface IInfoCountry
-         * @property {proto.Request} [request] InfoCountry request
-         * @property {string} [isoCode] InfoCountry isoCode
+         * @property {proto.Request|null} [request] InfoCountry request
+         * @property {string|null} [isoCode] InfoCountry isoCode
          */
 
     /**
          * Constructs a new InfoCountry.
          * @memberof proto
          * @classdesc Represents an InfoCountry.
+         * @implements IInfoCountry
          * @constructor
          * @param {proto.IInfoCountry=} [properties] Properties to set
          */
@@ -35090,7 +36581,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountry request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.InfoCountry
          * @instance
          */
@@ -35098,7 +36589,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountry isoCode.
-         * @member {string}isoCode
+         * @member {string} isoCode
          * @memberof proto.InfoCountry
          * @instance
          */
@@ -35192,17 +36683,18 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoCountryResponse.
          * @memberof proto
          * @interface IInfoCountryResponse
-         * @property {proto.Response} [response] InfoCountryResponse response
-         * @property {number} [callingCode] InfoCountryResponse callingCode
-         * @property {string} [name] InfoCountryResponse name
-         * @property {string} [pattern] InfoCountryResponse pattern
-         * @property {string} [regex] InfoCountryResponse regex
+         * @property {proto.Response|null} [response] InfoCountryResponse response
+         * @property {number|null} [callingCode] InfoCountryResponse callingCode
+         * @property {string|null} [name] InfoCountryResponse name
+         * @property {string|null} [pattern] InfoCountryResponse pattern
+         * @property {string|null} [regex] InfoCountryResponse regex
          */
 
     /**
          * Constructs a new InfoCountryResponse.
          * @memberof proto
          * @classdesc Represents an InfoCountryResponse.
+         * @implements IInfoCountryResponse
          * @constructor
          * @param {proto.IInfoCountryResponse=} [properties] Properties to set
          */
@@ -35216,7 +36708,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountryResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.InfoCountryResponse
          * @instance
          */
@@ -35224,7 +36716,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountryResponse callingCode.
-         * @member {number}callingCode
+         * @member {number} callingCode
          * @memberof proto.InfoCountryResponse
          * @instance
          */
@@ -35232,7 +36724,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountryResponse name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.InfoCountryResponse
          * @instance
          */
@@ -35240,7 +36732,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountryResponse pattern.
-         * @member {string}pattern
+         * @member {string} pattern
          * @memberof proto.InfoCountryResponse
          * @instance
          */
@@ -35248,7 +36740,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoCountryResponse regex.
-         * @member {string}regex
+         * @member {string} regex
          * @memberof proto.InfoCountryResponse
          * @instance
          */
@@ -35363,13 +36855,14 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoLocation.
          * @memberof proto
          * @interface IInfoLocation
-         * @property {proto.Request} [request] InfoLocation request
+         * @property {proto.Request|null} [request] InfoLocation request
          */
 
     /**
          * Constructs a new InfoLocation.
          * @memberof proto
          * @classdesc Represents an InfoLocation.
+         * @implements IInfoLocation
          * @constructor
          * @param {proto.IInfoLocation=} [properties] Properties to set
          */
@@ -35383,7 +36876,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocation request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.InfoLocation
          * @instance
          */
@@ -35470,18 +36963,19 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoLocationResponse.
          * @memberof proto
          * @interface IInfoLocationResponse
-         * @property {proto.Response} [response] InfoLocationResponse response
-         * @property {string} [isoCode] InfoLocationResponse isoCode
-         * @property {number} [callingCode] InfoLocationResponse callingCode
-         * @property {string} [name] InfoLocationResponse name
-         * @property {string} [pattern] InfoLocationResponse pattern
-         * @property {string} [regex] InfoLocationResponse regex
+         * @property {proto.Response|null} [response] InfoLocationResponse response
+         * @property {string|null} [isoCode] InfoLocationResponse isoCode
+         * @property {number|null} [callingCode] InfoLocationResponse callingCode
+         * @property {string|null} [name] InfoLocationResponse name
+         * @property {string|null} [pattern] InfoLocationResponse pattern
+         * @property {string|null} [regex] InfoLocationResponse regex
          */
 
     /**
          * Constructs a new InfoLocationResponse.
          * @memberof proto
          * @classdesc Represents an InfoLocationResponse.
+         * @implements IInfoLocationResponse
          * @constructor
          * @param {proto.IInfoLocationResponse=} [properties] Properties to set
          */
@@ -35495,7 +36989,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocationResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.InfoLocationResponse
          * @instance
          */
@@ -35503,7 +36997,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocationResponse isoCode.
-         * @member {string}isoCode
+         * @member {string} isoCode
          * @memberof proto.InfoLocationResponse
          * @instance
          */
@@ -35511,7 +37005,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocationResponse callingCode.
-         * @member {number}callingCode
+         * @member {number} callingCode
          * @memberof proto.InfoLocationResponse
          * @instance
          */
@@ -35519,7 +37013,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocationResponse name.
-         * @member {string}name
+         * @member {string} name
          * @memberof proto.InfoLocationResponse
          * @instance
          */
@@ -35527,7 +37021,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocationResponse pattern.
-         * @member {string}pattern
+         * @member {string} pattern
          * @memberof proto.InfoLocationResponse
          * @instance
          */
@@ -35535,7 +37029,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoLocationResponse regex.
-         * @member {string}regex
+         * @member {string} regex
          * @memberof proto.InfoLocationResponse
          * @instance
          */
@@ -35657,14 +37151,15 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoPage.
          * @memberof proto
          * @interface IInfoPage
-         * @property {proto.Request} [request] InfoPage request
-         * @property {string} [id] InfoPage id
+         * @property {proto.Request|null} [request] InfoPage request
+         * @property {string|null} [id] InfoPage id
          */
 
     /**
          * Constructs a new InfoPage.
          * @memberof proto
          * @classdesc Represents an InfoPage.
+         * @implements IInfoPage
          * @constructor
          * @param {proto.IInfoPage=} [properties] Properties to set
          */
@@ -35678,7 +37173,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoPage request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.InfoPage
          * @instance
          */
@@ -35686,7 +37181,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoPage id.
-         * @member {string}id
+         * @member {string} id
          * @memberof proto.InfoPage
          * @instance
          */
@@ -35780,14 +37275,15 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoPageResponse.
          * @memberof proto
          * @interface IInfoPageResponse
-         * @property {proto.Response} [response] InfoPageResponse response
-         * @property {string} [body] InfoPageResponse body
+         * @property {proto.Response|null} [response] InfoPageResponse response
+         * @property {string|null} [body] InfoPageResponse body
          */
 
     /**
          * Constructs a new InfoPageResponse.
          * @memberof proto
          * @classdesc Represents an InfoPageResponse.
+         * @implements IInfoPageResponse
          * @constructor
          * @param {proto.IInfoPageResponse=} [properties] Properties to set
          */
@@ -35801,7 +37297,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoPageResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.InfoPageResponse
          * @instance
          */
@@ -35809,7 +37305,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoPageResponse body.
-         * @member {string}body
+         * @member {string} body
          * @memberof proto.InfoPageResponse
          * @instance
          */
@@ -35903,13 +37399,14 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoTime.
          * @memberof proto
          * @interface IInfoTime
-         * @property {proto.Request} [request] InfoTime request
+         * @property {proto.Request|null} [request] InfoTime request
          */
 
     /**
          * Constructs a new InfoTime.
          * @memberof proto
          * @classdesc Represents an InfoTime.
+         * @implements IInfoTime
          * @constructor
          * @param {proto.IInfoTime=} [properties] Properties to set
          */
@@ -35923,7 +37420,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoTime request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.InfoTime
          * @instance
          */
@@ -36010,14 +37507,15 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoTimeResponse.
          * @memberof proto
          * @interface IInfoTimeResponse
-         * @property {proto.Response} [response] InfoTimeResponse response
-         * @property {number} [timestamp] InfoTimeResponse timestamp
+         * @property {proto.Response|null} [response] InfoTimeResponse response
+         * @property {number|null} [timestamp] InfoTimeResponse timestamp
          */
 
     /**
          * Constructs a new InfoTimeResponse.
          * @memberof proto
          * @classdesc Represents an InfoTimeResponse.
+         * @implements IInfoTimeResponse
          * @constructor
          * @param {proto.IInfoTimeResponse=} [properties] Properties to set
          */
@@ -36031,7 +37529,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoTimeResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.InfoTimeResponse
          * @instance
          */
@@ -36039,7 +37537,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoTimeResponse timestamp.
-         * @member {number}timestamp
+         * @member {number} timestamp
          * @memberof proto.InfoTimeResponse
          * @instance
          */
@@ -36133,14 +37631,15 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoWallpaper.
          * @memberof proto
          * @interface IInfoWallpaper
-         * @property {proto.Request} [request] InfoWallpaper request
-         * @property {proto.InfoWallpaper.Fit} [fit] InfoWallpaper fit
+         * @property {proto.Request|null} [request] InfoWallpaper request
+         * @property {proto.InfoWallpaper.Fit|null} [fit] InfoWallpaper fit
          */
 
     /**
          * Constructs a new InfoWallpaper.
          * @memberof proto
          * @classdesc Represents an InfoWallpaper.
+         * @implements IInfoWallpaper
          * @constructor
          * @param {proto.IInfoWallpaper=} [properties] Properties to set
          */
@@ -36154,7 +37653,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoWallpaper request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.InfoWallpaper
          * @instance
          */
@@ -36162,7 +37661,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoWallpaper fit.
-         * @member {proto.InfoWallpaper.Fit}fit
+         * @member {proto.InfoWallpaper.Fit} fit
          * @memberof proto.InfoWallpaper
          * @instance
          */
@@ -36256,6 +37755,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Fit enum.
+         * @name proto.InfoWallpaper.Fit
          * @enum {string}
          * @property {number} PHONE=0 PHONE value
          * @property {number} TABLET=1 TABLET value
@@ -36278,14 +37778,15 @@ export const proto = $root.proto = (() => {
          * Properties of an InfoWallpaperResponse.
          * @memberof proto
          * @interface IInfoWallpaperResponse
-         * @property {proto.Response} [response] InfoWallpaperResponse response
-         * @property {Array.<proto.Wallpaper>} [wallpaper] InfoWallpaperResponse wallpaper
+         * @property {proto.Response|null} [response] InfoWallpaperResponse response
+         * @property {Array.<proto.Wallpaper>|null} [wallpaper] InfoWallpaperResponse wallpaper
          */
 
     /**
          * Constructs a new InfoWallpaperResponse.
          * @memberof proto
          * @classdesc Represents an InfoWallpaperResponse.
+         * @implements IInfoWallpaperResponse
          * @constructor
          * @param {proto.IInfoWallpaperResponse=} [properties] Properties to set
          */
@@ -36300,7 +37801,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoWallpaperResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.InfoWallpaperResponse
          * @instance
          */
@@ -36308,7 +37809,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * InfoWallpaperResponse wallpaper.
-         * @member {Array.<proto.Wallpaper>}wallpaper
+         * @member {Array.<proto.Wallpaper>} wallpaper
          * @memberof proto.InfoWallpaperResponse
          * @instance
          */
@@ -36393,7 +37894,7 @@ export const proto = $root.proto = (() => {
       if (message.wallpaper != null && message.hasOwnProperty('wallpaper')) {
         if (!Array.isArray(message.wallpaper)) {return 'wallpaper: array expected';}
         for (let i = 0; i < message.wallpaper.length; ++i) {
-          error = $root.proto.Wallpaper.verify(message.wallpaper[i]);
+          let error = $root.proto.Wallpaper.verify(message.wallpaper[i]);
           if (error) {return 'wallpaper.' + error;}
         }
       }
@@ -36409,17 +37910,18 @@ export const proto = $root.proto = (() => {
          * Properties of a PushLoginTokenResponse.
          * @memberof proto
          * @interface IPushLoginTokenResponse
-         * @property {proto.Response} [response] PushLoginTokenResponse response
-         * @property {string} [username] PushLoginTokenResponse username
-         * @property {Long} [userId] PushLoginTokenResponse userId
-         * @property {string} [authorHash] PushLoginTokenResponse authorHash
-         * @property {string} [token] PushLoginTokenResponse token
+         * @property {proto.Response|null} [response] PushLoginTokenResponse response
+         * @property {string|null} [username] PushLoginTokenResponse username
+         * @property {Long|null} [userId] PushLoginTokenResponse userId
+         * @property {string|null} [authorHash] PushLoginTokenResponse authorHash
+         * @property {string|null} [token] PushLoginTokenResponse token
          */
 
     /**
          * Constructs a new PushLoginTokenResponse.
          * @memberof proto
          * @classdesc Represents a PushLoginTokenResponse.
+         * @implements IPushLoginTokenResponse
          * @constructor
          * @param {proto.IPushLoginTokenResponse=} [properties] Properties to set
          */
@@ -36433,7 +37935,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushLoginTokenResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.PushLoginTokenResponse
          * @instance
          */
@@ -36441,7 +37943,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushLoginTokenResponse username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.PushLoginTokenResponse
          * @instance
          */
@@ -36449,7 +37951,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushLoginTokenResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.PushLoginTokenResponse
          * @instance
          */
@@ -36457,7 +37959,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushLoginTokenResponse authorHash.
-         * @member {string}authorHash
+         * @member {string} authorHash
          * @memberof proto.PushLoginTokenResponse
          * @instance
          */
@@ -36465,7 +37967,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushLoginTokenResponse token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.PushLoginTokenResponse
          * @instance
          */
@@ -36580,14 +38082,15 @@ export const proto = $root.proto = (() => {
          * Properties of a PushRateSignalingResponse.
          * @memberof proto
          * @interface IPushRateSignalingResponse
-         * @property {proto.Response} [response] PushRateSignalingResponse response
-         * @property {Long} [id] PushRateSignalingResponse id
+         * @property {proto.Response|null} [response] PushRateSignalingResponse response
+         * @property {Long|null} [id] PushRateSignalingResponse id
          */
 
     /**
          * Constructs a new PushRateSignalingResponse.
          * @memberof proto
          * @classdesc Represents a PushRateSignalingResponse.
+         * @implements IPushRateSignalingResponse
          * @constructor
          * @param {proto.IPushRateSignalingResponse=} [properties] Properties to set
          */
@@ -36601,7 +38104,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushRateSignalingResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.PushRateSignalingResponse
          * @instance
          */
@@ -36609,7 +38112,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushRateSignalingResponse id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.PushRateSignalingResponse
          * @instance
          */
@@ -36703,16 +38206,17 @@ export const proto = $root.proto = (() => {
          * Properties of a PushTwoStepVerificationResponse.
          * @memberof proto
          * @interface IPushTwoStepVerificationResponse
-         * @property {proto.Response} [response] PushTwoStepVerificationResponse response
-         * @property {string} [username] PushTwoStepVerificationResponse username
-         * @property {Long} [userId] PushTwoStepVerificationResponse userId
-         * @property {string} [authorHash] PushTwoStepVerificationResponse authorHash
+         * @property {proto.Response|null} [response] PushTwoStepVerificationResponse response
+         * @property {string|null} [username] PushTwoStepVerificationResponse username
+         * @property {Long|null} [userId] PushTwoStepVerificationResponse userId
+         * @property {string|null} [authorHash] PushTwoStepVerificationResponse authorHash
          */
 
     /**
          * Constructs a new PushTwoStepVerificationResponse.
          * @memberof proto
          * @classdesc Represents a PushTwoStepVerificationResponse.
+         * @implements IPushTwoStepVerificationResponse
          * @constructor
          * @param {proto.IPushTwoStepVerificationResponse=} [properties] Properties to set
          */
@@ -36726,7 +38230,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushTwoStepVerificationResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.PushTwoStepVerificationResponse
          * @instance
          */
@@ -36734,7 +38238,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushTwoStepVerificationResponse username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.PushTwoStepVerificationResponse
          * @instance
          */
@@ -36742,7 +38246,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushTwoStepVerificationResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.PushTwoStepVerificationResponse
          * @instance
          */
@@ -36750,7 +38254,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushTwoStepVerificationResponse authorHash.
-         * @member {string}authorHash
+         * @member {string} authorHash
          * @memberof proto.PushTwoStepVerificationResponse
          * @instance
          */
@@ -36858,14 +38362,15 @@ export const proto = $root.proto = (() => {
          * Properties of a PushUserInfoExpiredResponse.
          * @memberof proto
          * @interface IPushUserInfoExpiredResponse
-         * @property {proto.Response} [response] PushUserInfoExpiredResponse response
-         * @property {Long} [userId] PushUserInfoExpiredResponse userId
+         * @property {proto.Response|null} [response] PushUserInfoExpiredResponse response
+         * @property {Long|null} [userId] PushUserInfoExpiredResponse userId
          */
 
     /**
          * Constructs a new PushUserInfoExpiredResponse.
          * @memberof proto
          * @classdesc Represents a PushUserInfoExpiredResponse.
+         * @implements IPushUserInfoExpiredResponse
          * @constructor
          * @param {proto.IPushUserInfoExpiredResponse=} [properties] Properties to set
          */
@@ -36879,7 +38384,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushUserInfoExpiredResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.PushUserInfoExpiredResponse
          * @instance
          */
@@ -36887,7 +38392,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * PushUserInfoExpiredResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.PushUserInfoExpiredResponse
          * @instance
          */
@@ -36981,16 +38486,17 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeAddContact.
          * @memberof proto
          * @interface IQrCodeAddContact
-         * @property {proto.Request} [request] QrCodeAddContact request
-         * @property {string} [phone] QrCodeAddContact phone
-         * @property {string} [firstName] QrCodeAddContact firstName
-         * @property {string} [lastName] QrCodeAddContact lastName
+         * @property {proto.Request|null} [request] QrCodeAddContact request
+         * @property {string|null} [phone] QrCodeAddContact phone
+         * @property {string|null} [firstName] QrCodeAddContact firstName
+         * @property {string|null} [lastName] QrCodeAddContact lastName
          */
 
     /**
          * Constructs a new QrCodeAddContact.
          * @memberof proto
          * @classdesc Represents a QrCodeAddContact.
+         * @implements IQrCodeAddContact
          * @constructor
          * @param {proto.IQrCodeAddContact=} [properties] Properties to set
          */
@@ -37004,7 +38510,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddContact request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.QrCodeAddContact
          * @instance
          */
@@ -37012,7 +38518,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddContact phone.
-         * @member {string}phone
+         * @member {string} phone
          * @memberof proto.QrCodeAddContact
          * @instance
          */
@@ -37020,7 +38526,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddContact firstName.
-         * @member {string}firstName
+         * @member {string} firstName
          * @memberof proto.QrCodeAddContact
          * @instance
          */
@@ -37028,7 +38534,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddContact lastName.
-         * @member {string}lastName
+         * @member {string} lastName
          * @memberof proto.QrCodeAddContact
          * @instance
          */
@@ -37136,14 +38642,15 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeAddContactResponse.
          * @memberof proto
          * @interface IQrCodeAddContactResponse
-         * @property {proto.Response} [response] QrCodeAddContactResponse response
-         * @property {Uint8Array} [qrCodeImage] QrCodeAddContactResponse qrCodeImage
+         * @property {proto.Response|null} [response] QrCodeAddContactResponse response
+         * @property {Uint8Array|null} [qrCodeImage] QrCodeAddContactResponse qrCodeImage
          */
 
     /**
          * Constructs a new QrCodeAddContactResponse.
          * @memberof proto
          * @classdesc Represents a QrCodeAddContactResponse.
+         * @implements IQrCodeAddContactResponse
          * @constructor
          * @param {proto.IQrCodeAddContactResponse=} [properties] Properties to set
          */
@@ -37157,7 +38664,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddContactResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.QrCodeAddContactResponse
          * @instance
          */
@@ -37165,7 +38672,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddContactResponse qrCodeImage.
-         * @member {Uint8Array}qrCodeImage
+         * @member {Uint8Array} qrCodeImage
          * @memberof proto.QrCodeAddContactResponse
          * @instance
          */
@@ -37259,13 +38766,14 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeAddMe.
          * @memberof proto
          * @interface IQrCodeAddMe
-         * @property {proto.Request} [request] QrCodeAddMe request
+         * @property {proto.Request|null} [request] QrCodeAddMe request
          */
 
     /**
          * Constructs a new QrCodeAddMe.
          * @memberof proto
          * @classdesc Represents a QrCodeAddMe.
+         * @implements IQrCodeAddMe
          * @constructor
          * @param {proto.IQrCodeAddMe=} [properties] Properties to set
          */
@@ -37279,7 +38787,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddMe request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.QrCodeAddMe
          * @instance
          */
@@ -37366,14 +38874,15 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeAddMeResponse.
          * @memberof proto
          * @interface IQrCodeAddMeResponse
-         * @property {proto.Response} [response] QrCodeAddMeResponse response
-         * @property {Uint8Array} [qrCodeImage] QrCodeAddMeResponse qrCodeImage
+         * @property {proto.Response|null} [response] QrCodeAddMeResponse response
+         * @property {Uint8Array|null} [qrCodeImage] QrCodeAddMeResponse qrCodeImage
          */
 
     /**
          * Constructs a new QrCodeAddMeResponse.
          * @memberof proto
          * @classdesc Represents a QrCodeAddMeResponse.
+         * @implements IQrCodeAddMeResponse
          * @constructor
          * @param {proto.IQrCodeAddMeResponse=} [properties] Properties to set
          */
@@ -37387,7 +38896,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddMeResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.QrCodeAddMeResponse
          * @instance
          */
@@ -37395,7 +38904,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeAddMeResponse qrCodeImage.
-         * @member {Uint8Array}qrCodeImage
+         * @member {Uint8Array} qrCodeImage
          * @memberof proto.QrCodeAddMeResponse
          * @instance
          */
@@ -37489,14 +38998,15 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeJoin.
          * @memberof proto
          * @interface IQrCodeJoin
-         * @property {proto.Request} [request] QrCodeJoin request
-         * @property {string} [inviteToken] QrCodeJoin inviteToken
+         * @property {proto.Request|null} [request] QrCodeJoin request
+         * @property {string|null} [inviteToken] QrCodeJoin inviteToken
          */
 
     /**
          * Constructs a new QrCodeJoin.
          * @memberof proto
          * @classdesc Represents a QrCodeJoin.
+         * @implements IQrCodeJoin
          * @constructor
          * @param {proto.IQrCodeJoin=} [properties] Properties to set
          */
@@ -37510,7 +39020,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeJoin request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.QrCodeJoin
          * @instance
          */
@@ -37518,7 +39028,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeJoin inviteToken.
-         * @member {string}inviteToken
+         * @member {string} inviteToken
          * @memberof proto.QrCodeJoin
          * @instance
          */
@@ -37612,14 +39122,15 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeJoinResponse.
          * @memberof proto
          * @interface IQrCodeJoinResponse
-         * @property {proto.Response} [response] QrCodeJoinResponse response
-         * @property {Uint8Array} [qrCodeImage] QrCodeJoinResponse qrCodeImage
+         * @property {proto.Response|null} [response] QrCodeJoinResponse response
+         * @property {Uint8Array|null} [qrCodeImage] QrCodeJoinResponse qrCodeImage
          */
 
     /**
          * Constructs a new QrCodeJoinResponse.
          * @memberof proto
          * @classdesc Represents a QrCodeJoinResponse.
+         * @implements IQrCodeJoinResponse
          * @constructor
          * @param {proto.IQrCodeJoinResponse=} [properties] Properties to set
          */
@@ -37633,7 +39144,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeJoinResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.QrCodeJoinResponse
          * @instance
          */
@@ -37641,7 +39152,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeJoinResponse qrCodeImage.
-         * @member {Uint8Array}qrCodeImage
+         * @member {Uint8Array} qrCodeImage
          * @memberof proto.QrCodeJoinResponse
          * @instance
          */
@@ -37735,21 +39246,22 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeNewDevice.
          * @memberof proto
          * @interface IQrCodeNewDevice
-         * @property {proto.Request} [request] QrCodeNewDevice request
-         * @property {string} [appName] QrCodeNewDevice appName
-         * @property {number} [appId] QrCodeNewDevice appId
-         * @property {number} [appBuildVersion] QrCodeNewDevice appBuildVersion
-         * @property {string} [appVersion] QrCodeNewDevice appVersion
-         * @property {proto.Platform} [platform] QrCodeNewDevice platform
-         * @property {string} [platformVersion] QrCodeNewDevice platformVersion
-         * @property {proto.Device} [device] QrCodeNewDevice device
-         * @property {string} [deviceName] QrCodeNewDevice deviceName
+         * @property {proto.Request|null} [request] QrCodeNewDevice request
+         * @property {string|null} [appName] QrCodeNewDevice appName
+         * @property {number|null} [appId] QrCodeNewDevice appId
+         * @property {number|null} [appBuildVersion] QrCodeNewDevice appBuildVersion
+         * @property {string|null} [appVersion] QrCodeNewDevice appVersion
+         * @property {proto.Platform|null} [platform] QrCodeNewDevice platform
+         * @property {string|null} [platformVersion] QrCodeNewDevice platformVersion
+         * @property {proto.Device|null} [device] QrCodeNewDevice device
+         * @property {string|null} [deviceName] QrCodeNewDevice deviceName
          */
 
     /**
          * Constructs a new QrCodeNewDevice.
          * @memberof proto
          * @classdesc Represents a QrCodeNewDevice.
+         * @implements IQrCodeNewDevice
          * @constructor
          * @param {proto.IQrCodeNewDevice=} [properties] Properties to set
          */
@@ -37763,7 +39275,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37771,7 +39283,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice appName.
-         * @member {string}appName
+         * @member {string} appName
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37779,7 +39291,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice appId.
-         * @member {number}appId
+         * @member {number} appId
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37787,7 +39299,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice appBuildVersion.
-         * @member {number}appBuildVersion
+         * @member {number} appBuildVersion
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37795,7 +39307,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice appVersion.
-         * @member {string}appVersion
+         * @member {string} appVersion
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37803,7 +39315,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice platform.
-         * @member {proto.Platform}platform
+         * @member {proto.Platform} platform
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37811,7 +39323,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice platformVersion.
-         * @member {string}platformVersion
+         * @member {string} platformVersion
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37819,7 +39331,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice device.
-         * @member {proto.Device}device
+         * @member {proto.Device} device
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37827,7 +39339,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDevice deviceName.
-         * @member {string}deviceName
+         * @member {string} deviceName
          * @memberof proto.QrCodeNewDevice
          * @instance
          */
@@ -37989,15 +39501,16 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeNewDeviceResponse.
          * @memberof proto
          * @interface IQrCodeNewDeviceResponse
-         * @property {proto.Response} [response] QrCodeNewDeviceResponse response
-         * @property {Uint8Array} [qrCodeImage] QrCodeNewDeviceResponse qrCodeImage
-         * @property {number} [expireTime] QrCodeNewDeviceResponse expireTime
+         * @property {proto.Response|null} [response] QrCodeNewDeviceResponse response
+         * @property {Uint8Array|null} [qrCodeImage] QrCodeNewDeviceResponse qrCodeImage
+         * @property {number|null} [expireTime] QrCodeNewDeviceResponse expireTime
          */
 
     /**
          * Constructs a new QrCodeNewDeviceResponse.
          * @memberof proto
          * @classdesc Represents a QrCodeNewDeviceResponse.
+         * @implements IQrCodeNewDeviceResponse
          * @constructor
          * @param {proto.IQrCodeNewDeviceResponse=} [properties] Properties to set
          */
@@ -38011,7 +39524,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDeviceResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.QrCodeNewDeviceResponse
          * @instance
          */
@@ -38019,7 +39532,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDeviceResponse qrCodeImage.
-         * @member {Uint8Array}qrCodeImage
+         * @member {Uint8Array} qrCodeImage
          * @memberof proto.QrCodeNewDeviceResponse
          * @instance
          */
@@ -38027,7 +39540,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeNewDeviceResponse expireTime.
-         * @member {number}expireTime
+         * @member {number} expireTime
          * @memberof proto.QrCodeNewDeviceResponse
          * @instance
          */
@@ -38128,15 +39641,16 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeResolve.
          * @memberof proto
          * @interface IQrCodeResolve
-         * @property {proto.Request} [request] QrCodeResolve request
-         * @property {string} [username] QrCodeResolve username
-         * @property {Long} [messageId] QrCodeResolve messageId
+         * @property {proto.Request|null} [request] QrCodeResolve request
+         * @property {string|null} [username] QrCodeResolve username
+         * @property {Long|null} [messageId] QrCodeResolve messageId
          */
 
     /**
          * Constructs a new QrCodeResolve.
          * @memberof proto
          * @classdesc Represents a QrCodeResolve.
+         * @implements IQrCodeResolve
          * @constructor
          * @param {proto.IQrCodeResolve=} [properties] Properties to set
          */
@@ -38150,7 +39664,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeResolve request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.QrCodeResolve
          * @instance
          */
@@ -38158,7 +39672,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeResolve username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.QrCodeResolve
          * @instance
          */
@@ -38166,7 +39680,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeResolve messageId.
-         * @member {Long}messageId
+         * @member {Long} messageId
          * @memberof proto.QrCodeResolve
          * @instance
          */
@@ -38267,14 +39781,15 @@ export const proto = $root.proto = (() => {
          * Properties of a QrCodeResolveResponse.
          * @memberof proto
          * @interface IQrCodeResolveResponse
-         * @property {proto.Response} [response] QrCodeResolveResponse response
-         * @property {Uint8Array} [qrCodeImage] QrCodeResolveResponse qrCodeImage
+         * @property {proto.Response|null} [response] QrCodeResolveResponse response
+         * @property {Uint8Array|null} [qrCodeImage] QrCodeResolveResponse qrCodeImage
          */
 
     /**
          * Constructs a new QrCodeResolveResponse.
          * @memberof proto
          * @classdesc Represents a QrCodeResolveResponse.
+         * @implements IQrCodeResolveResponse
          * @constructor
          * @param {proto.IQrCodeResolveResponse=} [properties] Properties to set
          */
@@ -38288,7 +39803,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeResolveResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.QrCodeResolveResponse
          * @instance
          */
@@ -38296,7 +39811,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * QrCodeResolveResponse qrCodeImage.
-         * @member {Uint8Array}qrCodeImage
+         * @member {Uint8Array} qrCodeImage
          * @memberof proto.QrCodeResolveResponse
          * @instance
          */
@@ -38390,14 +39905,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingAccept.
          * @memberof proto
          * @interface ISignalingAccept
-         * @property {proto.Request} [request] SignalingAccept request
-         * @property {string} [calledSdp] SignalingAccept calledSdp
+         * @property {proto.Request|null} [request] SignalingAccept request
+         * @property {string|null} [calledSdp] SignalingAccept calledSdp
          */
 
     /**
          * Constructs a new SignalingAccept.
          * @memberof proto
          * @classdesc Represents a SignalingAccept.
+         * @implements ISignalingAccept
          * @constructor
          * @param {proto.ISignalingAccept=} [properties] Properties to set
          */
@@ -38411,7 +39927,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingAccept request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingAccept
          * @instance
          */
@@ -38419,7 +39935,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingAccept calledSdp.
-         * @member {string}calledSdp
+         * @member {string} calledSdp
          * @memberof proto.SignalingAccept
          * @instance
          */
@@ -38513,14 +40029,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingAcceptResponse.
          * @memberof proto
          * @interface ISignalingAcceptResponse
-         * @property {proto.Response} [response] SignalingAcceptResponse response
-         * @property {string} [calledSdp] SignalingAcceptResponse calledSdp
+         * @property {proto.Response|null} [response] SignalingAcceptResponse response
+         * @property {string|null} [calledSdp] SignalingAcceptResponse calledSdp
          */
 
     /**
          * Constructs a new SignalingAcceptResponse.
          * @memberof proto
          * @classdesc Represents a SignalingAcceptResponse.
+         * @implements ISignalingAcceptResponse
          * @constructor
          * @param {proto.ISignalingAcceptResponse=} [properties] Properties to set
          */
@@ -38534,7 +40051,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingAcceptResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingAcceptResponse
          * @instance
          */
@@ -38542,7 +40059,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingAcceptResponse calledSdp.
-         * @member {string}calledSdp
+         * @member {string} calledSdp
          * @memberof proto.SignalingAcceptResponse
          * @instance
          */
@@ -38636,16 +40153,17 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingCandidate.
          * @memberof proto
          * @interface ISignalingCandidate
-         * @property {proto.Request} [request] SignalingCandidate request
-         * @property {string} [candidate] SignalingCandidate candidate
-         * @property {string} [sdpMId] SignalingCandidate sdpMId
-         * @property {number} [sdpMLineIndex] SignalingCandidate sdpMLineIndex
+         * @property {proto.Request|null} [request] SignalingCandidate request
+         * @property {string|null} [candidate] SignalingCandidate candidate
+         * @property {string|null} [sdpMId] SignalingCandidate sdpMId
+         * @property {number|null} [sdpMLineIndex] SignalingCandidate sdpMLineIndex
          */
 
     /**
          * Constructs a new SignalingCandidate.
          * @memberof proto
          * @classdesc Represents a SignalingCandidate.
+         * @implements ISignalingCandidate
          * @constructor
          * @param {proto.ISignalingCandidate=} [properties] Properties to set
          */
@@ -38659,7 +40177,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidate request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingCandidate
          * @instance
          */
@@ -38667,7 +40185,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidate candidate.
-         * @member {string}candidate
+         * @member {string} candidate
          * @memberof proto.SignalingCandidate
          * @instance
          */
@@ -38675,7 +40193,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidate sdpMId.
-         * @member {string}sdpMId
+         * @member {string} sdpMId
          * @memberof proto.SignalingCandidate
          * @instance
          */
@@ -38683,7 +40201,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidate sdpMLineIndex.
-         * @member {number}sdpMLineIndex
+         * @member {number} sdpMLineIndex
          * @memberof proto.SignalingCandidate
          * @instance
          */
@@ -38791,16 +40309,17 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingCandidateResponse.
          * @memberof proto
          * @interface ISignalingCandidateResponse
-         * @property {proto.Response} [response] SignalingCandidateResponse response
-         * @property {string} [peerCandidate] SignalingCandidateResponse peerCandidate
-         * @property {string} [peerSdpMId] SignalingCandidateResponse peerSdpMId
-         * @property {number} [peerSdpMLineIndex] SignalingCandidateResponse peerSdpMLineIndex
+         * @property {proto.Response|null} [response] SignalingCandidateResponse response
+         * @property {string|null} [peerCandidate] SignalingCandidateResponse peerCandidate
+         * @property {string|null} [peerSdpMId] SignalingCandidateResponse peerSdpMId
+         * @property {number|null} [peerSdpMLineIndex] SignalingCandidateResponse peerSdpMLineIndex
          */
 
     /**
          * Constructs a new SignalingCandidateResponse.
          * @memberof proto
          * @classdesc Represents a SignalingCandidateResponse.
+         * @implements ISignalingCandidateResponse
          * @constructor
          * @param {proto.ISignalingCandidateResponse=} [properties] Properties to set
          */
@@ -38814,7 +40333,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidateResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingCandidateResponse
          * @instance
          */
@@ -38822,7 +40341,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidateResponse peerCandidate.
-         * @member {string}peerCandidate
+         * @member {string} peerCandidate
          * @memberof proto.SignalingCandidateResponse
          * @instance
          */
@@ -38830,7 +40349,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidateResponse peerSdpMId.
-         * @member {string}peerSdpMId
+         * @member {string} peerSdpMId
          * @memberof proto.SignalingCandidateResponse
          * @instance
          */
@@ -38838,7 +40357,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingCandidateResponse peerSdpMLineIndex.
-         * @member {number}peerSdpMLineIndex
+         * @member {number} peerSdpMLineIndex
          * @memberof proto.SignalingCandidateResponse
          * @instance
          */
@@ -38946,14 +40465,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingClearLog.
          * @memberof proto
          * @interface ISignalingClearLog
-         * @property {proto.Request} [request] SignalingClearLog request
-         * @property {Long} [clearId] SignalingClearLog clearId
+         * @property {proto.Request|null} [request] SignalingClearLog request
+         * @property {Long|null} [clearId] SignalingClearLog clearId
          */
 
     /**
          * Constructs a new SignalingClearLog.
          * @memberof proto
          * @classdesc Represents a SignalingClearLog.
+         * @implements ISignalingClearLog
          * @constructor
          * @param {proto.ISignalingClearLog=} [properties] Properties to set
          */
@@ -38967,7 +40487,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingClearLog request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingClearLog
          * @instance
          */
@@ -38975,7 +40495,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingClearLog clearId.
-         * @member {Long}clearId
+         * @member {Long} clearId
          * @memberof proto.SignalingClearLog
          * @instance
          */
@@ -39069,14 +40589,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingClearLogResponse.
          * @memberof proto
          * @interface ISignalingClearLogResponse
-         * @property {proto.Response} [response] SignalingClearLogResponse response
-         * @property {Long} [clearId] SignalingClearLogResponse clearId
+         * @property {proto.Response|null} [response] SignalingClearLogResponse response
+         * @property {Long|null} [clearId] SignalingClearLogResponse clearId
          */
 
     /**
          * Constructs a new SignalingClearLogResponse.
          * @memberof proto
          * @classdesc Represents a SignalingClearLogResponse.
+         * @implements ISignalingClearLogResponse
          * @constructor
          * @param {proto.ISignalingClearLogResponse=} [properties] Properties to set
          */
@@ -39090,7 +40611,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingClearLogResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingClearLogResponse
          * @instance
          */
@@ -39098,7 +40619,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingClearLogResponse clearId.
-         * @member {Long}clearId
+         * @member {Long} clearId
          * @memberof proto.SignalingClearLogResponse
          * @instance
          */
@@ -39192,13 +40713,14 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingGetConfiguration.
          * @memberof proto
          * @interface ISignalingGetConfiguration
-         * @property {proto.Request} [request] SignalingGetConfiguration request
+         * @property {proto.Request|null} [request] SignalingGetConfiguration request
          */
 
     /**
          * Constructs a new SignalingGetConfiguration.
          * @memberof proto
          * @classdesc Represents a SignalingGetConfiguration.
+         * @implements ISignalingGetConfiguration
          * @constructor
          * @param {proto.ISignalingGetConfiguration=} [properties] Properties to set
          */
@@ -39212,7 +40734,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfiguration request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingGetConfiguration
          * @instance
          */
@@ -39299,18 +40821,19 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingGetConfigurationResponse.
          * @memberof proto
          * @interface ISignalingGetConfigurationResponse
-         * @property {proto.Response} [response] SignalingGetConfigurationResponse response
-         * @property {Array.<proto.SignalingGetConfigurationResponse.IceServer>} [iceServer] SignalingGetConfigurationResponse iceServer
-         * @property {boolean} [voiceCalling] SignalingGetConfigurationResponse voiceCalling
-         * @property {boolean} [videoCalling] SignalingGetConfigurationResponse videoCalling
-         * @property {boolean} [screenSharing] SignalingGetConfigurationResponse screenSharing
-         * @property {boolean} [secretChat] SignalingGetConfigurationResponse secretChat
+         * @property {proto.Response|null} [response] SignalingGetConfigurationResponse response
+         * @property {Array.<proto.SignalingGetConfigurationResponse.IceServer>|null} [iceServer] SignalingGetConfigurationResponse iceServer
+         * @property {boolean|null} [voiceCalling] SignalingGetConfigurationResponse voiceCalling
+         * @property {boolean|null} [videoCalling] SignalingGetConfigurationResponse videoCalling
+         * @property {boolean|null} [screenSharing] SignalingGetConfigurationResponse screenSharing
+         * @property {boolean|null} [secretChat] SignalingGetConfigurationResponse secretChat
          */
 
     /**
          * Constructs a new SignalingGetConfigurationResponse.
          * @memberof proto
          * @classdesc Represents a SignalingGetConfigurationResponse.
+         * @implements ISignalingGetConfigurationResponse
          * @constructor
          * @param {proto.ISignalingGetConfigurationResponse=} [properties] Properties to set
          */
@@ -39325,7 +40848,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfigurationResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingGetConfigurationResponse
          * @instance
          */
@@ -39333,7 +40856,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfigurationResponse iceServer.
-         * @member {Array.<proto.SignalingGetConfigurationResponse.IceServer>}iceServer
+         * @member {Array.<proto.SignalingGetConfigurationResponse.IceServer>} iceServer
          * @memberof proto.SignalingGetConfigurationResponse
          * @instance
          */
@@ -39341,7 +40864,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfigurationResponse voiceCalling.
-         * @member {boolean}voiceCalling
+         * @member {boolean} voiceCalling
          * @memberof proto.SignalingGetConfigurationResponse
          * @instance
          */
@@ -39349,7 +40872,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfigurationResponse videoCalling.
-         * @member {boolean}videoCalling
+         * @member {boolean} videoCalling
          * @memberof proto.SignalingGetConfigurationResponse
          * @instance
          */
@@ -39357,7 +40880,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfigurationResponse screenSharing.
-         * @member {boolean}screenSharing
+         * @member {boolean} screenSharing
          * @memberof proto.SignalingGetConfigurationResponse
          * @instance
          */
@@ -39365,7 +40888,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetConfigurationResponse secretChat.
-         * @member {boolean}secretChat
+         * @member {boolean} secretChat
          * @memberof proto.SignalingGetConfigurationResponse
          * @instance
          */
@@ -39466,7 +40989,7 @@ export const proto = $root.proto = (() => {
       if (message.iceServer != null && message.hasOwnProperty('iceServer')) {
         if (!Array.isArray(message.iceServer)) {return 'iceServer: array expected';}
         for (let i = 0; i < message.iceServer.length; ++i) {
-          error = $root.proto.SignalingGetConfigurationResponse.IceServer.verify(message.iceServer[i]);
+          let error = $root.proto.SignalingGetConfigurationResponse.IceServer.verify(message.iceServer[i]);
           if (error) {return 'iceServer.' + error;}
         }
       }
@@ -39491,15 +41014,16 @@ export const proto = $root.proto = (() => {
              * Properties of an IceServer.
              * @memberof proto.SignalingGetConfigurationResponse
              * @interface IIceServer
-             * @property {string} [url] IceServer url
-             * @property {string} [credential] IceServer credential
-             * @property {string} [username] IceServer username
+             * @property {string|null} [url] IceServer url
+             * @property {string|null} [credential] IceServer credential
+             * @property {string|null} [username] IceServer username
              */
 
       /**
              * Constructs a new IceServer.
              * @memberof proto.SignalingGetConfigurationResponse
              * @classdesc Represents an IceServer.
+             * @implements IIceServer
              * @constructor
              * @param {proto.SignalingGetConfigurationResponse.IIceServer=} [properties] Properties to set
              */
@@ -39513,7 +41037,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * IceServer url.
-             * @member {string}url
+             * @member {string} url
              * @memberof proto.SignalingGetConfigurationResponse.IceServer
              * @instance
              */
@@ -39521,7 +41045,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * IceServer credential.
-             * @member {string}credential
+             * @member {string} credential
              * @memberof proto.SignalingGetConfigurationResponse.IceServer
              * @instance
              */
@@ -39529,7 +41053,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * IceServer username.
-             * @member {string}username
+             * @member {string} username
              * @memberof proto.SignalingGetConfigurationResponse.IceServer
              * @instance
              */
@@ -39632,14 +41156,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingGetLog.
          * @memberof proto
          * @interface ISignalingGetLog
-         * @property {proto.Request} [request] SignalingGetLog request
-         * @property {proto.Pagination} [pagination] SignalingGetLog pagination
+         * @property {proto.Request|null} [request] SignalingGetLog request
+         * @property {proto.Pagination|null} [pagination] SignalingGetLog pagination
          */
 
     /**
          * Constructs a new SignalingGetLog.
          * @memberof proto
          * @classdesc Represents a SignalingGetLog.
+         * @implements ISignalingGetLog
          * @constructor
          * @param {proto.ISignalingGetLog=} [properties] Properties to set
          */
@@ -39653,7 +41178,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetLog request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingGetLog
          * @instance
          */
@@ -39661,7 +41186,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetLog pagination.
-         * @member {(proto.Pagination|null|undefined)}pagination
+         * @member {proto.Pagination|null|undefined} pagination
          * @memberof proto.SignalingGetLog
          * @instance
          */
@@ -39741,7 +41266,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'request.' + error;}
       }
       if (message.pagination != null && message.hasOwnProperty('pagination')) {
-        error = $root.proto.Pagination.verify(message.pagination);
+        let error = $root.proto.Pagination.verify(message.pagination);
         if (error) {return 'pagination.' + error;}
       }
       return null;
@@ -39756,14 +41281,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingGetLogResponse.
          * @memberof proto
          * @interface ISignalingGetLogResponse
-         * @property {proto.Response} [response] SignalingGetLogResponse response
-         * @property {Array.<proto.SignalingGetLogResponse.SignalingLog>} [signalingLog] SignalingGetLogResponse signalingLog
+         * @property {proto.Response|null} [response] SignalingGetLogResponse response
+         * @property {Array.<proto.SignalingGetLogResponse.SignalingLog>|null} [signalingLog] SignalingGetLogResponse signalingLog
          */
 
     /**
          * Constructs a new SignalingGetLogResponse.
          * @memberof proto
          * @classdesc Represents a SignalingGetLogResponse.
+         * @implements ISignalingGetLogResponse
          * @constructor
          * @param {proto.ISignalingGetLogResponse=} [properties] Properties to set
          */
@@ -39778,7 +41304,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetLogResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingGetLogResponse
          * @instance
          */
@@ -39786,7 +41312,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingGetLogResponse signalingLog.
-         * @member {Array.<proto.SignalingGetLogResponse.SignalingLog>}signalingLog
+         * @member {Array.<proto.SignalingGetLogResponse.SignalingLog>} signalingLog
          * @memberof proto.SignalingGetLogResponse
          * @instance
          */
@@ -39871,7 +41397,7 @@ export const proto = $root.proto = (() => {
       if (message.signalingLog != null && message.hasOwnProperty('signalingLog')) {
         if (!Array.isArray(message.signalingLog)) {return 'signalingLog: array expected';}
         for (let i = 0; i < message.signalingLog.length; ++i) {
-          error = $root.proto.SignalingGetLogResponse.SignalingLog.verify(message.signalingLog[i]);
+          let error = $root.proto.SignalingGetLogResponse.SignalingLog.verify(message.signalingLog[i]);
           if (error) {return 'signalingLog.' + error;}
         }
       }
@@ -39884,18 +41410,19 @@ export const proto = $root.proto = (() => {
              * Properties of a SignalingLog.
              * @memberof proto.SignalingGetLogResponse
              * @interface ISignalingLog
-             * @property {Long} [id] SignalingLog id
-             * @property {proto.SignalingOffer.Type} [type] SignalingLog type
-             * @property {proto.SignalingGetLogResponse.SignalingLog.Status} [status] SignalingLog status
-             * @property {proto.RegisteredUser} [peer] SignalingLog peer
-             * @property {number} [offerTime] SignalingLog offerTime
-             * @property {number} [duration] SignalingLog duration
+             * @property {Long|null} [id] SignalingLog id
+             * @property {proto.SignalingOffer.Type|null} [type] SignalingLog type
+             * @property {proto.SignalingGetLogResponse.SignalingLog.Status|null} [status] SignalingLog status
+             * @property {proto.RegisteredUser|null} [peer] SignalingLog peer
+             * @property {number|null} [offerTime] SignalingLog offerTime
+             * @property {number|null} [duration] SignalingLog duration
              */
 
       /**
              * Constructs a new SignalingLog.
              * @memberof proto.SignalingGetLogResponse
              * @classdesc Represents a SignalingLog.
+             * @implements ISignalingLog
              * @constructor
              * @param {proto.SignalingGetLogResponse.ISignalingLog=} [properties] Properties to set
              */
@@ -39909,7 +41436,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * SignalingLog id.
-             * @member {Long}id
+             * @member {Long} id
              * @memberof proto.SignalingGetLogResponse.SignalingLog
              * @instance
              */
@@ -39917,7 +41444,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * SignalingLog type.
-             * @member {proto.SignalingOffer.Type}type
+             * @member {proto.SignalingOffer.Type} type
              * @memberof proto.SignalingGetLogResponse.SignalingLog
              * @instance
              */
@@ -39925,7 +41452,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * SignalingLog status.
-             * @member {proto.SignalingGetLogResponse.SignalingLog.Status}status
+             * @member {proto.SignalingGetLogResponse.SignalingLog.Status} status
              * @memberof proto.SignalingGetLogResponse.SignalingLog
              * @instance
              */
@@ -39933,7 +41460,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * SignalingLog peer.
-             * @member {(proto.RegisteredUser|null|undefined)}peer
+             * @member {proto.RegisteredUser|null|undefined} peer
              * @memberof proto.SignalingGetLogResponse.SignalingLog
              * @instance
              */
@@ -39941,7 +41468,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * SignalingLog offerTime.
-             * @member {number}offerTime
+             * @member {number} offerTime
              * @memberof proto.SignalingGetLogResponse.SignalingLog
              * @instance
              */
@@ -39949,7 +41476,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * SignalingLog duration.
-             * @member {number}duration
+             * @member {number} duration
              * @memberof proto.SignalingGetLogResponse.SignalingLog
              * @instance
              */
@@ -40080,6 +41607,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Status enum.
+             * @name proto.SignalingGetLogResponse.SignalingLog.Status
              * @enum {string}
              * @property {number} MISSED=0 MISSED value
              * @property {number} CANCELED=1 CANCELED value
@@ -40107,16 +41635,17 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingOffer.
          * @memberof proto
          * @interface ISignalingOffer
-         * @property {proto.Request} [request] SignalingOffer request
-         * @property {Long} [calledUserId] SignalingOffer calledUserId
-         * @property {proto.SignalingOffer.Type} [type] SignalingOffer type
-         * @property {string} [callerSdp] SignalingOffer callerSdp
+         * @property {proto.Request|null} [request] SignalingOffer request
+         * @property {Long|null} [calledUserId] SignalingOffer calledUserId
+         * @property {proto.SignalingOffer.Type|null} [type] SignalingOffer type
+         * @property {string|null} [callerSdp] SignalingOffer callerSdp
          */
 
     /**
          * Constructs a new SignalingOffer.
          * @memberof proto
          * @classdesc Represents a SignalingOffer.
+         * @implements ISignalingOffer
          * @constructor
          * @param {proto.ISignalingOffer=} [properties] Properties to set
          */
@@ -40130,7 +41659,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOffer request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingOffer
          * @instance
          */
@@ -40138,7 +41667,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOffer calledUserId.
-         * @member {Long}calledUserId
+         * @member {Long} calledUserId
          * @memberof proto.SignalingOffer
          * @instance
          */
@@ -40146,7 +41675,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOffer type.
-         * @member {proto.SignalingOffer.Type}type
+         * @member {proto.SignalingOffer.Type} type
          * @memberof proto.SignalingOffer
          * @instance
          */
@@ -40154,7 +41683,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOffer callerSdp.
-         * @member {string}callerSdp
+         * @member {string} callerSdp
          * @memberof proto.SignalingOffer
          * @instance
          */
@@ -40263,6 +41792,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Type enum.
+         * @name proto.SignalingOffer.Type
          * @enum {string}
          * @property {number} VOICE_CALLING=0 VOICE_CALLING value
          * @property {number} VIDEO_CALLING=1 VIDEO_CALLING value
@@ -40287,16 +41817,17 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingOfferResponse.
          * @memberof proto
          * @interface ISignalingOfferResponse
-         * @property {proto.Response} [response] SignalingOfferResponse response
-         * @property {Long} [callerUserId] SignalingOfferResponse callerUserId
-         * @property {proto.SignalingOffer.Type} [type] SignalingOfferResponse type
-         * @property {string} [callerSdp] SignalingOfferResponse callerSdp
+         * @property {proto.Response|null} [response] SignalingOfferResponse response
+         * @property {Long|null} [callerUserId] SignalingOfferResponse callerUserId
+         * @property {proto.SignalingOffer.Type|null} [type] SignalingOfferResponse type
+         * @property {string|null} [callerSdp] SignalingOfferResponse callerSdp
          */
 
     /**
          * Constructs a new SignalingOfferResponse.
          * @memberof proto
          * @classdesc Represents a SignalingOfferResponse.
+         * @implements ISignalingOfferResponse
          * @constructor
          * @param {proto.ISignalingOfferResponse=} [properties] Properties to set
          */
@@ -40310,7 +41841,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOfferResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingOfferResponse
          * @instance
          */
@@ -40318,7 +41849,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOfferResponse callerUserId.
-         * @member {Long}callerUserId
+         * @member {Long} callerUserId
          * @memberof proto.SignalingOfferResponse
          * @instance
          */
@@ -40326,7 +41857,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOfferResponse type.
-         * @member {proto.SignalingOffer.Type}type
+         * @member {proto.SignalingOffer.Type} type
          * @memberof proto.SignalingOfferResponse
          * @instance
          */
@@ -40334,7 +41865,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingOfferResponse callerSdp.
-         * @member {string}callerSdp
+         * @member {string} callerSdp
          * @memberof proto.SignalingOfferResponse
          * @instance
          */
@@ -40450,13 +41981,14 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingLeave.
          * @memberof proto
          * @interface ISignalingLeave
-         * @property {proto.Request} [request] SignalingLeave request
+         * @property {proto.Request|null} [request] SignalingLeave request
          */
 
     /**
          * Constructs a new SignalingLeave.
          * @memberof proto
          * @classdesc Represents a SignalingLeave.
+         * @implements ISignalingLeave
          * @constructor
          * @param {proto.ISignalingLeave=} [properties] Properties to set
          */
@@ -40470,7 +42002,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingLeave request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingLeave
          * @instance
          */
@@ -40557,14 +42089,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingLeaveResponse.
          * @memberof proto
          * @interface ISignalingLeaveResponse
-         * @property {proto.Response} [response] SignalingLeaveResponse response
-         * @property {proto.SignalingLeaveResponse.Type} [type] SignalingLeaveResponse type
+         * @property {proto.Response|null} [response] SignalingLeaveResponse response
+         * @property {proto.SignalingLeaveResponse.Type|null} [type] SignalingLeaveResponse type
          */
 
     /**
          * Constructs a new SignalingLeaveResponse.
          * @memberof proto
          * @classdesc Represents a SignalingLeaveResponse.
+         * @implements ISignalingLeaveResponse
          * @constructor
          * @param {proto.ISignalingLeaveResponse=} [properties] Properties to set
          */
@@ -40578,7 +42111,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingLeaveResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingLeaveResponse
          * @instance
          */
@@ -40586,7 +42119,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingLeaveResponse type.
-         * @member {proto.SignalingLeaveResponse.Type}type
+         * @member {proto.SignalingLeaveResponse.Type} type
          * @memberof proto.SignalingLeaveResponse
          * @instance
          */
@@ -40685,6 +42218,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Type enum.
+         * @name proto.SignalingLeaveResponse.Type
          * @enum {string}
          * @property {number} MISSED=0 MISSED value
          * @property {number} REJECTED=1 REJECTED value
@@ -40717,16 +42251,17 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingRate.
          * @memberof proto
          * @interface ISignalingRate
-         * @property {proto.Request} [request] SignalingRate request
-         * @property {Long} [id] SignalingRate id
-         * @property {number} [rate] SignalingRate rate
-         * @property {string} [reason] SignalingRate reason
+         * @property {proto.Request|null} [request] SignalingRate request
+         * @property {Long|null} [id] SignalingRate id
+         * @property {number|null} [rate] SignalingRate rate
+         * @property {string|null} [reason] SignalingRate reason
          */
 
     /**
          * Constructs a new SignalingRate.
          * @memberof proto
          * @classdesc Represents a SignalingRate.
+         * @implements ISignalingRate
          * @constructor
          * @param {proto.ISignalingRate=} [properties] Properties to set
          */
@@ -40740,7 +42275,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRate request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingRate
          * @instance
          */
@@ -40748,7 +42283,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRate id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.SignalingRate
          * @instance
          */
@@ -40756,7 +42291,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRate rate.
-         * @member {number}rate
+         * @member {number} rate
          * @memberof proto.SignalingRate
          * @instance
          */
@@ -40764,7 +42299,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRate reason.
-         * @member {string}reason
+         * @member {string} reason
          * @memberof proto.SignalingRate
          * @instance
          */
@@ -40872,13 +42407,14 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingRateResponse.
          * @memberof proto
          * @interface ISignalingRateResponse
-         * @property {proto.Response} [response] SignalingRateResponse response
+         * @property {proto.Response|null} [response] SignalingRateResponse response
          */
 
     /**
          * Constructs a new SignalingRateResponse.
          * @memberof proto
          * @classdesc Represents a SignalingRateResponse.
+         * @implements ISignalingRateResponse
          * @constructor
          * @param {proto.ISignalingRateResponse=} [properties] Properties to set
          */
@@ -40892,7 +42428,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRateResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingRateResponse
          * @instance
          */
@@ -40979,13 +42515,14 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingRinging.
          * @memberof proto
          * @interface ISignalingRinging
-         * @property {proto.Request} [request] SignalingRinging request
+         * @property {proto.Request|null} [request] SignalingRinging request
          */
 
     /**
          * Constructs a new SignalingRinging.
          * @memberof proto
          * @classdesc Represents a SignalingRinging.
+         * @implements ISignalingRinging
          * @constructor
          * @param {proto.ISignalingRinging=} [properties] Properties to set
          */
@@ -40999,7 +42536,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRinging request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingRinging
          * @instance
          */
@@ -41086,13 +42623,14 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingRingingResponse.
          * @memberof proto
          * @interface ISignalingRingingResponse
-         * @property {proto.Response} [response] SignalingRingingResponse response
+         * @property {proto.Response|null} [response] SignalingRingingResponse response
          */
 
     /**
          * Constructs a new SignalingRingingResponse.
          * @memberof proto
          * @classdesc Represents a SignalingRingingResponse.
+         * @implements ISignalingRingingResponse
          * @constructor
          * @param {proto.ISignalingRingingResponse=} [properties] Properties to set
          */
@@ -41106,7 +42644,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingRingingResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingRingingResponse
          * @instance
          */
@@ -41193,14 +42731,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingSessionHold.
          * @memberof proto
          * @interface ISignalingSessionHold
-         * @property {proto.Request} [request] SignalingSessionHold request
-         * @property {boolean} [hold] SignalingSessionHold hold
+         * @property {proto.Request|null} [request] SignalingSessionHold request
+         * @property {boolean|null} [hold] SignalingSessionHold hold
          */
 
     /**
          * Constructs a new SignalingSessionHold.
          * @memberof proto
          * @classdesc Represents a SignalingSessionHold.
+         * @implements ISignalingSessionHold
          * @constructor
          * @param {proto.ISignalingSessionHold=} [properties] Properties to set
          */
@@ -41214,7 +42753,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingSessionHold request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.SignalingSessionHold
          * @instance
          */
@@ -41222,7 +42761,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingSessionHold hold.
-         * @member {boolean}hold
+         * @member {boolean} hold
          * @memberof proto.SignalingSessionHold
          * @instance
          */
@@ -41316,14 +42855,15 @@ export const proto = $root.proto = (() => {
          * Properties of a SignalingSessionHoldResponse.
          * @memberof proto
          * @interface ISignalingSessionHoldResponse
-         * @property {proto.Response} [response] SignalingSessionHoldResponse response
-         * @property {boolean} [hold] SignalingSessionHoldResponse hold
+         * @property {proto.Response|null} [response] SignalingSessionHoldResponse response
+         * @property {boolean|null} [hold] SignalingSessionHoldResponse hold
          */
 
     /**
          * Constructs a new SignalingSessionHoldResponse.
          * @memberof proto
          * @classdesc Represents a SignalingSessionHoldResponse.
+         * @implements ISignalingSessionHoldResponse
          * @constructor
          * @param {proto.ISignalingSessionHoldResponse=} [properties] Properties to set
          */
@@ -41337,7 +42877,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingSessionHoldResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.SignalingSessionHoldResponse
          * @instance
          */
@@ -41345,7 +42885,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * SignalingSessionHoldResponse hold.
-         * @member {boolean}hold
+         * @member {boolean} hold
          * @memberof proto.SignalingSessionHoldResponse
          * @instance
          */
@@ -41439,14 +42979,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserAvatarAdd.
          * @memberof proto
          * @interface IUserAvatarAdd
-         * @property {proto.Request} [request] UserAvatarAdd request
-         * @property {string} [attachment] UserAvatarAdd attachment
+         * @property {proto.Request|null} [request] UserAvatarAdd request
+         * @property {string|null} [attachment] UserAvatarAdd attachment
          */
 
     /**
          * Constructs a new UserAvatarAdd.
          * @memberof proto
          * @classdesc Represents a UserAvatarAdd.
+         * @implements IUserAvatarAdd
          * @constructor
          * @param {proto.IUserAvatarAdd=} [properties] Properties to set
          */
@@ -41460,7 +43001,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarAdd request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserAvatarAdd
          * @instance
          */
@@ -41468,7 +43009,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarAdd attachment.
-         * @member {string}attachment
+         * @member {string} attachment
          * @memberof proto.UserAvatarAdd
          * @instance
          */
@@ -41562,14 +43103,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserAvatarAddResponse.
          * @memberof proto
          * @interface IUserAvatarAddResponse
-         * @property {proto.Response} [response] UserAvatarAddResponse response
-         * @property {proto.Avatar} [avatar] UserAvatarAddResponse avatar
+         * @property {proto.Response|null} [response] UserAvatarAddResponse response
+         * @property {proto.Avatar|null} [avatar] UserAvatarAddResponse avatar
          */
 
     /**
          * Constructs a new UserAvatarAddResponse.
          * @memberof proto
          * @classdesc Represents a UserAvatarAddResponse.
+         * @implements IUserAvatarAddResponse
          * @constructor
          * @param {proto.IUserAvatarAddResponse=} [properties] Properties to set
          */
@@ -41583,7 +43125,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarAddResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserAvatarAddResponse
          * @instance
          */
@@ -41591,7 +43133,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarAddResponse avatar.
-         * @member {(proto.Avatar|null|undefined)}avatar
+         * @member {proto.Avatar|null|undefined} avatar
          * @memberof proto.UserAvatarAddResponse
          * @instance
          */
@@ -41671,7 +43213,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.avatar != null && message.hasOwnProperty('avatar')) {
-        error = $root.proto.Avatar.verify(message.avatar);
+        let error = $root.proto.Avatar.verify(message.avatar);
         if (error) {return 'avatar.' + error;}
       }
       return null;
@@ -41686,14 +43228,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserAvatarDelete.
          * @memberof proto
          * @interface IUserAvatarDelete
-         * @property {proto.Request} [request] UserAvatarDelete request
-         * @property {Long} [id] UserAvatarDelete id
+         * @property {proto.Request|null} [request] UserAvatarDelete request
+         * @property {Long|null} [id] UserAvatarDelete id
          */
 
     /**
          * Constructs a new UserAvatarDelete.
          * @memberof proto
          * @classdesc Represents a UserAvatarDelete.
+         * @implements IUserAvatarDelete
          * @constructor
          * @param {proto.IUserAvatarDelete=} [properties] Properties to set
          */
@@ -41707,7 +43250,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserAvatarDelete
          * @instance
          */
@@ -41715,7 +43258,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarDelete id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.UserAvatarDelete
          * @instance
          */
@@ -41809,14 +43352,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserAvatarDeleteResponse.
          * @memberof proto
          * @interface IUserAvatarDeleteResponse
-         * @property {proto.Response} [response] UserAvatarDeleteResponse response
-         * @property {Long} [id] UserAvatarDeleteResponse id
+         * @property {proto.Response|null} [response] UserAvatarDeleteResponse response
+         * @property {Long|null} [id] UserAvatarDeleteResponse id
          */
 
     /**
          * Constructs a new UserAvatarDeleteResponse.
          * @memberof proto
          * @classdesc Represents a UserAvatarDeleteResponse.
+         * @implements IUserAvatarDeleteResponse
          * @constructor
          * @param {proto.IUserAvatarDeleteResponse=} [properties] Properties to set
          */
@@ -41830,7 +43374,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserAvatarDeleteResponse
          * @instance
          */
@@ -41838,7 +43382,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarDeleteResponse id.
-         * @member {Long}id
+         * @member {Long} id
          * @memberof proto.UserAvatarDeleteResponse
          * @instance
          */
@@ -41932,14 +43476,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserAvatarGetList.
          * @memberof proto
          * @interface IUserAvatarGetList
-         * @property {proto.Request} [request] UserAvatarGetList request
-         * @property {Long} [userId] UserAvatarGetList userId
+         * @property {proto.Request|null} [request] UserAvatarGetList request
+         * @property {Long|null} [userId] UserAvatarGetList userId
          */
 
     /**
          * Constructs a new UserAvatarGetList.
          * @memberof proto
          * @classdesc Represents a UserAvatarGetList.
+         * @implements IUserAvatarGetList
          * @constructor
          * @param {proto.IUserAvatarGetList=} [properties] Properties to set
          */
@@ -41953,7 +43498,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarGetList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserAvatarGetList
          * @instance
          */
@@ -41961,7 +43506,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarGetList userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserAvatarGetList
          * @instance
          */
@@ -42055,14 +43600,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserAvatarGetListResponse.
          * @memberof proto
          * @interface IUserAvatarGetListResponse
-         * @property {proto.Response} [response] UserAvatarGetListResponse response
-         * @property {Array.<proto.Avatar>} [avatar] UserAvatarGetListResponse avatar
+         * @property {proto.Response|null} [response] UserAvatarGetListResponse response
+         * @property {Array.<proto.Avatar>|null} [avatar] UserAvatarGetListResponse avatar
          */
 
     /**
          * Constructs a new UserAvatarGetListResponse.
          * @memberof proto
          * @classdesc Represents a UserAvatarGetListResponse.
+         * @implements IUserAvatarGetListResponse
          * @constructor
          * @param {proto.IUserAvatarGetListResponse=} [properties] Properties to set
          */
@@ -42077,7 +43623,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarGetListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserAvatarGetListResponse
          * @instance
          */
@@ -42085,7 +43631,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserAvatarGetListResponse avatar.
-         * @member {Array.<proto.Avatar>}avatar
+         * @member {Array.<proto.Avatar>} avatar
          * @memberof proto.UserAvatarGetListResponse
          * @instance
          */
@@ -42170,7 +43716,7 @@ export const proto = $root.proto = (() => {
       if (message.avatar != null && message.hasOwnProperty('avatar')) {
         if (!Array.isArray(message.avatar)) {return 'avatar: array expected';}
         for (let i = 0; i < message.avatar.length; ++i) {
-          error = $root.proto.Avatar.verify(message.avatar[i]);
+          let error = $root.proto.Avatar.verify(message.avatar[i]);
           if (error) {return 'avatar.' + error;}
         }
       }
@@ -42186,14 +43732,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsBlock.
          * @memberof proto
          * @interface IUserContactsBlock
-         * @property {proto.Request} [request] UserContactsBlock request
-         * @property {Long} [userId] UserContactsBlock userId
+         * @property {proto.Request|null} [request] UserContactsBlock request
+         * @property {Long|null} [userId] UserContactsBlock userId
          */
 
     /**
          * Constructs a new UserContactsBlock.
          * @memberof proto
          * @classdesc Represents a UserContactsBlock.
+         * @implements IUserContactsBlock
          * @constructor
          * @param {proto.IUserContactsBlock=} [properties] Properties to set
          */
@@ -42207,7 +43754,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsBlock request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsBlock
          * @instance
          */
@@ -42215,7 +43762,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsBlock userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserContactsBlock
          * @instance
          */
@@ -42309,14 +43856,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsBlockResponse.
          * @memberof proto
          * @interface IUserContactsBlockResponse
-         * @property {proto.Response} [response] UserContactsBlockResponse response
-         * @property {Long} [userId] UserContactsBlockResponse userId
+         * @property {proto.Response|null} [response] UserContactsBlockResponse response
+         * @property {Long|null} [userId] UserContactsBlockResponse userId
          */
 
     /**
          * Constructs a new UserContactsBlockResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsBlockResponse.
+         * @implements IUserContactsBlockResponse
          * @constructor
          * @param {proto.IUserContactsBlockResponse=} [properties] Properties to set
          */
@@ -42330,7 +43878,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsBlockResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsBlockResponse
          * @instance
          */
@@ -42338,7 +43886,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsBlockResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserContactsBlockResponse
          * @instance
          */
@@ -42432,14 +43980,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsDelete.
          * @memberof proto
          * @interface IUserContactsDelete
-         * @property {proto.Request} [request] UserContactsDelete request
-         * @property {Long} [phone] UserContactsDelete phone
+         * @property {proto.Request|null} [request] UserContactsDelete request
+         * @property {Long|null} [phone] UserContactsDelete phone
          */
 
     /**
          * Constructs a new UserContactsDelete.
          * @memberof proto
          * @classdesc Represents a UserContactsDelete.
+         * @implements IUserContactsDelete
          * @constructor
          * @param {proto.IUserContactsDelete=} [properties] Properties to set
          */
@@ -42453,7 +44002,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsDelete
          * @instance
          */
@@ -42461,7 +44010,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsDelete phone.
-         * @member {Long}phone
+         * @member {Long} phone
          * @memberof proto.UserContactsDelete
          * @instance
          */
@@ -42555,14 +44104,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsDeleteResponse.
          * @memberof proto
          * @interface IUserContactsDeleteResponse
-         * @property {proto.Response} [response] UserContactsDeleteResponse response
-         * @property {Long} [phone] UserContactsDeleteResponse phone
+         * @property {proto.Response|null} [response] UserContactsDeleteResponse response
+         * @property {Long|null} [phone] UserContactsDeleteResponse phone
          */
 
     /**
          * Constructs a new UserContactsDeleteResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsDeleteResponse.
+         * @implements IUserContactsDeleteResponse
          * @constructor
          * @param {proto.IUserContactsDeleteResponse=} [properties] Properties to set
          */
@@ -42576,7 +44126,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsDeleteResponse
          * @instance
          */
@@ -42584,7 +44134,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsDeleteResponse phone.
-         * @member {Long}phone
+         * @member {Long} phone
          * @memberof proto.UserContactsDeleteResponse
          * @instance
          */
@@ -42678,16 +44228,17 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsEdit.
          * @memberof proto
          * @interface IUserContactsEdit
-         * @property {proto.Request} [request] UserContactsEdit request
-         * @property {Long} [phone] UserContactsEdit phone
-         * @property {string} [firstName] UserContactsEdit firstName
-         * @property {string} [lastName] UserContactsEdit lastName
+         * @property {proto.Request|null} [request] UserContactsEdit request
+         * @property {Long|null} [phone] UserContactsEdit phone
+         * @property {string|null} [firstName] UserContactsEdit firstName
+         * @property {string|null} [lastName] UserContactsEdit lastName
          */
 
     /**
          * Constructs a new UserContactsEdit.
          * @memberof proto
          * @classdesc Represents a UserContactsEdit.
+         * @implements IUserContactsEdit
          * @constructor
          * @param {proto.IUserContactsEdit=} [properties] Properties to set
          */
@@ -42701,7 +44252,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEdit request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsEdit
          * @instance
          */
@@ -42709,7 +44260,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEdit phone.
-         * @member {Long}phone
+         * @member {Long} phone
          * @memberof proto.UserContactsEdit
          * @instance
          */
@@ -42717,7 +44268,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEdit firstName.
-         * @member {string}firstName
+         * @member {string} firstName
          * @memberof proto.UserContactsEdit
          * @instance
          */
@@ -42725,7 +44276,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEdit lastName.
-         * @member {string}lastName
+         * @member {string} lastName
          * @memberof proto.UserContactsEdit
          * @instance
          */
@@ -42833,17 +44384,18 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsEditResponse.
          * @memberof proto
          * @interface IUserContactsEditResponse
-         * @property {proto.Response} [response] UserContactsEditResponse response
-         * @property {Long} [phone] UserContactsEditResponse phone
-         * @property {string} [firstName] UserContactsEditResponse firstName
-         * @property {string} [lastName] UserContactsEditResponse lastName
-         * @property {string} [initials] UserContactsEditResponse initials
+         * @property {proto.Response|null} [response] UserContactsEditResponse response
+         * @property {Long|null} [phone] UserContactsEditResponse phone
+         * @property {string|null} [firstName] UserContactsEditResponse firstName
+         * @property {string|null} [lastName] UserContactsEditResponse lastName
+         * @property {string|null} [initials] UserContactsEditResponse initials
          */
 
     /**
          * Constructs a new UserContactsEditResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsEditResponse.
+         * @implements IUserContactsEditResponse
          * @constructor
          * @param {proto.IUserContactsEditResponse=} [properties] Properties to set
          */
@@ -42857,7 +44409,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEditResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsEditResponse
          * @instance
          */
@@ -42865,7 +44417,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEditResponse phone.
-         * @member {Long}phone
+         * @member {Long} phone
          * @memberof proto.UserContactsEditResponse
          * @instance
          */
@@ -42873,7 +44425,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEditResponse firstName.
-         * @member {string}firstName
+         * @member {string} firstName
          * @memberof proto.UserContactsEditResponse
          * @instance
          */
@@ -42881,7 +44433,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEditResponse lastName.
-         * @member {string}lastName
+         * @member {string} lastName
          * @memberof proto.UserContactsEditResponse
          * @instance
          */
@@ -42889,7 +44441,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsEditResponse initials.
-         * @member {string}initials
+         * @member {string} initials
          * @memberof proto.UserContactsEditResponse
          * @instance
          */
@@ -43004,13 +44556,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsGetBlockedList.
          * @memberof proto
          * @interface IUserContactsGetBlockedList
-         * @property {proto.Request} [request] UserContactsGetBlockedList request
+         * @property {proto.Request|null} [request] UserContactsGetBlockedList request
          */
 
     /**
          * Constructs a new UserContactsGetBlockedList.
          * @memberof proto
          * @classdesc Represents a UserContactsGetBlockedList.
+         * @implements IUserContactsGetBlockedList
          * @constructor
          * @param {proto.IUserContactsGetBlockedList=} [properties] Properties to set
          */
@@ -43024,7 +44577,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsGetBlockedList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsGetBlockedList
          * @instance
          */
@@ -43111,14 +44664,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsGetBlockedListResponse.
          * @memberof proto
          * @interface IUserContactsGetBlockedListResponse
-         * @property {proto.Response} [response] UserContactsGetBlockedListResponse response
-         * @property {Array.<proto.UserContactsGetBlockedListResponse.User>} [user] UserContactsGetBlockedListResponse user
+         * @property {proto.Response|null} [response] UserContactsGetBlockedListResponse response
+         * @property {Array.<proto.UserContactsGetBlockedListResponse.User>|null} [user] UserContactsGetBlockedListResponse user
          */
 
     /**
          * Constructs a new UserContactsGetBlockedListResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsGetBlockedListResponse.
+         * @implements IUserContactsGetBlockedListResponse
          * @constructor
          * @param {proto.IUserContactsGetBlockedListResponse=} [properties] Properties to set
          */
@@ -43133,7 +44687,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsGetBlockedListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsGetBlockedListResponse
          * @instance
          */
@@ -43141,7 +44695,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsGetBlockedListResponse user.
-         * @member {Array.<proto.UserContactsGetBlockedListResponse.User>}user
+         * @member {Array.<proto.UserContactsGetBlockedListResponse.User>} user
          * @memberof proto.UserContactsGetBlockedListResponse
          * @instance
          */
@@ -43226,7 +44780,7 @@ export const proto = $root.proto = (() => {
       if (message.user != null && message.hasOwnProperty('user')) {
         if (!Array.isArray(message.user)) {return 'user: array expected';}
         for (let i = 0; i < message.user.length; ++i) {
-          error = $root.proto.UserContactsGetBlockedListResponse.User.verify(message.user[i]);
+          let error = $root.proto.UserContactsGetBlockedListResponse.User.verify(message.user[i]);
           if (error) {return 'user.' + error;}
         }
       }
@@ -43239,14 +44793,15 @@ export const proto = $root.proto = (() => {
              * Properties of a User.
              * @memberof proto.UserContactsGetBlockedListResponse
              * @interface IUser
-             * @property {Long} [userId] User userId
-             * @property {string} [cacheId] User cacheId
+             * @property {Long|null} [userId] User userId
+             * @property {string|null} [cacheId] User cacheId
              */
 
       /**
              * Constructs a new User.
              * @memberof proto.UserContactsGetBlockedListResponse
              * @classdesc Represents a User.
+             * @implements IUser
              * @constructor
              * @param {proto.UserContactsGetBlockedListResponse.IUser=} [properties] Properties to set
              */
@@ -43260,7 +44815,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * User userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.UserContactsGetBlockedListResponse.User
              * @instance
              */
@@ -43268,7 +44823,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * User cacheId.
-             * @member {string}cacheId
+             * @member {string} cacheId
              * @memberof proto.UserContactsGetBlockedListResponse.User
              * @instance
              */
@@ -43364,13 +44919,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsGetList.
          * @memberof proto
          * @interface IUserContactsGetList
-         * @property {proto.Request} [request] UserContactsGetList request
+         * @property {proto.Request|null} [request] UserContactsGetList request
          */
 
     /**
          * Constructs a new UserContactsGetList.
          * @memberof proto
          * @classdesc Represents a UserContactsGetList.
+         * @implements IUserContactsGetList
          * @constructor
          * @param {proto.IUserContactsGetList=} [properties] Properties to set
          */
@@ -43384,7 +44940,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsGetList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsGetList
          * @instance
          */
@@ -43471,14 +45027,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsGetListResponse.
          * @memberof proto
          * @interface IUserContactsGetListResponse
-         * @property {proto.Response} [response] UserContactsGetListResponse response
-         * @property {Array.<proto.RegisteredUser>} [registeredUser] UserContactsGetListResponse registeredUser
+         * @property {proto.Response|null} [response] UserContactsGetListResponse response
+         * @property {Array.<proto.RegisteredUser>|null} [registeredUser] UserContactsGetListResponse registeredUser
          */
 
     /**
          * Constructs a new UserContactsGetListResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsGetListResponse.
+         * @implements IUserContactsGetListResponse
          * @constructor
          * @param {proto.IUserContactsGetListResponse=} [properties] Properties to set
          */
@@ -43493,7 +45050,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsGetListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsGetListResponse
          * @instance
          */
@@ -43501,7 +45058,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsGetListResponse registeredUser.
-         * @member {Array.<proto.RegisteredUser>}registeredUser
+         * @member {Array.<proto.RegisteredUser>} registeredUser
          * @memberof proto.UserContactsGetListResponse
          * @instance
          */
@@ -43586,7 +45143,7 @@ export const proto = $root.proto = (() => {
       if (message.registeredUser != null && message.hasOwnProperty('registeredUser')) {
         if (!Array.isArray(message.registeredUser)) {return 'registeredUser: array expected';}
         for (let i = 0; i < message.registeredUser.length; ++i) {
-          error = $root.proto.RegisteredUser.verify(message.registeredUser[i]);
+          let error = $root.proto.RegisteredUser.verify(message.registeredUser[i]);
           if (error) {return 'registeredUser.' + error;}
         }
       }
@@ -43602,15 +45159,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsImport.
          * @memberof proto
          * @interface IUserContactsImport
-         * @property {proto.Request} [request] UserContactsImport request
-         * @property {Array.<proto.UserContactsImport.Contact>} [contacts] UserContactsImport contacts
-         * @property {boolean} [force] UserContactsImport force
+         * @property {proto.Request|null} [request] UserContactsImport request
+         * @property {Array.<proto.UserContactsImport.Contact>|null} [contacts] UserContactsImport contacts
+         * @property {boolean|null} [force] UserContactsImport force
          */
 
     /**
          * Constructs a new UserContactsImport.
          * @memberof proto
          * @classdesc Represents a UserContactsImport.
+         * @implements IUserContactsImport
          * @constructor
          * @param {proto.IUserContactsImport=} [properties] Properties to set
          */
@@ -43625,7 +45183,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsImport request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsImport
          * @instance
          */
@@ -43633,7 +45191,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsImport contacts.
-         * @member {Array.<proto.UserContactsImport.Contact>}contacts
+         * @member {Array.<proto.UserContactsImport.Contact>} contacts
          * @memberof proto.UserContactsImport
          * @instance
          */
@@ -43641,7 +45199,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsImport force.
-         * @member {boolean}force
+         * @member {boolean} force
          * @memberof proto.UserContactsImport
          * @instance
          */
@@ -43730,7 +45288,7 @@ export const proto = $root.proto = (() => {
       if (message.contacts != null && message.hasOwnProperty('contacts')) {
         if (!Array.isArray(message.contacts)) {return 'contacts: array expected';}
         for (let i = 0; i < message.contacts.length; ++i) {
-          error = $root.proto.UserContactsImport.Contact.verify(message.contacts[i]);
+          let error = $root.proto.UserContactsImport.Contact.verify(message.contacts[i]);
           if (error) {return 'contacts.' + error;}
         }
       }
@@ -43746,16 +45304,17 @@ export const proto = $root.proto = (() => {
              * Properties of a Contact.
              * @memberof proto.UserContactsImport
              * @interface IContact
-             * @property {string} [phone] Contact phone
-             * @property {string} [firstName] Contact firstName
-             * @property {string} [lastName] Contact lastName
-             * @property {string} [clientId] Contact clientId
+             * @property {string|null} [phone] Contact phone
+             * @property {string|null} [firstName] Contact firstName
+             * @property {string|null} [lastName] Contact lastName
+             * @property {string|null} [clientId] Contact clientId
              */
 
       /**
              * Constructs a new Contact.
              * @memberof proto.UserContactsImport
              * @classdesc Represents a Contact.
+             * @implements IContact
              * @constructor
              * @param {proto.UserContactsImport.IContact=} [properties] Properties to set
              */
@@ -43769,7 +45328,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Contact phone.
-             * @member {string}phone
+             * @member {string} phone
              * @memberof proto.UserContactsImport.Contact
              * @instance
              */
@@ -43777,7 +45336,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Contact firstName.
-             * @member {string}firstName
+             * @member {string} firstName
              * @memberof proto.UserContactsImport.Contact
              * @instance
              */
@@ -43785,7 +45344,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Contact lastName.
-             * @member {string}lastName
+             * @member {string} lastName
              * @memberof proto.UserContactsImport.Contact
              * @instance
              */
@@ -43793,7 +45352,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Contact clientId.
-             * @member {string}clientId
+             * @member {string} clientId
              * @memberof proto.UserContactsImport.Contact
              * @instance
              */
@@ -43903,14 +45462,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsImportResponse.
          * @memberof proto
          * @interface IUserContactsImportResponse
-         * @property {proto.Response} [response] UserContactsImportResponse response
-         * @property {Array.<proto.UserContactsImportResponse.Contact>} [registeredContacts] UserContactsImportResponse registeredContacts
+         * @property {proto.Response|null} [response] UserContactsImportResponse response
+         * @property {Array.<proto.UserContactsImportResponse.Contact>|null} [registeredContacts] UserContactsImportResponse registeredContacts
          */
 
     /**
          * Constructs a new UserContactsImportResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsImportResponse.
+         * @implements IUserContactsImportResponse
          * @constructor
          * @param {proto.IUserContactsImportResponse=} [properties] Properties to set
          */
@@ -43925,7 +45485,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsImportResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsImportResponse
          * @instance
          */
@@ -43933,7 +45493,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsImportResponse registeredContacts.
-         * @member {Array.<proto.UserContactsImportResponse.Contact>}registeredContacts
+         * @member {Array.<proto.UserContactsImportResponse.Contact>} registeredContacts
          * @memberof proto.UserContactsImportResponse
          * @instance
          */
@@ -44018,7 +45578,7 @@ export const proto = $root.proto = (() => {
       if (message.registeredContacts != null && message.hasOwnProperty('registeredContacts')) {
         if (!Array.isArray(message.registeredContacts)) {return 'registeredContacts: array expected';}
         for (let i = 0; i < message.registeredContacts.length; ++i) {
-          error = $root.proto.UserContactsImportResponse.Contact.verify(message.registeredContacts[i]);
+          let error = $root.proto.UserContactsImportResponse.Contact.verify(message.registeredContacts[i]);
           if (error) {return 'registeredContacts.' + error;}
         }
       }
@@ -44031,14 +45591,15 @@ export const proto = $root.proto = (() => {
              * Properties of a Contact.
              * @memberof proto.UserContactsImportResponse
              * @interface IContact
-             * @property {string} [clientId] Contact clientId
-             * @property {Long} [userId] Contact userId
+             * @property {string|null} [clientId] Contact clientId
+             * @property {Long|null} [userId] Contact userId
              */
 
       /**
              * Constructs a new Contact.
              * @memberof proto.UserContactsImportResponse
              * @classdesc Represents a Contact.
+             * @implements IContact
              * @constructor
              * @param {proto.UserContactsImportResponse.IContact=} [properties] Properties to set
              */
@@ -44052,7 +45613,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Contact clientId.
-             * @member {string}clientId
+             * @member {string} clientId
              * @memberof proto.UserContactsImportResponse.Contact
              * @instance
              */
@@ -44060,7 +45621,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Contact userId.
-             * @member {Long}userId
+             * @member {Long} userId
              * @memberof proto.UserContactsImportResponse.Contact
              * @instance
              */
@@ -44156,14 +45717,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsUnblock.
          * @memberof proto
          * @interface IUserContactsUnblock
-         * @property {proto.Request} [request] UserContactsUnblock request
-         * @property {Long} [userId] UserContactsUnblock userId
+         * @property {proto.Request|null} [request] UserContactsUnblock request
+         * @property {Long|null} [userId] UserContactsUnblock userId
          */
 
     /**
          * Constructs a new UserContactsUnblock.
          * @memberof proto
          * @classdesc Represents a UserContactsUnblock.
+         * @implements IUserContactsUnblock
          * @constructor
          * @param {proto.IUserContactsUnblock=} [properties] Properties to set
          */
@@ -44177,7 +45739,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsUnblock request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserContactsUnblock
          * @instance
          */
@@ -44185,7 +45747,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsUnblock userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserContactsUnblock
          * @instance
          */
@@ -44279,14 +45841,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserContactsUnblockResponse.
          * @memberof proto
          * @interface IUserContactsUnblockResponse
-         * @property {proto.Response} [response] UserContactsUnblockResponse response
-         * @property {Long} [userId] UserContactsUnblockResponse userId
+         * @property {proto.Response|null} [response] UserContactsUnblockResponse response
+         * @property {Long|null} [userId] UserContactsUnblockResponse userId
          */
 
     /**
          * Constructs a new UserContactsUnblockResponse.
          * @memberof proto
          * @classdesc Represents a UserContactsUnblockResponse.
+         * @implements IUserContactsUnblockResponse
          * @constructor
          * @param {proto.IUserContactsUnblockResponse=} [properties] Properties to set
          */
@@ -44300,7 +45863,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsUnblockResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserContactsUnblockResponse
          * @instance
          */
@@ -44308,7 +45871,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserContactsUnblockResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserContactsUnblockResponse
          * @instance
          */
@@ -44402,15 +45965,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserDelete.
          * @memberof proto
          * @interface IUserDelete
-         * @property {proto.Request} [request] UserDelete request
-         * @property {string} [token] UserDelete token
-         * @property {proto.UserDelete.Reason} [reason] UserDelete reason
+         * @property {proto.Request|null} [request] UserDelete request
+         * @property {string|null} [token] UserDelete token
+         * @property {proto.UserDelete.Reason|null} [reason] UserDelete reason
          */
 
     /**
          * Constructs a new UserDelete.
          * @memberof proto
          * @classdesc Represents a UserDelete.
+         * @implements IUserDelete
          * @constructor
          * @param {proto.IUserDelete=} [properties] Properties to set
          */
@@ -44424,7 +45988,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserDelete request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserDelete
          * @instance
          */
@@ -44432,7 +45996,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserDelete token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserDelete
          * @instance
          */
@@ -44440,7 +46004,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserDelete reason.
-         * @member {proto.UserDelete.Reason}reason
+         * @member {proto.UserDelete.Reason} reason
          * @memberof proto.UserDelete
          * @instance
          */
@@ -44539,6 +46103,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Reason enum.
+         * @name proto.UserDelete.Reason
          * @enum {string}
          * @property {number} OTHER=0 OTHER value
          */
@@ -44557,13 +46122,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserDeleteResponse.
          * @memberof proto
          * @interface IUserDeleteResponse
-         * @property {proto.Response} [response] UserDeleteResponse response
+         * @property {proto.Response|null} [response] UserDeleteResponse response
          */
 
     /**
          * Constructs a new UserDeleteResponse.
          * @memberof proto
          * @classdesc Represents a UserDeleteResponse.
+         * @implements IUserDeleteResponse
          * @constructor
          * @param {proto.IUserDeleteResponse=} [properties] Properties to set
          */
@@ -44577,7 +46143,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserDeleteResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserDeleteResponse
          * @instance
          */
@@ -44664,13 +46230,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserGetDeleteToken.
          * @memberof proto
          * @interface IUserGetDeleteToken
-         * @property {proto.Request} [request] UserGetDeleteToken request
+         * @property {proto.Request|null} [request] UserGetDeleteToken request
          */
 
     /**
          * Constructs a new UserGetDeleteToken.
          * @memberof proto
          * @classdesc Represents a UserGetDeleteToken.
+         * @implements IUserGetDeleteToken
          * @constructor
          * @param {proto.IUserGetDeleteToken=} [properties] Properties to set
          */
@@ -44684,7 +46251,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserGetDeleteToken request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserGetDeleteToken
          * @instance
          */
@@ -44771,17 +46338,18 @@ export const proto = $root.proto = (() => {
          * Properties of a UserGetDeleteTokenResponse.
          * @memberof proto
          * @interface IUserGetDeleteTokenResponse
-         * @property {proto.Response} [response] UserGetDeleteTokenResponse response
-         * @property {number} [resendDelay] UserGetDeleteTokenResponse resendDelay
-         * @property {Array.<Long>} [smsNumber] UserGetDeleteTokenResponse smsNumber
-         * @property {string} [tokenRegex] UserGetDeleteTokenResponse tokenRegex
-         * @property {string} [tokenLength] UserGetDeleteTokenResponse tokenLength
+         * @property {proto.Response|null} [response] UserGetDeleteTokenResponse response
+         * @property {number|null} [resendDelay] UserGetDeleteTokenResponse resendDelay
+         * @property {Array.<Long>|null} [smsNumber] UserGetDeleteTokenResponse smsNumber
+         * @property {string|null} [tokenRegex] UserGetDeleteTokenResponse tokenRegex
+         * @property {string|null} [tokenLength] UserGetDeleteTokenResponse tokenLength
          */
 
     /**
          * Constructs a new UserGetDeleteTokenResponse.
          * @memberof proto
          * @classdesc Represents a UserGetDeleteTokenResponse.
+         * @implements IUserGetDeleteTokenResponse
          * @constructor
          * @param {proto.IUserGetDeleteTokenResponse=} [properties] Properties to set
          */
@@ -44796,7 +46364,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserGetDeleteTokenResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserGetDeleteTokenResponse
          * @instance
          */
@@ -44804,7 +46372,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserGetDeleteTokenResponse resendDelay.
-         * @member {number}resendDelay
+         * @member {number} resendDelay
          * @memberof proto.UserGetDeleteTokenResponse
          * @instance
          */
@@ -44812,7 +46380,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserGetDeleteTokenResponse smsNumber.
-         * @member {Array.<Long>}smsNumber
+         * @member {Array.<Long>} smsNumber
          * @memberof proto.UserGetDeleteTokenResponse
          * @instance
          */
@@ -44820,7 +46388,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserGetDeleteTokenResponse tokenRegex.
-         * @member {string}tokenRegex
+         * @member {string} tokenRegex
          * @memberof proto.UserGetDeleteTokenResponse
          * @instance
          */
@@ -44828,7 +46396,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserGetDeleteTokenResponse tokenLength.
-         * @member {string}tokenLength
+         * @member {string} tokenLength
          * @memberof proto.UserGetDeleteTokenResponse
          * @instance
          */
@@ -44954,14 +46522,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserInfo.
          * @memberof proto
          * @interface IUserInfo
-         * @property {proto.Request} [request] UserInfo request
-         * @property {Long} [userId] UserInfo userId
+         * @property {proto.Request|null} [request] UserInfo request
+         * @property {Long|null} [userId] UserInfo userId
          */
 
     /**
          * Constructs a new UserInfo.
          * @memberof proto
          * @classdesc Represents a UserInfo.
+         * @implements IUserInfo
          * @constructor
          * @param {proto.IUserInfo=} [properties] Properties to set
          */
@@ -44975,7 +46544,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserInfo request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserInfo
          * @instance
          */
@@ -44983,7 +46552,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserInfo userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserInfo
          * @instance
          */
@@ -45077,14 +46646,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserInfoResponse.
          * @memberof proto
          * @interface IUserInfoResponse
-         * @property {proto.Response} [response] UserInfoResponse response
-         * @property {proto.RegisteredUser} [user] UserInfoResponse user
+         * @property {proto.Response|null} [response] UserInfoResponse response
+         * @property {proto.RegisteredUser|null} [user] UserInfoResponse user
          */
 
     /**
          * Constructs a new UserInfoResponse.
          * @memberof proto
          * @classdesc Represents a UserInfoResponse.
+         * @implements IUserInfoResponse
          * @constructor
          * @param {proto.IUserInfoResponse=} [properties] Properties to set
          */
@@ -45098,7 +46668,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserInfoResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserInfoResponse
          * @instance
          */
@@ -45106,7 +46676,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserInfoResponse user.
-         * @member {(proto.RegisteredUser|null|undefined)}user
+         * @member {proto.RegisteredUser|null|undefined} user
          * @memberof proto.UserInfoResponse
          * @instance
          */
@@ -45186,7 +46756,7 @@ export const proto = $root.proto = (() => {
         if (error) {return 'response.' + error;}
       }
       if (message.user != null && message.hasOwnProperty('user')) {
-        error = $root.proto.RegisteredUser.verify(message.user);
+        let error = $root.proto.RegisteredUser.verify(message.user);
         if (error) {return 'user.' + error;}
       }
       return null;
@@ -45201,23 +46771,24 @@ export const proto = $root.proto = (() => {
          * Properties of a UserLogin.
          * @memberof proto
          * @interface IUserLogin
-         * @property {proto.Request} [request] UserLogin request
-         * @property {string} [token] UserLogin token
-         * @property {string} [appName] UserLogin appName
-         * @property {number} [appId] UserLogin appId
-         * @property {number} [appBuildVersion] UserLogin appBuildVersion
-         * @property {string} [appVersion] UserLogin appVersion
-         * @property {proto.Platform} [platform] UserLogin platform
-         * @property {string} [platformVersion] UserLogin platformVersion
-         * @property {proto.Device} [device] UserLogin device
-         * @property {string} [deviceName] UserLogin deviceName
-         * @property {proto.Language} [language] UserLogin language
+         * @property {proto.Request|null} [request] UserLogin request
+         * @property {string|null} [token] UserLogin token
+         * @property {string|null} [appName] UserLogin appName
+         * @property {number|null} [appId] UserLogin appId
+         * @property {number|null} [appBuildVersion] UserLogin appBuildVersion
+         * @property {string|null} [appVersion] UserLogin appVersion
+         * @property {proto.Platform|null} [platform] UserLogin platform
+         * @property {string|null} [platformVersion] UserLogin platformVersion
+         * @property {proto.Device|null} [device] UserLogin device
+         * @property {string|null} [deviceName] UserLogin deviceName
+         * @property {proto.Language|null} [language] UserLogin language
          */
 
     /**
          * Constructs a new UserLogin.
          * @memberof proto
          * @classdesc Represents a UserLogin.
+         * @implements IUserLogin
          * @constructor
          * @param {proto.IUserLogin=} [properties] Properties to set
          */
@@ -45231,7 +46802,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45239,7 +46810,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45247,7 +46818,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin appName.
-         * @member {string}appName
+         * @member {string} appName
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45255,7 +46826,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin appId.
-         * @member {number}appId
+         * @member {number} appId
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45263,7 +46834,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin appBuildVersion.
-         * @member {number}appBuildVersion
+         * @member {number} appBuildVersion
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45271,7 +46842,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin appVersion.
-         * @member {string}appVersion
+         * @member {string} appVersion
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45279,7 +46850,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin platform.
-         * @member {proto.Platform}platform
+         * @member {proto.Platform} platform
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45287,7 +46858,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin platformVersion.
-         * @member {string}platformVersion
+         * @member {string} platformVersion
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45295,7 +46866,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin device.
-         * @member {proto.Device}device
+         * @member {proto.Device} device
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45303,7 +46874,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin deviceName.
-         * @member {string}deviceName
+         * @member {string} deviceName
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45311,7 +46882,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLogin language.
-         * @member {proto.Language}language
+         * @member {proto.Language} language
          * @memberof proto.UserLogin
          * @instance
          */
@@ -45493,17 +47064,18 @@ export const proto = $root.proto = (() => {
          * Properties of a UserLoginResponse.
          * @memberof proto
          * @interface IUserLoginResponse
-         * @property {proto.Response} [response] UserLoginResponse response
-         * @property {boolean} [deprecatedClient] UserLoginResponse deprecatedClient
-         * @property {string} [secondaryNodeName] UserLoginResponse secondaryNodeName
-         * @property {boolean} [updateAvailable] UserLoginResponse updateAvailable
-         * @property {number} [chatDeleteMessageForBothPeriod] UserLoginResponse chatDeleteMessageForBothPeriod
+         * @property {proto.Response|null} [response] UserLoginResponse response
+         * @property {boolean|null} [deprecatedClient] UserLoginResponse deprecatedClient
+         * @property {string|null} [secondaryNodeName] UserLoginResponse secondaryNodeName
+         * @property {boolean|null} [updateAvailable] UserLoginResponse updateAvailable
+         * @property {number|null} [chatDeleteMessageForBothPeriod] UserLoginResponse chatDeleteMessageForBothPeriod
          */
 
     /**
          * Constructs a new UserLoginResponse.
          * @memberof proto
          * @classdesc Represents a UserLoginResponse.
+         * @implements IUserLoginResponse
          * @constructor
          * @param {proto.IUserLoginResponse=} [properties] Properties to set
          */
@@ -45517,7 +47089,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLoginResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserLoginResponse
          * @instance
          */
@@ -45525,7 +47097,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLoginResponse deprecatedClient.
-         * @member {boolean}deprecatedClient
+         * @member {boolean} deprecatedClient
          * @memberof proto.UserLoginResponse
          * @instance
          */
@@ -45533,7 +47105,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLoginResponse secondaryNodeName.
-         * @member {string}secondaryNodeName
+         * @member {string} secondaryNodeName
          * @memberof proto.UserLoginResponse
          * @instance
          */
@@ -45541,7 +47113,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLoginResponse updateAvailable.
-         * @member {boolean}updateAvailable
+         * @member {boolean} updateAvailable
          * @memberof proto.UserLoginResponse
          * @instance
          */
@@ -45549,7 +47121,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserLoginResponse chatDeleteMessageForBothPeriod.
-         * @member {number}chatDeleteMessageForBothPeriod
+         * @member {number} chatDeleteMessageForBothPeriod
          * @memberof proto.UserLoginResponse
          * @instance
          */
@@ -45664,14 +47236,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserPrivacyGetRule.
          * @memberof proto
          * @interface IUserPrivacyGetRule
-         * @property {proto.Request} [request] UserPrivacyGetRule request
-         * @property {proto.PrivacyType} [type] UserPrivacyGetRule type
+         * @property {proto.Request|null} [request] UserPrivacyGetRule request
+         * @property {proto.PrivacyType|null} [type] UserPrivacyGetRule type
          */
 
     /**
          * Constructs a new UserPrivacyGetRule.
          * @memberof proto
          * @classdesc Represents a UserPrivacyGetRule.
+         * @implements IUserPrivacyGetRule
          * @constructor
          * @param {proto.IUserPrivacyGetRule=} [properties] Properties to set
          */
@@ -45685,7 +47258,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacyGetRule request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserPrivacyGetRule
          * @instance
          */
@@ -45693,7 +47266,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacyGetRule type.
-         * @member {proto.PrivacyType}type
+         * @member {proto.PrivacyType} type
          * @memberof proto.UserPrivacyGetRule
          * @instance
          */
@@ -45799,14 +47372,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserPrivacyGetRuleResponse.
          * @memberof proto
          * @interface IUserPrivacyGetRuleResponse
-         * @property {proto.Response} [response] UserPrivacyGetRuleResponse response
-         * @property {proto.PrivacyLevel} [level] UserPrivacyGetRuleResponse level
+         * @property {proto.Response|null} [response] UserPrivacyGetRuleResponse response
+         * @property {proto.PrivacyLevel|null} [level] UserPrivacyGetRuleResponse level
          */
 
     /**
          * Constructs a new UserPrivacyGetRuleResponse.
          * @memberof proto
          * @classdesc Represents a UserPrivacyGetRuleResponse.
+         * @implements IUserPrivacyGetRuleResponse
          * @constructor
          * @param {proto.IUserPrivacyGetRuleResponse=} [properties] Properties to set
          */
@@ -45820,7 +47394,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacyGetRuleResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserPrivacyGetRuleResponse
          * @instance
          */
@@ -45828,7 +47402,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacyGetRuleResponse level.
-         * @member {proto.PrivacyLevel}level
+         * @member {proto.PrivacyLevel} level
          * @memberof proto.UserPrivacyGetRuleResponse
          * @instance
          */
@@ -45929,15 +47503,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserPrivacySetRule.
          * @memberof proto
          * @interface IUserPrivacySetRule
-         * @property {proto.Request} [request] UserPrivacySetRule request
-         * @property {proto.PrivacyType} [type] UserPrivacySetRule type
-         * @property {proto.PrivacyLevel} [level] UserPrivacySetRule level
+         * @property {proto.Request|null} [request] UserPrivacySetRule request
+         * @property {proto.PrivacyType|null} [type] UserPrivacySetRule type
+         * @property {proto.PrivacyLevel|null} [level] UserPrivacySetRule level
          */
 
     /**
          * Constructs a new UserPrivacySetRule.
          * @memberof proto
          * @classdesc Represents a UserPrivacySetRule.
+         * @implements IUserPrivacySetRule
          * @constructor
          * @param {proto.IUserPrivacySetRule=} [properties] Properties to set
          */
@@ -45951,7 +47526,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacySetRule request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserPrivacySetRule
          * @instance
          */
@@ -45959,7 +47534,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacySetRule type.
-         * @member {proto.PrivacyType}type
+         * @member {proto.PrivacyType} type
          * @memberof proto.UserPrivacySetRule
          * @instance
          */
@@ -45967,7 +47542,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacySetRule level.
-         * @member {proto.PrivacyLevel}level
+         * @member {proto.PrivacyLevel} level
          * @memberof proto.UserPrivacySetRule
          * @instance
          */
@@ -46087,15 +47662,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserPrivacySetRuleResponse.
          * @memberof proto
          * @interface IUserPrivacySetRuleResponse
-         * @property {proto.Response} [response] UserPrivacySetRuleResponse response
-         * @property {proto.PrivacyType} [type] UserPrivacySetRuleResponse type
-         * @property {proto.PrivacyLevel} [level] UserPrivacySetRuleResponse level
+         * @property {proto.Response|null} [response] UserPrivacySetRuleResponse response
+         * @property {proto.PrivacyType|null} [type] UserPrivacySetRuleResponse type
+         * @property {proto.PrivacyLevel|null} [level] UserPrivacySetRuleResponse level
          */
 
     /**
          * Constructs a new UserPrivacySetRuleResponse.
          * @memberof proto
          * @classdesc Represents a UserPrivacySetRuleResponse.
+         * @implements IUserPrivacySetRuleResponse
          * @constructor
          * @param {proto.IUserPrivacySetRuleResponse=} [properties] Properties to set
          */
@@ -46109,7 +47685,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacySetRuleResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserPrivacySetRuleResponse
          * @instance
          */
@@ -46117,7 +47693,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacySetRuleResponse type.
-         * @member {proto.PrivacyType}type
+         * @member {proto.PrivacyType} type
          * @memberof proto.UserPrivacySetRuleResponse
          * @instance
          */
@@ -46125,7 +47701,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserPrivacySetRuleResponse level.
-         * @member {proto.PrivacyLevel}level
+         * @member {proto.PrivacyLevel} level
          * @memberof proto.UserPrivacySetRuleResponse
          * @instance
          */
@@ -46245,14 +47821,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileCheckUsername.
          * @memberof proto
          * @interface IUserProfileCheckUsername
-         * @property {proto.Request} [request] UserProfileCheckUsername request
-         * @property {string} [username] UserProfileCheckUsername username
+         * @property {proto.Request|null} [request] UserProfileCheckUsername request
+         * @property {string|null} [username] UserProfileCheckUsername username
          */
 
     /**
          * Constructs a new UserProfileCheckUsername.
          * @memberof proto
          * @classdesc Represents a UserProfileCheckUsername.
+         * @implements IUserProfileCheckUsername
          * @constructor
          * @param {proto.IUserProfileCheckUsername=} [properties] Properties to set
          */
@@ -46266,7 +47843,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileCheckUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileCheckUsername
          * @instance
          */
@@ -46274,7 +47851,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileCheckUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.UserProfileCheckUsername
          * @instance
          */
@@ -46368,14 +47945,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileCheckUsernameResponse.
          * @memberof proto
          * @interface IUserProfileCheckUsernameResponse
-         * @property {proto.Response} [response] UserProfileCheckUsernameResponse response
-         * @property {proto.UserProfileCheckUsernameResponse.Status} [status] UserProfileCheckUsernameResponse status
+         * @property {proto.Response|null} [response] UserProfileCheckUsernameResponse response
+         * @property {proto.UserProfileCheckUsernameResponse.Status|null} [status] UserProfileCheckUsernameResponse status
          */
 
     /**
          * Constructs a new UserProfileCheckUsernameResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileCheckUsernameResponse.
+         * @implements IUserProfileCheckUsernameResponse
          * @constructor
          * @param {proto.IUserProfileCheckUsernameResponse=} [properties] Properties to set
          */
@@ -46389,7 +47967,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileCheckUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileCheckUsernameResponse
          * @instance
          */
@@ -46397,7 +47975,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileCheckUsernameResponse status.
-         * @member {proto.UserProfileCheckUsernameResponse.Status}status
+         * @member {proto.UserProfileCheckUsernameResponse.Status} status
          * @memberof proto.UserProfileCheckUsernameResponse
          * @instance
          */
@@ -46491,6 +48069,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Status enum.
+         * @name proto.UserProfileCheckUsernameResponse.Status
          * @enum {string}
          * @property {number} INVALID=0 INVALID value
          * @property {number} TAKEN=1 TAKEN value
@@ -46513,13 +48092,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetBio.
          * @memberof proto
          * @interface IUserProfileGetBio
-         * @property {proto.Request} [request] UserProfileGetBio request
+         * @property {proto.Request|null} [request] UserProfileGetBio request
          */
 
     /**
          * Constructs a new UserProfileGetBio.
          * @memberof proto
          * @classdesc Represents a UserProfileGetBio.
+         * @implements IUserProfileGetBio
          * @constructor
          * @param {proto.IUserProfileGetBio=} [properties] Properties to set
          */
@@ -46533,7 +48113,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetBio request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileGetBio
          * @instance
          */
@@ -46620,14 +48200,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetBioResponse.
          * @memberof proto
          * @interface IUserProfileGetBioResponse
-         * @property {proto.Response} [response] UserProfileGetBioResponse response
-         * @property {string} [bio] UserProfileGetBioResponse bio
+         * @property {proto.Response|null} [response] UserProfileGetBioResponse response
+         * @property {string|null} [bio] UserProfileGetBioResponse bio
          */
 
     /**
          * Constructs a new UserProfileGetBioResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileGetBioResponse.
+         * @implements IUserProfileGetBioResponse
          * @constructor
          * @param {proto.IUserProfileGetBioResponse=} [properties] Properties to set
          */
@@ -46641,7 +48222,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetBioResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileGetBioResponse
          * @instance
          */
@@ -46649,7 +48230,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetBioResponse bio.
-         * @member {string}bio
+         * @member {string} bio
          * @memberof proto.UserProfileGetBioResponse
          * @instance
          */
@@ -46743,13 +48324,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetEmail.
          * @memberof proto
          * @interface IUserProfileGetEmail
-         * @property {proto.Request} [request] UserProfileGetEmail request
+         * @property {proto.Request|null} [request] UserProfileGetEmail request
          */
 
     /**
          * Constructs a new UserProfileGetEmail.
          * @memberof proto
          * @classdesc Represents a UserProfileGetEmail.
+         * @implements IUserProfileGetEmail
          * @constructor
          * @param {proto.IUserProfileGetEmail=} [properties] Properties to set
          */
@@ -46763,7 +48345,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetEmail request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileGetEmail
          * @instance
          */
@@ -46850,14 +48432,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetEmailResponse.
          * @memberof proto
          * @interface IUserProfileGetEmailResponse
-         * @property {proto.Response} [response] UserProfileGetEmailResponse response
-         * @property {string} [email] UserProfileGetEmailResponse email
+         * @property {proto.Response|null} [response] UserProfileGetEmailResponse response
+         * @property {string|null} [email] UserProfileGetEmailResponse email
          */
 
     /**
          * Constructs a new UserProfileGetEmailResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileGetEmailResponse.
+         * @implements IUserProfileGetEmailResponse
          * @constructor
          * @param {proto.IUserProfileGetEmailResponse=} [properties] Properties to set
          */
@@ -46871,7 +48454,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetEmailResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileGetEmailResponse
          * @instance
          */
@@ -46879,7 +48462,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetEmailResponse email.
-         * @member {string}email
+         * @member {string} email
          * @memberof proto.UserProfileGetEmailResponse
          * @instance
          */
@@ -46973,13 +48556,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetGender.
          * @memberof proto
          * @interface IUserProfileGetGender
-         * @property {proto.Request} [request] UserProfileGetGender request
+         * @property {proto.Request|null} [request] UserProfileGetGender request
          */
 
     /**
          * Constructs a new UserProfileGetGender.
          * @memberof proto
          * @classdesc Represents a UserProfileGetGender.
+         * @implements IUserProfileGetGender
          * @constructor
          * @param {proto.IUserProfileGetGender=} [properties] Properties to set
          */
@@ -46993,7 +48577,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetGender request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileGetGender
          * @instance
          */
@@ -47080,14 +48664,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetGenderResponse.
          * @memberof proto
          * @interface IUserProfileGetGenderResponse
-         * @property {proto.Response} [response] UserProfileGetGenderResponse response
-         * @property {proto.Gender} [gender] UserProfileGetGenderResponse gender
+         * @property {proto.Response|null} [response] UserProfileGetGenderResponse response
+         * @property {proto.Gender|null} [gender] UserProfileGetGenderResponse gender
          */
 
     /**
          * Constructs a new UserProfileGetGenderResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileGetGenderResponse.
+         * @implements IUserProfileGetGenderResponse
          * @constructor
          * @param {proto.IUserProfileGetGenderResponse=} [properties] Properties to set
          */
@@ -47101,7 +48686,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetGenderResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileGetGenderResponse
          * @instance
          */
@@ -47109,7 +48694,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetGenderResponse gender.
-         * @member {proto.Gender}gender
+         * @member {proto.Gender} gender
          * @memberof proto.UserProfileGetGenderResponse
          * @instance
          */
@@ -47210,13 +48795,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetNickname.
          * @memberof proto
          * @interface IUserProfileGetNickname
-         * @property {proto.Request} [request] UserProfileGetNickname request
+         * @property {proto.Request|null} [request] UserProfileGetNickname request
          */
 
     /**
          * Constructs a new UserProfileGetNickname.
          * @memberof proto
          * @classdesc Represents a UserProfileGetNickname.
+         * @implements IUserProfileGetNickname
          * @constructor
          * @param {proto.IUserProfileGetNickname=} [properties] Properties to set
          */
@@ -47230,7 +48816,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetNickname request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileGetNickname
          * @instance
          */
@@ -47317,14 +48903,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetNicknameResponse.
          * @memberof proto
          * @interface IUserProfileGetNicknameResponse
-         * @property {proto.Response} [response] UserProfileGetNicknameResponse response
-         * @property {string} [nickname] UserProfileGetNicknameResponse nickname
+         * @property {proto.Response|null} [response] UserProfileGetNicknameResponse response
+         * @property {string|null} [nickname] UserProfileGetNicknameResponse nickname
          */
 
     /**
          * Constructs a new UserProfileGetNicknameResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileGetNicknameResponse.
+         * @implements IUserProfileGetNicknameResponse
          * @constructor
          * @param {proto.IUserProfileGetNicknameResponse=} [properties] Properties to set
          */
@@ -47338,7 +48925,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetNicknameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileGetNicknameResponse
          * @instance
          */
@@ -47346,7 +48933,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetNicknameResponse nickname.
-         * @member {string}nickname
+         * @member {string} nickname
          * @memberof proto.UserProfileGetNicknameResponse
          * @instance
          */
@@ -47440,13 +49027,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetSelfRemove.
          * @memberof proto
          * @interface IUserProfileGetSelfRemove
-         * @property {proto.Request} [request] UserProfileGetSelfRemove request
+         * @property {proto.Request|null} [request] UserProfileGetSelfRemove request
          */
 
     /**
          * Constructs a new UserProfileGetSelfRemove.
          * @memberof proto
          * @classdesc Represents a UserProfileGetSelfRemove.
+         * @implements IUserProfileGetSelfRemove
          * @constructor
          * @param {proto.IUserProfileGetSelfRemove=} [properties] Properties to set
          */
@@ -47460,7 +49048,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetSelfRemove request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileGetSelfRemove
          * @instance
          */
@@ -47547,14 +49135,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileGetSelfRemoveResponse.
          * @memberof proto
          * @interface IUserProfileGetSelfRemoveResponse
-         * @property {proto.Response} [response] UserProfileGetSelfRemoveResponse response
-         * @property {number} [selfRemove] UserProfileGetSelfRemoveResponse selfRemove
+         * @property {proto.Response|null} [response] UserProfileGetSelfRemoveResponse response
+         * @property {number|null} [selfRemove] UserProfileGetSelfRemoveResponse selfRemove
          */
 
     /**
          * Constructs a new UserProfileGetSelfRemoveResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileGetSelfRemoveResponse.
+         * @implements IUserProfileGetSelfRemoveResponse
          * @constructor
          * @param {proto.IUserProfileGetSelfRemoveResponse=} [properties] Properties to set
          */
@@ -47568,7 +49157,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetSelfRemoveResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileGetSelfRemoveResponse
          * @instance
          */
@@ -47576,7 +49165,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileGetSelfRemoveResponse selfRemove.
-         * @member {number}selfRemove
+         * @member {number} selfRemove
          * @memberof proto.UserProfileGetSelfRemoveResponse
          * @instance
          */
@@ -47670,14 +49259,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetBio.
          * @memberof proto
          * @interface IUserProfileSetBio
-         * @property {proto.Request} [request] UserProfileSetBio request
-         * @property {string} [bio] UserProfileSetBio bio
+         * @property {proto.Request|null} [request] UserProfileSetBio request
+         * @property {string|null} [bio] UserProfileSetBio bio
          */
 
     /**
          * Constructs a new UserProfileSetBio.
          * @memberof proto
          * @classdesc Represents a UserProfileSetBio.
+         * @implements IUserProfileSetBio
          * @constructor
          * @param {proto.IUserProfileSetBio=} [properties] Properties to set
          */
@@ -47691,7 +49281,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetBio request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileSetBio
          * @instance
          */
@@ -47699,7 +49289,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetBio bio.
-         * @member {string}bio
+         * @member {string} bio
          * @memberof proto.UserProfileSetBio
          * @instance
          */
@@ -47793,14 +49383,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetBioResponse.
          * @memberof proto
          * @interface IUserProfileSetBioResponse
-         * @property {proto.Response} [response] UserProfileSetBioResponse response
-         * @property {string} [bio] UserProfileSetBioResponse bio
+         * @property {proto.Response|null} [response] UserProfileSetBioResponse response
+         * @property {string|null} [bio] UserProfileSetBioResponse bio
          */
 
     /**
          * Constructs a new UserProfileSetBioResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileSetBioResponse.
+         * @implements IUserProfileSetBioResponse
          * @constructor
          * @param {proto.IUserProfileSetBioResponse=} [properties] Properties to set
          */
@@ -47814,7 +49405,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetBioResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileSetBioResponse
          * @instance
          */
@@ -47822,7 +49413,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetBioResponse bio.
-         * @member {string}bio
+         * @member {string} bio
          * @memberof proto.UserProfileSetBioResponse
          * @instance
          */
@@ -47916,14 +49507,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetEmail.
          * @memberof proto
          * @interface IUserProfileSetEmail
-         * @property {proto.Request} [request] UserProfileSetEmail request
-         * @property {string} [email] UserProfileSetEmail email
+         * @property {proto.Request|null} [request] UserProfileSetEmail request
+         * @property {string|null} [email] UserProfileSetEmail email
          */
 
     /**
          * Constructs a new UserProfileSetEmail.
          * @memberof proto
          * @classdesc Represents a UserProfileSetEmail.
+         * @implements IUserProfileSetEmail
          * @constructor
          * @param {proto.IUserProfileSetEmail=} [properties] Properties to set
          */
@@ -47937,7 +49529,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetEmail request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileSetEmail
          * @instance
          */
@@ -47945,7 +49537,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetEmail email.
-         * @member {string}email
+         * @member {string} email
          * @memberof proto.UserProfileSetEmail
          * @instance
          */
@@ -48039,14 +49631,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetEmailResponse.
          * @memberof proto
          * @interface IUserProfileSetEmailResponse
-         * @property {proto.Response} [response] UserProfileSetEmailResponse response
-         * @property {string} [email] UserProfileSetEmailResponse email
+         * @property {proto.Response|null} [response] UserProfileSetEmailResponse response
+         * @property {string|null} [email] UserProfileSetEmailResponse email
          */
 
     /**
          * Constructs a new UserProfileSetEmailResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileSetEmailResponse.
+         * @implements IUserProfileSetEmailResponse
          * @constructor
          * @param {proto.IUserProfileSetEmailResponse=} [properties] Properties to set
          */
@@ -48060,7 +49653,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetEmailResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileSetEmailResponse
          * @instance
          */
@@ -48068,7 +49661,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetEmailResponse email.
-         * @member {string}email
+         * @member {string} email
          * @memberof proto.UserProfileSetEmailResponse
          * @instance
          */
@@ -48162,14 +49755,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetGender.
          * @memberof proto
          * @interface IUserProfileSetGender
-         * @property {proto.Request} [request] UserProfileSetGender request
-         * @property {proto.Gender} [gender] UserProfileSetGender gender
+         * @property {proto.Request|null} [request] UserProfileSetGender request
+         * @property {proto.Gender|null} [gender] UserProfileSetGender gender
          */
 
     /**
          * Constructs a new UserProfileSetGender.
          * @memberof proto
          * @classdesc Represents a UserProfileSetGender.
+         * @implements IUserProfileSetGender
          * @constructor
          * @param {proto.IUserProfileSetGender=} [properties] Properties to set
          */
@@ -48183,7 +49777,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetGender request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileSetGender
          * @instance
          */
@@ -48191,7 +49785,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetGender gender.
-         * @member {proto.Gender}gender
+         * @member {proto.Gender} gender
          * @memberof proto.UserProfileSetGender
          * @instance
          */
@@ -48292,14 +49886,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetGenderResponse.
          * @memberof proto
          * @interface IUserProfileSetGenderResponse
-         * @property {proto.Response} [response] UserProfileSetGenderResponse response
-         * @property {proto.Gender} [gender] UserProfileSetGenderResponse gender
+         * @property {proto.Response|null} [response] UserProfileSetGenderResponse response
+         * @property {proto.Gender|null} [gender] UserProfileSetGenderResponse gender
          */
 
     /**
          * Constructs a new UserProfileSetGenderResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileSetGenderResponse.
+         * @implements IUserProfileSetGenderResponse
          * @constructor
          * @param {proto.IUserProfileSetGenderResponse=} [properties] Properties to set
          */
@@ -48313,7 +49908,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetGenderResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileSetGenderResponse
          * @instance
          */
@@ -48321,7 +49916,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetGenderResponse gender.
-         * @member {proto.Gender}gender
+         * @member {proto.Gender} gender
          * @memberof proto.UserProfileSetGenderResponse
          * @instance
          */
@@ -48422,14 +50017,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetNickname.
          * @memberof proto
          * @interface IUserProfileSetNickname
-         * @property {proto.Request} [request] UserProfileSetNickname request
-         * @property {string} [nickname] UserProfileSetNickname nickname
+         * @property {proto.Request|null} [request] UserProfileSetNickname request
+         * @property {string|null} [nickname] UserProfileSetNickname nickname
          */
 
     /**
          * Constructs a new UserProfileSetNickname.
          * @memberof proto
          * @classdesc Represents a UserProfileSetNickname.
+         * @implements IUserProfileSetNickname
          * @constructor
          * @param {proto.IUserProfileSetNickname=} [properties] Properties to set
          */
@@ -48443,7 +50039,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetNickname request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileSetNickname
          * @instance
          */
@@ -48451,7 +50047,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetNickname nickname.
-         * @member {string}nickname
+         * @member {string} nickname
          * @memberof proto.UserProfileSetNickname
          * @instance
          */
@@ -48545,15 +50141,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetNicknameResponse.
          * @memberof proto
          * @interface IUserProfileSetNicknameResponse
-         * @property {proto.Response} [response] UserProfileSetNicknameResponse response
-         * @property {string} [nickname] UserProfileSetNicknameResponse nickname
-         * @property {string} [initials] UserProfileSetNicknameResponse initials
+         * @property {proto.Response|null} [response] UserProfileSetNicknameResponse response
+         * @property {string|null} [nickname] UserProfileSetNicknameResponse nickname
+         * @property {string|null} [initials] UserProfileSetNicknameResponse initials
          */
 
     /**
          * Constructs a new UserProfileSetNicknameResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileSetNicknameResponse.
+         * @implements IUserProfileSetNicknameResponse
          * @constructor
          * @param {proto.IUserProfileSetNicknameResponse=} [properties] Properties to set
          */
@@ -48567,7 +50164,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetNicknameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileSetNicknameResponse
          * @instance
          */
@@ -48575,7 +50172,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetNicknameResponse nickname.
-         * @member {string}nickname
+         * @member {string} nickname
          * @memberof proto.UserProfileSetNicknameResponse
          * @instance
          */
@@ -48583,7 +50180,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetNicknameResponse initials.
-         * @member {string}initials
+         * @member {string} initials
          * @memberof proto.UserProfileSetNicknameResponse
          * @instance
          */
@@ -48684,14 +50281,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetSelfRemove.
          * @memberof proto
          * @interface IUserProfileSetSelfRemove
-         * @property {proto.Request} [request] UserProfileSetSelfRemove request
-         * @property {number} [selfRemove] UserProfileSetSelfRemove selfRemove
+         * @property {proto.Request|null} [request] UserProfileSetSelfRemove request
+         * @property {number|null} [selfRemove] UserProfileSetSelfRemove selfRemove
          */
 
     /**
          * Constructs a new UserProfileSetSelfRemove.
          * @memberof proto
          * @classdesc Represents a UserProfileSetSelfRemove.
+         * @implements IUserProfileSetSelfRemove
          * @constructor
          * @param {proto.IUserProfileSetSelfRemove=} [properties] Properties to set
          */
@@ -48705,7 +50303,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetSelfRemove request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileSetSelfRemove
          * @instance
          */
@@ -48713,7 +50311,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetSelfRemove selfRemove.
-         * @member {number}selfRemove
+         * @member {number} selfRemove
          * @memberof proto.UserProfileSetSelfRemove
          * @instance
          */
@@ -48807,14 +50405,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileSetSelfRemoveResponse.
          * @memberof proto
          * @interface IUserProfileSetSelfRemoveResponse
-         * @property {proto.Response} [response] UserProfileSetSelfRemoveResponse response
-         * @property {number} [selfRemove] UserProfileSetSelfRemoveResponse selfRemove
+         * @property {proto.Response|null} [response] UserProfileSetSelfRemoveResponse response
+         * @property {number|null} [selfRemove] UserProfileSetSelfRemoveResponse selfRemove
          */
 
     /**
          * Constructs a new UserProfileSetSelfRemoveResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileSetSelfRemoveResponse.
+         * @implements IUserProfileSetSelfRemoveResponse
          * @constructor
          * @param {proto.IUserProfileSetSelfRemoveResponse=} [properties] Properties to set
          */
@@ -48828,7 +50427,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetSelfRemoveResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileSetSelfRemoveResponse
          * @instance
          */
@@ -48836,7 +50435,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileSetSelfRemoveResponse selfRemove.
-         * @member {number}selfRemove
+         * @member {number} selfRemove
          * @memberof proto.UserProfileSetSelfRemoveResponse
          * @instance
          */
@@ -48930,14 +50529,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileUpdateUsername.
          * @memberof proto
          * @interface IUserProfileUpdateUsername
-         * @property {proto.Request} [request] UserProfileUpdateUsername request
-         * @property {string} [username] UserProfileUpdateUsername username
+         * @property {proto.Request|null} [request] UserProfileUpdateUsername request
+         * @property {string|null} [username] UserProfileUpdateUsername username
          */
 
     /**
          * Constructs a new UserProfileUpdateUsername.
          * @memberof proto
          * @classdesc Represents a UserProfileUpdateUsername.
+         * @implements IUserProfileUpdateUsername
          * @constructor
          * @param {proto.IUserProfileUpdateUsername=} [properties] Properties to set
          */
@@ -48951,7 +50551,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileUpdateUsername request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserProfileUpdateUsername
          * @instance
          */
@@ -48959,7 +50559,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileUpdateUsername username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.UserProfileUpdateUsername
          * @instance
          */
@@ -49053,14 +50653,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserProfileUpdateUsernameResponse.
          * @memberof proto
          * @interface IUserProfileUpdateUsernameResponse
-         * @property {proto.Response} [response] UserProfileUpdateUsernameResponse response
-         * @property {string} [username] UserProfileUpdateUsernameResponse username
+         * @property {proto.Response|null} [response] UserProfileUpdateUsernameResponse response
+         * @property {string|null} [username] UserProfileUpdateUsernameResponse username
          */
 
     /**
          * Constructs a new UserProfileUpdateUsernameResponse.
          * @memberof proto
          * @classdesc Represents a UserProfileUpdateUsernameResponse.
+         * @implements IUserProfileUpdateUsernameResponse
          * @constructor
          * @param {proto.IUserProfileUpdateUsernameResponse=} [properties] Properties to set
          */
@@ -49074,7 +50675,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileUpdateUsernameResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserProfileUpdateUsernameResponse
          * @instance
          */
@@ -49082,7 +50683,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserProfileUpdateUsernameResponse username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.UserProfileUpdateUsernameResponse
          * @instance
          */
@@ -49176,15 +50777,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserRegister.
          * @memberof proto
          * @interface IUserRegister
-         * @property {proto.Request} [request] UserRegister request
-         * @property {Long} [phoneNumber] UserRegister phoneNumber
-         * @property {string} [countryCode] UserRegister countryCode
+         * @property {proto.Request|null} [request] UserRegister request
+         * @property {Long|null} [phoneNumber] UserRegister phoneNumber
+         * @property {string|null} [countryCode] UserRegister countryCode
          */
 
     /**
          * Constructs a new UserRegister.
          * @memberof proto
          * @classdesc Represents a UserRegister.
+         * @implements IUserRegister
          * @constructor
          * @param {proto.IUserRegister=} [properties] Properties to set
          */
@@ -49198,7 +50800,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegister request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserRegister
          * @instance
          */
@@ -49206,7 +50808,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegister phoneNumber.
-         * @member {Long}phoneNumber
+         * @member {Long} phoneNumber
          * @memberof proto.UserRegister
          * @instance
          */
@@ -49214,7 +50816,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegister countryCode.
-         * @member {string}countryCode
+         * @member {string} countryCode
          * @memberof proto.UserRegister
          * @instance
          */
@@ -49315,21 +50917,22 @@ export const proto = $root.proto = (() => {
          * Properties of a UserRegisterResponse.
          * @memberof proto
          * @interface IUserRegisterResponse
-         * @property {proto.Response} [response] UserRegisterResponse response
-         * @property {string} [username] UserRegisterResponse username
-         * @property {Long} [userId] UserRegisterResponse userId
-         * @property {string} [authorHash] UserRegisterResponse authorHash
-         * @property {proto.UserRegisterResponse.Method} [method] UserRegisterResponse method
-         * @property {number} [resendDelay] UserRegisterResponse resendDelay
-         * @property {Array.<Long>} [smsNumber] UserRegisterResponse smsNumber
-         * @property {string} [verifyCodeRegex] UserRegisterResponse verifyCodeRegex
-         * @property {number} [verifyCodeDigitCount] UserRegisterResponse verifyCodeDigitCount
+         * @property {proto.Response|null} [response] UserRegisterResponse response
+         * @property {string|null} [username] UserRegisterResponse username
+         * @property {Long|null} [userId] UserRegisterResponse userId
+         * @property {string|null} [authorHash] UserRegisterResponse authorHash
+         * @property {proto.UserRegisterResponse.Method|null} [method] UserRegisterResponse method
+         * @property {number|null} [resendDelay] UserRegisterResponse resendDelay
+         * @property {Array.<Long>|null} [smsNumber] UserRegisterResponse smsNumber
+         * @property {string|null} [verifyCodeRegex] UserRegisterResponse verifyCodeRegex
+         * @property {number|null} [verifyCodeDigitCount] UserRegisterResponse verifyCodeDigitCount
          */
 
     /**
          * Constructs a new UserRegisterResponse.
          * @memberof proto
          * @classdesc Represents a UserRegisterResponse.
+         * @implements IUserRegisterResponse
          * @constructor
          * @param {proto.IUserRegisterResponse=} [properties] Properties to set
          */
@@ -49344,7 +50947,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49352,7 +50955,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49360,7 +50963,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49368,7 +50971,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse authorHash.
-         * @member {string}authorHash
+         * @member {string} authorHash
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49376,7 +50979,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse method.
-         * @member {proto.UserRegisterResponse.Method}method
+         * @member {proto.UserRegisterResponse.Method} method
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49384,7 +50987,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse resendDelay.
-         * @member {number}resendDelay
+         * @member {number} resendDelay
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49392,7 +50995,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse smsNumber.
-         * @member {Array.<Long>}smsNumber
+         * @member {Array.<Long>} smsNumber
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49400,7 +51003,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse verifyCodeRegex.
-         * @member {string}verifyCodeRegex
+         * @member {string} verifyCodeRegex
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49408,7 +51011,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserRegisterResponse verifyCodeDigitCount.
-         * @member {number}verifyCodeDigitCount
+         * @member {number} verifyCodeDigitCount
          * @memberof proto.UserRegisterResponse
          * @instance
          */
@@ -49562,6 +51165,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Method enum.
+         * @name proto.UserRegisterResponse.Method
          * @enum {string}
          * @property {number} VERIFY_CODE_SMS=0 VERIFY_CODE_SMS value
          * @property {number} VERIFY_CODE_SOCKET=1 VERIFY_CODE_SOCKET value
@@ -49584,16 +51188,17 @@ export const proto = $root.proto = (() => {
          * Properties of a UserReport.
          * @memberof proto
          * @interface IUserReport
-         * @property {proto.Request} [request] UserReport request
-         * @property {Long} [userId] UserReport userId
-         * @property {proto.UserReport.Reason} [reason] UserReport reason
-         * @property {string} [description] UserReport description
+         * @property {proto.Request|null} [request] UserReport request
+         * @property {Long|null} [userId] UserReport userId
+         * @property {proto.UserReport.Reason|null} [reason] UserReport reason
+         * @property {string|null} [description] UserReport description
          */
 
     /**
          * Constructs a new UserReport.
          * @memberof proto
          * @classdesc Represents a UserReport.
+         * @implements IUserReport
          * @constructor
          * @param {proto.IUserReport=} [properties] Properties to set
          */
@@ -49607,7 +51212,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserReport request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserReport
          * @instance
          */
@@ -49615,7 +51220,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserReport userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserReport
          * @instance
          */
@@ -49623,7 +51228,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserReport reason.
-         * @member {proto.UserReport.Reason}reason
+         * @member {proto.UserReport.Reason} reason
          * @memberof proto.UserReport
          * @instance
          */
@@ -49631,7 +51236,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserReport description.
-         * @member {string}description
+         * @member {string} description
          * @memberof proto.UserReport
          * @instance
          */
@@ -49740,6 +51345,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Reason enum.
+         * @name proto.UserReport.Reason
          * @enum {string}
          * @property {number} OTHER=0 OTHER value
          * @property {number} SPAM=1 SPAM value
@@ -49764,13 +51370,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserReportResponse.
          * @memberof proto
          * @interface IUserReportResponse
-         * @property {proto.Response} [response] UserReportResponse response
+         * @property {proto.Response|null} [response] UserReportResponse response
          */
 
     /**
          * Constructs a new UserReportResponse.
          * @memberof proto
          * @classdesc Represents a UserReportResponse.
+         * @implements IUserReportResponse
          * @constructor
          * @param {proto.IUserReportResponse=} [properties] Properties to set
          */
@@ -49784,7 +51391,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserReportResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserReportResponse
          * @instance
          */
@@ -49871,13 +51478,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserSessionGetActiveList.
          * @memberof proto
          * @interface IUserSessionGetActiveList
-         * @property {proto.Request} [request] UserSessionGetActiveList request
+         * @property {proto.Request|null} [request] UserSessionGetActiveList request
          */
 
     /**
          * Constructs a new UserSessionGetActiveList.
          * @memberof proto
          * @classdesc Represents a UserSessionGetActiveList.
+         * @implements IUserSessionGetActiveList
          * @constructor
          * @param {proto.IUserSessionGetActiveList=} [properties] Properties to set
          */
@@ -49891,7 +51499,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionGetActiveList request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserSessionGetActiveList
          * @instance
          */
@@ -49978,14 +51586,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserSessionGetActiveListResponse.
          * @memberof proto
          * @interface IUserSessionGetActiveListResponse
-         * @property {proto.Response} [response] UserSessionGetActiveListResponse response
-         * @property {Array.<proto.UserSessionGetActiveListResponse.Session>} [session] UserSessionGetActiveListResponse session
+         * @property {proto.Response|null} [response] UserSessionGetActiveListResponse response
+         * @property {Array.<proto.UserSessionGetActiveListResponse.Session>|null} [session] UserSessionGetActiveListResponse session
          */
 
     /**
          * Constructs a new UserSessionGetActiveListResponse.
          * @memberof proto
          * @classdesc Represents a UserSessionGetActiveListResponse.
+         * @implements IUserSessionGetActiveListResponse
          * @constructor
          * @param {proto.IUserSessionGetActiveListResponse=} [properties] Properties to set
          */
@@ -50000,7 +51609,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionGetActiveListResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserSessionGetActiveListResponse
          * @instance
          */
@@ -50008,7 +51617,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionGetActiveListResponse session.
-         * @member {Array.<proto.UserSessionGetActiveListResponse.Session>}session
+         * @member {Array.<proto.UserSessionGetActiveListResponse.Session>} session
          * @memberof proto.UserSessionGetActiveListResponse
          * @instance
          */
@@ -50093,7 +51702,7 @@ export const proto = $root.proto = (() => {
       if (message.session != null && message.hasOwnProperty('session')) {
         if (!Array.isArray(message.session)) {return 'session: array expected';}
         for (let i = 0; i < message.session.length; ++i) {
-          error = $root.proto.UserSessionGetActiveListResponse.Session.verify(message.session[i]);
+          let error = $root.proto.UserSessionGetActiveListResponse.Session.verify(message.session[i]);
           if (error) {return 'session.' + error;}
         }
       }
@@ -50106,27 +51715,28 @@ export const proto = $root.proto = (() => {
              * Properties of a Session.
              * @memberof proto.UserSessionGetActiveListResponse
              * @interface ISession
-             * @property {Long} [sessionId] Session sessionId
-             * @property {string} [appName] Session appName
-             * @property {number} [appId] Session appId
-             * @property {number} [appBuildVersion] Session appBuildVersion
-             * @property {string} [appVersion] Session appVersion
-             * @property {proto.Platform} [platform] Session platform
-             * @property {string} [platformVersion] Session platformVersion
-             * @property {proto.Device} [device] Session device
-             * @property {string} [deviceName] Session deviceName
-             * @property {proto.Language} [language] Session language
-             * @property {string} [country] Session country
-             * @property {boolean} [current] Session current
-             * @property {number} [createTime] Session createTime
-             * @property {number} [activeTime] Session activeTime
-             * @property {string} [ip] Session ip
+             * @property {Long|null} [sessionId] Session sessionId
+             * @property {string|null} [appName] Session appName
+             * @property {number|null} [appId] Session appId
+             * @property {number|null} [appBuildVersion] Session appBuildVersion
+             * @property {string|null} [appVersion] Session appVersion
+             * @property {proto.Platform|null} [platform] Session platform
+             * @property {string|null} [platformVersion] Session platformVersion
+             * @property {proto.Device|null} [device] Session device
+             * @property {string|null} [deviceName] Session deviceName
+             * @property {proto.Language|null} [language] Session language
+             * @property {string|null} [country] Session country
+             * @property {boolean|null} [current] Session current
+             * @property {number|null} [createTime] Session createTime
+             * @property {number|null} [activeTime] Session activeTime
+             * @property {string|null} [ip] Session ip
              */
 
       /**
              * Constructs a new Session.
              * @memberof proto.UserSessionGetActiveListResponse
              * @classdesc Represents a Session.
+             * @implements ISession
              * @constructor
              * @param {proto.UserSessionGetActiveListResponse.ISession=} [properties] Properties to set
              */
@@ -50140,7 +51750,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session sessionId.
-             * @member {Long}sessionId
+             * @member {Long} sessionId
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50148,7 +51758,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session appName.
-             * @member {string}appName
+             * @member {string} appName
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50156,7 +51766,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session appId.
-             * @member {number}appId
+             * @member {number} appId
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50164,7 +51774,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session appBuildVersion.
-             * @member {number}appBuildVersion
+             * @member {number} appBuildVersion
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50172,7 +51782,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session appVersion.
-             * @member {string}appVersion
+             * @member {string} appVersion
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50180,7 +51790,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session platform.
-             * @member {proto.Platform}platform
+             * @member {proto.Platform} platform
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50188,7 +51798,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session platformVersion.
-             * @member {string}platformVersion
+             * @member {string} platformVersion
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50196,7 +51806,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session device.
-             * @member {proto.Device}device
+             * @member {proto.Device} device
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50204,7 +51814,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session deviceName.
-             * @member {string}deviceName
+             * @member {string} deviceName
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50212,7 +51822,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session language.
-             * @member {proto.Language}language
+             * @member {proto.Language} language
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50220,7 +51830,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session country.
-             * @member {string}country
+             * @member {string} country
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50228,7 +51838,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session current.
-             * @member {boolean}current
+             * @member {boolean} current
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50236,7 +51846,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session createTime.
-             * @member {number}createTime
+             * @member {number} createTime
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50244,7 +51854,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session activeTime.
-             * @member {number}activeTime
+             * @member {number} activeTime
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50252,7 +51862,7 @@ export const proto = $root.proto = (() => {
 
       /**
              * Session ip.
-             * @member {string}ip
+             * @member {string} ip
              * @memberof proto.UserSessionGetActiveListResponse.Session
              * @instance
              */
@@ -50464,13 +52074,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserSessionLogout.
          * @memberof proto
          * @interface IUserSessionLogout
-         * @property {proto.Request} [request] UserSessionLogout request
+         * @property {proto.Request|null} [request] UserSessionLogout request
          */
 
     /**
          * Constructs a new UserSessionLogout.
          * @memberof proto
          * @classdesc Represents a UserSessionLogout.
+         * @implements IUserSessionLogout
          * @constructor
          * @param {proto.IUserSessionLogout=} [properties] Properties to set
          */
@@ -50484,7 +52095,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionLogout request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserSessionLogout
          * @instance
          */
@@ -50571,13 +52182,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserSessionLogoutResponse.
          * @memberof proto
          * @interface IUserSessionLogoutResponse
-         * @property {proto.Response} [response] UserSessionLogoutResponse response
+         * @property {proto.Response|null} [response] UserSessionLogoutResponse response
          */
 
     /**
          * Constructs a new UserSessionLogoutResponse.
          * @memberof proto
          * @classdesc Represents a UserSessionLogoutResponse.
+         * @implements IUserSessionLogoutResponse
          * @constructor
          * @param {proto.IUserSessionLogoutResponse=} [properties] Properties to set
          */
@@ -50591,7 +52203,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionLogoutResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserSessionLogoutResponse
          * @instance
          */
@@ -50678,14 +52290,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserSessionTerminate.
          * @memberof proto
          * @interface IUserSessionTerminate
-         * @property {proto.Request} [request] UserSessionTerminate request
-         * @property {Long} [sessionId] UserSessionTerminate sessionId
+         * @property {proto.Request|null} [request] UserSessionTerminate request
+         * @property {Long|null} [sessionId] UserSessionTerminate sessionId
          */
 
     /**
          * Constructs a new UserSessionTerminate.
          * @memberof proto
          * @classdesc Represents a UserSessionTerminate.
+         * @implements IUserSessionTerminate
          * @constructor
          * @param {proto.IUserSessionTerminate=} [properties] Properties to set
          */
@@ -50699,7 +52312,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionTerminate request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserSessionTerminate
          * @instance
          */
@@ -50707,7 +52320,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionTerminate sessionId.
-         * @member {Long}sessionId
+         * @member {Long} sessionId
          * @memberof proto.UserSessionTerminate
          * @instance
          */
@@ -50801,13 +52414,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserSessionTerminateResponse.
          * @memberof proto
          * @interface IUserSessionTerminateResponse
-         * @property {proto.Response} [response] UserSessionTerminateResponse response
+         * @property {proto.Response|null} [response] UserSessionTerminateResponse response
          */
 
     /**
          * Constructs a new UserSessionTerminateResponse.
          * @memberof proto
          * @classdesc Represents a UserSessionTerminateResponse.
+         * @implements IUserSessionTerminateResponse
          * @constructor
          * @param {proto.IUserSessionTerminateResponse=} [properties] Properties to set
          */
@@ -50821,7 +52435,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserSessionTerminateResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserSessionTerminateResponse
          * @instance
          */
@@ -50908,15 +52522,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationChangeHint.
          * @memberof proto
          * @interface IUserTwoStepVerificationChangeHint
-         * @property {proto.Request} [request] UserTwoStepVerificationChangeHint request
-         * @property {string} [password] UserTwoStepVerificationChangeHint password
-         * @property {string} [hint] UserTwoStepVerificationChangeHint hint
+         * @property {proto.Request|null} [request] UserTwoStepVerificationChangeHint request
+         * @property {string|null} [password] UserTwoStepVerificationChangeHint password
+         * @property {string|null} [hint] UserTwoStepVerificationChangeHint hint
          */
 
     /**
          * Constructs a new UserTwoStepVerificationChangeHint.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationChangeHint.
+         * @implements IUserTwoStepVerificationChangeHint
          * @constructor
          * @param {proto.IUserTwoStepVerificationChangeHint=} [properties] Properties to set
          */
@@ -50930,7 +52545,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeHint request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationChangeHint
          * @instance
          */
@@ -50938,7 +52553,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeHint password.
-         * @member {string}password
+         * @member {string} password
          * @memberof proto.UserTwoStepVerificationChangeHint
          * @instance
          */
@@ -50946,7 +52561,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeHint hint.
-         * @member {string}hint
+         * @member {string} hint
          * @memberof proto.UserTwoStepVerificationChangeHint
          * @instance
          */
@@ -51047,13 +52662,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationChangeHintResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationChangeHintResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationChangeHintResponse response
+         * @property {proto.Response|null} [response] UserTwoStepVerificationChangeHintResponse response
          */
 
     /**
          * Constructs a new UserTwoStepVerificationChangeHintResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationChangeHintResponse.
+         * @implements IUserTwoStepVerificationChangeHintResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationChangeHintResponse=} [properties] Properties to set
          */
@@ -51067,7 +52683,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeHintResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationChangeHintResponse
          * @instance
          */
@@ -51154,15 +52770,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationChangeRecoveryEmail.
          * @memberof proto
          * @interface IUserTwoStepVerificationChangeRecoveryEmail
-         * @property {proto.Request} [request] UserTwoStepVerificationChangeRecoveryEmail request
-         * @property {string} [password] UserTwoStepVerificationChangeRecoveryEmail password
-         * @property {string} [email] UserTwoStepVerificationChangeRecoveryEmail email
+         * @property {proto.Request|null} [request] UserTwoStepVerificationChangeRecoveryEmail request
+         * @property {string|null} [password] UserTwoStepVerificationChangeRecoveryEmail password
+         * @property {string|null} [email] UserTwoStepVerificationChangeRecoveryEmail email
          */
 
     /**
          * Constructs a new UserTwoStepVerificationChangeRecoveryEmail.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationChangeRecoveryEmail.
+         * @implements IUserTwoStepVerificationChangeRecoveryEmail
          * @constructor
          * @param {proto.IUserTwoStepVerificationChangeRecoveryEmail=} [properties] Properties to set
          */
@@ -51176,7 +52793,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryEmail request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationChangeRecoveryEmail
          * @instance
          */
@@ -51184,7 +52801,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryEmail password.
-         * @member {string}password
+         * @member {string} password
          * @memberof proto.UserTwoStepVerificationChangeRecoveryEmail
          * @instance
          */
@@ -51192,7 +52809,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryEmail email.
-         * @member {string}email
+         * @member {string} email
          * @memberof proto.UserTwoStepVerificationChangeRecoveryEmail
          * @instance
          */
@@ -51293,14 +52910,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationChangeRecoveryEmailResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationChangeRecoveryEmailResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationChangeRecoveryEmailResponse response
-         * @property {string} [unconfirmedEmailPattern] UserTwoStepVerificationChangeRecoveryEmailResponse unconfirmedEmailPattern
+         * @property {proto.Response|null} [response] UserTwoStepVerificationChangeRecoveryEmailResponse response
+         * @property {string|null} [unconfirmedEmailPattern] UserTwoStepVerificationChangeRecoveryEmailResponse unconfirmedEmailPattern
          */
 
     /**
          * Constructs a new UserTwoStepVerificationChangeRecoveryEmailResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationChangeRecoveryEmailResponse.
+         * @implements IUserTwoStepVerificationChangeRecoveryEmailResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationChangeRecoveryEmailResponse=} [properties] Properties to set
          */
@@ -51314,7 +52932,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryEmailResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationChangeRecoveryEmailResponse
          * @instance
          */
@@ -51322,7 +52940,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryEmailResponse unconfirmedEmailPattern.
-         * @member {string}unconfirmedEmailPattern
+         * @member {string} unconfirmedEmailPattern
          * @memberof proto.UserTwoStepVerificationChangeRecoveryEmailResponse
          * @instance
          */
@@ -51416,18 +53034,19 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationChangeRecoveryQuestion.
          * @memberof proto
          * @interface IUserTwoStepVerificationChangeRecoveryQuestion
-         * @property {proto.Request} [request] UserTwoStepVerificationChangeRecoveryQuestion request
-         * @property {string} [password] UserTwoStepVerificationChangeRecoveryQuestion password
-         * @property {string} [questionOne] UserTwoStepVerificationChangeRecoveryQuestion questionOne
-         * @property {string} [answerOne] UserTwoStepVerificationChangeRecoveryQuestion answerOne
-         * @property {string} [questionTwo] UserTwoStepVerificationChangeRecoveryQuestion questionTwo
-         * @property {string} [answerTwo] UserTwoStepVerificationChangeRecoveryQuestion answerTwo
+         * @property {proto.Request|null} [request] UserTwoStepVerificationChangeRecoveryQuestion request
+         * @property {string|null} [password] UserTwoStepVerificationChangeRecoveryQuestion password
+         * @property {string|null} [questionOne] UserTwoStepVerificationChangeRecoveryQuestion questionOne
+         * @property {string|null} [answerOne] UserTwoStepVerificationChangeRecoveryQuestion answerOne
+         * @property {string|null} [questionTwo] UserTwoStepVerificationChangeRecoveryQuestion questionTwo
+         * @property {string|null} [answerTwo] UserTwoStepVerificationChangeRecoveryQuestion answerTwo
          */
 
     /**
          * Constructs a new UserTwoStepVerificationChangeRecoveryQuestion.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationChangeRecoveryQuestion.
+         * @implements IUserTwoStepVerificationChangeRecoveryQuestion
          * @constructor
          * @param {proto.IUserTwoStepVerificationChangeRecoveryQuestion=} [properties] Properties to set
          */
@@ -51441,7 +53060,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestion request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestion
          * @instance
          */
@@ -51449,7 +53068,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestion password.
-         * @member {string}password
+         * @member {string} password
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestion
          * @instance
          */
@@ -51457,7 +53076,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestion questionOne.
-         * @member {string}questionOne
+         * @member {string} questionOne
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestion
          * @instance
          */
@@ -51465,7 +53084,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestion answerOne.
-         * @member {string}answerOne
+         * @member {string} answerOne
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestion
          * @instance
          */
@@ -51473,7 +53092,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestion questionTwo.
-         * @member {string}questionTwo
+         * @member {string} questionTwo
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestion
          * @instance
          */
@@ -51481,7 +53100,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestion answerTwo.
-         * @member {string}answerTwo
+         * @member {string} answerTwo
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestion
          * @instance
          */
@@ -51603,13 +53222,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationChangeRecoveryQuestionResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationChangeRecoveryQuestionResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationChangeRecoveryQuestionResponse response
+         * @property {proto.Response|null} [response] UserTwoStepVerificationChangeRecoveryQuestionResponse response
          */
 
     /**
          * Constructs a new UserTwoStepVerificationChangeRecoveryQuestionResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationChangeRecoveryQuestionResponse.
+         * @implements IUserTwoStepVerificationChangeRecoveryQuestionResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationChangeRecoveryQuestionResponse=} [properties] Properties to set
          */
@@ -51623,7 +53243,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationChangeRecoveryQuestionResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationChangeRecoveryQuestionResponse
          * @instance
          */
@@ -51710,14 +53330,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationCheckPassword.
          * @memberof proto
          * @interface IUserTwoStepVerificationCheckPassword
-         * @property {proto.Request} [request] UserTwoStepVerificationCheckPassword request
-         * @property {string} [password] UserTwoStepVerificationCheckPassword password
+         * @property {proto.Request|null} [request] UserTwoStepVerificationCheckPassword request
+         * @property {string|null} [password] UserTwoStepVerificationCheckPassword password
          */
 
     /**
          * Constructs a new UserTwoStepVerificationCheckPassword.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationCheckPassword.
+         * @implements IUserTwoStepVerificationCheckPassword
          * @constructor
          * @param {proto.IUserTwoStepVerificationCheckPassword=} [properties] Properties to set
          */
@@ -51731,7 +53352,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationCheckPassword request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationCheckPassword
          * @instance
          */
@@ -51739,7 +53360,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationCheckPassword password.
-         * @member {string}password
+         * @member {string} password
          * @memberof proto.UserTwoStepVerificationCheckPassword
          * @instance
          */
@@ -51833,13 +53454,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationCheckPasswordResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationCheckPasswordResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationCheckPasswordResponse response
+         * @property {proto.Response|null} [response] UserTwoStepVerificationCheckPasswordResponse response
          */
 
     /**
          * Constructs a new UserTwoStepVerificationCheckPasswordResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationCheckPasswordResponse.
+         * @implements IUserTwoStepVerificationCheckPasswordResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationCheckPasswordResponse=} [properties] Properties to set
          */
@@ -51853,7 +53475,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationCheckPasswordResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationCheckPasswordResponse
          * @instance
          */
@@ -51940,13 +53562,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationGetPasswordDetail.
          * @memberof proto
          * @interface IUserTwoStepVerificationGetPasswordDetail
-         * @property {proto.Request} [request] UserTwoStepVerificationGetPasswordDetail request
+         * @property {proto.Request|null} [request] UserTwoStepVerificationGetPasswordDetail request
          */
 
     /**
          * Constructs a new UserTwoStepVerificationGetPasswordDetail.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationGetPasswordDetail.
+         * @implements IUserTwoStepVerificationGetPasswordDetail
          * @constructor
          * @param {proto.IUserTwoStepVerificationGetPasswordDetail=} [properties] Properties to set
          */
@@ -51960,7 +53583,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetail request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationGetPasswordDetail
          * @instance
          */
@@ -52047,18 +53670,19 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationGetPasswordDetailResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationGetPasswordDetailResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationGetPasswordDetailResponse response
-         * @property {string} [questionOne] UserTwoStepVerificationGetPasswordDetailResponse questionOne
-         * @property {string} [questionTwo] UserTwoStepVerificationGetPasswordDetailResponse questionTwo
-         * @property {string} [hint] UserTwoStepVerificationGetPasswordDetailResponse hint
-         * @property {boolean} [hasConfirmedRecoveryEmail] UserTwoStepVerificationGetPasswordDetailResponse hasConfirmedRecoveryEmail
-         * @property {string} [unconfirmedEmailPattern] UserTwoStepVerificationGetPasswordDetailResponse unconfirmedEmailPattern
+         * @property {proto.Response|null} [response] UserTwoStepVerificationGetPasswordDetailResponse response
+         * @property {string|null} [questionOne] UserTwoStepVerificationGetPasswordDetailResponse questionOne
+         * @property {string|null} [questionTwo] UserTwoStepVerificationGetPasswordDetailResponse questionTwo
+         * @property {string|null} [hint] UserTwoStepVerificationGetPasswordDetailResponse hint
+         * @property {boolean|null} [hasConfirmedRecoveryEmail] UserTwoStepVerificationGetPasswordDetailResponse hasConfirmedRecoveryEmail
+         * @property {string|null} [unconfirmedEmailPattern] UserTwoStepVerificationGetPasswordDetailResponse unconfirmedEmailPattern
          */
 
     /**
          * Constructs a new UserTwoStepVerificationGetPasswordDetailResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationGetPasswordDetailResponse.
+         * @implements IUserTwoStepVerificationGetPasswordDetailResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationGetPasswordDetailResponse=} [properties] Properties to set
          */
@@ -52072,7 +53696,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetailResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationGetPasswordDetailResponse
          * @instance
          */
@@ -52080,7 +53704,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetailResponse questionOne.
-         * @member {string}questionOne
+         * @member {string} questionOne
          * @memberof proto.UserTwoStepVerificationGetPasswordDetailResponse
          * @instance
          */
@@ -52088,7 +53712,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetailResponse questionTwo.
-         * @member {string}questionTwo
+         * @member {string} questionTwo
          * @memberof proto.UserTwoStepVerificationGetPasswordDetailResponse
          * @instance
          */
@@ -52096,7 +53720,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetailResponse hint.
-         * @member {string}hint
+         * @member {string} hint
          * @memberof proto.UserTwoStepVerificationGetPasswordDetailResponse
          * @instance
          */
@@ -52104,7 +53728,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetailResponse hasConfirmedRecoveryEmail.
-         * @member {boolean}hasConfirmedRecoveryEmail
+         * @member {boolean} hasConfirmedRecoveryEmail
          * @memberof proto.UserTwoStepVerificationGetPasswordDetailResponse
          * @instance
          */
@@ -52112,7 +53736,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationGetPasswordDetailResponse unconfirmedEmailPattern.
-         * @member {string}unconfirmedEmailPattern
+         * @member {string} unconfirmedEmailPattern
          * @memberof proto.UserTwoStepVerificationGetPasswordDetailResponse
          * @instance
          */
@@ -52234,15 +53858,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationRecoverPasswordByAnswers.
          * @memberof proto
          * @interface IUserTwoStepVerificationRecoverPasswordByAnswers
-         * @property {proto.Request} [request] UserTwoStepVerificationRecoverPasswordByAnswers request
-         * @property {string} [answerOne] UserTwoStepVerificationRecoverPasswordByAnswers answerOne
-         * @property {string} [answerTwo] UserTwoStepVerificationRecoverPasswordByAnswers answerTwo
+         * @property {proto.Request|null} [request] UserTwoStepVerificationRecoverPasswordByAnswers request
+         * @property {string|null} [answerOne] UserTwoStepVerificationRecoverPasswordByAnswers answerOne
+         * @property {string|null} [answerTwo] UserTwoStepVerificationRecoverPasswordByAnswers answerTwo
          */
 
     /**
          * Constructs a new UserTwoStepVerificationRecoverPasswordByAnswers.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationRecoverPasswordByAnswers.
+         * @implements IUserTwoStepVerificationRecoverPasswordByAnswers
          * @constructor
          * @param {proto.IUserTwoStepVerificationRecoverPasswordByAnswers=} [properties] Properties to set
          */
@@ -52256,7 +53881,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByAnswers request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByAnswers
          * @instance
          */
@@ -52264,7 +53889,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByAnswers answerOne.
-         * @member {string}answerOne
+         * @member {string} answerOne
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByAnswers
          * @instance
          */
@@ -52272,7 +53897,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByAnswers answerTwo.
-         * @member {string}answerTwo
+         * @member {string} answerTwo
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByAnswers
          * @instance
          */
@@ -52373,14 +53998,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationRecoverPasswordByAnswersResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationRecoverPasswordByAnswersResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationRecoverPasswordByAnswersResponse response
-         * @property {string} [token] UserTwoStepVerificationRecoverPasswordByAnswersResponse token
+         * @property {proto.Response|null} [response] UserTwoStepVerificationRecoverPasswordByAnswersResponse response
+         * @property {string|null} [token] UserTwoStepVerificationRecoverPasswordByAnswersResponse token
          */
 
     /**
          * Constructs a new UserTwoStepVerificationRecoverPasswordByAnswersResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationRecoverPasswordByAnswersResponse.
+         * @implements IUserTwoStepVerificationRecoverPasswordByAnswersResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationRecoverPasswordByAnswersResponse=} [properties] Properties to set
          */
@@ -52394,7 +54020,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByAnswersResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByAnswersResponse
          * @instance
          */
@@ -52402,7 +54028,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByAnswersResponse token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByAnswersResponse
          * @instance
          */
@@ -52496,14 +54122,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationRecoverPasswordByToken.
          * @memberof proto
          * @interface IUserTwoStepVerificationRecoverPasswordByToken
-         * @property {proto.Request} [request] UserTwoStepVerificationRecoverPasswordByToken request
-         * @property {string} [token] UserTwoStepVerificationRecoverPasswordByToken token
+         * @property {proto.Request|null} [request] UserTwoStepVerificationRecoverPasswordByToken request
+         * @property {string|null} [token] UserTwoStepVerificationRecoverPasswordByToken token
          */
 
     /**
          * Constructs a new UserTwoStepVerificationRecoverPasswordByToken.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationRecoverPasswordByToken.
+         * @implements IUserTwoStepVerificationRecoverPasswordByToken
          * @constructor
          * @param {proto.IUserTwoStepVerificationRecoverPasswordByToken=} [properties] Properties to set
          */
@@ -52517,7 +54144,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByToken request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByToken
          * @instance
          */
@@ -52525,7 +54152,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByToken token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByToken
          * @instance
          */
@@ -52619,14 +54246,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationRecoverPasswordByTokenResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationRecoverPasswordByTokenResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationRecoverPasswordByTokenResponse response
-         * @property {string} [token] UserTwoStepVerificationRecoverPasswordByTokenResponse token
+         * @property {proto.Response|null} [response] UserTwoStepVerificationRecoverPasswordByTokenResponse response
+         * @property {string|null} [token] UserTwoStepVerificationRecoverPasswordByTokenResponse token
          */
 
     /**
          * Constructs a new UserTwoStepVerificationRecoverPasswordByTokenResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationRecoverPasswordByTokenResponse.
+         * @implements IUserTwoStepVerificationRecoverPasswordByTokenResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationRecoverPasswordByTokenResponse=} [properties] Properties to set
          */
@@ -52640,7 +54268,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByTokenResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByTokenResponse
          * @instance
          */
@@ -52648,7 +54276,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRecoverPasswordByTokenResponse token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserTwoStepVerificationRecoverPasswordByTokenResponse
          * @instance
          */
@@ -52742,13 +54370,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationRequestRecoveryToken.
          * @memberof proto
          * @interface IUserTwoStepVerificationRequestRecoveryToken
-         * @property {proto.Request} [request] UserTwoStepVerificationRequestRecoveryToken request
+         * @property {proto.Request|null} [request] UserTwoStepVerificationRequestRecoveryToken request
          */
 
     /**
          * Constructs a new UserTwoStepVerificationRequestRecoveryToken.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationRequestRecoveryToken.
+         * @implements IUserTwoStepVerificationRequestRecoveryToken
          * @constructor
          * @param {proto.IUserTwoStepVerificationRequestRecoveryToken=} [properties] Properties to set
          */
@@ -52762,7 +54391,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRequestRecoveryToken request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationRequestRecoveryToken
          * @instance
          */
@@ -52849,14 +54478,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationRequestRecoveryTokenResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationRequestRecoveryTokenResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationRequestRecoveryTokenResponse response
-         * @property {string} [emailPattern] UserTwoStepVerificationRequestRecoveryTokenResponse emailPattern
+         * @property {proto.Response|null} [response] UserTwoStepVerificationRequestRecoveryTokenResponse response
+         * @property {string|null} [emailPattern] UserTwoStepVerificationRequestRecoveryTokenResponse emailPattern
          */
 
     /**
          * Constructs a new UserTwoStepVerificationRequestRecoveryTokenResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationRequestRecoveryTokenResponse.
+         * @implements IUserTwoStepVerificationRequestRecoveryTokenResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationRequestRecoveryTokenResponse=} [properties] Properties to set
          */
@@ -52870,7 +54500,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRequestRecoveryTokenResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationRequestRecoveryTokenResponse
          * @instance
          */
@@ -52878,7 +54508,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationRequestRecoveryTokenResponse emailPattern.
-         * @member {string}emailPattern
+         * @member {string} emailPattern
          * @memberof proto.UserTwoStepVerificationRequestRecoveryTokenResponse
          * @instance
          */
@@ -52972,13 +54602,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationResendVerifyEmail.
          * @memberof proto
          * @interface IUserTwoStepVerificationResendVerifyEmail
-         * @property {proto.Request} [request] UserTwoStepVerificationResendVerifyEmail request
+         * @property {proto.Request|null} [request] UserTwoStepVerificationResendVerifyEmail request
          */
 
     /**
          * Constructs a new UserTwoStepVerificationResendVerifyEmail.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationResendVerifyEmail.
+         * @implements IUserTwoStepVerificationResendVerifyEmail
          * @constructor
          * @param {proto.IUserTwoStepVerificationResendVerifyEmail=} [properties] Properties to set
          */
@@ -52992,7 +54623,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationResendVerifyEmail request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationResendVerifyEmail
          * @instance
          */
@@ -53079,14 +54710,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationResendVerifyEmailResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationResendVerifyEmailResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationResendVerifyEmailResponse response
-         * @property {string} [unconfirmedEmailPattern] UserTwoStepVerificationResendVerifyEmailResponse unconfirmedEmailPattern
+         * @property {proto.Response|null} [response] UserTwoStepVerificationResendVerifyEmailResponse response
+         * @property {string|null} [unconfirmedEmailPattern] UserTwoStepVerificationResendVerifyEmailResponse unconfirmedEmailPattern
          */
 
     /**
          * Constructs a new UserTwoStepVerificationResendVerifyEmailResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationResendVerifyEmailResponse.
+         * @implements IUserTwoStepVerificationResendVerifyEmailResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationResendVerifyEmailResponse=} [properties] Properties to set
          */
@@ -53100,7 +54732,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationResendVerifyEmailResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationResendVerifyEmailResponse
          * @instance
          */
@@ -53108,7 +54740,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationResendVerifyEmailResponse unconfirmedEmailPattern.
-         * @member {string}unconfirmedEmailPattern
+         * @member {string} unconfirmedEmailPattern
          * @memberof proto.UserTwoStepVerificationResendVerifyEmailResponse
          * @instance
          */
@@ -53202,21 +54834,22 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationSetPassword.
          * @memberof proto
          * @interface IUserTwoStepVerificationSetPassword
-         * @property {proto.Request} [request] UserTwoStepVerificationSetPassword request
-         * @property {string} [oldPassword] UserTwoStepVerificationSetPassword oldPassword
-         * @property {string} [newPassword] UserTwoStepVerificationSetPassword newPassword
-         * @property {string} [recoveryEmail] UserTwoStepVerificationSetPassword recoveryEmail
-         * @property {string} [questionOne] UserTwoStepVerificationSetPassword questionOne
-         * @property {string} [answerOne] UserTwoStepVerificationSetPassword answerOne
-         * @property {string} [questionTwo] UserTwoStepVerificationSetPassword questionTwo
-         * @property {string} [answerTwo] UserTwoStepVerificationSetPassword answerTwo
-         * @property {string} [hint] UserTwoStepVerificationSetPassword hint
+         * @property {proto.Request|null} [request] UserTwoStepVerificationSetPassword request
+         * @property {string|null} [oldPassword] UserTwoStepVerificationSetPassword oldPassword
+         * @property {string|null} [newPassword] UserTwoStepVerificationSetPassword newPassword
+         * @property {string|null} [recoveryEmail] UserTwoStepVerificationSetPassword recoveryEmail
+         * @property {string|null} [questionOne] UserTwoStepVerificationSetPassword questionOne
+         * @property {string|null} [answerOne] UserTwoStepVerificationSetPassword answerOne
+         * @property {string|null} [questionTwo] UserTwoStepVerificationSetPassword questionTwo
+         * @property {string|null} [answerTwo] UserTwoStepVerificationSetPassword answerTwo
+         * @property {string|null} [hint] UserTwoStepVerificationSetPassword hint
          */
 
     /**
          * Constructs a new UserTwoStepVerificationSetPassword.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationSetPassword.
+         * @implements IUserTwoStepVerificationSetPassword
          * @constructor
          * @param {proto.IUserTwoStepVerificationSetPassword=} [properties] Properties to set
          */
@@ -53230,7 +54863,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53238,7 +54871,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword oldPassword.
-         * @member {string}oldPassword
+         * @member {string} oldPassword
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53246,7 +54879,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword newPassword.
-         * @member {string}newPassword
+         * @member {string} newPassword
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53254,7 +54887,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword recoveryEmail.
-         * @member {string}recoveryEmail
+         * @member {string} recoveryEmail
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53262,7 +54895,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword questionOne.
-         * @member {string}questionOne
+         * @member {string} questionOne
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53270,7 +54903,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword answerOne.
-         * @member {string}answerOne
+         * @member {string} answerOne
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53278,7 +54911,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword questionTwo.
-         * @member {string}questionTwo
+         * @member {string} questionTwo
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53286,7 +54919,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword answerTwo.
-         * @member {string}answerTwo
+         * @member {string} answerTwo
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53294,7 +54927,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPassword hint.
-         * @member {string}hint
+         * @member {string} hint
          * @memberof proto.UserTwoStepVerificationSetPassword
          * @instance
          */
@@ -53437,14 +55070,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationSetPasswordResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationSetPasswordResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationSetPasswordResponse response
-         * @property {string} [unconfirmedEmailPattern] UserTwoStepVerificationSetPasswordResponse unconfirmedEmailPattern
+         * @property {proto.Response|null} [response] UserTwoStepVerificationSetPasswordResponse response
+         * @property {string|null} [unconfirmedEmailPattern] UserTwoStepVerificationSetPasswordResponse unconfirmedEmailPattern
          */
 
     /**
          * Constructs a new UserTwoStepVerificationSetPasswordResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationSetPasswordResponse.
+         * @implements IUserTwoStepVerificationSetPasswordResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationSetPasswordResponse=} [properties] Properties to set
          */
@@ -53458,7 +55092,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPasswordResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationSetPasswordResponse
          * @instance
          */
@@ -53466,7 +55100,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationSetPasswordResponse unconfirmedEmailPattern.
-         * @member {string}unconfirmedEmailPattern
+         * @member {string} unconfirmedEmailPattern
          * @memberof proto.UserTwoStepVerificationSetPasswordResponse
          * @instance
          */
@@ -53560,14 +55194,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationUnsetPassword.
          * @memberof proto
          * @interface IUserTwoStepVerificationUnsetPassword
-         * @property {proto.Request} [request] UserTwoStepVerificationUnsetPassword request
-         * @property {string} [password] UserTwoStepVerificationUnsetPassword password
+         * @property {proto.Request|null} [request] UserTwoStepVerificationUnsetPassword request
+         * @property {string|null} [password] UserTwoStepVerificationUnsetPassword password
          */
 
     /**
          * Constructs a new UserTwoStepVerificationUnsetPassword.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationUnsetPassword.
+         * @implements IUserTwoStepVerificationUnsetPassword
          * @constructor
          * @param {proto.IUserTwoStepVerificationUnsetPassword=} [properties] Properties to set
          */
@@ -53581,7 +55216,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationUnsetPassword request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationUnsetPassword
          * @instance
          */
@@ -53589,7 +55224,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationUnsetPassword password.
-         * @member {string}password
+         * @member {string} password
          * @memberof proto.UserTwoStepVerificationUnsetPassword
          * @instance
          */
@@ -53683,13 +55318,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationUnsetPasswordResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationUnsetPasswordResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationUnsetPasswordResponse response
+         * @property {proto.Response|null} [response] UserTwoStepVerificationUnsetPasswordResponse response
          */
 
     /**
          * Constructs a new UserTwoStepVerificationUnsetPasswordResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationUnsetPasswordResponse.
+         * @implements IUserTwoStepVerificationUnsetPasswordResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationUnsetPasswordResponse=} [properties] Properties to set
          */
@@ -53703,7 +55339,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationUnsetPasswordResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationUnsetPasswordResponse
          * @instance
          */
@@ -53790,14 +55426,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationVerifyPassword.
          * @memberof proto
          * @interface IUserTwoStepVerificationVerifyPassword
-         * @property {proto.Request} [request] UserTwoStepVerificationVerifyPassword request
-         * @property {string} [password] UserTwoStepVerificationVerifyPassword password
+         * @property {proto.Request|null} [request] UserTwoStepVerificationVerifyPassword request
+         * @property {string|null} [password] UserTwoStepVerificationVerifyPassword password
          */
 
     /**
          * Constructs a new UserTwoStepVerificationVerifyPassword.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationVerifyPassword.
+         * @implements IUserTwoStepVerificationVerifyPassword
          * @constructor
          * @param {proto.IUserTwoStepVerificationVerifyPassword=} [properties] Properties to set
          */
@@ -53811,7 +55448,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyPassword request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationVerifyPassword
          * @instance
          */
@@ -53819,7 +55456,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyPassword password.
-         * @member {string}password
+         * @member {string} password
          * @memberof proto.UserTwoStepVerificationVerifyPassword
          * @instance
          */
@@ -53913,14 +55550,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationVerifyPasswordResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationVerifyPasswordResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationVerifyPasswordResponse response
-         * @property {string} [token] UserTwoStepVerificationVerifyPasswordResponse token
+         * @property {proto.Response|null} [response] UserTwoStepVerificationVerifyPasswordResponse response
+         * @property {string|null} [token] UserTwoStepVerificationVerifyPasswordResponse token
          */
 
     /**
          * Constructs a new UserTwoStepVerificationVerifyPasswordResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationVerifyPasswordResponse.
+         * @implements IUserTwoStepVerificationVerifyPasswordResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationVerifyPasswordResponse=} [properties] Properties to set
          */
@@ -53934,7 +55572,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyPasswordResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationVerifyPasswordResponse
          * @instance
          */
@@ -53942,7 +55580,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyPasswordResponse token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserTwoStepVerificationVerifyPasswordResponse
          * @instance
          */
@@ -54036,14 +55674,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationVerifyRecoveryEmail.
          * @memberof proto
          * @interface IUserTwoStepVerificationVerifyRecoveryEmail
-         * @property {proto.Request} [request] UserTwoStepVerificationVerifyRecoveryEmail request
-         * @property {string} [token] UserTwoStepVerificationVerifyRecoveryEmail token
+         * @property {proto.Request|null} [request] UserTwoStepVerificationVerifyRecoveryEmail request
+         * @property {string|null} [token] UserTwoStepVerificationVerifyRecoveryEmail token
          */
 
     /**
          * Constructs a new UserTwoStepVerificationVerifyRecoveryEmail.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationVerifyRecoveryEmail.
+         * @implements IUserTwoStepVerificationVerifyRecoveryEmail
          * @constructor
          * @param {proto.IUserTwoStepVerificationVerifyRecoveryEmail=} [properties] Properties to set
          */
@@ -54057,7 +55696,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyRecoveryEmail request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserTwoStepVerificationVerifyRecoveryEmail
          * @instance
          */
@@ -54065,7 +55704,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyRecoveryEmail token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserTwoStepVerificationVerifyRecoveryEmail
          * @instance
          */
@@ -54159,13 +55798,14 @@ export const proto = $root.proto = (() => {
          * Properties of a UserTwoStepVerificationVerifyRecoveryEmailResponse.
          * @memberof proto
          * @interface IUserTwoStepVerificationVerifyRecoveryEmailResponse
-         * @property {proto.Response} [response] UserTwoStepVerificationVerifyRecoveryEmailResponse response
+         * @property {proto.Response|null} [response] UserTwoStepVerificationVerifyRecoveryEmailResponse response
          */
 
     /**
          * Constructs a new UserTwoStepVerificationVerifyRecoveryEmailResponse.
          * @memberof proto
          * @classdesc Represents a UserTwoStepVerificationVerifyRecoveryEmailResponse.
+         * @implements IUserTwoStepVerificationVerifyRecoveryEmailResponse
          * @constructor
          * @param {proto.IUserTwoStepVerificationVerifyRecoveryEmailResponse=} [properties] Properties to set
          */
@@ -54179,7 +55819,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserTwoStepVerificationVerifyRecoveryEmailResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserTwoStepVerificationVerifyRecoveryEmailResponse
          * @instance
          */
@@ -54266,14 +55906,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserUpdateStatus.
          * @memberof proto
          * @interface IUserUpdateStatus
-         * @property {proto.Request} [request] UserUpdateStatus request
-         * @property {proto.UserUpdateStatus.Status} [status] UserUpdateStatus status
+         * @property {proto.Request|null} [request] UserUpdateStatus request
+         * @property {proto.UserUpdateStatus.Status|null} [status] UserUpdateStatus status
          */
 
     /**
          * Constructs a new UserUpdateStatus.
          * @memberof proto
          * @classdesc Represents a UserUpdateStatus.
+         * @implements IUserUpdateStatus
          * @constructor
          * @param {proto.IUserUpdateStatus=} [properties] Properties to set
          */
@@ -54287,7 +55928,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUpdateStatus request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserUpdateStatus
          * @instance
          */
@@ -54295,7 +55936,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUpdateStatus status.
-         * @member {proto.UserUpdateStatus.Status}status
+         * @member {proto.UserUpdateStatus.Status} status
          * @memberof proto.UserUpdateStatus
          * @instance
          */
@@ -54388,6 +56029,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * Status enum.
+         * @name proto.UserUpdateStatus.Status
          * @enum {string}
          * @property {number} ONLINE=0 ONLINE value
          * @property {number} OFFLINE=1 OFFLINE value
@@ -54408,15 +56050,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserUpdateStatusResponse.
          * @memberof proto
          * @interface IUserUpdateStatusResponse
-         * @property {proto.Response} [response] UserUpdateStatusResponse response
-         * @property {proto.UserUpdateStatus.Status} [status] UserUpdateStatusResponse status
-         * @property {Long} [userId] UserUpdateStatusResponse userId
+         * @property {proto.Response|null} [response] UserUpdateStatusResponse response
+         * @property {proto.UserUpdateStatus.Status|null} [status] UserUpdateStatusResponse status
+         * @property {Long|null} [userId] UserUpdateStatusResponse userId
          */
 
     /**
          * Constructs a new UserUpdateStatusResponse.
          * @memberof proto
          * @classdesc Represents a UserUpdateStatusResponse.
+         * @implements IUserUpdateStatusResponse
          * @constructor
          * @param {proto.IUserUpdateStatusResponse=} [properties] Properties to set
          */
@@ -54430,7 +56073,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUpdateStatusResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserUpdateStatusResponse
          * @instance
          */
@@ -54438,7 +56081,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUpdateStatusResponse status.
-         * @member {proto.UserUpdateStatus.Status}status
+         * @member {proto.UserUpdateStatus.Status} status
          * @memberof proto.UserUpdateStatusResponse
          * @instance
          */
@@ -54446,7 +56089,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUpdateStatusResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserUpdateStatusResponse
          * @instance
          */
@@ -54553,14 +56196,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserUsernameToId.
          * @memberof proto
          * @interface IUserUsernameToId
-         * @property {proto.Request} [request] UserUsernameToId request
-         * @property {string} [username] UserUsernameToId username
+         * @property {proto.Request|null} [request] UserUsernameToId request
+         * @property {string|null} [username] UserUsernameToId username
          */
 
     /**
          * Constructs a new UserUsernameToId.
          * @memberof proto
          * @classdesc Represents a UserUsernameToId.
+         * @implements IUserUsernameToId
          * @constructor
          * @param {proto.IUserUsernameToId=} [properties] Properties to set
          */
@@ -54574,7 +56218,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUsernameToId request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserUsernameToId
          * @instance
          */
@@ -54582,7 +56226,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUsernameToId username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.UserUsernameToId
          * @instance
          */
@@ -54676,14 +56320,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserUsernameToIdResponse.
          * @memberof proto
          * @interface IUserUsernameToIdResponse
-         * @property {proto.Response} [response] UserUsernameToIdResponse response
-         * @property {Long} [userId] UserUsernameToIdResponse userId
+         * @property {proto.Response|null} [response] UserUsernameToIdResponse response
+         * @property {Long|null} [userId] UserUsernameToIdResponse userId
          */
 
     /**
          * Constructs a new UserUsernameToIdResponse.
          * @memberof proto
          * @classdesc Represents a UserUsernameToIdResponse.
+         * @implements IUserUsernameToIdResponse
          * @constructor
          * @param {proto.IUserUsernameToIdResponse=} [properties] Properties to set
          */
@@ -54697,7 +56342,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUsernameToIdResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserUsernameToIdResponse
          * @instance
          */
@@ -54705,7 +56350,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserUsernameToIdResponse userId.
-         * @member {Long}userId
+         * @member {Long} userId
          * @memberof proto.UserUsernameToIdResponse
          * @instance
          */
@@ -54799,15 +56444,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserVerify.
          * @memberof proto
          * @interface IUserVerify
-         * @property {proto.Request} [request] UserVerify request
-         * @property {number} [code] UserVerify code
-         * @property {string} [username] UserVerify username
+         * @property {proto.Request|null} [request] UserVerify request
+         * @property {number|null} [code] UserVerify code
+         * @property {string|null} [username] UserVerify username
          */
 
     /**
          * Constructs a new UserVerify.
          * @memberof proto
          * @classdesc Represents a UserVerify.
+         * @implements IUserVerify
          * @constructor
          * @param {proto.IUserVerify=} [properties] Properties to set
          */
@@ -54821,7 +56467,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerify request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserVerify
          * @instance
          */
@@ -54829,7 +56475,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerify code.
-         * @member {number}code
+         * @member {number} code
          * @memberof proto.UserVerify
          * @instance
          */
@@ -54837,7 +56483,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerify username.
-         * @member {string}username
+         * @member {string} username
          * @memberof proto.UserVerify
          * @instance
          */
@@ -54938,15 +56584,16 @@ export const proto = $root.proto = (() => {
          * Properties of a UserVerifyResponse.
          * @memberof proto
          * @interface IUserVerifyResponse
-         * @property {proto.Response} [response] UserVerifyResponse response
-         * @property {string} [token] UserVerifyResponse token
-         * @property {boolean} [newUser] UserVerifyResponse newUser
+         * @property {proto.Response|null} [response] UserVerifyResponse response
+         * @property {string|null} [token] UserVerifyResponse token
+         * @property {boolean|null} [newUser] UserVerifyResponse newUser
          */
 
     /**
          * Constructs a new UserVerifyResponse.
          * @memberof proto
          * @classdesc Represents a UserVerifyResponse.
+         * @implements IUserVerifyResponse
          * @constructor
          * @param {proto.IUserVerifyResponse=} [properties] Properties to set
          */
@@ -54960,7 +56607,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserVerifyResponse
          * @instance
          */
@@ -54968,7 +56615,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyResponse token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserVerifyResponse
          * @instance
          */
@@ -54976,7 +56623,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyResponse newUser.
-         * @member {boolean}newUser
+         * @member {boolean} newUser
          * @memberof proto.UserVerifyResponse
          * @instance
          */
@@ -55077,14 +56724,15 @@ export const proto = $root.proto = (() => {
          * Properties of a UserVerifyNewDevice.
          * @memberof proto
          * @interface IUserVerifyNewDevice
-         * @property {proto.Request} [request] UserVerifyNewDevice request
-         * @property {string} [token] UserVerifyNewDevice token
+         * @property {proto.Request|null} [request] UserVerifyNewDevice request
+         * @property {string|null} [token] UserVerifyNewDevice token
          */
 
     /**
          * Constructs a new UserVerifyNewDevice.
          * @memberof proto
          * @classdesc Represents a UserVerifyNewDevice.
+         * @implements IUserVerifyNewDevice
          * @constructor
          * @param {proto.IUserVerifyNewDevice=} [properties] Properties to set
          */
@@ -55098,7 +56746,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDevice request.
-         * @member {(proto.Request|null|undefined)}request
+         * @member {proto.Request|null|undefined} request
          * @memberof proto.UserVerifyNewDevice
          * @instance
          */
@@ -55106,7 +56754,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDevice token.
-         * @member {string}token
+         * @member {string} token
          * @memberof proto.UserVerifyNewDevice
          * @instance
          */
@@ -55200,22 +56848,23 @@ export const proto = $root.proto = (() => {
          * Properties of a UserVerifyNewDeviceResponse.
          * @memberof proto
          * @interface IUserVerifyNewDeviceResponse
-         * @property {proto.Response} [response] UserVerifyNewDeviceResponse response
-         * @property {string} [appName] UserVerifyNewDeviceResponse appName
-         * @property {number} [appId] UserVerifyNewDeviceResponse appId
-         * @property {number} [appBuildVersion] UserVerifyNewDeviceResponse appBuildVersion
-         * @property {string} [appVersion] UserVerifyNewDeviceResponse appVersion
-         * @property {proto.Platform} [platform] UserVerifyNewDeviceResponse platform
-         * @property {string} [platformVersion] UserVerifyNewDeviceResponse platformVersion
-         * @property {proto.Device} [device] UserVerifyNewDeviceResponse device
-         * @property {string} [deviceName] UserVerifyNewDeviceResponse deviceName
-         * @property {boolean} [twoStepVerification] UserVerifyNewDeviceResponse twoStepVerification
+         * @property {proto.Response|null} [response] UserVerifyNewDeviceResponse response
+         * @property {string|null} [appName] UserVerifyNewDeviceResponse appName
+         * @property {number|null} [appId] UserVerifyNewDeviceResponse appId
+         * @property {number|null} [appBuildVersion] UserVerifyNewDeviceResponse appBuildVersion
+         * @property {string|null} [appVersion] UserVerifyNewDeviceResponse appVersion
+         * @property {proto.Platform|null} [platform] UserVerifyNewDeviceResponse platform
+         * @property {string|null} [platformVersion] UserVerifyNewDeviceResponse platformVersion
+         * @property {proto.Device|null} [device] UserVerifyNewDeviceResponse device
+         * @property {string|null} [deviceName] UserVerifyNewDeviceResponse deviceName
+         * @property {boolean|null} [twoStepVerification] UserVerifyNewDeviceResponse twoStepVerification
          */
 
     /**
          * Constructs a new UserVerifyNewDeviceResponse.
          * @memberof proto
          * @classdesc Represents a UserVerifyNewDeviceResponse.
+         * @implements IUserVerifyNewDeviceResponse
          * @constructor
          * @param {proto.IUserVerifyNewDeviceResponse=} [properties] Properties to set
          */
@@ -55229,7 +56878,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse response.
-         * @member {(proto.Response|null|undefined)}response
+         * @member {proto.Response|null|undefined} response
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55237,7 +56886,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse appName.
-         * @member {string}appName
+         * @member {string} appName
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55245,7 +56894,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse appId.
-         * @member {number}appId
+         * @member {number} appId
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55253,7 +56902,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse appBuildVersion.
-         * @member {number}appBuildVersion
+         * @member {number} appBuildVersion
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55261,7 +56910,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse appVersion.
-         * @member {string}appVersion
+         * @member {string} appVersion
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55269,7 +56918,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse platform.
-         * @member {proto.Platform}platform
+         * @member {proto.Platform} platform
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55277,7 +56926,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse platformVersion.
-         * @member {string}platformVersion
+         * @member {string} platformVersion
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55285,7 +56934,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse device.
-         * @member {proto.Device}device
+         * @member {proto.Device} device
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55293,7 +56942,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse deviceName.
-         * @member {string}deviceName
+         * @member {string} deviceName
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */
@@ -55301,7 +56950,7 @@ export const proto = $root.proto = (() => {
 
     /**
          * UserVerifyNewDeviceResponse twoStepVerification.
-         * @member {boolean}twoStepVerification
+         * @member {boolean} twoStepVerification
          * @memberof proto.UserVerifyNewDeviceResponse
          * @instance
          */

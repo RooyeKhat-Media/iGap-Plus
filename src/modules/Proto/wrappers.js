@@ -732,6 +732,7 @@ proto.proto.RoomMessageLog.Type = proto.proto.RoomMessageLog.prototype.Type = {
   MISSED_VIDEO_CALL : 11,
   MISSED_SCREEN_SHARE : 12,
   MISSED_SECRET_CHAT : 13,
+  PINNED_MESSAGE : 14,
 };
 
 /**
@@ -1265,6 +1266,24 @@ proto.proto.RegisteredUser.prototype.setBio = function(value) {
 };
 
 /**
+ * Get RegisteredUser verified.
+ * @memberof ProtoRegisteredUser
+ * @return {boolean}
+ */
+proto.proto.RegisteredUser.prototype.getVerified = function() {
+  return this.verified;
+};
+
+/**
+ * Set RegisteredUser verified.
+ * @memberof ProtoRegisteredUser
+ * @param {boolean} value
+ */
+proto.proto.RegisteredUser.prototype.setVerified = function(value) {
+  this.verified = value;
+};
+
+/**
  * @typedef {number} ProtoRegisteredUser_Status
  */
 
@@ -1711,6 +1730,24 @@ proto.proto.RoomMessage.prototype.getPreviousMessageId = function() {
  */
 proto.proto.RoomMessage.prototype.setPreviousMessageId = function(value) {
   this.previousMessageId = value;
+};
+
+/**
+ * Get RoomMessage randomId.
+ * @memberof ProtoRoomMessage
+ * @return {Long}
+ */
+proto.proto.RoomMessage.prototype.getRandomId = function() {
+  return this.randomId;
+};
+
+/**
+ * Set RoomMessage randomId.
+ * @memberof ProtoRoomMessage
+ * @param {Long} value
+ */
+proto.proto.RoomMessage.prototype.setRandomId = function(value) {
+  this.randomId = value;
 };
 
 /**
@@ -2351,6 +2388,24 @@ proto.proto.Room.prototype.getPinId = function() {
  */
 proto.proto.Room.prototype.setPinId = function(value) {
   this.pinId = value;
+};
+
+/**
+ * Get Room pinnedMessage.
+ * @memberof ProtoRoom
+ * @return {(ProtoRoomMessage|null|undefined)}
+ */
+proto.proto.Room.prototype.getPinnedMessage = function() {
+  return this.pinnedMessage;
+};
+
+/**
+ * Set Room pinnedMessage.
+ * @memberof ProtoRoom
+ * @param {(ProtoRoomMessage|null|undefined)} value
+ */
+proto.proto.Room.prototype.setPinnedMessage = function(value) {
+  this.pinnedMessage = value;
 };
 
 /**
@@ -3026,6 +3081,42 @@ proto.proto.ChannelRoom.prototype.setSeenId = function(value) {
 };
 
 /**
+ * Get ChannelRoom verified.
+ * @memberof ProtoChannelRoom
+ * @return {boolean}
+ */
+proto.proto.ChannelRoom.prototype.getVerified = function() {
+  return this.verified;
+};
+
+/**
+ * Set ChannelRoom verified.
+ * @memberof ProtoChannelRoom
+ * @param {boolean} value
+ */
+proto.proto.ChannelRoom.prototype.setVerified = function(value) {
+  this.verified = value;
+};
+
+/**
+ * Get ChannelRoom reactionStatus.
+ * @memberof ProtoChannelRoom
+ * @return {boolean}
+ */
+proto.proto.ChannelRoom.prototype.getReactionStatus = function() {
+  return this.reactionStatus;
+};
+
+/**
+ * Set ChannelRoom reactionStatus.
+ * @memberof ProtoChannelRoom
+ * @param {boolean} value
+ */
+proto.proto.ChannelRoom.prototype.setReactionStatus = function(value) {
+  this.reactionStatus = value;
+};
+
+/**
  * @typedef {number} ProtoChannelRoom_Type
  */
 
@@ -3497,6 +3588,24 @@ proto.proto.File.prototype.getMime = function() {
  */
 proto.proto.File.prototype.setMime = function(value) {
   this.mime = value;
+};
+
+/**
+ * Get File publicUrl.
+ * @memberof ProtoFile
+ * @return {string}
+ */
+proto.proto.File.prototype.getPublicUrl = function() {
+  return this.publicUrl;
+};
+
+/**
+ * Set File publicUrl.
+ * @memberof ProtoFile
+ * @param {string} value
+ */
+proto.proto.File.prototype.setPublicUrl = function(value) {
+  this.publicUrl = value;
 };
 
 /**
@@ -6495,6 +6604,156 @@ proto.proto.ChannelLeftResponse.prototype.setMemberId = function(value) {
 };
 
 /**
+ * @interface ProtoChannelPinMessage
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ChannelPinMessage.prototype.serializeBinary = function() {
+  return proto.proto.ChannelPinMessage.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoChannelPinMessage}
+ */
+proto.proto.ChannelPinMessage.deserializeBinary = function(buffer) {
+  return proto.proto.ChannelPinMessage.decode(buffer);
+};
+
+/**
+ * Get ChannelPinMessage request.
+ * @memberof ProtoChannelPinMessage
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.ChannelPinMessage.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set ChannelPinMessage request.
+ * @memberof ProtoChannelPinMessage
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.ChannelPinMessage.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get ChannelPinMessage roomId.
+ * @memberof ProtoChannelPinMessage
+ * @return {Long}
+ */
+proto.proto.ChannelPinMessage.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ChannelPinMessage roomId.
+ * @memberof ProtoChannelPinMessage
+ * @param {Long} value
+ */
+proto.proto.ChannelPinMessage.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ChannelPinMessage messageId.
+ * @memberof ProtoChannelPinMessage
+ * @return {Long}
+ */
+proto.proto.ChannelPinMessage.prototype.getMessageId = function() {
+  return this.messageId;
+};
+
+/**
+ * Set ChannelPinMessage messageId.
+ * @memberof ProtoChannelPinMessage
+ * @param {Long} value
+ */
+proto.proto.ChannelPinMessage.prototype.setMessageId = function(value) {
+  this.messageId = value;
+};
+
+/**
+ * @interface ProtoChannelPinMessageResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ChannelPinMessageResponse.prototype.serializeBinary = function() {
+  return proto.proto.ChannelPinMessageResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoChannelPinMessageResponse}
+ */
+proto.proto.ChannelPinMessageResponse.deserializeBinary = function(buffer) {
+  return proto.proto.ChannelPinMessageResponse.decode(buffer);
+};
+
+/**
+ * Get ChannelPinMessageResponse response.
+ * @memberof ProtoChannelPinMessageResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.ChannelPinMessageResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set ChannelPinMessageResponse response.
+ * @memberof ProtoChannelPinMessageResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.ChannelPinMessageResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get ChannelPinMessageResponse roomId.
+ * @memberof ProtoChannelPinMessageResponse
+ * @return {Long}
+ */
+proto.proto.ChannelPinMessageResponse.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ChannelPinMessageResponse roomId.
+ * @memberof ProtoChannelPinMessageResponse
+ * @param {Long} value
+ */
+proto.proto.ChannelPinMessageResponse.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ChannelPinMessageResponse pinnedMessage.
+ * @memberof ProtoChannelPinMessageResponse
+ * @return {(ProtoRoomMessage|null|undefined)}
+ */
+proto.proto.ChannelPinMessageResponse.prototype.getPinnedMessage = function() {
+  return this.pinnedMessage;
+};
+
+/**
+ * Set ChannelPinMessageResponse pinnedMessage.
+ * @memberof ProtoChannelPinMessageResponse
+ * @param {(ProtoRoomMessage|null|undefined)} value
+ */
+proto.proto.ChannelPinMessageResponse.prototype.setPinnedMessage = function(value) {
+  this.pinnedMessage = value;
+};
+
+/**
  * @interface ProtoChannelRemoveUsername
  */
 
@@ -6942,6 +7201,24 @@ proto.proto.ChannelSendMessage.prototype.setForwardFrom = function(value) {
 };
 
 /**
+ * Get ChannelSendMessage randomId.
+ * @memberof ProtoChannelSendMessage
+ * @return {Long}
+ */
+proto.proto.ChannelSendMessage.prototype.getRandomId = function() {
+  return this.randomId;
+};
+
+/**
+ * Set ChannelSendMessage randomId.
+ * @memberof ProtoChannelSendMessage
+ * @param {Long} value
+ */
+proto.proto.ChannelSendMessage.prototype.setRandomId = function(value) {
+  this.randomId = value;
+};
+
+/**
  * @interface ProtoChannelSendMessageResponse
  */
 
@@ -7350,6 +7627,156 @@ proto.proto.ChannelUpdateDraftResponse.prototype.getDraft = function() {
  */
 proto.proto.ChannelUpdateDraftResponse.prototype.setDraft = function(value) {
   this.draft = value;
+};
+
+/**
+ * @interface ProtoChannelUpdateReactionStatus
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.serializeBinary = function() {
+  return proto.proto.ChannelUpdateReactionStatus.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoChannelUpdateReactionStatus}
+ */
+proto.proto.ChannelUpdateReactionStatus.deserializeBinary = function(buffer) {
+  return proto.proto.ChannelUpdateReactionStatus.decode(buffer);
+};
+
+/**
+ * Get ChannelUpdateReactionStatus request.
+ * @memberof ProtoChannelUpdateReactionStatus
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set ChannelUpdateReactionStatus request.
+ * @memberof ProtoChannelUpdateReactionStatus
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get ChannelUpdateReactionStatus roomId.
+ * @memberof ProtoChannelUpdateReactionStatus
+ * @return {Long}
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ChannelUpdateReactionStatus roomId.
+ * @memberof ProtoChannelUpdateReactionStatus
+ * @param {Long} value
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ChannelUpdateReactionStatus reactionStatus.
+ * @memberof ProtoChannelUpdateReactionStatus
+ * @return {boolean}
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.getReactionStatus = function() {
+  return this.reactionStatus;
+};
+
+/**
+ * Set ChannelUpdateReactionStatus reactionStatus.
+ * @memberof ProtoChannelUpdateReactionStatus
+ * @param {boolean} value
+ */
+proto.proto.ChannelUpdateReactionStatus.prototype.setReactionStatus = function(value) {
+  this.reactionStatus = value;
+};
+
+/**
+ * @interface ProtoChannelUpdateReactionStatusResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.serializeBinary = function() {
+  return proto.proto.ChannelUpdateReactionStatusResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoChannelUpdateReactionStatusResponse}
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.deserializeBinary = function(buffer) {
+  return proto.proto.ChannelUpdateReactionStatusResponse.decode(buffer);
+};
+
+/**
+ * Get ChannelUpdateReactionStatusResponse response.
+ * @memberof ProtoChannelUpdateReactionStatusResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set ChannelUpdateReactionStatusResponse response.
+ * @memberof ProtoChannelUpdateReactionStatusResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get ChannelUpdateReactionStatusResponse roomId.
+ * @memberof ProtoChannelUpdateReactionStatusResponse
+ * @return {Long}
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set ChannelUpdateReactionStatusResponse roomId.
+ * @memberof ProtoChannelUpdateReactionStatusResponse
+ * @param {Long} value
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get ChannelUpdateReactionStatusResponse reactionStatus.
+ * @memberof ProtoChannelUpdateReactionStatusResponse
+ * @return {boolean}
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.getReactionStatus = function() {
+  return this.reactionStatus;
+};
+
+/**
+ * Set ChannelUpdateReactionStatusResponse reactionStatus.
+ * @memberof ProtoChannelUpdateReactionStatusResponse
+ * @param {boolean} value
+ */
+proto.proto.ChannelUpdateReactionStatusResponse.prototype.setReactionStatus = function(value) {
+  this.reactionStatus = value;
 };
 
 /**
@@ -8937,6 +9364,24 @@ proto.proto.ChatSendMessage.prototype.getForwardFrom = function() {
  */
 proto.proto.ChatSendMessage.prototype.setForwardFrom = function(value) {
   this.forwardFrom = value;
+};
+
+/**
+ * Get ChatSendMessage randomId.
+ * @memberof ProtoChatSendMessage
+ * @return {Long}
+ */
+proto.proto.ChatSendMessage.prototype.getRandomId = function() {
+  return this.randomId;
+};
+
+/**
+ * Set ChatSendMessage randomId.
+ * @memberof ProtoChatSendMessage
+ * @param {Long} value
+ */
+proto.proto.ChatSendMessage.prototype.setRandomId = function(value) {
+  this.randomId = value;
 };
 
 /**
@@ -11438,6 +11883,102 @@ proto.proto.ClientPinRoomResponse.prototype.getPinId = function() {
  */
 proto.proto.ClientPinRoomResponse.prototype.setPinId = function(value) {
   this.pinId = value;
+};
+
+/**
+ * @interface ProtoClientRegisterDevice
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientRegisterDevice.prototype.serializeBinary = function() {
+  return proto.proto.ClientRegisterDevice.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientRegisterDevice}
+ */
+proto.proto.ClientRegisterDevice.deserializeBinary = function(buffer) {
+  return proto.proto.ClientRegisterDevice.decode(buffer);
+};
+
+/**
+ * Get ClientRegisterDevice request.
+ * @memberof ProtoClientRegisterDevice
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.ClientRegisterDevice.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set ClientRegisterDevice request.
+ * @memberof ProtoClientRegisterDevice
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.ClientRegisterDevice.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get ClientRegisterDevice token.
+ * @memberof ProtoClientRegisterDevice
+ * @return {string}
+ */
+proto.proto.ClientRegisterDevice.prototype.getToken = function() {
+  return this.token;
+};
+
+/**
+ * Set ClientRegisterDevice token.
+ * @memberof ProtoClientRegisterDevice
+ * @param {string} value
+ */
+proto.proto.ClientRegisterDevice.prototype.setToken = function(value) {
+  this.token = value;
+};
+
+/**
+ * @interface ProtoClientRegisterDeviceResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.ClientRegisterDeviceResponse.prototype.serializeBinary = function() {
+  return proto.proto.ClientRegisterDeviceResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoClientRegisterDeviceResponse}
+ */
+proto.proto.ClientRegisterDeviceResponse.deserializeBinary = function(buffer) {
+  return proto.proto.ClientRegisterDeviceResponse.decode(buffer);
+};
+
+/**
+ * Get ClientRegisterDeviceResponse response.
+ * @memberof ProtoClientRegisterDeviceResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.ClientRegisterDeviceResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set ClientRegisterDeviceResponse response.
+ * @memberof ProtoClientRegisterDeviceResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.ClientRegisterDeviceResponse.prototype.setResponse = function(value) {
+  this.response = value;
 };
 
 /**
@@ -18021,6 +18562,156 @@ proto.proto.GroupLeftResponse.prototype.setMemberId = function(value) {
 };
 
 /**
+ * @interface ProtoGroupPinMessage
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.GroupPinMessage.prototype.serializeBinary = function() {
+  return proto.proto.GroupPinMessage.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoGroupPinMessage}
+ */
+proto.proto.GroupPinMessage.deserializeBinary = function(buffer) {
+  return proto.proto.GroupPinMessage.decode(buffer);
+};
+
+/**
+ * Get GroupPinMessage request.
+ * @memberof ProtoGroupPinMessage
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.GroupPinMessage.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set GroupPinMessage request.
+ * @memberof ProtoGroupPinMessage
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.GroupPinMessage.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get GroupPinMessage roomId.
+ * @memberof ProtoGroupPinMessage
+ * @return {Long}
+ */
+proto.proto.GroupPinMessage.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set GroupPinMessage roomId.
+ * @memberof ProtoGroupPinMessage
+ * @param {Long} value
+ */
+proto.proto.GroupPinMessage.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get GroupPinMessage messageId.
+ * @memberof ProtoGroupPinMessage
+ * @return {Long}
+ */
+proto.proto.GroupPinMessage.prototype.getMessageId = function() {
+  return this.messageId;
+};
+
+/**
+ * Set GroupPinMessage messageId.
+ * @memberof ProtoGroupPinMessage
+ * @param {Long} value
+ */
+proto.proto.GroupPinMessage.prototype.setMessageId = function(value) {
+  this.messageId = value;
+};
+
+/**
+ * @interface ProtoGroupPinMessageResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.GroupPinMessageResponse.prototype.serializeBinary = function() {
+  return proto.proto.GroupPinMessageResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoGroupPinMessageResponse}
+ */
+proto.proto.GroupPinMessageResponse.deserializeBinary = function(buffer) {
+  return proto.proto.GroupPinMessageResponse.decode(buffer);
+};
+
+/**
+ * Get GroupPinMessageResponse response.
+ * @memberof ProtoGroupPinMessageResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.GroupPinMessageResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set GroupPinMessageResponse response.
+ * @memberof ProtoGroupPinMessageResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.GroupPinMessageResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get GroupPinMessageResponse roomId.
+ * @memberof ProtoGroupPinMessageResponse
+ * @return {Long}
+ */
+proto.proto.GroupPinMessageResponse.prototype.getRoomId = function() {
+  return this.roomId;
+};
+
+/**
+ * Set GroupPinMessageResponse roomId.
+ * @memberof ProtoGroupPinMessageResponse
+ * @param {Long} value
+ */
+proto.proto.GroupPinMessageResponse.prototype.setRoomId = function(value) {
+  this.roomId = value;
+};
+
+/**
+ * Get GroupPinMessageResponse pinnedMessage.
+ * @memberof ProtoGroupPinMessageResponse
+ * @return {(ProtoRoomMessage|null|undefined)}
+ */
+proto.proto.GroupPinMessageResponse.prototype.getPinnedMessage = function() {
+  return this.pinnedMessage;
+};
+
+/**
+ * Set GroupPinMessageResponse pinnedMessage.
+ * @memberof ProtoGroupPinMessageResponse
+ * @param {(ProtoRoomMessage|null|undefined)} value
+ */
+proto.proto.GroupPinMessageResponse.prototype.setPinnedMessage = function(value) {
+  this.pinnedMessage = value;
+};
+
+/**
  * @interface ProtoGroupRemoveUsername
  */
 
@@ -18465,6 +19156,24 @@ proto.proto.GroupSendMessage.prototype.getForwardFrom = function() {
  */
 proto.proto.GroupSendMessage.prototype.setForwardFrom = function(value) {
   this.forwardFrom = value;
+};
+
+/**
+ * Get GroupSendMessage randomId.
+ * @memberof ProtoGroupSendMessage
+ * @return {Long}
+ */
+proto.proto.GroupSendMessage.prototype.getRandomId = function() {
+  return this.randomId;
+};
+
+/**
+ * Set GroupSendMessage randomId.
+ * @memberof ProtoGroupSendMessage
+ * @param {Long} value
+ */
+proto.proto.GroupSendMessage.prototype.setRandomId = function(value) {
+  this.randomId = value;
 };
 
 /**
