@@ -3,13 +3,13 @@ import {gray2} from './default/index';
 
 export default {
   ...light,
-  primary: '#00bbf0',
-  toolbar: '#07689f',
+  primary: '#1976D2',
+  toolbar: '#2196F3',
   toolbarIcon: '#ffffff',
   toolbarText: '#ffffff',
   icon: gray2,
-  mainTabIcon: '#bebebe',
-  activeIcon: '#ffffff',
-  ownerBox: '#a2d5f2',
-  statusBar: '#2d4059',
+  mainTabIcon: '#ffffff',
+  activeIcon: '#0d47a1',
+  ownerBox: '#e3f2fd',
+  statusBar: '#1976D2',
 };

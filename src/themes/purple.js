@@ -2,8 +2,9 @@ import blue from './blue';
 
 export default {
   ...blue,
-  primary: '#461b93',
-  toolbar: '#6a3cbc',
-  ownerBox: '#dcccff',
-  statusBar: '#8253d7',
+  primary: '#7B1FA2',
+  toolbar: '#9C27B0',
+  activeIcon: '#4A148C',
+  ownerBox: '#E1BEE7',
+  statusBar: '#7B1FA2',
 };
