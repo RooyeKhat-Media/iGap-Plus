@@ -3,6 +3,7 @@ import {uniqueId} from 'lodash';
 import {View} from 'react-native';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
 import {ORIENTATION_PORTRAIT} from '../../../constants/screenBreakPoints';
+import {appTheme} from '../../../themes/default/index';
 
 const uId = uniqueId();
 const styleSheet = [
@@ -13,7 +14,7 @@ const styleSheet = [
       style: {
         container: {
           height: 20,
-          backgroundColor: '#e5e5e5',
+          backgroundColor: appTheme.statusBar,
         },
       },
     },
