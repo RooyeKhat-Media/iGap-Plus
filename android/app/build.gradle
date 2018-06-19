@@ -164,6 +164,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-push-notification')
     compile(project(':react-native-firebase')) {
         transitive = false
     }
