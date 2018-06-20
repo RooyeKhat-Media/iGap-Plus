@@ -18,6 +18,10 @@ export const IRANSans_Medium = {
   fontFamily: 'IRANSans_Medium',
 };
 
+export const IRANSans_Bold = {
+  fontFamily: 'IRANSans_Bold',
+};
+
 export const Neuropolitical = {
   fontFamily: 'neuropolitical',
 };

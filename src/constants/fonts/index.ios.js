@@ -19,6 +19,11 @@ export const IRANSans_Medium = {
   fontWeight: '500',
 };
 
+export const IRANSans_Bold = {
+  fontFamily: 'IRANSans',
+  fontWeight: '700',
+};
+
 export const Neuropolitical = {
   fontFamily: 'neuropolitical',
 };

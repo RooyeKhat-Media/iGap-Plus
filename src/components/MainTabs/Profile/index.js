@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, FlatList, MCIcon, Toolbar} from '../../BaseUI/index';
+import {Button, FlatList, IconToggle, Toolbar} from '../../BaseUI/index';
 import {ScrollView, Text, View} from 'react-native';
 import i18n from '../../../i18n/index';
 import styleSheet from './index.styles';
@@ -41,7 +41,7 @@ class ProfileComponent extends Component {
       <View style={styles.root}>
 
         <Toolbar
-          rightElement={<MCIcon name="settings" color={appTheme.toolbarIcon} size={24} onPress={this.menuClick}/>}
+          rightElement={<IconToggle onPress={this.menuClick} name="settings" color={appTheme.toolbarIcon}/>}
           centerElement={(currentUser && currentUser.phone && currentUser.phone.toString())}/>
 
         <ReturnToCall/>

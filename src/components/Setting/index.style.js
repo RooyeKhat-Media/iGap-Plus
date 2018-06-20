@@ -1,6 +1,6 @@
 import {uniqueId} from 'lodash';
 import {appTheme} from '../../themes/default/index';
-import {IRANSans_Medium} from '../../constants/fonts/index';
+import {IRANSans_Bold} from '../../constants/fonts/index';
 
 const id = uniqueId();
 
@@ -23,7 +23,7 @@ export default [
           textAlign: 'center',
           paddingTop: 15,
           paddingBottom: 5,
-          ...IRANSans_Medium,
+          ...IRANSans_Bold,
           marginTop: 10,
         },
         subItemText: {

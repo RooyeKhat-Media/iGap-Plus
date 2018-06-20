@@ -89,6 +89,8 @@ const styleSheet = [
           width: 280,
           flexDirection: 'column',
           backgroundColor: '#fff',
+          borderRadius: 5,
+          overflow: 'hidden',
         },
       },
     },

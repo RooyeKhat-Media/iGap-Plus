@@ -98,9 +98,9 @@ class RoomListComponent extends React.PureComponent {
             }
           />
           <MaterialTabs
-            barColor={appTheme.wrapperBackground}
-            indicatorColor={appTheme.border}
-            activeTextColor={appTheme.primaryText}
+            barColor={appTheme.pageBackground}
+            indicatorColor={appTheme.primary}
+            activeTextColor={appTheme.primary}
             inactiveTextColor={appTheme.secondaryText}
             items={[
               intl.formatMessage(i18n.roomListFilterAll),
