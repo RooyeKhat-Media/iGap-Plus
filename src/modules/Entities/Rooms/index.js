@@ -27,6 +27,8 @@ const {collect} = Collector(
   250
 );
 
+const _pendingRoom = new Map();
+
 /**
  * @param {string} id
  * @param {boolean} offlineInvokeApi Whether to need invoke api in offline mode
@@ -68,4 +70,39 @@ export function apiInvoke(id) {
   clientGetRoom.setRoomId(Long.fromString(id));
 
   return Api.invoke(CLIENT_GET_ROOM, clientGetRoom);
+}
+
+/**
+ * wait for room
+ * @param id
+ * @returns {Promise}
+ */
+export function waitForRoom(id) {
+  let room = store.getState().entities.rooms[id];
+  if (room) {
+    return room;
+  }
+  let promise;
+  if (!_pendingRoom.has(id)) {
+    promise = new Promise((resolve, reject) => {
+      _pendingRoom.set(id, {
+        promise,
+        resolve,
+      });
+      setTimeout(reject, 2 * 60);
+    });
+  } else {
+    promise = _pendingRoom.get(id).promise;
+  }
+  return promise;
+}
+
+/**
+ * @param {FlatRoom} room
+ */
+export function resolveRoom(room) {
+  if (_pendingRoom.has(room.id)) {
+    _pendingRoom.get(room.id).resolve(room);
+    _pendingRoom.delete(room.id);
+  }
 }

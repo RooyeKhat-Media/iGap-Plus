@@ -21,6 +21,7 @@ import entitiesRoomMessagesMiddleware from './modules/Entities/RoomMessages/midd
 import messengerRoomsMiddleware from './modules/Messenger/Rooms/middleware';
 import userUpdateStatusMiddleware from './middlewares/userUpdateStatus';
 import entitiesRoomMiddleware from './middlewares/entitiesRoom';
+import entitiesUsersMiddleware from './middlewares/entitiesRegisteredUser';
 //Optimization
 import collectorMiddleware from './middlewares/collector';
 
@@ -42,6 +43,7 @@ function configureStore(preloadedState) {
     messengerRoomsMiddleware,
     userUpdateStatusMiddleware,
     entitiesRoomMiddleware,
+    entitiesUsersMiddleware,
     //Optimization
     collectorMiddleware,
   ];

@@ -24,6 +24,8 @@ const {collect} = Collector(
   250
 );
 
+const _pendingUsers = new Map();
+
 /**
  * @param {string} id
  * @param {string} cacheId
@@ -55,4 +57,38 @@ export function apiInvoke(id) {
   userInfo.setUserId(id);
 
   return Api.invoke(USER_INFO, userInfo);
+}
+
+/**
+ * wait for User
+ * @param {string} id
+ * @returns {Promise}
+ */
+export function waitForUser(id) {
+  const user = store.getState().entities.registeredUsers[id];
+  if (user) {
+    return user;
+  }
+  let promise;
+  if (!_pendingUsers.has(id)) {
+    promise = new Promise((resolve, reject) => {
+      _pendingUsers.set(id, {
+        promise,
+        resolve,
+      });
+      setTimeout(reject, 2 * 60);
+    });
+  } else {
+    promise = _pendingUsers.get(id).promise;
+  }
+  return promise;
+}
+/**
+ * @param {FlatRegisteredUser} user
+ */
+export function resolveUser(user) {
+  if (_pendingUsers.has(user.id)) {
+    _pendingUsers.get(user.id).resolve(user);
+    _pendingUsers.delete(user.id);
+  }
 }
