@@ -137,7 +137,6 @@ export default {
   countryIR: {id: 'country.IR', defaultMessage: 'Iran', description: 'Iran country name'},
   countryIQ: {id: 'country.IQ', defaultMessage: 'Iraq', description: 'Iraq country name'},
   countryIE: {id: 'country.IE', defaultMessage: 'Ireland', description: 'Ireland country name'},
-  countryIL: {id: 'country.IL', defaultMessage: 'Israel', description: 'Israel country name'},
   countryIT: {id: 'country.IT', defaultMessage: 'Italy', description: 'Italy country name'},
   countryJM: {id: 'country.JM', defaultMessage: 'Jamaica', description: 'Jamaica country name'},
   countrySJ: {
