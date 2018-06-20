@@ -168,7 +168,7 @@ class SettingComponent extends Component {
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="lifebuoy" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="headset" size={22} color={appTheme.icon}/> }
             centerElement={{primaryText: intl.formatMessage(i18n.settingSupportRequest)}}
             onPress={() => Linking.openURL('https://support.igap.net')}
             style={styles.listItem}
