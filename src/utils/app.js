@@ -51,6 +51,11 @@ import Client from '../modules/Api/Client';
 import {clientStatusChanged} from '../actions/api';
 import {clientStatusUpdating} from '../actions/updating';
 import {serverRoomsState} from '../modules/Messenger/Rooms/index';
+import {waitForRoom} from '../modules/Entities/Rooms/index';
+import {notifyMessage} from '../modules/Notification/index';
+import {waitForUser} from '../modules/Entities/RegisteredUsers/index';
+import {fileManagerDownload} from '../actions/fileManager';
+import {FILE_MANAGER_DOWNLOAD_MANNER} from '../constants/fileManager';
 import {appEnable} from '../actions/app';
 
 let _userId;
@@ -234,11 +239,49 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId, checkState) {
 
   if (getFocusRoom() === roomId) {
     seenMessage(roomId, normalizedRoomMessage.id);
-  } else {
+  } else if (normalizedRoomMessage.status === Proto.RoomMessageStatus.SENT) {
     deliverMessage(roomId, normalizedRoomMessage.id);
+    prepareNotifyRoomMessage(normalizedRoomMessage);
   }
 
   setFakeMessageId(normalizedRoomMessage.longId);
+}
+
+/**
+ * @param message
+ * @returns {Promise.<void>}
+ */
+export async function prepareNotifyRoomMessage(message) {
+  const room = await waitForRoom(message.roomId);
+  let title, avatar;
+  if (room.roomMute === Proto.RoomMute.UNMUTE) {
+    if (message.authorUser) {
+      const authorUser = await waitForUser(message.authorUser);
+      title = authorUser.displayName;
+      avatar = authorUser.avatar;
+    } else {
+      const authorRoom = await waitForRoom(message.authorRoom);
+      title = authorRoom.title;
+      avatar = authorRoom.channelAvatar || authorRoom.groupAvatar;
+    }
+    if (avatar) {
+      const cacheId = avatar.getFile().getSmallThumbnail().getCacheId();
+      if (store.getState().fileManager.download[cacheId]) {
+        avatar = store.getState().fileManager.download[cacheId];
+      } else {
+        avatar = await store.dispatch(fileManagerDownload(
+          FILE_MANAGER_DOWNLOAD_MANNER.FORCE,
+          avatar.getFile().getToken(),
+          Proto.FileDownload.Selector.SMALL_THUMBNAIL,
+          avatar.getFile().getSmallThumbnail().getSize(),
+          avatar.getFile().getSmallThumbnail().getCacheId(),
+          avatar.getFile().getSmallThumbnail().getName()
+        ));
+      }
+      avatar = prependFileProtocol(avatar.uri);
+    }
+    notifyMessage(message.roomId, title, avatar, message.message, message.id);
+  }
 }
 
 /**

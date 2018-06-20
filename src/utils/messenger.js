@@ -57,6 +57,7 @@ import {fileManagerUpload, fileManagerUploadDisposed} from '../actions/fileManag
 import Collector from '../modules/Collector';
 import {messengerRoomAddList} from '../actions/messenger/rooms';
 import VideoCompress from '../modules/VideoCompress';
+import {clearNotification} from '../modules/Notification/index';
 
 /**
  * @type {string} current Focus Room
@@ -82,6 +83,7 @@ let _viewedMessages = {};
 export function focusRoom(roomId) {
   _focusRoom = roomId;
   seenDeliveredMessages(roomId);
+  clearNotification(roomId);
 }
 
 /**
