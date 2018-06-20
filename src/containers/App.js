@@ -38,6 +38,8 @@ class App extends Component {
     }).then(() => {
       Api.instance;
     }).then(() => {
+      firebase.messaging().getToken().then(registerDevice);
+      this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(registerDevice);
       return Promise.all([
         loadUserId(),
         loadAuthorHash(),
@@ -59,8 +61,6 @@ class App extends Component {
         }),
       ]);
     });
-    firebase.messaging().getToken().then(registerDevice);
-    this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(registerDevice);
   }
 
   componentWillMount() {
