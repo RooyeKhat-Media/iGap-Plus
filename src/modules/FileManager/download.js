@@ -102,6 +102,9 @@ export default async function(uid, token, selector, size, cacheId, originalFileN
       }
     }
     store.dispatch(fileManagerDownloadCompleted(cacheId, fileInfo.fileUri));
+    return {
+      uri: fileInfo.fileUri,
+    };
   } catch (e) {
     if (!(e instanceof ClientError)) {
       store.dispatch(fileManagerDownloadAutoPaused(cacheId));
