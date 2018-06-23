@@ -1,5 +1,5 @@
 import Base from '../Base';
-import putState from '../../Entities/Rooms/index';
+import putState, {waitForRoom} from '../../Entities/Rooms/index';
 import {getAuthorHash, prepareRoomMessage} from '../../../utils/app';
 import {entitiesRoomEdit} from '../../../actions/entities/rooms';
 
@@ -9,7 +9,6 @@ import {entitiesRoomMessagesAdd} from '../../../actions/entities/roomMessages';
 import {messengerRoomMessageConcat} from '../../../actions/messenger/roomMessages';
 import {toPairs} from 'lodash';
 import store from '../../../configureStore';
-import {sleep} from '../../../utils/core';
 import {messengerRoomAddList} from '../../../actions/messenger/rooms';
 
 /**
@@ -20,18 +19,11 @@ export default class SendMessage extends Base {
   async handle() {
     const roomId = this._response.getRoomId().toString();
     await putState(roomId);
-    let tries = 10;
-    do {
-      if (!store.getState().entities.rooms[roomId]) {
-        await sleep(1);
-      }
-    } while (--tries);
-
-    const room = store.getState().entities.rooms[roomId];
+    const room = await waitForRoom(roomId);
     const message = this._response.getRoomMessage();
     const messageId = message.getMessageId().toString();
 
-    if (!store.getState().messenger.rooms[roomId] || store.getState().entities.rooms[roomId].isParticipant) {
+    if (!store.getState().messenger.rooms[roomId] || room.isParticipant) {
       this.dispatch(messengerRoomAddList({
         [roomId]: {
           id: roomId,
