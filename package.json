@@ -34,7 +34,7 @@
     "react-native-igap-camera": "./native/modules/Camera",
     "react-native-image-gallery": "^2.1.5",
     "react-native-incall-manager": "^3.2.0",
-    "react-native-maps": "^0.20.1",
+    "react-native-maps": "^0.21.0",
     "react-native-material-tabs": "^3.5.0",
     "react-native-material-ui": "^1.22.2",
     "react-native-permissions": "^1.1.1",
