@@ -165,9 +165,6 @@ repositories {
 
 dependencies {
     compile project(':react-native-push-notification')
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
     implementation project(':react-native-firebase')
     implementation "com.google.android.gms:play-services-base:15.0.1"
     implementation "com.google.firebase:firebase-core:16.0.0"
@@ -210,7 +207,7 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.3.0'
     compile 'com.facebook.fresco:animated-gif:1.3.0'
     compile 'com.android.support:multidex:1.0.3'
-    implementation "com.google.firebase:firebase-messaging:15.0.2"
+    implementation "com.google.firebase:firebase-messaging:17.0.0"
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 }
 
