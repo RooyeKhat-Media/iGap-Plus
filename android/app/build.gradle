@@ -94,13 +94,13 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "iGap.Plus"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 8
         versionName "1.0.6"
         vectorDrawables.useSupportLibrary = true
@@ -189,7 +189,7 @@ dependencies {
     compile (project(':react-native-camera')) {
         exclude group: "com.google.android.gms"
         exclude group: "com.android.support"
-        compile "com.android.support:exifinterface:26.+"
+        compile "com.android.support:exifinterface:27.+"
         compile("com.google.android.gms:play-services-vision:15.0.2") {
             force = true
         }
@@ -201,8 +201,8 @@ dependencies {
         transitive = true;
     }
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:support-v4:26.+"
-    compile "com.android.support:appcompat-v7:26.+"
+    compile "com.android.support:support-v4:27.+"
+    compile "com.android.support:appcompat-v7:27.+"
     compile "com.facebook.react:react-native:+"  // From node_modules
     compile 'com.facebook.fresco:fresco:1.3.0'
     compile 'com.facebook.fresco:animated-gif:1.3.0'
