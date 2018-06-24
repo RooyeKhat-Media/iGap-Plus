@@ -284,10 +284,7 @@ class RoomInfoScreen extends Component {
   toggleMute = () => {
     const {room} = this.props;
     let {roomMute} = this.state;
-    if (roomMute !== room.roomMute) {
-      return;
-    }
-    roomMute = room.roomMute === Proto.RoomMute.UNMUTE ? Proto.RoomMute.MUTE : Proto.RoomMute.UNMUTE;
+    roomMute = roomMute === Proto.RoomMute.UNMUTE ? Proto.RoomMute.MUTE : Proto.RoomMute.UNMUTE;
     const clientMuteRoom = new ClientMuteRoom();
     clientMuteRoom.setRoomId(room.longId);
     clientMuteRoom.setRoomMute(roomMute);
