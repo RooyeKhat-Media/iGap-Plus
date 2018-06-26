@@ -47,8 +47,15 @@ export default [
           alignItems: 'flex-start',
           justifyContent: 'center',
         },
-        title: {
+        rowTitle: {
           flex: 1,
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+        },
+        verifyStyle: {
+          alignSelf: 'center',
+        },
+        title: {
           fontSize: 16,
           color: appTheme.primaryText,
           textAlign: 'left',

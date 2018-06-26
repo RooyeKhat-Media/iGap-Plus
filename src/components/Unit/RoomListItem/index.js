@@ -9,6 +9,7 @@ import styleSheet from './index.styles';
 import {metricSuffix} from '../../../utils/core';
 import {appTheme} from '../../../themes/default/index';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import Verify from '../../../assets/images/verify';
 
 class RoomListItem extends React.PureComponent {
   getStyles = () => {
@@ -17,7 +18,7 @@ class RoomListItem extends React.PureComponent {
 
   render() {
     const styles = this.getStyles();
-    const {roomId, roomTitle, roomPined, roomMute, selected, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress} = this.props;
+    const {roomId, roomTitle, roomPined, roomMute, selected, lastMessageTitle, lastMessageStatue, lastMessageTime, unreadCount, onPress, onLongPress, verified} = this.props;
     return (<RippleFeedback
       onPress={onPress}
       onLongPress={onLongPress}>
@@ -28,7 +29,10 @@ class RoomListItem extends React.PureComponent {
         </View>
         <View style={styles.body}>
           <View style={styles.primary}>
-            <Text numberOfLines={1} style={styles.title}>{roomTitle}</Text>
+            <View style={styles.rowTitle}>
+              <Text numberOfLines={1} style={styles.title}>{roomTitle} </Text>
+              {verified && <Verify style={styles.verifyStyle}/>}
+            </View>
             <View style={styles.addOn}>
               <MessageStatus status={lastMessageStatue} size={15}/>
               <Text style={styles.timeTitle} numberOfLines={1}>
@@ -70,5 +74,6 @@ RoomListItem.propTypes = {
   lastMessageTime: PropTypes.number,
   unreadCount: PropTypes.number,
   onPress: PropTypes.func,
+  verified: PropTypes.bool,
 };
 export default injectIntl(RoomListItem);

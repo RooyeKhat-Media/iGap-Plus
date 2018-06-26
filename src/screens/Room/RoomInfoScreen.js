@@ -350,6 +350,7 @@ class RoomInfoScreen extends Component {
       return null;
     }
 
+    const chatPeerVerified = roomPeer ? roomPeer.verified : null;
     return (
       <RoomViewComponent
         room={room}
@@ -377,6 +378,7 @@ class RoomInfoScreen extends Component {
         isBlock={roomPeer ? getIsBlockFunc(roomPeer.id) : false}
         goBack={this.props.navigation.goBack}
         callAction={callAction}
+        verified={room.channelVerified || chatPeerVerified}
       />
     );
   }

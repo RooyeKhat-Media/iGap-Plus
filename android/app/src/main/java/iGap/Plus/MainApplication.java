@@ -1,6 +1,8 @@
 package iGap.Plus;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.ndk.CrashlyticsNdk;
@@ -96,4 +98,10 @@ public class MainApplication extends Application implements ReactApplication , S
        public String getFileProviderAuthority() {
               return "iGap.Plus.provider";
        }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
+  }
 }

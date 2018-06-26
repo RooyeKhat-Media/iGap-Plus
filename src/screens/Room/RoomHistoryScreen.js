@@ -4,7 +4,7 @@ import {isArray, keys} from 'lodash';
 import {injectIntl, intlShape} from 'react-intl';
 import SaveTo from '../../../native/modules/SaveTo';
 import Share from '../../modules/Share/index';
-import {getRoom} from '../../selector/entities/room';
+import {getRoom, getRoomPeer} from '../../selector/entities/room';
 import RNIGFileSystem, {FileUtil} from 'react-native-file-system';
 import loadRoomHistory, {getRoomFirstMessageId, getRoomLastMessageId} from '../../modules/Messenger/loadRoomHistory';
 import RoomHistoryComponent from '../../components/Room/RoomHistory';
@@ -747,7 +747,7 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   render() {
-    const {room, clientUpdating, messageList, getRoomMessage, getRoomMessageType} = this.props;
+    const {room, clientUpdating, messageList, getRoomMessage, getRoomMessageType, chatPeerVerified} = this.props;
     const {text, pickedFile, replyTo, forwardedMessage, editMessageId, selectedCount, selectedList} = this.state;
     const Form = {
       text,
@@ -801,6 +801,7 @@ class RoomHistoryScreen extends PureComponent {
         actionSheetControl={this.actionSheetControl}
         onScroll={this.onScroll}
         goBack={this.props.navigation.goBack}
+        verified={room.channelVerified || chatPeerVerified}
       />
     );
   }
@@ -808,6 +809,7 @@ class RoomHistoryScreen extends PureComponent {
 
 const makeMapStateToProps = () => {
   return (state, props) => {
+    const chatPeer = getRoomPeer(state, props);
     return {
       room: getRoom(state, props),
       messageList: getRoomMessageList(state, props),
@@ -815,6 +817,7 @@ const makeMapStateToProps = () => {
       getRoomMessageType: getEntitiesRoomMessageTypeFunc(state),
       getRegisteredUser: getUserFunc(state),
       clientUpdating: state.clientUpdating,
+      chatPeerVerified: chatPeer ? chatPeer.verified : null,
     };
   };
 };

@@ -12,13 +12,14 @@ import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import RichTextView from '../../../modules/RichTextView/index';
 import {Proto} from '../../../modules/Proto/index';
 import RoomStatus from '../../../containers/Unit/RoomStatus';
-import {getUserId} from "../../../utils/app";
+import {getUserId} from '../../../utils/app';
+import Verify from '../../../assets/images/verify';
 
 class RoomInfoComponent extends React.Component {
   render() {
     const {
       intl, room, roomPeer, roomMute, access, countRoomHistory, sendMessage, callUser, leaveRoom, joinRoom, editRoom, actionClick, actions,
-      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack, callAction,
+      addMember, memberList, notification, updateUsername, revokeLink, clearHistory, deleteRoom, goAvatarList, toggleMute, goBack, callAction, verified,
       isBlock, onActionListPress,
     } = this.props;
     const styles = this.getStyles();
@@ -54,7 +55,13 @@ class RoomInfoComponent extends React.Component {
               onPress={(idx) => {
                 onActionListPress(idx, this.confirm);
               }}/>) : null}
-          centerElement={room.title}/>
+          centerElement={
+            <View style={styles.rowTitle}>
+              <Text numberOfLines={1} style={styles.titleText}>{room.title}</Text>
+              {verified && <Verify style={styles.verifyStyle}/>}
+            </View>
+          }
+        />
 
         <ScrollView style={styles.scroll}>
 
@@ -115,11 +122,17 @@ class RoomInfoComponent extends React.Component {
 
             <View style={styles.section}>
               <ListItem
-                centerElement={<View style={styles.roomTitleWrap}>
-                  <Text style={styles.roomTitle}>{room.title}</Text>
-                  <Text style={styles.roomStatus}><RoomStatus roomId={room.id}/></Text>
-                </View>}
-              />
+                centerElement={
+                  <View style={styles.rowTitle}>
+                    <Text numberOfLines={1} style={styles.roomTitle}>{room.title}</Text>
+                    {verified && <Verify style={styles.verifyStyle}/>}
+                  </View>}/>
+              <ListItem
+                centerElement={
+                  <View style={styles.roomTitleWrap}>
+                    <Text style={styles.roomStatus}><RoomStatus roomId={room.id}/></Text>
+                  </View>}/>
+
               {(roomPeer && roomPeer.mutual) && (
                 <ListItem
                   centerElement={{
@@ -343,6 +356,7 @@ RoomInfoComponent.propTypes = {
   callAction: PropTypes.object.isRequired,
   onActionListPress: PropTypes.func.isRequired,
   isBlock: PropTypes.bool.isRequired,
+  verified: PropTypes.bool,
 };
 
 export default injectIntl(RoomInfoComponent);

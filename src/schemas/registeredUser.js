@@ -7,7 +7,7 @@ import {objectToLong, objectToUint8Array} from '../utils/core';
 import {Proto} from '../modules/Proto/index';
 
 /**
- * @typedef {{id: string, longId: (string|Long|*), username:string, phone: (Long|string), firstName: string, lastName: string, displayName, initials: string, color: string, status: (ProtoRegisteredUser_Status|ProtoRoomMessageStatus|ProtoChannelCheckUsernameResponseStatus|ProtoConnectionSymmetricKeyResponse_Status|ProtoFileUploadStatusResponse_Status|ProtoGroupCheckUsernameResponse_Status|*), lastSeen: number, avatarCount: number, avatar: (ProtoAvatar|null|undefined), mutual: boolean, deleted: boolean, cacheId: string}} FlatRegisteredUser
+ * @typedef {{id: string, longId: (string|Long|*), username:string, phone: (Long|string), firstName: string, lastName: string, displayName, initials: string, color: string, status: (ProtoRegisteredUser_Status|ProtoRoomMessageStatus|ProtoChannelCheckUsernameResponseStatus|ProtoConnectionSymmetricKeyResponse_Status|ProtoFileUploadStatusResponse_Status|ProtoGroupCheckUsernameResponse_Status|*), lastSeen: number, avatarCount: number, avatar: (ProtoAvatar|null|undefined), mutual: boolean, deleted: boolean, cacheId: string, verified: boolean}} FlatRegisteredUser
  */
 
 /**
@@ -32,6 +32,7 @@ export const flatProtoRegisteredUser = (user) => {
     mutual: user.getMutual(),
     deleted: user.getDeleted(),
     cacheId: user.getCacheId(),
+    verified: user.getVerified(),
   };
 };
 

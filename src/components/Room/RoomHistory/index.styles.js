@@ -1,5 +1,6 @@
 import {appTheme} from '../../../themes/default/index';
 import {uniqueId} from 'lodash';
+import {IRANSans_Medium} from '../../../constants/fonts/index';
 
 const uId = uniqueId();
 export default [
@@ -33,6 +34,23 @@ export default [
           transform: [{rotateX: '180deg'}],
         },
         bottomWrap: {},
+        rowTitle: {
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+        },
+        verifyStyle: {
+          alignSelf: 'center',
+        },
+        titleText: {
+          fontSize: 18,
+          color: appTheme.toolbarText,
+          textAlign: 'left',
+          paddingLeft: 10,
+          alignSelf: 'center',
+          paddingRight: 5,
+          ...IRANSans_Medium,
+        },
       },
     },
   ],

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {Confirm, PopupMenu, Toolbar} from '../../BaseUI/index';
@@ -27,6 +27,7 @@ import {getAuthorHash} from '../../../utils/app';
 import ScrollDown from './ScrollDown';
 import ReturnToCall from '../../Call/ReturnToCall';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import Verify from '../../../assets/images/verify';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -164,11 +165,22 @@ class RoomHistoryComponent extends React.PureComponent {
   }
 
   renderBaseToolbar() {
-    const {intl, roomTitle, clientUpdating, goRoomInfoBtn, goBack, onRoomHistoryMorePress} = this.props;
+    const {intl, roomTitle, clientUpdating, goRoomInfoBtn, goBack, onRoomHistoryMorePress, verified} = this.props;
+    const styles = this.getStyles();
     return (<Toolbar
       leftElement="arrow-back"
       onLeftElementPress={goBack}
-      centerElement={clientUpdating ? intl.formatMessage(i18n.clientUpdating) : roomTitle}
+      centerElement={
+        clientUpdating ?
+          <View style={styles.rowTitle}>
+            <Text numberOfLines={1} style={styles.titleText}>{intl.formatMessage(i18n.clientUpdating)}</Text>
+          </View>
+          :
+          <View style={styles.rowTitle}>
+            <Text numberOfLines={1} style={styles.titleText}>{roomTitle}</Text>
+            {verified && <Verify style={styles.verifyStyle}/>}
+          </View>
+      }
       rightElement={(
         <PopupMenu actionList={[intl.formatMessage(i18n.roomHistoryActionReport)]} type={APP_MODAL_ID_SECONDARY}
           onPress={onRoomHistoryMorePress}/>)}
@@ -219,5 +231,6 @@ RoomHistoryComponent.propTypes = {
   toolbarActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   onScroll: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
+  verified: PropTypes.bool,
 };
 export default injectIntl(RoomHistoryComponent);

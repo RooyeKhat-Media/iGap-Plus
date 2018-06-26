@@ -82,6 +82,7 @@ export const flatProtoRoom = (room) => {
     flat.channelAvatar = cre.getAvatar();
     flat.channelSignature = cre.getSignature();
     flat.channelSeenId = cre.getSeenId();
+    flat.channelVerified = cre.getVerified();
 
     if (room.getChannelRoomExtra().getPrivateExtra()) {
       flat.channelPrivateInviteLink = cre.getPrivateExtra().getInviteLink();

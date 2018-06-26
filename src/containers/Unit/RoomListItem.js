@@ -6,7 +6,7 @@ import RoomListItemComponent from '../../components/Unit/RoomListItem';
 import {connect} from 'react-redux';
 import {Proto} from '../../modules/Proto/index';
 import {getAuthorHash} from '../../utils/app';
-import {getRoom, getRoomLastMessage} from '../../selector/entities/room';
+import {getRoom, getRoomLastMessage, getRoomPeer} from '../../selector/entities/room';
 
 class RoomListItem extends React.PureComponent {
 
@@ -23,7 +23,7 @@ class RoomListItem extends React.PureComponent {
   };
 
   render() {
-    const {room, lastMessage, selected, disablePin} = this.props;
+    const {room, lastMessage, selected, disablePin, chatPeerVerified} = this.props;
     if (!room) {
       return null;
     }
@@ -31,7 +31,7 @@ class RoomListItem extends React.PureComponent {
     const authorHash = getAuthorHash();
     const ownerLastMessage = lastMessage && authorHash === lastMessage.authorHash;
     const lastMessageStatus = ownerLastMessage && room.type !== Proto.Room.Type.CHANNEL ? lastMessage.status : false;
-
+    const verified = chatPeerVerified || room.channelVerified;
     const lastMessageTitle = this.getMessageTitle(lastMessage);
 
     return (<RoomListItemComponent roomId={room.id}
@@ -47,6 +47,7 @@ class RoomListItem extends React.PureComponent {
       lastMessageStatue={lastMessageStatus}
       onPress={this.onRoomPress}
       onLongPress={this.onLongPress}
+      verified={verified}
     />);
   }
 
@@ -73,9 +74,11 @@ RoomListItem.propTypes = {
 };
 
 const mapStateToProps = (state, props) => {
+  const chatPeer = getRoomPeer(state, props);
   return {
     room: getRoom(state, props),
     lastMessage: getRoomLastMessage(state, props),
+    chatPeerVerified: chatPeer ? chatPeer.verified : null,
   };
 };
 

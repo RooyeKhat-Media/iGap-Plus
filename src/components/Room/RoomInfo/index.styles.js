@@ -89,19 +89,36 @@ export default [
             borderWidth: 1,
           },
         },
+        rowTitle: {
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+        },
+        verifyStyle: {
+          alignSelf: 'center',
+        },
+        titleText: {
+          fontSize: 18,
+          color: appTheme.toolbarText,
+          textAlign: 'left',
+          paddingLeft: 10,
+          alignSelf: 'center',
+          paddingRight: 5,
+          ...IRANSans_Medium,
+        },
         roomTitleWrap: {},
         roomTitle: {
           color: appTheme.titleText,
           ...IRANSans_Medium,
           fontSize: 15,
+          marginRight: 6,
+          alignSelf: 'center',
           textAlign: 'left',
-          marginTop: 7,
         },
         roomStatus: {
           fontSize: 13,
           color: appTheme.primaryText,
           textAlign: 'left',
-          marginTop: -3,
         },
         textTitle: {
           color: appTheme.titleText,
