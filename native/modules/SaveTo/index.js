@@ -63,7 +63,7 @@ export default class SaveTo {
       return Promise.reject('Save to music is not supported');
     }
 
-    return RNSaveTo.saveToMusic(fileUri);
+    return RNSaveTo.saveToMusic(fileUri.replace('file:///', ''));
   }
 
   /**
@@ -76,6 +76,6 @@ export default class SaveTo {
       return Promise.reject('Save to downloads is not supported');
     }
 
-    return RNSaveTo.saveToDownloads(fileUri);
+    return RNSaveTo.saveToDownloads(fileUri.replace('file:///', ''));
   }
 }
