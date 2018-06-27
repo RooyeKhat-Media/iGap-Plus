@@ -11943,6 +11943,40 @@ proto.proto.ClientRegisterDevice.prototype.setToken = function(value) {
 };
 
 /**
+ * Get ClientRegisterDevice type.
+ * @memberof ProtoClientRegisterDevice
+ * @return {ProtoClientRegisterDevice_Type}
+ */
+proto.proto.ClientRegisterDevice.prototype.getType = function() {
+  return this.type;
+};
+
+/**
+ * Set ClientRegisterDevice type.
+ * @memberof ProtoClientRegisterDevice
+ * @param {ProtoClientRegisterDevice_Type} value
+ */
+proto.proto.ClientRegisterDevice.prototype.setType = function(value) {
+  this.type = value;
+};
+
+/**
+ * @typedef {number} ProtoClientRegisterDevice_Type
+ */
+
+/**
+ * Type enum.
+ * @enum {ProtoClientRegisterDevice_Type}
+ * @memberof ProtoClientRegisterDevice
+ */
+proto.proto.ClientRegisterDevice.Type = proto.proto.ClientRegisterDevice.prototype.Type = {
+  GENERIC : 0,
+  ANDROID : 1,
+  IOS : 2,
+  WEB : 3,
+};
+
+/**
  * @interface ProtoClientRegisterDeviceResponse
  */
 
@@ -20710,6 +20744,378 @@ proto.proto.InfoWallpaperResponse.prototype.getWallpaperList = function() {
  */
 proto.proto.InfoWallpaperResponse.prototype.setWallpaperList = function(value) {
   this.wallpaper = value;
+};
+
+/**
+ * @interface ProtoMplGetBillToken
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.MplGetBillToken.prototype.serializeBinary = function() {
+  return proto.proto.MplGetBillToken.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoMplGetBillToken}
+ */
+proto.proto.MplGetBillToken.deserializeBinary = function(buffer) {
+  return proto.proto.MplGetBillToken.decode(buffer);
+};
+
+/**
+ * Get MplGetBillToken request.
+ * @memberof ProtoMplGetBillToken
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.MplGetBillToken.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set MplGetBillToken request.
+ * @memberof ProtoMplGetBillToken
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.MplGetBillToken.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get MplGetBillToken billId.
+ * @memberof ProtoMplGetBillToken
+ * @return {Long}
+ */
+proto.proto.MplGetBillToken.prototype.getBillId = function() {
+  return this.billId;
+};
+
+/**
+ * Set MplGetBillToken billId.
+ * @memberof ProtoMplGetBillToken
+ * @param {Long} value
+ */
+proto.proto.MplGetBillToken.prototype.setBillId = function(value) {
+  this.billId = value;
+};
+
+/**
+ * Get MplGetBillToken payId.
+ * @memberof ProtoMplGetBillToken
+ * @return {Long}
+ */
+proto.proto.MplGetBillToken.prototype.getPayId = function() {
+  return this.payId;
+};
+
+/**
+ * Set MplGetBillToken payId.
+ * @memberof ProtoMplGetBillToken
+ * @param {Long} value
+ */
+proto.proto.MplGetBillToken.prototype.setPayId = function(value) {
+  this.payId = value;
+};
+
+/**
+ * @interface ProtoMplGetBillTokenResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.MplGetBillTokenResponse.prototype.serializeBinary = function() {
+  return proto.proto.MplGetBillTokenResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoMplGetBillTokenResponse}
+ */
+proto.proto.MplGetBillTokenResponse.deserializeBinary = function(buffer) {
+  return proto.proto.MplGetBillTokenResponse.decode(buffer);
+};
+
+/**
+ * Get MplGetBillTokenResponse response.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.MplGetBillTokenResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set MplGetBillTokenResponse response.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.MplGetBillTokenResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get MplGetBillTokenResponse status.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @return {number}
+ */
+proto.proto.MplGetBillTokenResponse.prototype.getStatus = function() {
+  return this.status;
+};
+
+/**
+ * Set MplGetBillTokenResponse status.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @param {number} value
+ */
+proto.proto.MplGetBillTokenResponse.prototype.setStatus = function(value) {
+  this.status = value;
+};
+
+/**
+ * Get MplGetBillTokenResponse token.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @return {string}
+ */
+proto.proto.MplGetBillTokenResponse.prototype.getToken = function() {
+  return this.token;
+};
+
+/**
+ * Set MplGetBillTokenResponse token.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @param {string} value
+ */
+proto.proto.MplGetBillTokenResponse.prototype.setToken = function(value) {
+  this.token = value;
+};
+
+/**
+ * Get MplGetBillTokenResponse expireTime.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @return {number}
+ */
+proto.proto.MplGetBillTokenResponse.prototype.getExpireTime = function() {
+  return this.expireTime;
+};
+
+/**
+ * Set MplGetBillTokenResponse expireTime.
+ * @memberof ProtoMplGetBillTokenResponse
+ * @param {number} value
+ */
+proto.proto.MplGetBillTokenResponse.prototype.setExpireTime = function(value) {
+  this.expireTime = value;
+};
+
+/**
+ * @interface ProtoMplGetTopupToken
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.MplGetTopupToken.prototype.serializeBinary = function() {
+  return proto.proto.MplGetTopupToken.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoMplGetTopupToken}
+ */
+proto.proto.MplGetTopupToken.deserializeBinary = function(buffer) {
+  return proto.proto.MplGetTopupToken.decode(buffer);
+};
+
+/**
+ * Get MplGetTopupToken request.
+ * @memberof ProtoMplGetTopupToken
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.MplGetTopupToken.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set MplGetTopupToken request.
+ * @memberof ProtoMplGetTopupToken
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.MplGetTopupToken.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * Get MplGetTopupToken chargeMobileNumber.
+ * @memberof ProtoMplGetTopupToken
+ * @return {Long}
+ */
+proto.proto.MplGetTopupToken.prototype.getChargeMobileNumber = function() {
+  return this.chargeMobileNumber;
+};
+
+/**
+ * Set MplGetTopupToken chargeMobileNumber.
+ * @memberof ProtoMplGetTopupToken
+ * @param {Long} value
+ */
+proto.proto.MplGetTopupToken.prototype.setChargeMobileNumber = function(value) {
+  this.chargeMobileNumber = value;
+};
+
+/**
+ * Get MplGetTopupToken amount.
+ * @memberof ProtoMplGetTopupToken
+ * @return {Long}
+ */
+proto.proto.MplGetTopupToken.prototype.getAmount = function() {
+  return this.amount;
+};
+
+/**
+ * Set MplGetTopupToken amount.
+ * @memberof ProtoMplGetTopupToken
+ * @param {Long} value
+ */
+proto.proto.MplGetTopupToken.prototype.setAmount = function(value) {
+  this.amount = value;
+};
+
+/**
+ * Get MplGetTopupToken type.
+ * @memberof ProtoMplGetTopupToken
+ * @return {ProtoMplGetTopupToken_Type}
+ */
+proto.proto.MplGetTopupToken.prototype.getType = function() {
+  return this.type;
+};
+
+/**
+ * Set MplGetTopupToken type.
+ * @memberof ProtoMplGetTopupToken
+ * @param {ProtoMplGetTopupToken_Type} value
+ */
+proto.proto.MplGetTopupToken.prototype.setType = function(value) {
+  this.type = value;
+};
+
+/**
+ * @typedef {number} ProtoMplGetTopupToken_Type
+ */
+
+/**
+ * Type enum.
+ * @enum {ProtoMplGetTopupToken_Type}
+ * @memberof ProtoMplGetTopupToken
+ */
+proto.proto.MplGetTopupToken.Type = proto.proto.MplGetTopupToken.prototype.Type = {
+  IRANCELL_PREPAID : 0,
+  IRANCELL_WOW : 1,
+  IRANCELL_WIMAX : 2,
+  IRANCELL_POSTPAID : 3,
+  MCI : 4,
+  RIGHTEL : 5,
+};
+
+/**
+ * @interface ProtoMplGetTopupTokenResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.serializeBinary = function() {
+  return proto.proto.MplGetTopupTokenResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoMplGetTopupTokenResponse}
+ */
+proto.proto.MplGetTopupTokenResponse.deserializeBinary = function(buffer) {
+  return proto.proto.MplGetTopupTokenResponse.decode(buffer);
+};
+
+/**
+ * Get MplGetTopupTokenResponse response.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set MplGetTopupTokenResponse response.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get MplGetTopupTokenResponse status.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @return {number}
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.getStatus = function() {
+  return this.status;
+};
+
+/**
+ * Set MplGetTopupTokenResponse status.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @param {number} value
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.setStatus = function(value) {
+  this.status = value;
+};
+
+/**
+ * Get MplGetTopupTokenResponse token.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @return {string}
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.getToken = function() {
+  return this.token;
+};
+
+/**
+ * Set MplGetTopupTokenResponse token.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @param {string} value
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.setToken = function(value) {
+  this.token = value;
+};
+
+/**
+ * Get MplGetTopupTokenResponse expireTime.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @return {number}
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.getExpireTime = function() {
+  return this.expireTime;
+};
+
+/**
+ * Set MplGetTopupTokenResponse expireTime.
+ * @memberof ProtoMplGetTopupTokenResponse
+ * @param {number} value
+ */
+proto.proto.MplGetTopupTokenResponse.prototype.setExpireTime = function(value) {
+  this.expireTime = value;
 };
 
 /**
@@ -30363,6 +30769,151 @@ proto.proto.UserVerifyNewDeviceResponse.prototype.getTwoStepVerification = funct
  */
 proto.proto.UserVerifyNewDeviceResponse.prototype.setTwoStepVerification = function(value) {
   this.twoStepVerification = value;
+};
+
+/**
+ * @interface ProtoWalletGetAccessToken
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.WalletGetAccessToken.prototype.serializeBinary = function() {
+  return proto.proto.WalletGetAccessToken.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoWalletGetAccessToken}
+ */
+proto.proto.WalletGetAccessToken.deserializeBinary = function(buffer) {
+  return proto.proto.WalletGetAccessToken.decode(buffer);
+};
+
+/**
+ * Get WalletGetAccessToken request.
+ * @memberof ProtoWalletGetAccessToken
+ * @return {(ProtoRequest|null|undefined)}
+ */
+proto.proto.WalletGetAccessToken.prototype.getRequest = function() {
+  return this.request;
+};
+
+/**
+ * Set WalletGetAccessToken request.
+ * @memberof ProtoWalletGetAccessToken
+ * @param {(ProtoRequest|null|undefined)} value
+ */
+proto.proto.WalletGetAccessToken.prototype.setRequest = function(value) {
+  this.request = value;
+};
+
+/**
+ * @interface ProtoWalletGetAccessTokenResponse
+ */
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {Uint8Array}
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.serializeBinary = function() {
+  return proto.proto.WalletGetAccessTokenResponse.encode(this).finish();
+};
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {Uint8Array} buffer
+ * @return {ProtoWalletGetAccessTokenResponse}
+ */
+proto.proto.WalletGetAccessTokenResponse.deserializeBinary = function(buffer) {
+  return proto.proto.WalletGetAccessTokenResponse.decode(buffer);
+};
+
+/**
+ * Get WalletGetAccessTokenResponse response.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @return {(ProtoResponse|null|undefined)}
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.getResponse = function() {
+  return this.response;
+};
+
+/**
+ * Set WalletGetAccessTokenResponse response.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @param {(ProtoResponse|null|undefined)} value
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.setResponse = function(value) {
+  this.response = value;
+};
+
+/**
+ * Get WalletGetAccessTokenResponse tokenType.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @return {ProtoWalletGetAccessTokenResponse_TokenType}
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.getTokenType = function() {
+  return this.tokenType;
+};
+
+/**
+ * Set WalletGetAccessTokenResponse tokenType.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @param {ProtoWalletGetAccessTokenResponse_TokenType} value
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.setTokenType = function(value) {
+  this.tokenType = value;
+};
+
+/**
+ * Get WalletGetAccessTokenResponse accessToken.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @return {string}
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.getAccessToken = function() {
+  return this.accessToken;
+};
+
+/**
+ * Set WalletGetAccessTokenResponse accessToken.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @param {string} value
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.setAccessToken = function(value) {
+  this.accessToken = value;
+};
+
+/**
+ * Get WalletGetAccessTokenResponse expiresIn.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @return {number}
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.getExpiresIn = function() {
+  return this.expiresIn;
+};
+
+/**
+ * Set WalletGetAccessTokenResponse expiresIn.
+ * @memberof ProtoWalletGetAccessTokenResponse
+ * @param {number} value
+ */
+proto.proto.WalletGetAccessTokenResponse.prototype.setExpiresIn = function(value) {
+  this.expiresIn = value;
+};
+
+/**
+ * @typedef {number} ProtoWalletGetAccessTokenResponse_TokenType
+ */
+
+/**
+ * TokenType enum.
+ * @enum {ProtoWalletGetAccessTokenResponse_TokenType}
+ * @memberof ProtoWalletGetAccessTokenResponse
+ */
+proto.proto.WalletGetAccessTokenResponse.TokenType = proto.proto.WalletGetAccessTokenResponse.prototype.TokenType = {
+  BEARER : 0,
 };
 
 export default proto;

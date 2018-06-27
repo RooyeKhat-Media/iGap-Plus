@@ -537,6 +537,11 @@ export function setChatDeleteMessageForBothPeriod(time) {
 export function registerDevice(token) {
   const registerDevice = new ClientRegisterDevice();
   registerDevice.setToken(token);
+  registerDevice.setType(Platform.select({
+    ios: Proto.ClientRegisterDevice.Type.IOS,
+    android: Proto.ClientRegisterDevice.Type.ANDROID,
+    default: Proto.ClientRegisterDevice.Type.GENERIC,
+  }));
   return Api.invoke(CLIENT_REGISTER_DEVICE, registerDevice);
 }
 

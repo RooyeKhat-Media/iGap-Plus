@@ -21115,6 +21115,7 @@ export const proto = $root.proto = (() => {
          * @interface IClientRegisterDevice
          * @property {proto.Request|null} [request] ClientRegisterDevice request
          * @property {string|null} [token] ClientRegisterDevice token
+         * @property {proto.ClientRegisterDevice.Type|null} [type] ClientRegisterDevice type
          */
 
     /**
@@ -21150,6 +21151,14 @@ export const proto = $root.proto = (() => {
     ClientRegisterDevice.prototype.token = '';
 
     /**
+         * ClientRegisterDevice type.
+         * @member {proto.ClientRegisterDevice.Type} type
+         * @memberof proto.ClientRegisterDevice
+         * @instance
+         */
+    ClientRegisterDevice.prototype.type = 0;
+
+    /**
          * Creates a new ClientRegisterDevice instance using the specified properties.
          * @function create
          * @memberof proto.ClientRegisterDevice
@@ -21174,6 +21183,7 @@ export const proto = $root.proto = (() => {
       if (!writer) {writer = $Writer.create();}
       if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
       if (message.token != null && message.hasOwnProperty('token')) {writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);}
+      if (message.type != null && message.hasOwnProperty('type')) {writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);}
       return writer;
     };
 
@@ -21200,6 +21210,9 @@ export const proto = $root.proto = (() => {
           case 2:
             message.token = reader.string();
             break;
+          case 3:
+            message.type = reader.int32();
+            break;
           default:
             reader.skipType(tag & 7);
             break;
@@ -21225,8 +21238,37 @@ export const proto = $root.proto = (() => {
       if (message.token != null && message.hasOwnProperty('token')) {
         if (!$util.isString(message.token)) {return 'token: string expected';}
       }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        switch (message.type) {
+          default:
+            return 'type: enum value expected';
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+            break;
+        }
+      }
       return null;
     };
+
+    /**
+         * Type enum.
+         * @name proto.ClientRegisterDevice.Type
+         * @enum {string}
+         * @property {number} GENERIC=0 GENERIC value
+         * @property {number} ANDROID=1 ANDROID value
+         * @property {number} IOS=2 IOS value
+         * @property {number} WEB=3 WEB value
+         */
+    ClientRegisterDevice.Type = (function() {
+      const valuesById = {}, values = Object.create(valuesById);
+      values[valuesById[0] = 'GENERIC'] = 0;
+      values[valuesById[1] = 'ANDROID'] = 1;
+      values[valuesById[2] = 'IOS'] = 2;
+      values[valuesById[3] = 'WEB'] = 3;
+      return values;
+    })();
 
     return ClientRegisterDevice;
   })();
@@ -37902,6 +37944,646 @@ export const proto = $root.proto = (() => {
     };
 
     return InfoWallpaperResponse;
+  })();
+
+  proto.MplGetBillToken = (function() {
+
+    /**
+         * Properties of a MplGetBillToken.
+         * @memberof proto
+         * @interface IMplGetBillToken
+         * @property {proto.Request|null} [request] MplGetBillToken request
+         * @property {Long|null} [billId] MplGetBillToken billId
+         * @property {Long|null} [payId] MplGetBillToken payId
+         */
+
+    /**
+         * Constructs a new MplGetBillToken.
+         * @memberof proto
+         * @classdesc Represents a MplGetBillToken.
+         * @implements IMplGetBillToken
+         * @constructor
+         * @param {proto.IMplGetBillToken=} [properties] Properties to set
+         */
+    function MplGetBillToken(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * MplGetBillToken request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.MplGetBillToken
+         * @instance
+         */
+    MplGetBillToken.prototype.request = null;
+
+    /**
+         * MplGetBillToken billId.
+         * @member {Long} billId
+         * @memberof proto.MplGetBillToken
+         * @instance
+         */
+    MplGetBillToken.prototype.billId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * MplGetBillToken payId.
+         * @member {Long} payId
+         * @memberof proto.MplGetBillToken
+         * @instance
+         */
+    MplGetBillToken.prototype.payId = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * Creates a new MplGetBillToken instance using the specified properties.
+         * @function create
+         * @memberof proto.MplGetBillToken
+         * @static
+         * @param {proto.IMplGetBillToken=} [properties] Properties to set
+         * @returns {proto.MplGetBillToken} MplGetBillToken instance
+         */
+    MplGetBillToken.create = function create(properties) {
+      return new MplGetBillToken(properties);
+    };
+
+    /**
+         * Encodes the specified MplGetBillToken message. Does not implicitly {@link proto.MplGetBillToken.verify|verify} messages.
+         * @function encode
+         * @memberof proto.MplGetBillToken
+         * @static
+         * @param {proto.MplGetBillToken} message MplGetBillToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    MplGetBillToken.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.billId != null && message.hasOwnProperty('billId')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.billId);}
+      if (message.payId != null && message.hasOwnProperty('payId')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.payId);}
+      return writer;
+    };
+
+    /**
+         * Decodes a MplGetBillToken message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.MplGetBillToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.MplGetBillToken} MplGetBillToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    MplGetBillToken.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.MplGetBillToken();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.billId = reader.uint64();
+            break;
+          case 3:
+            message.payId = reader.uint64();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a MplGetBillToken message.
+         * @function verify
+         * @memberof proto.MplGetBillToken
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    MplGetBillToken.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.billId != null && message.hasOwnProperty('billId')) {
+        if (!$util.isInteger(message.billId) && !(message.billId && $util.isInteger(message.billId.low) && $util.isInteger(message.billId.high))) {return 'billId: integer|Long expected';}
+      }
+      if (message.payId != null && message.hasOwnProperty('payId')) {
+        if (!$util.isInteger(message.payId) && !(message.payId && $util.isInteger(message.payId.low) && $util.isInteger(message.payId.high))) {return 'payId: integer|Long expected';}
+      }
+      return null;
+    };
+
+    return MplGetBillToken;
+  })();
+
+  proto.MplGetBillTokenResponse = (function() {
+
+    /**
+         * Properties of a MplGetBillTokenResponse.
+         * @memberof proto
+         * @interface IMplGetBillTokenResponse
+         * @property {proto.Response|null} [response] MplGetBillTokenResponse response
+         * @property {number|null} [status] MplGetBillTokenResponse status
+         * @property {string|null} [token] MplGetBillTokenResponse token
+         * @property {number|null} [expireTime] MplGetBillTokenResponse expireTime
+         */
+
+    /**
+         * Constructs a new MplGetBillTokenResponse.
+         * @memberof proto
+         * @classdesc Represents a MplGetBillTokenResponse.
+         * @implements IMplGetBillTokenResponse
+         * @constructor
+         * @param {proto.IMplGetBillTokenResponse=} [properties] Properties to set
+         */
+    function MplGetBillTokenResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * MplGetBillTokenResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.MplGetBillTokenResponse
+         * @instance
+         */
+    MplGetBillTokenResponse.prototype.response = null;
+
+    /**
+         * MplGetBillTokenResponse status.
+         * @member {number} status
+         * @memberof proto.MplGetBillTokenResponse
+         * @instance
+         */
+    MplGetBillTokenResponse.prototype.status = 0;
+
+    /**
+         * MplGetBillTokenResponse token.
+         * @member {string} token
+         * @memberof proto.MplGetBillTokenResponse
+         * @instance
+         */
+    MplGetBillTokenResponse.prototype.token = '';
+
+    /**
+         * MplGetBillTokenResponse expireTime.
+         * @member {number} expireTime
+         * @memberof proto.MplGetBillTokenResponse
+         * @instance
+         */
+    MplGetBillTokenResponse.prototype.expireTime = 0;
+
+    /**
+         * Creates a new MplGetBillTokenResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.MplGetBillTokenResponse
+         * @static
+         * @param {proto.IMplGetBillTokenResponse=} [properties] Properties to set
+         * @returns {proto.MplGetBillTokenResponse} MplGetBillTokenResponse instance
+         */
+    MplGetBillTokenResponse.create = function create(properties) {
+      return new MplGetBillTokenResponse(properties);
+    };
+
+    /**
+         * Encodes the specified MplGetBillTokenResponse message. Does not implicitly {@link proto.MplGetBillTokenResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.MplGetBillTokenResponse
+         * @static
+         * @param {proto.MplGetBillTokenResponse} message MplGetBillTokenResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    MplGetBillTokenResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.status != null && message.hasOwnProperty('status')) {writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.status);}
+      if (message.token != null && message.hasOwnProperty('token')) {writer.uint32(/* id 3, wireType 2 =*/26).string(message.token);}
+      if (message.expireTime != null && message.hasOwnProperty('expireTime')) {writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.expireTime);}
+      return writer;
+    };
+
+    /**
+         * Decodes a MplGetBillTokenResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.MplGetBillTokenResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.MplGetBillTokenResponse} MplGetBillTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    MplGetBillTokenResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.MplGetBillTokenResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.status = reader.uint32();
+            break;
+          case 3:
+            message.token = reader.string();
+            break;
+          case 4:
+            message.expireTime = reader.uint32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a MplGetBillTokenResponse message.
+         * @function verify
+         * @memberof proto.MplGetBillTokenResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    MplGetBillTokenResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.status != null && message.hasOwnProperty('status')) {
+        if (!$util.isInteger(message.status)) {return 'status: integer expected';}
+      }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) {return 'token: string expected';}
+      }
+      if (message.expireTime != null && message.hasOwnProperty('expireTime')) {
+        if (!$util.isInteger(message.expireTime)) {return 'expireTime: integer expected';}
+      }
+      return null;
+    };
+
+    return MplGetBillTokenResponse;
+  })();
+
+  proto.MplGetTopupToken = (function() {
+
+    /**
+         * Properties of a MplGetTopupToken.
+         * @memberof proto
+         * @interface IMplGetTopupToken
+         * @property {proto.Request|null} [request] MplGetTopupToken request
+         * @property {Long|null} [chargeMobileNumber] MplGetTopupToken chargeMobileNumber
+         * @property {Long|null} [amount] MplGetTopupToken amount
+         * @property {proto.MplGetTopupToken.Type|null} [type] MplGetTopupToken type
+         */
+
+    /**
+         * Constructs a new MplGetTopupToken.
+         * @memberof proto
+         * @classdesc Represents a MplGetTopupToken.
+         * @implements IMplGetTopupToken
+         * @constructor
+         * @param {proto.IMplGetTopupToken=} [properties] Properties to set
+         */
+    function MplGetTopupToken(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * MplGetTopupToken request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.MplGetTopupToken
+         * @instance
+         */
+    MplGetTopupToken.prototype.request = null;
+
+    /**
+         * MplGetTopupToken chargeMobileNumber.
+         * @member {Long} chargeMobileNumber
+         * @memberof proto.MplGetTopupToken
+         * @instance
+         */
+    MplGetTopupToken.prototype.chargeMobileNumber = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * MplGetTopupToken amount.
+         * @member {Long} amount
+         * @memberof proto.MplGetTopupToken
+         * @instance
+         */
+    MplGetTopupToken.prototype.amount = $util.Long ? $util.Long.fromBits(0, 0, true) : 0;
+
+    /**
+         * MplGetTopupToken type.
+         * @member {proto.MplGetTopupToken.Type} type
+         * @memberof proto.MplGetTopupToken
+         * @instance
+         */
+    MplGetTopupToken.prototype.type = 0;
+
+    /**
+         * Creates a new MplGetTopupToken instance using the specified properties.
+         * @function create
+         * @memberof proto.MplGetTopupToken
+         * @static
+         * @param {proto.IMplGetTopupToken=} [properties] Properties to set
+         * @returns {proto.MplGetTopupToken} MplGetTopupToken instance
+         */
+    MplGetTopupToken.create = function create(properties) {
+      return new MplGetTopupToken(properties);
+    };
+
+    /**
+         * Encodes the specified MplGetTopupToken message. Does not implicitly {@link proto.MplGetTopupToken.verify|verify} messages.
+         * @function encode
+         * @memberof proto.MplGetTopupToken
+         * @static
+         * @param {proto.MplGetTopupToken} message MplGetTopupToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    MplGetTopupToken.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.chargeMobileNumber != null && message.hasOwnProperty('chargeMobileNumber')) {writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.chargeMobileNumber);}
+      if (message.amount != null && message.hasOwnProperty('amount')) {writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.amount);}
+      if (message.type != null && message.hasOwnProperty('type')) {writer.uint32(/* id 4, wireType 0 =*/32).int32(message.type);}
+      return writer;
+    };
+
+    /**
+         * Decodes a MplGetTopupToken message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.MplGetTopupToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.MplGetTopupToken} MplGetTopupToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    MplGetTopupToken.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.MplGetTopupToken();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.chargeMobileNumber = reader.uint64();
+            break;
+          case 3:
+            message.amount = reader.uint64();
+            break;
+          case 4:
+            message.type = reader.int32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a MplGetTopupToken message.
+         * @function verify
+         * @memberof proto.MplGetTopupToken
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    MplGetTopupToken.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      if (message.chargeMobileNumber != null && message.hasOwnProperty('chargeMobileNumber')) {
+        if (!$util.isInteger(message.chargeMobileNumber) && !(message.chargeMobileNumber && $util.isInteger(message.chargeMobileNumber.low) && $util.isInteger(message.chargeMobileNumber.high))) {return 'chargeMobileNumber: integer|Long expected';}
+      }
+      if (message.amount != null && message.hasOwnProperty('amount')) {
+        if (!$util.isInteger(message.amount) && !(message.amount && $util.isInteger(message.amount.low) && $util.isInteger(message.amount.high))) {return 'amount: integer|Long expected';}
+      }
+      if (message.type != null && message.hasOwnProperty('type')) {
+        switch (message.type) {
+          default:
+            return 'type: enum value expected';
+          case 0:
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+            break;
+        }
+      }
+      return null;
+    };
+
+    /**
+         * Type enum.
+         * @name proto.MplGetTopupToken.Type
+         * @enum {string}
+         * @property {number} IRANCELL_PREPAID=0 IRANCELL_PREPAID value
+         * @property {number} IRANCELL_WOW=1 IRANCELL_WOW value
+         * @property {number} IRANCELL_WIMAX=2 IRANCELL_WIMAX value
+         * @property {number} IRANCELL_POSTPAID=3 IRANCELL_POSTPAID value
+         * @property {number} MCI=4 MCI value
+         * @property {number} RIGHTEL=5 RIGHTEL value
+         */
+    MplGetTopupToken.Type = (function() {
+      const valuesById = {}, values = Object.create(valuesById);
+      values[valuesById[0] = 'IRANCELL_PREPAID'] = 0;
+      values[valuesById[1] = 'IRANCELL_WOW'] = 1;
+      values[valuesById[2] = 'IRANCELL_WIMAX'] = 2;
+      values[valuesById[3] = 'IRANCELL_POSTPAID'] = 3;
+      values[valuesById[4] = 'MCI'] = 4;
+      values[valuesById[5] = 'RIGHTEL'] = 5;
+      return values;
+    })();
+
+    return MplGetTopupToken;
+  })();
+
+  proto.MplGetTopupTokenResponse = (function() {
+
+    /**
+         * Properties of a MplGetTopupTokenResponse.
+         * @memberof proto
+         * @interface IMplGetTopupTokenResponse
+         * @property {proto.Response|null} [response] MplGetTopupTokenResponse response
+         * @property {number|null} [status] MplGetTopupTokenResponse status
+         * @property {string|null} [token] MplGetTopupTokenResponse token
+         * @property {number|null} [expireTime] MplGetTopupTokenResponse expireTime
+         */
+
+    /**
+         * Constructs a new MplGetTopupTokenResponse.
+         * @memberof proto
+         * @classdesc Represents a MplGetTopupTokenResponse.
+         * @implements IMplGetTopupTokenResponse
+         * @constructor
+         * @param {proto.IMplGetTopupTokenResponse=} [properties] Properties to set
+         */
+    function MplGetTopupTokenResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * MplGetTopupTokenResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.MplGetTopupTokenResponse
+         * @instance
+         */
+    MplGetTopupTokenResponse.prototype.response = null;
+
+    /**
+         * MplGetTopupTokenResponse status.
+         * @member {number} status
+         * @memberof proto.MplGetTopupTokenResponse
+         * @instance
+         */
+    MplGetTopupTokenResponse.prototype.status = 0;
+
+    /**
+         * MplGetTopupTokenResponse token.
+         * @member {string} token
+         * @memberof proto.MplGetTopupTokenResponse
+         * @instance
+         */
+    MplGetTopupTokenResponse.prototype.token = '';
+
+    /**
+         * MplGetTopupTokenResponse expireTime.
+         * @member {number} expireTime
+         * @memberof proto.MplGetTopupTokenResponse
+         * @instance
+         */
+    MplGetTopupTokenResponse.prototype.expireTime = 0;
+
+    /**
+         * Creates a new MplGetTopupTokenResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.MplGetTopupTokenResponse
+         * @static
+         * @param {proto.IMplGetTopupTokenResponse=} [properties] Properties to set
+         * @returns {proto.MplGetTopupTokenResponse} MplGetTopupTokenResponse instance
+         */
+    MplGetTopupTokenResponse.create = function create(properties) {
+      return new MplGetTopupTokenResponse(properties);
+    };
+
+    /**
+         * Encodes the specified MplGetTopupTokenResponse message. Does not implicitly {@link proto.MplGetTopupTokenResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.MplGetTopupTokenResponse
+         * @static
+         * @param {proto.MplGetTopupTokenResponse} message MplGetTopupTokenResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    MplGetTopupTokenResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.status != null && message.hasOwnProperty('status')) {writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.status);}
+      if (message.token != null && message.hasOwnProperty('token')) {writer.uint32(/* id 3, wireType 2 =*/26).string(message.token);}
+      if (message.expireTime != null && message.hasOwnProperty('expireTime')) {writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.expireTime);}
+      return writer;
+    };
+
+    /**
+         * Decodes a MplGetTopupTokenResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.MplGetTopupTokenResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.MplGetTopupTokenResponse} MplGetTopupTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    MplGetTopupTokenResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.MplGetTopupTokenResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.status = reader.uint32();
+            break;
+          case 3:
+            message.token = reader.string();
+            break;
+          case 4:
+            message.expireTime = reader.uint32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a MplGetTopupTokenResponse message.
+         * @function verify
+         * @memberof proto.MplGetTopupTokenResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    MplGetTopupTokenResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.status != null && message.hasOwnProperty('status')) {
+        if (!$util.isInteger(message.status)) {return 'status: integer expected';}
+      }
+      if (message.token != null && message.hasOwnProperty('token')) {
+        if (!$util.isString(message.token)) {return 'token: string expected';}
+      }
+      if (message.expireTime != null && message.hasOwnProperty('expireTime')) {
+        if (!$util.isInteger(message.expireTime)) {return 'expireTime: integer expected';}
+      }
+      return null;
+    };
+
+    return MplGetTopupTokenResponse;
   })();
 
   proto.PushLoginTokenResponse = (function() {
@@ -57111,6 +57793,287 @@ export const proto = $root.proto = (() => {
     };
 
     return UserVerifyNewDeviceResponse;
+  })();
+
+  proto.WalletGetAccessToken = (function() {
+
+    /**
+         * Properties of a WalletGetAccessToken.
+         * @memberof proto
+         * @interface IWalletGetAccessToken
+         * @property {proto.Request|null} [request] WalletGetAccessToken request
+         */
+
+    /**
+         * Constructs a new WalletGetAccessToken.
+         * @memberof proto
+         * @classdesc Represents a WalletGetAccessToken.
+         * @implements IWalletGetAccessToken
+         * @constructor
+         * @param {proto.IWalletGetAccessToken=} [properties] Properties to set
+         */
+    function WalletGetAccessToken(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * WalletGetAccessToken request.
+         * @member {proto.Request|null|undefined} request
+         * @memberof proto.WalletGetAccessToken
+         * @instance
+         */
+    WalletGetAccessToken.prototype.request = null;
+
+    /**
+         * Creates a new WalletGetAccessToken instance using the specified properties.
+         * @function create
+         * @memberof proto.WalletGetAccessToken
+         * @static
+         * @param {proto.IWalletGetAccessToken=} [properties] Properties to set
+         * @returns {proto.WalletGetAccessToken} WalletGetAccessToken instance
+         */
+    WalletGetAccessToken.create = function create(properties) {
+      return new WalletGetAccessToken(properties);
+    };
+
+    /**
+         * Encodes the specified WalletGetAccessToken message. Does not implicitly {@link proto.WalletGetAccessToken.verify|verify} messages.
+         * @function encode
+         * @memberof proto.WalletGetAccessToken
+         * @static
+         * @param {proto.WalletGetAccessToken} message WalletGetAccessToken message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WalletGetAccessToken.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.request != null && message.hasOwnProperty('request')) {$root.proto.Request.encode(message.request, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      return writer;
+    };
+
+    /**
+         * Decodes a WalletGetAccessToken message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.WalletGetAccessToken
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.WalletGetAccessToken} WalletGetAccessToken
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WalletGetAccessToken.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.WalletGetAccessToken();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.request = $root.proto.Request.decode(reader, reader.uint32());
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a WalletGetAccessToken message.
+         * @function verify
+         * @memberof proto.WalletGetAccessToken
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    WalletGetAccessToken.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.request != null && message.hasOwnProperty('request')) {
+        let error = $root.proto.Request.verify(message.request);
+        if (error) {return 'request.' + error;}
+      }
+      return null;
+    };
+
+    return WalletGetAccessToken;
+  })();
+
+  proto.WalletGetAccessTokenResponse = (function() {
+
+    /**
+         * Properties of a WalletGetAccessTokenResponse.
+         * @memberof proto
+         * @interface IWalletGetAccessTokenResponse
+         * @property {proto.Response|null} [response] WalletGetAccessTokenResponse response
+         * @property {proto.WalletGetAccessTokenResponse.TokenType|null} [tokenType] WalletGetAccessTokenResponse tokenType
+         * @property {string|null} [accessToken] WalletGetAccessTokenResponse accessToken
+         * @property {number|null} [expiresIn] WalletGetAccessTokenResponse expiresIn
+         */
+
+    /**
+         * Constructs a new WalletGetAccessTokenResponse.
+         * @memberof proto
+         * @classdesc Represents a WalletGetAccessTokenResponse.
+         * @implements IWalletGetAccessTokenResponse
+         * @constructor
+         * @param {proto.IWalletGetAccessTokenResponse=} [properties] Properties to set
+         */
+    function WalletGetAccessTokenResponse(properties) {
+      if (properties) {
+        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i) {
+          if (properties[keys[i]] != null) {this[keys[i]] = properties[keys[i]];}
+        }
+      }
+    }
+
+    /**
+         * WalletGetAccessTokenResponse response.
+         * @member {proto.Response|null|undefined} response
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @instance
+         */
+    WalletGetAccessTokenResponse.prototype.response = null;
+
+    /**
+         * WalletGetAccessTokenResponse tokenType.
+         * @member {proto.WalletGetAccessTokenResponse.TokenType} tokenType
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @instance
+         */
+    WalletGetAccessTokenResponse.prototype.tokenType = 0;
+
+    /**
+         * WalletGetAccessTokenResponse accessToken.
+         * @member {string} accessToken
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @instance
+         */
+    WalletGetAccessTokenResponse.prototype.accessToken = '';
+
+    /**
+         * WalletGetAccessTokenResponse expiresIn.
+         * @member {number} expiresIn
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @instance
+         */
+    WalletGetAccessTokenResponse.prototype.expiresIn = 0;
+
+    /**
+         * Creates a new WalletGetAccessTokenResponse instance using the specified properties.
+         * @function create
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @static
+         * @param {proto.IWalletGetAccessTokenResponse=} [properties] Properties to set
+         * @returns {proto.WalletGetAccessTokenResponse} WalletGetAccessTokenResponse instance
+         */
+    WalletGetAccessTokenResponse.create = function create(properties) {
+      return new WalletGetAccessTokenResponse(properties);
+    };
+
+    /**
+         * Encodes the specified WalletGetAccessTokenResponse message. Does not implicitly {@link proto.WalletGetAccessTokenResponse.verify|verify} messages.
+         * @function encode
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @static
+         * @param {proto.WalletGetAccessTokenResponse} message WalletGetAccessTokenResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+    WalletGetAccessTokenResponse.encode = function encode(message, writer) {
+      if (!writer) {writer = $Writer.create();}
+      if (message.response != null && message.hasOwnProperty('response')) {$root.proto.Response.encode(message.response, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();}
+      if (message.tokenType != null && message.hasOwnProperty('tokenType')) {writer.uint32(/* id 2, wireType 0 =*/16).int32(message.tokenType);}
+      if (message.accessToken != null && message.hasOwnProperty('accessToken')) {writer.uint32(/* id 3, wireType 2 =*/26).string(message.accessToken);}
+      if (message.expiresIn != null && message.hasOwnProperty('expiresIn')) {writer.uint32(/* id 4, wireType 0 =*/32).uint32(message.expiresIn);}
+      return writer;
+    };
+
+    /**
+         * Decodes a WalletGetAccessTokenResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {proto.WalletGetAccessTokenResponse} WalletGetAccessTokenResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+    WalletGetAccessTokenResponse.decode = function decode(reader, length) {
+      if (!(reader instanceof $Reader)) {reader = $Reader.create(reader);}
+      let end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.WalletGetAccessTokenResponse();
+      while (reader.pos < end) {
+        let tag = reader.uint32();
+        switch (tag >>> 3) {
+          case 1:
+            message.response = $root.proto.Response.decode(reader, reader.uint32());
+            break;
+          case 2:
+            message.tokenType = reader.int32();
+            break;
+          case 3:
+            message.accessToken = reader.string();
+            break;
+          case 4:
+            message.expiresIn = reader.uint32();
+            break;
+          default:
+            reader.skipType(tag & 7);
+            break;
+        }
+      }
+      return message;
+    };
+
+    /**
+         * Verifies a WalletGetAccessTokenResponse message.
+         * @function verify
+         * @memberof proto.WalletGetAccessTokenResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+    WalletGetAccessTokenResponse.verify = function verify(message) {
+      if (typeof message !== 'object' || message === null) {return 'object expected';}
+      if (message.response != null && message.hasOwnProperty('response')) {
+        let error = $root.proto.Response.verify(message.response);
+        if (error) {return 'response.' + error;}
+      }
+      if (message.tokenType != null && message.hasOwnProperty('tokenType')) {
+        switch (message.tokenType) {
+          default:
+            return 'tokenType: enum value expected';
+          case 0:
+            break;
+        }
+      }
+      if (message.accessToken != null && message.hasOwnProperty('accessToken')) {
+        if (!$util.isString(message.accessToken)) {return 'accessToken: string expected';}
+      }
+      if (message.expiresIn != null && message.hasOwnProperty('expiresIn')) {
+        if (!$util.isInteger(message.expiresIn)) {return 'expiresIn: integer expected';}
+      }
+      return null;
+    };
+
+    /**
+         * TokenType enum.
+         * @name proto.WalletGetAccessTokenResponse.TokenType
+         * @enum {string}
+         * @property {number} BEARER=0 BEARER value
+         */
+    WalletGetAccessTokenResponse.TokenType = (function() {
+      const valuesById = {}, values = Object.create(valuesById);
+      values[valuesById[0] = 'BEARER'] = 0;
+      return values;
+    })();
+
+    return WalletGetAccessTokenResponse;
   })();
 
   return proto;
