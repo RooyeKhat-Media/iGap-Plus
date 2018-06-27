@@ -24,6 +24,29 @@ We welcome all developers to use our API and source code to create applications 
    * [Yarn](https://yarnpkg.com/lang/en/docs/install)
    * [React Native Windows](https://github.com/Microsoft/react-native-windows/blob/master/docs/GettingStarted.md) (If you want to develop windows version)
 4. Install javascript dependencies, By running `yarn install`
+5. Run `yarn run i18n`
+
+#### Android specific
+* Add the Fabric API and secret key to **android/app/fabric.properties**
+    ```
+    apiSecret=fabric_secret_key
+    apiKey=fabric_api_key
+    ```
+* Run `react-native run-android`
+
+#### iOS specific
+* Create the following files
+
+    **ios/api-keys/fabric/api.key**
+    ```
+    fabric_api_key
+    ```
+    
+    **ios/api-keys/fabric/secret.key**
+    ```
+    fabric_secret_key
+    ```
+* Run `react-native run-ios`
 
 # Contributors Welcome!
 Help us to improve iGap+ , iGap+ is designed to easily support additional platforms like [web](https://github.com/necolas/react-native-web) , [macOS](https://github.com/ptmt/react-native-macos) and [linux](https://github.com/status-im/react-native-desktop), check [here](https://github.com/RooyeKhat-Media/iGap-Plus/labels/contributors-welcome) for the contributing  
