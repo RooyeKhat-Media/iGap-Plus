@@ -64,13 +64,13 @@ class SoundPlayer {
   load(uri) {
     this.uri = uri;
     return new Promise((resolve, reject) => {
-      this.whoosh = new Sound(this.uri, Sound.MAIN_BUNDLE, (error) => {
+      this.whoosh = new Sound(this.uri, null, (error) => {
         if (!error) {
           this.currentTime = 0;
           this.duration = this.whoosh.getDuration();
           return resolve();
         }
-        return reject();
+        return reject(error);
       });
     });
   }
