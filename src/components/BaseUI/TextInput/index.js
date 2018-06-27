@@ -42,6 +42,7 @@ export default class TextInput extends React.Component {
       onFocus={this.focuse}
       onBlur={this.blur}
       {...defaultProps}
+      disableFullscreenUI={true}
       style={[styles.textInput, props.style, (focused ? styles.focused : {})]}
     />);
   }

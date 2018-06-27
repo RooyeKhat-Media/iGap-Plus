@@ -23,7 +23,7 @@ class TextInputField extends BaseField {
 
     return (
       <TextInput {...this.props} style={this.props.style ? this.props.style.textInput : {}}
-        onChangeText={this.setValue} {...additionalProps} />
+        onChangeText={this.setValue} disableFullscreenUI={true} {...additionalProps} />
     );
   }
 }
