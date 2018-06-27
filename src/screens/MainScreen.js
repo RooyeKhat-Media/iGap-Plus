@@ -5,6 +5,7 @@ import {floor} from 'lodash';
 import {connect} from 'react-redux';
 import {addNavigationHelpers} from 'react-navigation';
 import {createReduxBoundAddListener} from 'react-navigation-redux-helpers';
+import firebase from 'react-native-firebase';
 
 import {primaryNavigatorBack, secondaryNavigatorBack} from '../actions/navigator';
 import {MAIN_SCREEN} from '../constants/navigators';
@@ -31,7 +32,8 @@ class MainScreen extends Component {
     this.secondaryWidth = floor(getSecondaryWidth());
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await firebase.messaging().requestPermission();
     putState(getUserId(true));
   }
 
