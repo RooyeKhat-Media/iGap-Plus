@@ -14,6 +14,7 @@ const styleSheet = [
         content: {
           backgroundColor: 'rgba(100, 100, 100, 0.3)',
           height: 7,
+          overflow: 'hidden',
           borderRadius: 2,
         },
         progress: {
