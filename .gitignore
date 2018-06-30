@@ -56,5 +56,3 @@ buck-out/
 *.jsbundle
 
 android/app/fabric.properties
-android/app/google-services.json
-/ios/GoogleService-Info.plist
