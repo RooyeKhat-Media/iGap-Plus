@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="iGap.Plus"
-          android:versionCode="9"
-          android:versionName="1.1.1">
+          android:versionCode="10"
+          android:versionName="1.1.2">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
