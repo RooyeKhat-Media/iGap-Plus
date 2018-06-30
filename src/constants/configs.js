@@ -1,6 +1,7 @@
 /**
  * @flow
  */
+import {Platform} from 'react-native';
 
 export const APP_NAME = 'iGap+';
 export const APP_ID = 10;
@@ -13,7 +14,10 @@ export const WEBSOCKET_ENDPOINT = 'wss://secure.igap.net/hybrid/';
 export const WEBSOCKET_RECONNECT_INTERVAL_SEC = 3;
 
 export const NON_WEBSOCKET_UPLOAD_ENDPOINT = 'https://secure.igap.net/api/hybrid/';
-export const GOOGLE_API_KEY = 'AIzaSyAhMmHvy9fL7-Rdz4D25QTFIKgiB5pe-TE';
+export const GOOGLE_API_KEY = Platform.select({
+  ios: 'AIzaSyDRBqV7h9IOr-k1wk9r5GAvJ5l4lBWaNn0',
+  default: 'AIzaSyAzszDa0se_3fW1gq2-MZIwLVzhi1m2QNg',
+});
 
 export const API_CONCURRENCY = 40;
 export const API_AGGREGATE_DELAY_MS = 2000;
