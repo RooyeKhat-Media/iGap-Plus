@@ -25,13 +25,13 @@ export default [
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          transform: [{rotateX: '180deg'}],
+          transform: [{scaleY: -1}],
           minWidth: 100,
           minHeight: 100,
         },
         messageWrap: {
           flex: 1,
-          transform: [{rotateX: '180deg'}],
+          transform: [{scaleY: -1}],
         },
         bottomWrap: {},
         rowTitle: {
