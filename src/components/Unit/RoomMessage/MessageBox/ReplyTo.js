@@ -27,7 +27,7 @@ class ReplyTo extends Component {
 }
 
 ReplyTo.propTypes = {
-  message: PropTypes.string.isRequired,
+  message: PropTypes.object.isRequired,
 };
 
 export default ReplyTo;

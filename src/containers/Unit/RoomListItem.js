@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import i18n from '../../i18n';
-import {FormattedMessage} from 'react-intl';
 import RoomListItemComponent from '../../components/Unit/RoomListItem';
 import {connect} from 'react-redux';
 import {Proto} from '../../modules/Proto/index';
-import {getAuthorHash} from '../../utils/app';
+import {getAuthorHash, getMessageTitle} from '../../utils/app';
 import {getRoom, getRoomLastMessage, getRoomPeer} from '../../selector/entities/room';
 
 class RoomListItem extends React.PureComponent {
@@ -32,7 +30,7 @@ class RoomListItem extends React.PureComponent {
     const ownerLastMessage = lastMessage && authorHash === lastMessage.authorHash;
     const lastMessageStatus = ownerLastMessage && room.type !== Proto.Room.Type.CHANNEL ? lastMessage.status : false;
     const verified = chatPeerVerified || room.channelVerified;
-    const lastMessageTitle = this.getMessageTitle(lastMessage);
+    const lastMessageTitle = getMessageTitle(lastMessage);
 
     return (<RoomListItemComponent roomId={room.id}
       roomTitle={room.title}
@@ -49,19 +47,6 @@ class RoomListItem extends React.PureComponent {
       onLongPress={this.onLongPress}
       verified={verified}
     />);
-  }
-
-  getMessageTitle = (message) => {
-    if (!message || message.deleted) {
-      return null;
-    }
-    if (message.message) {
-      return message.message;
-    }
-    if (message.forwardFrom) {
-      return this.getMessageTitle(message.forwardFrom);
-    }
-    return <FormattedMessage {...i18n.roomListLastMessageTitle} values={{type: message.messageType}}/>;
   }
 }
 

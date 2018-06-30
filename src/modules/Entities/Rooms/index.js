@@ -89,7 +89,9 @@ export function waitForRoom(id) {
         promise,
         resolve,
       });
-      setTimeout(reject, 2 * 60);
+      if (process.env.NODE_ENV !== 'development') {
+        setTimeout(reject, 10 * 1000);
+      }
     });
   } else {
     promise = _pendingRoom.get(id).promise;

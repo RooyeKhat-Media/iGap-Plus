@@ -1,7 +1,10 @@
+import React from 'react';
 import MetaData from '../models/MetaData';
 import store from '../configureStore';
 import RNIGFileSystem from 'react-native-file-system';
 import Share from '../modules/Share/index';
+import i18n from '../i18n';
+import {FormattedMessage} from 'react-intl';
 import {
   ChatGetRoom,
   ClientRegisterDevice,
@@ -254,34 +257,42 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId, checkState) {
 export async function prepareNotifyRoomMessage(message) {
   const room = await waitForRoom(message.roomId);
   let title, avatar;
-  if (room.roomMute === Proto.RoomMute.UNMUTE) {
-    if (message.authorUser) {
-      const authorUser = await waitForUser(message.authorUser);
-      title = authorUser.displayName;
-      avatar = authorUser.avatar;
-    } else {
-      const authorRoom = await waitForRoom(message.authorRoom);
-      title = authorRoom.title;
-      avatar = authorRoom.channelAvatar || authorRoom.groupAvatar;
-    }
-    if (avatar) {
-      const cacheId = avatar.getFile().getSmallThumbnail().getCacheId();
-      if (store.getState().fileManager.download[cacheId]) {
-        avatar = store.getState().fileManager.download[cacheId];
-      } else {
-        avatar = await store.dispatch(fileManagerDownload(
-          FILE_MANAGER_DOWNLOAD_MANNER.FORCE,
-          avatar.getFile().getToken(),
-          Proto.FileDownload.Selector.SMALL_THUMBNAIL,
-          avatar.getFile().getSmallThumbnail().getSize(),
-          avatar.getFile().getSmallThumbnail().getCacheId(),
-          avatar.getFile().getSmallThumbnail().getName()
-        ));
-      }
-      avatar = prependFileProtocol(avatar.uri);
-    }
-    notifyMessage(message.roomId, title, avatar, message.message, message.id);
+  if (!message || message.deleted) {
+    return;
   }
+  if (room.roomMute === Proto.RoomMute.MUTE) {
+    return;
+  }
+  if (message.authorHash === getAuthorHash()) {
+    return;
+  }
+  if (message.authorUser) {
+    const authorUser = await waitForUser(message.authorUser);
+    title = authorUser.displayName;
+    avatar = authorUser.avatar;
+  } else {
+    const authorRoom = await waitForRoom(message.authorRoom);
+    title = authorRoom.title;
+    avatar = authorRoom.channelAvatar || authorRoom.groupAvatar;
+  }
+  if (avatar) {
+    const cacheId = avatar.getFile().getSmallThumbnail().getCacheId();
+    if (store.getState().fileManager.download[cacheId]) {
+      avatar = store.getState().fileManager.download[cacheId];
+    } else {
+      avatar = await store.dispatch(fileManagerDownload(
+        FILE_MANAGER_DOWNLOAD_MANNER.FORCE,
+        avatar.getFile().getToken(),
+        Proto.FileDownload.Selector.SMALL_THUMBNAIL,
+        avatar.getFile().getSmallThumbnail().getSize(),
+        avatar.getFile().getSmallThumbnail().getCacheId(),
+        avatar.getFile().getSmallThumbnail().getName()
+      ));
+    }
+    avatar = prependFileProtocol(avatar.uri);
+  }
+  notifyMessage(message.roomId, title, avatar, message.message, message.id);
+
 }
 
 /**
@@ -548,4 +559,17 @@ export function registerDevice(token) {
 export function reloadApp() {
   store.dispatch(appEnable(false));
   store.dispatch(appEnable(true));
+}
+
+export function getMessageTitle(message) {
+  if (!message || message.deleted) {
+    return null;
+  }
+  if (message.message) {
+    return message.message;
+  }
+  if (message.forwardFrom) {
+    return getMessageTitle(message.forwardFrom);
+  }
+  return (<FormattedMessage {...i18n.roomListLastMessageTitle} values={{type: message.messageType}}/>);
 }
