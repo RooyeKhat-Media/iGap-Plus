@@ -5,8 +5,8 @@ import {Platform} from 'react-native';
 
 export const APP_NAME = 'iGap+';
 export const APP_ID = 10;
-export const APP_BUILD_VERSION = 8;
-export const APP_VERSION = '1.0.6';
+export const APP_BUILD_VERSION = 9;
+export const APP_VERSION = '1.1.1';
 
 export const DATABASE_SCHEMA_VERSION = 1;
 
