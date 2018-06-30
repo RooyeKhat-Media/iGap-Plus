@@ -33,7 +33,7 @@ export function notifyMessage(id, title, avatar, message, sort) {
     });
     _notify(id);
   } else {
-    displayNotification(null, title, message);
+    displayNotification(CRC32.str(id).toString(), title, message);
   }
 }
 
@@ -59,11 +59,19 @@ function _notify(id) {
  * @param message
  */
 export function displayNotification(id, title, message) {
-  const notification = new firebase.notifications.Notification()
-    .setNotificationId(id)
-    .setTitle(title)
-    .setBody(message);
-  firebase.notifications().displayNotification(notification);
+  if (Platform.OS === 'android') {
+    PushNotification.localNotification({
+      id,
+      title,
+      message,
+    });
+  } else {
+    const notification = new firebase.notifications.Notification()
+      .setNotificationId(id)
+      .setTitle(title)
+      .setBody(message);
+    firebase.notifications().displayNotification(notification);
+  }
 }
 
 /**
