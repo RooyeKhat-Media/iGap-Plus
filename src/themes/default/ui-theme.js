@@ -74,14 +74,13 @@ const uiTheme = () => {
       container: {
         minWidth: 61,
         maxWidth: 132,
-        paddingBottom: 6,
-        paddingTop: 12,
+        paddingTop: 15,
         paddingLeft: 12,
         paddingRight: 12,
         backgroundColor: appTheme.toolbar,
       },
       containerActive: {
-        paddingTop: 12,
+        paddingTop: 15,
       },
       icon: {
         fontSize: 30,
