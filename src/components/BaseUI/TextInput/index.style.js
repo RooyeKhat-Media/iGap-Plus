@@ -1,5 +1,6 @@
 import {appTheme} from '../../../themes/default/index';
 import {uniqueId} from 'lodash';
+import {IRANSans} from '../../../constants/fonts/index';
 
 const uId = uniqueId();
 export default [
@@ -17,6 +18,7 @@ export default [
           color: appTheme.primaryText,
           paddingLeft: 15,
           paddingRight: 15,
+          ...IRANSans,
         },
         focused: {
           borderColor: appTheme.primary,

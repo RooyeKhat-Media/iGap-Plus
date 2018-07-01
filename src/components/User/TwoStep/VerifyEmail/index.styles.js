@@ -1,5 +1,6 @@
 import {appTheme} from '../../../../themes/default/index';
 import {uniqueId} from 'lodash';
+import {IRANSans_Bold} from '../../../../constants/fonts/index';
 
 const uId = uniqueId();
 export default [
@@ -24,9 +25,9 @@ export default [
           marginBottom: 10,
         },
         inputTitle: {
+          ...IRANSans_Bold,
           textAlign: 'center',
           fontSize: 18,
-          fontWeight: 'bold',
           marginBottom: 10,
           color: appTheme.primaryText,
         },

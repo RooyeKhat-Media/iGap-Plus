@@ -1,4 +1,5 @@
 import {uniqueId} from 'lodash';
+import {IRANSans_Bold} from '../../constants/fonts/index';
 
 const uId = uniqueId();
 const styles = [
@@ -26,7 +27,7 @@ const styles = [
           justifyContent: 'flex-start',
         },
         strong: {
-          fontWeight: 'bold',
+          ...IRANSans_Bold,
         },
         tag: {
           textDecorationLine: 'underline',

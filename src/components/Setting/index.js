@@ -5,7 +5,7 @@ import {Platform, ScrollView, Text, View} from 'react-native';
 import {MemoizeResponsiveStyleSheet} from '../../modules/Responsive';
 import styleSheet from './index.style';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
-import {Confirm, ListItem, PopupMenu, Toolbar, MCIcon} from '../BaseUI/index';
+import {Confirm, ListItem, MCIcon, PopupMenu, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
 import {goActiveSession, goBlockList, goQrCode, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
@@ -94,38 +94,38 @@ class SettingComponent extends Component {
           {/*style={styles.listItem}*/}
           {/*/>*/}
           <ListItem
-            leftElement={<MCIcon name="lock" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="lock" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.privacyPrivacy)}}
             onPress={() => goSettingPrivacy()}
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="block-helper" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="block-helper" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.settingBlockList)}}
             onPress={() => goBlockList()}
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="cellphone-link" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="cellphone-link" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.activeSessionActiveSession)}}
             onPress={() => goActiveSession()}
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="security" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="security" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.settingTwoStepVerification)}}
             onPress={goTowStepSetting}
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="qrcode-scan" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="qrcode-scan" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.settingLoginWithQrCode)}}
             onPress={() => goQrCode()}
             style={styles.listItem}
           />
 
           <ListItem
-            leftElement={<MCIcon name="translate" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="translate" size={22} color={appTheme.icon}/>}
             onPress={() => this.languagePicker.modal.open(true)}
             centerElement={{primaryText: intl.formatMessage(i18n.settingLanguage)}}
             rightElement={
@@ -140,7 +140,7 @@ class SettingComponent extends Component {
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="palette" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="palette" size={22} color={appTheme.icon}/>}
             onPress={() => this.themesPicker.modal.open(true)}
             centerElement={{primaryText: intl.formatMessage(i18n.settingThemesPickerTitle)}}
             rightElement={<Picker
@@ -156,19 +156,19 @@ class SettingComponent extends Component {
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>
           <ListItem
-            leftElement={<MCIcon name="home" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="home" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.settingIgapOfficialHome)}}
             onPress={() => Linking.openURL('https://www.igap.net')}
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="web" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="web" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.settingIgapOfficialBlog)}}
             onPress={() => Linking.openURL('https://blog.igap.net')}
             style={styles.listItem}
           />
           <ListItem
-            leftElement={<MCIcon name="headset" size={22} color={appTheme.icon}/> }
+            leftElement={<MCIcon name="headset" size={22} color={appTheme.icon}/>}
             centerElement={{primaryText: intl.formatMessage(i18n.settingSupportRequest)}}
             onPress={() => Linking.openURL('https://support.igap.net')}
             style={styles.listItem}

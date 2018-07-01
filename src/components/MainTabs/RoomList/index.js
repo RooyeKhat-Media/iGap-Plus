@@ -17,6 +17,7 @@ import SoundPlayer from '../../../containers/Unit/SoundPlayer';
 import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 import {Proto} from '../../../modules/Proto/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {IRANSans} from '../../../constants/fonts/index';
 
 class RoomListComponent extends React.PureComponent {
 
@@ -92,9 +93,10 @@ class RoomListComponent extends React.PureComponent {
             hideConnectionStatus={true}
             hideSoundPlayer={true}
             centerElement={
-              <Text style={styles.textTitle}>
-                {clientUpdating ? intl.formatMessage(i18n.clientUpdating) : intl.formatMessage(i18n.iGapPlus)}
-              </Text>
+              clientUpdating ?
+                intl.formatMessage(i18n.clientUpdating)
+                :
+                <Text style={styles.textTitle}>{intl.formatMessage(i18n.iGapPlus)}</Text>
             }
           />
           <MaterialTabs
@@ -102,6 +104,7 @@ class RoomListComponent extends React.PureComponent {
             indicatorColor={appTheme.primary}
             activeTextColor={appTheme.primary}
             inactiveTextColor={appTheme.secondaryText}
+            textStyle={{...IRANSans}}
             items={[
               intl.formatMessage(i18n.roomListFilterAll),
               intl.formatMessage(i18n.roomListFilterChat),

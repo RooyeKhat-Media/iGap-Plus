@@ -26,6 +26,7 @@ import EmojiPiker, {onEmojiSelected} from './EmojiPiker';
 import ShortMessage from '../../Unit/RoomMessage/MessageBox/ShortMessage';
 import Permission, {PERMISSION_MICROPHONE} from '../../../modules/Permission/index';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {IRANSans} from '../../../constants/fonts/index';
 
 class SendBox extends PureComponent {
 
@@ -490,6 +491,7 @@ const styleSheet = [
           paddingLeft: 2,
           paddingRight: 4,
           fontSize: 16,
+          ...IRANSans,
           color: appTheme.primaryText,
           backgroundColor: appTheme.wrapperBackground,
         },

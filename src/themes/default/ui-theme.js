@@ -17,6 +17,7 @@ const uiTheme = () => {
         backgroundColor: appTheme.toolbar,
       },
       titleText: {
+        fontWeight: null,
         color: appTheme.toolbarText,
         fontSize: 18,
         alignSelf: 'flex-start',
@@ -31,6 +32,7 @@ const uiTheme = () => {
     },
     button: {
       text: {
+        fontWeight: null,
         marginLeft: 3,
         color: appTheme.primaryText,
       },

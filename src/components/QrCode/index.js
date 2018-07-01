@@ -7,7 +7,7 @@ import {isEmpty, uniqueId} from 'lodash';
 import {appTheme} from '../../themes/default/index';
 import {Icon, Toolbar} from '../BaseUI/index';
 import {Proto} from '../../modules/Proto/index';
-import {IRANSans_Medium} from '../../constants/fonts/index';
+import {IRANSans_Bold, IRANSans_Medium} from '../../constants/fonts/index';
 import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
 class QrCodeComponent extends React.Component {
@@ -94,10 +94,10 @@ const styleSheet = [
           margin: 20,
         },
         loggedIn: {
+          ...IRANSans_Bold,
           color: appTheme.primary,
           fontSize: 18,
           backgroundColor: appTheme.pageBackground,
-          fontWeight: 'bold',
           margin: 1,
           padding: 7,
           paddingLeft: 17,

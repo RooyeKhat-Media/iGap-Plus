@@ -4,12 +4,12 @@ import apiErrors from '../constants/apiErrors/fa';
 export default {
   iGap: {
     id: 'iGap',
-    defaultMessage: 'آی گپ',
+    defaultMessage: 'iGap',
     description: 'iGap',
   },
   iGapPlus: {
     id: 'iGapPlus',
-    defaultMessage: 'آی گپ+',
+    defaultMessage: 'iGap+',
     description: 'iGap+',
   },
   ...country,

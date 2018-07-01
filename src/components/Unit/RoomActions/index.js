@@ -7,6 +7,7 @@ import i18n from '../../../i18n';
 import {uniqueId} from 'lodash';
 import {Proto} from '../../../modules/Proto/index';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {IRANSans_Bold} from '../../../constants/fonts/index';
 
 class RoomActions extends PureComponent {
 
@@ -53,8 +54,8 @@ const styleSheet = [
 
         },
         textContainer: {
+          ...IRANSans_Bold,
           color: '#fff',
-          fontWeight: 'bold',
         },
       },
     },
