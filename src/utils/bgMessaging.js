@@ -9,7 +9,7 @@ export default async (remoteMessage: RemoteMessage) => {
   let title, message;
   const args = JSON.parse(data.loc_args);
 
-  switch (data.type) {
+  switch (data.loc_key) {
     case 'MESSAGE_TEXT':
       title = args[0];
       message = args[1];
