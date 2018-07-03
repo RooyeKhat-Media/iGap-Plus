@@ -38,7 +38,6 @@
     "react-native-material-tabs": "^3.5.0",
     "react-native-material-ui": "^1.22.2",
     "react-native-permissions": "^1.1.1",
-    "react-native-push-notification": "^3.0.2",
     "react-native-save-to": "./native/modules/SaveTo",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-share": "^1.0.27",

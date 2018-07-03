@@ -251,29 +251,26 @@ export function prepareRoomMessage(normalizedRoomMessage, roomId, checkState) {
 }
 
 /**
- * @param message
+ * @param roomMessage
  * @returns {Promise.<void>}
  */
-export async function prepareNotifyRoomMessage(message) {
-  const room = await waitForRoom(message.roomId);
-  let title, avatar;
-  if (!message || message.deleted) {
+export async function prepareNotifyRoomMessage(roomMessage) {
+  const room = await waitForRoom(roomMessage.roomId);
+  const title = room.title;
+  let avatar = room.avatar;
+  let message = getMessageText(roomMessage);
+  if (!roomMessage || roomMessage.deleted) {
     return;
   }
   if (room.roomMute === Proto.RoomMute.MUTE) {
     return;
   }
-  if (message.authorHash === getAuthorHash()) {
+  if (roomMessage.authorHash === getAuthorHash()) {
     return;
   }
-  if (message.authorUser) {
-    const authorUser = await waitForUser(message.authorUser);
-    title = authorUser.displayName;
-    avatar = authorUser.avatar;
-  } else {
-    const authorRoom = await waitForRoom(message.authorRoom);
-    title = authorRoom.title;
-    avatar = authorRoom.channelAvatar || authorRoom.groupAvatar;
+  if (room.type === Proto.Room.Type.GROUP && roomMessage.authorUser) {
+    const authorUser = await waitForUser(roomMessage.authorUser);
+    message = authorUser.displayName + ': ' + message;
   }
   if (avatar) {
     const cacheId = avatar.getFile().getSmallThumbnail().getCacheId();
@@ -291,8 +288,7 @@ export async function prepareNotifyRoomMessage(message) {
     }
     avatar = prependFileProtocol(avatar.uri);
   }
-  notifyMessage(message.roomId, title, avatar, message.message, message.id);
-
+  notifyMessage(roomMessage.roomId, title, avatar, message, roomMessage.id);
 }
 
 /**
@@ -572,4 +568,27 @@ export function getMessageTitle(message) {
     return getMessageTitle(message.forwardFrom);
   }
   return (<FormattedMessage {...i18n.roomListLastMessageTitle} values={{type: message.messageType}}/>);
+}
+
+export function getMessageText(message) {
+  if (!message || message.deleted) {
+    return null;
+  }
+  if (message.message) {
+    return message.message;
+  }
+  if (message.forwardFrom) {
+    return getMessageText(message.forwardFrom);
+  }
+  const types = {
+    [Proto.RoomMessageType.IMAGE]: 'sent a photo',
+    [Proto.RoomMessageType.VIDEO]: 'sent a video',
+    [Proto.RoomMessageType.AUDIO]: 'sent a audio',
+    [Proto.RoomMessageType.VOICE]: 'sent a voice message',
+    [Proto.RoomMessageType.GIF]: 'sent a gif',
+    [Proto.RoomMessageType.FILE]: 'sent a file',
+    [Proto.RoomMessageType.LOCATION]: 'sent a location',
+    [Proto.RoomMessageType.CONTACT]: 'sent a contact',
+  };
+  return types[message.messageType];
 }

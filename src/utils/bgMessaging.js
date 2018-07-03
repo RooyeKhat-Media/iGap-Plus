@@ -47,40 +47,40 @@ export default async (remoteMessage: RemoteMessage) => {
       message = 'shared a contact with you';
       break;
     case 'GROUP_MESSAGE_TEXT':
-      title = args[0] + '@' + args[1];
-      message = args[2];
+      title = args[1];
+      message = args[0] + ': ' + args[2];
       break;
     case 'GROUP_MESSAGE_IMAGE':
-      title = args[0];
-      message = 'sent a photo to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a photo';
       break;
     case 'GROUP_MESSAGE_VIDEO':
-      title = args[0];
-      message = 'sent a video to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a video';
       break;
     case 'GROUP_MESSAGE_AUDIO':
-      title = args[0];
-      message = 'sent a audio to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a audio';
       break;
     case 'GROUP_MESSAGE_VOICE':
-      title = args[0];
-      message = 'sent a voice message to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a voice message';
       break;
     case 'GROUP_MESSAGE_GIF':
-      title = args[0];
-      message = 'sent a gif to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a gif';
       break;
     case 'GROUP_MESSAGE_FILE':
-      title = args[0];
-      message = 'sent a file to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a file';
       break;
     case 'GROUP_MESSAGE_LOCATION':
-      title = args[0];
-      message = 'sent a location to the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': sent a location';
       break;
     case 'GROUP_MESSAGE_CONTACT':
-      title = args[0];
-      message = 'shared a contact with you in the group ' + args[1];
+      title = args[1];
+      message = args[0] + ': shared a contact with you';
       break;
     case 'CHANNEL_MESSAGE_TEXT':
       title = args[0];

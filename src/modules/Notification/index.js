@@ -1,8 +1,7 @@
 import {Platform} from 'react-native';
 import {sortBy, join, map, uniqBy} from 'lodash';
-import PushNotification from 'react-native-push-notification';
-import * as CRC32 from 'crc-32';
 import firebase from 'react-native-firebase';
+import {NOTIFICATION_CHANNEL_ID} from '../../constants/app';
 
 const _notifications = new Map();
 
@@ -33,7 +32,7 @@ export function notifyMessage(id, title, avatar, message, sort) {
     });
     _notify(id);
   } else {
-    displayNotification(CRC32.str(id).toString(), title, message);
+    displayNotification(id, title, message);
   }
 }
 
@@ -44,11 +43,12 @@ export function notifyMessage(id, title, avatar, message, sort) {
  * @private
  */
 function _notify(id) {
-  const {title, messages} = _notifications.get(id);
+  const {title, messages, avatar} = _notifications.get(id);
   displayNotification(
-    CRC32.str(id).toString(),
+    id,
     title,
-    join(map(messages, 'message'), '\n')
+    join(map(messages, 'message'), '\n'),
+    avatar
   );
 }
 
@@ -57,21 +57,33 @@ function _notify(id) {
  * @param id
  * @param title
  * @param message
+ * @param avatar
  */
-export function displayNotification(id, title, message) {
+export async function displayNotification(id, title, message, avatar) {
+  const channel = new firebase
+    .notifications.Android
+    .Channel(
+      NOTIFICATION_CHANNEL_ID,
+      'iGap Plus Channel',
+      firebase.notifications.Android.Importance.Max
+    );
+  await firebase.notifications().android.createChannel(channel);
+  const notification = new firebase.notifications.Notification()
+    .setNotificationId(id)
+    .setTitle(title)
+    .setBody(message);
   if (Platform.OS === 'android') {
-    PushNotification.localNotification({
-      id,
-      title,
-      message,
-    });
-  } else {
-    const notification = new firebase.notifications.Notification()
-      .setNotificationId(id)
-      .setTitle(title)
-      .setBody(message);
-    firebase.notifications().displayNotification(notification);
+    notification.android.setBigText(message);
+    notification.android.setChannelId(NOTIFICATION_CHANNEL_ID);
+    notification.android.setDefaults([
+      firebase.notifications.Android.Defaults.Sound,
+      firebase.notifications.Android.Defaults.Vibrate,
+    ]);
+    if (avatar) {
+      notification.android.setLargeIcon(avatar);
+    }
   }
+  firebase.notifications().displayNotification(notification);
 }
 
 /**
@@ -80,5 +92,5 @@ export function displayNotification(id, title, message) {
  */
 export function clearNotification(id) {
   _notifications.delete(id);
-  PushNotification.cancelLocalNotifications({id});
+  firebase.notifications().cancelNotification(id);
 }

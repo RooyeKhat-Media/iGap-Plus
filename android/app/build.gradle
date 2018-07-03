@@ -164,7 +164,6 @@ repositories {
 }
 
 dependencies {
-    compile project(':react-native-push-notification')
     implementation project(':react-native-firebase')
     implementation "com.google.android.gms:play-services-base:15.0.1"
     implementation "com.google.firebase:firebase-core:16.0.0"

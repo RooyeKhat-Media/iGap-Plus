@@ -37,3 +37,5 @@ export const MAP_DEFAULT_LONGITUDE = -122.4324;
 
 export const MAP_LATITUDE_DELTA = 0.04;
 export const MAP_LONGITUDE_DELTA = 0.04;
+
+export const NOTIFICATION_CHANNEL_ID = 'iGap-Plus-Channel';
