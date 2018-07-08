@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getUser} from '../../selector/entities/registeredUser';
 import UserListItemComponent from '../../components/Unit/UserListItem';
 import PlaceHolderItemComponent from '../../components/Unit/PlaceHolderItem/index';
 
-class UserListItem extends Component {
+class UserListItem extends PureComponent {
 
   _onPress = () => {
     const {user, onPress} = this.props;

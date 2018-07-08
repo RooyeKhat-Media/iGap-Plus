@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import ProfileComponent from '../../components/MainTabs/Profile/index';
 import {connect} from 'react-redux';
 import {USER_CONTACTS_GET_LIST} from '../../constants/methods/index';
@@ -12,7 +12,7 @@ import {getUserId} from '../../utils/app';
 import {goRoomHistory} from '../../navigators/SecondaryNavigator';
 import {getPeerRoomId} from '../../utils/messenger';
 
-class ProfileScreen extends Component {
+class ProfileScreen extends PureComponent {
 
   async componentDidMount() {
     const userContactGetList = new UserContactsGetList();

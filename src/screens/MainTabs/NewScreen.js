@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import NewComponent from '../../components/MainTabs/New/index';
 import {goContactNew, goContactPicker, goRoomCreate} from '../../navigators/PrimaryNavigator';
 import i18n from '../../i18n';
@@ -12,7 +12,7 @@ import {getPeerRoomId} from '../../utils/messenger';
 import {goRoomHistory} from '../../navigators/SecondaryNavigator';
 import {getCallPermission} from '../../selector/methods/signaling/callPermissin';
 
-class NewScreen extends Component {
+class NewScreen extends PureComponent {
 
   async componentDidMount() {
     const userContactGetList = new UserContactsGetList();

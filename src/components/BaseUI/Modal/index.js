@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {closeModal, openModal} from '../../../actions/modal';
 import {connect} from 'react-redux';
 import {View} from 'react-native';
 import {APP_MODAL_ID_MAIN} from '../../../constants/app';
 
-class Modal extends Component {
+class Modal extends PureComponent {
 
   open = (closeable = true) => {
     const {openModal, children, type, style} = this.props;

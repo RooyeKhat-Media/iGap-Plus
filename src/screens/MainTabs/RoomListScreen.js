@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {injectIntl, intlShape} from 'react-intl';
 import {getRoomList, getRoomType} from '../../selector/messenger/room';
@@ -32,7 +32,7 @@ import {
 } from '../../constants/methods/index';
 import Long from 'long';
 
-class RoomListScreen extends Component {
+class RoomListScreen extends PureComponent {
 
   constructor(props) {
     super(props);

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Checkbox, Modal} from '../index';
 import {Text, View} from 'react-native';
@@ -7,7 +7,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
-class DialogModal extends Component {
+class DialogModal extends PureComponent {
 
   state = {
     checkboxChecked: false,

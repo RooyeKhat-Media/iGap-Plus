@@ -77,14 +77,19 @@ class ProfileComponent extends Component {
 
           <FlatList
             data={contactList}
-            keyExtractor={(item, index) => ('contact-' + item.id)}
-            renderItem={({item}) => <UserListItem userId={item.id} onPress={onContactPress} divider={item.divider}/>}
+            keyExtractor={this.userKeyExtractor}
+            renderItem={this.renderUserItem}
           />
 
         </ScrollView>
       </View>
     );
   }
+  userKeyExtractor = (item, index) => ('contact-' + item.id);
+  renderUserItem = ({item}) => {
+    const {onContactPress} = this.props;
+    return (<UserListItem userId={item.id} onPress={onContactPress} divider={item.divider}/>);
+  };
 }
 
 ProfileComponent.propTypes = {

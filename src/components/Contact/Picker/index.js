@@ -28,16 +28,21 @@ class ContactPickerComponent extends React.Component {
         <View style={styles.container}>
           <FlatList
             data={contactList}
-            keyExtractor={(item, index) => ('contact-' + item.id)}
+            keyExtractor={this.userKeyExtractor}
             extraData={selectedList}
-            renderItem={({item}) => <UserListItem userId={item.id} onPress={onSelectItem}
-              selected={!!selectedList[item.id]} divider={item.divider}/>}
+            renderItem={this.renderUserItem}
           />
           <Spinner control={loaderControl}/>
         </View>
       </View>
     );
   }
+  userKeyExtractor = (item, index) => ('contact-' + item.id);
+  renderUserItem = ({item}) => {
+    const {onSelectItem, selectedList} = this.props;
+    return (<UserListItem userId={item.id} onPress={onSelectItem}
+      selected={!!selectedList[item.id]} divider={item.divider}/>);
+  };
 }
 
 ContactPickerComponent.propTypes = {

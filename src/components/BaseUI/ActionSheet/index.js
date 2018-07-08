@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import styleSheet from './index.styles';
 import {Animated, Easing, Text, View} from 'react-native';
 import {ListItem, Modal} from '../index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 
-class ActionSheet extends Component {
+class ActionSheet extends PureComponent {
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);

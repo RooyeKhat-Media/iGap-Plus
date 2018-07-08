@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Text} from 'react-native';
 import PropTypes from 'prop-types';
 import {DialogModal} from '../index';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n';
 
-class Confirm extends Component {
+class Confirm extends PureComponent {
   constructor(props) {
     super(props);
     const {control} = props;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {findNodeHandle, NativeModules, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {IconToggle} from '../../BaseUI/index';
@@ -6,7 +6,7 @@ import {appTheme} from '../../../themes/default/index';
 
 const UIManager = NativeModules.UIManager;
 
-class PopupMenu extends Component {
+class PopupMenu extends PureComponent {
 
   onMenuPressed = () => {
     const {onPress, actionList} = this.props;

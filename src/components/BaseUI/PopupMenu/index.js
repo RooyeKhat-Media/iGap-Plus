@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {TouchableOpacity, View} from 'react-native';
 import {IconToggle, ListItem, Modal} from '../../BaseUI/index';
@@ -6,7 +6,7 @@ import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResp
 import {uniqueId} from 'lodash';
 import {appTheme} from '../../../themes/default/index';
 
-class PopupMenu extends Component {
+class PopupMenu extends PureComponent {
 
   onMenuPressed = () => {
     this.modal.open(true);

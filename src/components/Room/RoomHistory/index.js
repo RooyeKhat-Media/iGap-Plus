@@ -47,7 +47,7 @@ class RoomHistoryComponent extends React.PureComponent {
   constructor(args) {
     super(args);
     this.prevSelectedList = {};
-    const {messageList} = this.props;
+    const {messageList, intl} = this.props;
 
     this._layoutProvider = new LayoutProvider(this.layoutProviderType, (type, dim, index) => {
       const {getRoomMessage, messageList, roomType} = this.props;
@@ -74,6 +74,7 @@ class RoomHistoryComponent extends React.PureComponent {
       dataProvider: this.getDataProvider(messageList),
       actions: [],
     };
+    this.actionListMenu = [intl.formatMessage(i18n.roomHistoryActionReport)];
   }
 
   layoutProviderType = (index) => {
@@ -143,9 +144,7 @@ class RoomHistoryComponent extends React.PureComponent {
 
           <ScrollDown
             scrollToEnd={this.scrollToEnd}
-            ref={(ref) => {
-              this.actionRef = ref;
-            }}/>
+            ref={this.scrollDownRef}/>
           <View style={styles.bottomWrap}>
             <RoomActions roomId={roomId} roomType={roomType}/>
             {!readOnly ? (<SendBox Form={Form}/>) : (
@@ -163,6 +162,10 @@ class RoomHistoryComponent extends React.PureComponent {
       </View>
     );
   }
+
+  scrollDownRef = (ref) => {
+    this.actionRef = ref;
+  };
 
   renderBaseToolbar() {
     const {intl, roomTitle, clientUpdating, goRoomInfoBtn, goBack, onRoomHistoryMorePress, verified} = this.props;
@@ -182,7 +185,7 @@ class RoomHistoryComponent extends React.PureComponent {
           </View>
       }
       rightElement={(
-        <PopupMenu actionList={[intl.formatMessage(i18n.roomHistoryActionReport)]} type={APP_MODAL_ID_SECONDARY}
+        <PopupMenu actionList={this.actionListMenu} type={APP_MODAL_ID_SECONDARY}
           onPress={onRoomHistoryMorePress}/>)}
       onPress={goRoomInfoBtn}
     />);

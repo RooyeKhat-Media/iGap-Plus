@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {FlatList, ScrollView, Text, View} from 'react-native';
 import styleSheet from './index.styles';
@@ -14,7 +14,7 @@ import ReturnToCall from '../../Call/ReturnToCall';
 import {appTheme} from '../../../themes/default/index';
 import {getUserId} from '../../../utils/app';
 
-class NewComponent extends Component {
+class NewComponent extends PureComponent {
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
@@ -108,16 +108,17 @@ class NewComponent extends Component {
 
           {contactList.length ? <FlatList
             data={contactList}
-            keyExtractor={(item, index) => ('contact-' + item.id)}
+            keyExtractor={this.userKeyExtractor}
             extraData={this.props.callAction}
-            renderItem={({item}) => <UserListItem userId={item.id} divider={item.divider}
-              render={(props) => this.renderItem(props)}/>}
+            renderItem={this.renderUserItem}
           /> : null}
 
         </ScrollView>
       </View>
     );
   }
+  userKeyExtractor = (item, index) => ('contact-' + item.id);
+  renderUserItem = ({item}) => (<UserListItem userId={item.id} divider={item.divider} render={(props) => this.renderItem(props)}/>);
 
   renderItem = (userProps) => {
     const {divider, user} = userProps;

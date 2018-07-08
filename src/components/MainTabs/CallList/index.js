@@ -46,15 +46,20 @@ class CallListComponent extends Component {
         <ReturnToCall/>
         <FlatList
           data={callLogList}
-          keyExtractor={(item, index) => ('callLogList-' + item.id)}
-          renderItem={({item}) => <UserListItem userId={item.peerId.toString()} item={item}
-            render={(props) => this.renderItem(props)}/>}
+          keyExtractor={this.userKeyExtractor}
+          renderItem={this.renderUserItem}
           onEndReached={onLoadMore}
           onEndReachedThreshold={1}
         />
       </View>
     );
   }
+
+  userKeyExtractor = (item, index) => ('callLogList-' + item.id);
+  renderUserItem = ({item}) => (<UserListItem
+    item={item}
+    userId={item.peerId.toString()}
+    render={(props) => this.renderItem(props)}/>);
 
   onCallPress = (peerId, type) => {
     const {permission} = this.props;
