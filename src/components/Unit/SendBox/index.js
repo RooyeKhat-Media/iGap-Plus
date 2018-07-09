@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {
   Animated,
   BackHandler,
@@ -12,7 +13,6 @@ import {
 } from 'react-native';
 import {appTheme} from '../../../themes/default/index';
 import {Icon, IconToggle, MCIcon} from '../../BaseUI/index';
-import {uniqueId} from 'lodash';
 import i18n from '../../../i18n/index';
 import {injectIntl, intlShape} from 'react-intl';
 import {
@@ -21,12 +21,12 @@ import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
   ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
 } from '../../../constants/app';
-import VoiceRecorder from './VoiceRecorder';
-import EmojiPiker, {onEmojiSelected} from './EmojiPiker';
-import ShortMessage from '../../Unit/RoomMessage/MessageBox/ShortMessage';
+import VoiceRecorder from '../../Room/RoomHistory/VoiceRecorder';
+import EmojiPiker, {onEmojiSelected} from '../../Room/RoomHistory/EmojiPiker';
+import ShortMessage from '../RoomMessage/MessageBox/ShortMessage';
 import Permission, {PERMISSION_MICROPHONE} from '../../../modules/Permission/index';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
-import {IRANSans} from '../../../constants/fonts/index';
+import styleSheet from './index.style';
 
 class SendBox extends PureComponent {
 
@@ -49,14 +49,13 @@ class SendBox extends PureComponent {
   }
 
   componentDidMount() {
-    const {Form} = this.props;
-    this.onChangeText(Form.text);
+    const {text} = this.props;
+    this.onChangeText(text);
     setTimeout(() => {
       this.setState({
         canLoadEmojiPiker: true,
       });
     }, 100);
-
   }
 
   onBackPress = () => {
@@ -127,11 +126,11 @@ class SendBox extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {Form} = nextProps;
-    if (Form.text || (Form.editMessageId || this.props.Form.editMessageId)) {
-      this.onChangeText(Form.text);
+    const {text, editMessage, pickedFile, forwardedMessage} = nextProps;
+    if (text || (editMessage || this.props.editMessage)) {
+      this.onChangeText(text);
     }
-    this.setState({isActive: (Form.text || Form.pickedFile || Form.forwardedMessage)});
+    this.setState({isActive: (text || pickedFile || forwardedMessage)});
   }
 
   animatePop() {
@@ -155,18 +154,18 @@ class SendBox extends PureComponent {
   };
 
   onChangeText = (text) => {
-    const {Form} = this.props;
+    const {onChangeText} = this.props;
     if (text.length > 0) {
       this.setState({isActive: true, text: text, showAttachment: false});
     } else {
       this.setState({isActive: false, text: ''});
     }
-    Form.onChangeText(text);
+    onChangeText(text);
   };
 
   onSubmit = () => {
-    const {Form} = this.props;
-    Form.submitForm(this.state.text);
+    const {submitForm} = this.props;
+    submitForm(this.state.text);
     this.setState({
       isActive: false,
       text: '',
@@ -176,40 +175,40 @@ class SendBox extends PureComponent {
   };
 
   selectImages = async () => {
-    const {Form} = this.props;
+    const {selectAttachment} = this.props;
     this.toggleAttach();
-    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE);
+    await selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE);
   };
   selectAudio = async () => {
-    const {Form} = this.props;
+    const {selectAttachment} = this.props;
     this.toggleAttach();
-    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO);
+    await selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO);
   };
   selectVideos = async () => {
-    const {Form} = this.props;
+    const {selectAttachment} = this.props;
     this.toggleAttach();
-    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO);
+    await selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO);
   };
   selectFile = async () => {
-    const {Form} = this.props;
+    const {selectAttachment} = this.props;
     this.toggleAttach();
-    await Form.selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_FILE);
+    await selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_FILE);
   };
 
   selectCamera = () => {
-    const {Form} = this.props;
+    const {selectCamera} = this.props;
     this.toggleAttach();
-    Form.selectCamera();
+    selectCamera();
   };
   selectContact = () => {
-    const {Form} = this.props;
+    const {selectContact} = this.props;
     this.toggleAttach();
-    Form.selectContact();
+    selectContact();
   };
   selectLocation = () => {
-    const {Form} = this.props;
+    const {selectLocation} = this.props;
     this.toggleAttach();
-    Form.selectLocation();
+    selectLocation();
   };
 
   emojiButtonClick = () => {
@@ -241,18 +240,18 @@ class SendBox extends PureComponent {
   };
 
   onEndRecordSound = (path) => {
-    const {Form} = this.props;
+    const {onEndRecordSound} = this.props;
     if (this.mounted) {
       this.setState({isSoundRecord: false});
     }
-    Form.onEndRecordSound(path);
+    onEndRecordSound(path);
   };
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
   render() {
-    const {intl, Form} = this.props;
+    const {intl, replyTo, pickedFile, editMessage, forwardedMessage, cancelAttach, cancelForward, cancelReply, cancelEdit, onStartRecordSound} = this.props;
     const styles = this.getStyles();
     const movingMargin = this.animatedValue.interpolate({
       inputRange: [0, 1],
@@ -368,30 +367,30 @@ class SendBox extends PureComponent {
 
         <View style={styles.inputWrap}>
 
-          {Form.pickedFile && (<View style={styles.addonWrap}>
+          {pickedFile && (<View style={styles.addonWrap}>
             <Text style={styles.addonText}>
-              {Form.pickedFile.fileName}
+              {pickedFile.fileName}
             </Text>
-            <IconToggle onPress={Form.cancelAttach} name="close"/>
+            <IconToggle onPress={cancelAttach} name="close"/>
           </View>)}
 
-          {Form.forwardedMessage && (<View style={styles.addonWrap}>
+          {forwardedMessage && (<View style={styles.addonWrap}>
             <Text style={styles.addonText} numberOfLines={1}>
               {intl.formatMessage(i18n.roomHistorySendBoxForward)}
-              <ShortMessage message={Form.forwardedMessage}/>
+              <ShortMessage message={forwardedMessage}/>
             </Text>
             <View style={styles.replyClose}>
-              <IconToggle onPress={Form.cancelForward} name="close"/>
+              <IconToggle onPress={cancelForward} name="close"/>
             </View>
           </View>)}
 
-          {Form.replyTo && (<View style={styles.addonWrap}>
+          {replyTo && (<View style={styles.addonWrap}>
             <Text style={styles.addonText} numberOfLines={1}>
               {intl.formatMessage(i18n.roomHistorySendBoxReplyTo) + ' : '}
-              <ShortMessage message={Form.replyTo}/>
+              <ShortMessage message={replyTo}/>
             </Text>
             <View style={styles.replyClose}>
-              <IconToggle onPress={Form.cancelReply} name="close" color={appTheme.icon}/>
+              <IconToggle onPress={cancelReply} name="close" color={appTheme.icon}/>
             </View>
           </View>)}
 
@@ -419,7 +418,7 @@ class SendBox extends PureComponent {
               }}
             />
 
-            {Form.editMessageId && <TouchableOpacity onPress={Form.cancelEdit}>
+            {editMessage && <TouchableOpacity onPress={cancelEdit}>
               <MCIcon name="close" style={styles.iconClose} size={30}/>
             </TouchableOpacity>}
 
@@ -447,7 +446,7 @@ class SendBox extends PureComponent {
         <View style={styles.soundRecorder}>
           <VoiceRecorder
             onEndRecordSound={this.onEndRecordSound}
-            onStartRecordSound={Form.onStartRecordSound}
+            onStartRecordSound={onStartRecordSound}
             onRef={ref => (this.voiceRecorder = ref)}
           />
         </View>}
@@ -458,157 +457,23 @@ class SendBox extends PureComponent {
 
 SendBox.propTypes = {
   intl: intlShape.isRequired,
+  text: PropTypes.string,
+  replyTo: PropTypes.object,
+  pickedFile: PropTypes.object,
+  editMessage: PropTypes.bool,
+  forwardedMessage: PropTypes.object,
+  selectAttachment: PropTypes.func,
+  selectCamera: PropTypes.func,
+  selectContact: PropTypes.func,
+  selectLocation: PropTypes.func,
+  onStartRecordSound: PropTypes.func,
+  onEndRecordSound: PropTypes.func,
+  cancelAttach: PropTypes.func,
+  onChangeText: PropTypes.func,
+  submitForm: PropTypes.func,
+  cancelEdit: PropTypes.func,
+  cancelReply: PropTypes.func,
+  cancelForward: PropTypes.func,
 };
 
 export default injectIntl(SendBox);
-
-const uId = uniqueId();
-const styleSheet = [
-  uId,
-  () => [
-    {
-      query: {},
-      style: {
-        container: {},
-        animatedWrap: {
-          backgroundColor: appTheme.wrapperBackground,
-        },
-        inputBox: {
-          flexDirection: 'row',
-          alignItems: 'center',
-          borderWidth: 1,
-          borderColor: appTheme.border,
-          borderRadius: 25,
-          minHeight: 50,
-          margin: 5,
-        },
-        inputWrap: {
-          backgroundColor: appTheme.wrapperBackground,
-        },
-        textInputStyle: {
-          flex: 1,
-          borderWidth: 0,
-          paddingLeft: 2,
-          paddingRight: 4,
-          fontSize: 16,
-          ...IRANSans,
-          color: appTheme.primaryText,
-          backgroundColor: appTheme.wrapperBackground,
-        },
-        iconEmoji: {
-          color: appTheme.icon,
-          paddingLeft: 4,
-          backgroundColor: 'transparent',
-        },
-
-        iconMic: {
-          color: appTheme.icon,
-          paddingLeft: 7,
-          paddingRight: 6,
-          backgroundColor: 'transparent',
-
-        },
-        iconSend: {
-          color: appTheme.icon,
-          paddingLeft: 4,
-          paddingRight: 4,
-          backgroundColor: 'transparent',
-
-        },
-        iconAttachment: {
-          color: appTheme.icon,
-          transform: [{rotate: '45deg'}],
-          paddingLeft: 4,
-          paddingRight: 1,
-          backgroundColor: 'transparent',
-
-        },
-        iconClose: {
-          color: appTheme.icon,
-          paddingLeft: 4,
-          paddingRight: 4,
-        },
-        rowField: {
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          margin: 8,
-        },
-        sharedItem: {
-          alignItems: 'center',
-        },
-        textSharedMedia: {
-          color: appTheme.titleText,
-          fontSize: 16,
-          alignSelf: 'center',
-        },
-        iconColor: {
-          width: 60,
-          height: 60,
-          borderRadius: 30,
-          justifyContent: 'center',
-          alignItems: 'center',
-          overflow: 'hidden',
-        },
-        colorRed: {
-          backgroundColor: '#ff2748',
-        },
-        colorPurple: {
-          backgroundColor: '#dba4da',
-        },
-        colorDarkRed: {
-          backgroundColor: '#ec5877',
-        },
-        colorOrange: {
-          backgroundColor: '#ff8135',
-        },
-        colorDarkBlue: {
-          backgroundColor: '#0193e5',
-        },
-        colorLightBlue: {
-          backgroundColor: '#36becf',
-        },
-        colorGreen: {
-          backgroundColor: '#1de4b3',
-        },
-        colorBrown: {
-          backgroundColor: '#9e9992',
-        },
-
-        addonWrap: {
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        },
-        addonText: {
-          padding: 5,
-          paddingLeft: 10,
-          paddingRight: 10,
-          margin: 5,
-          marginLeft: 10,
-          marginRight: 10,
-          flex: 1,
-          borderLeftColor: appTheme.primary,
-          borderLeftWidth: 3,
-          color: appTheme.primaryText,
-        },
-        soundRecorder: {
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          bottom: 0,
-        },
-        activeEmojiPiker: {
-          height: 250,
-        },
-        inActiveEmojiPiker: {
-          height: 0,
-          display: 'none',
-        },
-        replyClose: {
-          width: 50,
-          height: 50,
-        },
-      },
-    },
-  ],
-  true,
-];

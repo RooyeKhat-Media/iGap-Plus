@@ -5,7 +5,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
 import {Confirm, PopupMenu, Toolbar} from '../../BaseUI/index';
 import styleSheet from './index.styles';
-import SendBox from './SendBox';
+import SendBox from '../../../containers/Unit/SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
 import JoinBox from './JoinBox';
 import ActionSheet from '../../BaseUI/ActionSheet/index';
@@ -122,7 +122,7 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, Form, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, conformControl, messageList} = this.props;
+    const {intl, controlSendBox, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, conformControl, messageList} = this.props;
     const styles = this.getStyles();
     const {dataProvider} = this.state;
     return (
@@ -147,7 +147,7 @@ class RoomHistoryComponent extends React.PureComponent {
             ref={this.scrollDownRef}/>
           <View style={styles.bottomWrap}>
             <RoomActions roomId={roomId} roomType={roomType}/>
-            {!readOnly ? (<SendBox Form={Form}/>) : (
+            {!readOnly ? (<SendBox control={controlSendBox} roomId={roomId}/>) : (
               <JoinBox joinBoxToggle={joinBoxToggle} isPublic={isPublic} roomMute={roomMute}
                 isParticipant={isParticipant}/>)}
           </View>
@@ -205,7 +205,7 @@ class RoomHistoryComponent extends React.PureComponent {
 
 RoomHistoryComponent.propTypes = {
   intl: intlShape.isRequired,
-  Form: PropTypes.object.isRequired,
+  controlSendBox: PropTypes.func.isRequired,
   roomId: PropTypes.string.isRequired,
   roomType: PropTypes.oneOf([
     Proto.Room.Type.CHAT,
