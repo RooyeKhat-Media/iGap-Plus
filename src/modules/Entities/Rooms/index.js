@@ -82,21 +82,19 @@ export function waitForRoom(id) {
   if (room) {
     return room;
   }
-  let promise;
   if (!_pendingRoom.has(id)) {
-    promise = new Promise((resolve, reject) => {
-      _pendingRoom.set(id, {
-        promise,
-        resolve,
-      });
+    const data = {};
+    data.promise = new Promise((resolve, reject) => {
+      data.resolve = resolve;
       if (process.env.NODE_ENV !== 'development') {
         setTimeout(reject, 10 * 1000);
       }
     });
+    _pendingRoom.set(id, data);
+    return data.promise;
   } else {
-    promise = _pendingRoom.get(id).promise;
+    return _pendingRoom.get(id).promise;
   }
-  return promise;
 }
 
 /**

@@ -69,21 +69,19 @@ export function waitForUser(id) {
   if (user) {
     return user;
   }
-  let promise;
   if (!_pendingUsers.has(id)) {
-    promise = new Promise((resolve, reject) => {
-      _pendingUsers.set(id, {
-        promise,
-        resolve,
-      });
+    const data = {};
+    data.promise = new Promise((resolve, reject) => {
+      data.resolve = resolve;
       if (process.env.NODE_ENV !== 'development') {
         setTimeout(reject, 10 * 1000);
       }
     });
+    _pendingUsers.set(id, data);
+    return data.promise;
   } else {
-    promise = _pendingUsers.get(id).promise;
+    return _pendingUsers.get(id).promise;
   }
-  return promise;
 }
 /**
  * @param {FlatRegisteredUser} user
