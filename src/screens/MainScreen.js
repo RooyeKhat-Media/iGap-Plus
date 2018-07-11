@@ -11,7 +11,7 @@ import {primaryNavigatorBack, secondaryNavigatorBack} from '../actions/navigator
 import {MAIN_SCREEN} from '../constants/navigators';
 import MainComponent from '../components/Main';
 import PrimaryNavigator from '../navigators/PrimaryNavigator';
-import SecondaryNavigator from '../navigators/SecondaryNavigator';
+import SecondaryNavigator, {goRoomHistory} from '../navigators/SecondaryNavigator';
 
 import Device from '../modules/Responsive/Device';
 import {NORMAL_HEIGHT} from '../constants/screenBreakPoints';
@@ -34,12 +34,23 @@ class MainScreen extends Component {
 
   async componentDidMount() {
     await firebase.messaging().requestPermission();
+    firebase.notifications().getInitialNotification().then(this.notificationOpened);
+    this.notificationOpenedListener = firebase.notifications().onNotificationOpened(this.notificationOpened);
     putState(getUserId(true));
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    this.notificationOpenedListener();
   }
+
+  notificationOpened = (notificationOpen) => {
+    if (notificationOpen) {
+      const notificationId = notificationOpen.action;
+      firebase.notifications().removeDeliveredNotification(notificationId);
+      goRoomHistory(notificationId);
+    }
+  };
 
   onBackPress = () => {
     const {dispatch, nav, navSecondary, navPrimary} = this.props;

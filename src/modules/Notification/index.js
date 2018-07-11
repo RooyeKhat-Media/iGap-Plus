@@ -75,6 +75,7 @@ export async function displayNotification(id, title, message, avatar) {
   if (Platform.OS === 'android') {
     notification.android.setBigText(message);
     notification.android.setChannelId(NOTIFICATION_CHANNEL_ID);
+    notification.android.setClickAction(id);
     notification.android.setDefaults([
       firebase.notifications.Android.Defaults.Sound,
       firebase.notifications.Android.Defaults.Vibrate,
