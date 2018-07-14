@@ -75,8 +75,10 @@ class RoomHistoryScreen extends PureComponent {
       try {
         this.loading = true;
         const roomMessages = await loadRoomHistory(room.id, getRoomLastMessageId(room.id) || room.lastMessage, false);
-        const offsetTop = getMessagesDimension(roomMessages, room.type);
-        this.flatList.scrollToOffset(0, offsetTop);
+        if (roomMessages.length) {
+          const offsetTop = getMessagesDimension(roomMessages, room.type);
+          this.flatList.scrollToOffset(0, offsetTop);
+        }
       } finally {
         await sleep(1);
         this.loading = false;
