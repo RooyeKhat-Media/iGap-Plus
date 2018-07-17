@@ -11,33 +11,6 @@ export const getEntitiesRoomMessageFunc = createSelector(
   }
 );
 
-export const getEntitiesRoomMessageTypeFunc = createSelector(
-  getEntitiesRoomMessages,
-  (getEntitiesRoomMessages) => (messageId) => {
-    const roomMessage = getEntitiesRoomMessages[messageId];
-    if (!roomMessage) {
-      //todo Error Report
-      console.warn('getRoomMessageType: Invalid MessageId', messageId);
-      return -1;
-    }
-
-    if (roomMessage.deleted) {
-      return -2;
-    }
-
-    let type = roomMessage.messageType;
-
-    if (roomMessage.replyTo) {
-      type += 100;
-    }
-    if (roomMessage.forwardFrom) {
-      const offset = roomMessage.forwardFrom.channelViewsLabel ? 100000 : 1000;
-      type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
-    }
-    return type;
-  }
-);
-
 export const getRoomMessage = (state, props) => state.entities.roomMessages[props.messageId];
 
 export const getRoomMessageIsFirstUnread = (state, props) => state.entities.rooms[props.roomId] && state.entities.rooms[props.roomId].firstUnreadMessage === props.messageId;

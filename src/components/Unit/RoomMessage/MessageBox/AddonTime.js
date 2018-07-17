@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Text} from 'react-native';
 import {FormattedRelative} from 'react-intl';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import {uniqueId} from 'lodash';
 import {appTheme} from '../../../../themes/default/index';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-class AddonTime extends Component {
+class AddonTime extends PureComponent {
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };

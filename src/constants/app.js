@@ -1,5 +1,5 @@
 export const DEFAULT_CHAR_WIDTH = 8;
-export const DEFAULT_LINE_HEIGHT = 23;
+export const DEFAULT_LINE_HEIGHT = 27.3;
 
 export const FILE_UPLOAD_ID_EDIT_PROFILE = 'FILE_UPLOAD_ID_EDIT_PROFILE';
 

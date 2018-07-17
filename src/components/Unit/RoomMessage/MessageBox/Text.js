@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View} from 'react-native';
 import {uniqueId} from 'lodash';
 import PropTypes from 'prop-types';
 import RichTextView from '../../../../modules/RichTextView/index';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-class Text extends Component {
+class Text extends PureComponent {
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };

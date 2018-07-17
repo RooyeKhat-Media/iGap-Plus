@@ -592,3 +592,33 @@ export function getMessageText(message) {
   };
   return types[message.messageType];
 }
+
+export function getRoomType(roomId) {
+  const room = store.getState().entities.rooms[roomId];
+  return room ? room.type : null;
+}
+
+export function getRoomMessageType(messageId) {
+  const roomMessage = store.getState().entities.roomMessages[messageId];
+
+  if (!roomMessage) {
+    //todo Error Report
+    console.warn('getRoomMessageType: Invalid MessageId', messageId);
+    return -1;
+  }
+
+  if (roomMessage.deleted) {
+    return -2;
+  }
+
+  let type = roomMessage.messageType;
+
+  if (roomMessage.replyTo) {
+    type += 100;
+  }
+  if (roomMessage.forwardFrom) {
+    const offset = roomMessage.forwardFrom.channelViewsLabel ? 100000 : 1000;
+    type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
+  }
+  return type;
+}

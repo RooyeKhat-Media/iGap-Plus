@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 import {appTheme, red} from '../../../../themes/default/index';
@@ -14,7 +14,7 @@ import RichTextView from '../../../../modules/RichTextView/index';
 import {Proto} from '../../../../modules/Proto/index';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 
-class ChannelBox extends Component {
+class ChannelBox extends PureComponent {
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Text from '../../components/Unit/RoomMessage/MessageBox/Text';
@@ -29,7 +29,7 @@ import {goRoomGallery, goVideoPlayer} from '../../navigators/SecondaryNavigator'
 import {prependFileProtocol} from '../../utils/core';
 import {getMessageStats, listenMessage} from '../../utils/messenger';
 
-class MessageAtomBox extends Component {
+class MessageAtomBox extends PureComponent {
 
   componentDidMount() {
     this.initialMessages(this.props);

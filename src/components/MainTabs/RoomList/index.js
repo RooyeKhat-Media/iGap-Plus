@@ -18,6 +18,7 @@ import ConnectionStatus from '../../../containers/Unit/ConnectionStatus';
 import {Proto} from '../../../modules/Proto/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {IRANSans} from '../../../constants/fonts/index';
+import {getRoomType} from '../../../utils/app';
 
 class RoomListComponent extends React.PureComponent {
 
@@ -26,7 +27,6 @@ class RoomListComponent extends React.PureComponent {
   };
 
   getDataProvider = (roomList, selectedTab) => {
-    const {getRoomType} = this.props;
     const filterRoomList = filter(roomList, (item) => {
       switch (selectedTab) {
         case 1:
@@ -140,6 +140,5 @@ RoomListComponent.propTypes = {
   intl: intlShape.isRequired,
   clientUpdating: PropType.bool,
   roomList: PropType.array,
-  getRoomType: PropType.func,
 };
 export default injectIntl(RoomListComponent);

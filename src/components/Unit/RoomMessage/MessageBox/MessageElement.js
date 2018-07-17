@@ -7,7 +7,7 @@ import ProgressBar from '../../../BaseUI/ProgressBar';
 import {PROGRESS_BAR_PENDING, PROGRESS_BAR_PROGRESSING} from '../../../BaseUI/ProgressBar/index';
 import MemoizeResponsiveStyleSheet from '../../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
-class MessageElement extends React.Component {
+class MessageElement extends React.PureComponent {
 
   get isPending() {
     const {downloadedFile} = this.props;

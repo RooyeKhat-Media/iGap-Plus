@@ -42,7 +42,7 @@ import {
   ClientUnsubscribeFromRoom,
   Proto,
 } from '../../modules/Proto/index';
-import {getEntitiesRoomMessageFunc, getEntitiesRoomMessageTypeFunc} from '../../selector/entities/roomMessage';
+import {getEntitiesRoomMessageFunc} from '../../selector/entities/roomMessage';
 import {
   CLIENT_JOIN_BY_USERNAME,
   CLIENT_MUTE_ROOM,
@@ -537,7 +537,7 @@ class RoomHistoryScreen extends PureComponent {
   };
 
   render() {
-    const {room, clientUpdating, messageList, getRoomMessage, getRoomMessageType, chatPeerVerified} = this.props;
+    const {room, clientUpdating, messageList, getRoomMessage, chatPeerVerified} = this.props;
     const {selectedCount, selectedList} = this.state;
     if (!room) {
       return null;
@@ -558,7 +558,6 @@ class RoomHistoryScreen extends PureComponent {
         selectedList={selectedList}
         selectedCount={selectedCount}
         getRoomMessage={getRoomMessage}
-        getRoomMessageType={getRoomMessageType}
         controlSendBox={this.controlSendBox}
         cancelSelected={this.cancelSelected}
         goRoomInfoBtn={this.goRoomInfoBtn}
@@ -585,7 +584,6 @@ const makeMapStateToProps = () => {
       room: getRoom(state, props),
       messageList: getRoomMessageList(state, props),
       getRoomMessage: getEntitiesRoomMessageFunc(state),
-      getRoomMessageType: getEntitiesRoomMessageTypeFunc(state),
       clientUpdating: state.clientUpdating,
       chatPeerVerified: chatPeer ? chatPeer.verified : null,
     };

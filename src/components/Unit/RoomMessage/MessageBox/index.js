@@ -10,7 +10,7 @@ import {getEntitiesRoomMessage} from '../../../../selector/entities/roomMessage'
 import ReplyTo from './ReplyTo';
 import ForwardFrom from './ForwardFrom';
 
-class MessageBox extends React.Component {
+class MessageBox extends React.PureComponent {
   render() {
     const {isForwarded, message, replyToMessage, showText, onMessagePress, onMessageLongPress, onReactionPress} = this.props;
     const forwardFrom = message.forwardFrom;

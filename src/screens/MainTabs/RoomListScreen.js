@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {injectIntl, intlShape} from 'react-intl';
-import {getRoomList, getRoomType} from '../../selector/messenger/room';
+import {getRoomList} from '../../selector/messenger/room';
 import RoomListComponent from '../../components/MainTabs/RoomList';
 import {goRoomHistory} from '../../navigators/SecondaryNavigator';
 import {initialRoomsState} from '../../modules/Messenger/Rooms/index';
@@ -208,11 +208,10 @@ class RoomListScreen extends PureComponent {
   };
 
   render() {
-    const {roomList, clientUpdating, getRoomType} = this.props;
+    const {roomList, clientUpdating} = this.props;
     return (
       <RoomListComponent
         roomList={roomList}
-        getRoomType={getRoomType}
         clientUpdating={clientUpdating}
         onLongPress={this.onLongPress}
         confirmControl={this.confirmControl}
@@ -227,7 +226,6 @@ const makeMapStateToProps = () => {
   return (state) => {
     return {
       roomList: getRoomList(state),
-      getRoomType: getRoomType(state),
       clientUpdating: state.clientUpdating,
     };
   };

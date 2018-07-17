@@ -23,7 +23,7 @@ import {
   getSecondaryWidth,
   outerDimension,
 } from '../../../modules/DimensionCalculator/index';
-import {getAuthorHash} from '../../../utils/app';
+import {getAuthorHash, getRoomMessageType} from '../../../utils/app';
 import ScrollDown from './ScrollDown';
 import ReturnToCall from '../../Call/ReturnToCall';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
@@ -78,7 +78,7 @@ class RoomHistoryComponent extends React.PureComponent {
   }
 
   layoutProviderType = (index) => {
-    const {getRoomMessageType, messageList} = this.props;
+    const {messageList} = this.props;
     return getRoomMessageType(messageList[index]);
   };
 
@@ -221,7 +221,6 @@ RoomHistoryComponent.propTypes = {
   joinBoxToggle: PropTypes.func.isRequired,
   messageList: PropTypes.arrayOf(PropTypes.string),
   selectedList: PropTypes.object.isRequired,
-  getRoomMessageType: PropTypes.func.isRequired,
   selectedCount: PropTypes.number,
   cancelSelected: PropTypes.func.isRequired,
   goRoomInfoBtn: PropTypes.func.isRequired,
