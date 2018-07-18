@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {View} from 'react-native';
 import {Button} from '../../BaseUI';
 import {injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../i18n/index';
 import {appTheme} from '../../../themes/default/index';
 
-class JoinBox extends Component {
+class JoinBox extends PureComponent {
   render() {
     const {isParticipant, roomMute, isPublic, joinBoxToggle, intl} = this.props;
     const style = {container: {height: 50, backgroundColor: appTheme.pageBackground}};

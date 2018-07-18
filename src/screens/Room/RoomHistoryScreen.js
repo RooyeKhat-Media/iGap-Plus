@@ -145,6 +145,7 @@ class RoomHistoryScreen extends PureComponent {
     this.state = {
       selectedList: {},
       selectedCount: 0,
+      toolbarActions: [],
       access: {
         sendMessage: false,
         editMessage: false,
@@ -273,6 +274,7 @@ class RoomHistoryScreen extends PureComponent {
         ...prevState,
         selectedCount,
         selectedList,
+        toolbarActions: this.getToolbarAction(selectedCount),
         access: {
           ...prevState.access,
           editMessage: firstRoomMessage ? (
@@ -290,13 +292,14 @@ class RoomHistoryScreen extends PureComponent {
     this.setState({
       selectedCount: 0,
       selectedList: {},
+      toolbarActions: this.getToolbarAction(0),
     });
   };
 
-  getToolbarAction = () => {
+  getToolbarAction = (selectedCount) => {
     const actions = [];
     const {room} = this.props;
-    const {selectedCount, access} = this.state;
+    const {access} = this.state;
 
     if (room.isParticipant && selectedCount === 1 && access.sendMessage) {
       actions.push(ROOM_MESSAGE_ACTION_REPLY);
@@ -538,11 +541,10 @@ class RoomHistoryScreen extends PureComponent {
 
   render() {
     const {room, clientUpdating, messageList, getRoomMessage, chatPeerVerified} = this.props;
-    const {selectedCount, selectedList} = this.state;
+    const {selectedCount, selectedList, toolbarActions} = this.state;
     if (!room) {
       return null;
     }
-    const toolbarActions = this.getToolbarAction();
     return (
       <RoomHistoryComponent
         roomId={room.id}

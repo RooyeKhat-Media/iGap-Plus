@@ -611,14 +611,5 @@ export function getRoomMessageType(messageId) {
     return -2;
   }
 
-  let type = roomMessage.messageType;
-
-  if (roomMessage.replyTo) {
-    type += 100;
-  }
-  if (roomMessage.forwardFrom) {
-    const offset = roomMessage.forwardFrom.channelViewsLabel ? 100000 : 1000;
-    type = roomMessage.messageType * 100 + roomMessage.forwardFrom.messageType + offset;
-  }
-  return type;
+  return roomMessage.messageType;
 }

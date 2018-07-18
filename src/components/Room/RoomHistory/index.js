@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import {DataProvider, LayoutProvider, RecyclerListView} from 'recyclerlistview';
-import {Confirm, PopupMenu, Toolbar} from '../../BaseUI/index';
+import {Confirm, Toolbar} from '../../BaseUI/index';
 import styleSheet from './index.styles';
 import SendBox from '../../../containers/Unit/SendBox';
 import RoomMessage from '../../../containers/Unit/RoomMessage';
@@ -27,7 +27,7 @@ import {getAuthorHash, getRoomMessageType} from '../../../utils/app';
 import ScrollDown from './ScrollDown';
 import ReturnToCall from '../../Call/ReturnToCall';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
-import Verify from '../../../assets/images/verify';
+import RoomHistoryToolbar from './RoomHistoryToolbar';
 
 class RoomHistoryComponent extends React.PureComponent {
 
@@ -47,7 +47,7 @@ class RoomHistoryComponent extends React.PureComponent {
   constructor(args) {
     super(args);
     this.prevSelectedList = {};
-    const {messageList, intl} = this.props;
+    const {messageList} = this.props;
 
     this._layoutProvider = new LayoutProvider(this.layoutProviderType, (type, dim, index) => {
       const {getRoomMessage, messageList, roomType} = this.props;
@@ -74,7 +74,6 @@ class RoomHistoryComponent extends React.PureComponent {
       dataProvider: this.getDataProvider(messageList),
       actions: [],
     };
-    this.actionListMenu = [intl.formatMessage(i18n.roomHistoryActionReport)];
   }
 
   layoutProviderType = (index) => {
@@ -122,13 +121,25 @@ class RoomHistoryComponent extends React.PureComponent {
   };
 
   render() {
-    const {intl, controlSendBox, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, conformControl, messageList} = this.props;
+    const {
+      intl, verified, roomTitle, clientUpdating, goRoomInfoBtn, onRoomHistoryMorePress, goBack,
+      controlSendBox, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, conformControl, messageList,
+    } = this.props;
     const styles = this.getStyles();
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.mainWrap}>
-          {!selectedCount ? this.renderBaseToolbar() : this.renderMessagePropToolbar()}
+          {!selectedCount ?
+            (<RoomHistoryToolbar
+              verified={verified}
+              roomTitle={roomTitle}
+              clientUpdating={clientUpdating}
+              goBack={goBack}
+              goRoomInfoBtn={goRoomInfoBtn}
+              onRoomHistoryMorePress={onRoomHistoryMorePress}
+            />)
+            : this.renderMessagePropToolbar()}
           <ReturnToCall/>
           <View style={styles.messageListWrap}>
             {!!messageList.length && (<RecyclerListView
@@ -167,30 +178,6 @@ class RoomHistoryComponent extends React.PureComponent {
     this.actionRef = ref;
   };
 
-  renderBaseToolbar() {
-    const {intl, roomTitle, clientUpdating, goRoomInfoBtn, goBack, onRoomHistoryMorePress, verified} = this.props;
-    const styles = this.getStyles();
-    return (<Toolbar
-      leftElement="arrow-back"
-      onLeftElementPress={goBack}
-      centerElement={
-        clientUpdating ?
-          <View style={styles.rowTitle}>
-            <Text numberOfLines={1} style={styles.titleText}>{intl.formatMessage(i18n.clientUpdating)}</Text>
-          </View>
-          :
-          <View style={styles.rowTitle}>
-            <Text numberOfLines={1} style={styles.titleText}>{roomTitle}</Text>
-            {verified && <Verify style={styles.verifyStyle}/>}
-          </View>
-      }
-      rightElement={(
-        <PopupMenu actionList={this.actionListMenu} type={APP_MODAL_ID_SECONDARY}
-          onPress={onRoomHistoryMorePress}/>)}
-      onPress={goRoomInfoBtn}
-    />);
-  }
-
   renderMessagePropToolbar() {
     const {selectedCount, cancelSelected, selectedMessageAction, toolbarActions} = this.props;
     return (<Toolbar
@@ -224,6 +211,7 @@ RoomHistoryComponent.propTypes = {
   selectedCount: PropTypes.number,
   cancelSelected: PropTypes.func.isRequired,
   goRoomInfoBtn: PropTypes.func.isRequired,
+  onRoomHistoryMorePress: PropTypes.func.isRequired,
   onMessagePress: PropTypes.func.isRequired,
   onMessageLongPress: PropTypes.func.isRequired,
   selectedMessageAction: PropTypes.func.isRequired,
