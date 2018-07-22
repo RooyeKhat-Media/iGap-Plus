@@ -6389,7 +6389,7 @@ react-native-vector-icons@^4.6.0:
     yargs "^8.0.2"
 
 "react-native-video-compress@file:./native/modules/VideoCompress":
-  version "1.0.0"
+  version "1.0.1"
 
 react-native-video-processing@shahen94/react-native-video-processing#2a6787537f0cb6d27fc177a4bbb502c9e2cb2446:
   version "1.7.1"

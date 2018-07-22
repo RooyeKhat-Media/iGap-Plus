@@ -58,6 +58,7 @@ import Collector from '../modules/Collector';
 import {messengerRoomAddList} from '../actions/messenger/rooms';
 import VideoCompress from '../modules/VideoCompress';
 import {clearNotification} from '../modules/Notification/index';
+import RNIGFileSystem from 'react-native-file-system';
 
 /**
  * @type {string} current Focus Room
@@ -333,7 +334,7 @@ export async function sendMessage(roomId, text, pickedFile, attachmentType, repl
 
   async function __compressVideo() {
     const source = await VideoCompress.compress(prependFileProtocol(pickedFile.fileUri));
-    pickedFile.fileUri = source.source;
+    pickedFile = await RNIGFileSystem.fInfo(source);
     store.dispatch(entitiesRoomMessageEdit(fakeId.toString(), {pickedFile}));
   }
 }
