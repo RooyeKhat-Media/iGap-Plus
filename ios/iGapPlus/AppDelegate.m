@@ -9,6 +9,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTI18nUtil.h>
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
@@ -20,6 +21,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [[RCTI18nUtil sharedInstance] allowRTL:YES];
+
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
