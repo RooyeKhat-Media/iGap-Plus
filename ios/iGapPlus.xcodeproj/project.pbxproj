@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -118,6 +117,7 @@
 		F0AC6069F9DC4D1D8DD3AB4D /* libRNWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9183855F5A54E7FA7873918 /* libRNWebSocket.a */; };
 		F4B0D934D7F347239C6C16B5 /* IRANSans_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B917EDFC2A4466B87E28411 /* IRANSans_Medium.ttf */; };
 		F59CAA8E174B4FD88FAEFDBF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45283F4755454A9F9C93AB8B /* Octicons.ttf */; };
+		689CC0969D404275AD47DF58 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A1A0EC1D5D4C6BB38A3A35 /* libRCTRestart.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -737,6 +737,8 @@
 		F93360FCC9A84676B8590EEC /* IRANSans_Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = IRANSans_Bold.ttf; path = ../src/assets/fonts/IRANSans/IRANSans_Bold.ttf; sourceTree = "<group>"; };
 		F960C750DCFB45D980E1CB3B /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		FFF893B2541144B48AF47EF7 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/assets/fonts/Roboto/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		8576BFB416754BE8A71B2A25 /* RCTRestart.xcodeproj */ = {isa = PBXFileReference; name = "RCTRestart.xcodeproj"; path = "../node_modules/react-native-restart/ios/RCTRestart.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C6A1A0EC1D5D4C6BB38A3A35 /* libRCTRestart.a */ = {isa = PBXFileReference; name = "libRCTRestart.a"; path = "libRCTRestart.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -798,6 +800,7 @@
 				D03EEAC196C64F87BF636C7D /* libSMXCrashlytics.a in Frameworks */,
 				A3BAD61F428045AE94C73226 /* libRNCamera.a in Frameworks */,
 				2F057B5883FB4C5DA0A6EDBE /* libRNFirebase.a in Frameworks */,
+				689CC0969D404275AD47DF58 /* libRCTRestart.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,6 +1275,7 @@
 				F6E512B74EA4400198138E2E /* SMXCrashlytics.xcodeproj */,
 				E90D77DD512A485EBD63C284 /* RNCamera.xcodeproj */,
 				0D101A080C2B4098B7731AA3 /* RNFirebase.xcodeproj */,
+				8576BFB416754BE8A71B2A25 /* RCTRestart.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -2287,12 +2291,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)\..\node_modules\react-native-restart\ios\RCTRestart/**",
 				);
 				INFOPLIST_FILE = iGapPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2347,12 +2353,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)\..\node_modules\react-native-restart\ios\RCTRestart/**",
 				);
 				INFOPLIST_FILE = iGapPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2416,6 +2424,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)\..\node_modules\react-native-restart\ios\RCTRestart/**",
 				);
 				INFOPLIST_FILE = iGapPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2469,6 +2478,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)\..\node_modules\react-native-restart\ios\RCTRestart/**",
 				);
 				INFOPLIST_FILE = iGapPlus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2519,11 +2529,13 @@
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)\..\node_modules\react-native-restart\ios\RCTRestart/**",
 				);
 				INFOPLIST_FILE = "iGapPlus-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2587,11 +2599,13 @@
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)\..\node_modules\react-native-restart\ios\RCTRestart/**",
 				);
 				INFOPLIST_FILE = "iGapPlus-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -2656,6 +2670,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iGapPlus-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2680,6 +2695,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
