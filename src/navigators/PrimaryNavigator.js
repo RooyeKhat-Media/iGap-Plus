@@ -1,5 +1,6 @@
 import React from 'react';
 import {StackNavigator, TabNavigator} from 'react-navigation';
+import {I18nManager, Platform} from 'react-native';
 import {createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import {navigate, resetPrimaryNavigation} from './index';
 import MainBottom from '../containers/MainBottom';
@@ -156,7 +157,7 @@ const tabNav = TabNavigator({
 }, {
   tabBarComponent: props => (<MainBottom {...props}/>),
   tabBarPosition: 'bottom',
-  swipeEnabled: false,
+  swipeEnabled: (I18nManager.isRTL && Platform.OS === 'ios'),
   lazy: true,
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {appTheme} from '../../../themes/default/index';
-import {Animated, Easing, PanResponder, View} from 'react-native';
+import {Animated, Easing, I18nManager, PanResponder, View} from 'react-native';
 import {uniqueId} from 'lodash';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 
@@ -54,6 +54,7 @@ class SeekBarComponent extends React.Component {
     if (this.props.progress >= 0 && this.props.progress !== prevProps.progress && !this.state.isTouching) {
       this.update();
     }
+    this.isRTL = I18nManager.isRTL;
   }
 
   goToPosition = (position, touchMode) => {
@@ -156,7 +157,7 @@ class SeekBarComponent extends React.Component {
         <View style={[styles.background, {width: width}]}>
           <Animated.View style={[styles.fill, fillWidth]}/>
         </View>
-        <Animated.View style={[styles.circle, circleMove]}/>
+        <Animated.View style={[styles.circle, I18nManager.isRTL ? fillWidth : circleMove]}/>
       </View>
     );
   }

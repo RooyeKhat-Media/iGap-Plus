@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {appTheme} from '../../../themes/default/index';
+import {I18nManager} from 'react-native';
 
 const id = uniqueId();
 
@@ -27,11 +28,12 @@ export default [
           backgroundColor: 'rgba(0,0,0,0.4)',
         },
         row: {
-          flexDirection: 'row',
+          flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
         },
         play: {
           padding: 10,
-          borderRightWidth: 1,
+          borderRightWidth: I18nManager.isRTL ? 0 : 1,
+          borderLeftWidth: I18nManager.isRTL ? 1 : 0,
           borderColor: appTheme.border,
 
         },

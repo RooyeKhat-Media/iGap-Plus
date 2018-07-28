@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, Text, View} from 'react-native';
+import {I18nManager, ScrollView, Text, View} from 'react-native';
 import {uniqueId} from 'lodash';
 import ScrollableTabView, {ScrollableTabBar} from 'react-native-scrollable-tab-view';
 import emojiList from '../../../constants/emojiList';
@@ -25,7 +25,7 @@ class EmojiPiker extends PureComponent {
     const styles = this.getStyles();
     savedPiker = <View style={styles.container}>
       <ScrollableTabView initialPage={0} prerenderingSiblingsNumber={8}
-        renderTabBar={() => <ScrollableTabBar textStyle={styles.text}/>}>
+        renderTabBar={() => <ScrollableTabBar textStyle={styles.text} underlineStyle={{height: 0}}/>}>
         {
           emojiList.map((tab, i) => (
             <ScrollView key={i} tabLabel={tab.tabLabel}>
@@ -74,6 +74,7 @@ const styleSheet = [
       style: {
         container: {
           height: 250,
+          flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
         },
         categoryInner: {
           flexWrap: 'wrap',

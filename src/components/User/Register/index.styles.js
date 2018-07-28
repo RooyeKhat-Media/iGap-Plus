@@ -2,8 +2,10 @@ import {uniqueId} from 'lodash';
 import {ORIENTATION_LANDSCAPE} from '../../../constants/screenBreakPoints';
 import {IRANSans_Medium, Neuropolitical} from '../../../constants/fonts';
 import {appTheme} from '../../../themes/default/index';
+import {I18nManager} from 'react-native';
 
 const id = uniqueId();
+const direction = I18nManager.isRTL ? 'row-reverse' : 'row';
 
 export default [
   id,
@@ -54,7 +56,7 @@ export default [
         },
         logoWrap: {
           height: 40,
-          flexDirection: 'row',
+          flexDirection: direction,
           justifyContent: 'center',
         },
         headerTitle: {
@@ -70,7 +72,7 @@ export default [
           marginBottom: 15,
         },
         phoneNumberRow: {
-          flexDirection: 'row',
+          flexDirection: direction,
           alignItems: 'flex-start',
         },
         countryCodeInput: {

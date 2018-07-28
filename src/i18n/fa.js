@@ -164,7 +164,7 @@ export default {
   },
   registerPhoneNumberHelp: {
     id: 'UserRegister.phoneNumberHelp',
-    defaultMessage: 'مثال: (+98)9123456789',
+    defaultMessage: 'مثال : 9123456789(98+)',
     description: 'UserRegister Page',
   },
   registerSubmitBtnTitle: {
@@ -654,7 +654,7 @@ export default {
   },
   contactFormPhoneHelp: {
     id: 'contactForm.phoneHelp',
-    defaultMessage: 'مثال:(+98) 9123456789',
+    defaultMessage: 'مثال : 9123456789(98+)',
     description: 'Contact New Screen',
   },
 

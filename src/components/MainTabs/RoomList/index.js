@@ -101,7 +101,7 @@ class RoomListComponent extends React.PureComponent {
           />
           <MaterialTabs
             barColor={appTheme.pageBackground}
-            indicatorColor={appTheme.primary}
+            indicatorColor={'#ffffffff'}
             activeTextColor={appTheme.primary}
             inactiveTextColor={appTheme.secondaryText}
             textStyle={{...IRANSans}}
