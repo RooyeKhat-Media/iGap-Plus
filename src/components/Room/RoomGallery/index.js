@@ -8,6 +8,7 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import {saveToDownloads, saveToGallery} from '../../../utils/app';
 import {prependFileProtocol} from '../../../utils/core';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomGalleryComponent extends Component {
 
@@ -35,8 +36,7 @@ class RoomGalleryComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={<Text style={styles.toolbarText} numberOfLines={1} ellipsizeMode={'middle'}>{fileName}</Text>}
           rightElement={(<PopupMenu actionList={['saveToGallary', 'saveToDownload']} type={APP_MODAL_ID_SECONDARY}
             onPress={(index) => this.onMenuClick(index)}/>)}

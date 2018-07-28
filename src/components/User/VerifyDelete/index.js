@@ -8,6 +8,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet, responsive} from '../../../modules/Responsive';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class UserVerifyDeleteComponent extends Component {
   getStyles = () => {
@@ -24,8 +25,7 @@ class UserVerifyDeleteComponent extends Component {
       }}>
 
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
         />
 
         <View style={[{margin: 20}]}>

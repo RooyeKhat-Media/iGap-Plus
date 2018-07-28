@@ -8,6 +8,7 @@ import {Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import {Proto} from '../../../modules/Proto/index';
 import PopupMenu from '../../BaseUI/PopupMenu/index';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class SettingPrivacyComponent extends Component {
 
@@ -104,8 +105,7 @@ class SettingPrivacyComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={intl.formatMessage(i18n.privacyPrivacy)}
         />
         <ScrollView style={styles.scrollView}>

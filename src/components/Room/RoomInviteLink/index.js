@@ -7,6 +7,7 @@ import {Button, Spinner, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import Clipboard from '../../../modules/Clipboard/index';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomInviteLinkComponent extends Component {
 
@@ -33,8 +34,7 @@ class RoomInviteLinkComponent extends Component {
     return (
       <View>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={intl.formatMessage(i18n.roomInviteLinkToolbarTitle)}
         />
 

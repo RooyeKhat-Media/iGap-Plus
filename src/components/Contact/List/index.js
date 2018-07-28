@@ -6,6 +6,7 @@ import {Avatar, FlatList, ListItem, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {IRANSans_Medium} from '../../../constants/fonts/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class ContactListComponent extends React.Component {
 
@@ -35,10 +36,9 @@ class ContactListComponent extends React.Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
+          leftElement={arrowBackIcon(goBack)}
           rightElement="add"
           onRightElementPress={goContactNew}
-          onLeftElementPress={goBack}
           centerElement={intl.formatMessage(i18n.contactListTitleToolbar)}
         />
         <View style={styles.container}>

@@ -7,6 +7,7 @@ import i18n from '../../../../i18n/index';
 import styleSheet from './index.styles';
 import {APP_MODAL_ID_PRIMARY} from '../../../../constants/app';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
+import {arrowBackIcon} from '../../../BaseUI/Utile/index';
 
 class UserTwoStepSettingComponent extends Component {
 
@@ -47,8 +48,7 @@ class UserTwoStepSettingComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={intl.formatMessage(i18n.twoStepSettingTitle)}
           rightElement={(currentState === SETTING_STATE.CHECK_PASSWORD ? 'check' : null)}
           onRightElementPress={this.checkPassword}

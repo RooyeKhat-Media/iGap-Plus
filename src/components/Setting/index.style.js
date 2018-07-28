@@ -41,6 +41,10 @@ export default [
           primaryText: {
             color: appTheme.titleText,
           },
+          leftElementContainer: {
+            width: 25,
+            marginEnd: 10,
+          },
         },
         themeColorWrap: {
           flexDirection: 'row',

@@ -9,6 +9,7 @@ import Avatar from '../../../containers/Unit/Avatar';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomEditComponent extends Component {
 
@@ -22,9 +23,8 @@ class RoomEditComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
+          leftElement={arrowBackIcon(goBack)}
           rightElement="check"
-          onLeftElementPress={goBack}
           onRightElementPress={async () => {
             try {
               this.form.loadingOn();

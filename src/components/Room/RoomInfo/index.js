@@ -14,6 +14,7 @@ import {Proto} from '../../../modules/Proto/index';
 import RoomStatus from '../../../containers/Unit/RoomStatus';
 import {getUserId} from '../../../utils/app';
 import Verify from '../../../assets/images/verify';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomInfoComponent extends React.Component {
   render() {
@@ -46,8 +47,7 @@ class RoomInfoComponent extends React.Component {
     return (
       <View style={styles.container}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           rightElement={roomPeer ? (
             <PopupMenu
               actionList={actionList}

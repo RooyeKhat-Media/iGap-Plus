@@ -1,6 +1,7 @@
 import {uniqueId} from 'lodash';
 import {appTheme} from '../../../themes/default/index';
 import {IRANSans} from '../../../constants/fonts/index';
+import {I18nManager} from 'react-native';
 
 const uId = uniqueId();
 export default [
@@ -14,7 +15,7 @@ export default [
           backgroundColor: appTheme.wrapperBackground,
         },
         inputBox: {
-          flexDirection: 'row',
+          flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
           alignItems: 'center',
           borderWidth: 1,
           borderColor: appTheme.border,

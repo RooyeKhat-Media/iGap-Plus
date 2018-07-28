@@ -6,6 +6,7 @@ import {FlatList, Toolbar} from '../../BaseUI';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import Spinner from '../../BaseUI/Spinner/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class ContactPickerComponent extends React.Component {
 
@@ -19,10 +20,9 @@ class ContactPickerComponent extends React.Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
+          leftElement={arrowBackIcon(goBack)}
           rightElement={activeSubmitBtn ? 'done' : null}
           onRightElementPress={onSubmit}
-          onLeftElementPress={goBack}
           centerElement={intl.formatMessage(title)}
         />
         <View style={styles.container}>
@@ -37,6 +37,7 @@ class ContactPickerComponent extends React.Component {
       </View>
     );
   }
+
   userKeyExtractor = (item, index) => ('contact-' + item.id);
   renderUserItem = ({item}) => {
     const {onSelectItem, selectedList} = this.props;

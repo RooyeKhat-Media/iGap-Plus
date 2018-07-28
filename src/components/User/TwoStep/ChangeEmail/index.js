@@ -6,6 +6,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import i18n from '../../../../i18n/index';
 import styleSheet from './index.styles';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
+import {arrowBackIcon} from '../../../BaseUI/Utile/index';
 
 class UserTwoStepChangeEmailComponent extends Component {
 
@@ -19,8 +20,7 @@ class UserTwoStepChangeEmailComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={intl.formatMessage(i18n.twoStepChangeEmailTitle)}
           rightElement="check"
           onRightElementPress={async () => {

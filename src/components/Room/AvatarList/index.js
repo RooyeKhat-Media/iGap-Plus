@@ -11,6 +11,7 @@ import LoadingDots from '../../BaseUI/LoadingDots/index';
 import {menuAction} from '../../../screens/Room/AvatarListScreen';
 import AvatarBox from '../../../containers/Unit/AvatarBox';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class AvatarListComponent extends Component {
 
@@ -73,8 +74,7 @@ class AvatarListComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={(imageSelectedIndex + 1) + '/' + avatarList.length}
           rightElement={(<PopupMenu actionList={this.menuItem} type={APP_MODAL_ID_SECONDARY}
             onPress={(index) => menuClick(this.menuActionList[index], imageSelectedIndex)}/>)}

@@ -9,6 +9,7 @@ import i18n from '../../../i18n/index';
 import UserListItem from '../../../containers/Unit/UserListItem';
 import Avatar from '../../../containers/Unit/Avatar';
 import {appTheme, golden} from '../../../themes/default/index';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomMemberListComponent extends React.Component {
 
@@ -71,8 +72,7 @@ class RoomMemberListComponent extends React.Component {
     return (
       <View style={styles.container}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={intl.formatMessage(i18n.roomMemberListToolbarTitle)}
         />
         <View style={styles.container}>

@@ -8,6 +8,7 @@ import i18n from '../../../../i18n/index';
 import {NORMAL_HEIGHT, NORMAL_WIDTH} from '../../../../constants/screenBreakPoints';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
 import {View} from 'react-native';
+import {arrowBackIcon} from '../../../BaseUI/Utile/index';
 
 const _uniqueId = uniqueId();
 
@@ -25,8 +26,7 @@ class UserTwoStepForgetComponent extends Component {
       <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}
         layoutStyle={styles.layout}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           showAuthenticating={false}
           centerElement={intl.formatMessage(i18n.twoStepForgetTitle)}
         />

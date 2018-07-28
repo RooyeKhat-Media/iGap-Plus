@@ -8,6 +8,7 @@ import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import Picker from '../../BaseUI/Picker/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class ContactFormComponent extends React.Component {
 
@@ -24,9 +25,8 @@ class ContactFormComponent extends React.Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
+          leftElement={arrowBackIcon(goBack)}
           rightElement="check"
-          onLeftElementPress={goBack}
           onRightElementPress={async () => {
             try {
               this.form.loadingOn();

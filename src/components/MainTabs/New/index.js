@@ -42,7 +42,7 @@ class NewComponent extends PureComponent {
           }}
         />
         <ReturnToCall/>
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
 
           <View style={styles.sectionTop}>
             <ListItem
@@ -117,8 +117,10 @@ class NewComponent extends PureComponent {
       </View>
     );
   }
+
   userKeyExtractor = (item, index) => ('contact-' + item.id);
-  renderUserItem = ({item}) => (<UserListItem userId={item.id} divider={item.divider} render={(props) => this.renderItem(props)}/>);
+  renderUserItem = ({item}) => (
+    <UserListItem userId={item.id} divider={item.divider} render={(props) => this.renderItem(props)}/>);
 
   renderItem = (userProps) => {
     const {divider, user} = userProps;

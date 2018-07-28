@@ -4,7 +4,7 @@ import {injectIntl, intlShape} from 'react-intl';
 import {uniqueId} from 'lodash';
 import {MCIcon} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {I18nManager, Text, TouchableOpacity, View} from 'react-native';
 import {appTheme} from '../../../themes/default/index';
 import BlinkRecorder from '../../General/Camera/BlinkRecorder';
 import SoundRecorder from 'react-native-sound-recorder';
@@ -33,6 +33,7 @@ class VoiceRecorder extends Component {
   componentDidMount() {
     this.props.onRef(this);
     this.startRecord();
+    this.isRTL = I18nManager.isRTL;
   }
 
   componentWillUnmount() {
@@ -113,18 +114,18 @@ class VoiceRecorder extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.recordBox}>
-          <View style={{alignSelf: 'center', marginLeft: 5}}>
-            <BlinkRecorder textColor={appTheme.primaryText}/>
-          </View>
           {this.state.isTouchMode ?
             <Text style={[styles.slideText, {
-              marginRight: Number(this.state.rightMove),
+              marginStart: this.isRTL ? Number(this.state.rightMove) : Number(this.state.rightMove) * -1,
               opacity: this.calculateOpacitySlide,
             }]}>{intl.formatMessage(i18n.voiceRecorderSlideToCancel)}</Text>
             :
             <Text style={styles.cancelText}
               onPress={() => this.stopRecord(true)}>  {'[ ' + intl.formatMessage(i18n.cancel) + ' ]'}</Text>
           }
+          <View style={{alignSelf: 'center', marginLeft: 5}}>
+            <BlinkRecorder textColor={appTheme.primaryText}/>
+          </View>
         </View>
         <TouchableOpacity style={styles.micWrap} onPress={() => this.stopRecord(false)}>
           <MCIcon name={this.state.isTouchMode ? 'microphone' : 'send'} style={styles.micIcon} size={30}
@@ -163,10 +164,13 @@ const styleSheet = [
         container: {
           height: 200,
           justifyContent: 'flex-end',
+          flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
         },
         recordBox: {
-          flexDirection: 'row',
           height: 52,
+          flex: 1,
+          flexDirection: I18nManager.isRTL ? 'row' : 'row-reverse',
+          alignSelf: 'flex-end',
           backgroundColor: appTheme.wrapperBackground,
           borderWidth: 1,
           borderColor: appTheme.border,

@@ -17,6 +17,7 @@ import {changeLocale} from '../../utils/locale';
 import {IRANSans_Medium} from '../../constants/fonts/index';
 import {changeAppTheme, setAppThemeName, themes} from '../../themes/index';
 import {appTheme} from '../../themes/default/index';
+import {arrowBackIcon} from '../BaseUI/Utile/index';
 
 class SettingComponent extends Component {
 
@@ -78,8 +79,7 @@ class SettingComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           rightElement={(<PopupMenu actionList={[
             intl.formatMessage(i18n.settingLogout),
             intl.formatMessage(i18n.settingDeleteAccount),

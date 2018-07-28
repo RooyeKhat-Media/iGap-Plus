@@ -11,6 +11,7 @@ import {View} from 'react-native';
 import Form from '../../../BaseUI/Form/index';
 import TextInputField from '../../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../../modules/Responsive';
+import {arrowBackIcon} from '../../../BaseUI/Utile/index';
 
 const _uniqueId = uniqueId();
 
@@ -28,8 +29,7 @@ class UserTwoStepRecoveryByEmailComponent extends Component {
       <DimensionLimiter id={_uniqueId} width={NORMAL_WIDTH} height={NORMAL_HEIGHT} wrapperStyle={styles.wrapper}
         layoutStyle={styles.layout}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           showAuthenticating={false}
           centerElement={intl.formatMessage(i18n.twoStepRecoveryByEmailTitle)}
         />

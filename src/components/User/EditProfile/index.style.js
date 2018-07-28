@@ -1,5 +1,6 @@
 import {uniqueId} from 'lodash';
 import {appTheme} from '../../../themes/default/index';
+import {I18nManager} from 'react-native';
 
 const id = uniqueId();
 
@@ -26,6 +27,7 @@ export default [
             borderRadius: 0,
             borderWidth: 0,
             borderBottomWidth: 1,
+            textAlign: I18nManager.isRTL ? 'right' : 'left',
           },
         },
         avatar: {
@@ -49,6 +51,7 @@ export default [
           color: appTheme.secondaryText,
           paddingLeft: 15,
           paddingRight: 15,
+          textAlign: 'left',
         },
         textInput: {
           fontSize: 18,
@@ -68,6 +71,7 @@ export default [
           marginBottom: 10,
           paddingLeft: 15,
           paddingRight: 15,
+          textAlign: 'left',
         },
         pikerGender: {
           marginTop: -10,

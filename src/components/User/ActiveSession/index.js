@@ -7,6 +7,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.style';
 import SubListComponent from './SubListComponent';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class ActiveSessionComponent extends Component {
 
@@ -34,8 +35,7 @@ class ActiveSessionComponent extends Component {
       <ScrollView style={styles.root}>
         <View>
           <Toolbar
-            leftElement="arrow-back"
-            onLeftElementPress={goBack}
+            leftElement={arrowBackIcon(goBack)}
             centerElement={intl.formatMessage(i18n.activeSessionActiveSession)}
           />
           {Object.keys(currentSession).length > 0 && <View>

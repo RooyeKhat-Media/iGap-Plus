@@ -7,6 +7,7 @@ import {BasePicker, Form, TextInputField, Toolbar} from '../../BaseUI';
 import i18n from '../../../i18n/index';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import {Proto} from '../../../modules/Proto/index';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomReportComponent extends Component {
 
@@ -29,8 +30,7 @@ class RoomReportComponent extends Component {
     return (
       <View>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           rightElement="check"
           onRightElementPress={async () => {
             try {

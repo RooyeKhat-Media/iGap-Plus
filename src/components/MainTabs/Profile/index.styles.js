@@ -18,7 +18,7 @@ export default [
         scroll: {
           flex: 1,
           flexDirection: 'column',
-          padding: 10,
+          padding: 6,
         },
         sectionTop: {
           flexDirection: 'row',
@@ -42,6 +42,7 @@ export default [
           fontSize: 16,
           color: appTheme.secondaryText,
           marginBottom: 5,
+          textAlign: 'left',
         },
         sectionTopSub1_1: {
           alignItems: 'center',

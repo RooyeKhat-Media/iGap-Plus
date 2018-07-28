@@ -92,12 +92,15 @@ const styleSheet = [
         textStyle: {
           color: appTheme.primaryText,
           ...IRANSans_Medium,
+          textAlign: 'left',
         },
         textStyleNormal: {
           color: appTheme.primaryText,
+          textAlign: 'left',
         },
         textStyleSub: {
           color: appTheme.secondaryText,
+          textAlign: 'left',
         },
         textTerminate: {
           color: red,

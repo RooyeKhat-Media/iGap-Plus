@@ -14,6 +14,11 @@ export default [
           flex: 1,
           backgroundColor: appTheme.pageBackground,
         },
+        scroll: {
+          flex: 1,
+          flexDirection: 'column',
+          padding: 6,
+        },
         sectionTop: {
           marginTop: 15,
           marginLeft: 15,

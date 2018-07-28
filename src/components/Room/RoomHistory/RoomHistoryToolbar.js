@@ -8,6 +8,7 @@ import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
 import styleSheet from './index.styles';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
 import Verify from '../../../assets/images/verify';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomHistoryToolbar extends PureComponent {
 
@@ -16,6 +17,7 @@ class RoomHistoryToolbar extends PureComponent {
     const {intl} = this.props;
     this.actionListMenu = [intl.formatMessage(i18n.roomHistoryActionReport)];
   }
+
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };
@@ -25,8 +27,7 @@ class RoomHistoryToolbar extends PureComponent {
     const styles = this.getStyles();
     return (
       <Toolbar
-        leftElement="arrow-back"
-        onLeftElementPress={goBack}
+        leftElement={arrowBackIcon(goBack)}
         centerElement={
           clientUpdating ?
             <View style={styles.rowTitle}>

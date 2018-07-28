@@ -6,6 +6,7 @@ import i18n from '../../i18n';
 import {Toolbar} from '../BaseUI/index';
 import {uniqueId} from 'lodash';
 import MemoizeResponsiveStyleSheet from '../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {arrowBackIcon} from '../BaseUI/Utile/index';
 
 class PrivacyPolicyComponent extends React.PureComponent {
   getStyles = () => {
@@ -18,8 +19,7 @@ class PrivacyPolicyComponent extends React.PureComponent {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           centerElement={intl.formatMessage(i18n.registerTermsOfService)}
           showAuthenticating={false}
         />

@@ -7,6 +7,7 @@ import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {DialogModal, FlatList, Toolbar} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
 import UserListItem from '../../../containers/Unit/UserListItem';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 let selectedUserID = '0';
 
@@ -22,8 +23,7 @@ class BlockComponent extends Component {
     return (
       <View style={styles.root}>
         <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={goBack}
+          leftElement={arrowBackIcon(goBack)}
           rightElement="add"
           onRightElementPress={blockAction}
           centerElement={intl.formatMessage(i18n.settingBlockList)}

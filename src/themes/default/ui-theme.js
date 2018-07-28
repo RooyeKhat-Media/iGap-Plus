@@ -103,10 +103,11 @@ const uiTheme = () => {
         fontSize: 12,
         ...IRANSans_Medium,
         color: appTheme.secondaryText,
+        textAlign: 'left',
       },
       leftElementContainer: {
         width: 55,
-        marginLeft: 10,
+        marginEnd: 10,
       },
       container: {
         backgroundColor: appTheme.pageBackground,

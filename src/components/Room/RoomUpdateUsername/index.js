@@ -8,6 +8,7 @@ import i18n from '../../../i18n/index';
 import Form from '../../BaseUI/Form/index';
 import TextInputField from '../../BaseUI/Form/fields/TextInputField';
 import {MemoizeResponsiveStyleSheet} from '../../../modules/Responsive';
+import {arrowBackIcon} from '../../BaseUI/Utile/index';
 
 class RoomUpdateUsernameComponent extends Component {
 
@@ -22,8 +23,7 @@ class RoomUpdateUsernameComponent extends Component {
     return (
       <View>
         <Toolbar
-          leftElement="arrow-back"
-          rightElement="check"
+          leftElement={arrowBackIcon(goBack)}
           onLeftElementPress={goBack}
           onRightElementPress={async () => {
             try {
