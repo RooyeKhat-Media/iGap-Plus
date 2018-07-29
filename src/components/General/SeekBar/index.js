@@ -54,7 +54,6 @@ class SeekBarComponent extends React.Component {
     if (this.props.progress >= 0 && this.props.progress !== prevProps.progress && !this.state.isTouching) {
       this.update();
     }
-    this.isRTL = I18nManager.isRTL;
   }
 
   goToPosition = (position, touchMode) => {
@@ -90,6 +89,7 @@ class SeekBarComponent extends React.Component {
   };
 
   componentWillMount() {
+    this.isRTL = I18nManager.isRTL;
     this.xPositionLayout = 0;
     this.onEnd = (evt, gestureState) => {
       if (this.state.isTouching) {
@@ -151,7 +151,12 @@ class SeekBarComponent extends React.Component {
     return (
       <View {...this._panResponder.panHandlers} ref="Marker" style={styles.container} onLayout={(event) => {
         this.refs.Marker.measure((x, y, width, height, pageX, pageY) => {
-          this.xPositionLayout = pageX;
+          const xpo = Math.abs(pageX);
+          if (xpo >= width) {
+            this.xPositionLayout = xpo - width;
+          } else {
+            this.xPositionLayout = xpo;
+          }
         });
       }}>
         <View style={[styles.background, {width: width}]}>
