@@ -10,18 +10,26 @@ export default [
       query: {},
       style: {
         container: {
-          paddingRight: 15,
-          paddingLeft: 20,
+          paddingRight: 10,
+          paddingLeft: 10,
           paddingBottom: 5,
           paddingTop: 25,
+          backgroundColor:appTheme.wrapperBackground,
         },
         layoutHeader: {
           flexDirection: 'row',
           alignItems: 'center',
-          paddingBottom: 2,
+          borderTopRightRadius:7,
+          borderTopLeftRadius:7,
+          paddingLeft:4,
+          paddingRight:4,
+          paddingTop:2,
+          backgroundColor:appTheme.pageBackground,
         },
         messageWrapper: {
+          padding:4,
           flexDirection: 'column',
+          backgroundColor:appTheme.pageBackground,
         },
         avatarWrap: {
           width: 45,
@@ -35,9 +43,11 @@ export default [
           textAlign: 'left',
         },
         layoutChannelInfo: {
-          paddingTop: 8,
+          backgroundColor:appTheme.pageBackground,
           flexDirection: 'row',
           justifyContent: 'space-between',
+          borderBottomLeftRadius:7,
+          borderBottomRightRadius:7,
           alignItems: 'center',
         },
         channelReactionWrap: {
