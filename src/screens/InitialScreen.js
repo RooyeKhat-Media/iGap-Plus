@@ -16,7 +16,7 @@ class InitialScreen extends Component {
         alignItems: 'center',
         backgroundColor: appTheme.wrapperBackground,
       }}>
-        <ActivityIndicator size="large"/>
+        <ActivityIndicator size="large" color="#3298ee"/>
       </View>
     );
   }

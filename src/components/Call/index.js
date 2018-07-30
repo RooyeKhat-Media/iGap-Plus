@@ -121,7 +121,7 @@ class CallComponent extends Component {
             }
             {(callAction.incoming && showChatAndAnswer) &&
             <TouchableOpacity onPress={() => callBack(SIGNALING_ACTION.ANSWER)}>
-              <CircleIcon icon={videoCalling ? 'videocam' : 'call-end'} iconSize={35} size={70} iconColor="#2AEDEA"
+              <CircleIcon icon={videoCalling ? 'videocam' : 'call-end'} iconSize={35} size={70} iconColor="#ffffff"
                 style={styles.callIcon}/>
             </TouchableOpacity>
             }

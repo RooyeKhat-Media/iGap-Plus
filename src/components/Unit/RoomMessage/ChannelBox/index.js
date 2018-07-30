@@ -61,14 +61,14 @@ class ChannelBox extends PureComponent {
             <Avatar roomId={message.roomId} size={45}/>
           </View>
           {room && <Text style={styles.textTitle} numberOfLines={1}>{room.title}</Text>}
-          <MCIcon color={appTheme.titleText} name="share-variant" size={20} onPress={onShareMessagePress}/>
+          <MCIcon color={appTheme.icon} name="share-variant" size={20} onPress={onShareMessagePress}/>
 
           {saveMessageState === 'default' &&
-          (<IconToggle color={appTheme.titleText} name="cloud-upload" size={25} onPress={this.saveMessagePress}
+          (<IconToggle color={appTheme.icon} name="cloud-upload" size={25} onPress={this.saveMessagePress}
             style={styles.bookmark}/>)}
 
           {saveMessageState === 'loading' &&
-          (<IconToggle color={appTheme.titleText} name="hourglass-empty" size={25} style={styles.bookmark}/>)}
+          (<IconToggle color={appTheme.icon} name="hourglass-empty" size={25} style={styles.bookmark}/>)}
 
           {saveMessageState === 'failed' &&
           (<IconToggle color={red} name="remove-circle" size={25} onPress={this.saveMessagePress}
@@ -89,10 +89,13 @@ class ChannelBox extends PureComponent {
 
         <View style={styles.layoutChannelInfo}>
           <View style={styles.channelReactionWrap}>
-            <Button style={styles.reactionBtn} text={message.channelViewsLabel || '0'} icon="visibility"/>
-            <Button style={styles.reactionBtn} text={message.channelThumbsUpLabel || '0'} icon="thumb-up"
+            <Button style={styles.reactionBtn} text={message.channelViewsLabel || '0'}
+              icon={<Icon name="visibility" size={25} color={appTheme.icon}/>}/>
+            <Button style={styles.reactionBtn} text={message.channelThumbsUpLabel || '0'}
+              icon={<Icon name="thumb-up" size={22} color={appTheme.icon}/>}
               onPress={this.reactionUp}/>
-            <Button style={styles.reactionBtn} text={message.channelThumbsDownLabel || '0'} icon="thumb-down"
+            <Button style={styles.reactionBtn} text={message.channelThumbsDownLabel || '0'}
+              icon={<Icon name="thumb-down" size={22} color={appTheme.icon}/>}
               onPress={this.reactionDown}/>
           </View>
           <View style={styles.chanelInfoWrap}>

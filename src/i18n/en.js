@@ -1194,7 +1194,7 @@ export default {
   },
   roomInfoUnBlockContact: {
     id: 'roomInfo.unBlockContact',
-    defaultMessage: 'UnBlock Contact',
+    defaultMessage: 'Unblock Contact',
     description: 'room info screen',
   },
   roomInfoDeleteContact: {
