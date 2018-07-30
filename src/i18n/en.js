@@ -229,7 +229,7 @@ export default {
   },
   errorNumberBigMax: {
     id: 'Error.numberBigMax',
-    defaultMessage: 'The {field} is too Big, max {max} char.',
+    defaultMessage: 'The {field} is too big, max {max} char.',
     description: 'error',
   },
   errorTypeString: {
@@ -244,7 +244,7 @@ export default {
   },
   errorStringLengthMax: {
     id: 'Error.stringLengthMax',
-    defaultMessage: 'The {field} is too Big, max {max} char.',
+    defaultMessage: 'The {field} is too big, max {max} char.',
     description: 'error',
   },
   errorRegexInvalid: {
@@ -492,7 +492,7 @@ export default {
   },
   twoStepSettingSettingUnsetPassowrdDescription: {
     id: 'twoStepSetting.unsetPassowrdDescription',
-    defaultMessage: 'Are you sure you want to delete Two-step Verification ?',
+    defaultMessage: 'Are you sure you want to delete Two-step verification ?',
     description: 'two-step setting',
   },
 
@@ -1154,7 +1154,7 @@ export default {
   },
   roomInfoDeleteRoomConfirmDescription: {
     id: 'roomInfo.deleteRoomConfirmDescription',
-    defaultMessage: 'Are you sure you want to Delete {roomTitle}?',
+    defaultMessage: 'Are you sure you want to delete {roomTitle}?',
     description: 'room info screen',
   },
   roomInfoClearHistoryConfirmTitle: {
@@ -1164,7 +1164,7 @@ export default {
   },
   roomInfoClearHistoryConfirmDescription: {
     id: 'roomInfo.clearHistoryConfirmDescription',
-    defaultMessage: 'Are you sure you want to Clear {roomTitle} history?',
+    defaultMessage: 'Are you sure you want to clear {roomTitle} history?',
     description: 'room info screen',
   },
   roomInfoLeaveRomConfirmTitle: {
@@ -1174,7 +1174,7 @@ export default {
   },
   roomInfoLeaveRomConfirmDescription: {
     id: 'roomInfo.leaveRoomConfirmDescription',
-    defaultMessage: 'Are you sure you want to Leave From {roomTitle}?',
+    defaultMessage: 'Are you sure you want to leave from {roomTitle}?',
     description: 'room info screen',
   },
   roomInfoShareContact: {
@@ -1219,7 +1219,7 @@ export default {
   },
   roomInfoBlockContactConfirmDescription: {
     id: 'roomInfo.blockContactConfirmDescription',
-    defaultMessage: 'Are you sure you want to Block this contact?',
+    defaultMessage: 'Are you sure you want to block this contact?',
     description: 'room info screen',
   },
   roomMemberListToolbarTitle: {
@@ -1364,7 +1364,7 @@ export default {
   },
   roomHistoryDeleteMessagesDescription: {
     id: 'roomHistory.deleteMessagesDescription',
-    defaultMessage: 'Are You Sure you Want to Delete {count} message from {roomTitle} ?',
+    defaultMessage: 'Are you sure you want to delete {count} message from {roomTitle} ?',
     description: 'roomHistory screen',
   },
   roomHistoryJoinBoxJoin: {
@@ -1589,12 +1589,12 @@ export default {
   },
   settingLogOutSubTitle: {
     id: 'setting.logOuSubTitlet',
-    defaultMessage: 'Do you want to LogOut this device ?',
+    defaultMessage: 'Do you want to logout this device ?',
     description: 'setting screen',
   },
   settingDeleteAccountSubTitle: {
     id: 'setting.deleteAccountSubTitle',
-    defaultMessage: 'Do you want to Delete your account ?',
+    defaultMessage: 'Do you want to delete your account ?',
     description: 'setting screen',
   },
   settingNotificationAndSound: {
@@ -1656,17 +1656,17 @@ export default {
   },
   privacyWhoCanSeeMyAvatar: {
     id: 'privacy.whoCanSeeMyAvatar',
-    defaultMessage: 'Who can see my Avatar',
+    defaultMessage: 'Who can see my avatar',
     description: 'Privacy screen',
   },
   privacyWhoCanInviteMeToChannels: {
     id: 'privacy.whoCanInviteMeToChannels',
-    defaultMessage: 'Who can invite me to Channels',
+    defaultMessage: 'Who can invite me to channels',
     description: 'Privacy screen',
   },
   privacyWhoCanInviteMeToGroups: {
     id: 'privacy.whoCanInviteMeToGroups',
-    defaultMessage: 'Who can invite me to Groups',
+    defaultMessage: 'Who can invite me to groups',
     description: 'Privacy screen',
   },
   privacyWhoCanCallMe: {
@@ -1741,7 +1741,7 @@ export default {
   },
   activeSessionTerminateAllOtherActiveSession: {
     id: 'activeSession.terminateAllOtherActiveSession',
-    defaultMessage: 'Terminate All Other Active Session',
+    defaultMessage: 'Terminate all other active session',
     description: 'Active Session page',
   },
   activeSessionTerminate: {
@@ -1962,7 +1962,7 @@ export default {
   },
   nearbyScreenRegisterNoties: {
     id: 'nearbyScreen.RegisterNoties',
-    defaultMessage: 'Notice! Activating Map Status will result in making your location visible to others. Please be sure about it before turning on.',
+    defaultMessage: 'Notice! activating map status will result in making your location visible to others. Please be sure about it before turning on.',
     description: 'Nearby Screen',
   },
   nearbyScreenLocationPermissionTitle: {
