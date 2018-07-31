@@ -13,7 +13,6 @@ export default [
         root: {
           flex: 1,
           backgroundColor: appTheme.pageBackground,
-          paddingBottom: 20,
         },
         scroll: {
           flex: 1,

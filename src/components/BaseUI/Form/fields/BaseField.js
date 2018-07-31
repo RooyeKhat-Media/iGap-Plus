@@ -23,6 +23,7 @@ class BaseField extends Component {
       getValue: this.getValue,
       validate: this.validate,
       setError: this.setError,
+      getErrorMessage: this.getErrorMessage,
     });
   }
 

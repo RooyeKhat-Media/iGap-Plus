@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import {isObject} from 'lodash';
 import {Spinner} from '../index';
-import {sleep} from "../../../utils/core";
+import {sleep} from '../../../utils/core';
+import {FormattedMessage} from 'react-intl';
+import {connect} from 'react-redux';
+import {openSnackBar} from '../../../actions/snackBar';
 
 class Form extends Component {
   inputs = {};
@@ -32,9 +35,14 @@ class Form extends Component {
 
   setError = (name, error) => {
     const inputs = this.inputs;
+    let errorComponent;
     if (inputs[name]) {
       inputs[name].setError(error);
+      errorComponent = inputs[name].getErrorMessage(error);
+    } else {
+      errorComponent = (<FormattedMessage {...error} />);
     }
+    this.props.showSnack(errorComponent);
   };
 
   submit = async () => {
@@ -47,7 +55,12 @@ class Form extends Component {
         return Promise.reject('Fast Submit');
       }
     }
-    await this.validate();
+    try {
+      await this.validate();
+    } catch (e) {
+      this.props.showSnack(<FormattedMessage {...e} />);
+      throw e;
+    }
     Object.keys(inputs).forEach(function(name) {
       output[name] = inputs[name].getValue();
     });
@@ -123,4 +136,12 @@ Form.propTypes = {
   submitLock: PropTypes.bool,
 };
 
-export default Form;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showSnack: (errorComponent) => {
+      dispatch(openSnackBar(errorComponent));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Form);

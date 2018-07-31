@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {openSnackBar} from '../../../actions/snackBar';
 import {uniqueId} from 'lodash';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
+import {MCIcon} from '../index';
 
 const uId = uniqueId();
 const styleSheet = [
@@ -12,14 +13,27 @@ const styleSheet = [
     {
       query: {},
       style: {
-        container: {
+        root: {
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
           zIndex: 100,
           minHeight: 55,
-          backgroundColor: '#000000bb',
+          backgroundColor: 'black',
+          flexDirection: 'row',
+          paddingLeft: 10,
+          paddingRight: 10,
+        },
+        container: {
+          flex: 1,
+          alignSelf: 'center',
+          fontSize: 16,
+          color: 'white',
+        },
+        iconClose: {
+          color: 'white',
+          alignSelf: 'center',
         },
       },
     },
@@ -39,9 +53,9 @@ class SnackBar extends Component {
       return null;
     }
     return (
-      <TouchableOpacity style={styles.container} activeOpacity={1}
-        onPress={() => this.props.dispatch(openSnackBar(null))}>
-        {snackBar.content}
+      <TouchableOpacity style={styles.root} activeOpacity={1} onPress={() => this.props.dispatch(openSnackBar(null))}>
+        <Text style={styles.container}>{snackBar.content}</Text>
+        <MCIcon name="close" style={styles.iconClose} size={24}/>
       </TouchableOpacity>
     );
   }
