@@ -22,6 +22,8 @@ Project("{234A0576-348F-AD6B-3B2A-47C6CCB21CCE}") = "C:\projects\iGapPlus\node_m
 EndProject
 Project("{EE56DF58-5764-4C16-E695-76841B442645}") = "C:\projects\iGapPlus\node_modules\react-native-video\windows\ReactNativeVideo.Net46\ReactNativeVideo.Net46", "..\node_modules\react-native-video\windows\ReactNativeVideo.Net46\ReactNativeVideo.Net46.csproj", "{F7FD6C26-F134-3748-1E77-FAC1979D4319}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNDeviceInfo", "..\node_modules\react-native-device-info\windows\RNDeviceInfo\RNDeviceInfo.csproj", "{C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\ReactWindows\ReactNative.Shared\ReactNative.Shared.projitems*{c7673ad5-e3aa-468c-a5fd-fa38154e205c}*SharedItemsImports = 4
@@ -86,6 +88,30 @@ Global
 		{ADF1E92C-4725-4DA7-A67B-9AE081E358EC}.ReleaseBundle|x86.ActiveCfg = ReleaseBundle|x86
 		{ADF1E92C-4725-4DA7-A67B-9AE081E358EC}.ReleaseBundle|x86.Build.0 = ReleaseBundle|x86
 		{ADF1E92C-4725-4DA7-A67B-9AE081E358EC}.ReleaseBundle|x86.Deploy.0 = ReleaseBundle|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Debug|ARM.ActiveCfg = Debug|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Debug|ARM.Build.0 = Debug|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Debug|x64.ActiveCfg = Debug|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Debug|x64.Build.0 = Debug|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Debug|x86.ActiveCfg = Debug|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Debug|x86.Build.0 = Debug|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.DebugBundle|ARM.ActiveCfg = Debug|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.DebugBundle|ARM.Build.0 = Debug|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.DebugBundle|x64.ActiveCfg = Debug|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.DebugBundle|x64.Build.0 = Debug|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.DebugBundle|x86.ActiveCfg = Debug|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.DebugBundle|x86.Build.0 = Debug|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Release|ARM.ActiveCfg = Release|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Release|ARM.Build.0 = Release|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Release|x64.ActiveCfg = Release|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Release|x64.Build.0 = Release|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Release|x86.ActiveCfg = Release|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.Release|x86.Build.0 = Release|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.ReleaseBundle|ARM.ActiveCfg = Release|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.ReleaseBundle|ARM.Build.0 = Release|ARM
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.ReleaseBundle|x64.ActiveCfg = Release|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.ReleaseBundle|x64.Build.0 = Release|x64
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.ReleaseBundle|x86.ActiveCfg = Release|x86
+        {C56790CE-79E5-4D7D-BEB7-8403E70BB0E4}.ReleaseBundle|x86.Build.0 = Release|x86
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.ActiveCfg = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.Build.0 = Debug|ARM

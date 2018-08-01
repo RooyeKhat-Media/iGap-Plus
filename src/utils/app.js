@@ -60,6 +60,7 @@ import {waitForUser} from '../modules/Entities/RegisteredUsers/index';
 import {fileManagerDownload} from '../actions/fileManager';
 import {FILE_MANAGER_DOWNLOAD_MANNER} from '../constants/fileManager';
 import {appEnable} from '../actions/app';
+import DeviceInfo from 'react-native-device-info';
 
 let _userId;
 let _userIdString;
@@ -156,12 +157,11 @@ export async function login(handlerPrecedence = HANDLER_PRECEDENCE.BEFORE) {
   userLogin.setAppVersion(APP_VERSION);
 
   userLogin.setPlatform(getPlatform());
-  userLogin.setPlatformVersion('0');
+  userLogin.setPlatformVersion(DeviceInfo.getSystemVersion());
 
-  userLogin.setDevice(Proto.Device.UNKNOWN_DEVICE);
-  userLogin.setDeviceName('UNKNOWN_DEVICE');
+  userLogin.setDevice(DeviceInfo.getDeviceName());
+  userLogin.setDeviceName(DeviceInfo.getBrand());
   userLogin.setLanguage(Proto.Language.FA_IR);
-  // TODO [Amerehie] - 8/30/2017 2:05 PM - setPlatform , setPlatformVersion ...
 
   const response = await Api.invoke(USER_LOGIN, userLogin, null, handlerPrecedence);
 
