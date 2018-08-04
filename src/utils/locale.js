@@ -30,6 +30,11 @@ export async function changeLocale(locale) {
     await setUserLocale(locale);
     I18nManager.forceRTL(LOCALES[locale].rtl);
     RNRestart.Restart();
+  } else {
+    if (I18nManager.isRTL !== LOCALES[locale].rtl) {
+      I18nManager.forceRTL(LOCALES[locale].rtl);
+      RNRestart.Restart();
+    }
   }
   store.dispatch(localeChange(locale));
   reloadApp();
