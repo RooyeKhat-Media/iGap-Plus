@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 import {injectIntl, intlShape} from 'react-intl';
 import styleSheet from './index.styles';
 import MapView from 'react-native-maps';
@@ -11,6 +11,19 @@ class MapMarkerComponent extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      key:0,
+    };
+  }
+
+  componentDidMount() {
+    if (Platform.OS === 'android') {
+      setTimeout(() => {
+        this.setState({
+          key:Date.now(),
+        });
+      }, 2500);
+    }
   }
 
   getStyles = () => {
@@ -28,6 +41,7 @@ class MapMarkerComponent extends Component {
     return (
       <MapView.Marker
         coordinate={coordinate}
+        key={ userId + this.state.key }
         onPress={this.infoPress}>
         <View style={styles.viewContainer}>
           <View style={transparentStyle}>
