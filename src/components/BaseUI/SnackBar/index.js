@@ -46,6 +46,15 @@ class SnackBar extends Component {
     return MemoizeResponsiveStyleSheet(styleSheet);
   };
 
+  componentWillReceiveProps(nextProps) {
+    const {snackBar} = this.props;
+    if (snackBar.content === null) {
+      setTimeout(() => {
+        this.props.dispatch(openSnackBar(null));
+      }, 3000);
+    }
+  }
+
   render() {
     const styles = this.getStyles();
     const {snackBar} = this.props;
