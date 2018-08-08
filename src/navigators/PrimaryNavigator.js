@@ -8,6 +8,7 @@ import MainBottom from '../containers/MainBottom';
 import {
   ACTIVE_SESSION_SCREEN,
   CALL_LIST_SCREEN,
+  CHAT_BACKGROUND_SCREEN,
   CONTACT_LIST_SCREEN,
   CONTACT_NEW_SCREEN,
   EDIT_PROFILE_SCREEN,
@@ -54,6 +55,7 @@ import UserTwoStepChangeRecoveryQuestionScreen from '../screens/User/TwoStep/Use
 import UserTwoStepVerifyRecoveryEmailScreen from '../screens/User/TwoStep/UserTwoStepVerifyRecoveryEmail';
 import QrCodeScreen from '../screens/QrCode/QrCodeScreen';
 import UserVerifyDeleteScreen from '../screens/User/UserVerifyDeleteScreen';
+import ChatBackgroundScreen from '../screens/Setting/ChatBackground/ChatBackgroundScreen';
 
 export function goRoomList() {
   navigate(ROOM_LIST_SCREEN);
@@ -148,6 +150,10 @@ export function goUserVerifyDeleteScreen(token) {
   navigate(USER_VERIFY_DELETE_SCREEN, {token});
 }
 
+export function goChatBackGround() {
+  navigate(CHAT_BACKGROUND_SCREEN);
+}
+
 const tabNav = TabNavigator({
   [ROOM_LIST_SCREEN]: {screen: RoomsScreen},
   [NEARBY_SCREEN]: {screen: NearbyScreen},
@@ -191,6 +197,7 @@ const PrimaryNavigator = StackNavigator({
   [USER_TWO_STEP_VERIFY_EMAIL_SCREEN]: {screen: UserTwoStepVerifyRecoveryEmailScreen},
   [QR_CODE_SCREEN]: {screen: QrCodeScreen},
   [USER_VERIFY_DELETE_SCREEN]: {screen: UserVerifyDeleteScreen},
+  [CHAT_BACKGROUND_SCREEN]: {screen: ChatBackgroundScreen},
 });
 
 export default PrimaryNavigator;

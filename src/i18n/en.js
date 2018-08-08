@@ -1637,6 +1637,11 @@ export default {
     defaultMessage: 'Login with QR code',
     description: 'setting screen',
   },
+  settingChatBackground: {
+    id: 'setting.chatBackground',
+    defaultMessage: 'Chat Background',
+    description: 'setting screen',
+  },
   qrCodeLoggedInDevice: {
     id: 'qrCode.loggedInDevice',
     defaultMessage: 'Logged in device',

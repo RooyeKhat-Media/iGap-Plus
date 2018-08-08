@@ -48,16 +48,24 @@ import {
   CLIENT_MUTE_ROOM,
   CLIENT_SUBSCRIBE_TO_ROOM,
   CLIENT_UNSUBSCRIBE_FROM_ROOM,
+  INFO_WALLPAPER_RESPONSE,
 } from '../../constants/methods/index';
 import Api, {getServerTime} from '../../modules/Api/index';
 import i18n from '../../i18n';
-import {prependFileProtocol, sleep} from '../../utils/core';
+import {objectToUint8Array, prependFileProtocol, sleep} from '../../utils/core';
 import Clipboard from '../../modules/Clipboard/index';
 import {messengerRoomMessageClearMessageFromStore} from '../../actions/messenger/roomMessages';
 import {entitiesRoomEdit} from '../../actions/entities/rooms';
 import {getMessagesDimension} from '../../modules/DimensionCalculator/index';
 import {CLIENT_GET_ROOM_HISTORY_PAGINATION_LIMIT} from '../../constants/configs';
 import {apiInvoke} from '../../modules/Entities/Rooms/index';
+import {fileManagerDownload} from '../../actions/fileManager';
+import {FILE_MANAGER_DOWNLOAD_MANNER} from '../../constants/fileManager';
+import MetaData from '../../models/MetaData';
+import {METADATA_USER_SELECTED_WALLPAPER, METADATA_USER_WALLPAPER_DATA} from '../../models/MetaData/constant';
+import protoTable from '../../modules/Proto';
+
+let priority = 1000000;
 
 class RoomHistoryScreen extends PureComponent {
 
@@ -103,7 +111,25 @@ class RoomHistoryScreen extends PureComponent {
     if (room) {
       this.initializeRoom(room);
     }
+    this.loadBackground();
   }
+
+  loadBackground = async () => {
+    const selectedWallpaper = await MetaData.load(METADATA_USER_SELECTED_WALLPAPER);
+    if (selectedWallpaper) {
+      const wallpaperData = await MetaData.load(METADATA_USER_WALLPAPER_DATA);
+      if (wallpaperData !== null || wallpaperData.data !== null) {
+        const responseProto = protoTable[INFO_WALLPAPER_RESPONSE].deserializeBinary(objectToUint8Array(wallpaperData.data));
+        this.setState({
+          selectedBackGround: {
+            index: selectedWallpaper,
+            avatar: responseProto.getWallpaperList()[selectedWallpaper],
+          },
+        });
+      }
+    }
+  };
+
 
   scrollToIndex = async () => {
     const {room, messageList} = this.props;
@@ -151,6 +177,7 @@ class RoomHistoryScreen extends PureComponent {
         editMessage: false,
         deleteMessage: false,
       },
+      selectedBackGround: null,
     };
   }
 
@@ -539,6 +566,16 @@ class RoomHistoryScreen extends PureComponent {
     this.sendBox = sendBox;
   };
 
+  startAvatarDownload = (index) => {
+    const {download} = this.props;
+    download(this.state.selectedBackGround.avatar.file);
+  };
+
+  stopAvatarDownload = (index) => {
+    //backGround chat must download without stop
+  };
+
+
   render() {
     const {room, clientUpdating, messageList, getRoomMessage, chatPeerVerified} = this.props;
     const {selectedCount, selectedList, toolbarActions} = this.state;
@@ -574,6 +611,9 @@ class RoomHistoryScreen extends PureComponent {
         onScroll={this.onScroll}
         goBack={this.props.navigation.goBack}
         verified={room.channelVerified || chatPeerVerified}
+        startAvatarDownload={this.startAvatarDownload}
+        stopAvatarDownload={this.stopAvatarDownload}
+        selectedBackGround={this.state.selectedBackGround}
       />
     );
   }
@@ -600,6 +640,17 @@ const mapDispatchToProps = (dispatch) => {
 
     editRoom: (roomId, payload, updateDb) => {
       dispatch(entitiesRoomEdit(roomId, payload, updateDb));
+    },
+
+    download: (attachment) => {
+      dispatch(fileManagerDownload(
+        FILE_MANAGER_DOWNLOAD_MANNER.AUTO,
+        attachment.getToken(),
+        Proto.FileDownload.Selector.FILE,
+        attachment.getSize(),
+        attachment.getCacheId(),
+        attachment.getName(),
+        priority--));
     },
   };
 };

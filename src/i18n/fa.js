@@ -1637,6 +1637,11 @@ export default {
     defaultMessage: 'با کد QR وارد شوید',
     description: 'setting screen',
   },
+  settingChatBackground: {
+    id: 'setting.chatBackground',
+    defaultMessage: 'پس زمینه صفحه گفتگو',
+    description: 'setting screen',
+  },
   qrCodeLoggedInDevice: {
     id: 'qrCode.loggedInDevice',
     defaultMessage: 'دستگاه وارد شده',

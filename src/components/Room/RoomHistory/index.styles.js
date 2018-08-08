@@ -51,6 +51,18 @@ export default [
           paddingRight: 5,
           ...IRANSans_Medium,
         },
+        backPic: {
+          backgroundColor: appTheme.wrapperBackground,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        },
+        avatarBack: {
+          width: '100%',
+          height: '100%',
+        },
       },
     },
   ],

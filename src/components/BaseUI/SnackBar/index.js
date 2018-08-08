@@ -47,8 +47,8 @@ class SnackBar extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const {snackBar} = this.props;
-    if (snackBar.content === null) {
+    const {snackBar} = nextProps;
+    if (snackBar.content !== null) {
       setTimeout(() => {
         this.props.dispatch(openSnackBar(null));
       }, 3000);

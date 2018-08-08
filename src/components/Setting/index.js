@@ -7,7 +7,13 @@ import styleSheet from './index.style';
 import {FormattedMessage, injectIntl, intlShape} from 'react-intl';
 import {Confirm, ListItem, MCIcon, PopupMenu, Toolbar} from '../BaseUI/index';
 import i18n from '../../i18n/index';
-import {goActiveSession, goBlockList, goQrCode, goSettingPrivacy} from '../../navigators/PrimaryNavigator';
+import {
+  goActiveSession,
+  goBlockList,
+  goChatBackGround,
+  goQrCode,
+  goSettingPrivacy,
+} from '../../navigators/PrimaryNavigator';
 import Linking from '../../modules/Linking/index';
 import {APP_VERSION} from '../../constants/configs';
 import {APP_MODAL_ID_PRIMARY} from '../../constants/app';
@@ -40,7 +46,7 @@ class SettingComponent extends Component {
         element: (<ListItem
           centerElement={{primaryText: theme.name}}
           rightElement={<View style={styles.themeColorWrap}>{
-            theme.colors.map(color => <View style={[styles.themeColor, {backgroundColor: color}]}/>)
+            theme.colors.map((color, i) => <View key={i} style={[styles.themeColor, {backgroundColor: color}]}/>)
           }</View>}
           style={{container: {backgroundColor: 'transparent', paddingLeft: 0}, primaryText: {...IRANSans_Medium}}}
         />),
@@ -152,6 +158,12 @@ class SettingComponent extends Component {
               options={this.themesList}
               onItemSelect={this.changeTheme}
               style={{wrapper: {display: 'none'}}}/>}
+            style={styles.listItem}
+          />
+          <ListItem
+            leftElement={<MCIcon name="box-shadow" size={22} color={appTheme.icon}/>}
+            centerElement={{primaryText: intl.formatMessage(i18n.settingChatBackground)}}
+            onPress={() => goChatBackGround()}
             style={styles.listItem}
           />
           <Text style={styles.TitleText}> {intl.formatMessage(i18n.settingIgapSupport)} </Text>

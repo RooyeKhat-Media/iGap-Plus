@@ -13,6 +13,7 @@ import i18n from '../../../i18n/en';
 import {Proto} from '../../../modules/Proto/index';
 import RoomActions from '../../../containers/Unit/RoomActions';
 import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import AvatarBox from '../../../containers/Unit/AvatarBox';
 
 import {
   BOX_TYPE_CHANNEL,
@@ -122,13 +123,22 @@ class RoomHistoryComponent extends React.PureComponent {
 
   render() {
     const {
-      intl, verified, roomTitle, clientUpdating, goRoomInfoBtn, onRoomHistoryMorePress, goBack,
+      intl, verified, roomTitle, clientUpdating, goRoomInfoBtn, onRoomHistoryMorePress, goBack, stopAvatarDownload, startAvatarDownload, selectedBackGround,
       controlSendBox, roomId, roomType, readOnly, isParticipant, isPublic, roomMute, joinBoxToggle, selectedCount, actionSheetControl, conformControl, messageList,
     } = this.props;
     const styles = this.getStyles();
     const {dataProvider} = this.state;
     return (
       <View style={styles.container}>
+        <View style={styles.backPic}>
+          {selectedBackGround && <AvatarBox
+            style={styles.avatarBack}
+            image={selectedBackGround}
+            startAvatarDownload={startAvatarDownload}
+            stopAvatarDownload={stopAvatarDownload}
+          />}
+        </View>
+
         <View style={styles.mainWrap}>
           {!selectedCount ?
             (<RoomHistoryToolbar
@@ -222,5 +232,8 @@ RoomHistoryComponent.propTypes = {
   onScroll: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   verified: PropTypes.bool,
+  startAvatarDownload: PropTypes.func.isRequired,
+  stopAvatarDownload: PropTypes.func.isRequired,
+  selectedBackGround: PropTypes.object,
 };
 export default injectIntl(RoomHistoryComponent);

@@ -5,3 +5,5 @@ export const METADATA_AUTHOR_HASH = 4;
 export const METADATA_USER_TOKEN = 5;
 export const METADATA_USER_LOCALE = 6;
 export const METADATA_USER_CONTACTS = 7;
+export const METADATA_USER_WALLPAPER_DATA = 8;
+export const METADATA_USER_SELECTED_WALLPAPER = 9;

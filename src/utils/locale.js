@@ -6,6 +6,7 @@ import store from '../configureStore';
 import {reloadApp} from './app';
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart';
+import {isEmpty} from 'lodash';
 
 export const LOCALE_DEFAULT = LOCALE_EN;
 
@@ -25,6 +26,11 @@ export async function loadUserLocale() {
 }
 
 export async function changeLocale(locale) {
+
+  if (isEmpty(locale)) {
+    return;
+  }
+
   if (_userLocale !== locale) {
     _userLocale = locale;
     await setUserLocale(locale);
