@@ -81,10 +81,14 @@ class AvatarBox extends Component {
   render() {
     const styles = this.getStyles();
     const {smallThumbnailUri, downloadedFile} = this.props;
+    const imageSource = this.isCompleted ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri);
+    if (imageSource == null) {
+      return null;
+    }
     return (
       <View>
         <Image{...this.props}
-          source={{uri: this.isCompleted ? prependFileProtocol(downloadedFile.uri) : prependFileProtocol(smallThumbnailUri)}}/>
+          source={{uri:imageSource}}/>
         {this.isPending && (
           <View style={styles.progressWrap}><ProgressBar width={width} status={PROGRESS_BAR_PENDING}/></View>)}
         {this.isProcessing && ((
