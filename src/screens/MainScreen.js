@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BackHandler} from 'react-native';
+import {BackHandler, Linking} from 'react-native';
 import PropTypes from 'prop-types';
 import {floor} from 'lodash';
 import {connect} from 'react-redux';
@@ -20,9 +20,12 @@ import putState from '../modules/Entities/RegisteredUsers/index';
 import {getUserId} from '../utils/app';
 import {layoutChangeSecondaryWidth} from '../actions/layout';
 import {getSecondaryWidth} from '../modules/DimensionCalculator/index';
+import SimpleMarkdown from 'simple-markdown';
 
 const addPrimaryListener = createReduxBoundAddListener('primary');
 const addSecondaryListener = createReduxBoundAddListener('secondary');
+import rules from '../modules/RichTextView/rules';
+import {parse} from '../modules/RichTextView/util';
 
 class MainScreen extends Component {
 
@@ -37,11 +40,23 @@ class MainScreen extends Component {
     firebase.notifications().getInitialNotification().then(this.notificationOpened);
     this.notificationOpenedListener = firebase.notifications().onNotificationOpened(this.notificationOpened);
     putState(getUserId(true));
+    Linking.addEventListener('url', this._handleOpenURL);
+    Linking.getInitialURL().then(url => url && this._handleOpenURL({ url }));
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
     this.notificationOpenedListener();
+    Linking.removeEventListener('url', this._handleOpenURL);
+  }
+
+  _handleOpenURL(event) {
+    try {
+      const markdown =  SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'react'))(parse(event.url));
+      markdown[0].props.children[0].props.onPress();
+    } catch (e) {
+      console.warn('_handleOpenURL error ', e);
+    }
   }
 
   notificationOpened = (notificationOpen) => {

@@ -32,11 +32,22 @@
                 android:name=".MainActivity"
                 android:label="@string/app_name"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-                android:windowSoftInputMode="adjustResize">
+                android:windowSoftInputMode="adjustResize"
+                android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="igap.net" android:scheme="http" />
+                <data android:host="igap.net" android:scheme="https" />
+                <data android:host="resolve" android:scheme="igap" />
+                <data android:host="join" android:scheme="igap" />
+            </intent-filter>
+
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
         <meta-data

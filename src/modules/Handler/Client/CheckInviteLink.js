@@ -4,7 +4,7 @@ import room from '../../../schemas/room';
 import {closeModal, openModal} from '../../../actions/modal';
 import {View} from 'react-native';
 import React from 'react';
-import {APP_MODAL_ID_SECONDARY} from '../../../constants/app';
+import {APP_MODAL_ID_MAIN} from '../../../constants/app';
 import {Button, ListItem} from '../../../components/BaseUI/index';
 import Avatar from '../../../containers/Unit/Avatar';
 import styleSheet from '../../../components/BaseUI/DialogModal/index.style';
@@ -26,7 +26,7 @@ export default class CheckInviteLink extends Base {
   handle() {
     const normalizedData = normalize(this._response.getRoom(), room);
     collect(normalizedData, this._response.getRoom().getId().toString());
-    this.dispatch(openModal(APP_MODAL_ID_SECONDARY, getContent(this._response.getRoom(), this.dispatch, this._request.getInviteToken()), true));
+    this.dispatch(openModal(APP_MODAL_ID_MAIN, getContent(this._response.getRoom(), this.dispatch, this._request.getInviteToken()), true));
   }
 }
 
@@ -60,10 +60,10 @@ function getContent(room, dispatch, token) {
         />
         <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
           <Button upperCase={false} primary text={'Cancel'} style={styles.dialogBtn}
-            onPress={() => dispatch(closeModal(APP_MODAL_ID_SECONDARY))}/>
+            onPress={() => dispatch(closeModal(APP_MODAL_ID_MAIN))}/>
           <Button upperCase={false} primary text={'Join'} style={styles.dialogBtn}
             onPress={async () => {
-              dispatch(closeModal(APP_MODAL_ID_SECONDARY));
+              dispatch(closeModal(APP_MODAL_ID_MAIN));
               if (!room.isParticipant) {
                 const clientJoinByInviteLink = new ClientJoinByInviteLink();
                 clientJoinByInviteLink.setInviteToken(token);
