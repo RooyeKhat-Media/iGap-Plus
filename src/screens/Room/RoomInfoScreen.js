@@ -98,6 +98,9 @@ class RoomInfoScreen extends Component {
     const {roomId} = this.props.navigation.state.params;
     await putState(roomId);
     const {room} = this.props;
+    if (!room) {
+      return;
+    }
     this.setRoomActionsAccess(this.props);
     const clientCountRoomHistory = new ClientCountRoomHistory();
     clientCountRoomHistory.setRoomId(room.longId);

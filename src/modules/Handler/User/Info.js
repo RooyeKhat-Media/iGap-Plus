@@ -5,7 +5,7 @@ import registeredUser from '../../../schemas/registeredUser';
 import store from '../../../configureStore';
 import Collector from '../../Collector';
 
-const {collect} = Collector(
+export const {collect} = Collector(
   (collected) => {
     for (const registeredUser of collected.values()) {
       store.dispatch(entitiesRegisteredUserAdd(registeredUser));

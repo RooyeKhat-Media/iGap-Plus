@@ -866,6 +866,16 @@ export default {
     defaultMessage: 'Contacts',
     description: 'new Screen',
   },
+  newSearch: {
+    id: 'new.search',
+    defaultMessage: 'Search',
+    description: 'new Screen',
+  },
+  newGlobal: {
+    id: 'new.global',
+    defaultMessage: 'Global',
+    description: 'new Screen',
+  },
   newAddContacts: {
     id: 'new.addContacts',
     defaultMessage: 'Add Contacts',

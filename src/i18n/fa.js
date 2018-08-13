@@ -866,6 +866,16 @@ export default {
     defaultMessage: 'مخاطبین',
     description: 'new Screen',
   },
+  newSearch: {
+    id: 'new.search',
+    defaultMessage: 'جستجو',
+    description: 'new Screen',
+  },
+  newGlobal: {
+    id: 'new.global',
+    defaultMessage: 'عمومی',
+    description: 'new Screen',
+  },
   newAddContacts: {
     id: 'new.addContacts',
     defaultMessage: 'افزودن شماره',

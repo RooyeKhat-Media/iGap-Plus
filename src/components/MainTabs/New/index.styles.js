@@ -70,7 +70,46 @@ export default [
             width: 30,
           },
         },
-
+        toolbar: {
+          titleText: {
+            minWidth: 100,
+          },
+        },
+        flatListSearch: {
+          marginBottom: 10,
+          marginTop: 20,
+        },
+        searchItem: {
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          paddingStart: 10,
+          borderRadius: 5,
+          borderTopWidth: 1,
+          borderTopColor: appTheme.wrapperBackground,
+        },
+        avatar: {
+          height: 52,
+          width: 52,
+          margin: 5,
+        },
+        searchContent: {
+          flex: 1,
+          height: 52,
+          paddingStart: 10,
+          alignItems: 'flex-start',
+        },
+        primaryText: {
+          fontSize: 16,
+          color: appTheme.primaryText,
+          textAlign: 'left',
+          ...IRANSans_Medium,
+        },
+        secondary: {
+          flex: 1,
+          fontSize: 12,
+          color: appTheme.primaryText,
+          textAlign: 'left',
+        },
       },
     },
   ],
