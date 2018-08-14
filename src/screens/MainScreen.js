@@ -21,11 +21,11 @@ import {getUserId} from '../utils/app';
 import {layoutChangeSecondaryWidth} from '../actions/layout';
 import {getSecondaryWidth} from '../modules/DimensionCalculator/index';
 import SimpleMarkdown from 'simple-markdown';
+import rules from '../modules/RichTextView/rules';
+import {parse} from '../modules/RichTextView/util';
 
 const addPrimaryListener = createReduxBoundAddListener('primary');
 const addSecondaryListener = createReduxBoundAddListener('secondary');
-import rules from '../modules/RichTextView/rules';
-import {parse} from '../modules/RichTextView/util';
 
 class MainScreen extends Component {
 
@@ -36,23 +36,27 @@ class MainScreen extends Component {
   }
 
   async componentDidMount() {
-    await firebase.messaging().requestPermission();
-    firebase.notifications().getInitialNotification().then(this.notificationOpened);
-    this.notificationOpenedListener = firebase.notifications().onNotificationOpened(this.notificationOpened);
-    putState(getUserId(true));
     Linking.addEventListener('url', this._handleOpenURL);
-    Linking.getInitialURL().then(url => url && this._handleOpenURL({ url }));
+    Linking.getInitialURL().then(url => url && this._handleOpenURL({url}));
+    putState(getUserId(true));
+
+    if (firebase.messaging().hasPermission()) {
+      firebase.notifications().getInitialNotification().then(this.notificationOpened);
+      this.notificationOpenedListener = firebase.notifications().onNotificationOpened(this.notificationOpened);
+    }
   }
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-    this.notificationOpenedListener();
     Linking.removeEventListener('url', this._handleOpenURL);
+    if (this.notificationOpenedListener) {
+      this.notificationOpenedListener();
+    }
   }
 
   _handleOpenURL(event) {
     try {
-      const markdown =  SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'react'))(parse(event.url));
+      const markdown = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'react'))(parse(event.url));
       markdown[0].props.children[0].props.onPress();
     } catch (e) {
       console.warn('_handleOpenURL error ', e);
@@ -102,7 +106,8 @@ class MainScreen extends Component {
         navigation={addNavigationHelpers({dispatch, state: navSecondary, addListener: addSecondaryListener})}/>);
     const isSecondaryActive = (navSecondary.index > 0) || (width > NORMAL_HEIGHT);
     return (
-      <MainComponent onSecondaryLayout={this.onSecondaryLayout} isSecondaryActive={isSecondaryActive} PrimaryNavigator={primaryNavigator}
+      <MainComponent onSecondaryLayout={this.onSecondaryLayout} isSecondaryActive={isSecondaryActive}
+        PrimaryNavigator={primaryNavigator}
         SecondaryNavigator={secondaryNavigator}/>
     );
   }

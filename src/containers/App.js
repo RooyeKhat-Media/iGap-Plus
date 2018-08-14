@@ -32,14 +32,23 @@ class App extends Component {
     this.state = {ready: false};
   }
 
+  registerFireBase = async () => {
+    if (firebase.messaging().hasPermission()) {
+      firebase.messaging().getToken().then(registerDevice);
+      this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(registerDevice);
+    } else {
+      await firebase.messaging().requestPermission();
+      firebase.messaging().getToken().then(registerDevice);
+      this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(registerDevice);
+    }
+  };
+
   async componentDidMount() {
     migrate().catch(function(error) {
-      console.log('Migration failed', error);
     }).then(() => {
       Api.instance;
     }).then(() => {
-      firebase.messaging().getToken().then(registerDevice);
-      this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(registerDevice);
+      this.registerFireBase();
       return Promise.all([
         loadUserId(),
         loadAuthorHash(),
@@ -70,7 +79,9 @@ class App extends Component {
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
     AppState.removeEventListener('change', this._handleAppStateChange);
-    this.onTokenRefreshListener();
+    if (this.onTokenRefreshListener) {
+      this.onTokenRefreshListener();
+    }
   }
 
   _handleAppStateChange = (nextAppState) => {
