@@ -253,7 +253,7 @@ class RoomHistoryScreen extends PureComponent {
 
     this.setState({
       access: {
-        sendMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
+        sendMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))) && !room.readOnly,
         editMessage: false,
         deleteMessage: room.isParticipant && (isChat || isGroup || (isChannel && (isModerator || isAdmin || isOwner))),
       },
