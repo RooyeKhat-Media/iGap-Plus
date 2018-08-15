@@ -15,7 +15,8 @@ export default class Add extends Base {
       if (!store.getState().entities.rooms[roomId]) {
         await sleep(1);
       } else {
-        this.dispatch(entitiesRoomEdit(roomId, {groupAvatar: this._response.getAvatar()}));
+        const count = store.getState().entities.rooms[roomId].groupAvatarCount + 1;
+        this.dispatch(entitiesRoomEdit(roomId, {groupAvatar: this._response.getAvatar(), groupAvatarCount: count}));
         break;
       }
     } while (--tries);

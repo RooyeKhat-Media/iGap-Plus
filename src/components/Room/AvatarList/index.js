@@ -24,12 +24,21 @@ class AvatarListComponent extends Component {
     this.menuActionList = [];
   }
 
+  componentDidMount() {
+    this.setMenuAccessItem(this.props.access);
+  }
+
   componentWillReceiveProps(nextProps) {
+    this.setMenuAccessItem(nextProps.access);
+  }
+
+  setMenuAccessItem = (access) => {
+
     const {intl} = this.props;
     this.menuItem = [];
     this.menuActionList = [];
-    if (nextProps.access) {
-      const {accessDeleteAvatar, accessSaveToGallery, accessShareAvatar} = nextProps.access;
+    if (access) {
+      const {accessDeleteAvatar, accessSaveToGallery, accessShareAvatar} = access;
       if (accessSaveToGallery) {
         this.menuItem.push(intl.formatMessage(i18n.avatarListSaveToGallery));
         this.menuActionList.push(menuAction.save);
@@ -43,7 +52,7 @@ class AvatarListComponent extends Component {
         this.menuActionList.push(menuAction.delete);
       }
     }
-  }
+  };
 
   getStyles = () => {
     return MemoizeResponsiveStyleSheet(styleSheet);

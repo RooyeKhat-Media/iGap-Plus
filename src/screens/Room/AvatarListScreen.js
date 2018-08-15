@@ -13,10 +13,7 @@ import {
   UserAvatarDelete,
   UserAvatarGetList,
 } from '../../modules/Proto/index';
-import {
-  getUserId,
-  saveToGallery,
-} from '../../utils/app';
+import {getUserId, saveToGallery} from '../../utils/app';
 import Api from '../../modules/Api/index';
 import {
   CHANNEL_AVATAR_DELETE,
@@ -35,6 +32,8 @@ import {FILE_MANAGER_DOWNLOAD_MANNER, FILE_MANAGER_DOWNLOAD_STATUS} from '../../
 import store from '../../configureStore';
 import {getDownloadedFile} from '../../selector/entities/roomMessage';
 import {prependFileProtocol} from '../../utils/core';
+import {entitiesRoomEdit} from '../../actions/entities/rooms';
+import {entitiesRegisteredUserEdit} from '../../actions/entities/registeredUser';
 
 export const menuAction = {delete: 'delete', share: 'share', save: 'save'};
 let priority = 1000000;
@@ -89,9 +88,13 @@ class AvatarListScreen extends Component {
       accessDeleteAvatar = (isOwner || isAdmin || isMyCloud);
     }
 
-    this.setState({access: {accessDeleteAvatar,
-      accessSaveToGallery:SaveTo.gallerySupport('image'),
-      accessShareAvatar :Share.isSupported }});
+    this.setState({
+      access: {
+        accessDeleteAvatar,
+        accessSaveToGallery: SaveTo.gallerySupport('image'),
+        accessShareAvatar: Share.isSupported,
+      },
+    });
   };
 
   invokeGetAvatar = (room, userId) => {
@@ -116,26 +119,6 @@ class AvatarListScreen extends Component {
     }
   };
 
-  invokeDeleteAvatar = (room, userId, avatarId) => {
-    if (userId || this.isChat) {
-      const userAvatarDelete = new UserAvatarDelete();
-      userAvatarDelete.setId(avatarId);
-      Api.invoke(USER_AVATAR_DELETE, userAvatarDelete);
-    } else {
-      if (this.isGroup) {
-        const groupAvatarDelete = new GroupAvatarDelete();
-        groupAvatarDelete.setRoomId(room.id);
-        groupAvatarDelete.setId(avatarId);
-        Api.invoke(GROUP_AVATAR_DELETE, groupAvatarDelete);
-      } else if (this.isChannel) {
-        const channelAvatarDelete = new ChannelAvatarDelete();
-        channelAvatarDelete.setRoomId(room.id);
-        channelAvatarDelete.setId(avatarId);
-        Api.invoke(CHANNEL_AVATAR_DELETE, channelAvatarDelete);
-      }
-    }
-  };
-
   menuClick = (action, index) => {
     switch (action) {
       case 'delete':
@@ -150,10 +133,41 @@ class AvatarListScreen extends Component {
     }
   };
 
-  deleteAvatar = (index) => {
+  deleteAvatar = async (index) => {
     const {avatarList, room} = this.props;
     const {userId} = this.props.navigation.state.params;
-    this.invokeDeleteAvatar(room, userId, avatarList[index].avatar.getId());
+    const avatarId = avatarList[index].avatar.getId();
+
+    const lastAvatarIndex = index === 0 ? 1 : 0;
+    const lastAvatar = avatarList.length > 1 ? avatarList[lastAvatarIndex].avatar : null;
+    const count = Math.max(0, avatarList.length - 1);
+
+    if (userId || this.isChat) {
+      const userAvatarDelete = new UserAvatarDelete();
+      userAvatarDelete.setId(avatarId);
+      await Api.invoke(USER_AVATAR_DELETE, userAvatarDelete);
+      if (store.getState().entities.registeredUsers[userId]) {
+        this.props.updateChatRoomAvatar(userId, lastAvatar, count);
+      }
+    } else {
+      if (this.isGroup) {
+        const groupAvatarDelete = new GroupAvatarDelete();
+        groupAvatarDelete.setRoomId(room.id);
+        groupAvatarDelete.setId(avatarId);
+        await Api.invoke(GROUP_AVATAR_DELETE, groupAvatarDelete);
+        if (store.getState().entities.rooms[room.id]) {
+          this.props.updateGroupRoomAvatar(room.id, lastAvatar, count);
+        }
+      } else if (this.isChannel) {
+        const channelAvatarDelete = new ChannelAvatarDelete();
+        channelAvatarDelete.setRoomId(room.id);
+        channelAvatarDelete.setId(avatarId);
+        await Api.invoke(CHANNEL_AVATAR_DELETE, channelAvatarDelete);
+        if (store.getState().entities.rooms[room.id]) {
+          this.props.updateChannelRoomAvatar(room.id, lastAvatar, count);
+        }
+      }
+    }
   };
 
   shareAvatar = async (index) => {
@@ -247,6 +261,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     cleanAvatarListFromMemory: (id) => {
       dispatch(deleteAvatarList(id));
+    },
+    updateGroupRoomAvatar: (id, lastAvatar, count) => {
+      dispatch(entitiesRoomEdit(id, {groupAvatar: lastAvatar, groupAvatarCount: count}));
+    },
+    updateChannelRoomAvatar: (id, lastAvatar, count) => {
+      dispatch(entitiesRoomEdit(id, {channelAvatar: lastAvatar, channelAvatarCount: count}));
+    },
+    updateChatRoomAvatar: (id, lastAvatar, count) => {
+      dispatch(entitiesRegisteredUserEdit(id, {avatar: lastAvatar, avatarCount: count}));
     },
 
     download: (index, avatarList) => {
