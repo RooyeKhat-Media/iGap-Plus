@@ -135,6 +135,11 @@ class AvatarListScreen extends Component {
 
   deleteAvatar = async (index) => {
     const {avatarList, room} = this.props;
+
+    if (!avatarList) {
+      return;
+    }
+
     const {userId} = this.props.navigation.state.params;
     const avatarId = avatarList[index].avatar.getId();
 
