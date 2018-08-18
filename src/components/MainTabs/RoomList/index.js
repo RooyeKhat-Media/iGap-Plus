@@ -61,11 +61,10 @@ class RoomListComponent extends React.PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     const {roomList} = nextProps;
-    const {selectedTab} = nextState;
     this.setState({
-      dataProvider: this.getDataProvider(roomList, selectedTab),
+      dataProvider: this.getDataProvider(roomList, this.state.selectedTab),
     });
   }
 
