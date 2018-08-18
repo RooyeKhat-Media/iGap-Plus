@@ -155,10 +155,8 @@ export async function login(handlerPrecedence = HANDLER_PRECEDENCE.BEFORE) {
   userLogin.setAppId(APP_ID);
   userLogin.setAppBuildVersion(APP_BUILD_VERSION);
   userLogin.setAppVersion(APP_VERSION);
-
   userLogin.setPlatform(getPlatform());
   userLogin.setPlatformVersion(DeviceInfo.getSystemVersion());
-
   userLogin.setDevice(DeviceInfo.getDeviceName());
   userLogin.setDeviceName(DeviceInfo.getBrand());
   userLogin.setLanguage(Proto.Language.FA_IR);

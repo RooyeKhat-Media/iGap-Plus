@@ -6,6 +6,7 @@ import {getPlatform} from '../../utils/app';
 import Api from '../../modules/Api/index';
 import {QR_CODE_NEW_DEVICE} from '../../constants/methods/index';
 import {arrayBufferToImage} from '../../utils/buffer';
+import DeviceInfo from 'react-native-device-info';
 
 class UserQrCodeLoginScreen extends Component {
   constructor(props) {
@@ -31,9 +32,9 @@ class UserQrCodeLoginScreen extends Component {
     qrCodeNewDevice.setAppBuildVersion(APP_BUILD_VERSION);
     qrCodeNewDevice.setAppVersion(APP_VERSION);
     qrCodeNewDevice.setPlatform(getPlatform());
-    qrCodeNewDevice.setPlatformVersion('0');
-    qrCodeNewDevice.setDevice(Proto.Device.UNKNOWN_DEVICE);
-    qrCodeNewDevice.setDeviceName('UNKNOWN_DEVICE');
+    qrCodeNewDevice.setPlatformVersion(DeviceInfo.getSystemVersion());
+    qrCodeNewDevice.setDevice(DeviceInfo.getDeviceName());
+    qrCodeNewDevice.setDeviceName(DeviceInfo.getBrand());
 
     /**
      * @type ProtoQrCodeNewDeviceResponse
