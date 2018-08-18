@@ -64,18 +64,13 @@ public class RNVideoCompressModule extends ReactContextBaseJavaModule {
         String width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
         int originalWidth = Integer.valueOf(width);
 
-        if (originalWidth <= 640 && (file.length() / duration < 200)) {
+        if (originalWidth <= 640 && (file.length() / duration < 250)) {
             promise.resolve(path);
             return;
         }
 
-        String name = fileUtil.getFileName(path);
-
-        if (name == null || name.length() == 0) {
-            name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".mp4";
-        }
-
-        final String outPath = fileUtil.getFilesDirPath() + File.separator + name;
+        final String outPath =
+                fileUtil.getFilesDirPath() + File.separator + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".mp4";
 
         VideoCompress.CompressListener listener = new VideoCompress.CompressListener() {
             @Override

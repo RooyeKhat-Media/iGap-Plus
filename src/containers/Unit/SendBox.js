@@ -132,7 +132,7 @@ class SendBox extends React.PureComponent {
     }
   };
 
-  selectCamera = () => {
+  selectCamera = (mode) => {
     const {intl} = this.props;
     const denialMessage = [
       intl.formatMessage(i18n.roomHistoryCameraPermission),
@@ -148,12 +148,12 @@ class SendBox extends React.PureComponent {
         pickedFile.height = size.height;
         this.setState({
           pickedFile: pickedFile,
-          attachmentType: ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE,
+          attachmentType:mode === cameraMode.CAMERA ? ROOM_MESSAGE_ATTACHMENT_TYPE_IMAGE : ROOM_MESSAGE_ATTACHMENT_TYPE_VIDEO,
         });
       },
       (error) => {
       },
-      cameraMode.CAMERA,
+      mode,
       denialMessage
     );
   };

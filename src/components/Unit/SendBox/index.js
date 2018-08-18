@@ -12,9 +12,9 @@ import {
   View,
 } from 'react-native';
 import {appTheme} from '../../../themes/default/index';
-import {Icon, IconToggle, MCIcon} from '../../BaseUI/index';
+import {Icon, IconToggle, MCIcon, DialogModal} from '../../BaseUI/index';
 import i18n from '../../../i18n/index';
-import {injectIntl, intlShape} from 'react-intl';
+import {injectIntl, intlShape, FormattedMessage} from 'react-intl';
 import {
   ROOM_MESSAGE_ATTACHMENT_TYPE_AUDIO,
   ROOM_MESSAGE_ATTACHMENT_TYPE_FILE,
@@ -27,6 +27,7 @@ import ShortMessage from '../RoomMessage/MessageBox/ShortMessage';
 import Permission, {PERMISSION_MICROPHONE} from '../../../modules/Permission/index';
 import MemoizeResponsiveStyleSheet from '../../../modules/Responsive/MemoizeResponsiveStyleSheet';
 import styleSheet from './index.style';
+import {cameraMode} from '../../../screens/General/CameraScreen';
 
 class SendBox extends PureComponent {
 
@@ -195,11 +196,6 @@ class SendBox extends PureComponent {
     await selectAttachment(ROOM_MESSAGE_ATTACHMENT_TYPE_FILE);
   };
 
-  selectCamera = () => {
-    const {selectCamera} = this.props;
-    this.toggleAttach();
-    selectCamera();
-  };
   selectContact = () => {
     const {selectContact} = this.props;
     this.toggleAttach();
@@ -273,7 +269,10 @@ class SendBox extends PureComponent {
 
             <TouchableOpacity
               style={styles.sharedItem}
-              onPress={this.selectCamera}>
+              onPress={() => {
+                this.dialog.open();
+              }
+              }>
               <View style={[styles.iconColor, styles.colorRed]}>
                 <Icon name="camera" size={40} color="#fff"/>
               </View>
@@ -450,6 +449,26 @@ class SendBox extends PureComponent {
             onRef={ref => (this.voiceRecorder = ref)}
           />
         </View>}
+        <DialogModal control={(dialog) => {
+          this.dialog = dialog;
+        }}
+        title={<FormattedMessage {...i18n.sendBoxDialogCameraTitle}/>}
+        actions={[
+          {label:  intl.formatMessage(i18n.sendBoxCaptureImage),
+            onPress: () => {
+              this.toggleAttach();
+              const {selectCamera} = this.props;
+              selectCamera(cameraMode.CAMERA);
+            },
+          },
+          {label:  intl.formatMessage(i18n.sendBoxCaptureVideo),
+            onPress: () => {
+              this.toggleAttach();
+              const {selectCamera} = this.props;
+              selectCamera(cameraMode.VIDEO);
+            },
+          },
+        ]}/>
       </View>
     );
   }

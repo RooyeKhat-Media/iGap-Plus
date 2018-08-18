@@ -261,10 +261,10 @@ public class VideoController {
         int bitrate;
 
         if (originalWidth > 640) {
-            resultWidth = 640;
-            resultHeight = (640 * originalHeight) / originalWidth;
+            resultWidth = originalWidth / 2;
+            resultHeight = originalHeight / 2;
         }
-        bitrate = resultWidth * resultHeight * 2;
+        bitrate = resultWidth * resultHeight * 4;
 
 //        switch (quality) {
 //            default:

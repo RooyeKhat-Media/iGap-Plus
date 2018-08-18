@@ -2030,4 +2030,19 @@ export default {
     defaultMessage: 'Select a Chat',
     description: 'RoomPicker Screen',
   },
+  sendBoxDialogCameraTitle: {
+    id: 'sendBox.dialogCameraTitle',
+    defaultMessage: 'Select camera action',
+    description: 'sendBox Screen',
+  },
+  sendBoxCaptureImage: {
+    id: 'sendBox.captureImage',
+    defaultMessage: 'Capture image',
+    description: 'sendBox Screen',
+  },
+  sendBoxCaptureVideo: {
+    id: 'sendBox.captureVideo',
+    defaultMessage: 'Capture video',
+    description: 'sendBox Screen',
+  },
 };
