@@ -116,7 +116,7 @@ class RoomHistoryScreen extends PureComponent {
 
   loadBackground = async () => {
     const selectedWallpaper = await MetaData.load(METADATA_USER_SELECTED_WALLPAPER);
-    if (selectedWallpaper) {
+    if (selectedWallpaper !== null && selectedWallpaper >= 0) {
       const wallpaperData = await MetaData.load(METADATA_USER_WALLPAPER_DATA);
       if (wallpaperData !== null || wallpaperData.data !== null) {
         const responseProto = protoTable[INFO_WALLPAPER_RESPONSE].deserializeBinary(objectToUint8Array(wallpaperData.data));
