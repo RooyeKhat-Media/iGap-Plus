@@ -64,6 +64,8 @@ import {FILE_MANAGER_DOWNLOAD_MANNER} from '../../constants/fileManager';
 import MetaData from '../../models/MetaData';
 import {METADATA_USER_SELECTED_WALLPAPER, METADATA_USER_WALLPAPER_DATA} from '../../models/MetaData/constant';
 import protoTable from '../../modules/Proto';
+import {goUserQrCodeLoginScreen} from '../../navigators/AppNavigator';
+import {qrMode} from '../User/UserQrCodeLoginScreen';
 
 let priority = 1000000;
 
@@ -559,6 +561,42 @@ class RoomHistoryScreen extends PureComponent {
       case 0:
         goRoomReport(room.id);
         break;
+      case 1:
+        this.getQrLink(room);
+        break;
+    }
+  };
+
+  getQrLink = (room) => {
+    switch (room.type) {
+      case 0:                                 //chat
+        const {chatUserName} = this.props;
+        if (chatUserName) {
+          goUserQrCodeLoginScreen(qrMode.RESOLVE, {username: chatUserName, message_id: 0});
+        }
+        break;
+      case 1:                               //group
+        if (room.groupType === 0) {
+          if (room.groupPrivateInviteToken && room.groupPrivateInviteToken.length > 0) {
+            goUserQrCodeLoginScreen(qrMode.JOIN, {invite_token: room.groupPrivateInviteToken});
+          }
+        } else {
+          if (room.groupPublicUsername && room.groupPublicUsername.length > 0) {
+            goUserQrCodeLoginScreen(qrMode.RESOLVE, {username: room.groupPublicUsername, message_id: 0});
+          }
+        }
+        break;
+      case 2:                              //channel
+        if (room.channelType === 0) {
+          if (room.channelPrivateInviteToken && room.channelPrivateInviteToken.length > 0) {
+            goUserQrCodeLoginScreen(qrMode.JOIN, {invite_token: room.channelPrivateInviteToken});
+          }
+        } else {
+          if (room.channelPublicUsername && room.channelPublicUsername.length > 0) {
+            goUserQrCodeLoginScreen(qrMode.RESOLVE, {username: room.channelPublicUsername, message_id: 0});
+          }
+        }
+        break;
     }
   };
 
@@ -628,6 +666,7 @@ const makeMapStateToProps = () => {
       getRoomMessage: getEntitiesRoomMessageFunc(state),
       clientUpdating: state.clientUpdating,
       chatPeerVerified: chatPeer ? chatPeer.verified : null,
+      chatUserName: chatPeer ? chatPeer.username : null,
     };
   };
 };

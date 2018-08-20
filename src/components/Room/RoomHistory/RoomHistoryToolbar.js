@@ -15,7 +15,7 @@ class RoomHistoryToolbar extends PureComponent {
   constructor(args) {
     super(args);
     const {intl} = this.props;
-    this.actionListMenu = [intl.formatMessage(i18n.roomHistoryActionReport)];
+    this.actionListMenu = [intl.formatMessage(i18n.roomHistoryActionReport), intl.formatMessage(i18n.roomHistoryQrLink)];
   }
 
   getStyles = () => {

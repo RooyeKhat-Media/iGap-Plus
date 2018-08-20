@@ -58,8 +58,8 @@ export function goUserRegisterScreen() {
   resetNavigation(USER_REGISTER_SCREEN);
 }
 
-export function goUserQrCodeLoginScreen() {
-  navigate(USER_QR_CODE_LOGIN_SCREEN);
+export function goUserQrCodeLoginScreen(mode, data) {
+  navigate(USER_QR_CODE_LOGIN_SCREEN, {mode, data});
 }
 
 export function goUserVerifyScreen(phoneNumber, username, method, resendDelay, smsNumber, verifyCodeRegex, verifyCodeDigitCount, resendParams) {

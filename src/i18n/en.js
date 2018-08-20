@@ -212,6 +212,11 @@ export default {
     defaultMessage: 'Read this QrCode with your iGap app to login .',
     description: 'QrCode Login Page',
   },
+  QrCodeLoginHelpJoin: {
+    id: 'QrCodeLogin.helpJoin',
+    defaultMessage: 'Read this QrCode with your iGap app to join room .',
+    description: 'QrCode Login Page',
+  },
   errorRequired: {
     id: 'Error.required',
     defaultMessage: 'The {field} field is required',
@@ -1457,6 +1462,11 @@ export default {
     defaultMessage: 'Report',
     description: 'roomHistory screen',
   },
+  roomHistoryQrLink: {
+    id: 'roomHistory.qrLink',
+    defaultMessage: 'QR code',
+    description: 'roomHistory screen',
+  },
   roomHistoryPickContactTitle: {
     id: 'roomHistory.pickContactTitle',
     defaultMessage: 'Select Contact',
@@ -1644,7 +1654,7 @@ export default {
   },
   settingLoginWithQrCode: {
     id: 'setting.LoginWithQrCode',
-    defaultMessage: 'Login with QR code',
+    defaultMessage: 'Scan QR code',
     description: 'setting screen',
   },
   settingChatBackground: {

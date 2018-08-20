@@ -4,8 +4,9 @@ import {cameraMode} from '../General/CameraScreen';
 import {injectIntl} from 'react-intl';
 import i18n from '../../i18n';
 import Api from '../../modules/Api/index';
-import {UserVerifyNewDevice} from '../../modules/Proto/index';
-import {USER_VERIFY_NEW_DEVICE} from '../../constants/methods/index';
+import {ClientCheckInviteLink, ClientResolveUsername, UserVerifyNewDevice} from '../../modules/Proto/index';
+import {CLIENT_CHECK_INVITE_LINK, CLIENT_RESOLVE_USERNAME, USER_VERIFY_NEW_DEVICE} from '../../constants/methods/index';
+import queryString from 'query-string';
 import QrCodeComponent from '../../components/QrCode';
 
 class QrCodeScreen extends Component {
@@ -29,12 +30,35 @@ class QrCodeScreen extends Component {
       const url = await new Promise((resolve, reject) => {
         goCamera(resolve, reject, cameraMode.QR, denialMessage);
       });
-      const userVerifyNewDevice = new UserVerifyNewDevice();
-      userVerifyNewDevice.setToken(url);
-      const deviceInfo = await Api.invoke(USER_VERIFY_NEW_DEVICE, userVerifyNewDevice);
-      this.setState({
-        verifiedDeviceInfo: deviceInfo,
-      });
+      const found = url.match('^igap://([\\w=?]+)\\s*');
+      if (found) {
+        const path = found[1].split('?');
+        const parsed = queryString.parse(path[1]);
+        switch (path[0].toLowerCase()) {
+          case 'join':
+            const clientCheckInviteLink = new ClientCheckInviteLink();
+            clientCheckInviteLink.setInviteToken(parsed.invite);
+            Api.invoke(CLIENT_CHECK_INVITE_LINK, clientCheckInviteLink);
+            break;
+          case 'resolve':
+            const clientResolveUsername = new ClientResolveUsername();
+            clientResolveUsername.setUsername(parsed.domain);
+            Api.invoke(CLIENT_RESOLVE_USERNAME, clientResolveUsername);
+            break;
+        }
+        this.props.navigation.goBack();
+      } else {
+        if (url.includes('://')) {
+          this.props.navigation.goBack();
+        } else {
+          const userVerifyNewDevice = new UserVerifyNewDevice();
+          userVerifyNewDevice.setToken(url);
+          const deviceInfo = await Api.invoke(USER_VERIFY_NEW_DEVICE, userVerifyNewDevice);
+          this.setState({
+            verifiedDeviceInfo: deviceInfo,
+          });
+        }
+      }
     } catch (e) {
       this.props.navigation.goBack();
     }

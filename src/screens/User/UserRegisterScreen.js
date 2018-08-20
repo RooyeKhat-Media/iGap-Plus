@@ -28,6 +28,7 @@ import {
 } from '../../modules/Api/errors/index';
 import {IRANSans_Medium} from '../../constants/fonts/index';
 import {appTheme} from '../../themes/default/index';
+import {qrMode} from './UserQrCodeLoginScreen';
 
 const rules = {
   phoneNumber: [
@@ -216,7 +217,7 @@ class UserRegisterScreen extends Component {
         selectNewLocale={this.selectNewLocale}
         defaultLocale={defaultLocale}
         goPrivacyPolicy={goPrivacyPolicy}
-        goUserQrCodeLoginScreen={goUserQrCodeLoginScreen}
+        goUserQrCodeLoginScreen={() => goUserQrCodeLoginScreen(qrMode.LOGIN)}
       />
     );
   }

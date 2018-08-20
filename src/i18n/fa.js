@@ -212,6 +212,11 @@ export default {
     defaultMessage: 'از این QR برای ورود به برنامه آی گپ استفاده کنید .',
     description: 'QrCode Login Page',
   },
+  QrCodeLoginHelpJoin: {
+    id: 'QrCodeLogin.helpJoin',
+    defaultMessage: 'برای پیوستن به صفحه مربوطه این QR را با استفاده از QR اسکنر آیگپ پیمایش نمایید. ',
+    description: 'QrCode Login Page',
+  },
   errorRequired: {
     id: 'Error.required',
     defaultMessage: '{field} فیلد مورد نیاز است',
@@ -1457,6 +1462,11 @@ export default {
     defaultMessage: 'گزارش',
     description: 'roomHistory screen',
   },
+  roomHistoryQrLink: {
+    id: 'roomHistory.qrLink',
+    defaultMessage: 'QR کد',
+    description: 'roomHistory screen',
+  },
   roomHistoryPickContactTitle: {
     id: 'roomHistory.pickContactTitle',
     defaultMessage: 'انتخاب تماس',
@@ -1644,7 +1654,7 @@ export default {
   },
   settingLoginWithQrCode: {
     id: 'setting.LoginWithQrCode',
-    defaultMessage: 'با کد QR وارد شوید',
+    defaultMessage: 'اسکن کد QR',
     description: 'setting screen',
   },
   settingChatBackground: {
